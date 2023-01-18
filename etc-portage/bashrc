@@ -1,0 +1,66 @@
+#genBTC original work, 8-10-2022 + 2023 - LICENSE: CCSA 4.0
+#_valid_phases="
+#		src_prepare src_unpack src_configure src_compile src_install src_test
+#		pkg_config pkg_info pkg_nofetch pkg_pretend pkg_setup pkg_preinst pkg_prerm pkg_postinst pkg_postrm"
+
+
+#if [ "${EBUILD_PHASE}" == "install" ]; then
+
+if [ "${EBUILD_PHASE}" == "preinst" ]; then
+  # pwd = ${D}
+  mkdir -p ~/.parallel;	touch ~/.parallel/will-cite
+  if [ "${PN}" == "gentoo-sources" ] || [ "${PN}" == "gentoo-kernel-bin" ] || [ "${PN}" == "gentoo-kernel" ]; then
+	return;
+  fi
+  echo "::1 BashRC PreInst: Analyzing files w/ CHECKSEC..."
+  checksec --dir=${D}	#TODO This can be very slow on large packages and useless on non-binary pkgs like gentoo-sources
+fi
+#
+#	echo "::1 Any EVM xattr Fixing here in the tmp/work/image dir \${D} will NOT copy \
+#            any security.ima/evm xattr to / root because of make.globals xattr_ignore..."
+
+
+if [ "${EBUILD_PHASE}" == "postinst" ]; then
+#  parallel --citation < <(echo "will cite")
+  if [ "${PN}" == "gentoo-sources" ] || [ "${PN}" == "gentoo-kernel-bin" ] || [ "${PN}" == "gentoo-kernel" ]; then
+	return;
+  fi
+  echo "::2 BashRC PostInst: imafix2 SHA512 Hashing in progress..."
+																#"omit dir,path,sym,dev
+  equery -C files ${PN} -f "obj,conf,cmd,doc,man,info,fifo" | parallel imafix2 -s
+  einfo "Logfile: ${PORTAGE_LOG_FILE}" 	#helps to correlate them
+fi
+
+pre_src_configure() {
+		echo "::0 BashRC $FUNCNAME(): "
+#		echo ">>> ENV:"
+#		env
+	if [ -n EMERGEINFO ]; then
+		echo ">>> emerge --info embedded into environment as \$EMERGEINFO"
+		export EMERGEINFO=$(emerge --info --ask=n --verbose=n);
+	fi
+	if [ -f configure ]; then
+	 	echo ">>> $FUNCNAME() { ./configure --help }"
+		./configure --help
+	fi
+        if [ -f meson_options.txt ]; then
+                echo ">>> $FUNCNAME() { cat meson_options.txt }"
+                cat meson_options.txt
+                echo ">>> $FUNCNAME() { meson configure }"
+			if [ "${PN}" == "x11-libs/gtk" ]; then return; fi
+		meson configure | cat || die	#TODO: This can hang sometimes, when the meson structure is not valid for top-level, requiring a kill -9 $PID. WHY?
+				# or killall meson. some packages were gtk+,
+        fi
+}
+
+# This hook is neccesary for automatic updating of the cfg-update index, please do not modify it!
+#pre_pkg_setup() {
+#	[[ $ROOT = / ]] && : cfg-update --index
+#}
+
+#!/bin/bash
+# (C) Martin V\"ath <martin at mvath.de>
+# SPDX-License-Identifier: GPL-2.0-only
+#[ "`type -t BashrcdMain`" = function ] || \
+#. "${PORTAGE_CONFIGROOT%/}/etc/portage/bashrc.d/bashrcd.sh"
+#BashrcdMain "$@"
