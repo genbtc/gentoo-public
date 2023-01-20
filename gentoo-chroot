@@ -404,7 +404,7 @@ chroot_add_file() {
     DST_FILE=$(resolve_link "${CHROOT_DIR}/${DST_FILE}" "${CHROOT_DIR}")
   else
     SRC_FILE=$(resolve_link "${1}")
-    DST_FILE=$(resolve_link "$CHROOT_DIR/$1" "$CHROOT_DIR")
+    DST_FILE=$(resolve_link "${CHROOT_DIR}/${1}" "${CHROOT_DIR}")
   fi
 
   # If we don't have a source file, there's nothing useful we can do.
@@ -414,18 +414,19 @@ chroot_add_file() {
     # There are two reasons the destination might not exist:
     #
     #   1. There may be no destination file in the chroot.  In this case, $DST_FILE won't exist,
-    #      and it will be equal to $CHROOT_DIR/$1.  In this case, we'll just exit.
+    #      and it will be equal to $CHROOT_DIR/$1.
     #
     #   2. $1/$2 is (or resolves to) a broken link.  The environment
     #      clearly intends for there to be a file here, but something's wrong.  Maybe it
-    #      normally creates the target at boot time.  We'll (try to) take care of it by
-    #      creating a dummy file at the target, so that we have something to bind to.
+    #      normally creates the target at boot time.
+    #
+    # In either case we'll (try to) take care of it by creating a dummy file at the target,
+    # so that we have something to bind to.
 
     # Case 1.
-    [[ ${DST_FILE} = "${CHROOT_DIR}/${1}" ]] && return 0
-
+    #[[ ${DST_FILE} = "${CHROOT_DIR}/${1}" ]] && return 0
     # Case 2.
-    install -Dm644 /dev/null "${DST_FILE}" || return 1
+    install -Dm644 /dev/null "${DST_FILE}" || die "${DST_FILE} does not exist in chroot and a dummy file to bind to could not be created"
   fi
 
   chroot_add_mount "${SRC_FILE}" "${DST_FILE}" --bind
@@ -440,7 +441,7 @@ gentoo-chroot() {
 
   local CHROOT_FILES=( )
   # Allow the use of $ADDITIONAL_CHROOT_FILES to mount arbirary files from a running env
-  if ! [ -z ${ADDITIONAL_CHROOT_FILES} ]; then
+  if (( ${#ADDITIONAL_CHROOT_FILES[@]} )); then
     CHROOT_FILES=${ADDITIONAL_CHROOT_FILES}
   fi
   CHROOT_FILES+=( "/etc/resolv.conf" )
