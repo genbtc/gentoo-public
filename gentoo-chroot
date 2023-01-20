@@ -482,7 +482,7 @@ gentoo-chroot() {
   if [ ${#ARGS[@]} -eq 0 ]; then
     SHELL=/bin/bash $PID_UNSHARE chroot "${CHROOT_ARGS[@]}" -- "$CHROOT_DIR"
   else
-    $PID_UNSHARE chroot "${CHROOT_ARGS[@]}" -- "$CHROOT_DIR" "${ARGS[@]}"/bin/bash -c "source /etc/profile && env-update && ${args[@]}"
+    $PID_UNSHARE chroot "${CHROOT_ARGS[@]}" -- "$CHROOT_DIR" /bin/bash -c "source /etc/profile && env-update && ${ARGS[@]}"
   fi
 }
 
