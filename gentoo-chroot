@@ -440,8 +440,8 @@ gentoo-chroot() {
 
   local CHROOT_FILES=( )
   # Allow the use of $ADDITIONAL_CHROOT_FILES to mount arbirary files from a running env
-  if [ ! ${#ADDITIONAL_CHROOT_FILES[@]} -eq 0 ]; then
-    $CHROOT_FILES=$ADDITIONAL_CHROOT_FILES
+  if ! [ -z ${ADDITIONAL_CHROOT_FILES} ]; then
+    CHROOT_FILES=${ADDITIONAL_CHROOT_FILES}
   fi
   CHROOT_FILES+=( "/etc/resolv.conf" )
   if [ -z ${NO_MOUNT_BASHRC+x} ]; then
@@ -451,7 +451,6 @@ gentoo-chroot() {
   if ! [ -z ${MOUNT_MAKECONF+x} ]; then
     CHROOT_FILES+=( "/etc/portage/make.conf" )
   fi
-
   for FILE in ${CHROOT_FILES[@]}; do
       chroot_add_file "${FILE}" || die "failed to setup ${FILE}"
   done
@@ -467,6 +466,11 @@ gentoo-chroot() {
     chroot_bind_device /etc/portage/repos.conf "${CHROOT_DIR}/etc/portage/repos.conf"
     chroot_bind_device /var/db/repos "${CHROOT_DIR}/var/db/repos"
   else
+    # A fresh stage3 may not have /var/db/repos/gentoo
+    if [ ! -d "${CHROOT_DIR}/var/db/repos/gentoo" ]; then
+      ignore_error rm "${CHROOT_DIR}/var/db/repos/gentoo"
+      mkdir -p "${CHROOT_DIR}/var/db/repos/gentoo"
+    fi
     chroot_bind_device /var/db/repos/gentoo "${CHROOT_DIR}/var/db/repos/gentoo"
   fi
   if [ -d "/var/cache/binpkgs"  ] && ! [ -z ${MOUNT_BINPKGS+x} ]; then
@@ -508,13 +512,14 @@ EOF
   exit 2
 }
 
-PARSED_ARGS=$(getopt -a -n ${0##*/} -o bdkmnNru: --long bind-binpkgs,debug,no-bind-kernel,bind-makeconf,no-bashrc,unshare,bind-hostrepos,user: -- "$@")
+PARSED_ARGS=$(getopt -a -n ${0##*/} -o bdhkmnNru: --long bind-binpkgs,debug,help,no-bind-kernel,bind-makeconf,no-bashrc,unshare,bind-hostrepos,user: -- "$@")
 eval set -- "$PARSED_ARGS"
 while :
 do
   case "$1" in
     -b | --bind-binpkgs ) MOUNT_BINPKGS=1 ; shift ;;
     -d | --debug ) DEBUG=1; echo -e "\e[1;35mEnabling very-basic debug!\e[0m"; set -x; shift ;;
+    -h | --help ) usage; exit 0 ;;
     -k | --no-bind-kernel) NO_MOUNT_KERNEL_SOURCE=1; shift ;;
     -m | --bind-makeconf ) MOUNT_MAKECONF=1 ; shift ;;
     -n | --no-bashrc ) NO_MOUNT_BASHRC=1 ; shift ;;
