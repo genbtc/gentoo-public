@@ -1,4 +1,5 @@
 #!/bin/bash
+# Shamelessly "borrowed" from arch to make Gentoo development in chroots easier
 
 shopt -s extglob
 
@@ -60,7 +61,7 @@ declare -A pseudofs_types=([anon_inodefs]=1
                            [virtiofs]=1)
 
 # generated from: pkgfile -vbr '/fsck\..+' | awk -F. '{ print $NF }' | sort
-declare -A fsck_types=([btrfs]=0    # btrfs doesn't need a regular fsck utility
+declare -A fsck_types=([btrfs]=1
                        [cramfs]=1
                        [erofs]=1
                        [exfat]=1
@@ -121,6 +122,7 @@ chroot_setup() {
   chroot_add_mount shm "$1/dev/shm" -t tmpfs -o mode=1777,nosuid,nodev &&
   chroot_add_mount run "$1/run" -t tmpfs -o nosuid,nodev,mode=0755 &&
   chroot_add_mount tmp "$1/tmp" -t tmpfs -o mode=1777,strictatime,nodev,nosuid
+  chroot_bind_device /var/db/repos/gentoo "${1}/var/db/repos/gentoo"
 }
 
 chroot_teardown() {
@@ -150,21 +152,21 @@ unshare_setup() {
   [[ $(trap -p EXIT) ]] && die '(BUG): attempting to overwrite existing EXIT trap'
   trap 'unshare_teardown' EXIT
 
-  chroot_add_mount_lazy "$1" "$1" --bind &&
-  chroot_add_mount proc "$1/proc" -t proc -o nosuid,noexec,nodev &&
-  chroot_add_mount_lazy /sys "$1/sys" --rbind &&
-  chroot_add_link "$1/proc/self/fd" "$1/dev/fd" &&
-  chroot_add_link "$1/proc/self/fd/0" "$1/dev/stdin" &&
-  chroot_add_link "$1/proc/self/fd/1" "$1/dev/stdout" &&
-  chroot_add_link "$1/proc/self/fd/2" "$1/dev/stderr" &&
-  chroot_bind_device /dev/full "$1/dev/full" &&
-  chroot_bind_device /dev/null "$1/dev/null" &&
-  chroot_bind_device /dev/random "$1/dev/random" &&
-  chroot_bind_device /dev/tty "$1/dev/tty" &&
-  chroot_bind_device /dev/urandom "$1/dev/urandom" &&
-  chroot_bind_device /dev/zero "$1/dev/zero" &&
-  chroot_add_mount run "$1/run" -t tmpfs -o nosuid,nodev,mode=0755 &&
-  chroot_add_mount tmp "$1/tmp" -t tmpfs -o mode=1777,strictatime,nodev,nosuid
+  chroot_add_mount_lazy "${1}" "${1}" --bind &&
+  chroot_add_mount proc "${1}/proc" -t proc -o nosuid,noexec,nodev &&
+  chroot_add_mount_lazy /sys "${1}/sys" --rbind &&
+  chroot_add_link "${1}/proc/self/fd" "${1}/dev/fd" &&
+  chroot_add_link "${1}/proc/self/fd/0" "${1}/dev/stdin" &&
+  chroot_add_link "${1}/proc/self/fd/1" "${1}/dev/stdout" &&
+  chroot_add_link "${1}/proc/self/fd/2" "${1}/dev/stderr" &&
+  chroot_bind_device /dev/full "${1}/dev/full" &&
+  chroot_bind_device /dev/null "${1}/dev/null" &&
+  chroot_bind_device /dev/random "${1}/dev/random" &&
+  chroot_bind_device /dev/tty "${1}/dev/tty" &&
+  chroot_bind_device /dev/urandom "${1}/dev/urandom" &&
+  chroot_bind_device /dev/zero "${1}/dev/zero" &&
+  chroot_add_mount run "${1}/run" -t tmpfs -o nosuid,nodev,mode=0755 &&
+  chroot_add_mount tmp "${1}/tmp" -t tmpfs -o mode=1777,strictatime,nodev,nosuid
 }
 
 unshare_teardown() {
@@ -370,7 +372,7 @@ usage: ${0##*/} chroot-dir [command] [arguments...]
 
 If 'command' is unspecified, ${0##*/} will launch /bin/bash.
 
-Note that when using arch-chroot, the target chroot directory *should* be a
+Note that when using gentoo-chroot, the target chroot directory *should* be a
 mountpoint. This ensures that tools such as pacman(8) or findmnt(8) have an
 accurate hierarchy of the mounted filesystems within the chroot.
 
@@ -454,7 +456,7 @@ shift $(( OPTIND - 1 ))
 chrootdir=$1
 shift
 
-arch-chroot() {
+gentoo-chroot() {
   (( EUID == 0 )) || die 'This script must be run with root privileges'
 
   [[ -d $chrootdir ]] || die "Can't create chroot on non-directory %s" "$chrootdir"
@@ -469,12 +471,14 @@ arch-chroot() {
   chroot_args=()
   [[ $userspec ]] && chroot_args+=(--userspec "$userspec")
 
-  SHELL=/bin/bash $pid_unshare chroot "${chroot_args[@]}" -- "$chrootdir" "${args[@]}"
+  #TODO: Should check for args just in case we actually only want to quickly execute something
+  #SHELL=/bin/bash $pid_unshare chroot "${chroot_args[@]}" -- "$chrootdir" "${args[@]}"
+  SHELL=/bin/bash $pid_unshare chroot "${chroot_args[@]}" -- "$chrootdir"
 }
 
 args=("$@")
 if (( unshare )); then
-  $mount_unshare bash -c "$(declare_all); arch-chroot"
+  $mount_unshare bash -c "$(declare_all); gentoo-chroot"
 else
-  arch-chroot
+  gentoo-chroot
 fi
