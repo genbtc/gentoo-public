@@ -471,9 +471,12 @@ gentoo-chroot() {
   chroot_args=()
   [[ $userspec ]] && chroot_args+=(--userspec "$userspec")
 
-  #TODO: Should check for args just in case we actually only want to quickly execute something
-  #SHELL=/bin/bash $pid_unshare chroot "${chroot_args[@]}" -- "$chrootdir" "${args[@]}"
-  SHELL=/bin/bash $pid_unshare chroot "${chroot_args[@]}" -- "$chrootdir"
+  if [ ${#args[@]} -eq 0 ]; then
+    SHELL=/bin/bash $pid_unshare chroot "${chroot_args[@]}" -- "$chrootdir"
+  else
+    $pid_unshare chroot "${chroot_args[@]}" -- "$chrootdir" /bin/bash -c "source /etc/profile && env-update && ${args[@]}"
+  fi
+
 }
 
 args=("$@")
