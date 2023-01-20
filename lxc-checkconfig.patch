@@ -1,0 +1,38 @@
+--- /usr/bin/lxc-checkconfig	2023-01-19 00:35:52.951628571 -0500
++++ /usr/bin/lxc-checkconfig	2023-01-19 00:57:38.819723146 -0500
+@@ -135,19 +135,31 @@
+ 	if command -v newuidmap >/dev/null 2>&1; then
+ 		f=$(command -v newuidmap)
+ 		if [ ! -u "${f}" ]; then
+-			echo "Warning: newuidmap is not setuid-root"
++        	if $(getcap ${f} | grep -q "setuid"); then
++            	echo -n "Note: newuidmap has no setuid, but has: CAPS_SETUID."
++				$SETCOLOR_SUCCESS && echo -n " capability enabled" && $SETCOLOR_NORMAL
++			else
++				echo -n "WARNING: newuidmap no setuid-root: " && show_enabled 1
++			fi
+ 		fi
+ 	else
+-		echo "newuidmap is not installed"
++		echo -n "newuidmap is not installed" && show_enabled 1
+ 	fi
++	echo
+ 	if command -v newgidmap >/dev/null 2>&1; then
+ 		f=$(command -v newgidmap)
+ 		if [ ! -u "${f}" ]; then
+-			echo "Warning: newgidmap is not setuid-root"
++        	if $(getcap ${f} | grep -q "setgid"); then
++            	echo -n "Note: newgidmap has no setuid, but has: CAPS_SETGID."
++				$SETCOLOR_SUCCESS && echo -n " capability enabled" && $SETCOLOR_NORMAL
++			else
++				echo -n "WARNING: newgidmap no setuid-root: " && show_enabled 1
++			fi
+ 		fi
+ 	else
+-		echo "newgidmap is not installed"
++		echo -n "newgidmap is not installed" && show_enabled 1
+ 	fi
++	echo
+ fi
+ echo -n "Network namespace: " && is_enabled CONFIG_NET_NS
+ echo
