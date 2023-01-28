@@ -1,0 +1,90 @@
+--- elogv	2023-01-28 00:38:01.310998121 -0500
++++ elogv	2023-01-28 01:50:47.691994202 -0500
+@@ -34,6 +34,7 @@
+ import gzip
+ import bz2
+ import signal
++import subprocess, time
+ 
+ _LOCALE_CATEGORY_PAIRS = (
+ 		(locale.LC_COLLATE, 'LC_COLLATE'),
+@@ -140,7 +141,7 @@
+ # Character used to print the class of an elog
+ class_char = "*"
+ list_format = "%s/%s - %s"
+-date_format = "%x"
++date_format = "%x %H:%M:%S"
+
+ # Exceptions classes
+ class TermTooSmall(Exception):
+@@ -565,6 +566,27 @@
+         self.log_win.erase()
+         shown_all = False
+ 
++        pkg = self.packages[self.usel]
++        nextpkgnum = self.usel + 1
++        if (self.usel + 1 >= len(self.packages)):
++            nextpkgnum = self.usel
++        nextpkg = self.packages[nextpkgnum]
++        date     = date2str(    pkg[DATE])
++        nextdate = date2str(nextpkg[DATE])
++        #self.log_win.addstr("Date: "+nextdate+"\n", curses.color_pair(normal))
++        split_up = re.split(":|" + os.path.sep, pkg[PATH].replace(elogdir + os.path.sep, ""))
++
++        builddir = "/var/cache/buildlogs/build/"
++        builddate = nextpkg[DATE].strftime("%Y%m%d-%H%M%S")
++        self.buildlog = builddir + split_up[0]+"/"+split_up[1] #+":"+ builddate +".log.gz"
++
++        self.log_win.addstr("ELog Path: ", curses.A_BOLD+curses.color_pair(elog))
++        self.log_win.addstr(pkg[PATH]+"\n",curses.A_BOLD+curses.color_pair(normal))
++
++        #self.log_win.addstr("Build.Log: ", curses.A_BOLD+curses.color_pair(elog))
++        #self.log_win.addstr(self.buildlog +"\n", curses.A_BOLD+curses.color_pair(normal))
++
++
+         for i in range(0,self.height//2-4):
+             try:
+                 x = next(self.logf_wrap)
+@@ -583,15 +605,19 @@
+                     self.log_win.addstr(x[:self.width-2],curses.color_pair(eerror))
+                 elif x.startswith('LOG:'):
+                     self.log_win.addstr(x[:self.width-2],curses.color_pair(elog))
++                elif x.startswith('Logfile: '):
++                    self.logfile = x.replace('Logfile: ',"").replace('\n','')
++                    self.log_win.addstr('Logfile: ',curses.A_BOLD+curses.color_pair(elog))
++                    self.log_win.addstr(self.logfile+"\n",curses.A_BOLD+curses.color_pair(normal))
+                 else:
+                     self.log_win.addstr(x[:self.width-2],curses.color_pair(normal))
+             except curses.error:
+                 pass
+ 
+         if not shown_all: 
+-            s = _("Continue...")
+-            self.log_win.addstr(self.height//2-3, self.width-len(s)-4, s,
+-                                curses.color_pair(normal))
++            s = _("Continue? [press space]...")
++            self.log_win.addstr(self.height//2-3, 4, s,
++                                curses.A_BOLD+curses.color_pair(normal))
+ 
+         self.log_win.refresh()
+ 
+@@ -670,6 +696,19 @@
+             self.screen.addstr(self.height-2,2,_("Not Found!"),
+                 curses.color_pair(eerror))
+ 
++
++class suspend_curses():
++    """Context Manager to temporarily leave curses mode"""
++
++    def __enter__(self):
++        curses.endwin()
++
++    def __exit__(self, exc_type, exc_val, tb):
++        newscr = curses.initscr()
++        newscr.refresh()
++        curses.doupdate()
++
++
+ if __name__ == "__main__":
+     if "--help" in sys.argv:
+         print(helptext)
