@@ -6,7 +6,7 @@ EAPI=7
 inherit desktop xdg
 
 DESCRIPTION="REAPER is a Digital Audio Production Application for multitrack audio,
-offering a full multitrack audio and MIDI recording, editing, processing, mixing and mastering toolset. "
+offering a full multitrack audio and MIDI recording, editing, processing, mixing and mastering toolset."
 
 HOMEPAGE="https://www.cockos.com/reaper"
 
@@ -30,7 +30,7 @@ SLOT="0"
 
 KEYWORDS="~amd64 ~arm64 ~arm"
 
-IUSE="X gtk3 alsa pulseaudio pipewire jack"
+IUSE="+X +gtk3 alsa pulseaudio pipewire jack"
 REQUIRED_USE="X gtk3 || ( alsa pulseaudio pipewire jack )"
 
 src_install() {
@@ -62,21 +62,30 @@ src_install() {
 	sed -e "/rm -f.*cockos-reaper.desktop/d" -i ${S}/install-reaper.sh || die
 	sed -e "/rm -f.*application-x-reaper.xml/d" -i ${S}/install-reaper.sh || die
 	sed -e '/rmdir -- "$tmpdir"/d' -i ${S}/install-reaper.sh || die
+    domenu cockos-reaper.desktop
+#QA remove useless errors
+#Running /usr/bin/update-mime-database
+#Usage: /usr/bin/update-mime-database [-hvVn] MIME-DIR
+#which: no kbuildsycoca5 in (/usr/lib/portage/python3.10/ebuild-helpers/xattr:/usr/lib/portage/python3.10/ebuild-helpers:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/bin:/usr/lib/llvm/15/bin)
+#which: no kbuildsycoca4 ^^
 #	cp -r ${T}/temp*/* ${S}
-	pushd ${D}/usr/share/icons/hicolor/256x256/apps &&
+	pushd ${ED}/${ICONSDIR}/256x256/apps &&
 	doicon cockos-reamote.png  cockos-reaper.png  cockos-reaper-backup.png  cockos-reaper-document.png  cockos-reaper-peak.png  cockos-reaper-template.png  cockos-reaper-template2.png  cockos-reaper-theme.png
 	dodoc readme-linux.txt
 	dostrip opt/REAPER/reaper opt/REAPER/Plugins/jsfx.so
 	default
 }
 
-pkg_postinst() {
-    export XDG_DATA_DIRS="${EPREFIX}"/usr/share
+xdgupdate() {
+    xdg_icon_cache_update
+    xdg_desktop_database_update
     xdg_mimeinfo_database_update
 }
 
-#QA remove useless errors
-#Running /usr/bin/update-mime-database
-#Usage: /usr/bin/update-mime-database [-hvVn] MIME-DIR
-#which: no kbuildsycoca5 in (/usr/lib/portage/python3.10/ebuild-helpers/xattr:/usr/lib/portage/python3.10/ebuild-helpers:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/bin:/usr/lib/llvm/15/bin)
-#which: no kbuildsycoca4 ^^
+pkg_postinst() {
+    xdgupdate
+}
+
+pkg_postrm() {
+    xdgupdate
+}

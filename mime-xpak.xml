@@ -1,0 +1,8 @@
+<--! to install: xdg-mime install mime-xpak.xml -->
+<?xml version="1.0"?>
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+ <mime-type type="application/x-bzip-compressed-tar">
+   <comment>Portage XPAK tbz2 archive</comment>
+   <glob pattern="*.xpak"/>
+ </mime-type>
+</mime-info>
