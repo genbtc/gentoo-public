@@ -1,0 +1,185 @@
+Download a Minimal Install cd (generic)
+ https://www.gentoo.org/downloads/
+Boot your computer/VM with the minimal ISO
+
+Create the disk partitions
+# gdisk /dev/sda
+
+	 Create GPT partition table:
+	Command: o ↵
+	This option deletes all partitions and creates a new protective MBR.
+	Proceed? (Y/N): y ↵
+
+	 Create Partition 1 (/boot):
+	Command: n ↵
+	Partition Number: 1 ↵
+	First sector: ↵
+	Last sector: +128M ↵
+	Hex Code: ↵
+
+	 Create Partition 2 (BIOS boot):
+	Command: n ↵
+	Partition Number: 2 ↵
+	First sector: ↵
+	Last sector: +2M ↵
+	Hex Code: EF02 ↵
+
+	 Create Partition 3 (/):
+	Command: n ↵
+	Partition Number: 3 ↵
+	First sector: ↵
+	Last sector: ↵ (for rest of disk)
+	Hex Code: ↵
+
+	 Write Partition Table To Disk:
+	Command: w ↵
+	Do you want to proceed? (Y/N): Y ↵
+Create the ext4 filesystems: Y
+# mkfs.ext4 /dev/sda1 -L boot
+(sda2 is reserved)
+# mkfs.ext4 /dev/sda3 -L gentoo
+
+Mount the filesystems: (repeat everytime you reboot)
+# mount /dev/sda3 /mnt/gentoo
+# mkdir -p /mnt/gentoo/boot (only do once)
+# mount /dev/sda1 /mnt/gentoo/boot
+# cd /mnt/gentoo
+
+Use your web browser to locate and Choose a specific stage 3 (to download in the VM)
+https://gentoo.osuosl.org/releases/amd64/autobuilds/
+
+Download your particular stage3 now, using text browser,
+# links https://gentoo.osuosl.org/releases/amd64/autobuilds/
+or from mirror:
+# links https://mirrors.rit.edu/gentoo/releases/amd64/autobuilds/
+or by direct link:
+# wget https://gentoo.osuosl.org/releases/amd64/autobuilds/current-stage3-amd64-openrc/stage3-amd64-hardened-nomultilib-selinux-openrc-20220217T125149Z.tar.xz
+
+Verify file if needed, then
+Extract the archive:
+# tar --xattrs-include='*.*' --numeric-owner -xpf stage3*
+
+Mount the chroot filesystems: (repeat everytime you reboot)
+# curl https://dpaste.com/5ZB6TH4PW.txt | bash 
+ (TODO: something wrong with line endings)
+or manually:
+# mount --types proc /proc /mnt/gentoo/proc
+# mount --rbind /sys /mnt/gentoo/sys
+# mount --make-rslave /mnt/gentoo/sys
+# mount --rbind /dev /mnt/gentoo/dev
+# mount --make-rslave /mnt/gentoo/dev
+# mount --bind /run /mnt/gentoo/run
+# mount --make-slave /mnt/gentoo/run
+
+copy DNS resolver into chroot
+# cp /etc/resolv.conf etc
+make sure DNS is valid (if not, add 8.8.8.8 googleDNS)
+# ping gentoo.org
+
+enter & activate chroot.
+# chroot . /bin/bash
+# source /etc/profile
+
+portage repository download, first sync ( -k to keep)
+# emerge-webrsync
+
+create mount fstab (w/ genfstab)
+# emerge genfstab
+# 
+# blkid -o export >> /etc/fstab
+output is in wrong format,
+# nano /etc/fstab
+(make note of device numbering, vfat/ext4 and decide on noauto)
+/dev/sda1		/boot		vfat		noauto,noatime	1 2
+/dev/sda3		/		    ext4		noatime		    0 1
+(make it to look somewhat like this)
+
+change the CPU arch native default very early on, for any new packages
+# nano /etc/portage/make.conf
+add -march=native to CFLAGS, (after -O2 -pipe)
+
+keep the default C english single locale
+(otherwise add optional ones to /etc/locale.gen first)
+# locale-gen
+# don't need international language translations
+INSTALL_MASK="/usr/share/locale"
+
+set timezone
+# ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
+
+to get up and running - immediately:
+use distribution's premade gentoo-kernel-bin 
+( USE="-initramfs" if skippable/slow because it will pull dracut + 2 others)
+this _WILL_ install dracut and make the initramfs and put that and the latest kernel in /boot,
+
+make sure boot is mounted 
+# emerge -av sys-kernel/gentoo-kernel-bin
+
+install a minimal version of grub
+(with less dependencies first, otherwise pulls in harfbuzz)
+# USE="-fonts -themes" emerge --ask sys-boot/grub
+install grub to the MBR on the disk
+# grub-install /dev/sda
+generate a new grub config that lists the vmlinuz gentoo-dist kernel and initramfs.img
+# grub-mkconfig -o /boot/grub/grub.cfg
+
+Reboot into your working system. Handbook Part 1 finished.
+
+Continue on to read fully at your own leisure:
+Working With Gentoo  = https://wiki.gentoo.org/wiki/Handbook:AMD64/Full/Working
+Working With Portage = https://wiki.gentoo.org/wiki/Handbook:AMD64/Full/Portage
+
+
+Notes:
+emerge cpuid2cpuflags
+emerge resolve-march-native
+
+set USE flags
+set passwd root password
+set up network, /etc/conf.d/net , symlink "ln -s net.enp0s3 net.lo"
+#net For DHCP
+#emerge dhcpcd
+/etc/conf.d/net:
+config_enp1s0="dhcp"
+#config_enp5s0f1="dhcp"
+-or-
+# For static IP regular
+config_enp5s0f1="192.168.1.222/24"
+routes_enp5s0f1="default via 192.168.1.1"
+dns_servers_enp5s0f1="192.168.1.1"
+# For static IP using CIDR notation
+config_enp4s0="10.1.1.2/30"
+
+#good Utilities:
+emerge fbset
+fbset -xres 1908 -yres 968
+
+emerge gentoolkit portage-utils eix wgetpaste
+
+emerge openssh
+
+emerge bash-completion
+
+Example Make.conf:
+
+#skip grubjunk
+USE="${USE} -fonts -themes"
+#from my system
+USE="${USE} -nls -firmware -ipv6 -bluetooth -telemetry -wifi -wireless -ppp -modemmanager -cups -gps -geolocation -mono -sendmail -kerberos -ldap -upnp -upnp-av -zeroconf -spell -enchant -hunspell"
+USE="${USE} -policykit -udisks -pulseaudio -smartcard"
+USE="${USE} -doc -examples -handbook"
+
+FEATURES="buildpkg parallel-install"
+FEATURES="compress-build-logs split-log"
+PORTAGE_LOGDIR="/var/cache/buildlogs"
+
+#super-ultra-mega-force colors on: (by sam)
+CLICOLOR_FORCE=1
+CMAKE_COLOR_DIAGNOSTICS=ON
+CMAKE_COMPILER_COLOR_DIAGNOSTICS=ON
+
+EMERGE_DEFAULT_OPTS="--ask --verbose --tree --keep-going --changed-use \
+--autounmask=y --autounmask-write=y --autounmask-use=y \
+--binpkg-respect-use=y --binpkg-changed-deps=y --with-bdeps=n"
+
+
