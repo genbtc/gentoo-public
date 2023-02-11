@@ -1,0 +1,5 @@
+#!/bin/bash
+echo
+qlop -v
+uptime
+echo
