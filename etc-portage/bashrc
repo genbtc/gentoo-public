@@ -15,13 +15,11 @@ if [ "${EBUILD_PHASE}" == "preinst" ]; then
   echo "::1 BashRC PreInst: Analyzing files w/ CHECKSEC..."
   checksec --dir=${D}	#TODO This can be very slow on large packages and useless on non-binary pkgs like gentoo-sources
 fi
-#
 #	echo "::1 Any EVM xattr Fixing here in the tmp/work/image dir \${D} will NOT copy \
 #            any security.ima/evm xattr to / root because of make.globals xattr_ignore..."
 
 
 if [ "${EBUILD_PHASE}" == "postinst" ]; then
-#  parallel --citation < <(echo "will cite")
   if [ "${PN}" == "gentoo-sources" ] || [ "${PN}" == "gentoo-kernel-bin" ] || [ "${PN}" == "gentoo-kernel" ]; then
 	return;
   fi
@@ -33,24 +31,26 @@ fi
 
 pre_src_configure() {
 		echo "::0 BashRC $FUNCNAME(): "
-#		echo ">>> ENV:"
-#		env
+#		echo ">>> ENV:" && env
 	if [ -n EMERGEINFO ]; then
 		echo ">>> emerge --info embedded into environment as \$EMERGEINFO"
 		export EMERGEINFO=$(emerge --info --ask=n --verbose=n);
 	fi
-	if [ -f configure ]; then
+	if [ -f configure ] && [ ! -f meson.build ]; then
 	 	echo ">>> $FUNCNAME() { ./configure --help }"
-		./configure --help
+		./configure --help | sed -ne '/^Optional Features/,$ p'
 	fi
-        if [ -f meson_options.txt ]; then
-                echo ">>> $FUNCNAME() { cat meson_options.txt }"
-                cat meson_options.txt
-                echo ">>> $FUNCNAME() { meson configure }"
-			if [ "${PN}" == "x11-libs/gtk" ]; then return; fi
-		meson configure | cat || die	#TODO: This can hang sometimes, when the meson structure is not valid for top-level, requiring a kill -9 $PID. WHY?
-				# or killall meson. some packages were gtk+,
-        fi
+    if [ -f meson_options.txt ]; then
+        echo ">>> $FUNCNAME() { cat meson_options.txt }"
+        cat meson_options.txt
+		if [ x"${PN}" == x"x11-libs/gtk+" ]; then return; fi
+        echo ">>> $FUNCNAME() { meson configure }"  #TODO see if a "meson configure --list --print" exists
+		meson configure || cat || die	#TODO: This can hang sometimes, when the meson structure is not valid for top-level
+		#, requiring a kill -9 $PID. or killall meson.  WHY?!  = some packages were gtk+,
+#found a typo, rechanged code once.
+#portage   7619 99.9  0.5 181412 171308 pts/2   R+   05:34   1:56  |                   \_ /usr/bin/python3.10 /usr/lib/python-exec/python3.10/meson configure
+#portage   7620  0.0  0.0   6636  1628 pts/2    S+   05:34   0:00  |                   \_ cat
+    fi
 }
 
 # This hook is neccesary for automatic updating of the cfg-update index, please do not modify it!
