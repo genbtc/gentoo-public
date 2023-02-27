@@ -1,0 +1,87 @@
+--- linux-5.19/sound/hda/Kconfig	2022-07-31 17:03:01.000000000 -0400
++++ linux-5.19/sound/hda/Kconfig	2022-11-25 01:30:51.468894703 -0500
+@@ -42,8 +42,6 @@
+ 
+ config SND_INTEL_DSP_CONFIG
+ 	tristate
+-	select SND_INTEL_NHLT if ACPI
+-	select SND_INTEL_SOUNDWIRE_ACPI if ACPI
+ 	# this config should be selected only for Intel DSP platforms.
+ 	# A fallback is provided so that the code compiles in all cases.
+ 
+
+--- linux-5.19/sound/pci/hda/Kconfig	2022-07-31 17:03:01.000000000 -0400
++++ linux-5.19/sound/pci/hda/Kconfig	2022-11-25 01:29:52.539899076 -0500
+@@ -15,7 +15,6 @@
+ 	tristate "HD Audio PCI"
+ 	depends on SND_PCI
+ 	select SND_HDA
+-	select SND_INTEL_DSP_CONFIG
+ 	help
+ 	  Say Y here to include support for Intel "High Definition
+ 	  Audio" (Azalia) and its compatible devices.
+@@ -129,7 +128,6 @@
+ config SND_HDA_CODEC_REALTEK
+ 	tristate "Build Realtek HD-audio codec support"
+ 	select SND_HDA_GENERIC
+-	select SND_HDA_GENERIC_LEDS
+ 	help
+ 	  Say Y or M here to include Realtek HD-audio codec support in
+ 	  snd-hda-intel driver, such as ALC880.
+@@ -266,8 +264,6 @@
+ 
+ config SND_HDA_GENERIC
+ 	tristate "Enable generic HD-audio codec parser"
+-	select SND_CTL_LED if SND_HDA_GENERIC_LEDS
+-	select LEDS_CLASS if SND_HDA_GENERIC_LEDS
+ 	help
+ 	  Say Y or M here to enable the generic HD-audio codec parser
+ 	  in snd-hda-intel driver.
+
+# snd_hda_gen_add_mute_led_cdev + snd_hda_gen_add_micmute_led_cdev
+--- linux-5.19/sound/pci/hda/hda_generic.c	2022-07-31 17:03:01.000000000 -0400
++++ linux-5.19/sound/pci/hda/hda_generic.c	2022-11-25 12:13:12.255034263 -0500
+@@ -3950,6 +3950,7 @@
+ 	spec->led_cdevs[idx] = cdev;
+ 	return 0;
+ }
++#endif /* CONFIG_SND_HDA_GENERIC_LEDS */
+ 
+ /**
+  * snd_hda_gen_add_mute_led_cdev - Create a LED classdev and enable as vmaster mute LED
+@@ -3960,6 +3961,7 @@
+ 				  int (*callback)(struct led_classdev *,
+ 						  enum led_brightness))
+ {
++#ifdef CONFIG_SND_HDA_GENERIC_LEDS
+ 	struct hda_gen_spec *spec = codec->spec;
+ 	int err;
+ 
+@@ -3975,6 +3977,7 @@
+ 		codec_err(codec, "vmaster hook already present before cdev!\n");
+ 
+ 	spec->vmaster_mute_led = 1;
++#endif /* CONFIG_SND_HDA_GENERIC_LEDS */
+ 	return 0;
+ }
+ EXPORT_SYMBOL_GPL(snd_hda_gen_add_mute_led_cdev);
+@@ -3997,6 +4000,7 @@
+ 				     int (*callback)(struct led_classdev *,
+ 						     enum led_brightness))
+ {
++#ifdef CONFIG_SND_HDA_GENERIC_LEDS
+ 	struct hda_gen_spec *spec = codec->spec;
+ 	int err;
+ 
+@@ -4009,10 +4013,10 @@
+ 	}
+ 
+ 	spec->mic_mute_led = 1;
++#endif /* CONFIG_SND_HDA_GENERIC_LEDS */
+ 	return 0;
+ }
+ EXPORT_SYMBOL_GPL(snd_hda_gen_add_micmute_led_cdev);
+-#endif /* CONFIG_SND_HDA_GENERIC_LEDS */
+ 
+ /*
+  * parse digital I/Os and set up NIDs in BIOS auto-parse mode

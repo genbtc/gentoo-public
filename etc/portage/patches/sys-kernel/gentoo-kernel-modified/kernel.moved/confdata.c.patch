@@ -1,0 +1,21 @@
+--- linux-5.19/scripts/kconfig/confdata.c	2022-10-02 17:09:07.000000000 -0400
++++ linux-5.19/scripts/kconfig/confdata.c	2022-12-09 16:30:03.909857879 -0500
+@@ -439,7 +439,8 @@
+ 					sym->type = S_BOOLEAN;
+ 			}
+ 			if (sym->flags & def_flags) {
+-				conf_warning("override: reassigning to symbol %s", sym->name);
++				conf_warning("override: now symbol # %s is not set",
++                                     sym->name);
+ 			}
+ 			switch (sym->type) {
+ 			case S_BOOLEAN:
+@@ -478,7 +479,7 @@
+ 			}
+ 
+ 			if (sym->flags & def_flags) {
+-				conf_warning("override: reassigning to symbol %s", sym->name);
++				conf_warning("override: reassigning symbol %s=%s", sym->name, sym_get_string_value(sym));
+ 			}
+ 			if (conf_set_sym_val(sym, def, def_flags, p))
+ 				continue;

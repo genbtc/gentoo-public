@@ -1,0 +1,11 @@
+--- linux-5.19/drivers/hid/Kconfig	2022-11-11 20:13:13.659911768 -0500
++++ linux-5.19/drivers/hid/Kconfig	2022-11-11 18:10:48.577918361 -0500
+@@ -90,7 +90,7 @@
+ 	If unsure, say Y.
+ 
+ menu "Special HID drivers"
+-	depends on HID
++	depends on HID && EXPERT
+ 
+ config HID_A4TECH
+ 	tristate "A4TECH mice"

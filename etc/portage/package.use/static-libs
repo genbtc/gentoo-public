@@ -1,0 +1,13 @@
+#dev-libs/libfido2 static-libs
+sys-libs/libxcrypt static-libs
+sys-apps/acl static-libs
+sys-apps/attr static-libs
+sys-process/audit static-libs
+sys-libs/libcap-ng static-libs
+sys-libs/libselinux static-libs
+dev-libs/libpcre2 static-libs
+sys-libs/zlib static-libs
+
+#  (sys-libs/libcap-2.66:0/0::gentoo, ebuild scheduled for merge) USE="pam (split-usr) -static-libs -tools" conflicts with
+#    sys-libs/libcap[static-libs] required by (app-containers/lxc-5.0.1-r2-1:0/0::gentoo, installed) USE="(caps) pam seccomp (selinux) ssl tools verify-sig -apparmor -examples -io-uring -lto -man -systemd -test"
+sys-libs/libcap static-libs

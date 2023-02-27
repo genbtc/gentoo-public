@@ -1,0 +1,119 @@
+--- linux-5.19/scripts/kconfig/conf.c	2022-10-02 17:09:07.000000000 -0400
++++ linux-5.19/scripts/kconfig/conf.c	2022-12-09 16:29:59.483857883 -0500
+@@ -323,7 +323,7 @@
+ 	line[1] = 0;
+ 
+ 	if (!sym_is_changeable(sym)) {
+-		printf("%s\n", def);
++//		printf("%s\n", def);
+ 		line[0] = '\n';
+ 		line[1] = 0;
+ 		return 0;
+@@ -333,7 +333,7 @@
+ 	case oldconfig:
+ 	case syncconfig:
+ 		if (sym_has_value(sym)) {
+-			printf("%s\n", def);
++//			printf("%s\n", def);
+ 			return 0;
+ 		}
+ 		/* fall through */
+@@ -352,13 +352,21 @@
+ 	const char *def;
+ 
+ 	while (1) {
+-		printf("%*s%s ", indent - 1, "", menu->prompt->text);
+-		printf("(%s) ", sym->name);
+ 		def = sym_get_string_value(sym);
+-		if (def)
+-			printf("[%s] ", def);
++
++                if (sym && !sym_has_value(sym) &&
++                    (sym_is_changeable(sym) ||
++                     (sym_is_choice(sym) && sym_get_tristate_value(sym) == yes))) {
++
++			printf("%*s%s ", indent - 1, "", menu->prompt->text);
++			printf("(%s) ", sym->name);
++			if (def)
++				printf("[%s] ", def);
++		}
++
+ 		if (!conf_askvalue(sym, def))
+ 			return 0;
++
+ 		switch (line[0]) {
+ 		case '\n':
+ 			break;
+@@ -383,33 +391,48 @@
+ {
+ 	struct symbol *sym = menu->sym;
+ 	tristate oldval, newval;
++	const char *def;
++	int ask;
+ 
+ 	while (1) {
+-		printf("%*s%s ", indent - 1, "", menu->prompt->text);
+-		if (sym->name)
+-			printf("(%s) ", sym->name);
+-		putchar('[');
+ 		oldval = sym_get_tristate_value(sym);
+-		switch (oldval) {
+-		case no:
+-			putchar('N');
+-			break;
+-		case mod:
+-			putchar('M');
+-			break;
+-		case yes:
+-			putchar('Y');
+-			break;
+-		}
+-		if (oldval != no && sym_tristate_within_range(sym, no))
+-			printf("/n");
+-		if (oldval != mod && sym_tristate_within_range(sym, mod))
+-			printf("/m");
+-		if (oldval != yes && sym_tristate_within_range(sym, yes))
+-			printf("/y");
+-		printf("/?] ");
+-		if (!conf_askvalue(sym, sym_get_string_value(sym)))
+-			return 0;
++
++	        if (sym && !sym_has_value(sym) &&
++	            (sym_is_changeable(sym) ||
++	             (sym_is_choice(sym) && sym_get_tristate_value(sym) == yes))) {
++
++			printf("%*s%s ", indent - 1, "", menu->prompt->text);
++			if (sym->name)
++				printf("(%s) ", sym->name);
++			putchar('[');
++			switch (oldval) {
++			case no:
++				putchar('N');
++				break;
++			case mod:
++				putchar('M');
++				break;
++			case yes:
++				putchar('Y');
++				break;
++			}
++			if (oldval != no && sym_tristate_within_range(sym, no))
++				printf("/n");
++			if (oldval != mod && sym_tristate_within_range(sym, mod))
++				printf("/m");
++			if (oldval != yes && sym_tristate_within_range(sym, yes))
++				printf("/y");
++			printf("/?] ");
++                }
++
++                def = sym_get_string_value(sym);
++                ask = conf_askvalue(sym, def);
++                if (!ask) {
++                        return 0;
++                }
++
++//		if (!conf_askvalue(sym, sym_get_string_value(sym)))
++//			return 0;
+ 		strip(line);
+ 
+ 		switch (line[0]) {

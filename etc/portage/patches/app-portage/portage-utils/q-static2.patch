@@ -1,0 +1,10 @@
+--- a/Makefile.am	2021-12-27 13:12:06.000000000 -0500
++++ b/Makefile.am	2022-08-17 16:18:28.180872331 -0400
+@@ -86,6 +86,7 @@
+ 	$(LIB_EACCESS) \
+ 	$(SENDFILE_LIBS) \
+ 	$(NULL)
++q_LDFLAGS = $(LDFLAGS_EXEC)
+ 
+ if QMANIFEST_ENABLED
+ q_SOURCES += qmanifest.c

@@ -1,0 +1,165 @@
+--- gorilla-1.4/gorilla.tcl	2006-06-16 18:39:37.000000000 -0400
++++ gorilla-1.4/gorilla.tcl	2023-02-03 07:23:49.607510990 -0500
+@@ -234,6 +234,9 @@
+ 	    {command "Save &As ..." {all open} "Save password database" {} \
+ 		    -command "gorilla::SaveAs"}
+ 	    {separator}
++	    {command "&Lock Database..." {all open} "Lock Database immediately" {} \
++		    -command "gorilla::IdleTimeout"}
++	    {separator}
+ 	    {command "&Export ..." {all open} "Export database as text" {} \
+ 		    -command "gorilla::Export"}
+ 	    {separator}
+@@ -401,7 +404,7 @@
+     # Try to compose a not very predictable seed
+     #
+ 
+-    append seed "20041201"
++    append seed "20221201"
+     append seed [clock seconds] [clock clicks] [pid]
+     append seed [winfo id .] [winfo geometry .] [winfo pointerxy .]
+     set hashseed [pwsafe::int::sha1isz $seed]
+@@ -495,7 +498,7 @@
+ 	if {[info exists ::gorilla::statusClearId]} {
+ 	    after cancel $::gorilla::statusClearId
+ 	}
+-    }	
++    }
+ }
+ 
+ proc gorilla::ClearStatus {} {
+@@ -1122,7 +1125,7 @@
+ 		    -defaultextension ".psafe3" \
+ 		    -filetypes $types \
+ 		    -initialdir $::gorilla::dirName]
+-	    
++
+ 	    if {$fileName == ""} {
+ 		continue
+ 	    }
+@@ -1458,7 +1461,7 @@
+ 	    #
+ 	    # See if fields have the same content
+ 	    #
+-	    
++
+ 	    if {$identical} {
+ 		foreach field $fields {
+ 		    if {$field == 1 || $field == 7 || $field == 8 || \
+@@ -1650,7 +1653,7 @@
+ 		-command "destroy $ttop"]
+ 	pack $botbut
+ 	pack $botframe -side top -fill x -pady 10
+-	
++
+ 	bind $ttop <Prior> "$text yview scroll -1 pages; break"
+ 	bind $ttop <Next> "$text yview scroll 1 pages; break"
+ 	bind $ttop <Up> "$text yview scroll -1 units"
+@@ -2600,6 +2603,8 @@
+     }
+ 
+     set top .findDialog
++	wm attributes .findDialog -topmost
++	focus $top
+ 
+     foreach {pref default} {
+ 	caseSensitiveFind 0
+@@ -2632,6 +2637,8 @@
+ 	    -textvariable ::gorilla::preference(findThisText)
+ 	pack $top.text -side top -expand yes -fill x -pady 5 -padx 10
+ 
++	focus $top.text
++
+ 	labelframe $top.find -text "Find in ..."
+ 	frame $top.find.t
+ 	frame $top.find.b
+@@ -3159,7 +3166,7 @@
+ 
+ 	bind $top.parent.e <Shift-Tab> "after 0 \"focus $top.buts.b1\""
+ 	bind $top.group.e <Shift-Tab> "after 0 \"focus $top.parent.e\""
+-	
++
+ 	bind $top.parent.e <Return> "set ::gorilla::guimutex 1"
+ 	bind $top.group.e <Return> "set ::gorilla::guimutex 1"
+ 	bind $top.buts.b1 <Return> "set ::gorilla::guimutex 1"
+@@ -4358,7 +4365,7 @@
+ 	    append symbolSet $notEasySymbols
+ 	}
+     }
+- 
++
+     set numSymbols [string length $symbolSet]
+ 
+     if {$numSymbols == 0} {
+@@ -4421,8 +4428,8 @@
+ 
+ 	frame $top.il
+ 	label $top.il.l1 -text "Lock when idle after"
+-	spinbox $top.il.s -from 0 -to 999 -increment 1 \
+-	    -justify right -width 4 \
++	spinbox $top.il.s -from 0 -to 9999 -increment 1 \
++	    -justify right -width 5 \
+ 	    -textvariable ::gorilla::dpd(IdleTimeout)
+ 	label $top.il.l2 -text "minutes (0=never)"
+ 	pack $top.il.l1 $top.il.s $top.il.l2 -side left -padx 3
+@@ -4442,7 +4449,7 @@
+ 	pack $top.uni -anchor w -side top -pady 3
+ 
+ 	frame $top.stretch
+-	spinbox $top.stretch.spin -from 2048 -to 65535 -increment 256 \
++	spinbox $top.stretch.spin -from 2048 -to 99999 -increment 256 \
+ 	    -justify right -width 8 \
+ 	    -textvariable ::gorilla::dpd(keyStretchingIterations)
+ 	label $top.stretch.label -text "V3 key stretching iterations"
+@@ -4573,7 +4580,7 @@
+     if {$dest == [$::gorilla::widgets(tree) parent $node]} {
+ 	return
+     }
+-    
++
+     #
+     # When we are moving a group, make sure that destination is not a
+     # child of this group
+@@ -4716,7 +4723,7 @@
+ 		set parentNode $::gorilla::groupNodes($partialGroupName)
+ 	    } else {
+ 		set childNodes [$::gorilla::widgets(tree) nodes $parentNode]
+-		
++
+ 		#
+ 		# Insert group in alphabetical order, before all logins
+ 		#
+@@ -4733,19 +4740,19 @@
+ 			break
+ 		    }
+ 		}
+-		
++
+ 		if {$i >= [llength $childNodes]} {
+ 		    set i "end"
+ 		}
+-		
++
+ 		set nodename "node[incr ::gorilla::uniquenodeindex]"
+-		
++
+ 		$::gorilla::widgets(tree) insert $i $parentNode $nodename \
+ 			-open 0 -drawcross auto \
+ 			-image $::gorilla::images(group) \
+ 			-text $group \
+ 			-data [list Group $partialGroupName]
+-		
++
+ 		set parentNode $nodename
+ 		set ::gorilla::groupNodes($partialGroupName) $nodename
+ 	    }
+@@ -6234,6 +6241,9 @@
+ 	set ::gorilla::preference(norc) 1
+     }
+ 
++    #added by genBTC 2023 - set icon for application, and every child window
++    wm iconphoto . -default $::gorilla::images(splash)
++
+     set haveDatabaseToLoad 0
+     set databaseToLoad ""
+ 

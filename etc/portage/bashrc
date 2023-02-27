@@ -44,10 +44,15 @@ pre_src_configure() {
         echo ">>> $FUNCNAME() { cat meson_options.txt }"
         cat meson_options.txt
 		if [ x"${PN}" == x"x11-libs/gtk+" ]; then return; fi
+		if [ x"${PN}" == x"dev-util/pkgconf" ]; then return; fi
+		if [ x"${PN}" == x"x11-base/xorg-proto" ]; then return; fi
+		if [ x"${PN}" == x"dev-libs/glib" ]; then return; fi
+		if [ x"${PN}" == x"dev-libs/gobject-introspection" ]; then return; fi
+		if [ x"${PN}" == x"x11-misc/shared-mime-info" ]; then return; fi
         echo ">>> $FUNCNAME() { meson configure }"  #TODO see if a "meson configure --list --print" exists
-		meson configure || cat || die	#TODO: This can hang sometimes, when the meson structure is not valid for top-level
-		#, requiring a kill -9 $PID. or killall meson.  WHY?!  = some packages were gtk+,
-#found a typo, rechanged code once.
+		PAGER= meson configure || cat || die
+#TODO: This can hang sometimes, when the meson structure is not valid for top-level,
+# requiring a kill -9 $PID. or killall meson.  WHY?!  = some packages were gtk+,
 #portage   7619 99.9  0.5 181412 171308 pts/2   R+   05:34   1:56  |                   \_ /usr/bin/python3.10 /usr/lib/python-exec/python3.10/meson configure
 #portage   7620  0.0  0.0   6636  1628 pts/2    S+   05:34   0:00  |                   \_ cat
     fi

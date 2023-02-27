@@ -1,0 +1,2 @@
+#They ruined the ebuild since -r2 by requiring [ipv6] with no ?
+=app-containers/lxd-5.0.1-r5

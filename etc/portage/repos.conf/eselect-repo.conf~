@@ -1,0 +1,13 @@
+# created by eselect-repo
+
+[guru]
+location = /var/db/repos/guru
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/guru.git
+
+
+
+[mv]
+location = /var/db/repos/mv
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/mv.git

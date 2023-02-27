@@ -1,0 +1,227 @@
+#WARNING: One or more updates/rebuilds have been skipped due to a dependency conflict:
+
+# LTO / PGO
+dev-lang/python lto pgo
+sys-devel/gcc lto pgo
+
+#  (media-libs/freetype-2.11.0-r1:2/2::gentoo, ebuild scheduled for merge) USE="X adobe-cff bzip2 cleartype-hinting png -brotli -debug -doc -fontforge -harfbuzz (-infinality) -static-libs -utils" conflicts with
+#    >=media-libs/freetype-2.5.0.1:2=[harfbuzz,png,abi_x86_64(-)]
+#                                     ^^^^^^^^
+# required by (x11-libs/pango-1.48.7-r1:0/0::gentoo, installed) USE="X introspection -debug -sysprof"
+media-libs/freetype harfbuzz
+
+#  (media-libs/libpng-1.6.37-r2:0/16::gentoo, ebuild scheduled for merge) USE="-apng -static-libs" CPU_FLAGS_X86="sse" conflicts with
+#    >=media-libs/libpng-1.6.35:0=[apng]
+#                                  ^^^^
+# required by (www-client/firefox-78.13.0:0/esr78::gentoo, ebuild scheduled for merge) USE="clang hardened openh264 (selinux) system-av1 system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-webp -dbus -debug -eme-free -geckodriver (-gmp-autoupdate) -hwaccel -jack -lto -pgo -pulseaudio (-screencast) -wayland -wifi" L10N="-ach -af -an -ar -ast -az -be -bg -bn -br -bs -ca -ca-valencia -cak -cs -cy -da -de -dsb -el -en-CA -en-GB -eo -es-AR -es-CL -es-ES -es-MX -et -eu -fa -ff -fi -fr -fy -ga -gd -gl -gn -gu -he -hi -hr -hsb -hu -hy -ia -id -is -it -ja -ka -kab -kk -km -kn -ko -lij -lt -lv -mk -mr -ms -my -nb -ne -nl -nn -oc -pa -pl -pt-BR -pt-PT -rm -ro -ru -si -sk -sl -son -sq -sr -sv -ta -te -th -tl -tr -trs -uk -ur -uz -vi -xh -zh-CN -zh-TW"
+media-libs/libpng apng
+
+#  (media-libs/libvpx-1.10.0:0/6::gentoo, ebuild scheduled for merge) USE="highbitdepth threads -doc -postproc -static-libs -test" conflicts with
+#    >=media-libs/libvpx-1.8.2:0=[postproc]
+#                                 ^^^^^^^^
+# required by (www-client/firefox-78.13.0:0/esr78::gentoo, ebuild scheduled for merge) USE="clang hardened openh264 (selinux) system-av1 system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-webp -dbus -debug -eme-free -geckodriver (-gmp-autoupdate) -hwaccel -jack -lto -pgo -pulseaudio (-screencast) -wayland -wifi" L10N="-ach -af -an -ar -ast -az -be -bg -bn -br -bs -ca -ca-valencia -cak -cs -cy -da -de -dsb -el -en-CA -en-GB -eo -es-AR -es-CL -es-ES -es-MX -et -eu -fa -ff -fi -fr -fy -ga -gd -gl -gn -gu -he -hi -hr -hsb -hu -hy -ia -id -is -it -ja -ka -kab -kk -km -kn -ko -lij -lt -lv -mk -mr -ms -my -nb -ne -nl -nn -oc -pa -pl -pt-BR -pt-PT -rm -ro -ru -si -sk -sl -son -sq -sr -sv -ta -te -th -tl -tr -trs -uk -ur -uz -vi -xh -zh-CN -zh-TW"
+media-libs/libvpx postproc
+
+#  (sys-libs/zlib-1.2.11-r4:0/1::gentoo, ebuild scheduled for merge) USE="(split-usr) -minizip -static-libs" conflicts with
+#    sys-libs/zlib[minizip]
+#                  ^^^^^^^
+# required by (net-analyzer/wireshark-3.4.7-r1:0/3.4.7::gentoo, installed) USE="capinfos captype dftest dumpcap editcap filecaps mergecap minizip netlink pcap plugins qt5 randpkt randpktdump reordercap (selinux) sharkd ssl text2pcap tshark udpdump zlib zstd -androiddump -bcg729 -brotli -ciscodump -doc -dpauxmon -http2 -ilbc -kerberos -libxml2 (-lto) -lua -lz4 -maxminddb -opus -plugin-ifdemo -sbc (-sdjournal) -smi -snappy -spandsp -sshdump -test -tfshark" LUA_SINGLE_TARGET="lua5-1"
+# required by (media-video/vlc-3.0.14-r6:0/5-9::gentoo, ebuild scheduled for merge) USE="X alsa dvbpsi encode ffmpeg gcrypt libnotify libsamplerate ncurses qt5 samba ssl truetype vdpau -a52 -aom -archive -aribsub -bidi -bluray -cddb -chromaprint -chromecast -dav1d -dbus -dc1394 -debug (-directx) -dts -dvd -faad -fdk -flac -fluidsynth -fontconfig -gme -gnome-keyring -gstreamer -ieee1394 -jack -jpeg -kate -libass -libcaca -libtar -libtiger -linsys -lirc -live -lua -macosx-notifications -mad -matroska -modplug -mp3 -mpeg -mtp -musepack -nfs -ogg -omxil -optimisememory -opus -png -projectm -pulseaudio -rdp -run-as-root -sdl-image -sftp -shout -sid -skins -soxr -speex -srt -svg -taglib -test -theora -tremor -twolame -udev -upnp -v4l -vaapi -vnc -vpx -wayland -x264 -x265 -xml -zeroconf -zvbi" CPU_FLAGS_X86="mmx sse" LUA_SINGLE_TARGET="lua5-1"
+sys-libs/zlib minizip
+
+#  (net-fs/samba-4.13.9-r2:0/0::gentoo, ebuild scheduled for merge) USE="acl pam regedit (selinux) system-mitkrb5 -addc -addns -ads -ceph -client -cluster -cups -debug (-dmapi) (-fam) -glusterfs -gpg -iprint -json -ldap -ntvfs -profiling-data -python -quota -snapper -spotlight -syslog (-system-heimdal) (-systemd) (-test) -winbind -zeroconf" PYTHON_SINGLE_TARGET="python3_9 -python3_8" conflicts with
+#    >=net-fs/samba-4.0.0:0[client,-debug(-)]
+#                           ^^^^^^
+# required by (media-video/vlc-3.0.14-r6:0/5-9::gentoo, ebuild scheduled for merge) USE="X alsa dvbpsi encode ffmpeg gcrypt libnotify libsamplerate ncurses qt5 samba ssl truetype vdpau -a52 -aom -archive -aribsub -bidi -bluray -cddb -chromaprint -chromecast -dav1d -dbus -dc1394 -debug (-directx) -dts -dvd -faad -fdk -flac -fluidsynth -fontconfig -gme -gnome-keyring -gstreamer -ieee1394 -jack -jpeg -kate -libass -libcaca -libtar -libtiger -linsys -lirc -live -lua -macosx-notifications -mad -matroska -modplug -mp3 -mpeg -mtp -musepack -nfs -ogg -omxil -optimisememory -opus -png -projectm -pulseaudio -rdp -run-as-root -sdl-image -sftp -shout -sid -skins -soxr -speex -srt -svg -taglib -test -theora -tremor -twolame -udev -upnp -v4l -vaapi -vnc -vpx -wayland -x264 -x265 -xml -zeroconf -zvbi" CPU_FLAGS_X86="mmx sse" LUA_SINGLE_TARGET="lua5-1"
+#    >=net-fs/samba-4[client]
+#                     ^^^^^^
+# required by (gnome-base/gvfs-1.48.1-r1:0/0::gentoo, ebuild scheduled for merge) USE="elogind fuse http samba udev -afp -archive -bluray -cdda -gnome-keyring -gnome-online-accounts -google -gphoto2 -ios -mtp -nfs -policykit (-systemd) -test -udisks -zeroconf"
+net-fs/samba client
+
+#  (media-video/ffmpeg-4.4-r1:0/56.58.58::gentoo, ebuild scheduled for merge) USE="X alsa bzip2 dav1d encode gnutls gpl iconv network opengl postproc samba threads truetype vdpau zlib -amr -amrenc (-appkit) -bluray -bs2b -cdio -chromaprint -chromium -codec2 -cpudetection (-cuda) -debug -doc -fdk -flite -fontconfig -frei0r -fribidi -gcrypt -gme -gmp -gsm -hardcoded-tables -iec61883 -ieee1394 -jack -jpeg2k -kvazaar -ladspa -libaom -libaribb24 -libass -libcaca -libdrm -libilbc -librtmp -libsoxr -libtesseract -libv4l -libxml2 -lv2 -lzma (-mipsdspr1) (-mipsdspr2) (-mipsfpu) (-mmal) -modplug -mp3 -openal -opencl -openh264 -openssl -opus -oss -pic -pulseaudio -rav1e -rubberband -sdl -snappy -sndio -speex -srt -ssh -static-libs -svg -test -theora -twolame -v4l -vaapi -vidstab -vorbis -vpx -vulkan -webp -x264 -x265 -xvid -zeromq -zimg -zvbi" CPU_FLAGS_X86="aes avx avx2 mmx mmxext sse sse2 sse3 sse4_1 sse4_2 ssse3 -3dnow -3dnowext -fma3 -fma4 -xop" FFTOOLS="-aviocat -cws2fws -ffescape -ffeval -ffhash -fourcc2pixfmt -graph2dot -ismindex -pktdumper -qt-faststart -sidxindex -trasher" VIDEO_CARDS="-nvidia" conflicts with
+#    media-video/ffmpeg:=[x264]
+#                         ^^^^
+# required by (media-video/obs-studio-9999:0/0::gentoo, ebuild scheduled for merge) USE="alsa ssl truetype -browser -decklink -fdk -jack -lua -nvenc -pipewire -pulseaudio -python -speex -v4l -vlc -wayland" LUA_SINGLE_TARGET="luajit" PYTHON_SINGLE_TARGET="python3_9 -python3_10 -python3_8"
+media-video/ffmpeg x264
+
+#(gr-osmosdr also required a custom overlay 9999)
+net-wireless/gr-osmosdr python
+#Packages: net-wireless/gnuradio net-wireless/gr-osmosdr net-wireless/gqrx
+#  (net-wireless/gnuradio-3.10.5.0-r2:0/3.10.5.0::gentoo, ebuild scheduled for merge) USE="alsa analog audio digital filter portaudio qt5 sdl utils -channels -ctrlport -doc -dtv -examples -fec -grc -iio -jack -modtool -network -oss -performance-counters -soapy -test -trellis -uhd -vocoder -wavelet -zeromq" PYTHON_SINGLE_TARGET="python3_10 -python3_9" conflicts with
+#    >=net-wireless/gnuradio-3.10:0=[audio,analog,filter,network]
+#                                                        ^^^^^^^
+# required by (net-wireless/gqrx-2.15.9-r1-3:0/0::gentoo, installed) USE="portaudio -gr-audio -pulseaudio"
+net-wireless/gnuradio network
+
+# dev-python/PyQt5-5.15.4-r1::gentoo USE="opengl ssl -bluetooth -dbus -debug -declarative -designer -examples -gles2-only -gui -help -location -multimedia -network -positioning -printsupport -sensors -serialport -speech -sql -svg -testlib -webchannel -websockets -widgets -x11extras -xmlpatterns" PYTHON_TARGETS="python3_9 (-python3_10) -python3_8"
+#  The following REQUIRED_USE flag constraints are unsatisfied:
+#    opengl? ( gui widgets )
+dev-python/PyQt5 gui widgets
+
+#  (dev-qt/qtgui-5.15.8-r1:5/5.15.8::gentoo, ebuild scheduled for merge) USE="X egl jpeg libinput png udev vnc vulkan -accessibility -dbus -debug -eglfs -evdev -gles2-only -ibus -linuxfb -test -tslib -tuio -wayland" conflicts with
+#    =dev-qt/qtgui-5.15.8*:5/5.15.8=[dbus]
+#                                    ^^^^
+# required by (dev-qt/qtwidgets-5.15.8-1:5/5.15::gentoo, installed) USE="X dbus gtk png -debug -gles2-only -test"
+#    dev-qt/qtgui:5=[dbus]
+#                    ^^^^
+# required by (x11-misc/qt5ct-1.5-7:0/0::gentoo, installed) USE=""
+#    >=dev-qt/qtgui-5.15:5[dbus,jpeg,png,X]
+#                          ^^^^
+# required by (net-im/telegram-desktop-3.6.1-r1-2:0/0::gentoo, installed) USE="X dbus (jemalloc) -enchant -hunspell -screencast -spell -wayland"
+dev-qt/qtgui dbus
+
+#!!! The ebuild selected to satisfy "dev-qt/qtwidgets" has unmet requirements.
+#  dev-qt/qtwidgets-5.15.8::gentoo USE="X gtk png -dbus -debug -gles2-only -test"
+#  The following REQUIRED_USE flag constraints are unsatisfied:
+#    gtk? ( dbus )
+#(dependency required by "@world" [argument])
+dev-qt/qtwidgets dbus
+
+#  (dev-qt/qtquickcontrols2-5.15.8:5/5.15::gentoo, ebuild scheduled for merge) USE="-debug -test -widgets" conflicts with
+#    dev-qt/qtquickcontrols2:5[widgets]
+#                              ^^^^^^^
+# required by (app-crypt/yubikey-manager-qt-1.2.4-2:0/0::gentoo, installed) USE="" PYTHON_SINGLE_TARGET="python3_10 -python3_11 -python3_8 -python3_9"
+dev-qt/qtquickcontrols2 widgets
+
+#!!! The ebuild selected to satisfy "media-libs/sdl-mixer" has unmet requirements.
+#  media-libs/sdl-mixer-1.2.12_p20221010::gentoo USE="flac mp3 vorbis wav -fluidsynth -mad -midi -mikmod -mod -modplug -playtools -smpeg -static-libs -timidity"
+#  The following REQUIRED_USE flag constraints are unsatisfied:
+#    mp3? ( any-of ( smpeg mad ) )
+#  The above constraints are a subset of the following complete expression:
+#    midi? ( any-of ( timidity fluidsynth ) ) timidity? ( midi ) fluidsynth? ( midi ) mp3? ( any-of ( smpeg mad ) ) smpeg? ( mp3 ) mad? ( mp3 ) mod? ( any-of ( mikmod modplug ) ) mikmod? ( mod ) modplug? ( mod )
+#(dependency required by "media-gfx/tuxpaint-0.9.28-r2::gentoo" [installed])
+#(dependency required by "@world" [argument])
+media-libs/sdl-mixer smpeg mad
+
+#  (dev-python/numpy-1.24.0:0/0::gentoo, ebuild scheduled for merge) USE="-lapack -test" PYTHON_TARGETS="python3_10 -python3_11 -python3_9" conflicts with
+#    >=dev-python/numpy-1.19.5[lapack,python_targets_python3_10(-)]
+#                             ^^^^^^^
+# required by (dev-python/scipy-1.10.0-1:0/0::gentoo, installed) USE="fortran (test-rust) -doc -test" PYTHON_TARGETS="python3_10 -python3_11 -python3_9"
+dev-python/numpy lapack
+
+#!!! The ebuild selected to satisfy ">=media-libs/opencv-3.4:=" has unmet requirements.
+#  media-libs/opencv-4.6.0-r4::gentoo USE="eigen features2d ffmpeg gstreamer gtk3 jpeg jpeg2k opengl openmp python threads vaapi -contrib (-contribcvv) -contribdnn -contribfreetype (-contribhdf) (-contribovis) (-contribsfm) (-contribxfeatures2d) (-cuda) -debug -dnnsamples -download -examples -gdal (-gflags) (-glog) -gphoto2 -ieee1394 -java -lapack -lto -opencl -opencvapps -openexr -png -qt5 (-tesseract) -testprograms -tiff -v4l (-vtk) -webp -xine" CPU_FLAGS_X86="avx avx2 f16c fma3 popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3 -avx512f" PYTHON_TARGETS="python3_10 -python3_11 -python3_9"
+#  The following REQUIRED_USE flag constraints are unsatisfied:
+#    opengl? ( qt5 )
+#  The above constraints are a subset of the following complete expression:
+#    cpu_flags_x86_avx2? ( cpu_flags_x86_f16c ) cpu_flags_x86_f16c? ( cpu_flags_x86_avx ) cuda? ( contrib tesseract? ( opencl ) ) dnnsamples? ( examples ) gflags? ( contrib )
+#    glog? ( contrib ) contribcvv? ( contrib qt5 ) contribdnn? ( contrib ) contribfreetype? ( contrib ) contribhdf? ( contrib ) contribovis? ( contrib ) contribsfm? ( contrib eigen gflags glog )
+#    contribxfeatures2d? ( contrib download ) examples? ( contribdnn ) java? ( python ) opengl? ( qt5 )
+#    python? ( any-of ( python_targets_python3_9 python_targets_python3_10 python_targets_python3_11 ) ) tesseract? ( contrib )
+#    at-most-one-of ( gtk3 qt5 )
+#            ^^^      ^^^^^^^^
+#(dependency required by "media-gfx/nomacs-3.16.224-r5::gentoo[opencv]" [ebuild])
+#(dependency required by "@world" [argument])
+
+# required by media-gfx/fbida-2.14-r5::gentoo[X]
+# required by @world (argument)
+>=x11-libs/motif-2.3.8-r3 xft
+
+#  (dev-libs/boost-1.81.0-r1:0/1.81.0::gentoo, ebuild scheduled for merge) USE="bzip2 lzma zlib zstd -context -debug -doc -icu -mpi -nls -numpy -python -tools" PYTHON_TARGETS="python3_10 -python3_11 -python3_9" conflicts with
+#    dev-libs/boost:=[python,python_targets_python3_10(-)]
+#                     ^^^^^^
+# required by (net-wireless/gnuradio-3.10.5.0-r2:0/3.10.5.0::gentoo, ebuild scheduled for merge) USE="alsa analog audio digital filter network portaudio qt5 utils -channels -ctrlport -doc -dtv -examples -fec -grc -iio -jack -modtool -oss -performance-counters -sdl -soapy -test -trellis -uhd -vocoder -wavelet -zeromq" PYTHON_SINGLE_TARGET="python3_10 -python3_9"
+dev-libs/boost python
+
+#  (app-crypt/gnupg-2.2.40:0/0::gentoo, ebuild scheduled for merge) USE="bzip2 readline (selinux) smartcard ssl tools usb verify-sig -doc -ldap -nls -test -tofu -user-socket -wks-server" conflicts with
+#    app-crypt/gnupg[nls]
+#                    ^^^
+# required by (dev-python/python-gnupg-0.5.0-2:0/0::gentoo, installed) USE="verify-sig -test" PYTHON_TARGETS="python3_10 (-pypy3) -python3_11 -python3_8 -python3_9"
+app-crypt/gnupg nls
+
+#  (media-gfx/graphicsmagick-1.3.39:0/1.3::gentoo, ebuild scheduled for merge) USE="X bzip2 cxx jpeg lzma openmp svg truetype verify-sig zlib zstd -debug -dynamic-loading -fpx -heif -imagemagick -jbig -jpegxl -lcms -perl -png -postscript -q16 -q32 -static-libs -tcmalloc -tiff -webp -wmf" conflicts with
+#    media-gfx/graphicsmagick[jpeg,png,svg]
+#                                  ^^^
+# required by (media-gfx/tuxpaint-0.9.28-r2-1:0/0::gentoo, installed) USE=""
+media-gfx/graphicsmagick png
+
+#  (sys-block/parted-3.5:0/0::gentoo, ebuild scheduled for merge) USE="debug readline verify-sig -device-mapper -nls" conflicts with
+#    >=sys-block/parted-1.8[device-mapper]
+#                           ^^^^^^^^^^^^^
+# required by (app-emulation/libvirt-8.7.0-r1-2:0/8.7.0::gentoo, installed) USE="(audit) bash-completion (caps) fuse libssh libvirtd lvm lxc parted qemu (selinux) udev verify-sig virtualbox -apparmor -dtrace -firewalld -glusterfs -iscsi -iscsi-direct -libssh2 -nfs -nls -numa (-openvz) -pcap -policykit -rbd -sasl -virt-network -wireshark-plugins -xen -zfs"
+sys-block/parted device-mapper
+
+# required by net-libs/webkit-gtk-2.38.3-r410::gentoo
+# required by gnome-extra/sushi-43.0::gentoo
+# required by gnome-base/nautilus-43.1::gentoo[previewer]
+# required by @selected
+# required by @world (argument)
+#>=media-libs/harfbuzz-6.0.0 icu
+gnome-base/nautilus -previewer
+
+# required by app-emulation/libvirt-8.7.0-r1::gentoo[virt-network]
+# required by @selected
+# required by @world (argument)
+#>=net-dns/dnsmasq-2.86-r1 script ipv6
+app-emulation/libvirt -virt-network
+
+#  (app-text/xmlto-0.0.28-r10:0/0::gentoo, ebuild scheduled for merge) USE="-latex -text" conflicts with
+#    >=app-text/xmlto-0.0.28-r3[text(+)]
+#                               ^^^^^^^
+# required by (x11-misc/xdg-utils-1.1.3_p20210805-r1-1:0/0::gentoo, installed) USE="-dbus -doc -gnome"
+app-text/xmlto text
+
+#  (dev-libs/libpcre2-10.42:0/3::gentoo, ebuild scheduled for merge) USE="bzip2 pcre16 readline (split-usr) static-libs unicode verify-sig zlib -jit -libedit -pcre32" conflicts with
+#    dev-libs/libpcre2[pcre32]
+#                      ^^^^^^
+# required by (app-misc/fdupes-2.2.1-1:0/0::gentoo, installed) USE="ncurses"
+dev-libs/libpcre2 pcre32
+
+#  (media-video/ffmpeg-4.4.3:0/56.58.58::gentoo, ebuild scheduled for merge) USE="X alsa bzip2 dav1d encode gnutls gpl iconv jpeg2k lzma mp3 network opengl opus postproc samba sdl snappy svg threads truetype vaapi vdpau verify-sig vorbis vulkan x264 zlib (-amf) -amr -amrenc (-appkit) -bluray -bs2b -cdio -chromaprint -chromium -codec2 -cpudetection (-cuda) -debug -doc -fdk -flite -fontconfig -frei0r -fribidi -gcrypt -gme -gmp -gsm -hardcoded-tables -iec61883 -ieee1394 -jack -kvazaar -ladspa -libaom -libaribb24 -libass -libcaca -libdrm -libilbc -librtmp -libsoxr -libtesseract -libv4l -libxml2 -lv2 (-mipsdspr1) (-mipsdspr2) (-mipsfpu) (-mmal) -modplug -nvenc -openal -opencl -openh264 -openssl -oss -pic -pulseaudio -rav1e -rubberband -sndio -speex -srt -ssh -static-libs -svt-av1 -test -theora -twolame -v4l -vidstab (-vmaf) -vpx -webp -x265 -xvid -zeromq -zimg -zvbi" CPU_FLAGS_X86="aes avx avx2 fma3 mmx mmxext sse sse2 sse3 sse4_1 sse4_2 ssse3 -3dnow -3dnowext -fma4 -xop" FFTOOLS="-aviocat -cws2fws -ffescape -ffeval -ffhash -fourcc2pixfmt -graph2dot -ismindex -pktdumper -qt-faststart -sidxindex -trasher" conflicts with
+#    >=media-video/ffmpeg-4.2.1:0/56.58.58=[postproc,fdk]
+#                                                    ^^^
+# required by (media-video/handbrake-1.5.1-4:0/0::gentoo, installed) USE="fdk gstreamer gtk -libav-aac -numa -nvenc -x265"
+media-video/ffmpeg fdk
+
+#  (media-libs/gd-2.3.3-r3:2/3::gentoo, ebuild scheduled for merge) USE="jpeg png truetype zlib -avif -fontconfig -heif -static-libs -test -tiff -webp -xpm" CPU_FLAGS_X86="sse" conflicts with
+#    >=media-libs/gd-2.0.34:2/3=[fontconfig,jpeg,png,truetype,zlib]
+#                                ^^^^^^^^^^
+# required by (media-gfx/graphviz-5.0.1-r2-2:0/0::gentoo, installed) USE="X cairo qt5 svg -devil -doc -examples -gtk2 -gts -guile -lasi -nls -pdf -perl -postscript -python -ruby -tcl -webp" PYTHON_SINGLE_TARGET="python3_10 -python3_11 -python3_9"
+media-libs/gd fontconfig
+
+# required by media-libs/mesa-21.1.7::gentoo[-video_cards_r200,-video_cards_r100,-video_cards_radeon,video_cards_radeonsi,-video_cards_r600,-video_cards_r300]
+# required by virtual/opengl-7.0-r2::gentoo
+# required by xfce-extra/xfce4-screensaver-4.16.0::gentoo
+# required by xfce-base/xfce4-session-4.16.0::gentoo[xscreensaver]
+# required by @selected
+x11-libs/libdrm video_cards_radeon
+
+#  (media-libs/sdl-image-1.2.12_p20220527-r1-1:0/0::gentoo, installed) USE="jpeg png -gif -static-libs -tiff -webp" pulled in by
+#    media-libs/sdl-image[png]
+#                         ^^^
+# required by (media-gfx/tuxpaint-0.9.28-r2-1:0/0::gentoo, installed) USE=""
+media-libs/sdl-image png
+
+#  (dev-libs/capstone-5.0_rc2-r2-1:0/5::gentoo, installed) USE="python -test" PYTHON_TARGETS="python3_10 -python3_11 -python3_9" pulled in by
+#    dev-libs/capstone[python,python_targets_python3_10(-)]
+#                      ^^^^^^
+# required by (dev-util/pwndbg-20221219-r1-1:0/0::gentoo, installed) USE="" PYTHON_SINGLE_TARGET="python3_10 -python3_11 -python3_9"
+# required by (dev-util/ROPgadget-7.1-1:0/0::gentoo, installed) USE="" PYTHON_TARGETS="python3_10 -python3_11 -python3_9"
+dev-libs/capstone python
+
+#  (dev-util/unicorn-2.0.1-1:0/2::gentoo, installed) USE="python -static-libs" PYTHON_TARGETS="python3_10 -python3_11 -python3_9" pulled in by
+#    dev-util/unicorn[python,python_targets_python3_10(-)]
+#                     ^^^^^^
+# required by (dev-util/pwndbg-20221219-r1-1:0/0::gentoo, installed) USE="" PYTHON_SINGLE_TARGET="python3_10 -python3_11 -python3_9"
+dev-util/unicorn python
+
+# requires ">=dev-python/QtPy-2.0.1[python_targets_python3_9(-)?,python_targets_python3_10(-)?,python_targets_python3_11(-)?,gui,printsupport,svg]".
+#!!! One of the following packages is required to complete your request:
+#- dev-python/QtPy-2.3.0::gentoo (Change USE: +printsupport)
+#(dependency required by "dev-python/qtconsole-5.4.0::gentoo" [installed])
+#(dependency required by "dev-python/ipython-8.8.0::gentoo[qt5]" [installed])
+#(dependency required by "@selected" [set])
+#(dependency required by "@world" [argument])
+# required by dev-python/QtPy (argument)
+>=dev-python/QtPy-2.3.0 -network -sql
+# required by dev-python/qtconsole-5.4.0::gentoo
+# required by dev-python/ipython-8.8.0::gentoo[qt5]
+# required by @selected
+# required by @world (argument)
+>=dev-python/QtPy-2.3.0 printsupport
+# required by dev-python/QtPy-2.3.0::gentoo[pyqt5]
+# required by dev-python/qtconsole-5.4.0::gentoo
+# required by dev-python/ipython-8.8.0::gentoo[qt5]
+# required by @selected
+# required by @world (argument)
+>=dev-python/PyQt5-5.15.7 printsupport

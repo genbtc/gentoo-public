@@ -1,0 +1,11 @@
+--- linux-5.19/drivers/gpu/drm/Kconfig	2022-07-31 17:03:01.000000000 -0400
++++ linux-5.19/drivers/gpu/drm/Kconfig	2022-11-12 16:15:20.855847032 -0500
+@@ -12,8 +12,6 @@
+ 	select DRM_PANEL_ORIENTATION_QUIRKS
+ 	select HDMI
+ 	select FB_CMDLINE
+-	select I2C
+-	select I2C_ALGOBIT
+ 	select DMA_SHARED_BUFFER
+ 	select SYNC_FILE
+ # gallium uses SYS_kcmp for os_same_file_description() to de-duplicate

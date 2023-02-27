@@ -1,0 +1,93 @@
+app-admin/conky iostats math lua-cairo bundled-toluapp nano-syntax
+app-admin/keepassxc yubikey -network
+app-admin/sxid -mail
+app-arch/libarchive lzo blake2
+#app-arch/wimlib iso ntfs
+app-crypt/gnupg smartcard tools
+app-crypt/pinentry qt5
+app-editors/nano magic justify
+app-emulation/libvirt -virt-network libssh lxc parted virtualbox
+app-emulation/qemu io-uring sdl-image spice ssh virgl vte usbredir virtfs qemu_softmmu_targets_ppc qemu_softmmu_targets_ppc64
+app-emulation/virtualbox -sdk -python
+app-misc/ddcutil drm
+app-misc/pax-utils python
+app-portage/conf-update colordiff
+app-portage/layman gpg subversion squashfs sync-plugin-portage
+app-portage/portage-utils static -qmanifest -qtegrity
+#dev-libs/castxml -man
+dev-python/pillow webp
+#dev-qt/qt-creator cppcheck
+dev-qt/qtgui egl
+dev-util/android-tools python
+dev-util/cmake qt5
+dev-util/geany-plugins debugger pretty-printer scope workbench
+dev-vcs/git tk
+gnome-base/gvfs mtp -http
+gnome-base/nautilus -previewer -sendto
+#mate-extra/mate-utils udisks applet
+media-gfx/fbida -X
+media-gfx/geeqie exif tiff xmp
+media-gfx/imagemagick webp
+media-gfx/nomacs -tiff -opencv
+media-libs/dav1d xxhash
+media-libs/libmypaint gegl
+media-libs/mesa d3d9 gles1 xvmc zink
+media-plugins/audacious-plugins cue lame scrobbler soxr speedpitch
+media-sound/audacity vamp id3tag sbsms
+media-sound/deadbeef oss lastfm notify
+media-sound/qmmp analyzer archive cover crossfade cue curl enca gnome ladspa lyrics notifier qsui qtmedia scrobbler shout soxr stereo tray
+media-video/ffmpeg gmp libaom libass libdrm libsoxr libxml2 openh264 openssl -samba sdl xvid x265 rav1e vpx
+media-video/mediainfo wxwidgets
+media-video/mpv archive drm libmpv libcaca
+media-video/obs-studio vlc fdk
+media-video/vlc aom dav1d faad libass matroska mpeg srt
+net-analyzer/wireshark brotli smi
+net-firewall/iptables conntrack netlink nftables pcap
+net-libs/glib-networking -libproxy -gnome
+net-libs/libsoup -samba
+net-misc/curl -samba
+net-misc/dhcpcd privsep
+net-misc/freerdp openh264
+net-misc/remmina ssh
+net-misc/rsync xxhash system-zlib
+net-misc/wget2 openssl
+net-wireless/gr-osmosdr rtlsdr
+sys-apps/file python
+sys-apps/firejail contrib apparmor
+sys-apps/util-linux cryptsetup magic python udev
+sys-auth/polkit duktape
+sys-block/fio io-uring aio
+sys-block/partimage -ssl -pam
+sys-devel/binutils pgo
+sys-fs/btrfs-progs -man
+sys-fs/e2fsprogs -fuse
+sys-fs/fuse-exfat suid
+sys-fs/fuse suid
+sys-kernel/linux-firmware savedconfig
+sys-libs/libcap tools
+sys-libs/ncurses gpm
+sys-process/procps modern-top
+www-client/elinks gpm
+www-client/firefox eme-free hwaccel system-png lto pgo
+x11-apps/mesa-progs gles2
+x11-apps/xdpyinfo dga
+#===================Jan 13, 2023===================================#
+#sys-libs/pdcurses demos
+dev-lang/rust rustfmt
+x11-drivers/xf86-video-qxl xspice
+net-irc/hexchat perl python
+media-gfx/imagemagick zip
+sys-block/gparted policykit
+net-libs/zeromq drafts
+sys-boot/grub sdl
+dev-lang/python tk
+sys-apps/pcsc-tools gui
+sys-apps/pcsc-lite policykit
+media-gfx/graphviz python tcl perl gtk2
+dev-libs/openct pcsc-lite
+net-libs/libinfinity gtk server
+app-admin/doas persist
+dev-python/ipython matplotlib nbconvert notebook
+www-client/w3m fbcon gpm
+x11-terms/rxvt-unicode 256-color blink fading-colors gdk-pixbuf xft
+sys-process/lsof rpc

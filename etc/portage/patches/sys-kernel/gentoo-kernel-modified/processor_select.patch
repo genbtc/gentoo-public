@@ -1,0 +1,11 @@
+--- linux-5.19/arch/x86/Kconfig.cpu	2022-11-11 20:13:57.701911729 -0500
++++ linux-5.19/arch/x86/Kconfig.cpu	2022-11-11 18:03:29.852918755 -0500
+@@ -392,7 +392,7 @@
+ 	depends on IA32_FEAT_CTL && X86_FEATURE_NAMES
+ 
+ menuconfig PROCESSOR_SELECT
+-	bool "Supported processor vendors" if EXPERT
++	bool "Supported processor vendors"
+ 	help
+ 	  This lets you choose what x86 vendor support code your kernel
+ 	  will include.

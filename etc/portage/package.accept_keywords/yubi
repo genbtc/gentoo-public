@@ -1,0 +1,14 @@
+app-crypt/yubikey-manager
+#app-crypt/ccid
+app-crypt/yubikey-manager-qt
+#dev-qt/qtquickcontrols2
+#sys-apps/pcsc-lite
+app-crypt/gnupg-pkcs11-scd
+sys-auth/pam_yubico
+sys-auth/ykclient
+# required by ssh-audit (argument)
+=net-analyzer/ssh-audit-2.5.0 ~amd64
+# required by =app-portage/gentoopm-0.5.0 (argument)
+=app-portage/gentoopm-0.5.0 ~amd64
+# required by dev-lang/bacon (argument)
+=dev-lang/bacon-4.6 ~amd64

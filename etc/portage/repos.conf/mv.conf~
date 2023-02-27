@@ -1,0 +1,5 @@
+# created by eselect-repo
+[mv]
+location = /var/db/repos/mv
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/mv.git

@@ -1,0 +1,37 @@
+--- linux-6.0/scripts/kconfig/merge_config.sh	2022-10-02 17:09:07.000000000 -0400
++++ linux-6.0/scripts/kconfig/merge_config.sh	2022-12-15 01:34:07.186850139 -0500
+@@ -138,21 +138,25 @@
+ 		NEW_VAL=$(grep -w $CFG $MERGE_FILE)
+ 		BUILTIN_FLAG=false
+ 		if [ "$BUILTIN" = "true" ] && [ "${NEW_VAL#CONFIG_*=}" = "m" ] && [ "${PREV_VAL#CONFIG_*=}" = "y" ]; then
+-			echo Previous  value: $PREV_VAL
+-			echo New value:       $NEW_VAL
+-			echo -y passed, will not demote y to m
+-			echo
++#			echo Previous  value: $PREV_VAL
++#			echo New value:       $NEW_VAL
++#			echo -y passed, will not demote y to m
++#			echo
++			echo "#-y flag, Previous value $CFG=y, will not demote to =m"
+ 			BUILTIN_FLAG=true
+ 		elif [ "x$PREV_VAL" != "x$NEW_VAL" ] ; then
+-			echo Value of $CFG is redefined by fragment $ORIG_MERGE_FILE:
+-			echo Previous  value: $PREV_VAL
+-			echo New value:       $NEW_VAL
+-			echo
++#			echo Value of $CFG is redefined by fragment $ORIG_MERGE_FILE:
++#			echo Previous  value: $PREV_VAL
++#			echo New value:       $NEW_VAL
++#			echo
++#			echo "Value is redefined by fragment: "
++#			echo "$PREV_VAL is redefined to $NEW_VAL"
++			echo "$NEW_VAL"
+ 			if [ "$STRICT" = "true" ]; then
+ 				STRICT_MODE_VIOLATED=true
+ 			fi
+ 		elif [ "$WARNREDUN" = "true" ]; then
+-			echo Value of $CFG is redundant by fragment $ORIG_MERGE_FILE:
++			echo "#Value of $CFG is unchanged, redundant."
+ 		fi
+ 		if [ "$BUILTIN_FLAG" = "false" ]; then
+ 			sed -i "/$CFG[ =]/d" $TMP_FILE

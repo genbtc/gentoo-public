@@ -1,0 +1,7 @@
+#gcc
+=sys-devel/gcc-12.2.0
+=sys-devel/gcc-11.3.0
+=sys-devel/gcc-10.4.0
+#=sys-devel/gcc-12.2.1_p20221224
+=sys-devel/gcc-12.2.1_p20221231
+

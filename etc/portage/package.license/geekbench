@@ -1,0 +1,2 @@
+# required by geekbench (argument)
+>=app-benchmarks/geekbench-5.3.1 geekbench

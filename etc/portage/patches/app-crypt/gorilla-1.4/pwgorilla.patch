@@ -1,0 +1,11 @@
+--- gorilla-1.4/pwsafe/pwsafe-v3.tcl	2006-06-29 22:48:42.000000000 -0400
++++ gorilla-1.4/pwsafe/pwsafe-v3.tcl	2022-04-24 18:42:06.522024677 -0400
+@@ -375,7 +375,7 @@
+ 	    error "oops"
+ 	}
+ 
+-	if {$iter > 65536} {
++	if {$iter > 99999} {
+ 	    #
+ 	    # More than 65536 iterations looks unreasonable, at least today.
+ 	    # Sounds more like a file format bug. We don't want to spend such

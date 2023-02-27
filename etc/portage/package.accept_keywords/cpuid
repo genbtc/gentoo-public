@@ -1,0 +1,4 @@
+# required by sys-apps/cpu-x-4.5.2::gentoo[cpu]
+# required by sys-apps/cpu-x (argument)
+=dev-libs/libcpuid-0.6.2 ~amd64
+

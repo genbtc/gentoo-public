@@ -1,0 +1,5 @@
+#genr8eofl @ 01/25/23 - telegram 4.4.1 needs ICU and tgvoip blocks, use 3.x for now
+#kde-frameworks/kcoreaddons-5.99.0
+#dev-qt/qtcore[icu]
+>=net-im/telegram-desktop-4.4.1
+>=media-libs/libtgvoip-2.4.4_p20220503

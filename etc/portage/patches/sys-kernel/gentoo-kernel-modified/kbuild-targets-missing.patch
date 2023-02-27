@@ -1,0 +1,11 @@
+--- linux-5.19/scripts/Kbuild.include	2022-11-11 20:37:42.563910450 -0500
++++ linux-5.19/scripts/Kbuild.include	2022-11-11 20:37:08.006910481 -0500
+@@ -215,7 +215,7 @@
+                      )                                                       \
+                  )                                                           \
+              ),                                                              \
+-             - due to target missing                                         \
++             ++                                                              \
+          )                                                                   \
+      )
+ 
