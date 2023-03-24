@@ -1,0 +1,361 @@
+Help on PkgCorePM in module gentoopm.pkgcorepm object:
+class PkgCorePM(gentoopm.basepm.PackageManager)
+ |  PkgCorePM(config_root='')
+ |  reload_config(self)
+ |      (Re-)load the configuration of a particular package manager. Set up
+ |      internal variables.
+ |      Called by default L{__init__()}.
+ |  ----------------------------------------------------------------------
+ |  Readonly properties defined here:
+ |  
+ |  Atom
+ |      The PM-specific atom class.
+ |      @type: L{PMAtom}
+ |  
+ |  config
+ |      The PM config instance.
+ |      @type: L{PMConfig}
+ |  
+ |  installed
+ |      Repository with installed packages (vardb).
+ |      @type: L{PMRepository}
+ |  
+ |  repositories
+ |      Currently enabled ebuild repositories.
+ |      @type: L{PMRepositoryDict}
+ |  
+ |  root
+ |      The root path as specified by current PM configuration.
+ |      @type: str
+ |
+ |  __init__(self, config_root='')
+ |      Initialize the new package manager instance.
+ |      @param config_root: Configuration root location
+ |      @type config_root: string
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties inherited from gentoopm.basepm.PackageManager:
+ |  
+ |  stack
+ |      Return a PMRepository providing access to the stacked packages in all
+ |      ebuild repositories. It returns packages from all the repos.
+ |      
+ |      @type: L{PMRepoStackWrapper}
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from gentoopm.basepm.PackageManager:
+ |  
+ |  config_root = ''
+
+
+------------------
+------------------
+
+NAME
+    gentoopm.filters
+
+CLASSES
+    gentoopm.basepm.filter.PMPackageMatcher(gentoopm.util.ABCObject)
+        AttributeMatch
+    
+    class AttributeMatch(gentoopm.basepm.filter.PMPackageMatcher)
+     |  AttributeMatch(key, val)
+     |  
+     |  A filter matching package attributes with values.
+     |  
+     |  Method resolution order:
+     |      AttributeMatch
+     |      gentoopm.basepm.filter.PMPackageMatcher
+     |      gentoopm.util.ABCObject
+     |      builtins.object
+     |  
+     |  Methods defined here:
+     |  
+     |  __call__(self, pkg)
+     |      Check whether a package matches the condition specified in the matcher.
+     |      
+     |      @return: True if the package matches
+     |      @rtype: bool
+     |  
+     |  __init__(self, key, val)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+
+
+------------------
+------------------
+
+NAME
+    gentoopm.matchers
+
+CLASSES
+    gentoopm.basepm.filter.PMKeywordMatcher(gentoopm.util.ABCObject, gentoopm.util.FillMissingNotEqual)
+        Contains
+        RegExp
+    
+    class Contains(gentoopm.basepm.filter.PMKeywordMatcher)
+     |  Contains(*elems)
+     |  
+     |  A keyword attribute matcher checking for list membership.
+     |  
+     |  Method resolution order:
+     |      Contains
+     |      gentoopm.basepm.filter.PMKeywordMatcher
+     |      gentoopm.util.ABCObject
+     |      gentoopm.util.FillMissingNotEqual
+     |      builtins.object
+     |  
+     |  Methods defined here:
+     |  
+     |  __eq__(self, val)
+     |      Check whether the value of a metadata key matches the condition
+     |      specified in the matcher.
+     |      
+     |      @return: True if metadata value matches
+     |      @rtype: bool
+     |  
+     |  __init__(self, *elems)
+     |      Instantiate the matcher for arguments. If multiple arguments are passed
+     |      in, at least one of them must be contained in the value.
+     |      
+     |      @param elems: elements to match against the value contents
+     |      @type elems: any
+     |  
+
+
+
+
+from gentoopm import get_package_manager
+from gentoopm.basepm.atom import PMAtom
+from gpyutils.ansi import ANSI
+
+pm = get_package_manager()
+repo = pm.repositories["gentoo"]
+repo.
+       arches         global_use     licenses       select        
+       best           group_by       name           sorted        
+       filter         license_groups path           use_expand    
+
+In [12]: repo.name
+Out[12]: 'gentoo'
+
+In [13]: repo.path
+Out[13]: '/var/db/repos/gentoo'
+
+In [14]: repo.arches
+Out[14]: 
+{'sparc-solaris': ArchDesc(name='sparc-solaris', stability='testing'),
+ 'riscv': ArchDesc(name='riscv', stability='testing'),
+ 'loong': ArchDesc(name='loong', stability='testing'),
+ 's390': ArchDesc(name='s390', stability='testing'),
+ 'alpha': ArchDesc(name='alpha', stability='testing'),
+ 'sparc64-solaris': ArchDesc(name='sparc64-solaris', stability='testing'),
+ 'amd64': ArchDesc(name='amd64', stability='stable'),
+ 'amd64-linux': ArchDesc(name='amd64-linux', stability='testing'),
+ 'arm': ArchDesc(name='arm', stability='stable'),
+ 'arm-linux': ArchDesc(name='arm-linux', stability='testing'),
+ 'ppc-macos': ArchDesc(name='ppc-macos', stability='testing'),
+ 'ia64': ArchDesc(name='ia64', stability='testing'),
+ 'arm64-macos': ArchDesc(name='arm64-macos', stability='testing'),
+ 'x64-cygwin': ArchDesc(name='x64-cygwin', stability='testing'),
+ 'ppc': ArchDesc(name='ppc', stability='stable'),
+ 'x86-linux': ArchDesc(name='x86-linux', stability='testing'),
+ 'x64-winnt': ArchDesc(name='x64-winnt', stability='testing'),
+ 'hppa': ArchDesc(name='hppa', stability='stable'),
+ 'x64-solaris': ArchDesc(name='x64-solaris', stability='testing'),
+ 'x86-winnt': ArchDesc(name='x86-winnt', stability='testing'),
+ 'sparc': ArchDesc(name='sparc', stability='stable'),
+ 'mips': ArchDesc(name='mips', stability='testing'),
+ 'ppc64': ArchDesc(name='ppc64', stability='stable'),
+ 'riscv-linux': ArchDesc(name='riscv-linux', stability='testing'),
+ 'arm64': ArchDesc(name='arm64', stability='stable'),
+ 'x86': ArchDesc(name='x86', stability='stable'),
+ 'ppc64-linux': ArchDesc(name='ppc64-linux', stability='testing'),
+ 'x86-solaris': ArchDesc(name='x86-solaris', stability='testing'),
+ 'arm64-linux': ArchDesc(name='arm64-linux', stability='testing'),
+ 'x64-macos': ArchDesc(name='x64-macos', stability='testing'),
+ 'm68k': ArchDesc(name='m68k', stability='testing')}
+
+In [19]: repo.use_expand
+Out[19]: 
+{'USERLAND': UseExpand(name='USERLAND', prefixed=True, visible=False, values={'BSD': GlobalUseFlag(name='BSD', description='USERLAND setting for systems using BSDish userland (FreeBSD OpenBSD NetBSD DragonFly)'), 'GNU': GlobalUseFlag(name='GNU', description='USERLAND setting for systems that use the GNU userland tools')}),
+
+In [23]: repo.use_expand.keys()
+Out[23]: dict_keys(['USERLAND', 'LIBREOFFICE_EXTENSIONS', 'CALLIGRA_FEATURES', 'NGINX_MODULES_STREAM', 'OPENMPI_OFED_FEATURES', 'ROS_MESSAGES', 'APACHE2_MPMS', 'NGINX_MODULES_MAIL', 'KERNEL', 'AMDGPU_TARGETS', 'UWSGI_PLUGINS', 'QEMU_USER_TARGETS', 'ABI_S390', 'POSTGRES_TARGETS', 'RUBY_TARGETS', 'CPU_FLAGS_PPC', 'QEMU_SOFTMMU_TARGETS', 'CPU_FLAGS_ARM', 'ADA_TARGET', 'LLVM_TARGETS', 'SANE_BACKENDS', 'PYTHON_SINGLE_TARGET', 'ALSA_CARDS', 'OFFICE_IMPLEMENTATION', 'CAMERAS', 'ABI_X86', 'L10N', 'LCD_DEVICES', 'NGINX_MODULES_HTTP', 'PHP_TARGETS', 'XTABLES_ADDONS', 'GRUB_PLATFORMS', 'OPENMPI_RM', 'LUA_SINGLE_TARGET', 'PYTHON_TARGETS', 'ELIBC', 'LUA_TARGETS', 'CPU_FLAGS_X86', 'APACHE2_MODULES', 'VIDEO_CARDS', 'VOICEMAIL_STORAGE', 'INPUT_DEVICES', 'CURL_SSL', 'FFTOOLS', 'COLLECTD_PLUGINS', 'MONKEYD_PLUGINS', 'GPSD_PROTOCOLS', 'ABI_MIPS', 'OPENMPI_FABRICS', 'ARCH'])
+
+In [20]: repo.use_expand['SANE_BACKENDS']
+Out[20]: UseExpand(name='SANE_BACKENDS', prefixed=True, visible=True, 
+values={'abaton': GlobalUseFlag(name='abaton', description='SANE_BACKENDS setting for building the abaton backend'), 
+        'agfafocus': GlobalUseFlag(name='agfafocus'.....),} 
+
+In [21]: repo.licenses
+Out[21]: 
+{'finchtv': LicenseDesc(name='finchtv'),
+ 'Arphic': LicenseDesc(name='Arphic'),
+
+In [22]: repo.global_use
+Out[22]: 
+{'X': GlobalUseFlag(name='X', description='Add support for X11'),
+...
+ 'zeroconf': GlobalUseFlag(name='zeroconf', description='Support for DNS Service Discovery (DNS-SD)'),
+ 'zip': GlobalUseFlag(name='zip', description='Enable support for ZIP archives'),
+ 'zlib': GlobalUseFlag(name='zlib', description='Add support for zlib (de)compression'),
+ 'zsh-completion': GlobalUseFlag(name='zsh-completion', description='Enable zsh completion support'),
+ 'zstd': GlobalUseFlag(name='zstd', description='Enable support for ZSTD compression')}
+
+Help on PkgCoreEbuildRepo in module gentoopm.pkgcorepm.repo object:
+
+class PkgCoreEbuildRepo(PkgCoreRepository, gentoopm.basepm.repo.PMEbuildRepository, gentoopm.util.FillMissingComparisons)
+ |  PkgCoreEbuildRepo(repo_obj, domain, index)
+ |  
+ |  Method resolution order:
+ |      PkgCoreEbuildRepo
+ |      PkgCoreRepository
+ |      gentoopm.pkgcorepm.pkg.PkgCorePackageSet
+ |      gentoopm.basepm.repo.PMEbuildRepository
+ |      gentoopm.basepm.repo.PMRepository
+ |      gentoopm.basepm.pkgset.PMPackageSet
+ |      gentoopm.util.ABCObject
+ |      gentoopm.util.BoolCompat
+ |      gentoopm.util.FillMissingComparisons
+ |      gentoopm.util.FillMissingNotEqual
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, repo_obj, domain, index)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  __lt__(self, other)
+ |      Return self<value.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties defined here:
+ |  
+ |  arches
+ |      Get dict of known architectures
+ |  
+ |  global_use
+ |      Get dict of global USE flags as defined in use.desc
+ |  
+ |  licenses
+ |  
+ |  name
+ |      Return the repository name (either from the repo_name file or PM
+ |      fallback name).
+ |      @type: string
+ |  
+ |  path
+ |      Return the canonical path to the ebuild repository.
+ |      @type: string
+ |  
+ |  use_expand
+ |      Get dict of USE_EXPAND groups
+ |
+ |  filter(self, *args, **kwargs)
+ |      Filter the packages based on arguments. Return a filtered package set.
+ |      
+ |      The positional arguments can provide a number of L{PMPackageMatcher}s
+ |      (which are basically lambdas with a L{PMPackage} instance argument)
+ |      and/or a L{PMAtom} instance.
+ |      
+ |      The keyword arguments match metadata keys using C{==} comparison with
+ |      the passed string (or L{PMKeywordMatcher}s). Keys are supposed to be
+ |      L{PMPackage} property names in Python; dots can be replaced by
+ |      underscores (e.g. C{description_short}) or passed using C{**} operator.
+ |      
+ |      Multiple filters will be AND-ed together. Same applies for .filter()
+ |      called multiple times. You should, however, avoid passing multiple
+ |      atoms as it is not supported by all PMs.
+ |      
+ |      @param args: list of package matchers
+ |      @type args: list(L{PMPackageMatcher},L{PMAtom})
+ |      @param kwargs: dict of keyword matchers
+ |      @type kwargs: dict(string -> L{PMKeywordMatcher})
+ |      @return: filtered package set
+ |      @rtype: L{PMFilteredPackageSet}
+ |      @raise KeyError: when invalid metadata key is referenced in kwargs
+ |
+ |  ----------------------------------------------------------------------
+ |  Readonly properties inherited from gentoopm.basepm.repo.PMEbuildRepository:
+ |  
+ |  license_groups
+ |      Get dict of license groups
+ |  Methods inherited from gentoopm.basepm.pkgset.PMPackageSet:
+ |  
+ |  __bool__(self)
+ |      Check whether the package set is non-empty.
+ |      
+ |      @return: True if package set matches at least one package.
+ |      @rtype: bool
+ |  
+ |  __contains__(self, arg)
+ |      Check whether the package set contains at least a single package
+ |      matching the filter or package atom passed as an argument.
+ |      
+ |      @param arg: a package matcher or an atom
+ |      @type arg: L{PMPackageMatcher}/L{PMAtom}
+ |      @return: True if at least a single package matched
+ |      @rtype: bool
+ |  
+ |  __getitem__(self, filt)
+ |      Select a single package matching an atom (or filter). Unlike L{select()},
+ |      this one doesn't choose the best match but requires the filter to match
+ |      exactly one package.
+ |      
+ |      @param filt: a package matcher or an atom
+ |      @type filt: L{PMPackageMatcher}/L{PMAtom}
+ |      @return: matching package
+ |      @rtype: L{PMPackage}
+ |      @raise EmptyPackageSetError: when no packages match the condition
+ |      @raise AmbiguousPackageSetError: when packages with different keys
+ |              match the condition
+ |  
+ |  group_by(self, *criteria)
+ |      Return a pseudo-dict of packages grouped by the specified criteria.
+ |      The key for each group is a combination of all the criteria.
+ |      
+ |      The criteria should be specified as L{PMPackage} attribute names.
+ |      
+ |      @param criteria: list of criteria
+ |      @type criteria: list(string)
+ |      @return: package group dict
+ |      @rtype: L{PMPackageGroupDict}
+ |      @raise KeyError: when invalid metadata key is referenced in criteria
+ |  
+ |  select(self, *args, **kwargs)
+ |      Select a single package matching keys in positional and keyword
+ |      arguments. This is a convenience wrapper for C{filter(*args,
+ |      **kwargs).best}.
+ |      
+ |      @param args: list of package matchers
+ |      @type args: list(L{PMPackageMatcher},L{PMAtom})
+ |      @param kwargs: dict of keyword matchers
+ |      @type kwargs: dict(string -> L{PMKeywordMatcher})
+ |      @return: filtered package set
+ |      @rtype: L{PMFilteredPackageSet}
+ |      @raise KeyError: when invalid metadata key is referenced in kwargs
+ |      @raise EmptyPackageSetError: when no packages match the condition
+ |      @raise AmbiguousPackageSetError: when packages with different keys
+ |              match the condition
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties inherited from gentoopm.basepm.pkgset.PMPackageSet:
+ |  
+ |  best
+ |      Return the best-matching package in the set (the newest one).
+ |      
+ |      @type: L{PMPackage}
+ |      @raise EmptyPackageSetError: when no packages match the condition
+ |      @raise AmbiguousPackageSetError: when packages with different keys
+ |              match the condition
+ |  
+ |  sorted
+ |      Return a sorted variant of the package set. The packages will be sorted
+ |      in a standard PM manner, with better packages coming later. The key
+ |      ordering is undefined, although usually they will come sorted
+ |      lexically.
+ |      
+ |      @type: L{PMSortedPackageSet}
+ |  
+ |  ----------------------------------------------------------------------
+

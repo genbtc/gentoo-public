@@ -1,6 +1,8 @@
 Download a Minimal Install cd (generic)
  https://www.gentoo.org/downloads/
-Boot your computer/VM with the minimal ISO
+Boot your computer/VM with the minimal ISO. 
+ it should boot to a livecd root prompt with network enabled.
+root # 
 
 Create the disk partitions
 # gdisk /dev/sda
@@ -34,10 +36,12 @@ Create the disk partitions
 	 Write Partition Table To Disk:
 	Command: w ↵
 	Do you want to proceed? (Y/N): Y ↵
-Create the ext4 filesystems: Y
+
+Create the ext4 filesystems:
 # mkfs.ext4 /dev/sda1 -L boot
 (sda2 is reserved)
 # mkfs.ext4 /dev/sda3 -L gentoo
+(vda instead of sda for virtual drive on cloud)
 
 Mount the filesystems: (repeat everytime you reboot)
 # mount /dev/sda3 /mnt/gentoo
@@ -83,23 +87,34 @@ enter & activate chroot.
 portage repository download, first sync ( -k to keep)
 # emerge-webrsync
 
-create mount fstab (w/ genfstab)
-# emerge genfstab
-# 
-# blkid -o export >> /etc/fstab
-output is in wrong format,
-# nano /etc/fstab
-(make note of device numbering, vfat/ext4 and decide on noauto)
-/dev/sda1		/boot		vfat		noauto,noatime	1 2
-/dev/sda3		/		    ext4		noatime		    0 1
-(make it to look somewhat like this)
-
 change the CPU arch native default very early on, for any new packages
 # nano /etc/portage/make.conf
-add -march=native to CFLAGS, (after -O2 -pipe)
+CFLAGS add -march=native to COMMON_FLAGS, (after -O2 -pipe)
+
+FEATURES="${FEATURES} parallel-install "
+#binpkgs - save packages in /var/cache/binpkgs
+FEATURES="${FEATURES} buildpkg "
+#log all new SETUID binaries in /etc/portage/suidctl.conf
+FEATURES="${FEATURES} suidctl"
+#build logs
+FEATURES="${FEATURES} compress-build-logs split-log "
+PORTAGE_LOGDIR="/var/cache/buildlogs"
+PORTAGE_ELOG_CLASSES="${PORTAGE_ELOG_CLASSES} info"
+PORTAGE_ELOG_SYSTEM="${PORTAGE_ELOG_SYSTEM} save"
+#
+#super-ultra-mega-force colors on: (by sam)
+CLICOLOR_FORCE=1
+CMAKE_COLOR_DIAGNOSTICS=ON
+CMAKE_COMPILER_COLOR_DIAGNOSTICS=ON
 
 keep the default C english single locale
 (otherwise add optional ones to /etc/locale.gen first)
+# nano /etc/locale.gen
+    #uncomment:
+    en_US ISO-8859-1
+    en_US.UTF-8 UTF-8
+    #add:
+    C.UTF8 UTF-8
 # locale-gen
 # don't need international language translations
 INSTALL_MASK="/usr/share/locale"
@@ -109,11 +124,11 @@ set timezone
 
 to get up and running - immediately:
 use distribution's premade gentoo-kernel-bin 
-( USE="-initramfs" if skippable/slow because it will pull dracut + 2 others)
 this _WILL_ install dracut and make the initramfs and put that and the latest kernel in /boot,
+( USE="-initramfs" if skippable/slow because it will pull dracut + 2 others) - (minimal savings)
 
-make sure boot is mounted 
-# emerge -av sys-kernel/gentoo-kernel-bin
+make sure boot is mounted and populated
+# ls -al /boot
 
 install a minimal version of grub
 (with less dependencies first, otherwise pulls in harfbuzz)
@@ -121,44 +136,72 @@ install a minimal version of grub
 install grub to the MBR on the disk
 # grub-install /dev/sda
 generate a new grub config that lists the vmlinuz gentoo-dist kernel and initramfs.img
+# nano /etc/default/grub
+change grub defaults to
+GRUB_CMDLINE_LINUX="lsm.debug lsm=selinux selinux=0 ipv6.disable=1 net.ifnames=0 zswap.enabled=1 zswap.compressor=zstd"
 # grub-mkconfig -o /boot/grub/grub.cfg
-
+grub is installed
 Reboot into your working system. Handbook Part 1 finished.
 
 Continue on to read fully at your own leisure:
 Working With Gentoo  = https://wiki.gentoo.org/wiki/Handbook:AMD64/Full/Working
 Working With Portage = https://wiki.gentoo.org/wiki/Handbook:AMD64/Full/Portage
 
+Continuing on with the system setup:
 
-Notes:
-emerge cpuid2cpuflags
-emerge resolve-march-native
+create mount fstab (w/ genfstab) (not needed for first boot)
+# emerge genfstab
+# genfstab -L >> /etc/fstab
+-or-
+# blkid -o export >> /etc/fstab
+but output is in wrong format, must edit:
+# nano /etc/fstab
+(make note of device numbering, vfat/ext4 and decide on noauto)
+/dev/sda1		/boot		vfat		noauto,noatime	1 2
+/dev/sda3		/		    ext4		noatime		    0 1
+(make it to look somewhat like this)
+(vda instead of sda for virtual drive on cloud)
 
-set USE flags
-set passwd root password
+two programs for CPU customiztion
+# emerge cpuid2cpuflags resolve-march-native
+
+set passwd to root password
+# passwd
+openssh can not login as root even with key, must create additional user to log in that way
+-or- edit /etc/ssh/sshd_config
 set up network, /etc/conf.d/net , symlink "ln -s net.enp0s3 net.lo"
-#net For DHCP
-#emerge dhcpcd
+###For DHCP
+# emerge dhcpcd
 /etc/conf.d/net:
+config_eth0="dhcp"
+-or-
 config_enp1s0="dhcp"
 #config_enp5s0f1="dhcp"
 -or-
-# For static IP regular
+###For static IP regular
 config_enp5s0f1="192.168.1.222/24"
 routes_enp5s0f1="default via 192.168.1.1"
 dns_servers_enp5s0f1="192.168.1.1"
-# For static IP using CIDR notation
+###For static IP using CIDR notation
 config_enp4s0="10.1.1.2/30"
 
-#good Utilities:
+#good tty resize Utility:
 emerge fbset
 fbset -xres 1908 -yres 968
 
 emerge gentoolkit portage-utils eix wgetpaste
 
 emerge openssh
+rc-update add sshd
+rc-service sshd start
+
+# mkdir ~/.ssh
+# chmod 700 ~/.ssh
+# echo "ssh-key AAAAAAyour-key" >> ~/.ssh/authorized_keys
 
 emerge bash-completion
+
+#set USE flags
 
 Example Make.conf:
 
@@ -168,6 +211,14 @@ USE="${USE} -fonts -themes"
 USE="${USE} -nls -firmware -ipv6 -bluetooth -telemetry -wifi -wireless -ppp -modemmanager -cups -gps -geolocation -mono -sendmail -kerberos -ldap -upnp -upnp-av -zeroconf -spell -enchant -hunspell"
 USE="${USE} -policykit -udisks -pulseaudio -smartcard"
 USE="${USE} -doc -examples -handbook"
+
+# Example some more make.conf ideas:
+USE="${USE} -doc -examples -handbook"
+USE="${USE} -ipv6"
+USE="${USE} -smartcard"
+USE="${USE} -nls"
+USE="${USE} -policykit -udisks -pulseaudio"
+USE="${USE} -firmware -bluetooth -telemetry -wifi -wireless -ppp -modemmanager -cups -gps -geolocation -mono -sendmail -kerberos -ldap -upnp -upnp-av -zeroconf -spell -enchant -hunspell"
 
 FEATURES="buildpkg parallel-install"
 FEATURES="compress-build-logs split-log"
@@ -182,4 +233,7 @@ EMERGE_DEFAULT_OPTS="--ask --verbose --tree --keep-going --changed-use \
 --autounmask=y --autounmask-write=y --autounmask-use=y \
 --binpkg-respect-use=y --binpkg-changed-deps=y --with-bdeps=n"
 
+#reboot 
 
+#update world
+emerge -avuDU @world
