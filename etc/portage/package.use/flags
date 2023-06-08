@@ -1,10 +1,9 @@
-app-admin/conky iostats math lua-cairo bundled-toluapp nano-syntax
+#sys-apps/fwupd udev
+app-admin/conky iostats math lua-cairo bundled-toluapp
 app-admin/keepassxc yubikey -network
 app-admin/sxid -mail
 app-arch/libarchive lzo blake2
-#app-arch/wimlib iso ntfs
 app-crypt/gnupg smartcard tools
-app-crypt/pinentry qt5
 app-editors/nano magic justify
 app-emulation/libvirt -virt-network libssh lxc parted virtualbox
 app-emulation/qemu io-uring sdl-image spice ssh virgl vte usbredir virtfs qemu_softmmu_targets_ppc qemu_softmmu_targets_ppc64
@@ -12,18 +11,14 @@ app-emulation/virtualbox -sdk -python
 app-misc/ddcutil drm
 app-misc/pax-utils python
 app-portage/conf-update colordiff
-app-portage/layman gpg subversion squashfs sync-plugin-portage
 app-portage/portage-utils static -qmanifest -qtegrity
-#dev-libs/castxml -man
 dev-python/pillow webp
-#dev-qt/qt-creator cppcheck
 dev-qt/qtgui egl
 dev-util/android-tools python
-dev-util/cmake qt5
 dev-util/geany-plugins debugger pretty-printer scope workbench
 dev-vcs/git tk
 gnome-base/gvfs mtp -http
-gnome-base/nautilus -previewer -sendto
+#gnome-base/nautilus -previewer -sendto
 #mate-extra/mate-utils udisks applet
 media-gfx/fbida -X
 media-gfx/geeqie exif tiff xmp
@@ -31,7 +26,7 @@ media-gfx/imagemagick webp
 media-gfx/nomacs -tiff -opencv
 media-libs/dav1d xxhash
 media-libs/libmypaint gegl
-media-libs/mesa d3d9 gles1 xvmc zink
+media-libs/mesa d3d9 gles1 zink
 media-plugins/audacious-plugins cue lame scrobbler soxr speedpitch
 media-sound/audacity vamp id3tag sbsms
 media-sound/deadbeef oss lastfm notify
@@ -87,7 +82,19 @@ media-gfx/graphviz python tcl perl gtk2
 dev-libs/openct pcsc-lite
 net-libs/libinfinity gtk server
 app-admin/doas persist
-dev-python/ipython matplotlib nbconvert notebook
 www-client/w3m fbcon gpm
-x11-terms/rxvt-unicode 256-color blink fading-colors gdk-pixbuf xft
+#x11-terms/rxvt-unicode 256-color blink fading-colors gdk-pixbuf xft
 sys-process/lsof rpc
+virtual/imagemagick-tools tiff
+media-gfx/imagemagick tiff
+net-misc/openssh security-key
+xfce-base/xfce4-settings libcanberra -xklavier
+media-video/obs-studio pipewire
+dev-python/ipython nbconvert notebook -nbconvert #matplotlib
+#===================May 20, 2023===================================#
+app-office/abiword -goffice
+sys-auth/pambase gnome-keyring
+#net-misc/freerdp server
+#x11-wm/mutter screencast
+media-gfx/gthumb tiff webp
+app-text/poppler boost png tiff

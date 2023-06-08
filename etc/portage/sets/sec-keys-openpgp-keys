@@ -37,7 +37,7 @@ sec-keys/openpgp-keys-karelzak
 sec-keys/openpgp-keys-kernel
 sec-keys/openpgp-keys-kovidgoyal
 sec-keys/openpgp-keys-lassecollin
-#sec-keys/openpgp-keys-libarchive #version conflict, temporary
+sec-keys/openpgp-keys-libarchive
 sec-keys/openpgp-keys-libidn
 sec-keys/openpgp-keys-libvirt
 sec-keys/openpgp-keys-linuxcontainers
@@ -78,3 +78,4 @@ sec-keys/openpgp-keys-voikko
 sec-keys/openpgp-keys-waynedavison
 sec-keys/openpgp-keys-weechat
 sec-keys/openpgp-keys-wget
+sec-keys/openpgp-keys-llvm

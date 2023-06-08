@@ -1,43 +1,59 @@
- acct-group/android
- acct-group/at
- acct-group/audio
- acct-group/cron
- acct-group/crontab
- acct-group/dhcpcd
- acct-group/dnsmasq
- acct-group/docker
- acct-group/flatpak
- acct-group/gkrellmd
- acct-group/lxc
- acct-group/lxd
- acct-group/mail
- acct-group/nullmail
- acct-group/openct
- acct-group/partimag
- acct-group/pcap
- acct-group/pcscd
- acct-group/plugdev
- acct-group/polkitd
- acct-group/qemu
- acct-group/svnusers
- acct-group/transmission
- acct-group/tss
- acct-group/usb
- acct-group/utmp
- acct-group/vboxusers
- acct-group/video
- acct-user/at
- acct-user/cron
- acct-user/dhcpcd
- acct-user/dnsmasq
- acct-user/flatpak
- acct-user/gkrellmd
- acct-user/lxc
- acct-user/nullmail
- acct-user/partimag
- acct-user/pcscd
- acct-user/polkitd
- acct-user/qemu
- acct-user/svn
- acct-user/transmission
- acct-user/tss
+acct-group/at
+acct-group/cron
+acct-group/crontab
+acct-group/dhcpcd
+acct-group/dnsmasq
+acct-group/docker
+acct-group/flatpak
+acct-group/gkrellmd
+acct-group/infinote
+acct-group/input
+acct-group/kvm
+acct-group/lxc
+acct-group/lxd
+acct-group/mail
+acct-group/man
+acct-group/messagebus
+acct-group/monkeysphere
+acct-group/nullmail
+acct-group/openct
+acct-group/partimag
+acct-group/pcap
+acct-group/pcscd
+acct-group/plugdev
+acct-group/polkitd
+acct-group/portage
+acct-group/qemu
+acct-group/render
+acct-group/root
+acct-group/sshd
+acct-group/svnusers
+acct-group/transmission
+acct-group/tss
+acct-group/usb
+acct-group/utmp
+acct-group/vboxusers
+acct-group/video
+acct-user/at
+acct-user/cron
+acct-user/dhcpcd
+acct-user/dnsmasq
+acct-user/flatpak
+acct-user/gkrellmd
+acct-user/infinote
+acct-user/lxc
+acct-user/man
+acct-user/messagebus
+acct-user/monkeysphere
+acct-user/nullmail
+acct-user/openctd
+acct-user/partimag
+acct-user/pcap
+acct-user/pcscd
+acct-user/polkitd
+acct-user/portage
+acct-user/qemu
+acct-user/sshd
+acct-user/svn
+acct-user/transmission
+acct-user/tss

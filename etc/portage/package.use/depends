@@ -225,3 +225,27 @@ dev-util/unicorn python
 # required by @selected
 # required by @world (argument)
 >=dev-python/PyQt5-5.15.7 printsupport
+
+#net-misc/spice-gtk:0
+#
+#  (net-misc/spice-gtk-0.41-r1:0/0::gentoo, ebuild scheduled for merge) USE="gtk3 introspection lz4 vala -mjpeg -policykit -sasl -smartcard -usbredir -wayland -webdav" conflicts with
+#    net-misc/spice-gtk[usbredir,gtk3,introspection] required by (app-emulation/virt-manager-4.0.0-3:0/0::gentoo, installed) USE="gtk -policykit -sasl -test" PYTHON_SINGLE_TARGET="python3_10 -python3_8 -python3_9"
+#                       ^^^^^^^^
+#
+net-misc/spice-gtk usbredir
+
+#virtual/imagemagick-tools:0
+#
+#  (virtual/imagemagick-tools-0-r1:0/0::gentoo, ebuild scheduled for merge) USE="jpeg svg -perl -png -tiff" conflicts with
+#    virtual/imagemagick-tools[jpeg,tiff] required by (dev-python/matplotlib-3.6.2-3:0/0::gentoo, installed) USE="cairo gtk3 qt5 (-doc) -examples -excel -latex -test -tk -webagg -wxwidgets" PYTHON_TARGETS="python3_10 -python3_11 -python3_9"
+#                                   ^^^^
+#    =virtual/imagemagick-tools-0-r1[jpeg,tiff] required by (dev-python/matplotlib-3.6.2-3:0/0::gentoo, installed) USE="cairo gtk3 qt5 (-doc) -examples -excel -latex -test -tk -webagg -wxwidgets" PYTHON_TARGETS="python3_10 -python3_11 -python3_9"
+#                                         ^^^^
+#media-gfx/imagemagick:0
+#
+#  (media-gfx/imagemagick-7.1.0.48-r1:0/7.1.0-43::gentoo, ebuild scheduled for merge) USE="X bzip2 cxx jpeg jpeg2k lzma openmp png svg truetype webp xml zip zlib -corefonts -djvu -fftw -fontconfig -fpx -graphviz -hdri -heif -jbig -lcms -lqr
+#-opencl -openexr -pango -perl -postscript -q32 -q8 -raw -static-libs -test -tiff -wmf" conflicts with
+#    media-gfx/imagemagick[jpeg,svg,tiff] required by (virtual/imagemagick-tools-0-r1-3:0/0::gentoo, installed) USE="jpeg svg tiff -perl -png"
+#                                   ^^^^
+
+virtual/imagemagick-tools tiff

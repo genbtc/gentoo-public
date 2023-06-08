@@ -1,8 +1,11 @@
-#genBTC original work, 8-10-2022 + 2023 - LICENSE: CCSA 4.0
+#genBTC original work, Aug10 2022 + 2023 - LICENSE: CCSA 4.0
 #_valid_phases="
 #		src_prepare src_unpack src_configure src_compile src_install src_test
 #		pkg_config pkg_info pkg_nofetch pkg_pretend pkg_setup pkg_preinst pkg_prerm pkg_postinst pkg_postrm"
 
+#(manual admin mode)
+CHECKREQS_DONOTHING="yes";
+I_KNOW_WHAT_I_AM_DOING="yes";
 
 #if [ "${EBUILD_PHASE}" == "install" ]; then
 
@@ -20,6 +23,7 @@ fi
 
 
 if [ "${EBUILD_PHASE}" == "postinst" ]; then
+  # kernels can be skipped from my shenanigans, have too many files, and slow.
   if [ "${PN}" == "gentoo-sources" ] || [ "${PN}" == "gentoo-kernel-bin" ] || [ "${PN}" == "gentoo-kernel" ]; then
 	return;
   fi
@@ -30,6 +34,8 @@ if [ "${EBUILD_PHASE}" == "postinst" ]; then
 fi
 
 pre_src_configure() {
+        echo "Estimated Merge Times: "
+        qlop -t "${CATEGORY}"/"${PN}"
 		echo "::0 BashRC $FUNCNAME(): "
 #		echo ">>> ENV:" && env
 	if [ -n EMERGEINFO ]; then
@@ -37,24 +43,29 @@ pre_src_configure() {
 		export EMERGEINFO=$(emerge --info --ask=n --verbose=n);
 	fi
 	if [ -f configure ] && [ ! -f meson.build ]; then
+		if [ x"${CATEGORY}"/"${PN}" == x"dev-util/rr" ]; then return; fi
 	 	echo ">>> $FUNCNAME() { ./configure --help }"
 		./configure --help | sed -ne '/^Optional Features/,$ p'
 	fi
     if [ -f meson_options.txt ]; then
         echo ">>> $FUNCNAME() { cat meson_options.txt }"
         cat meson_options.txt
-		if [ x"${PN}" == x"x11-libs/gtk+" ]; then return; fi
-		if [ x"${PN}" == x"dev-util/pkgconf" ]; then return; fi
-		if [ x"${PN}" == x"x11-base/xorg-proto" ]; then return; fi
-		if [ x"${PN}" == x"dev-libs/glib" ]; then return; fi
-		if [ x"${PN}" == x"dev-libs/gobject-introspection" ]; then return; fi
-		if [ x"${PN}" == x"x11-misc/shared-mime-info" ]; then return; fi
+		if [ x"${CATEGORY}"/"${PN}" == x"x11-libs/gtk+" ]; then return; fi
+		if [ x"${CATEGORY}"/"${PN}" == x"dev-util/pkgconf" ]; then return; fi
+		if [ x"${CATEGORY}"/"${PN}" == x"x11-base/xorg-proto" ]; then return; fi
+		if [ x"${CATEGORY}"/"${PN}" == x"dev-libs/glib" ]; then return; fi
+		if [ x"${CATEGORY}"/"${PN}" == x"dev-libs/gobject-introspection" ]; then return; fi
+		if [ x"${CATEGORY}"/"${PN}" == x"x11-misc/shared-mime-info" ]; then return; fi
+        if [ x"${CATEGORY}"/"${PN}" == x"app-crypt/seahorse" ]; then return; fi
         echo ">>> $FUNCNAME() { meson configure }"  #TODO see if a "meson configure --list --print" exists
 		PAGER= meson configure || cat || die
 #TODO: This can hang sometimes, when the meson structure is not valid for top-level,
 # requiring a kill -9 $PID. or killall meson.  WHY?!  = some packages were gtk+,
+#found a typo, rechanged code once,
 #portage   7619 99.9  0.5 181412 171308 pts/2   R+   05:34   1:56  |                   \_ /usr/bin/python3.10 /usr/lib/python-exec/python3.10/meson configure
 #portage   7620  0.0  0.0   6636  1628 pts/2    S+   05:34   0:00  |                   \_ cat
+#(NOTE:) This calls `less` so, set PAGER to blank first, to not.
+#(NOTE:) Use cat instead to output fully to logfile.
     fi
 }
 
@@ -69,3 +80,7 @@ pre_src_configure() {
 #[ "`type -t BashrcdMain`" = function ] || \
 #. "${PORTAGE_CONFIGROOT%/}/etc/portage/bashrc.d/bashrcd.sh"
 #BashrcdMain "$@"
+
+#PORTAGE_VERBOSE=1 #no need
+#PORTAGE_DEBUG=1   #useless spam
+

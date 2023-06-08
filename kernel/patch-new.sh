@@ -23,7 +23,7 @@ function download() {
  echo "Downloading Patch..."
  ptf="patch-$v.$p.$s1-$s2"
  mkdir -p patches; pushd patches || die
- wget "${URL}/incr/${ptf}.xz"
+ download1=$(wget "${URL}/incr/${ptf}.xz")
  if [ -f "${ptf}.xz" ]; then
   echo "Patch ${ptf}.xz found. Decompressing patch .XZ..."
   xz -d -T0 "${ptf}.xz"
@@ -31,7 +31,7 @@ function download() {
   popd || die
   mkdir -p patched
   patch -p1 < patches/"$ptf" > patched/patched-"$s1-$s2".txt
-  echo "Patch Complete! Log Saved @ ${PWD}/patched-$s1-$s2.txt"
+  echo "Patch Complete! Log Saved @ ${PWD}/patched/patched-$s1-$s2.txt"
  else
   echo "Patch 404 not found, this means we're up to date. Bailing out!"
   exit
@@ -39,16 +39,17 @@ function download() {
  mkdir -p changelogs; pushd changelogs || die
  echo "Downloading ChangeLog..."
  chlog="ChangeLog-$v.$p.$s2"
- wget "${URL}/${chlog}"
+ download2=$(wget "${URL}/${chlog}")
  if [ -f "$chlog" ]; then
   echo "ChangeLog Summary Created!"
   changelog "$chlog" > "$chlog-summary.txt"
-  echo "ChangeLog review opening, q to quit..."
+  echo "ChangeLog Saved! @ $(realpath ${chlog})"
+  echo "ChangeLog is opening, q to quit..."
   less "$chlog-summary.txt"
  fi
  popd || die
 }
 #Patch wont apply cleanly and its struggling with my  custom ver string
-sed -i 's/^EXTRAVERSION = -gentoo-hardened1/EXTRAVERSION = /' Makefile
+sed -i 's/^EXTRAVERSION = -gentoo-hardened1/EXTRAVERSION =/' Makefile
 download #runit
-sed -i 's/^EXTRAVERSION = /EXTRAVERSION = -gentoo-hardened1/' Makefile
+sed -i 's/^EXTRAVERSION =/EXTRAVERSION = -gentoo-hardened1/' Makefile

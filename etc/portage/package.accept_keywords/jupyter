@@ -1,23 +1,21 @@
 dev-python/aiofiles
 dev-python/aiosqlite
 dev-python/json5
-dev-python/jupyter_events
-dev-python/jupyter_server
+# move dev-python/jupyter_events dev-python/jupyter-events
+dev-python/jupyter-events
+# move dev-python/jupyter_server dev-python/jupyter-server
+dev-python/jupyter-server
 # move dev-python/jupyter_server_fileid dev-python/jupyter-server-fileid
 dev-python/jupyter-server-fileid
-dev-python/jupyter_server_ydoc
-dev-python/jupyter_ydoc
+# move dev-python/jupyter_server_ydoc dev-python/jupyter-server-ydoc
+dev-python/jupyter-server-ydoc
+dev-python/jupyter-ydoc
 dev-python/jupyterlab
-dev-python/jupyterlab_server
+# move dev-python/jupyterlab_server dev-python/jupyterlab-server
+dev-python/jupyterlab-server
 dev-python/nbclassic
-dev-python/notebook_shim
+# move dev-python/notebook_shim dev-python/notebook-shim
+dev-python/notebook-shim
 dev-python/python-json-logger
 dev-python/y-py
 dev-python/ypy-websocket
-# required by dev-python/jupyter_server-2.2.1-r1::gentoo
-# required by dev-python/jupyter_server_fileid-0.6.0-r1::gentoo
-# required by dev-python/jupyter_server_ydoc-0.6.1::gentoo
-# required by dev-python/jupyterlab-3.6.1-r1::gentoo
-# required by @selected
-# required by @world (argument)
-=dev-python/jupyter-server-terminals-0.4.4 ~amd64

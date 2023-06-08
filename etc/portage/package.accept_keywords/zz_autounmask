@@ -1,2 +1,19 @@
 # required by dev-util/rr (argument)
 =dev-util/rr-5.6.0-r2 ~amd64
+# required by dev-util/rt-tests (argument)
+dev-util/rt-tests
+dev-lang/bacon
+net-analyzer/ssh-audit
+# required by virtual/dist-kernel-6.2.14::gentoo
+# required by sys-kernel/gentoo-kernel-6.2.14::gentoo
+# required by sys-kernel/gentoo-kernel-bin-6.2.12::gentoo
+# required by @selected
+# required by @world (argument)
+>=virtual/dist-kernel-6.1.1 ~amd64
+>=sys-kernel/gentoo-kernel-6.1.1 ~amd64
+# required by gnome-base/nautilus-43.1::gentoo
+# required by @selected
+# required by @world (argument)
+#=gui-libs/gtk-4.10.3 ~amd64
+# required by net-misc/gnome-remote-desktop (argument)
+=net-misc/gnome-remote-desktop-44.1 ~amd64

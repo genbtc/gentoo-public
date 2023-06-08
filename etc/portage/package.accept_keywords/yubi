@@ -1,14 +1,16 @@
-app-crypt/yubikey-manager
-#app-crypt/ccid
+#app-crypt/yubikey-manager
+##app-crypt/ccid
 app-crypt/yubikey-manager-qt
-#dev-qt/qtquickcontrols2
-#sys-apps/pcsc-lite
+##dev-qt/qtquickcontrols2
+##sys-apps/pcsc-lite
 app-crypt/gnupg-pkcs11-scd
 sys-auth/pam_yubico
 sys-auth/ykclient
-# required by ssh-audit (argument)
-=net-analyzer/ssh-audit-2.5.0 ~amd64
-# required by =app-portage/gentoopm-0.5.0 (argument)
-=app-portage/gentoopm-0.5.0 ~amd64
-# required by dev-lang/bacon (argument)
-=dev-lang/bacon-4.6 ~amd64
+
+#[nomerge       ] app-crypt/yubikey-manager-5.0.1::gentoo  USE="ssl verify-sig -test" PYTHON_TARGETS="python3_10 -python3_9 -python3_11"
+#[ebuild     U  ]  dev-python/cryptography-40.0.1::gentoo [39.0.1::gentoo] USE="-debug -test" PYTHON_TARGETS="python3_10 (-pypy3) -python3_9 -python3_11" 27,171 KiB
+#[ebuild     U ~]  dev-python/fido2-1.1.1:0/1.0::gentoo [1.1.0:0/1.0::gentoo] USE="-examples -test" PYTHON_TARGETS="python3_10 -python3_9 -python3_11 (-python3_8%)" 242 KiB
+#[ebuild     U ~]  dev-python/pyopenssl-23.1.1::gentoo
+#=dev-python/cryptography-40.0.1
+#=dev-python/fido2-1.1.1
+#=dev-python/pyopenssl-23.1.1

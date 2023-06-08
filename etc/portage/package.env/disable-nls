@@ -39,7 +39,6 @@
 >=dev-vcs/subversion-1.14.1        disable-nls.conf
 >=games-puzzle/gnome2048-3.38.2        disable-nls.conf
 >=gnome-base/dconf-editor-3.38.3        disable-nls.conf
->=gnome-base/gconf-3.2.6-r5        disable-nls.conf
 >=gnome-base/gnome-keyring-42.1        disable-nls.conf
 >=gnome-base/gnome-menus-3.36.0-r1        disable-nls.conf
 >=gnome-base/gsettings-desktop-schemas-42.0        disable-nls.conf
@@ -99,7 +98,8 @@
 >=sys-auth/elogind-246.10-r2        disable-nls.conf
 >=sys-auth/pam_p11-0.3.1        disable-nls.conf
 >=sys-auth/polkit-121        disable-nls.conf
->=sys-block/gparted-1.4.0-r1        disable-nls.conf
+#=sys-block/gparted-1.4.0-r1     disable-nls.conf
+#=sys-block/gparted-1.5.0        disable-nls.conf
 >=sys-block/parted-3.4        disable-nls.conf
 >=sys-devel/bison-3.8.2        disable-nls.conf
 >=sys-devel/m4-1.4.19        disable-nls.conf
@@ -181,3 +181,4 @@
 >=xfce-extra/xfce4-mpc-plugin-0.5.2           disable-nls.conf
 >=xfce-extra/xfce4-smartbookmark-plugin-0.5.2 disable-nls.conf
 >=xfce-extra/xfce4-indicator-plugin-2.4.1     disable-nls.conf
+lxde-base/lxappearance  disable-nls.conf
