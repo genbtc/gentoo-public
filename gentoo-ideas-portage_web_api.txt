@@ -1,0 +1,31 @@
+Ideas: 
+
+Portage on the web
+Portage Binhost Daemon
+Portage Server/Client API
+
+ask Portage whats installed
+ask portage how to resolve deps
+ask portage what binpkgs it can fulfill
+queue portage jobs remotely
+build packages remotely
+SPEC FILE for building.
+spec.json:
+    {
+        "arch": "v2",
+        "CFLAGS": "-O2 -pipe",
+        "make.confVAR1": "1",
+        "make.confVAR2": "2"
+    }
+portage_execute_command: emerge --buildpkgonly --remote 192.168.2.2 <pkgname>
+
+make it work like distCC except not in src_compile, just pkg_fetch and pkg_install
+
+Portage OSTree . 
+Bootstrap
+
+one thing I think that would be helpful is to convert Public concepts into gentooisms lingo and then into some python api code, or CLI one-liner.
+
+package queriers: equery, q*, portageq, eix, gentoopm now
+
+equery + portageq + gentoopm are python, eix/q = C

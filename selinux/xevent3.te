@@ -1,0 +1,93 @@
+#Example policy to show the xserver_object_manager specific X filtering functionality of selinux.
+policy_module(xevent3, 1.07)
+gen_require(`
+
+#	attribute x_domain;
+
+        class x_drawable all_x_drawable_perms;
+        class x_screen all_x_screen_perms;
+        class x_pointer all_x_pointer_perms;
+        class x_keyboard all_x_keyboard_perms;
+        class x_resource all_x_resource_perms;
+        class x_event all_x_event_perms;
+
+#        class x_gc all_x_gc_perms;
+#        class x_font all_x_font_perms;
+#        class x_colormap all_x_colormap_perms;
+#        class x_property all_x_property_perms;
+#        class x_selection all_x_selection_perms;
+#        class x_cursor all_x_cursor_perms;
+#        class x_client all_x_client_perms;
+#        class x_device all_x_device_perms;
+#        class x_server all_x_server_perms;
+#        class x_extension all_x_extension_perms;
+#        class x_synthetic_event all_x_synthetic_event_perms;
+
+	type	xserver_t;
+	type	user_t;
+	type	mozilla_t;
+	type	mplayer_t;
+	type	virtualbox_t;
+	type	chromium_t;
+	type	mullvad_t;
+	type	hexchat_t;
+	type	transmission_t;
+#
+	type	                xevent_t;
+	type	          input_xevent_t;
+	type	     user_input_xevent_t;
+	type	     root_input_xevent_t;
+	type      mplayer_input_xevent_t;
+	type   virtualbox_input_xevent_t;
+	type     chromium_input_xevent_t;
+	type      mullvad_input_xevent_t;
+	type	  hexchat_input_xevent_t;
+	type transmission_input_xevent_t;
+	type	        root_xdrawable_t;
+
+')
+
+#----------------------xserver_manage_core_devices(xxxx_t)----------------------
+#(allow xxxx_t xserver_t (x_device (getattr setattr use read write getfocus setfocus bell force_cursor freeze grab manage list_property get_property set_property add remove create destroy)))
+#(allow xxxx_t xserver_t (x_pointer (getattr setattr use read write getfocus setfocus bell force_cursor freeze grab manage list_property get_property set_property add remove create destroy)))
+#(allow xxxx_t xserver_t (x_keyboard (getattr setattr use read write getfocus setfocus bell force_cursor freeze grab manage list_property get_property set_property add remove create destroy)))
+#-------------------------------------------------------------------------------
+
+#base classes
+allow { xserver_t user_t mozilla_t mplayer_t virtualbox_t chromium_t mullvad_t hexchat_t transmission_t }
+       { xevent_t user_input_xevent_t root_input_xevent_t }:
+	x_event { send };
+
+#inherited sub-types
+allow xserver_t
+       { mplayer_input_xevent_t virtualbox_input_xevent_t chromium_input_xevent_t mullvad_input_xevent_t hexchat_input_xevent_t transmission_input_xevent_t }:
+	x_event { send };
+
+allow { mozilla_t mplayer_t virtualbox_t chromium_t mullvad_t hexchat_t transmission_t }
+       root_xdrawable_t:x_drawable { read };
+allow { mozilla_t mplayer_t virtualbox_t chromium_t mullvad_t hexchat_t transmission_t }
+       xserver_t:x_keyboard { get_property read };
+allow { mozilla_t mplayer_t virtualbox_t chromium_t mullvad_t hexchat_t transmission_t }
+       xserver_t:x_pointer { get_property };
+
+allow mplayer_t
+       xserver_t:x_screen { saver_hide saver_show };
+
+#(WW) avc:  denied  { write } for request=SHAPE:SelectInput comm=/usr/lib64/firefox/firefox resid=c00975 restype=ShapeEvent scontext=user_u:user_r:mozilla_t tcontext=user_u:user_r:user_t tclass=x_resource permissive=0
+#============= mozilla_t ==============
+#!!!! This avc is allowed in the current policy
+allow mozilla_t user_t:x_resource write;
+
+# transmission denials, still
+#[ 31138.538] (WW) avc:  denied  { send } for request=X11:SendEvent comm= event=MIT-SHM:Completion scontext=user_u:user_r:transmission_t tcontext=user_u:object_r:xevent_t tclass=x_synthetic_event permissive=0
+#[ 42579.975] (WW) avc:  denied  { 0x1 } for request=XInputExtension:QueryDevice comm= xdevice="AT Translated Set 2 keyboard" scontext=user_u:user_r:transmission_t tcontext=user_u:user_r:xserver_t tclass=(null) permissive=0
+#[ 42579.975] (WW) avc:  denied  { 0x80 } for request=XInputExtension:GetProperty comm= xdevice="AT Translated Set 2 keyboard" scontext=user_u:user_r:transmission_t tcontext=user_u:user_r:xserver_t tclass=(null) permissive=0
+
+# mullvad denials, past log
+#(WW) avc:  denied  { 0x1 } for request=XInputExtension:QueryDevice comm=/opt/Mullvad VPN/mullvad-gui xdevice="Virtual core keyboard" scontext=user_u:user_r:mullvad_t tcontext=user_u:user_r:xserver_t tclass=(null) permissive=1
+#(WW) avc:  denied  { 0x80 } for request=XInputExtension:GetProperty comm=/opt/Mullvad VPN/mullvad-gui xdevice="Virtual core pointer" scontext=user_u:user_r:mullvad_t tcontext=user_u:user_r:xserver_t tclass=(null) permissive=1
+#(WW) avc:  denied  { 0x80 } for request=XInputExtension:GetProperty comm=/opt/Mullvad VPN/mullvad-gui xdevice="Virtual core XTEST keyboard" scontext=user_u:user_r:mullvad_t tcontext=user_u:user_r:xserver_t tclass=(null) permissive=1
+#(WW) avc:  denied  { 0x400000 } for request=X11:SendEvent comm=/opt/Mullvad VPN/mullvad-gui --type=gpu-process --field-trial-h event=X11:Expose scontext=user_u:user_r:mullvad_t tcontext=user_u:object_r:xevent_t tclass=(null) permissive=1
+#============= mullvad_t ==============
+#allow mullvad_t xevent_t:(null) 0x400000;
+#allow mullvad_t xserver_t:(null) { 0x1 0x80 };

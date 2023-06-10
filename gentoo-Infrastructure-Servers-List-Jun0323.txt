@@ -1,0 +1,48 @@
+albatross.gentoo.org	Master rsync community mirror	Manchester, UK, EU	Infrastructure/Servers/Albatross
+auklet.gentoo.org	api www	Manchester, UK, EU	Infrastructure/Servers/Auklet
+avocet.gentoo.org	api infra-status www	Manchester, UK, EU	Infrastructure/Servers/Avocet
+bellbird.gentoo.org	CFEngine master Infra Stage 4 buildhost	Corvallis, Oregon, US, NA	Infrastructure/Servers/Bellbird
+bittern.gentoo.org	Blogs	Corvallis, Oregon, US, NA	Infrastructure/Servers/Bittern
+blackcap.gentoo.org	VM hosting	Corvallis, Oregon, USA	Infrastructure/Servers/Blackcap
+bobolink.gentoo.org	DNS slave rsync server	Corvallis, Oregon, US, NA	Infrastructure/Servers/Bobolink
+boobie.gentoo.org	rsync server	Maidenhead, UK, EU	Infrastructure/Servers/Boobie
+brambling.gentoo.org	Bouncer Devmanual Infra Status	Corvallis, Oregon, US, NA	Infrastructure/Servers/Brambling
+dipper.gentoo.org	Master mirror services MySQL server	Corvallis, Oregon, US, NA	Infrastructure/Servers/Dipper
+finch.gentoo.org	Internal Archives Puppetmaster	Corvallis, Oregon, US, NA	Infrastructure/Servers/Finch
+gallinule.gentoo.org	MySQL Galera witness node	Vancouver, Canada	Infrastructure/Servers/Gallinule
+gannet.gentoo.org	Bugzilla	Vancouver, Canada	Infrastructure/Servers/Gannet
+geese.gentoo.org	Wiki	Vancouver, Canada	Infrastructure/Servers/Geese
+godwit.gentoo.org	Forums web server 2	Vancouver, Canada	Infrastructure/Servers/Godwit
+goldeneye.gentoo.org	Database (Galera cluster)	Vancouver, Canada	Infrastructure/Servers/Goldeneye
+grebe.gentoo.org	retired	Vancouver, Canada	Infrastructure/Servers/Grebe
+groundroller.gentoo.org	Database (Galera cluster)	Vancouver, Canada	Infrastructure/Servers/Groundroller
+grouse.gentoo.org	retired	Vancouver, Canada	Infrastructure/Servers/Grouse
+inca.gentoo.org	Mirrorstats future search facilities	St. Wendel, Germany, EU	Infrastructure/Servers/Inca
+jacamar.gentoo.org	CI	Corvallis, Oregon, US, NA	Infrastructure/Servers/Jacamar
+kea.gentoo.org	DNS slave EU master distfiles	Torino, Italy, EU	Infrastructure/Servers/Kea
+kookaburra.gentoo.org	LDAP? Nameserver	Clifton, New Jersey, US, NA	Infrastructure/Servers/Kookaburra
+lapwing.gentoo.org	Retired	Israel	Infrastructure/Servers/Lapwing
+manakin.gentoo.org	AnonGit Archives Git browser	Fairfax, Virginia, USA	Infrastructure/Servers/Manakin
+martin.gentoo.org	NATTkA bot	Moscow, Russia	Infrastructure/Servers/Martin
+meadowlark.gentoo.org	Icinga Infrawiki LDAP server	Corvallis, Oregon, US, NA	Infrastructure/Servers/Meadowlark
+motmot.gentoo.org	CVS & SVN web interfaces QA Reports	Corvallis, Oregon, US, NA	Infrastructure/Servers/Motmot
+nighthawk.gentoo.org	GLSAMaker Infra Status Overlays List Piwik Security Database	Netherlands, Europe	Infrastructure/Servers/Nighthawk
+nightheron.gentoo.org	AMD64/X86 build box Autobuilds mirroring Release Engineering	Paris, France	Infrastructure/Servers/Nightheron
+nightjar.gentoo.org	cfengine-EU puppetmaster-EU	Paris, France	Infrastructure/Servers/Nightjar
+noddie.gentoo.org		Paris, France	Infrastructure/Servers/Noddie
+oriole.gentoo.org	Ganeti cluster node	Corvallis, Oregon, US, NA	Infrastructure/Servers/Oriole
+ovenbird.gentoo.org	Ganeti cluster node	Corvallis, Oregon, US, NA	Infrastructure/Servers/Ovenbird
+oystercatcher.gentoo.org	CVS GIT	Falkenstein, Germany, EU	Infrastructure/Servers/Oystercatcher
+pigeon.gentoo.org	Mailing lists	Toronto, Canada, NA	Infrastructure/Servers/Pigeon
+quetzal.gentoo.org	rsync server	Cologne, Germany, EU	Infrastructure/Servers/Quetzal
+starling.gentoo.org	rsync server	Zurich, Switzerland, EU	Infrastructure/Servers/Starling
+swan.gentoo.org	rsync server	Nürnberg, Germany, EU	Infrastructure/Servers/Swan
+thrasher.gentoo.org	DNS LDAP	St. Wendel, Germany	Infrastructure/Servers/Thrasher
+towhee.gentoo.org	GitLab experiment Packages.g.o	St. Wendel, Germany	Infrastructure/Servers/Towhee
+trogan.gentoo.org	GLSAMaker Packages-dev Pluto SKS URL shortener	St. Wendel, Germany	Infrastructure/Servers/Trogan
+turkey.gentoo.org	Anser Mirrorstats Nattka WWW	St. Wendel, Germany	Infrastructure/Servers/Turkey
+turnstone.gentoo.org	GitHub PR CI Rsync	St. Wendel, Germany	Infrastructure/Servers/Turnstone
+tyrant.gentoo.org	Keycloak LDAP SSO Vault	St. Wendel, Germany	Infrastructure/Servers/Tyrant
+vireo.gentoo.org	loghost	Nürnberg, Germany, EU	Infrastructure/Servers/Vireo
+vulture.gentoo.org	Summer of Code	Corvallis, Oregon, US, NA	Infrastructure/Servers/Vulture
+woodpecker.gentoo.org	Developer shell server Primary email server	Corvallis, Oregon, US, NA	Infrastructure/Servers/Woodpecker

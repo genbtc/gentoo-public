@@ -1,0 +1,15 @@
+gentoo bugs
+
+past bug : https://bugs.gentoo.org/471718
+
+commit it was added: 
+
+https://github.com/SELinuxProject/selinux/commit/8c21eeeaceddefec1d64e0a9d38c246101f5026e
+
+FAQ Added @ : https://wiki.gentoo.org/wiki/SELinux/FAQ#Regex_version_mismatch.2C_expected_.23.23_actual_.23.23
+
+possible news Item ?
+
+make part of selinux-rebuild profile ? 
+
+IRC chat @ pcre-irc-discussion.txtI go

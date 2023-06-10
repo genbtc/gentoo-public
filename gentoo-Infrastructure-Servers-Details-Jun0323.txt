@@ -1,0 +1,48 @@
+albatross.gentoo.org	2x 2GHz Athlon 64 X2 3800+	2x 200GB SATA2 RAID1 (md)	2GB	Manchester, UK, EU	Bytemark Hosting	
+auklet.gentoo.org	1.6GHz Intel Atom 230 (HT)	2x 100GB SATA2 RAID1(md)	2GB	Manchester, UK, EU	Bytemark Hosting	 
+avocet.gentoo.org	2x 2.8GHz Athlon II X2 240	2x 500GB SATA2 RAID1(md)	4GB	Manchester, UK, EU	Bytemark Hosting	 
+bellbird.gentoo.org	1.66GHz Intel Atom D510 (Dual Core w/HT)	2x 320GB SATA 3Gb/S RAID1(md)	4GB	Corvallis, Oregon, US, NA	Gentoo	 
+bittern.gentoo.org	4 vCPU	100G disk	8GB	Corvallis, Oregon, US, NA	Gentoo	X
+blackcap.gentoo.org	2x Opteron 4170 HE	4x 600GB 15k SAS HWRAID5	32GiB	Corvallis, Oregon, USA	Gentoo	 
+bobolink.gentoo.org	1.66GHz Intel Atom D510 (Dual Core w/HT)	2x 320GB SATA 3Gb/S RAID1(md)	4GB	Corvallis, Oregon, US, NA	Gentoo	 
+boobie.gentoo.org	2x 2.13GHz Xeon 3050	2x 150GB SATA2 RAID1(md)	4GB	Maidenhead, UK, EU	EUKhost	
+brambling.gentoo.org	1.66GHz Intel Atom D510 (Dual Core w/HT)	2x 320GB SATA 3Gb/S RAID1(md)	4GB	Corvallis, Oregon, US, NA	Gentoo	 
+dipper.gentoo.org	2.53GHz Intel Xeon X3440 (Quad Core)	4x 3TB SAS RAID10 (PERC H700)	8GB	Corvallis, Oregon, US, NA	Gentoo	 
+finch.gentoo.org	4x 1.8GHz Opteron 2210	2x 250GB SATA2 RAID1(md)	4GB	Corvallis, Oregon, US, NA	Gentoo	 
+gallinule.gentoo.org	2 vCPU	20G	8GB	Vancouver, Canada	Gossamer Threads	X
+gannet.gentoo.org	4x 2.4GHz Opteron 2216	2x 250GB SATA2 RAID1(md)	16GB	Vancouver, Canada	Gossamer Threads	 
+geese.gentoo.org	4x 2.4GHz Opteron 2379 HE	4x 150GB ?	32GB	Vancouver, Canada	Gossamer Threads	 
+godwit.gentoo.org	4x 2.4GHz Opteron 2216	2x 250GB SATA2 RAID1(md)	16GB	Vancouver, Canada	Gossamer Threads	 
+goldeneye.gentoo.org	2x Intel Xeon L5640 @ 2.27Ghz	6x 600GB 2.5" SAS HWRAID50, 2x 480GB NVMe MD-RAID1	96GB	Vancouver, Canada	Gossamer Threads	 
+grebe.gentoo.org	8x 2.3GHz Opteron 2376	4x 147GB SAS RAID10(md)	20GB	Vancouver, Canada	Carbon60	 
+groundroller.gentoo.org	2x Intel Xeon L5640 @ 2.27Ghz	6x 600GB 2.5" SAS HWRAID50, 2x 480GB NVMe MD-RAID1	96GB	Vancouver, Canada	Gossamer Threads	 
+grouse.gentoo.org	8x 2.3GHz Opteron 2376	4x 147GB SAS RAID10(md)	20GiB	Vancouver, Canada	Gossamer Threads	 
+inca.gentoo.org	3.3GHz AMD FX(tm)-6100 6-core	2x 2TB SATA2 RAID1(md)	16GB	St. Wendel, Germany, EU	manitu	 
+jacamar.gentoo.org	32x 2.2GHz Opteron 6272	6x 930GB SAS	64GB	Corvallis, Oregon, US, NA	Gentoo	 
+kea.gentoo.org	2x 2.0GHz Core2 Xeon 5130	4x 300GB SAS RAID5(HP Smart Array E200i)	6GB	Torino, Italy, EU	Torino Piemonte Internet eXchange (TOP-IX)	 
+kookaburra.gentoo.org	2x 2.0GHz Core2 Xeon 5130	2x 300GB SAS RAID1(3ware 9690SA-4I)	12GB	Clifton, New Jersey, US, NA	DedicatedNow	 
+lapwing.gentoo.org	8x 3.00GHz Xeon E5450	1x 600GB SATA	32GB	Israel		 
+manakin.gentoo.org	Intel Xeon E5-2620 v3 @ 2.40GHz	2x 480GB Intel DC-S3500 SSD, 2x 3TB Seagate SAS (LSI HWRAID 1)	32 GB	Fairfax, Virginia, USA	Metasystems Technologies Inc.	 
+martin.gentoo.org	Intel Xeon E5506 v3 @ 2.13GHz	2x 200GB Intel DC-S3610 SSD (MDRAID0)	32 GB	Moscow, Russia	Mephi.ru	 
+meadowlark.gentoo.org	2x 2.9GHz (QEMU)	20GB	1GB	Corvallis, Oregon, US, NA	Open Source Lab	X
+motmot.gentoo.org	4 vCPU	50G	8G	Corvallis, Oregon, US, NA	Gentoo	X
+nighthawk.gentoo.org	3.40GHz Xeon E31270	2x 500GB SATA2 RAID1(md)	8GB	Netherlands, Europe	LeaseWeb	 
+nightheron.gentoo.org	2x Xeon E5430	2x 67GB 10k SAS HWRAID1, 4x 300GB 10k SAS HWRAID5	20GiB	Paris, France	Numberly	 
+nightjar.gentoo.org	1x Xeon 5130	2x 67GB 10k SAS HWRAID1, 4x 136GB 10k SAS HWRAID5	32GiB	Paris, France	Numberly	
+noddie.gentoo.org	2x Xeon E5410	2x 67GB 10k SAS HWRAID1, 4x 136GB 10k SAS HWRAID5	12GiB	Paris, France	Numberly	
+oriole.gentoo.org	2x Intel Xeon E5-2620 v4 @ 2.10GHz	2x 1TB SSD, 4x 2TB 2.5" SAS HDD	128GB	Corvallis, Oregon, US, NA	Gentoo Linux	
+ovenbird.gentoo.org	2x Intel Xeon E5-2620 v4 @ 2.10GHz	2x 1TB SSD, 4x 2TB 2.5" SAS HDD	128GB	Corvallis, Oregon, US, NA	Gentoo Linux	
+oystercatcher.gentoo.org	2 * Xeon(R) CPU E5-1650 v2 @ 3.50GHz	2 * 256GB (SSD)	64GB	Falkenstein, Germany, EU	Gentoo (leased from Hetzner)	 
+pigeon.gentoo.org	2x 3.4GHz Pentium-D	2x 160GB SATA RAID1(md)	2GB	Toronto, Canada, NA	Seven L Networks	 
+quetzal.gentoo.org	4x 2.53GHz Xeon E5649 (Parallels Bare Metal)	1TB	16GB	Cologne, Germany, EU	Host Europe	X
+starling.gentoo.org	2x 2.0Ghz Xeon E5504 (VMWare)	50GB	4GB	Zurich, Switzerland, EU	Qube Managed Services Limited	 
+swan.gentoo.org	2.80GHz Core i7 930 (Quad Core, HT)	2x 750GB SATA2 RAID1(md)	8GB	Nürnberg, Germany, EU	Hetzner (ThinEx)	 
+thrasher.gentoo.org	2x 2.6GHz Xeon X5550	3x 256GB Samsung 840 SSD, 2x 1T WD Blue	24GB	St. Wendel, Germany	Gentoo	 
+towhee.gentoo.org	2x 2.6GHz Xeon X5550	3x 256GB Samsung 840 SSD, 2x 1T WD Blue	24GB	St. Wendel, Germany	Gentoo	 
+trogan.gentoo.org	2x 2.6GHz Xeon X5550	3x 256GB Samsung 840 SSD, 2x 1T WD Blue	24GB	St. Wendel, Germany	Gentoo	 
+turkey.gentoo.org	2x 2.4GHz Xeon E5530	2x Seagate 300GB SAS	24GB	St. Wendel, Germany	Gentoo	 
+turnstone.gentoo.org	2x 2.4GHz Xeon E5530	2x Seagate 300GB SAS	24GB	St. Wendel, Germany	Gentoo	 
+tyrant.gentoo.org	2x 2.4GHz Xeon E5530	2x Seagate 300GB SAS	24GB	St. Wendel, Germany	Gentoo	 
+vireo.gentoo.org	2x AMD Athlon64 X2 5600+	2x 500GB SATA2 RAID1(md)	2GB	Nürnberg, Germany, EU	Hetzner	 
+vulture.gentoo.org	4x 1.8GHz Opteron 2210	2x 500GB SATA2 RAID1(md)	4GB	Corvallis, Oregon, US, NA	Gentoo	 
+woodpecker.gentoo.org	8 vCPU	700GiB disk	12GB	Corvallis, Oregon, US, NA	Gentoo

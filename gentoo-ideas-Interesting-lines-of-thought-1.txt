@@ -1,0 +1,18 @@
+Interesting lines of thought:
+
+Gentoo Binpkgs ->  BinPKG repo -> (dilfridge)
+Considerations: 
+ Multiple dirs, One per Chroot in storage pool
+ Multiple profiles, per configroot, allow select one or multiple
+  select profile -> chroot -> emerge world -> binpkg
+ different dates, sort into batches for quarterly release
+ always renegerate at least once per quarter.
+ bundle release into rootfs squashfs, xz, and symlinks to the binpkgs (ala Nix)
+try and rebuild twice to find out if package is the same checksum
+=
+Reproducible Builds
+blockers = timestamp. SOURCE_EPOCH_TIME
+
+tips = bootstrappable.com has simple bash scripts to wget external files & checksums 
+
+
