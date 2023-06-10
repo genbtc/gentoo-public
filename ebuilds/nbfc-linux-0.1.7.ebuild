@@ -3,9 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{10,11,12} )
-
-inherit autotools linux-info
+inherit linux-info
 
 DESCRIPTION="NoteBook FanControl"
 HOMEPAGE="https://github.com/nbfc-linux/nbfc-linux"
@@ -14,22 +12,18 @@ SRC_URI="https://github.com/nbfc-linux/nbfc-linux/archive/${PV}.tar.gz -> ${P}.t
 LICENSE="GPL-3"
 KEYWORDS="amd64"
 SLOT="0"
-IUSE=""
 
 RDEPEND="sys-apps/lmsensors
          sys-apps/dmidecode
         "
 DEPEND="${RDEPEND}"
-BDEPEND=""
-
-DOCS=( README.md LICENSE )
 
 pkg_setup() {
     local CONFIG_CHECK=" \
         ~CONFIG_CROS_EC_SYSFS \
         ~CONFIG_ACPI_EC_DEBUGFS \
     "
-#    linux-info_pkg_setup   #uncomment when modules are confirmed required
+#    linux-info_pkg_setup   #uncomment this when modules are confirmed required
 }
 
 src_prepare() {
@@ -41,10 +35,10 @@ src_prepare() {
 
 src_install() {
     default
-    keepdir /etc/nbfc
+    keepdir /etc/nbfc       #Blank dir needs to be kept
 }
 
 #NOTES:
 #System service : systemd script provided (etc/systemd/system/ dir) -  but no openrc
 #auto-completion: bash zsh fish (completion/ dir)
-#XML: how is it reading the (XML/ dir) files
+#XML: how is it reading the (XML/ dir) files?
