@@ -17,17 +17,14 @@ SLOT="0"
 IUSE=""
 
 RDEPEND="sys-apps/lmsensors
-         sys-apps/dmidecode      
-    	"
-
+         sys-apps/dmidecode
+        "
 DEPEND="${RDEPEND}"
-
-BDEPEND="net-libs/libnftnl"
-
+BDEPEND=""
 
 DOCS=( README.md LICENSE )
 
 #NOTES:
-#System service : systemd script provided etc/systemd/system/ dir -  but no openrc ?
+#System service : systemd script provided (etc/systemd/system/ dir) -  but no openrc
 #auto-completion: bash zsh fish (completion/ dir)
-#XML: how is it reading this XML
+#XML: how is it reading the (XML/ dir) files
