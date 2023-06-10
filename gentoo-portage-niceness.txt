@@ -1,0 +1,22 @@
+
+User:Sam/PORTAGE NICENESS
+< User:Sam	
+Jump to:navigation
+Jump to:search
+FILE /etc/portage/make.conf
+
+# Lowest priority
+PORTAGE_NICENESS="19"
+PORTAGE_IONICE_COMMAND="/usr/local/bin/io-priority \${PID}"
+
+FILE /usr/local/bin/io-priority
+
+#!/bin/bash
+PID=${1}
+
+ionice -c 3 -p ${PID}
+#ionice -c 2 -n 7 -p ${PID}
+chrt -p -i 0 ${PID}
+
+root #chmod +x /usr/local/bin/io-priority
+

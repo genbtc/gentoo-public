@@ -1,0 +1,173 @@
+Gentoo Feature Ideas:
+----------------------
+1)
+FEATURES=nolocales (like nodoc, noinfo, noman)
+
+2)
+emergelog this stuff to a logfile (/var/log/emerge.py): 
+Calculating dependencies  ... done!
+[ebuild  N     ] media-sound/easyeffects-6.1.5::gentoo  USE="-calf -doc -mda-lv2 -zamaudio" 1657 KiB
+[ebuild  N     ]  media-video/pipewire-0.3.36:0/0.3::gentoo  USE="pipewire-alsa -bluetooth -doc -echo-cancel -extra -gstreamer -jack-client -jack-sdk -systemd -test -v4l" 1669 KiB
+(site-packages/_emerge/post_emerge.py) = Output -v -t update information intro screen to (do not output when status 130 exited)
+
+3)
+nCurses USE flag editor (like ufed)
+then implement it into Portage to not have "Calculating dependencies  ..." , run equery use command, toggle flag, 
+
+4) package.mask, package.keywords auto-add
+
+5) check packages for --disable-nls and come up with a list
+
+6) file the bug to releng about binpkg-multi-instance in make.globals
+
+7) Improve the messaging surrounding inconsistencies like this or previously docutils/sphinx 
+    WARNING: One or more updates/rebuilds have been skipped due to a dependency conflict:
+
+    x11-libs/pango:0
+
+      (x11-libs/pango-1.50.3:0/0::gentoo, ebuild scheduled for merge) USE="X introspection -debug -sysprof" ABI_X86="32 (64) (-x32)" conflicts with
+        <x11-libs/pango-1.50.0[abi_x86_64(-)] required by (dev-cpp/pangomm-2.42.2-r1:1.4/1.4::gentoo, installed) USE="-doc" ABI_X86="(64) -32 (-x32)"
+        ^
+
+8) investigate USE_EXPAND `KERNEL="(-FreeBSD%) (-linux%*)"` ELIBC
+  https://dpaste.com/GSEAJVCNP - my investigation 1 exhibit a
+<sam_> genr8eofl_: it's probably something like these flags weren't being treated as implicit
+<sam_> even though they were
+<sam_> so when they were removed, they became implicit
+<sam_> which portage treats as a change?
+<sam_> it's probably not an obvious "do stupid thing" line
+<sam_> just bad logic, if anything
+<sam_> i think what genr8eofl_ is doing will be useful, it'll involve some playing. I don't think there's any reason for an implicit USE to be treated differently to one in IUSE, so it's likely about finding where the handling differs. Might be something as simple as the point where implicit IUSE is applied is too late for the dep calculation!
+<sam_> implicit IUSE are not a new feature so it's likely something subtle like that, but dunno
+<sam_> genr8eofl_: 100% sus
+<sam_> genr8eofl_: that matches the rough theory, right? because the idea is "oh no it's only needed for *DEPEND and ebuild phases"
+<sam_> which is wrong in this case
+<genr8eofl_> that might be a red herring, theres weirder stuff thats not as easily human readable
+<genr8eofl_> but /usr/lib/python3.9/site-packages/portage/package/ebuild/config.py certainly is a hotspot for this stuff
+<genr8eofl_> I uncovered an interesting data point. forcing IUSE_IMPLICIT="kernel_linux" on in the linux/make.defaults profile does nothing (i confirmed it took)
+<genr8eofl_> it only seems to turn on when its explicitly mentioned as a dep for some flags in the ebuild, or else it turns off
+<sam_> (not just dependency, it can be used in phases too, like 'if use ...')
+<genr8eofl_> What if this is correct behavior because of strange edge cases we're not thinking of
+<sam_> (note that it's always set in base/make.defaults, btw, so your forcing it shouldn't have made a diff, because it's already set)
+<sam_> (and overridden for other places)
+<sam_> possible
+<sam_> that's why i wouldn't commit any change based on findings without review ;)
+<sam_> i think it's a fun adventure even if it turns out to be expected/correct
+
+<Jannik2099> there's no such thing as "implicit" useflags in portage dependency resolution
+<Jannik2099> the KERNEL_ useflags were force enabled by profile
+<Jannik2099> now they aren't
+<Jannik2099> it's a changed-use rebuild like anything else
+<sam_> (implicit USE_EXPAND and such is definitely a thing and they ae still force-enabled)
+<Jannik2099> it's implicit in the sense that the user doesn't deal with them yes
+<Jannik2099> but portage doesn't have such concept
+<sam_> well i mean the term implicit is literally in pms
+<sam_> https://dev.gentoo.org/~ulm/pms/head/pms.html#x1-560005.3.1
+<sam_> https://dev.gentoo.org/~ulm/pms/head/pms.html#x1-11000011.1.1
+<sam_> it's confusing
+<sam_> and I'm not sure it is handled correctly
+<sam_> surely the effective IUSE should be the same either way
+<Jannik2099> yes but I think genr8eofl was thinking of portage somehow knowing about "implied" flags and their changes
+<sam_> I think this is where it gets tricky: I am not sure if it's expected that the distinction is made or not
+<sam_> I don't think it's required
+<Jannik2099> implementation defined behaviour, marvellous :P
+<genr8eofl> that helped, thanks
+
+9) kernel-2.eclass unpack stage only supports .xz files now
+
+10) misunderstanding of --deep / deficiency in manpage explanation.
+<genr8eofl> I think i've been misunderstanding --deep this whole time. without --deep, portage doesnt even update top level dependencies explicitly mentioned in the ebuild ?
+<sam_> genr8eofl: it won't *update* them, no, but it will honour >= deps and such in the ebuild.
+<genr8eofl> ahhhhh
+<genr8eofl> that explains a lot actually
+<genr8eofl> sam_: I feel like the manpage doesnt explain that properly. This  flag  forces emerge to consider the entire dependency tree of packages, instead of checking only the immediate dependencies of the packages.  As an example, this catches updates in libraries that are not directly listed in the dependencies of a package. 
+<sam_> I might be wrong then, it might directly update the dependencies listed in an ebuild, but not their dependencies
+<genr8eofl> no, I think you're right, cause I just ran into it as an issue
+<sam_> i'm fairly sure my interpretation matches what i've seen in reality though.... hmm
+<sam_> ok interesting
+
+<genr8eofl> sam_: I found the answer to the deep question. Inside the source code, we have "alternative" --help descriptions. and for --deep it says: "If no argument is given, depth is unlimited. Default behavior is to skip dependencies of installed packages."
+<sam_> so it sounds like someone.. forgot to update the man page?
+<genr8eofl> yep
+
+
+11) firewallD ebuild ~CONFIG_CHECK options
+https://bugs.gentoo.org/831259 "net-firewall/firewalld-1.0.2: update CONFIG_CHECK for kernel 5.15"; Gentoo Linux, Current packages; UNCO; gentoo:virtualization
+
+ *   CONFIG_NF_CONNTRACK_NETBIOS:	 is not set when it should be.
+ *   CONFIG_NF_TABLES_SET:	 is not set when it should be.
+ *   CONFIG_NFT_NET:	 is not set when it should be.
+ * Please check to make sure these options are set correctly.
+ * Failure to do so may cause unexpected problems.
+
+<genr8eofl_> my analysis: CONFIG_NF_TABLES_SET is from 5.4, gone now. 
+<genr8eofl_> I believe NFT_NET was supposed to be NFT_NAT since its right next to it and NFT_NET doesnt exist (possibly typo, I cant find evidence of it existing). 
+<genr8eofl_> and the NETBIOS one should have been NETBIOS_NS all along
+
+12)
+<Flow> Kelsar: basically, because I am experimenting on a strategy where only the minimal set of packages is emerged. that is, either updates of world packages, or packages where the currently installed ebuild vanished and a newer best version exists. I know that this is very similar to what world updates do, but I believe in certain cases world updates would update more
+<Kelsar> Flow: it is exactly what you are asking to do, the result is just not what you immagine
+<sam_> Flow: it's not able to because you'e given a limited subset of the graph and it's not been told to consider its reverse dependencies / been told it's alowed to upgrade them
+<sam_> Flow: --complete-graph or, better, --deep, may have better results
+<sam_> but to be clear
+<Flow> sam_: thanks, I'll give it a try
+<sam_> --update doesn't mean "update everything needed to update these packages" :D
+<sam_> I think there's a bug somewhere for an option that means that
+<sam_> np
+<sam_> bug 559354
+<willikins> sam_: https://bugs.gentoo.org/559354 "sys-apps/portage: add emerge option which directs it to "update any packages necessary" (which --update does not do)"; Portage Development, Core - Interface (emerge); CONF; zmedico:dev-portage
+<Flow> sam_: note that I don't use --update
+<sam_> ah, yes, but still same idea
+<Flow> I identify the list of updateable packages via eix first
+<sam_> "I'm only allowed to consider what you told me"
+<sam_> I'm not sure why you're doing this though
+<sam_> it seems a bit odd
+<sam_> but yeah, do --deep ideally
+<genr8eofl> complete-graph might be more likely to work
+<sam_> (complete-graph is just a subset of deep)
+<sam_> but not allowed to consider upgrades
+<genr8eofl> oh i thought they were the opposite
+<sam_> nor would I rely on eix, which is not the package manager, to identify upgrades. earlier on, we had a nice example of where eix -U or whatever it is gave "upgrades" which were fake news (because they were just newer slots)
+<sam_> another reason to always be using --complete-graph at minimum if emerging lots of random stuff between world upgrades is bug 731150
+<willikins> sam_: https://bugs.gentoo.org/731150 "sys-apps/portage does not enforce dependencies on installed non-@world packages"; Portage Development, Core - Dependencies; CONF; mgorny:dev-portage
+
+
+13) I2C_HID_ACPI in 5.15+
+
+14) Designware touchpad 
+ Pinctrl -> LPC -> GPIO -> i2C -> Designware -> Elantech issue lol
+# CONFIG_PINCTRL_INTEL=m section
+# CONFIG_PCIE_DW_PLAT_HOST is not set
+
+
+15) Nvidia 5.15 FB_DRM
+
+
+16)
+<tirnanog> genr8eofl: given NO_HZ_IDLE, it seems a bit hand-wavey without the benefit of any accompanying data. that being said, the tick rate does still apply where a core is not in an idle state. 300 and 250 seem to be popular choices for vendor kernels from what I can gather. the middle ground, as it were.
+
+17) take Kernel .configs, elide all the default options away and trim it down to only what was modified.
+
+18) during/after eix-sync,  compare ebuild of [I] installed packages that need to be [U] upgraded and diff the .ebuild's
+
+
+-qlop -v print package summary after every emerge bashrc (print uptime too for gl)
+-install_mask = /usr/share/locale/ (nolocale) is from bashrcd::mv
+
+19) portage declarative config files and script for generating custom stage4's from a recipe (NIXos guix ansible style)
+<willikins> sam_: https://bugs.gentoo.org/799626 "sys-apps/portage: one config file to bind them all"; Portage Development, Core - Configuration; CONF; mgorny:dev-portage
+<genr8eofl> ok i think ixmpp wants to take it further than that too so you can use it for other files
+<genr8eofl> but the main portage files first would be very important too
+<ixmpp> yes
+<genr8eofl> it also doesnt account for things like, in order to build a system, you cant turn all the flags on at once or there will be conflicts. so you gotta go solve the conflicts, which a config file doesnt lend that well to
+<genr8eofl> things like zlib[minizip] and filecaps or whatever, you know better than me
+<genr8eofl> harfbuzz circular deps
+<genr8eofl> i thought you meant something else
+<genr8eofl> i think it could be accomplished with some kind of binpkgs and CONFIG_PROTECT and what Spawns_Carpeting was doing a couple months back with {EROOT}
+<genr8eofl> ixmpp: are you thinking the idea is 1) installed-system.binpkgs followed by 2) config-archive.patches ?
+<genr8eofl> i think tinkering with quickpkg would be the way to go for that.
+<ixmpp> genr8eofl; i mean the vast swathes of my idea is that the entirety of configuration (modulo var data) is packages, and config files, and so if you can stick config files into packages (even depending on the packages they're configuring!) then you can eventually make it not even a two step process; if everything on your system is eventually managed by portage, quickpkg the entire system, including a virt
+<ixmpp> ual package depending on everything nontrivial, and then a full system reprovision is just a matter of installing that virtual package from binpkg, all of which's dependencies should be available - or as i say, to make it easier, encapsulate all of that in a neat stage4
+<ixmpp> (so yeah quickpkg based)
+<ixmpp> on another note, i've just started using vimpager, but ansi escape codes aren't working very well :/
+<genr8eofl> i see you want the config patches to show up in the .ebuild list of packages you install

@@ -1,0 +1,113 @@
+default/linux/amd64/17.1: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl gdbm nptl unicode
+
+default/linux/amd64/17.1/selinux: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl gdbm nptl unicode selinux
+
+default/linux/amd64/17.1/hardened: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib openmp seccomp pcre iconv libtirpc multilib bzip2 acl nptl unicode hardened pic xtpax -jit -orc -ptpax -berkdb -gdbm -fortran -cli 
+-dri
+
+default/linux/amd64/17.1/hardened/selinux: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib openmp seccomp pcre iconv libtirpc multilib bzip2 acl nptl unicode hardened pic xtpax -jit -orc -ptpax -berkdb -gdbm 
+-fortran -cli -dri selinux
+
+default/linux/amd64/17.1/desktop: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre iconv libtirpc multilib bzip2 acl gdbm nptl a52 aac acpi alsa bluetooth branding cairo cdda cdr 
+cups dbus dri dts dvd dvdr elogind encode exif flac gif gpm gtk gui icu jpeg lcms libnotify mad mng mp3 mp4 mpeg ogg opengl pango pdf png policykit ppds qt5 sdl spell startup-notification svg tiff truetype vorbis udev udisks unicode upower 
+usb wxwidgets X xcb x264 xml xv xvid
+
+default/linux/amd64/17.1/desktop/gnome: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre iconv libtirpc multilib bzip2 acl gdbm nptl colord eds evo gnome gnome-keyring 
+gnome-online-accounts gstreamer introspection libsecret nautilus networkmanager pulseaudio sysprof tracker wayland a52 aac acpi alsa bluetooth branding cairo cdda cdr cups dbus dri dts dvd dvdr elogind encode exif flac gif gpm gtk gui icu 
+jpeg lcms libnotify mad mng mp3 mp4 mpeg ogg opengl pango pdf png policykit ppds qt5 sdl spell startup-notification svg tiff truetype vorbis udev udisks unicode upower usb wxwidgets X xcb x264 xml xv xvid
+
+default/linux/amd64/17.1/desktop/gnome/systemd: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre iconv libtirpc multilib bzip2 acl gdbm nptl colord eds evo gnome gnome-keyring 
+gnome-online-accounts gstreamer introspection libsecret nautilus networkmanager pulseaudio sysprof tracker wayland a52 aac acpi alsa bluetooth branding cairo cdda cdr cups dbus dri dts dvd dvdr elogind encode exif flac gif gpm gtk gui icu 
+jpeg lcms libnotify mad mng mp3 mp4 mpeg ogg opengl pango pdf png policykit ppds qt5 sdl spell startup-notification svg tiff truetype vorbis udisks unicode upower usb wxwidgets X xcb x264 xml xv xvid systemd udev
+
+default/linux/amd64/17.1/desktop/plasma: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre iconv libtirpc multilib bzip2 acl gdbm nptl activities declarative kde kwallet plasma qml 
+semantic-desktop widgets a52 aac acpi alsa bluetooth branding cairo cdda cdr cups dbus dri dts dvd dvdr elogind encode exif flac gif gpm gtk gui icu jpeg lcms libnotify mad mng mp3 mp4 mpeg ogg opengl pango pdf png policykit ppds qt5 sdl 
+spell startup-notification svg tiff truetype vorbis udev udisks unicode upower usb wxwidgets X xcb x264 xml xv xvid
+
+default/linux/amd64/17.1/desktop/plasma/systemd: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre iconv libtirpc multilib bzip2 acl gdbm nptl activities declarative kde kwallet 
+plasma qml semantic-desktop widgets a52 aac acpi alsa bluetooth branding cairo cdda cdr cups dbus dri dts dvd dvdr elogind encode exif flac gif gpm gtk gui icu jpeg lcms libnotify mad mng mp3 mp4 mpeg ogg opengl pango pdf png policykit 
+ppds qt5 sdl spell startup-notification svg tiff truetype vorbis udisks unicode upower usb wxwidgets X xcb x264 xml xv xvid systemd udev
+
+default/linux/amd64/17.1/desktop/systemd: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre iconv libtirpc multilib bzip2 acl gdbm nptl a52 aac acpi alsa bluetooth branding cairo cdda 
+cdr cups dbus dri dts dvd dvdr elogind encode exif flac gif gpm gtk gui icu jpeg lcms libnotify mad mng mp3 mp4 mpeg ogg opengl pango pdf png policykit ppds qt5 sdl spell startup-notification svg tiff truetype vorbis udisks unicode upower 
+usb wxwidgets X xcb x264 xml xv xvid systemd udev
+
+default/linux/amd64/17.1/developer: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre iconv libtirpc multilib bzip2 acl gdbm nptl snmp a52 aac acpi alsa bluetooth branding cairo cdda 
+cdr cups dbus dri dts dvd dvdr elogind encode exif flac gif gpm gtk gui icu jpeg lcms libnotify mad mng mp3 mp4 mpeg ogg opengl pango pdf png policykit ppds qt5 sdl spell startup-notification svg tiff truetype vorbis udev udisks unicode 
+upower usb wxwidgets X xcb x264 xml xv xvid
+
+default/linux/amd64/17.1/no-multilib: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl gdbm nptl unicode
+
+default/linux/amd64/17.1/no-multilib/hardened: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib openmp seccomp pcre iconv libtirpc multilib bzip2 acl nptl unicode hardened pic xtpax -jit -orc -ptpax -berkdb -gdbm 
+-fortran -cli -dri
+
+default/linux/amd64/17.1/no-multilib/hardened/selinux: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib openmp seccomp pcre iconv libtirpc multilib bzip2 acl nptl unicode hardened pic xtpax -jit -orc -ptpax -berkdb 
+-gdbm -fortran -cli -dri selinux
+
+default/linux/amd64/17.1/no-multilib/systemd: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl gdbm nptl unicode systemd udev
+
+default/linux/amd64/17.1/no-multilib/systemd/selinux: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl gdbm nptl unicode systemd udev selinux
+
+default/linux/amd64/17.1/systemd: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl gdbm nptl unicode systemd udev
+
+default/linux/amd64/17.1/systemd/selinux: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl gdbm nptl unicode systemd udev selinux
+
+default/linux/amd64/17.1/clang: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl gdbm nptl unicode
+
+default/linux/amd64/17.1/systemd/clang: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl gdbm nptl unicode systemd udev
+
+default/linux/amd64/17.0: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl gdbm nptl unicode
+
+default/linux/amd64/17.0/selinux: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl gdbm nptl unicode selinux
+
+default/linux/amd64/17.0/hardened: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib openmp seccomp pcre iconv libtirpc multilib bzip2 acl nptl unicode hardened pic xtpax -jit -orc -ptpax -berkdb -gdbm -fortran -cli 
+-dri
+
+default/linux/amd64/17.0/hardened/selinux: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib openmp seccomp pcre iconv libtirpc multilib bzip2 acl nptl unicode hardened pic xtpax -jit -orc -ptpax -berkdb -gdbm 
+-fortran -cli -dri selinux
+
+default/linux/amd64/17.0/desktop: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre iconv libtirpc multilib bzip2 acl gdbm nptl a52 aac acpi alsa bluetooth branding cairo cdda cdr 
+cups dbus dri dts dvd dvdr elogind encode exif flac gif gpm gtk gui icu jpeg lcms libnotify mad mng mp3 mp4 mpeg ogg opengl pango pdf png policykit ppds qt5 sdl spell startup-notification svg tiff truetype vorbis udev udisks unicode upower 
+usb wxwidgets X xcb x264 xml xv xvid
+
+default/linux/amd64/17.0/desktop/gnome: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre iconv libtirpc multilib bzip2 acl gdbm nptl colord eds evo gnome gnome-keyring 
+gnome-online-accounts gstreamer introspection libsecret nautilus networkmanager pulseaudio sysprof tracker wayland a52 aac acpi alsa bluetooth branding cairo cdda cdr cups dbus dri dts dvd dvdr elogind encode exif flac gif gpm gtk gui icu 
+jpeg lcms libnotify mad mng mp3 mp4 mpeg ogg opengl pango pdf png policykit ppds qt5 sdl spell startup-notification svg tiff truetype vorbis udev udisks unicode upower usb wxwidgets X xcb x264 xml xv xvid
+
+default/linux/amd64/17.0/desktop/gnome/systemd: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre iconv libtirpc multilib bzip2 acl gdbm nptl colord eds evo gnome gnome-keyring 
+gnome-online-accounts gstreamer introspection libsecret nautilus networkmanager pulseaudio sysprof tracker wayland a52 aac acpi alsa bluetooth branding cairo cdda cdr cups dbus dri dts dvd dvdr elogind encode exif flac gif gpm gtk gui icu 
+jpeg lcms libnotify mad mng mp3 mp4 mpeg ogg opengl pango pdf png policykit ppds qt5 sdl spell startup-notification svg tiff truetype vorbis udisks unicode upower usb wxwidgets X xcb x264 xml xv xvid systemd udev
+
+default/linux/amd64/17.0/desktop/plasma: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre iconv libtirpc multilib bzip2 acl gdbm nptl activities declarative kde kwallet plasma qml 
+semantic-desktop widgets a52 aac acpi alsa bluetooth branding cairo cdda cdr cups dbus dri dts dvd dvdr elogind encode exif flac gif gpm gtk gui icu jpeg lcms libnotify mad mng mp3 mp4 mpeg ogg opengl pango pdf png policykit ppds qt5 sdl 
+spell startup-notification svg tiff truetype vorbis udev udisks unicode upower usb wxwidgets X xcb x264 xml xv xvid
+
+default/linux/amd64/17.0/desktop/plasma/systemd: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre iconv libtirpc multilib bzip2 acl gdbm nptl activities declarative kde kwallet 
+plasma qml semantic-desktop widgets a52 aac acpi alsa bluetooth branding cairo cdda cdr cups dbus dri dts dvd dvdr elogind encode exif flac gif gpm gtk gui icu jpeg lcms libnotify mad mng mp3 mp4 mpeg ogg opengl pango pdf png policykit 
+ppds qt5 sdl spell startup-notification svg tiff truetype vorbis udisks unicode upower usb wxwidgets X xcb x264 xml xv xvid systemd udev
+
+default/linux/amd64/17.0/developer: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre iconv libtirpc multilib bzip2 acl gdbm nptl snmp a52 aac acpi alsa bluetooth branding cairo cdda 
+cdr cups dbus dri dts dvd dvdr elogind encode exif flac gif gpm gtk gui icu jpeg lcms libnotify mad mng mp3 mp4 mpeg ogg opengl pango pdf png policykit ppds qt5 sdl spell startup-notification svg tiff truetype vorbis udev udisks unicode 
+upower usb wxwidgets X xcb x264 xml xv xvid
+
+default/linux/amd64/17.0/no-multilib: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl gdbm nptl unicode
+
+default/linux/amd64/17.0/no-multilib/hardened: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib openmp seccomp pcre iconv libtirpc multilib bzip2 acl nptl unicode hardened pic xtpax -jit -orc -ptpax -berkdb -gdbm 
+-fortran -cli -dri
+
+default/linux/amd64/17.0/no-multilib/hardened/selinux: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib openmp seccomp pcre iconv libtirpc multilib bzip2 acl nptl unicode hardened pic xtpax -jit -orc -ptpax -berkdb 
+-gdbm -fortran -cli -dri selinux
+
+default/linux/amd64/17.0/systemd: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl gdbm nptl unicode systemd udev
+
+default/linux/amd64/17.0/x32: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv bzip2 acl gdbm nptl unicode libtirpc multilib
+
+default/linux/amd64/17.0/musl: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl nptl unicode -berkdb -gdbm
+
+default/linux/amd64/17.0/musl/clang: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib fortran openmp seccomp cli pcre dri iconv libtirpc multilib bzip2 acl nptl unicode -berkdb -gdbm
+
+default/linux/amd64/17.0/musl/hardened: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib openmp seccomp pcre iconv libtirpc multilib bzip2 acl nptl unicode hardened pic xtpax -jit -orc -ptpax -berkdb -gdbm -fortran 
+-cli -dri
+
+default/linux/amd64/17.0/musl/hardened/selinux: xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib openmp seccomp pcre iconv libtirpc multilib bzip2 acl nptl unicode hardened pic xtpax -jit -orc -ptpax -berkdb -gdbm 
+-fortran -cli -dri selinux

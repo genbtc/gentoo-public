@@ -1,0 +1,162 @@
+// SPDX-License-Identifier: CC-BY-SA 4.0
+// This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+/* an investigation into doas persist, by genBTC @C 2022 Aug */
+
+Doas "persist":
+================
+"Note: Due to OpenBSD-specific kernel API required by doas to set and clear timeouts, the persist feature is disabled by default in the OpenDoas port."
+ ^-- Hmm, shouldnt we be able to add this support into the linux kernel if we take their code and wrap it in a linux module that logs the timestamp or whatever?
+we investigate.
+
+Must read also, Really useful prior work:
+Original openBSD-daily IRC chat deepdive walkthrough of openBSD-doas :
+    = https://raw.githubusercontent.com/mulander/openbsd-daily/2fcc49ba32d6a9efb3e6bc0f9cd93e7c2db5f963/topics/2017-06-07%3Adoas%3Aimplementation.asciidoc
+
+orig openBSD-doas repo:
+    CVS  = https://cvsweb.openbsd.org/cgi-bin/cvsweb/~checkout~/src/usr.bin/doas/doas.c?rev=1.97&content-type=text/plain
+    fork = https://github.com/sbennett1990/openbsd-src/blob/main/usr.bin/doas/doas.c#L200
+
+openBSD-doas's auth function in question:
+=====================================
+
+static void
+authuser(char *myname, char *login_style, int persist)
+{
+	int i, fd = -1;
+
+	if (persist)
+		fd = open("/dev/tty", O_RDWR);
+	if (fd != -1) {
+		if (ioctl(fd, TIOCCHKVERAUTH) == 0)
+			goto good;
+	}
+	for (i = 0; i < AUTH_RETRIES; i++) {
+		if (authuser_checkpass(myname, login_style) == AUTH_OK)
+			goto good;
+	}
+	exit(1);
+good:
+	if (fd != -1) {
+		int secs = 5 * 60;
+		ioctl(fd, TIOCSETVERAUTH, &secs);
+		close(fd);
+	}
+}
+
+Note: TIOCSETVERAUTH, TIOCCHKVERAUTH is the openBSD specific API. ( TIOCCLRVERAUTH too) 
+
+Analysis: 
+==========
+          OpenDoas opens a FD file descriptor for the current TTY and calls a BSD kernel IOCTL on it to CHK VER AUTH.
+            Then the BSD ioctl handler checks if your verified authorized credentials match.
+          Back to OpenDoas, either auth fails and we return exit(1),   - or -
+          OpenDoas calls the IOCTL again, this time to SET VER AUTH.
+            Then the BSD ioctl handler sets some flags on the TTY struct and checks a 1 hour timeout period in the kernel (hardcoded).
+          OpenDoas adds 5 minute timestamp (HARD CODED) to the clock everytime we doas.
+          This BSD IOCTL function is shown below:
+
+Sources:
+=========
+
+openBSD tty_tty.c whole file
+            = https://github.com/sbennett1990/openbsd-src/blob/main/sys/kern/tty_tty.c
+
+openBSD cttyioctl(ttydev_t){ }
+            = https://github.com/sbennett1990/openbsd-src/blob/main/sys/kern/tty_tty.c#L112 
+
+int cttyioctl(dev_t dev, u_long cmd, caddr_t addr, int flag, struct proc *p) {
+//    .. irrelevant code was cut out ..
+	switch (cmd) {
+	case TIOCSETVERAUTH:
+		if ((error = suser(p)))
+			return error;
+		secs = *(int *)addr;
+		if (secs < 1 || secs > 3600)
+			return EINVAL;
+		sess = p->p_p->ps_pgrp->pg_session;
+		sess->s_verauthuid = p->p_ucred->cr_ruid;
+		sess->s_verauthppid = p->p_p->ps_pptr->ps_pid;
+		timeout_add_sec(&sess->s_verauthto, secs);
+		return 0;
+	case TIOCCLRVERAUTH:
+		sess = p->p_p->ps_pgrp->pg_session;
+		timeout_del(&sess->s_verauthto);
+		zapverauth(sess);
+		return 0;
+	case TIOCCHKVERAUTH:
+		/*
+		 * It's not clear when or what these checks are for.
+		 * How can we reach this code with a differnt ruid?
+		 * The ppid check is also more porous than desired.
+		 * Nevertheless, the checks reflect the original intention;
+		 * namely, that it be the same user using the same shell.
+		 */
+		sess = p->p_p->ps_pgrp->pg_session;
+		if (sess->s_verauthuid == p->p_ucred->cr_ruid &&
+		    sess->s_verauthppid == p->p_p->ps_pptr->ps_pid)
+			return 0;
+		return EPERM;
+	}
+	return (VOP_IOCTL(ttyvp, cmd, addr, flag, NOCRED, p));
+}
+
+My Humble Conclusion: 
+=====================
+Our linux kernel has all the machinery, however this particular piece of code cannot be deployed to linux without serious kernel rewrite.
+In lieu of that, the OpenDoas author has implemented an adequate (IMO) non-kernel replacement; it does not actually required to be in the kernel (or module).
+in practical terms, we can assume once the controlling /dev/ttyX is opened, taken over, permission locked 600 and chowned by the UID/GID it executes as, that is enough.
+The route they took on linux instead is, Including both PAM or Shadow(non-pam) options to extend the auth handling to userspace. going to extra lengths for best practices on this platform. 
+(As much as PAM is ridiculous, it is the right solution for a fully functioning Linux Auth) - likely using somtehing like pam_timestamp_chk)
+
+
+Sources:
+=========
+OpenDoas's auth function, ifdef for shadowauth or pamauth  = https://github.com/Duncaen/OpenDoas/blob/50a47d3b7e587fabcce85bc5af10450a3707821a/doas.c
+OpenDoas's shadowauth(persist) = https://github.com/Duncaen/OpenDoas/blob/master/shadow.c#L45
+OpenDoas's pamauth(persist) = https://github.com/Duncaen/OpenDoas/blob/master/pam.c#L222
+OpenDoas's advanced timestamp handling = https://github.com/Duncaen/OpenDoas/blob/master/timestamp.c
+            ^ read this file's comments for 3 major implementation caveats that can impact security:
+Caveats:
+========
+    1) Timestamp Files and Dirs
+    - Timestamp files MUST NOT be accessible to users other than root (contents ofc, but not even a visible filename, or leaked metadata!)
+    - Reject any symlinks for timestamp files, due to symlink attack
+    - Avoid Race conditions, same FD, any r/w ops immediately after permcheck, use openat(2) on the dir dentry, check file perms, open file. (Linux/C semantics)
+    2) Clock sources for Timestamps
+    - Use Multiple clock sources, MUST NOT rely on just one
+    - Reject ALL timestamps if the clock changes, for any reason
+    3) Timestamp Lifetime
+    - MUST NOT use the user controlled stdio/err fd's to determine controlling TTY
+    - /proc/$pid/stat file MUST be used to get the terminal number
+    - No reliable way to determine the lifetime of a tty/pty.
+    - "The start time of the "session leader" MUST be used as part of the timestamp to determine if the tty is still the same."
+
+Other notes:
+=============
+The "persist" option is called  --with-timestamp       enable timestamp support  in the configure script 
+The configure script = https://github.com/Duncaen/OpenDoas/blob/master/configure#L29
+Configure Script, for OpenDoas:
+https://github.com/Duncaen/OpenDoas/blob/master/configure#L24
+  --enable-static        prepare for static build
+  --without-pam          disable pam support
+  --without-shadow       disable shadow support
+  --with-timestamp       enable timestamp support
+
+	    --enable-static) BUILD_STATIC=yes ;;
+    --with-pam) WITHOUT_PAM=; WITHOUT_SHADOW=yes ;;
+    (-or-)
+    --with-shadow) WITHOUT_SHADOW=; WITHOUT_PAM=yes ;;
+	    --without-pam) WITHOUT_PAM=yes ;;
+	    --without-shadow) WITHOUT_SHADOW=yes ;;
+    --with-timestamp) WITHOUT_TIMESTAMP= ;;
+	    --without-timestamp) WITHOUT_TIMESTAMP=yes ;;
+
+side quests:
+============
+freebsd (found no results) https://github.com/freebsd/freebsd-src/
+TIOC ioctl numbers in hex = https://github.com/nicholatian/cosmo-cstar/blob/master/src/libc/sysv/consts/TIOCCHKVERAUTH.s
+list of all ioctls in dec = https://github.com/kent007/torpedo/blob/master/sys/openbsd/tty_amd64.const
+giant list of symbols in termios.h = https://github.com/nicholatian/cosmo-cstar/blob/master/src/libc/sysv/consts/termios.h
+random, sudo's 2017 CVE-2017-1000367 Potential file overwrite or tty access on SELinux = https://www.sudo.ws/security/advisories/linux_tty/
+        (proc/pid/stat can include spaces/parens in the comm= filename, and an attacker can spoof entries to an unsuspecting parser implementation)
+

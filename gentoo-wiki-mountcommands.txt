@@ -1,0 +1,52 @@
+During the install, you may need to reboot multiple times. (Sometimes you fail to boot over and over...)
+
+After a while, typing the same 8 boilerplate mount commands every time you reboot back into the LiveCD environment gets overly time consuming.
+
+The solution? '''Make a script''' to make your life faster and easier. Actually I've already made one, Here is how you would use it:
+
+
+
+'''1''' - Run the main mount command for your root partition, (use the specific disk partition that applies to your system)
+
+This is the main command you should still run by hand, (this is done manually still because it has to know where to store/access the script)
+
+{{RootCmd
+|mount /dev/nvme0n1p3 /mnt/gentoo
+|cd /mnt/gentoo
+}}
+'''2a''' - Either, Download and save the script in this mounted root directory.
+{{RootCmd
+|wget https://dpaste.com/5ZB6TH4PW.txt -O mountcommands.sh
+}}
+'''2b''' - Or, Alternatively copy and paste it from this wiki:
+{{RootCmd
+|nano mountcommands.sh
+}}
+{{CodeBox|filename=mountcommands.sh|title=mountcommands.sh|lang=bash|1=
+#!/bin/sh
+mount --types proc /proc /mnt/gentoo/proc
+mount --rbind /sys /mnt/gentoo/sys
+mount --make-rslave /mnt/gentoo/sys
+mount --rbind /dev /mnt/gentoo/dev
+mount --make-rslave /mnt/gentoo/dev
+mount --bind /run /mnt/gentoo/run
+mount --make-slave /mnt/gentoo/run
+}}
+
+'''3''' - Make it executable
+{{RootCmd
+|chmod a+x mountcommands.sh
+}}
+'''4''' - Execute it! Done! (the ./ is needed - means run from current directory)
+{{RootCmd
+|./mountcommands.sh
+}}
+
+'''Now everytime you reboot, repeat only Step 1 and Step 4.'''
+
+It will be saved in the root directory of your gentoo partition.
+
+From there you can "chroot /mnt/gentoo" to enter the chroot.
+
+And "mount /boot" to mount your other important disks/partitions, using fstab, once you are inside.
+
