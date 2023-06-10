@@ -24,6 +24,26 @@ BDEPEND=""
 
 DOCS=( README.md LICENSE )
 
+pkg_setup() {
+    local CONFIG_CHECK=" \
+        ~CONFIG_CROS_EC_SYSFS \
+        ~CONFIG_ACPI_EC_DEBUGFS \
+    "
+#    linux-info_pkg_setup   #uncomment when modules are confirmed required
+}
+
+src_prepare() {
+    default
+    #NOTE: Arch uses usr/local and merged-usr for etc . install dirs may need tweaking
+    sed -i -e "s:PREFIX   = /usr/local:PREFIX   = ${EPREFIX}/usr:" Makefile || die
+    sed -i -e 's:confdir  = $(PREFIX)/etc:confdir  = /etc:' Makefile || die
+}
+
+src_install() {
+    default
+    keepdir /etc/nbfc
+}
+
 #NOTES:
 #System service : systemd script provided (etc/systemd/system/ dir) -  but no openrc
 #auto-completion: bash zsh fish (completion/ dir)
