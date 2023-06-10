@@ -13,7 +13,7 @@ LICENSE="GPL-3"
 KEYWORDS="amd64"
 SLOT="0"
 
-RDEPEND="sys-apps/lmsensors
+RDEPEND="sys-apps/lm-sensors
          sys-apps/dmidecode
         "
 DEPEND="${RDEPEND}"
