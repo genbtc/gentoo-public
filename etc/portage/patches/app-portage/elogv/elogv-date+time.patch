@@ -1,0 +1,11 @@
+--- a/elogv	2020-11-23 05:08:57.000000000 -0500
++++ b/elogv	2023-06-19 14:37:13.235579081 -0400
+@@ -140,7 +140,7 @@
+ # Character used to print the class of an elog
+ class_char = "*"
+ list_format = "%s/%s - %s"
+-date_format = "%x"
++date_format = "%x %H:%M:%S"
+ 
+ # Exceptions classes
+ class TermTooSmall(Exception):

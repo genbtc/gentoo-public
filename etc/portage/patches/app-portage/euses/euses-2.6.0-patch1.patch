@@ -1,0 +1,69 @@
+diff -ur euses.1 euses.1
+--- a/euses.1	2020-05-07 01:44:25.000000000 -0400
++++ b/euses.1	2023-06-19 13:29:46.257879441 -0400
+@@ -72,7 +72,7 @@
+ .BR "euses" " will use this instead of the value obtained from "
+ .IR "make.globals" ". If even the latter fails, "
+ .BR "euses" " will fall back on "
+-.IR "/usr/portage" " before giving up completely."
++.IR "/var/db/repos/gentoo " before giving up completely."
+ .TP
+ .B "USE"
+ .RB "The USE environment variable is used by " "portage" "(5)"
+diff -ur euses.c euses.c
+--- a/euses.c	2020-05-07 01:44:25.000000000 -0400
++++ b/euses.c	2023-06-19 13:37:47.835843699 -0400
+@@ -105,7 +105,7 @@
+ 			if (second != NULL)
+ 				fprintf(stderr, " * on this line:\n%s", second);
+ 		} else
+-			fprintf(stderr, "%s, %s.\n", first, second);
++			fprintf(stderr, "(NULL), %s.\n", second);
+ 		break;
+ 
+ 	case NOT_IMPLEMENTED:
+@@ -137,7 +137,7 @@
+ 	path = malloc(FILENAME_MAX);
+ 	/* Check if PORTDIR is set in the environment */
+ 	if (getenv("PORTDIR") != NULL) {
+-		strncpy(portdir, getenv("PORTDIR"), FILENAME_MAX);
++		strncpy(portdir, getenv("PORTDIR"), FILENAME_MAX - 1);
+ 	} else {
+ 
+ 		/* or load it from etc{,portage}/make.{globals,conf} */
+@@ -167,7 +167,7 @@
+ 	/* Check if the portdir path points to a proper directory */
+ 	if (finfo->st_mode == S_IFDIR) {
+ 		/* or else set it to the default */
+-		strncpy(portdir, "/usr/portage", 13);
++		strncpy(portdir, "/var/db/repos/gentoo", 21);
+ 	}
+ 	free(finfo);
+ 	free(path);
+@@ -218,7 +218,7 @@
+ 	char *q;
+ 	char buf[LINE_LENGTH];
+ 
+-	strncpy(buf, line, LINE_LENGTH - 1);
++	strncpy(buf, line, LINE_LENGTH);
+ 	p = strchr(buf, ':');
+ 	q = strchr(buf, ' ');
+ 	if (p != NULL && p < q) {
+@@ -227,7 +227,7 @@
+ 		p = buf;
+ 		q = p + strlen(p) + 1;
+ 		strncpy(pkg, p, LINE_LENGTH);
+-		strncpy(flagdesc, q, LINE_LENGTH);
++		strncpy(flagdesc, q, LINE_LENGTH - 1);
+ 		return 1;
+ 	} else
+ 		/* This specimen has no colon: */
+@@ -249,7 +249,7 @@
+ 		p = buf;
+ 		q = p + strlen(p) + 3;
+ 		strncpy(flag, p, LINE_LENGTH);
+-		strncpy(desc, q, LINE_LENGTH);
++		strncpy(desc, q, LINE_LENGTH - 1);
+ 		return 1;
+ 	} else
+ 		return 0;
