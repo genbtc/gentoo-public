@@ -20,8 +20,8 @@ DEPEND="${RDEPEND}"
 
 pkg_setup() {
     local CONFIG_CHECK=" \
-        ~CONFIG_CROS_EC_SYSFS \
-        ~CONFIG_ACPI_EC_DEBUGFS \
+        ~CROS_EC_SYSFS \
+        ~ACPI_EC_DEBUGFS \
     "
 #    linux-info_pkg_setup   #uncomment this when modules are confirmed required
 }

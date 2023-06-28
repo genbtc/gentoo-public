@@ -1,0 +1,11 @@
+# Copyright 1999-2023 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+#
+# NAME: euses-2.6.0-etc-eusesrc.patch
+# 
+# FIXES: PORTDIR not found
+# INSTALL: copy this file to /etc/eusesrc
+#
+# AUTHOR: genr8eofl June 19 2023 - gentoo
+
+PORTDIR="/var/db/repos/gentoo"
