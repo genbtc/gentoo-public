@@ -1,0 +1,300 @@
+#ls -lR  /var/db/repos/gentoo/profiles
+# output cleaned up manually:
+
+Profiles:
+    arch/
+    base/
+    default/
+    desc/
+    embedded/
+    features/
+    prefix/
+    releases/
+    targets/
+    updates/
+    --------
+    arches.desc
+    arch.list
+    categories
+    eapi
+    info_pkgs
+    info_vars
+    license_groups
+    Manifest.gz
+    package.deprecated
+    package.mask
+    profiles.desc
+    repo_name
+    thirdpartymirrors
+    use.desc
+    use.local.desc
+
+  Arch:
+arch/alpha
+arch/amd64/lib32
+arch/amd64
+arch/amd64/x32
+arch/arm64/big-endian
+arch/arm64/little-endian
+arch/arm64
+arch/arm/armv4
+arch/arm/armv4t
+arch/arm/armv5te
+arch/arm/armv6j
+arch/arm/armv7a
+arch/arm
+arch/hppa
+arch/ia64
+arch/loong
+arch/m68k
+arch/mips/mips64/multilib/n32
+arch/mips/mips64/multilib/n64
+arch/mips/mips64/multilib/o32
+arch/mips/mips64/multilib
+arch/mips/mips64/n32
+arch/mips/mips64/n64
+arch/mips/mips64
+arch/mips/mipsel/mips64el/multilib/n32
+arch/mips/mipsel/mips64el/multilib/n64
+arch/mips/mipsel/mips64el/multilib/o32
+arch/mips/mipsel/mips64el/multilib
+arch/mips/mipsel/mips64el/n32
+arch/mips/mipsel/mips64el/n64
+arch/mips/mipsel/mips64el
+arch/mips/mipsel/o32
+arch/mips/mipsel
+arch/mips/o32
+arch/mips
+arch/powerpc
+arch/powerpc/ppc32
+arch/powerpc/ppc64/32ul
+arch/powerpc/ppc64/64le
+arch/powerpc/ppc64/64ul
+arch/powerpc/ppc64
+arch/ppc64/big-endian
+arch/ppc64/little-endian
+arch/ppc
+arch/riscv
+arch/riscv/rv64gc/lp64d-multilib
+arch/s390
+arch/s390/s390
+arch/s390/s390x
+arch/sparc/32ul
+arch/sparc/64ul
+arch/sparc
+arch/x86
+
+   Base:
+eapi
+make.defaults
+package.mask
+packages
+package.use
+package.use.force
+package.use.mask
+package.use.stable.force
+package.use.stable.mask
+use.force
+use.mask
+use.stable.force
+use.stable.mask
+
+  Features:
+big-endian
+hardened
+llvm
+merged-usr
+multilib
+musl
+prefix
+selinux
+split-usr
+wd40
+features/big-endian
+features/fsf-gcc-ld64
+features/fsf-gcc-nold
+features/hardened
+features/hardened/amd64
+features/hardened/amd64/no-multilib
+features/hardened/arm
+features/hardened/arm64
+features/hardened/x86
+features/llvm
+features/merged-usr
+features/multilib
+features/musl
+features/prefix/rpath
+features/prefix/standalone
+features/prefix/standalone/kernel-2.6.16+
+features/prefix/standalone/kernel-2.6.32+
+features/selinux
+features/split-usr
+features/wd40
+
+  Releases:
+releases/17.0
+releases/23.0
+
+
+   Targets:
+targets/desktop/gnome
+targets/desktop/gnome/systemd
+targets/desktop/plasma
+targets/developer
+
+    default/linux:
+make.defaults
+package.mask
+packages
+packages.build
+package.use
+package.use.mask
+use.mask
+$ARCH*s
+
+    default/linux/$ARCH:
+
+default/linux/x86/17.0/{desktop,*,*}
+default/linux/x86/23.0/{desktop,*,*}
+
+default/linux/amd64/17.1
+default/linux/amd64/17.1/clang
+default/linux/amd64/17.1/desktop
+default/linux/amd64/17.1/desktop/gnome
+default/linux/amd64/17.1/desktop/gnome/systemd
+default/linux/amd64/17.1/desktop/gnome/systemd/merged-usr
+default/linux/amd64/17.1/desktop/plasma
+default/linux/amd64/17.1/desktop/plasma/systemd
+default/linux/amd64/17.1/desktop/plasma/systemd/merged-usr
+default/linux/amd64/17.1/desktop/systemd
+default/linux/amd64/17.1/desktop/systemd/merged-usr
+default/linux/amd64/17.1/developer
+default/linux/amd64/17.1/hardened
+default/linux/amd64/17.1/hardened/selinux
+default/linux/amd64/17.1/no-multilib
+default/linux/amd64/17.1/no-multilib/hardened
+default/linux/amd64/17.1/no-multilib/hardened/selinux
+default/linux/amd64/17.1/no-multilib/prefix
+default/linux/amd64/17.1/no-multilib/prefix/kernel-2.6.16+
+default/linux/amd64/17.1/no-multilib/prefix/kernel-2.6.32+
+default/linux/amd64/17.1/no-multilib/prefix/kernel-3.2+
+default/linux/amd64/17.1/no-multilib/systemd
+default/linux/amd64/17.1/no-multilib/systemd/merged-usr
+default/linux/amd64/17.1/no-multilib/systemd/selinux
+default/linux/amd64/17.1/no-multilib/systemd/selinux/merged-usr
+default/linux/amd64/17.1/selinux
+default/linux/amd64/17.1/systemd
+default/linux/amd64/17.1/systemd/clang
+default/linux/amd64/17.1/systemd/clang/merged-usr
+default/linux/amd64/17.1/systemd/merged-usr
+default/linux/amd64/17.1/systemd/selinux
+default/linux/amd64/17.1/systemd/selinux/merged-usr
+
+
+
+    Desc:
+abi_mips.desc
+abi_s390.desc
+abi_x86.desc
+ada_target.desc
+alsa_cards.desc
+amdgpu_targets.desc
+apache2_modules.desc
+apache2_mpms.desc
+calligra_features.desc
+cameras.desc
+collectd_plugins.desc
+cpu_flags_arm.desc
+cpu_flags_ppc.desc
+cpu_flags_x86.desc
+curl_ssl.desc
+elibc.desc
+fftools.desc
+gpsd_protocols.desc
+grub_platforms.desc
+input_devices.desc
+kernel.desc
+l10n.desc
+lcd_devices.desc
+libreoffice_extensions.desc
+llvm_targets.desc
+lua_single_target.desc
+lua_targets.desc
+monkeyd_plugins.desc
+nginx_modules_http.desc
+nginx_modules_mail.desc
+nginx_modules_stream.desc
+office_implementation.desc
+openmpi_fabrics.desc
+openmpi_ofed_features.desc
+openmpi_rm.desc
+php_targets.desc
+postgres_targets.desc
+python_single_target.desc
+python_targets.desc
+qemu_softmmu_targets.desc
+qemu_user_targets.desc
+ros_messages.desc
+ruby_targets.desc
+sane_backends.desc
+uwsgi_plugins.desc
+video_cards.desc
+voicemail_storage.desc
+xtables_addons.desc
+
+    Embedded:
+eapi
+make.defaults
+packages
+package.use
+use.force
+use.mask
+
+
+    Prefix:
+eapi
+make.defaults
+package.mask
+packages
+package.use.mask
+parent
+use.force
+use.mask
+prefix/
+prefix/darwin
+prefix/darwin/macos
+prefix/linux
+prefix/linux/$ARCH
+prefix/sunos
+prefix/sunos/solaris
+
+
+    Updates:
+1Q-2018
+1Q-2019
+1Q-2020
+1Q-2021
+1Q-2022
+1Q-2023
+2Q-2018
+2Q-2019
+2Q-2020
+2Q-2021
+2Q-2022
+2Q-2023
+3Q-2018
+3Q-2019
+3Q-2020
+3Q-2021
+3Q-2022
+4Q-2018
+4Q-2019
+4Q-2020
+4Q-2021
+4Q-2022
+
+exclude arch:
+    alpha arm arm64 hppa ia64 loong m68k mips powerpc ppc riscv s390 sparc prefix darwin sunos solaris
+
+choices:
+    clang desktop gnome systemd merged-usr plasma developer hardened selinux no-multilib
