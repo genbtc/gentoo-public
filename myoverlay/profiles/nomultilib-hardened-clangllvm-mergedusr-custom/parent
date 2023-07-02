@@ -1,0 +1,7 @@
+#gentoo:arch/amd64/no-multilib
+gentoo:linux/default/amd64/17.1/no-multilib
+#gentoo:linux/default/amd64/17.1/hardened
+gentoo:features/hardened
+#gentoo:linux/default/amd64/17.1/llvm
+gentoo:features/llvm
+gentoo:features/merged-usr
