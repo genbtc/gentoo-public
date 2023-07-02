@@ -1,0 +1,10 @@
+set indicator
+#set mouse
+set historylog
+set stateflags
+set titlecolor bold,white,blue
+set promptcolor black,yellow
+set statuscolor bold,white,magenta
+set numbercolor cyan
+set tabsize 4
+set tabstospaces

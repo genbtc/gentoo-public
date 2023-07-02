@@ -1,3 +1,4 @@
+# documentation @ https://wiki.gentoo.org/wiki/Profile_(Portage)
 #ls -lR  /var/db/repos/gentoo/profiles
 # output cleaned up manually:
 
@@ -137,10 +138,13 @@ releases/23.0
 
 
    Targets:
+targets/
+targets/desktop
 targets/desktop/gnome
 targets/desktop/gnome/systemd
 targets/desktop/plasma
 targets/developer
+targets/systemd
 
     default/linux:
 make.defaults
@@ -150,7 +154,7 @@ packages.build
 package.use
 package.use.mask
 use.mask
-$ARCH*s
+$ARCHs
 
     default/linux/$ARCH:
 
@@ -189,7 +193,6 @@ default/linux/amd64/17.1/systemd/clang/merged-usr
 default/linux/amd64/17.1/systemd/merged-usr
 default/linux/amd64/17.1/systemd/selinux
 default/linux/amd64/17.1/systemd/selinux/merged-usr
-
 
 
     Desc:

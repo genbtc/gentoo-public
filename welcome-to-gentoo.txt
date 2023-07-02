@@ -1,29 +1,134 @@
-welcome to gentoo,
-the package manager is named portage, but the command to run is emerge
+# 2023 genr8eofl - welcome to gentoo
+
+welcome to gentoo!
+
+the package manager is named portage, but the main command is emerge
 man emerge
-emerge common options:
--a
--v
--n
--t
--u
--D
--U
--N
--1
--c
---exclude
---complete-graph
---backtrack
-
-Cron should be installed and scripts made.
-Syslog should be installed
-
-Maintain package.use package.accept_keywords periodic maintenance:
+man portage
 -
+emerge common options:
+-a --ask
+-p --pretend
+-v --verbose
+-t --tree (visual)
+-1 --oneshot
+-n --noreplace (--selective=n)
+-u --update (--selective=y)
+-D --deep (deep is deeper than --complete-graph)
+-U --changed-use (rebuild)
+-N --newuse      (rebuild)
+-c --depclean (remove package if possible)
+-C --unmerge (force remove)
+--rage-clean (unmerge with CLEAN_DELAY=0)
+--exclude
+--backtrack=30 or 999 for extreme luck
+
+
+to Maintain package.use, package.accept_keywords w/ periodic maintenance:
 enalyze
-portconf
+portconf::guru
 portpeek
 echo $(emerge -epvO @world)  >> somefile/do it manually
 
+Interact, query with package databases:
+eix
+portageq
+portage-utils (q)
+equery (gentoolkit)
+gentoopm (python)
 
+emaint
+usage: usage: emaint [options] COMMAND
+The emaint program provides an interface to system health checks and maintenance.
+See the emaint(1) man page for additional information about the following commands:
+Commands:
+  all            Perform all supported commands
+  binhost        Scan and generate metadata indexes for binary packages.
+  cleanconfmem   Check and clean the config tracker list for uninstalled packages.
+  cleanresume    Discard emerge --resume merge lists
+  logs           Check and clean old logs in the PORTAGE_LOGDIR.
+  merges         Scan for failed merges and fix them.
+  movebin        Perform package move updates for binary packages
+  moveinst       Perform package move updates for installed and binary packages.
+  sync           Check repos.conf settings and sync repositories.
+  world          Check and fix problems in the world file.
+
+
+Editing Make.conf:
+
+#push for weekly updates at least
+PORTAGE_SYNC_STALE="7"
+
+#(Logger: ElogV)
+app-portage/elogv can be used to read elogs.
+put this in make.conf to enable elogging:
+-COMMON_FLAGS=
+PORTAGE_LOGDIR="/var/cache/buildlogs"
+PORTAGE_ELOG_CLASSES="${PORTAGE_ELOG_CLASSES} info"
+PORTAGE_ELOG_SYSTEM="${PORTAGE_ELOG_SYSTEM} save"
+
+app-portage/cpuid2cpuflags
+CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt rdrand sha sse sse2 sse3 sse4_1 sse4_2 sse4a ssse3"
+these change more between machines generations, you might want to settle on a simpler single common denominator
+
+optionally: app-misc/resolve-march-native
+-march=znver3 -mshstk --param=l1-cache-line-size=64 --param=l1-cache-size=32 --param=l2-cache-size=512
+put it in COMMON_FLAGS, the cache params are optional
+otherwise just feel free to use -march=native 
+
+You can tweak make's thread parameter for your CPU and RAM usage. I have more than enough myself.
+Usually its 2GB of ram per GCC thread max, so you might need swap.
+Stick to lowering the threads if you are running out of memory (OOM)
+#MAKE MULTI-THREADED N+2, cap at N+1 load average
+MAKEOPTS="-j18 -l17"
+
+#Nice
+PORTAGE_SCHEDULING_POLICY="idle"
+PORTAGE_NICENESS=19
+
+This enables pretty colors in the compile spam as much as possible
+#Super-Ultra-Mega-Force Colors on: (by sam_)
+CLICOLOR_FORCE=1
+CMAKE_COLOR_DIAGNOSTICS=ON
+CMAKE_COMPILER_COLOR_DIAGNOSTICS=ON
+
+You want to be building the packages you compile as backups so you have easy times swapping in/out packages without recompiling
+I advise everyone use this even if they think they wont need it, you can always clear them out when they fill up.
+#PKGDIR="/var/cache/binpkgs"
+#(bin packages: build & get)
+FEATURES="${FEATURES} buildpkg"
+
+Note: you can regenerate the /var/cache/binpkgs/Packages index file with the 
+'emaint binhost --fix' command
+
+#optional,advanced:
+if you want to use a remote binhost, you need this in make.conf and 
+#FEATURES="${FEATURES} getbinpkg"
+and something like this in /etc/portage/binrepos.conf
+[binhost1]
+sync-uri = rsync://10.1.1.1/binhost1
+which in my case pointed to an rsyncd server on the remote.
+
+you can also use the command line (example):
+export PORTAGE_BINHOST="rsync://10.1.1.1/binhost1 rsync://10.1.1.2:2222/binhost2"
+
+#WARNING Advanced Feature, "suidctl" whitelist at /etc/portage/suidctl.conf 
+#FEATURES="${FEATURES} suidctl"
+Prevent rogue setuid (suid) +s binaries from being installed at the highest root privelege level by portage.
+NOTE: can break some programs functionality until you manually whitelist them, remember this.
+
+#optional,advanced:
+prevent locales from clogging up disk
+INSTALL_MASK="/usr/share/locale"
+
+#common EMERGE SETTINGS ( -avtU)
+EMERGE_DEFAULT_OPTS="--ask --verbose --tree --changed-use --keep-going \
+--autounmask=y --autounmask-write=y --autounmask-use=y \
+--binpkg-respect-use=y --binpkg-changed-deps=y --with-bdeps=y"
+
+-
+Cron should be installed and scripts made.
+prefer something like cronie
+Syslog should be installed
+possibly use rsyslog and logrotate
+Auditd should be installed

@@ -1,0 +1,77 @@
+#!/bin/bash
+ARCHES=(alpha arm arm64 hppa ia64 loong m68k mips powerpc ppc riscv s390 sparc prefix darwin sunos solaris)
+FEATURE_CHOICES=(clang desktop gnome systemd merged-usr plasma developer hardened selinux no-multilib)
+PROFILES_LIST=($(eselect --brief profile list))
+
+p1="default"
+p2="linux"
+p3="amd64"
+p4="17.1"
+
+profile_path=${p1}/${p2}/${p3}/${p4}/
+
+files=("
+    eapi, 
+        which specifies the EAPI to use when handling the directory in question.,
+    packages, 
+        which specifies packages that are members of the system set.,
+    package.mask, 
+        which specifies masked packages. The administrator can unmask a package masked by the profile using /etc/portage/package.unmask.,
+    make.defaults, 
+        with make.conf-like variable assignments, including USE flag global default state (set or unset) and profile variables with special meaning (like ARCH, USE_EXPAND, CONFIG_PROTECT, IUSE_IMPLICIT, etc.). Administrator settings in /etc/portage/make.conf and /etc/portage/package.use override profile settings in make.defaults.,
+    package.use, 
+        which defines default USE flag state on a per package basis. Administrator settings in /etc/portage/make.conf and /etc/portage/package.use override profile settings in package.use.,
+    use.force and use.mask, 
+        which unconditionally set or unset USE flags, overriding administrator settings in /etc/portage/make.conf and /etc/portage/package.use. If a flag is both masked and forced, the mask takes precedence.,
+    package.use.force and package.use.mask, 
+        which unconditionally set or unset USE flags on a per package basis, overriding administrator settings in /etc/portage/make.conf and /etc/portage/package.use, and profile settings in use.force and use.mask.,
+    use.stable.force, use.stable.mask, package.use.stable.force and package.use.stable.mask,
+        which work like use.force, use.mask, package.use.force and package.use.mask, but override them for packages in the stable branch of the current architecture.,
+
+prof_types=("(stable) (exp) (dev)")
+
+make.defaults, packages, use.force
+make.defaults, packages, use.mask, package.use.mask
+parent
+make.defaults, use.mask, package.use.mask
+make.defaults, use.mask, package.use.mask
+all
+make.defaults
+parent
+make.defaults
+package.mask, package.use.force
+parent
+make.defaults, package.use, package.use.force
+parent
+make.defaults, package.use
+parent
+make.defaults, package.mask, package.use.force 
+
+
+
+all
+               package.mask, package.use.force
+make.defaults x 9
+make.defaults, package.mask, package.use.force 
+make.defaults, packages, use.mask, package.use.mask
+make.defaults, packages, use.force
+make.defaults, package.use
+make.defaults, package.use, package.use.force
+make.defaults,           use.mask, package.use.mask
+
+parent x 5 
+
+
+packages - default/linux , base
+package.use - targets/desktop, targets/desktop/gnome
+
+Things to handle in this order:
+----------------------------------
+make.conf / make.globals / make.defaults
+Packages
+package.mask
+package.use.mask
+package.use
+package.use.force
+use.mask
+use.force
