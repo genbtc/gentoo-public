@@ -2,7 +2,9 @@
 #
 # Shamelessly "borrowed" from Arch to make Gentoo development in chroots easier;
 # Thanks for doing all of the hard work! -@Kangie, 2022
-# subsequently modified by @genr8eofl, 2023
+# subsequently modified by -@genr8eofl, 2023
+#  (ran shellcheck) (sorted code for readability) (comments)
+#  (unshare removed) (auto bind mount itself - old warning)
 #
 #
 # Options:
@@ -37,16 +39,15 @@ Note, the target chroot directory *SHOULD* be a mountpoint.
  the mounted filesystems within the chroot.
 -Tip, you can bind mount the directory on itself to make it a mountpoint:
  'mount --bind /your/chroot /your/chroot'   (as a workaround)
+-Note, code changed, now this happens automatically, these warnings can deprecate
+
 EOF
   exit 2
 }
 
 shopt -s extglob
 
-#include utility functions, option handling, etc.
-#source chroot-include.bash
-
-out() { printf '%s %s %s\n' "$1" "$2" "${@:3}"; }
+out() { printf "$1 $2\n" "${@:3}"; }
 error() { out "==> \033[1;31mERROR\033[0m:" "$@"; } >&2
 warning() { out "==> \033[1;33mWARNING\033[0m:" "$@"; } >&2
 msg() { out "==>" "$@"; }
@@ -147,7 +148,7 @@ chroot_add_file() {
     # $DST_FILE may not exist because:
     #
     # 1. The file truly does not exist, so the variable becomes equal to $CHROOT_DIR/$1.
-    # 2. $1/$2 is (or resolves to) a broken link. 
+    # 2. $1/$2 is (or resolves to) a broken link.
     # The environment clearly intends for there to be a file here, but something's wrong.
     #  Maybe it normally creates the target at boot time?
     # In either case we'll (try to) take care of it by creating a dummy file at the target,
@@ -172,65 +173,74 @@ file_makeconf="/etc/portage/make.conf"
 file_reposconf="/etc/portage/repos.conf"
 file_resolvconf="/etc/resolv.conf"
 gentoo_bashrc="/tmp/gentoo-bashrc"
+root_bashaliases="/root/.bash_aliases"
 
-# the core program
+# main - the core program
 gentoo-chroot() {
   local CHROOT_FILES=( )
   # required preliminary checks
   (( EUID == 0 )) || die "This script must be run with root privileges"
   [[ -d $CHROOT_DIR ]] || die "Can't create chroot on non-directory %s" "$CHROOT_DIR"
-  
-  # actually setup chroot (basic mounts)
+
+  # bind mount to itself now. must come before chroot_setup and subsequent check
+  warning "$CHROOT_DIR is not a mountpoint. This can cause undesirable side effects."
+  warning "Doing it for you now! Bind Mounting:  ${CHROOT_DIR} to itself"
+  realchrootdir=$(realpath ${CHROOT_DIR})
+  mount --bind ${realchrootdir} ${realchrootdir}   #TODO: what about errors?
+
+  # actually do setup chroot (all basic mounts)
   chroot_setup "$CHROOT_DIR" || die "failed to setup chroot %s" "$CHROOT_DIR"
-  
-  # warn if somehow its still not mounted, NonFatal
+
+  # warn if somehow its still not mounted, NonFatal?
   if ! mountpoint -q "$CHROOT_DIR"; then
     warning "$CHROOT_DIR is not a mountpoint. This may have undesirable side effects."
-	#TODO: can bind-mount itself to itself in the script but leave it to the user for now
+	#DONE#TODO: can bind-mount itself to itself in the script but leave it to the user for now#DONE
     warning "-Tip, you can bind mount the directory on itself to make it a mountpoint:"
     warning " 'mount --bind /your/chroot /your/chroot'   (as a workaround)"
   fi
-  
+
   # copy host's /etc/resolv.conf for network DNS server settings
   CHROOT_FILES+=( "${file_resolvconf}" )
-  
-  # Create our bashrc which does useful gentoo functions like env-update and setting $PS1 (chroot)
+
+  # new bashrc - Create our bashrc which does useful gentoo functions like env-update and setting $PS1 (chroot)
   if [[ -z ${NO_MOUNT_BASHRC+x} ]]; then
 	if [ ! -r ${gentoo_bashrc} ]; then
 		cat > ${gentoo_bashrc} <<EOF
 #!/usr/bin/env bash
 source /etc/profile && env-update
 export PS1="(chroot) \$PS1"
+source $root_bashaliases #genr8 personal alias file
 EOF
 	fi				#^ backslash to escape the $ so it doesnt expand the variable
     CHROOT_FILES+=( "${gentoo_bashrc}:/root/.bashrc" ) # map .bashrc to /root, inside the chroot
+    CHROOT_FILES+=( "${root_bashaliases}:/root/.bash_aliases" ) # genr8 keeps his aliases in here :)
   fi
-  
-  # re-use the host system's Make.conf
+
+  # Make.conf, re-use the host system's /etc/portage/make.conf (optional)
   if [[ -n ${MOUNT_MAKECONF+x} ]]; then
     CHROOT_FILES+=( "${file_makeconf}" )
   fi
 
-  # Allow the use of $ADDITIONAL_CHROOT_FILES to mount arbirary files from a running env
+  # the user can provide this env var to list arbitrary files to mount (optional)
   if (( ${#ADDITIONAL_CHROOT_FILES[@]} )); then
     CHROOT_FILES+=( "${ADDITIONAL_CHROOT_FILES}" )
   fi
- 
   for FILE in "${CHROOT_FILES[@]}"; do
       chroot_add_file "${FILE}" || die "failed to setup ${FILE}"
   done
 
-  # Distfiles, Try and avoid redundant downloads
+  # Kernel Source dir, /usr/src/linux, Kernels can be shared (caveat: may need make clean)
+  if [[ -z ${NO_MOUNT_KERNEL_SOURCE+x} ]]; then
+    chroot_bind_device $dir_usrclinux "${CHROOT_DIR}${dir_usrclinux}"
+  fi
+
+#GENTOO SPECIFIC:
+  # Distfiles, /var/cache/distfiles, Try and avoid redundant downloads
   if [[ -z ${NO_MOUNT_DISTFILES+x} ]]; then
     chroot_bind_device $dir_distfiles "${CHROOT_DIR}${dir_distfiles}"
   fi
 
-  # Kernel Source dir
-  if [[ -z ${NO_MOUNT_KERNEL_SOURCE+x} ]]; then
-    chroot_bind_device $dir_usrclinux "${CHROOT_DIR}${dir_usrclinux}"
-  fi
-  
-  # Repository DB and repos.conf, optional
+  # Portage Repository DB, /var/db/repos/gentoo , and /etc/portage/repos.conf
   if [[ -n ${MOUNT_HOSTREPOS+x} ]]; then
     chroot_bind_device $file_reposconf "${CHROOT_DIR}${file_reposconf}"
     chroot_bind_device $dir_vardbrepos "${CHROOT_DIR}${dir_vardbrepos}"
@@ -242,13 +252,14 @@ EOF
     fi
     chroot_bind_device $dir_vardbgentoo "${CHROOT_DIR}${dir_vardbgentoo}"
   fi
-  
-  # Binpkgs, optional
+
+  # Binpkgs, /var/cache/binpkgs, (optional)
   if [[ -d "${dir_binpkgs}" ]] && [[ -n ${MOUNT_BINPKGS+x} ]]; then
     chroot_bind_device $dir_binpkgs "${CHROOT_DIR}${dir_binpkgs}"
   fi
 
-  # Run it
+#MAIN:
+  # Run it!
   CHROOT_ARGS=()
   [[ $USERSPEC ]] && CHROOT_ARGS+=(--userspec "$USERSPEC")
   # If arguments = 0, run a shell
@@ -262,7 +273,7 @@ EOF
 }
 
 #argument parsing
-PARSED_ARGS=$(getopt -a -n "${0##*/}" -o bfdhkmnNru: --long bind-binpkgs,no-bind-distfiles,debug,help,no-bind-kernel,bind-makeconf,no-bind-bashrc,unshare,bind-hostrepos,user: -- "$@")
+PARSED_ARGS=$(getopt -a -n "${0##*/}" -o bfdhkmnNru: --long bind-binpkgs,no-bind-distfiles,debug,help,no-bind-kernel,bind-makeconf,no-bind-bashrc,bind-hostrepos,user: -- "$@")
 eval set -- "$PARSED_ARGS"
 while :
 do
@@ -281,7 +292,7 @@ do
 done
 
 if [ $# -eq 0 ]; then
-  usage || die "missing parameters - specify a chroot directory"
+  usage || die "missing parameters - please specify a chroot directory!"
 fi
 
 CHROOT_DIR=$1
