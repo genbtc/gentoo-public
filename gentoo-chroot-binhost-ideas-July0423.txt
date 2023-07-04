@@ -1,0 +1,44 @@
+gentoo
+-----
+chroot's
+container's
+bwrap's
+unshare's
+VM's
+
+binhosts
++
+portage - client/server
+=
+DISTCCBINHOST
+
+normal way:
+FEATURES="buildpkg"
+files ending in .xpak's(.tbz2 + metadata) are created unless GPKG signing is turned on then its .gpkg
+default is $PKGDIR:=/var/cache/binpkgs
+local index: /var/cache/binpkgs/Packages
+
+cd /var/cache/binpkgs
+ls Packages
+emaint binhost --check
+
+python -m http.server 8008
+
+is enough to serve a binhost
+
+export PORTAGE_BINHOST="http://127.0.0.1:8008"
+and
+emerge -g @world option will pull the binhost and update it.
+the process downloads the Packages file from the remote host and stores it locally @  
+remote index: /var/cache/edb/binhost/${REMOTEHOSTNAME}/Packages
+
+sometimes you need to clear your local cache if you do too many updates, the other end doesnt notice.
+rm -rf /var/cache/edb/binhost/*/
+
+sometimes the binhost gets cranky about USE flags or deps not matching, theres two flags for emerge:
+--binpkg-respect-use=y
+--binpkg-changed-deps=y
+this will force it to happen
+
+the emerge -G option will try to force it to use binpkgs only (local + remote)
+
