@@ -1,0 +1,291 @@
+dev-php/fpdf
+  UnnecessaryManifest: unnecessary file in Manifest: [ fpdf-1.81.ebuild ]
+
+app-admin/sxid
+  MissingRemoteId: missing <remote-id type="github">taem/sxid</remote-id> (inferred from URI 'https://github.com/taem/sxid')
+  UnnecessaryManifest: unnecessary file in Manifest: [ sxid-4.2-r2.ebuild ]
+  UnknownUseFlags: version 4.2-r2: unknown USE flag: 'mail'
+
+app-crypt/gorilla
+  ExecutableFile: unnecessary executable bit: 'files/usr-bin-gorilla.sh'
+  MissingRemoteId: missing <remote-id type="github">zdia/gorilla</remote-id> (inferred from URI 'https://github.com/zdia/gorilla/wiki')
+  UnnecessaryManifest: unnecessary files in Manifest: [ gorilla-1.5.3.7.ebuild, usr-bin-gorilla.sh ]
+  BadDescription: version 1.5.3.7: over 80 chars in length
+  DoubleEmptyLine: version 1.5.3.7: ebuild has unneeded empty line on on line: 99
+  ExcessiveLineLength: version 1.5.3.7: excessive line length (over 120 characters) on line: 82
+  NonsolvableDepsInDev: version 1.5.3.7: nonsolvable depset(depend) keyword(~arm64) dev profile (default/linux/arm64/17.0/hardened/selinux) (4 total): solutions: [ dev-tcltk/iwidgets ]
+  NonsolvableDepsInDev: version 1.5.3.7: nonsolvable depset(rdepend) keyword(~arm64) dev profile (default/linux/arm64/17.0/hardened/selinux) (4 total): solutions: [ dev-tcltk/iwidgets ]
+  NonsolvableDepsInStable: version 1.5.3.7: nonsolvable depset(depend) keyword(~arm64) stable profile (default/linux/arm64/17.0) (24 total): solutions: [ dev-tcltk/iwidgets ]
+  NonsolvableDepsInStable: version 1.5.3.7: nonsolvable depset(rdepend) keyword(~arm64) stable profile (default/linux/arm64/17.0) (24 total): solutions: [ dev-tcltk/iwidgets ]
+  TrailingEmptyLine: version 1.5.3.7: ebuild has trailing blank line(s)
+  UnsortedKeywords: version 1.5.3.7: unsorted KEYWORDS: ~amd64, ~x86, ~arm64, ~ppc
+  WhitespaceFound: version 1.5.3.7: ebuild has leading whitespace on on lines: 25, 26, 27, 28, 29, 30, 32, 33, 34, 45, 47, 51, 52, 70, 71, 81, 82, 86, 87, 88, 92, 96
+
+dev-lang/bacon
+  UnnecessaryManifest: unnecessary file in Manifest: [ bacon-4.6.ebuild ]
+  StaticSrcUri: version 4.6: 'bacon-4.6' in SRC_URI, replace with ${P}
+  UnknownUseFlags: version 4.6: unknown USE flags: 'bash', 'ksh', 'zsh'
+  UnusedInherits: version 4.6: unused eclass: autotools
+  WhitespaceFound: version 4.6: ebuild has leading whitespace on on lines: 23, 24, 25, 28, 29, 30, 31, 32, 33, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 61, 66, 67, 68, 69, 70
+
+app-portage/find_cruft
+  MissingRemoteId: missing <remote-id type="github">vaeth/find_cruft</remote-id> (inferred from URI 'https://github.com/vaeth/find_cruft/')
+  UnnecessaryManifest: unnecessary file in Manifest: [ find_cruft-5.2.ebuild ]
+  UnknownKeywords: version 5.2: unknown KEYWORDS: '~m68k-mint', '~ppc-aix', '~sh', '~sparc-solaris', '~sparc64-solaris', '~x64-cygwin', '~x86-macos', '~x86-solaris'
+
+app-arch/pacman
+  UnnecessaryManifest: unnecessary file in Manifest: [ pacman-6.0.1.ebuild ]
+  NonsolvableDepsInDev: version 6.0.1: nonsolvable depset(depend) keyword(amd64) dev profile (default/linux/amd64/17.0/musl) (4 total): solutions: [ sys-libs/glibc ]
+  UnknownUseFlags: version 6.0.1: unknown USE flags: 'gpg', 'i18n'
+  WhitespaceFound: version 6.0.1: ebuild has leading whitespace on on line: 7
+
+media-sound/spotify-tui
+  MissingRemoteId: missing <remote-id type="github">Rigellute/spotify-tui</remote-id> (inferred from URI 'https://github.com/Rigellute/spotify-tui')
+  UnnecessaryManifest: unnecessary file in Manifest: [ spotify-tui-0.24.0.ebuild ]
+
+app-admin/gnome-system-log
+  UnnecessaryManifest: unnecessary file in Manifest: [ gnome-system-log-3.9.90-r1.ebuild ]
+  PotentialStable: version 3.9.90-r1: slot(0), stabled arches: [ amd64, x86 ], potentials: [ ~arm, ~ia64, ~ppc, ~ppc64, ~sparc ]
+
+media-sound/reaper
+  UnnecessaryManifest: unnecessary file in Manifest: [ reaper-6.73.ebuild ]
+  BadDescription: version 6.73: over 80 chars in length
+  ExcessiveLineLength: version 6.73: excessive line length (over 120 characters) on line: 73
+  RequiredUseDefaults: version 6.73: profile: 'default/linux/amd64/17.0/musl' (72 total) failed REQUIRED_USE: ( alsa || pulseaudio || pipewire || jack )
+  UnknownLicense: version 6.73: unknown license: EULA
+  UnknownUseFlags: version 6.73: unknown USE flags: 'gtk3', 'pipewire'
+  UnquotedVariable: version 6.73: unquoted variable ED on lines: 54, 72
+  UnquotedVariable: version 6.73: unquoted variable S on lines: 39, 40, 54, 62, 63, 64
+  UnsortedKeywords: version 6.73: unsorted KEYWORDS: ~amd64, ~arm64, ~arm
+  UnstatedIuse: version 6.73: attr(fetchables): profile 'nomultilib-hardened-clangllvm-mergedusr-custom' (1 total): unstated flags: [ amd64, arm, arm64 ]
+  WhitespaceFound: version 6.73: ebuild has leading whitespace on on lines: 16, 17, 18, 23, 24, 25, 39, 41, 42, 55, 65, 80, 81, 82, 86, 90
+
+acct-group/infinote
+  PotentialStable: version 0: slot(0), stabled arches: [ amd64, arm, arm64, hppa, ppc, ppc64, sparc, x86 ], potentials: [ ~ia64, ~loong, ~riscv, ~s390 ]
+
+acct-user/infinote
+  PotentialStable: version 0: slot(0), stabled arches: [ amd64, arm, arm64, hppa, ppc, ppc64, sparc, x86 ], potentials: [ ~ia64, ~loong, ~riscv, ~s390 ]
+
+app-editors/gobby
+  UnnecessaryManifest: unnecessary files in Manifest: [ gobby-0.5.0.ebuild, gobby-0.6.0.ebuild ]
+  DeprecatedDep: version 0.5.0: DEPEND: deprecated dependencies: >=app-text/gnome-doc-utils-0.9.0 app-text/scrollkeeper-dtd
+  DeprecatedEclass: version 0.5.0: uses deprecated eclass: eutils (migrate to native package manager functions, more specific eclasses)
+  MissingInherits: version 0.5.0: desktop: missing inherit usage: 'domenu gobby-0.5.desktop', line 44
+  UnknownUseFlags: version 0.5.0: unknown USE flags: 'avahi', 'gtk3'
+  UnusedInherits: version 0.5.0: unused eclasses: eutils, gnome2-utils, toolchain-funcs
+  DeprecatedDep: version 0.6.0: DEPEND: deprecated dependencies: >=app-text/gnome-doc-utils-0.9.0 app-text/scrollkeeper-dtd
+  UnknownUseFlags: version 0.6.0: unknown USE flags: 'avahi', 'gtk3'
+  WhitespaceFound: version 0.6.0: ebuild has leading whitespace on on lines: 17, 18, 19, 20, 21, 22, 23, 26, 27, 28, 29, 30, 31, 32, 35, 36, 40, 41, 42, 46
+
+app-crypt/yubikey-manager-qt
+  MissingRemoteId: missing <remote-id type="github">Yubico/yubikey-manager-qt</remote-id> (inferred from URI 'https://github.com/Yubico/yubikey-manager-qt')
+  UnnecessaryManifest: unnecessary file in Manifest: [ yubikey-manager-qt-1.2.5.ebuild ]
+  RequiredUseDefaults: version 1.2.5: profile: 'nomultilib-hardened-clangllvm-mergedusr-custom' (2 total) failed REQUIRED_USE: exactly-one-of ( python_single_target_python3_10 python_single_target_python3_11 )
+
+app-benchmarks/phoronix-test-suite
+  MissingRemoteId: missing <remote-id type="github">phoronix-test-suite/phoronix-test-suite</remote-id> (inferred from URI 'https://github.com/phoronix-test-suite/phoronix-test-suite/archive/v10.8.3.tar.gz')
+  UnnecessaryManifest: unnecessary file in Manifest: [ phoronix-test-suite-10.8.3.ebuild ]
+  ExcessiveLineLength: version 10.8.3: excessive line length (over 120 characters) on line: 99
+  MissingUseDepDefault: version 10.8.3: RDEPEND=">=dev-lang/php-7.4[cli,curl,gd,json,pcntl,posix,sockets,ssl,truetype,xml,zip,zlib]": USE flag 'json' missing from packages: [ dev-lang/php-8.0.25, dev-lang/php-8.0.28, dev-lang/php-8.0.29, dev-lang/php-8.1.12, dev-lang/php-8.1.16, dev-lang/php-8.1.20-r1, dev-lang/php-8.2.7-r1 ]
+  MultipleKeywordsLines: version 10.8.3: KEYWORDS specified on lines: 21, 27
+  UnnecessarySlashStrip: version 10.8.3: ${ED%/} unnecessary slash strip on line: 68
+  UnnecessarySlashStrip: version 10.8.3: ${EPREFIX%/} unnecessary slash strip on line: 131
+  UnnecessarySlashStrip: version 10.8.3: ${EROOT%/} unnecessary slash strip on lines: 64, 66
+
+sys-fs/tmsu
+  MissingRemoteId: missing <remote-id type="github">oniony/TMSU</remote-id> (inferred from URI 'https://github.com/oniony/TMSU')
+  UnnecessaryManifest: unnecessary file in Manifest: [ tmsu-0.7.5_p20221130.ebuild ]
+
+sys-power/nbfc-linux
+  MissingRemoteId: missing <remote-id type="github">nbfc-linux/nbfc-linux</remote-id> (inferred from URI 'https://github.com/nbfc-linux/nbfc-linux')
+  WhitespaceFound: version 0.1.7: ebuild has leading whitespace on on lines: 19, 20, 24, 25, 26, 27, 32, 33, 34, 35, 39, 40
+
+app-cdr/cdrdao
+  MissingRemoteId: missing <remote-id type="sourceforge">cdrdao</remote-id> (inferred from URI 'https://downloads.sourceforge.net/cdrdao/cdrdao-1.2.4.tar.bz2')
+  UnnecessaryManifest: unnecessary files in Manifest: [ cdrdao-1.2.4-ax_pthread.patch, cdrdao-1.2.4-r1.ebuild, cdrdao-1.2.4-wformat-security.patch ]
+  PotentialStable: version 1.2.4-r1: slot(0), stabled arches: [ amd64, arm64, ppc, ppc64, sparc, x86 ], potentials: [ ~arm, ~ia64, ~riscv ]
+
+net-vpn/mullvad-vpn
+  MissingRemoteId: missing <remote-id type="github">mullvad/mullvadvpn-app</remote-id> (inferred from URI 'https://github.com/mullvad/mullvadvpn-app')
+  UnnecessaryManifest: unnecessary files in Manifest: [ mullvad-vpn-2020.5.ebuild, mullvad-vpn-2021.6.ebuild, mullvad-vpn-2022.1.ebuild ]
+  RedundantVersion: version 2020.5: slot(0) keywords are overshadowed by versions: 2021.6, 2022.1
+  UnknownUseFlags: version 2020.5: unknown USE flag: 'uspace_wireguard'
+  RedundantVersion: version 2021.6: slot(0) keywords are overshadowed by version: 2022.1
+  UnknownUseFlags: version 2021.6: unknown USE flag: 'uspace_wireguard'
+  MissingUri: version 2022.1: unfetchable file: 'udp-over-tcp-0.1.0.crate'
+  UnknownUseFlags: version 2022.1: unknown USE flag: 'uspace_wireguard'
+
+net-libs/libinfinity
+  MissingRemoteId: missing <remote-id type="github">gobby/libinfinity</remote-id> (inferred from URI 'https://github.com/gobby/libinfinity/archive/0.7.1.tar.gz')
+  UnnecessaryManifest: unnecessary files in Manifest: [ infinoted.confd, infinoted.initd, libinfinity-0.6.8.ebuild, libinfinity-0.7.1.ebuild ]
+  AbsoluteSymlink: version 0.6.8: dosym called with absolute path on line 64: dosym "/usr/bin/infinoted-${MY_PV}"
+  DeprecatedDep: version 0.6.8: DEPEND: deprecated dependency: virtual/gsasl
+  DeprecatedDep: version 0.6.8: RDEPEND: deprecated dependency: virtual/gsasl
+  RedundantVersion: version 0.6.8: slot(0) keywords are overshadowed by version: 0.7.1
+  UnknownUseFlags: version 0.6.8: unknown USE flags: 'avahi', 'gtk3', 'server'
+  WhitespaceFound: version 0.6.8: ebuild has leading whitespace on on lines: 13, 20, 21, 22, 23, 24, 25, 26, 29, 30, 31, 32, 33, 38, 39, 43, 44, 45, 46, 47, 48, 49, 50, 51, 55, 56, 57, 58, 60, 61, 62, 64, 66, 67, 68, 69, 70, 71, 72, 73
+  AbsoluteSymlink: version 0.7.1: dosym called with absolute path on line 65: dosym "/usr/bin/infinoted-${MY_PV}"
+  DeprecatedDep: version 0.7.1: DEPEND: deprecated dependency: virtual/gsasl
+  DeprecatedDep: version 0.7.1: RDEPEND: deprecated dependency: virtual/gsasl
+  UnknownUseFlags: version 0.7.1: unknown USE flags: 'avahi', 'gtk3', 'server'
+  WhitespaceFound: version 0.7.1: ebuild has leading whitespace on on lines: 13, 20, 21, 22, 23, 24, 25, 26, 29, 30, 31, 32, 33, 38, 39, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 56, 57, 58, 59, 61, 62, 63, 65, 67, 68, 69, 70, 71
+
+gnome-extra/gnome-system-monitor
+  UnnecessaryManifest: unnecessary file in Manifest: [ gnome-system-monitor-40.1.ebuild ]
+  PotentialStable: version 40.1: slot(0), stabled arches: [ amd64, x86 ], potentials: [ ~arm, ~arm64, ~ia64, ~ppc, ~ppc64, ~sparc ]
+  WhitespaceFound: version 40.1: ebuild has leading whitespace on on line: 37
+
+x11-misc/psensor
+  UnnecessaryManifest: unnecessary files in Manifest: [ psensor-1.2.1.ebuild, pudisks.c-ftbfs.patch ]
+  NonexistentDeps: version 1.2.1: DEPEND: nonexistent packages: dev-libs/libunity, gnome-base/gconf
+  NonexistentDeps: version 1.2.1: RDEPEND: nonexistent packages: dev-libs/libunity, gnome-base/gconf
+  NonsolvableDepsInDev: version 1.2.1: nonsolvable depset(depend) keyword(~amd64) dev profile (default/linux/amd64/17.0/musl) (12 total): solutions: [ dev-libs/libunity ]
+  NonsolvableDepsInDev: version 1.2.1: nonsolvable depset(rdepend) keyword(~amd64) dev profile (default/linux/amd64/17.0/musl) (12 total): solutions: [ dev-libs/libunity ]
+  NonsolvableDepsInStable: version 1.2.1: nonsolvable depset(depend) keyword(~amd64) stable profile (default/linux/amd64/17.1) (62 total): solutions: [ dev-libs/libunity ]
+  NonsolvableDepsInStable: version 1.2.1: nonsolvable depset(rdepend) keyword(~amd64) stable profile (default/linux/amd64/17.1) (62 total): solutions: [ dev-libs/libunity ]
+  TrailingEmptyLine: version 1.2.1: ebuild has trailing blank line(s)
+  UnknownUseFlags: version 1.2.1: unknown USE flags: 'docs', 'gsettings', 'gtop', 'json', 'smart'
+  WhitespaceFound: version 1.2.1: ebuild has leading whitespace on on lines: 11, 12, 14, 15, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 48, 49, 50, 51, 52, 55, 58, 59, 60, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 75, 79, 83, 84, 88, 89
+
+sys-libs/pdcurses
+  BannedCharacter: filename 'pdcurses-3.9.ebuild~' character outside allowed set: '~'
+  MissingRemoteId: missing <remote-id type="github">wmcbrine/PDCurses</remote-id> (inferred from URI 'https://github.com/wmcbrine/PDCurses')
+  MissingRemoteId: missing <remote-id type="sourceforge">pdcurses</remote-id> (inferred from URI 'https://downloads.sourceforge.net/pdcurses/pdcurses/3.9/PDCurses-3.9.tar.gz')
+  UnnecessaryManifest: unnecessary files in Manifest: [ 3.4-flags.patch, 3.4-resize-fix.patch, pdcurses-3.4-r5.ebuild, pdcurses-3.9.ebuild, pdcurses-3.9.ebuild~ ]
+  BadDescription: version 3.4-r5: empty/unset
+  DeprecatedEclass: version 3.4-r5: uses deprecated eclass: eutils (migrate to native package manager functions, more specific eclasses)
+  PotentialStable: version 3.4-r5: slot(0), stabled arch: [ amd64 ], potential: [ ~x86 ]
+  UnusedInherits: version 3.4-r5: unused eclass: eutils
+  BadDefaultUseFlags: version 3.9: bad default USE flag: '-sdl'
+  UnknownUseFlags: version 3.9: unknown USE flags: 'demos', 'force-utf8', 'sdl2'
+  UnquotedVariable: version 3.9: unquoted variable S on lines: 52, 59, 74, 75, 76, 85
+  VariableScope: version 3.9: variable 'ED' used in 'src_configure' on line: 63
+  WhitespaceFound: version 3.9: ebuild has leading whitespace on on line: 89
+
+dev-python/winacl
+  MissingRemoteId: missing <remote-id type="github">skelsec/winacl</remote-id> (inferred from URI 'https://github.com/skelsec/winacl')
+  UnnecessaryManifest: unnecessary files in Manifest: [ winacl-0.1.3.ebuild, winacl-0.1.6-r1.ebuild, winacl-0.1.6.ebuild ]
+  DistutilsNonPEP517Build: version 0.1.3: uses deprecated non-PEP517 build mode, please switch to DISTUTILS_USE_PEP517=...
+  MissingTestRestrict: version 0.1.3: missing RESTRICT="!test? ( test )" with IUSE=test
+  MissingUri: version 0.1.3: unfetchable file: 'winacl-0.1.3.tar.gz'
+  PythonCompatUpdate: version 0.1.3: PYTHON_COMPAT updates available: python3_11, python3_12
+  RedundantVersion: version 0.1.3: slot(0) keywords are overshadowed by versions: 0.1.6, 0.1.6-r1
+  RequiredUseDefaults: version 0.1.3: profile: 'default/linux/amd64/17.0/musl' (408 total) failed REQUIRED_USE: python_targets_python3_10
+  TrailingEmptyLine: version 0.1.3: ebuild has trailing blank line(s)
+  UnknownMirror: version 0.1.3: unknown mirror 'pypi' from URI 'mirror://pypi/w/winacl/winacl-0.1.3.tar.gz'
+  DistutilsNonPEP517Build: version 0.1.6: uses deprecated non-PEP517 build mode, please switch to DISTUTILS_USE_PEP517=...
+  MissingTestRestrict: version 0.1.6: missing RESTRICT="!test? ( test )" with IUSE=test
+  MissingUri: version 0.1.6: unfetchable file: 'winacl-0.1.6.tar.gz'
+  PythonCompatUpdate: version 0.1.6: PYTHON_COMPAT updates available: python3_11, python3_12
+  RedundantVersion: version 0.1.6: slot(0) keywords are overshadowed by version: 0.1.6-r1
+  RequiredUseDefaults: version 0.1.6: profile: 'default/linux/amd64/17.0/musl' (408 total) failed REQUIRED_USE: python_targets_python3_10
+  TrailingEmptyLine: version 0.1.6: ebuild has trailing blank line(s)
+  UnknownMirror: version 0.1.6: unknown mirror 'pypi' from URI 'mirror://pypi/w/winacl/winacl-0.1.6.tar.gz'
+  MissingTestRestrict: version 0.1.6-r1: missing RESTRICT="!test? ( test )" with IUSE=test
+  MissingUri: version 0.1.6-r1: unfetchable file: 'winacl-0.1.6.tar.gz'
+  PythonCompatUpdate: version 0.1.6-r1: PYTHON_COMPAT updates available: python3_11, python3_12
+  RequiredUseDefaults: version 0.1.6-r1: profile: 'default/linux/amd64/17.0/musl' (408 total) failed REQUIRED_USE: python_targets_python3_10
+  TrailingEmptyLine: version 0.1.6-r1: ebuild has trailing blank line(s)
+  UnknownMirror: version 0.1.6-r1: unknown mirror 'pypi' from URI 'mirror://pypi/w/winacl/winacl-0.1.6.tar.gz'
+
+sys-apps/sydbox
+  MissingRemoteId: missing <remote-id type="github">sydbox/sydbox-1</remote-id> (inferred from URI 'https://github.com/sydbox/sydbox-1/archive/refs/tags/v2.2.0.tar.gz')
+  UnnecessaryManifest: unnecessary files in Manifest: [ sydbox-2.2.0.ebuild, sydbox-9999.ebuild ]
+  BadDescription: version 2.2.0: over 80 chars in length
+  NonexistentDeps: version 2.2.0: BDEPEND: nonexistent packages: sys-devel/bzip2, sys-devel/diffutils, sys-devel/strace
+  NonexistentDeps: version 2.2.0: DEPEND: nonexistent package: sys-devel/strace
+  NonexistentDeps: version 2.2.0: RDEPEND: nonexistent package: sys-devel/strace
+  NonsolvableDepsInDev: version 2.2.0: nonsolvable depset(bdepend) keyword(~amd64) dev profile (default/linux/amd64/17.0/musl) (64 total): solutions: [ sys-devel/bzip2, sys-devel/diffutils, sys-devel/strace ]
+  NonsolvableDepsInDev: version 2.2.0: nonsolvable depset(bdepend) keyword(~arm) dev profile (default/linux/arm/17.0/armv4) (34 total): solutions: [ sys-devel/bzip2, sys-devel/diffutils, sys-devel/strace, virtual/rust ]
+  NonsolvableDepsInDev: version 2.2.0: nonsolvable depset(bdepend) keyword(~arm64) dev profile (default/linux/arm64/17.0/hardened/selinux) (44 total): solutions: [ dev-util/cgdb, sys-devel/bzip2, sys-devel/diffutils, sys-devel/strace ]
+  NonsolvableDepsInDev: version 2.2.0: nonsolvable depset(depend) keyword(~amd64) dev profile (default/linux/amd64/17.0/musl) (142 total): solutions: [ sys-devel/strace ]
+  NonsolvableDepsInDev: version 2.2.0: nonsolvable depset(rdepend) keyword(~amd64) dev profile (default/linux/amd64/17.0/musl) (142 total): solutions: [ sys-devel/strace ]
+  NonsolvableDepsInStable: version 2.2.0: nonsolvable depset(bdepend) keyword(~amd64) stable profile (default/linux/amd64/17.1) (120 total): solutions: [ sys-devel/bzip2, sys-devel/diffutils, sys-devel/strace ]
+  NonsolvableDepsInStable: version 2.2.0: nonsolvable depset(bdepend) keyword(~arm64) stable profile (default/linux/arm64/17.0) (38 total): solutions: [ dev-util/cgdb, sys-devel/bzip2, sys-devel/diffutils, sys-devel/strace ]
+  NonsolvableDepsInStable: version 2.2.0: nonsolvable depset(bdepend) keyword(~hppa) stable profile (default/linux/hppa/17.0) (10 total): solutions: [ dev-util/cgdb, sys-devel/bzip2, sys-devel/diffutils, sys-devel/strace, virtual/rust ]
+  NonsolvableDepsInStable: version 2.2.0: nonsolvable depset(bdepend) keyword(~ia64) stable profile (default/linux/ia64/17.0) (18 total): solutions: [ dev-util/cgdb, sys-devel/bzip2, sys-devel/diffutils, sys-devel/strace, sys-libs/libseccomp, virtual/rust ]
+  NonsolvableDepsInStable: version 2.2.0: nonsolvable depset(bdepend) keyword(~sparc) stable profile (default/linux/sparc/17.0/64ul) (8 total): solutions: [ dev-util/cgdb, sys-devel/bzip2, sys-devel/diffutils, sys-devel/strace, sys-libs/libseccomp ]
+  NonsolvableDepsInStable: version 2.2.0: nonsolvable depset(depend) keyword(~amd64) stable profile (default/linux/amd64/17.1) (162 total): solutions: [ sys-devel/strace ]
+  NonsolvableDepsInStable: version 2.2.0: nonsolvable depset(depend) keyword(~ia64) stable profile (default/linux/ia64/17.0) (10 total): solutions: [ sys-devel/strace, sys-libs/libseccomp ]
+  NonsolvableDepsInStable: version 2.2.0: nonsolvable depset(depend) keyword(~s390) stable profile (default/linux/s390/17.0) (6 total): solutions: [ sys-devel/strace, sys-libs/libunwind ]
+  NonsolvableDepsInStable: version 2.2.0: nonsolvable depset(depend) keyword(~sparc) stable profile (default/linux/sparc/17.0) (16 total): solutions: [ sys-devel/strace, sys-libs/libseccomp, sys-libs/libunwind ]
+  NonsolvableDepsInStable: version 2.2.0: nonsolvable depset(rdepend) keyword(~amd64) stable profile (default/linux/amd64/17.1) (162 total): solutions: [ sys-devel/strace ]
+  NonsolvableDepsInStable: version 2.2.0: nonsolvable depset(rdepend) keyword(~ia64) stable profile (default/linux/ia64/17.0) (10 total): solutions: [ sys-devel/strace, sys-libs/libseccomp ]
+  NonsolvableDepsInStable: version 2.2.0: nonsolvable depset(rdepend) keyword(~s390) stable profile (default/linux/s390/17.0) (6 total): solutions: [ sys-devel/strace, sys-libs/libunwind ]
+  NonsolvableDepsInStable: version 2.2.0: nonsolvable depset(rdepend) keyword(~sparc) stable profile (default/linux/sparc/17.0) (16 total): solutions: [ sys-devel/strace, sys-libs/libseccomp, sys-libs/libunwind ]
+  UnknownUseFlags: version 2.2.0: unknown USE flags: 'bpf', 'cgdb', 'notify', 'pandora', 'rust', 'tmux', 'vim'
+  UnusedInherits: version 2.2.0: unused eclass: autotools
+  WhitespaceFound: version 2.2.0: ebuild has leading whitespace on on lines: 33, 34, 35, 63, 64, 83, 115, 116
+  BadDescription: version 9999: over 80 chars in length
+  NonexistentDeps: version 9999: BDEPEND: nonexistent packages: sys-devel/bzip2, sys-devel/diffutils, sys-devel/strace
+  NonexistentDeps: version 9999: DEPEND: nonexistent package: sys-devel/strace
+  NonexistentDeps: version 9999: RDEPEND: nonexistent package: sys-devel/strace
+  UnknownUseFlags: version 9999: unknown USE flags: 'bpf', 'cgdb', 'notify', 'pandora', 'rust', 'tmux', 'vim'
+  UnusedInherits: version 9999: unused eclass: autotools
+  WhitespaceFound: version 9999: ebuild has leading whitespace on on lines: 33, 34, 35, 63, 64, 83, 111, 112
+
+dev-qt/qt-creator
+  UnnecessaryManifest: unnecessary file in Manifest: [ qt-creator-6.0.0.ebuild ]
+  ExcessiveLineLength: version 6.0.0: excessive line length (over 120 characters) on lines: 27, 28, 29, 30, 173
+  NonexistentDeps: version 6.0.0: DEPEND: nonexistent packages: sys-devel/clang:11, sys-devel/clang:12, sys-devel/clang:13
+  NonexistentDeps: version 6.0.0: RDEPEND: nonexistent packages: sys-devel/clang:11, sys-devel/clang:12, sys-devel/clang:13
+  NonsolvableDepsInDev: version 6.0.0: nonsolvable depset(rdepend) keyword(amd64) dev profile (default/linux/amd64/17.0/musl) (10 total): solutions: [ >=dev-qt/qtquicktimeline-5.15:5 ]
+  NonsolvableDepsInStable: version 6.0.0: nonsolvable depset(rdepend) keyword(amd64) stable profile (default/linux/amd64/17.1) (36 total): solutions: [ >=dev-qt/qtquicktimeline-5.15:5 ]
+  PotentialStable: version 6.0.0: slot(0), stabled arch: [ amd64 ], potentials: [ ~arm, ~x86 ]
+  UnknownUseFlags: version 6.0.0: unknown USE flags: 'android', 'autotest', 'autotools', 'baremetal', 'bazaar', 'beautifier', 'boot2qt', 'clang', 'clearcase', 'cmake', 'conan', 'cppcheck', 'ctfvisualizer', 'designer', 'docker', 'glsl', 'help', 'incredibuild', 'lsp', 'mcu', 'mercurial', 'meson', 'modeling', 'nim', 'perforce', 'perfprofiler', 'qbs', 'qmake', 'qml', 'qmlprofiler', 'qnx', 'remotelinux', 'scxml', 'serialterminal', 'silversearcher', 'webassembly', 'webengine'
+  WhitespaceFound: version 6.0.0: ebuild has leading whitespace on on line: 208
+
+virtual/tmpfiles
+  RedundantVersion: version 0-r3: slot(0) keywords are overshadowed by version: 0-r5
+  UnknownKeywords: version 0-r3: unknown KEYWORDS: '~sparc-solaris', '~sparc64-solaris', '~x64-cygwin', '~x86-solaris'
+  UnstatedIuse: version 0-r3: attr(rdepend): profile 'nomultilib-hardened-clangllvm-mergedusr-custom' (1 total): unstated flag: [ prefix-guest ]
+  NonsolvableDepsInDev: version 0-r5: nonsolvable depset(rdepend) keyword(amd64) dev profile (default/linux/amd64/17.0/musl) (246 total): solutions: [ sys-apps/opentmpfiles ]
+  NonsolvableDepsInStable: version 0-r5: nonsolvable depset(rdepend) keyword(amd64) stable profile (default/linux/amd64/17.1) (364 total): solutions: [ sys-apps/opentmpfiles ]
+  PotentialStable: version 0-r5: slot(0), stabled arches: [ amd64, arm, arm64, hppa, ppc, ppc64, sparc, x86 ], potentials: [ ~ia64, ~loong, ~riscv, ~s390 ]
+  UnknownKeywords: version 0-r5: unknown KEYWORDS: '~sparc-solaris', '~sparc64-solaris', '~x64-cygwin', '~x86-solaris'
+  UnstatedIuse: version 0-r5: attr(rdepend): profile 'nomultilib-hardened-clangllvm-mergedusr-custom' (1 total): unstated flag: [ prefix-guest ]
+
+net-firewall/iptables
+  UnnecessaryManifest: unnecessary files in Manifest: [ Manifest.orig, ip6tables-r1.confd, iptables-1.8.2-link.patch, iptables-1.8.4-no-symlinks.patch, iptables-1.8.7-cache-double-free.patch, iptables-1.8.7-r2.ebuild, iptables-1.8.8-format-security.patch, iptables-1.8.8-musl-headers.patch, iptables-1.8.8-out-of-tree-build.patch, iptables-1.8.8-r5.ebuild, iptables-1.8.8-uint-musl.patch, iptables-r1.confd, iptables-r2.init, iptables-r3.init, metadata.xml, systemd/ip6tables-restore.service, systemd/ip6tables-store.service, systemd/iptables-restore.service, systemd/iptables-store.service ]
+  NonexistentBlocker: version 1.8.7-r2: nonexistent blocker RDEPEND="!<net-firewall/arptables-0.0.5-r1": no matches in repo history
+  NonexistentBlocker: version 1.8.7-r2: nonexistent blocker RDEPEND="!<net-firewall/ebtables-2.0.11-r1": no matches in repo history
+  NonexistentDeps: version 1.8.7-r2: BDEPEND: nonexistent package: virtual/yacc
+  NonsolvableDepsInDev: version 1.8.7-r2: nonsolvable depset(bdepend) keyword(amd64) dev profile (default/linux/amd64/17.0/musl) (242 total): solutions: [ virtual/yacc ]
+  NonsolvableDepsInStable: version 1.8.7-r2: nonsolvable depset(bdepend) keyword(amd64) stable profile (default/linux/amd64/17.1) (324 total): solutions: [ virtual/yacc ]
+  LaggingStable: version 1.8.8-r5: slot(0), stabled arches: [ amd64, arm, arm64, x86 ], lagging: [ ~ppc64 ]
+  NonexistentBlocker: version 1.8.8-r5: nonexistent blocker RDEPEND="!<net-firewall/arptables-0.0.5-r1": no matches in repo history
+  NonexistentBlocker: version 1.8.8-r5: nonexistent blocker RDEPEND="!<net-firewall/ebtables-2.0.11-r1": no matches in repo history
+  NonexistentDeps: version 1.8.8-r5: BDEPEND: nonexistent package: virtual/yacc
+  NonsolvableDepsInDev: version 1.8.8-r5: nonsolvable depset(bdepend) keyword(amd64) dev profile (default/linux/amd64/17.0/musl) (244 total): solutions: [ virtual/yacc ]
+  NonsolvableDepsInStable: version 1.8.8-r5: nonsolvable depset(bdepend) keyword(amd64) stable profile (default/linux/amd64/17.1) (292 total): solutions: [ virtual/yacc ]
+  PotentialStable: version 1.8.8-r5: slot(0), stabled arches: [ amd64, arm, arm64, x86 ], potentials: [ ~hppa, ~ia64, ~loong, ~ppc, ~riscv, ~s390, ~sparc ]
+  WhitespaceFound: version 1.8.8-r5: ebuild has leading whitespace on on lines: 103, 104, 105
+
+sys-kernel/pf-kernel
+  MissingRemoteId: missing <remote-id type="github">projg2/gentoo-kernel-config</remote-id> (inferred from URI 'https://github.com/projg2/gentoo-kernel-config/archive/g4.tar.gz')
+  UnnecessaryManifest: unnecessary files in Manifest: [ pf-kernel-6.1.0_p2.ebuild, pf-kernel-6.1_p2.ebuild ]
+  NonsolvableDepsInDev: version 6.1_p2: nonsolvable depset(pdepend) keyword(~ppc64) dev profile (default/linux/ppc64/17.0/musl) (2 total): solutions: [ >=virtual/dist-kernel-6.1_p2 ]
+  NonsolvableDepsInStable: version 6.1_p2: nonsolvable depset(bdepend) keyword(~hppa) stable profile (default/linux/hppa/17.0) (4 total): solutions: [ dev-util/pahole ]
+  NonsolvableDepsInStable: version 6.1_p2: nonsolvable depset(pdepend) keyword(~ppc64) stable profile (default/linux/ppc64/17.0) (14 total): solutions: [ >=virtual/dist-kernel-6.1_p2 ]
+  RequiredUseDefaults: version 6.1_p2: profile: 'default/linux/arm/17.0' (142 total) failed REQUIRED_USE: savedconfig
+  UnknownUseFlags: version 6.1_p2: unknown USE flag: 'initramfs'
+  UnstatedIuse: version 6.1_p2: attr(bdepend): profile 'nomultilib-hardened-clangllvm-mergedusr-custom' (1 total): unstated flags: [ amd64, arm, arm64, ppc, ppc64, riscv, x86 ]
+  UnstatedIuse: version 6.1_p2: attr(fetchables): profile 'nomultilib-hardened-clangllvm-mergedusr-custom' (1 total): unstated flags: [ amd64, arm64, ppc64, x86 ]
+  UnstatedIuse: version 6.1_p2: attr(required_use): profile 'nomultilib-hardened-clangllvm-mergedusr-custom' (1 total): unstated flags: [ arm, hppa, riscv ]
+  UnstatedIuse: version 6.1_p2: attr(restrict): profile 'nomultilib-hardened-clangllvm-mergedusr-custom' (1 total): unstated flag: [ arm ]
+  MissingInherits: version 6.1.0_p2: optfeature: missing inherit usage: 'optfeature "userspace KSM helper" sys-process/uksmd', line 146
+  NonsolvableDepsInDev: version 6.1.0_p2: nonsolvable depset(pdepend) keyword(~ppc64) dev profile (default/linux/ppc64/17.0/musl) (2 total): solutions: [ >=virtual/dist-kernel-6.1.0_p2 ]
+  NonsolvableDepsInStable: version 6.1.0_p2: nonsolvable depset(bdepend) keyword(~hppa) stable profile (default/linux/hppa/17.0) (4 total): solutions: [ dev-util/pahole ]
+  NonsolvableDepsInStable: version 6.1.0_p2: nonsolvable depset(pdepend) keyword(~ppc64) stable profile (default/linux/ppc64/17.0) (14 total): solutions: [ >=virtual/dist-kernel-6.1.0_p2 ]
+  RequiredUseDefaults: version 6.1.0_p2: profile: 'default/linux/arm/17.0' (142 total) failed REQUIRED_USE: savedconfig
+  UnknownUseFlags: version 6.1.0_p2: unknown USE flag: 'initramfs'
+  UnstatedIuse: version 6.1.0_p2: attr(bdepend): profile 'nomultilib-hardened-clangllvm-mergedusr-custom' (1 total): unstated flags: [ amd64, arm, arm64, ppc, ppc64, riscv, x86 ]
+  UnstatedIuse: version 6.1.0_p2: attr(fetchables): profile 'nomultilib-hardened-clangllvm-mergedusr-custom' (1 total): unstated flags: [ amd64, arm64, ppc64, x86 ]
+  UnstatedIuse: version 6.1.0_p2: attr(required_use): profile 'nomultilib-hardened-clangllvm-mergedusr-custom' (1 total): unstated flags: [ arm, hppa, riscv ]
+  UnstatedIuse: version 6.1.0_p2: attr(restrict): profile 'nomultilib-hardened-clangllvm-mergedusr-custom' (1 total): unstated flag: [ arm ]
+
+profiles
+  ProfileError: repo 'myoverlay': 'nomultilib-hardened-clangllvm-mergedusr-custom/parent' (line 2), bad profile parent 'gentoo:linux/default/amd64/17.1/no-multilib': nonexistent profile directory
+  ProfileError: repo 'myoverlay': 'nomultilib-hardened-clangllvm-mergedusr-custom/parent' (line 4), bad profile parent 'gentoo:features/hardened': nonexistent profile directory
+  ProfileError: repo 'myoverlay': 'nomultilib-hardened-clangllvm-mergedusr-custom/parent' (line 6), bad profile parent 'gentoo:features/llvm': nonexistent profile directory
+  ProfileError: repo 'myoverlay': 'nomultilib-hardened-clangllvm-mergedusr-custom/parent' (line 7), bad profile parent 'gentoo:features/merged-usr': nonexistent profile directory
