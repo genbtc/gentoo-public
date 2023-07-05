@@ -5,7 +5,10 @@
 # subsequently modified by -@genr8eofl, 2023
 #  (ran shellcheck) (sorted code for readability) (comments)
 #  (unshare removed) (auto bind mount itself - old warning)
-#
+#TODO: needs fix:
+#mount: /mnt/crucialp1/gentoo-livegui-amd64-20230604T170201Z/usr/src/linux: mount point is not a directory.
+#-rw-r--r--.  1 root root root:object_r:mnt_t    0 Jul  4 02:24 linux
+#livegui comes with empty dir, causing a blank 0 file to be created and this warning. Fix somehow ?
 #
 # Options:
 #   -d | --debug
@@ -92,10 +95,7 @@ chroot_teardown() {
     umount "${CHROOT_ACTIVE_MOUNTS[@]}"
   fi
   unset CHROOT_ACTIVE_MOUNTS
-}
-
-chroot_add_mount_lazy() {
-  mount "$@" && CHROOT_ACTIVE_LAZY=("$2" "${CHROOT_ACTIVE_LAZY[@]}")
+  umount -l $(realpath ${CHROOT_DIR})
 }
 
 chroot_bind_device() {
@@ -184,9 +184,10 @@ gentoo-chroot() {
 
   # bind mount to itself now. must come before chroot_setup and subsequent check
   warning "$CHROOT_DIR is not a mountpoint. This can cause undesirable side effects."
-  warning "Doing it for you now! Bind Mounting:  ${CHROOT_DIR} to itself"
+  warning "Doing it for you now! Bind Mounting:  ${CHROOT_DIR} to itself ..."
   realchrootdir=$(realpath ${CHROOT_DIR})
   mount --bind ${realchrootdir} ${realchrootdir}   #TODO: what about errors?
+  #on exit, does an umount lazy in chroot_teardown() function
 
   # actually do setup chroot (all basic mounts)
   chroot_setup "$CHROOT_DIR" || die "failed to setup chroot %s" "$CHROOT_DIR"
@@ -198,6 +199,7 @@ gentoo-chroot() {
     warning "-Tip, you can bind mount the directory on itself to make it a mountpoint:"
     warning " 'mount --bind /your/chroot /your/chroot'   (as a workaround)"
   fi
+  #these warnings can be deprecated soon or at some point later
 
   # copy host's /etc/resolv.conf for network DNS server settings
   CHROOT_FILES+=( "${file_resolvconf}" )
