@@ -1,0 +1,40 @@
+#!/bin/bash
+# kernel postinst.d script v0.3 - AUTHOR: @genr8eofl Copyright 2023 - AGPL3 License
+#
+# We're passed the version of the kernel being installed. Example:
+#genr8too /usr/src/linux-5.10 # make install
+#sh ./arch/x86/boot/install.sh 5.10.157-gentoo-hardened-ZEN3iGPU-DBG7 arch/x86/boot/bzImage \
+#run-parts: executing /etc/kernel/postinst.d/grub-manual-entry 5.10.157-gentoo-hardened-ZEN3iGPU-DBG7 /boot/vmlinuz-5.10.157-gentoo-hardened-ZEN3iGPU-DBG7
+#
+inst_kern=$1
+grub_file="/boot/grub/grub.cfg"
+#print a user message:
+echo "/etc/kernel/postinst.d/grub-manual-entry :"
+echo "  ${inst_kern} -> ${grub_file}"
+#searchentry="    search --no-floppy --fs-uuid --set=root 6cc4915e-f301-4109-9225-77e58309d447 \"
+entry="\
+menuentry 'Gentoo GNU/Linux vmlinuz-${inst_kern} IMA=FIX SELINUX=ENFORCING LOCKDOWN=CONFIDENTIALITY (on /dev/nvme0n1p6)' \
+    --class gnu-linux --class gnu --class os \$menuentry_id_option 'osprober-gnulinux-/vmlinuz-${inst_kern}--genr8too' { \n\
+    linux /boot/vmlinuz-${inst_kern} ro root=PARTLABEL=newnewgentoo ipv6.disable=1 lsm.debug selinux=1 lsm=integrity,selinux ima_appraise=fix lockdown=confidentiality \n\
+}"
+#TODO: unhardcode line 92
+endln=92
+sed -i "${endln}i ${entry}" ${grub_file}
+echo "Done. grub.cfg was modified."
+
+#TODO: make a second mode
+#      This file is ran by portage also, for distkernels.
+#   insert distkernels at line 182
+# grub-mkconfig -o /tmp/grub.cfg
+# sed -n -e '/6\.1\.9/,/}/p' /tmp/grub.cfg > /tmp/newgrubentry
+entry_initramfs="\
+menuentry 'Gentoo GNU/Linux, vmlinuz-${inst_kern} (on /dev/nvme0n1p6)' --class gnu-linux --class gnu --class os \$menuentry_id_option 'gnulinux-${inst_kern}-6cc4915e-f301-4109-9225-77e58309d447' { \n\
+    linux   /boot/vmlinuz-${inst_kern} root=UUID=6cc4915e-f301-4109-9225-77e58309d447 ro DISTKERNEL=gentoo-dist root=PARTLABEL=newnewgentoo ipv6.disable=1 lsm.debug selinux=1 lsm=integrity,selinux ima_appraise=fix \n\
+    echo 'Using --HostONLY initramfs....' #only dracut crypt module \n\
+    initrd  /boot/initramfs-${inst_kern}.img \n\
+}"
+#'echo -e' ${entry_initramfs} >> /tmp/newgrubentry2
+#TODO: unhardcode line 
+#endln= 
+#sed -i "${endln}i ${entry_initramfs}" ${grub_file}
+
