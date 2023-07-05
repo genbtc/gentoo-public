@@ -1,0 +1,4 @@
+#!/bin/sh
+#boot=$(/bin/dmesg | tail -n1 | cut -d']' -f1)
+#echo "<1>Boot Complete! Took "${boot}"] seconds!" > /dev/kmsg
+echo "<1>!!! Boot Complete !!!" > /dev/kmsg
