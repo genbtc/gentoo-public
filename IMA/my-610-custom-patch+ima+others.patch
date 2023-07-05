@@ -1,0 +1,360 @@
+diff -r ./security/integrity/digsig.c /usr/src/linux-6.1.0-gentoo/security/integrity/digsig.c
+75,76d74
+< 		if (id == INTEGRITY_KEYRING_EVM)
+< 			pr_debug("EVM - %s - digsig_verify() (symmetric v1)", __func__);
+81,82d78
+< 		if (id == INTEGRITY_KEYRING_EVM)
+< 			pr_debug("EVM - %s - asymmetric_verify()", __func__);
+122c118
+< 		if (id == INTEGRITY_KEYRING_IMA || id == INTEGRITY_KEYRING_EVM)
+---
+> 		if (id == INTEGRITY_KEYRING_IMA)
+
+diff -r ./security/integrity/evm/evm_crypto.c /usr/src/linux-6.1.0-gentoo/security/integrity/evm/evm_crypto.c
+60,61c60
+< 	if (keylen > MAX_KEY_SIZE) {
+< 		pr_err("ERROR - key length larger than MAX_KEY_SIZE:%d\n", MAX_KEY_SIZE);
+---
+> 	if (keylen > MAX_KEY_SIZE)
+63d61
+< 	}
+66c64
+< 	pr_info("%s - HMAC key initialized\n", __func__);
+---
+> 	pr_info("key initialized\n");
+71c69
+< 	pr_err("BUSY - key initialization failed\n");
+---
+> 	pr_err("key initialization failed\n");
+91,92c89
+< 		if (hash_algo >= HASH_ALGO__LAST) {
+< 			pr_err_once("Hash algo invalid\n");
+---
+> 		if (hash_algo >= HASH_ALGO__LAST)
+94c91
+< 		}
+---
+> 
+98c95
+< //	pr_debug_ratelimited("established HMAC key or Hash algo...\n");
+---
+> 
+114d110
+< 		pr_info_ratelimited("Crypto SHash setkey...\n");
+127,128c123
+< 	if (!desc) {
+< 		crypto_free_shash(tmp_tfm);
+---
+> 	if (!desc)
+130d124
+< 	}
+135d128
+< //	pr_debug_ratelimited("Crypto SHash init...\n");
+137d129
+< 		crypto_free_shash(tmp_tfm);
+307,308c299
+< 	if (type == EVM_XATTR_PORTABLE_DIGSIG && !ima_present) {
+< 		pr_err_once("Portable EVM signatures must include an IMA hash\n");
+---
+> 	if (type == EVM_XATTR_PORTABLE_DIGSIG && !ima_present)
+310d300
+< 	}
+405c395
+< 		pr_info("%s - init_desc failed\n", __func__);
+---
+> 		pr_info("init_desc failed\n");
+425,426c415
+< 	if (IS_ERR(evm_key)) {
+< 		pr_err("%s - failed request for encrypted evm-key from TPM\n", __func__);
+---
+> 	if (IS_ERR(evm_key))
+428d416
+< 	}
+434d421
+< 	pr_info("%s - get/set encrypted evm-key (from TPM) for the SHA1-HMAC\n", __func__);
+
+diff -r ./security/integrity/evm/evm_main.c /usr/src/linux-6.1.0-gentoo/security/integrity/evm/evm_main.c
+78c78
+< 	if (strncmp(str, "fix", 3) == 0) {
+---
+> 	if (strncmp(str, "fix", 3) == 0)
+80,81d79
+< 		pr_warn("mode now set to evm=fix\n");
+< 	}
+83c81
+< 		pr_err("Error invalid \"%s\" mode", str);
+---
+> 		pr_err("invalid \"%s\" mode", str);
+95c93
+< 	pr_info("Initializing EVM extended attributes...:\n");
+---
+> 	pr_info("Initialising EVM extended attributes:\n");
+107c105
+< 	printk(KERN_DEBUG "evm: HMAC attrs: 0x%x\n", evm_hmac_attrs);
+---
+> 	pr_info("HMAC attrs: 0x%x\n", evm_hmac_attrs);
+241,251d238
+< //xattr_data is always 9 bytes longer than the sig because of the type + id header
+< /*
+< 		printk(KERN_DEBUG "%s - calling digsig_verify EVM, xattr_len= %x , xattr_data->data", __func__, xattr_len);
+< 	        print_hex_dump_bytes("",DUMP_PREFIX_NONE,xattr_data->data, xattr_len);
+< 		printk(KERN_DEBUG "%s - + digest.hdr.length= %x , digest.digest", __func__,  digest.hdr.length);
+< 	        print_hex_dump_bytes("",DUMP_PREFIX_NONE,digest.digest, digest.hdr.length);
+< */
+< //Always invalid for EVM.
+< //		if (!virt_addr_valid(digest.digest))
+< //			printk(KERN_DEBUG "%s - Virtual Address invalid for digest.digest", __func__);
+< 
+896,897d882
+< 	pr_devel("init loading keyring...");
+< 
+899,900c884
+< 	if (!rc) {
+< 		pr_err("Error loading default cert path to x509 Keyring: %d\n", INTEGRITY_KEYRING_EVM);
+---
+> 	if (!rc)
+902,903d885
+< 	}
+< 
+912d893
+< 	pr_info("Starting EVM Init...");
+914d894
+< 	pr_info("Configuration initialized and loaded!");
+917,918c897
+< 	if (error) {
+< 		pr_err("Error initializing EVM keyring: %d\n", INTEGRITY_KEYRING_EVM);
+---
+> 	if (error)
+920,923d898
+< 	}
+< 	else
+< 		pr_info("x509 Keyring .evm successfully created");
+< 
+927c902
+< 		pr_err("Error registering secfs\n");
+---
+> 		pr_info("Error registering secfs\n");
+
+diff -r ./security/integrity/ima/ima_fs.c /usr/src/linux-6.1.0-gentoo/security/integrity/ima/ima_fs.c
+314,327d313
+< int ima_autoload_policy(char *filename)
+< {
+< 	int result;
+< 
+< 	result = mutex_lock_interruptible(&ima_write_mutex);
+< 	if (result < 0)
+< 		return -EADDRINUSE;
+< 	if (filename[0] == '/')
+< 		result = ima_read_policy(filename);
+< 	mutex_unlock(&ima_write_mutex);
+< 
+< 	return result;
+< }
+< 
+354,358d339
+< 	//This CLEAR word is kind of like a p@ss word really;
+< 	} else if (strcmp(data, "CLEAR") == 0) {
+< 		ima_delete_existing_rules();
+< 		pr_info("IMA Policy cleared!\n");
+< 		result = datalen;
+385d365
+< static struct dentry *ima_secfs_appraise_mode;
+432c412
+< 	const char *cause = valid_policy ? "Completed" : "Failed";
+---
+> 	const char *cause = valid_policy ? "completed" : "failed";
+438c418
+< 		cause = "Failed";
+---
+> 		cause = "failed";
+442c422
+< 	pr_info("Policy Update %s\n", cause);
+---
+> 	pr_info("policy update %s\n", cause);
+473,518d452
+< static ssize_t ima_get_appraise_mode(struct file *filp, char __user *buf,
+<                             size_t count, loff_t *ppos)
+< {
+<         char temp[80];
+<         ssize_t rc;
+< 
+<         if (*ppos != 0)
+<                 return 0;
+< 
+<         sprintf(temp, "%d", ima_appraise );
+<         rc = simple_read_from_buffer(buf, count, ppos, temp, strlen(temp));
+< 
+<         return rc;
+< }
+< 
+< static ssize_t ima_set_appraise_mode(struct file *file, const char __user *buf,
+<                              size_t count, loff_t *ppos)
+< {
+<         unsigned int i;
+<         int ret;
+< 
+< //        if (!capable(CAP_SYS_ADMIN) || (evm_initialized & EVM_SETUP_COMPLETE))
+< //                return -EPERM;
+< 
+<         ret = kstrtouint_from_user(buf, count, 0, &i);
+< 
+<         if (ret)
+<                 return ret;
+< 
+<         /* Reject invalid values
+< 	IMA_APPRAISE_ENFORCE	0x01
+< 	IMA_APPRAISE_FIX	0x02
+< 	IMA_APPRAISE_LOG	0x04
+< 	*/
+< //        if ((i & ~(IMA_APPRAISE_ENFORCE | IMA_APPRAISE_FIX | IMA_APPRAISE_LOG | 0)) != 0)
+< //                return -EINVAL;
+< 
+<         ima_appraise = i;
+< 	return count;
+< }
+< 
+< static const struct file_operations ima_secfs_appraise_mode_ops = {
+< 	.read = ima_get_appraise_mode,
+< 	.write = ima_set_appraise_mode,
+< };
+< 
+576,581d509
+< 
+< 	ima_secfs_appraise_mode = securityfs_create_file("mode",
+< 				S_IRUSR | S_IRGRP, ima_dir, NULL,
+< 				&ima_secfs_appraise_mode_ops);
+< 	if (IS_ERR(ima_secfs_appraise_mode))
+< 		securityfs_remove(ima_secfs_appraise_mode);
+
+diff -r ./security/integrity/ima/ima.h /usr/src/linux-6.1.0-gentoo/security/integrity/ima/ima.h
+298d297
+< void ima_delete_existing_rules(void);
+
+diff -r ./security/integrity/ima/ima_init.c /usr/src/linux-6.1.0-gentoo/security/integrity/ima/ima_init.c
+105d104
+< 	int rc;
+114,119d112
+< 
+< 	rc = ima_autoload_policy("/etc/imapolicy.custom-load.conf");
+< 	if (rc == 0) {
+< 		ima_update_policy();
+< 		pr_info("ima_load_x509(): IMA custom policy updated!\n");
+< 	}
+
+diff -r ./security/integrity/ima/ima_policy.c /usr/src/linux-6.1.0-gentoo/security/integrity/ima/ima_policy.c
+201,203d200
+< #ifdef CONFIG_IMA_APPRAISE_MODSIG
+< 	 .flags = IMA_FUNC | IMA_DIGSIG_REQUIRED | IMA_MODSIG_ALLOWED},
+< #else
+206d202
+< #endif
+223,225d218
+< #ifdef CONFIG_IMA_APPRAISE_MODSIG
+< 	 .flags = IMA_FUNC | IMA_DIGSIG_REQUIRED | IMA_MODSIG_ALLOWED},
+< #else
+227d219
+< #endif
+1935,1949d1926
+< }
+< 
+< void ima_delete_existing_rules(void)
+< {
+< 	struct ima_rule_entry *entry, *tmp;
+< 
+< 	temp_ima_appraise = 0;
+< 	rcu_read_lock();
+< 	list_for_each_entry_safe(entry, tmp, &ima_policy_rules, list) {
+< 		list_del(&entry->list);
+< 		ima_free_rule(entry);
+< 	}
+< 	rcu_read_unlock();
+< 	ima_appraise = 0;
+< 	ima_policy_flag = 0;
+
+diff -r ./security/integrity/integrity.h /usr/src/linux-6.1.0-gentoo/security/integrity/integrity.h
+334,335d333
+< 
+< int ima_autoload_policy(char *filename);
+
+diff -r ./security/keys/key.c /usr/src/linux-6.1.0-gentoo/security/keys/key.c
+1170c1170
+< 	pr_notice("keys: Key type %s registered\n", ktype->name);
+---
+> 	pr_notice("Key type %s registered\n", ktype->name);
+1193c1193
+< 	pr_notice("keys: Key type %s unregistered\n", ktype->name);
+---
+> 	pr_notice("Key type %s unregistered\n", ktype->name);
+
+diff -r ./security/loadpin/loadpin.c /usr/src/linux-6.1.0-gentoo/security/loadpin/loadpin.c
+92c92
+< 			ro ? "read-only/locked" : "writable/toggleable)");
+---
+> 			ro ? "read-only" : "writable");
+94,95c94
+< 		pr_info("mnt_sb lacks block device, "
+< 		        "treating sysctl as: writable/toggleable\n");
+---
+> 		pr_info("mnt_sb lacks block device, treating as: writable\n");
+100c99
+< 			pr_err("something went wrong, sysctl registration failed!\n");
+---
+> 			pr_notice("sysctl registration failed!\n");
+102c101
+< 			pr_notice("device is writable, allowing sysctl to disable pinning.\n");
+---
+> 			pr_info("enforcement can be disabled.\n");
+104c103
+< 		pr_notice("load pinning engaged and enforced.\n");
+---
+> 		pr_info("load pinning engaged.\n");
+109c108
+< 	pr_notice("load pinning enforced (no sysctl disable).\n");
+---
+> 	pr_info("load pinning engaged.\n");
+428c427
+< MODULE_PARM_DESC(enforce, "Enforce module/firmware pinning (CONFIG_SECURITY_LOADPIN_ENFORCE)");
+---
+> MODULE_PARM_DESC(enforce, "Enforce module/firmware pinning");
+
+diff -r ./security/lockdown/lockdown.c /usr/src/linux-6.1.0-gentoo/security/lockdown/lockdown.c
+32,34c32,33
+< 	pr_notice("Lockdown: Enabling [%s](%d) lockdown mode.\n",
+< 		  lockdown_reasons[kernel_locked_down], kernel_locked_down);
+< 	pr_notice("Lockdown: Reason: %s; man kernel_lockdown.7 !\n", where);
+---
+> 	pr_notice("Kernel is locked down from %s; see man kernel_lockdown.7\n",
+> 		  where);
+62c61
+< 		"Error: Invalid state, Lockdown enum MAX bounds check failed!"))
+---
+> 		 "Invalid lockdown reason"))
+67,69c66,67
+< 			pr_info_ratelimited("Lockdown: Permission \"%s\" "
+< 				"denied!(-%d) Restricted program: [%s] \n",
+< 				lockdown_reasons[what], (kernel_locked_down-what), current->comm);
+---
+> 			pr_notice_ratelimited("Lockdown: %s: %s is restricted; see man kernel_lockdown.7\n",
+> 				  current->comm, lockdown_reasons[what]);
+83c81
+< 	lock_kernel_down("Kernel .config", LOCKDOWN_INTEGRITY_MAX);
+---
+> 	lock_kernel_down("Kernel configuration", LOCKDOWN_INTEGRITY_MAX);
+85c83
+< 	lock_kernel_down("Kernel .config", LOCKDOWN_CONFIDENTIALITY_MAX);
+---
+> 	lock_kernel_down("Kernel configuration", LOCKDOWN_CONFIDENTIALITY_MAX);
+139c137
+< 			err = lock_kernel_down("echo > securityfs", level);
+---
+> 			err = lock_kernel_down("securityfs", level);
+
+diff -r ./security/security.c /usr/src/linux-6.1.0-gentoo/security/security.c
+240c240
+< 		init_debug("Initializing LSM: %s\n", lsm->name);
+---
+> 		init_debug("initializing %s\n", lsm->name);
+398c398
+< 	pr_info("Security Framework initializing...\n");
+---
+> 	pr_info("Security Framework initializing\n");

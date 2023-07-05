@@ -1,0 +1,47 @@
+CONFIG_CC_VERSION_TEXT="x86_64-pc-linux-gnu-gcc (Gentoo Hardened 12.3.1_p20230526 p2) 12.3.1 20230526"		      |	CONFIG_CC_VERSION_TEXT="gcc (Gentoo Hardened 12.3.1_p20230526 p2) 12.3.1 20230526"
+														      >	CONFIG_MODULE_SIG_FORMAT=y
+# CONFIG_MODULE_SIG is not set											      |	CONFIG_MODULE_SIG=y
+														      >	# CONFIG_MODULE_SIG_FORCE is not set
+														      >	CONFIG_MODULE_SIG_ALL=y
+														      >	# CONFIG_MODULE_SIG_SHA1 is not set
+														      >	# CONFIG_MODULE_SIG_SHA224 is not set
+														      >	# CONFIG_MODULE_SIG_SHA256 is not set
+														      >	# CONFIG_MODULE_SIG_SHA384 is not set
+														      >	CONFIG_MODULE_SIG_SHA512=y
+														      >	CONFIG_MODULE_SIG_HASH="sha512"
+# CONFIG_SECURITY_LOADPIN is not set										      |	CONFIG_SECURITY_LOADPIN=y
+														      >	CONFIG_SECURITY_LOADPIN_ENFORCE=y
+# CONFIG_SECURITY_LOCKDOWN_LSM is not set									      |	CONFIG_SECURITY_LOCKDOWN_LSM=y
+														      >	CONFIG_SECURITY_LOCKDOWN_LSM_EARLY=y
+														      >	CONFIG_LOCK_DOWN_KERNEL_FORCE_NONE=y
+														      >	# CONFIG_LOCK_DOWN_KERNEL_FORCE_INTEGRITY is not set
+														      >	# CONFIG_LOCK_DOWN_KERNEL_FORCE_CONFIDENTIALITY is not set
+# CONFIG_INTEGRITY_SIGNATURE is not set										      |	CONFIG_INTEGRITY_SIGNATURE=y
+														      >	CONFIG_INTEGRITY_ASYMMETRIC_KEYS=y
+														      >	CONFIG_INTEGRITY_TRUSTED_KEYRING=y
+														      >	CONFIG_INTEGRITY_PLATFORM_KEYRING=y
+														      >	CONFIG_INTEGRITY_MACHINE_KEYRING=y
+														      >	CONFIG_LOAD_UEFI_KEYS=y
+CONFIG_IMA_DEFAULT_HASH_SHA256=y										      |	# CONFIG_IMA_DEFAULT_HASH_SHA256 is not set
+# CONFIG_IMA_DEFAULT_HASH_SHA512 is not set									      |	CONFIG_IMA_DEFAULT_HASH_SHA512=y
+CONFIG_IMA_DEFAULT_HASH="sha256"										      |	CONFIG_IMA_DEFAULT_HASH="sha512"
+														      >	# CONFIG_IMA_ARCH_POLICY is not set
+														      >	CONFIG_IMA_APPRAISE_BUILD_POLICY=y
+														      >	CONFIG_IMA_APPRAISE_REQUIRE_FIRMWARE_SIGS=y
+														      >	CONFIG_IMA_APPRAISE_REQUIRE_KEXEC_SIGS=y
+														      >	CONFIG_IMA_APPRAISE_REQUIRE_MODULE_SIGS=y
+														      >	CONFIG_IMA_APPRAISE_REQUIRE_POLICY_SIGS=y
+														      >	CONFIG_IMA_APPRAISE_MODSIG=y
+														      >	CONFIG_IMA_TRUSTED_KEYRING=y
+														      >	# CONFIG_IMA_KEYRINGS_PERMIT_SIGNED_BY_BUILTIN_OR_SECONDARY is not set
+														      >	# CONFIG_IMA_BLACKLIST_KEYRING is not set
+														      >	CONFIG_IMA_LOAD_X509=y
+														      >	CONFIG_IMA_X509_PATH="/etc/keys/x509_ima.der"
+														      >	# CONFIG_IMA_APPRAISE_SIGNED_INIT is not set
+														      >	CONFIG_EVM_LOAD_X509=y
+														      >	CONFIG_EVM_X509_PATH="/etc/keys/x509_evm.der"
+CONFIG_LSM="yama"												      |	CONFIG_LSM="lockdown,yama,loadpin,safesetid,integrity,selinux,smack,tomoyo,apparmor"
+														      >	CONFIG_MODULE_SIG_KEY="certs/signing_key.pem"
+														      >	CONFIG_MODULE_SIG_KEY_TYPE_RSA=y
+														      >	# CONFIG_MODULE_SIG_KEY_TYPE_ECDSA is not set
+														      >	CONFIG_SIGNATURE=y

@@ -1,5 +1,5 @@
 #!/bin/bash
-#genr8eofl @gentoo - copyleft 2021,2022,2023
+#genr8eofl @gentoo - copyleft 2021,2022,2023 - GPL2
 # Check Kernel.org for New Patch and Changelog,
 #  then Download and Patch linux-sources @ /usr/src/linux
 # Usage:
@@ -49,7 +49,15 @@ function download() {
  fi
  popd || die
 }
-#Patch wont apply cleanly and its struggling with my  custom ver string
+
+#Patch wont apply cleanly and its struggling with my  custom ver string:
+
+#ifdef you are me
 sed -i 's/^EXTRAVERSION = -gentoo-hardened1/EXTRAVERSION =/' Makefile
-download #runit
+#endif
+
+download #run it, execute!
+
+#ifdef you are me
 sed -i 's/^EXTRAVERSION =/EXTRAVERSION = -gentoo-hardened1/' Makefile
+#endif
