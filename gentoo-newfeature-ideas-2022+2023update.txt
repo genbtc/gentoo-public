@@ -3,28 +3,61 @@ Gentoo Feature Ideas:
 1)
 FEATURES=nolocales (like nodoc, noinfo, noman)
 
+One Year Later Workaround:
+INSTALL_MASK="/usr/share/locale/" but it still compiles them, and they may land elsewhere.
+
 2)
 emergelog this stuff to a logfile (/var/log/emerge.py): 
+
 Calculating dependencies  ... done!
 [ebuild  N     ] media-sound/easyeffects-6.1.5::gentoo  USE="-calf -doc -mda-lv2 -zamaudio" 1657 KiB
 [ebuild  N     ]  media-video/pipewire-0.3.36:0/0.3::gentoo  USE="pipewire-alsa -bluetooth -doc -echo-cancel -extra -gstreamer -jack-client -jack-sdk -systemd -test -v4l" 1669 KiB
+
 (site-packages/_emerge/post_emerge.py) = Output -v -t update information intro screen to (do not output when status 130 exited)
+Re-worded Explanation: the screen at the beginning can be printed at the end as a summary.
+
+One Year Later - Workaround:
+# sed -nE 's/^\[(ebuild|binary)[^]]+\] ([^ ]+).*/\2/p' < <(emerge -qpuDU @world); wait $!
+(from tirnanog, thanks)
+This parses the update output text - somewhat brittle.
 
 3)
 nCurses USE flag editor (like ufed)
 then implement it into Portage to not have "Calculating dependencies  ..." , run equery use command, toggle flag, 
 
+One Year Later - Workaround:
+#bash script to quickly insert config changes. 
+```
+efile() {
+  echo "${@:2}" >> "$1";            #write all user args after #2, to $1 file
+  tail -n1 "$1" "$1" | tail -n2;    #print confirmation filename and last line we output. (with "$1" twice trick + tail again),
+}
+useflags()     { efile "/etc/portage/package.use/flags" "$@" ; }
+keywordflags() { efile "/etc/portage/package.accept_keywords/${1/'/'/-}" "$@" ; }
+worldflags()   { efile "/var/lib/portage/world" "$@" ; }
+```
+#emerge still has to be rerun... revisit this idea.
+
 4) package.mask, package.keywords auto-add
+
+One Year Later:
+#see above for manual use
+#portage --autounmask function remains confusing
 
 5) check packages for --disable-nls and come up with a list
 
+One Year Later:
+#I have the list. its somewhere on HDD, will find soon.
+
 6) file the bug to releng about binpkg-multi-instance in make.globals
+
+One Year Later:
+#This has been fixed: https://bugs.gentoo.org/833582
 
 7) Improve the messaging surrounding inconsistencies like this or previously docutils/sphinx 
     WARNING: One or more updates/rebuilds have been skipped due to a dependency conflict:
 
     x11-libs/pango:0
-
       (x11-libs/pango-1.50.3:0/0::gentoo, ebuild scheduled for merge) USE="X introspection -debug -sysprof" ABI_X86="32 (64) (-x32)" conflicts with
         <x11-libs/pango-1.50.0[abi_x86_64(-)] required by (dev-cpp/pangomm-2.42.2-r1:1.4/1.4::gentoo, installed) USE="-doc" ABI_X86="(64) -32 (-x32)"
         ^
@@ -73,7 +106,13 @@ then implement it into Portage to not have "Calculating dependencies  ..." , run
 <Jannik2099> implementation defined behaviour, marvellous :P
 <genr8eofl> that helped, thanks
 
-9) kernel-2.eclass unpack stage only supports .xz files now
+One Year Later
+#I have some personal patches on this but doubt it was worth sharing, it breaks PMS spec
+
+9) kernel-2.eclass unpack stage only supports .xz files now 
+
+One Year Later
+#NOTE: this affects kernel 2.6 compilations somehow, only .tgz was available 
 
 10) misunderstanding of --deep / deficiency in manpage explanation.
 <genr8eofl> I think i've been misunderstanding --deep this whole time. without --deep, portage doesnt even update top level dependencies explicitly mentioned in the ebuild ?
@@ -90,7 +129,6 @@ then implement it into Portage to not have "Calculating dependencies  ..." , run
 <sam_> so it sounds like someone.. forgot to update the man page?
 <genr8eofl> yep
 
-
 11) firewallD ebuild ~CONFIG_CHECK options
 https://bugs.gentoo.org/831259 "net-firewall/firewalld-1.0.2: update CONFIG_CHECK for kernel 5.15"; Gentoo Linux, Current packages; UNCO; gentoo:virtualization
 
@@ -104,7 +142,11 @@ https://bugs.gentoo.org/831259 "net-firewall/firewalld-1.0.2: update CONFIG_CHEC
 <genr8eofl_> I believe NFT_NET was supposed to be NFT_NAT since its right next to it and NFT_NET doesnt exist (possibly typo, I cant find evidence of it existing). 
 <genr8eofl_> and the NETBIOS one should have been NETBIOS_NS all along
 
+One Year Later
+#The ebuild and the wiki have since been updated with more configs
+
 12)
+#Continuation of --deep/--complete-graph discussion
 <Flow> Kelsar: basically, because I am experimenting on a strategy where only the minimal set of packages is emerged. that is, either updates of world packages, or packages where the currently installed ebuild vanished and a newer best version exists. I know that this is very similar to what world updates do, but I believe in certain cases world updates would update more
 <Kelsar> Flow: it is exactly what you are asking to do, the result is just not what you immagine
 <sam_> Flow: it's not able to because you'e given a limited subset of the graph and it's not been told to consider its reverse dependencies / been told it's alowed to upgrade them
@@ -134,25 +176,65 @@ https://bugs.gentoo.org/831259 "net-firewall/firewalld-1.0.2: update CONFIG_CHEC
 
 13) I2C_HID_ACPI in 5.15+
 
+#This was a big one
+
 14) Designware touchpad 
  Pinctrl -> LPC -> GPIO -> i2C -> Designware -> Elantech issue lol
 # CONFIG_PINCTRL_INTEL=m section
 # CONFIG_PCIE_DW_PLAT_HOST is not set
 
+#This always confounds people, we didnt solidify the options in a way I can paste here yet, check check "Designware" and "ElanTech" on the wiki
 
 15) Nvidia 5.15 FB_DRM
 
+One Year Later:
+#These kernel 5.15 issues seem to have come and gone, but Nvidia people alway have framebuffer issues. FB_EFI is the other one mentioned
 
 16)
 <tirnanog> genr8eofl: given NO_HZ_IDLE, it seems a bit hand-wavey without the benefit of any accompanying data. that being said, the tick rate does still apply where a core is not in an idle state. 300 and 250 seem to be popular choices for vendor kernels from what I can gather. the middle ground, as it were.
 
+#couldnt describe or expand on this to you myself, but it seems accurate.
+
 17) take Kernel .configs, elide all the default options away and trim it down to only what was modified.
 
-18) during/after eix-sync,  compare ebuild of [I] installed packages that need to be [U] upgraded and diff the .ebuild's
+#work has been done on this, check my github, but it's incomplete. Revisit this idea.
+
+18)  a) - during/after eix-sync,  compare ebuild of [I] installed packages that need to be [U] upgraded and diff the .ebuild's
+
+One Year Later - Workaround:
+#ediff / diffebuild
+ediff() { diffebuild "$@" ; }                                                                                                                         
+#Usage:"$1"= sys-libs/ncurses-6.3_p20221203-r2                                                                                                        
+diffebuild() {                                                                                                                                        
+    declare -a pkgq=($(qatom "$1" -F "%{CATEGORY} %{PN} %{PV} %{PR}"))                                                                                
+    declare -a cutpkg=($(echo "$1" | cut -f1,2 -d'/' --output-delimiter=' '))                                                                         
+    newdir=$(portageq get_repo_path / gentoo)
+    : ${newdir:=/var/db/repos/gentoo}
+    oldvdb=$(portageq vdb_path / )
+    : ${oldvdb:=/var/db/pkg}
+    newpkg="${newdir}/${pkgq[0]}/${pkgq[1]}/${cutpkg[1]}.ebuild"
+    oldpkg="${oldvdb}/${pkgq[0]}/${pkgq[1]}-${pkgq[2]}*/${pkgq[1]}-${pkgq[2]}*.ebuild" #wildcard %PR -r1
+    #Output:           #(unquoted to do * expansion) ^^                     ^^
+    diffy "${newpkg}" ${oldpkg}
+}
 
 
--qlop -v print package summary after every emerge bashrc (print uptime too for gl)
--install_mask = /usr/share/locale/ (nolocale) is from bashrcd::mv
+    b ) -qlop -v print package summary after every emerge bashrc (print uptime too for gl)
+
+One Year Later - Workaround:
+#on my genbtc/gentoo-public @github at etc/portage/bin/post_emerge
+```
+#!/bin/bash
+echo
+qlop -v
+uptime
+echo
+```
+
+    c ) -install_mask = /usr/share/locale/ (nolocale) is from bashrcd::mv
+
+One Year Later - Workaround:
+#did not actually use this script, just picked and set my own INSTALL_MASK= var
 
 19) portage declarative config files and script for generating custom stage4's from a recipe (NIXos guix ansible style)
 <willikins> sam_: https://bugs.gentoo.org/799626 "sys-apps/portage: one config file to bind them all"; Portage Development, Core - Configuration; CONF; mgorny:dev-portage
@@ -171,3 +253,16 @@ https://bugs.gentoo.org/831259 "net-firewall/firewalld-1.0.2: update CONFIG_CHEC
 <ixmpp> (so yeah quickpkg based)
 <ixmpp> on another note, i've just started using vimpager, but ansi escape codes aren't working very well :/
 <genr8eofl> i see you want the config patches to show up in the .ebuild list of packages you install
+
+One Year Later - Workaround:
+#This is being worked on by multiple people - Revisit this idea. Its a main idea. 
+#They deserve credit:
+    #sam
+    #xxcensoredxx
+    #hairu
+    #Spawns_Carpeting
+    #oldfashionedcow
+# - I will report back.
+<genr8eofl> so we have multiple pieces coming togethere here, emerge --root, --sysroot, --configroot . then we have chroot, --bind mounts, then you have overlayfs's made from squashfs's. then you have all the specific recipes youve invented for config bundles
+
+#I am working on this as one of my main projects. lmk @ IRC
