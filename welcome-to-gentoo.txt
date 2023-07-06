@@ -26,9 +26,7 @@ emerge common options:
 
 to Maintain package.use, package.accept_keywords w/ periodic maintenance:
 enalyze
-portconf::guru
-portpeek
-echo $(emerge -epvO @world)  >> somefile/do it manually
+echo $(emerge -epvO @world) >> somefile/do it manually
 
 Interact, query with package databases:
 eix
@@ -36,6 +34,13 @@ portageq
 portage-utils (q)
 equery (gentoolkit)
 gentoopm (python)
+
+portconf::guru
+ portconf -cpu #current profile use flags, works
+ #all profiles use flags does not work, must set PORTDIR=/var/db/repos/gentoo portconf, then it works.
+portpeek
+ portpeek -aq , -adc , -z  
+
 
 emaint
 usage: usage: emaint [options] COMMAND
@@ -132,3 +137,4 @@ prefer something like cronie
 Syslog should be installed
 possibly use rsyslog and logrotate
 Auditd should be installed
+
