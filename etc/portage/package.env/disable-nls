@@ -116,7 +116,7 @@
 >=x11-libs/gtksourceview-4.8.2        disable-nls.conf
 >=x11-libs/libwnck-40.1        disable-nls.conf
 >=x11-libs/vte-0.68.0        disable-nls.conf
->=x11-libs/wxGTK-3.0.5.1        disable-nls.conf
+#>=x11-libs/wxGTK-3.0.5.1        disable-nls.conf
 >=x11-libs/xapp-2.2.8        disable-nls.conf
 >=x11-misc/gxmessage-3.4.3        disable-nls.conf
 >=x11-misc/menulibre-2.2.3        disable-nls.conf
@@ -181,4 +181,5 @@
 >=xfce-extra/xfce4-mpc-plugin-0.5.2           disable-nls.conf
 >=xfce-extra/xfce4-smartbookmark-plugin-0.5.2 disable-nls.conf
 >=xfce-extra/xfce4-indicator-plugin-2.4.1     disable-nls.conf
-lxde-base/lxappearance  disable-nls.conf
+lxde-base/lxappearance          disable-nls.conf
+>=media-gfx/eom-1.26.0-r1       disable-nls.conf

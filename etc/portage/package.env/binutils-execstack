@@ -1,2 +1,2 @@
 # ${PORTAGE_CONFIG}/package.env/binutils-deterministic
-sys-devel/binutils binutils-deterministic.conf
+sys-devel/binutils binutils-execstack.conf

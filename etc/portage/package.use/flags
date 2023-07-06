@@ -58,7 +58,7 @@ sys-fs/btrfs-progs -man
 sys-fs/e2fsprogs -fuse
 sys-fs/fuse-exfat suid
 sys-fs/fuse suid
-sys-kernel/linux-firmware savedconfig
+#sys-kernel/linux-firmware savedconfig
 sys-libs/libcap tools
 sys-libs/ncurses gpm
 sys-process/procps modern-top
@@ -98,3 +98,5 @@ sys-auth/pambase gnome-keyring
 #x11-wm/mutter screencast
 media-gfx/gthumb tiff webp
 app-text/poppler boost png tiff
+sys-apps/systemd-utils -udev
+sys-kernel/linux-firmware compress-zstd

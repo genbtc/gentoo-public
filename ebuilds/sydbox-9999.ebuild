@@ -15,7 +15,7 @@ fi
 inherit autotools linux-info
 
 DESCRIPTION="sydbox, a seccomp-bpf & seccomp-notify based sandbox,
-	blocks unwanted process access to filesystem and network resources."
+			 blocks unwanted process access to filesystem and network resources."
 HOMEPAGE="https://sydbox.exherbo.org https://pink.exherbo.org/"
 
 #NOTE: SydB@x-2.0.1 and newer do not use ptrace() but use seccomp user notify facilities
@@ -90,16 +90,12 @@ src_prepare() {
 
 src_configure() {
 	local myconf="
-	--enable-shared
-	$(use_enable static-libs static)
-	$(use_enable debug)
+				  --enable-shared
+				  $(use_enable static-libs static)
+				  $(use_enable debug)
+				  $(use_enable rust sydbox_rs)
+				  $(use_enable pandora)
 	"
-if [[ ${PV} == "9999" ]] ; then
-	myconf+="
-	$(use_enable rust sydbox_rs)
-	$(use_enable pandora)
-	"
-fi
 	econf ${myconf}
 }
 

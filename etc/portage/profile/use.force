@@ -16,3 +16,4 @@
 -llvm_targets_CSKY
 -llvm_targets_M68k
 -llvm_targets_VE
+-llvm_targets_LoongArch

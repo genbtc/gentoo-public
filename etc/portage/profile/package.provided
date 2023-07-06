@@ -6,9 +6,12 @@ media-fonts/liberation-fonts-2.1.3
  # nautilus ,dont want trackers (skip/TODO)
 #app-misc/tracker-miners-3.4.2-r1
 #app-misc/tracker-3.4.2
- # stop nautilus keep trying to come back if its installed
+ # nautilus
 #gnome-base/nautilus-43.2
 
-virtual/dist-kernel-6.3.4
 #stop kernel-bin from updating each time so much
-sys-kernel/gentoo-kernel-6.3.6
+virtual/dist-kernel-6.3.10
+sys-kernel/gentoo-kernel-6.3.10
+
+#already have, -r1 just adds icons
+net-wireless/gnuradio-3.10.6.0-r1

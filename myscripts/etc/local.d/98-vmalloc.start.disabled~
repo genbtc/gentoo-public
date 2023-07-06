@@ -1,0 +1,4 @@
+#!/bin/sh
+vma=$(cat /proc/vmallocinfo | grep -v 'kernel_clone\|unpurged vm_area' | sort | head -n6)
+echo "<1>/proc/vmallocinfo:" > /dev/kmsg
+echo "<1>${vma}" > /dev/kmsg

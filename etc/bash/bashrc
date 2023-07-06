@@ -41,7 +41,7 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # the history will halt the shell prompt until it's finished.
 #PROMPT_COMMAND='history -a'
 
-# Change the window title of X terminals
+# Change the window title of X terminals 
 case ${TERM} in
 	[aEkx]term*|rxvt*|gnome*|konsole*|interix|tmux*)
 		PS1='\[\033]0;\u@\h:\w\007\]'
@@ -106,7 +106,6 @@ else
 	PS1+='\u@\h \w \$ '
 fi
 
-#Source other BashRc's
 for sh in /etc/bash/bashrc.d/* ; do
 	[[ -r ${sh} ]] && source "${sh}"
 done

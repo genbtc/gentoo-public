@@ -10,13 +10,16 @@
 #if [ "${EBUILD_PHASE}" == "install" ]; then
 
 if [ "${EBUILD_PHASE}" == "preinst" ]; then
+  # create parallel file in this stage, for the next stage, because now is the last time we can write to here
   # pwd = ${D}
   mkdir -p ~/.parallel;	touch ~/.parallel/will-cite
-  if [ "${PN}" == "gentoo-sources" ] || [ "${PN}" == "gentoo-kernel-bin" ] || [ "${PN}" == "gentoo-kernel" ]; then
+  # kernels can be skipped from my shenanigans, have too many files, and slow.
+  if [ "${PN}" == "gentoo-sources" ] || [ "${PN}" == "gentoo-kernel" ] || [ "${PN}" == "gentoo-kernel-bin" ]; then
 	return;
   fi
+  #PARTDONE: TODO-This can be very slow on large packages and useless on non-binary pkgs like gentoo-sources
   echo "::1 BashRC PreInst: Analyzing files w/ CHECKSEC..."
-  checksec --dir=${D}	#TODO This can be very slow on large packages and useless on non-binary pkgs like gentoo-sources ^ 
+  checksec --dir=${D} | tee /var/cache/buildlogs/checksec/${PN}-${PV}-1.txt
 fi
 #	echo "::1 Any EVM xattr Fixing here in the tmp/work/image dir \${D} will NOT copy \
 #            any security.ima/evm xattr to / root because of make.globals xattr_ignore..."
@@ -24,13 +27,13 @@ fi
 
 if [ "${EBUILD_PHASE}" == "postinst" ]; then
   # kernels can be skipped from my shenanigans, have too many files, and slow.
-  if [ "${PN}" == "gentoo-sources" ] || [ "${PN}" == "gentoo-kernel-bin" ] || [ "${PN}" == "gentoo-kernel" ]; then
+  if [ "${PN}" == "gentoo-sources" ] || [ "${PN}" == "gentoo-kernel" ] || [ "${PN}" == "gentoo-kernel-bin" ]; then
 	return;
   fi
   echo "::2 BashRC PostInst: imafix2 SHA512 Hashing in progress..."
 																#"omit dir,path,sym,dev
-  equery -C files ${PN} -f "obj,conf,cmd,doc,man,info,fifo" | parallel imafix2 -s
-  einfo "Logfile: ${PORTAGE_LOG_FILE}" 	#helps to correlate them
+  equery -C files ${PN}-${PVR} -f "obj,conf,cmd,doc,man,info,fifo" | parallel imafix2 -s
+  einfo "Logfile: ${PORTAGE_LOG_FILE}" 	#helps in elogv to correlate the logs
 fi
 
 pre_src_configure() {
@@ -40,9 +43,10 @@ pre_src_configure() {
 #		echo ">>> ENV:" && env
 	if [ -n EMERGEINFO ]; then
 		echo ">>> emerge --info embedded into environment as \$EMERGEINFO"
-		export EMERGEINFO=$(emerge --info --ask=n --verbose=n);
+		export EMERGEINFO=$(emerge --ignore-default-opts --info );
 	fi
 	if [ -f configure ] && [ ! -f meson.build ]; then
+        #package is weird
 		if [ x"${CATEGORY}"/"${PN}" == x"dev-util/rr" ]; then return; fi
 	 	echo ">>> $FUNCNAME() { ./configure --help }"
 		./configure --help | sed -ne '/^Optional Features/,$ p'
@@ -59,9 +63,9 @@ pre_src_configure() {
         if [ x"${CATEGORY}"/"${PN}" == x"app-crypt/seahorse" ]; then return; fi
         echo ">>> $FUNCNAME() { meson configure }"  #TODO see if a "meson configure --list --print" exists
 		PAGER= meson configure || cat || die
+#NOTE: maybe this is fixed July 2023, next time, go back to check.
 #TODO: This can hang sometimes, when the meson structure is not valid for top-level,
-# requiring a kill -9 $PID. or killall meson.  WHY?!  = some packages were gtk+,
-#found a typo, rechanged code once,
+# requiring a kill -9 $PID. or killall meson.  WHY?!
 #portage   7619 99.9  0.5 181412 171308 pts/2   R+   05:34   1:56  |                   \_ /usr/bin/python3.10 /usr/lib/python-exec/python3.10/meson configure
 #portage   7620  0.0  0.0   6636  1628 pts/2    S+   05:34   0:00  |                   \_ cat
 #(NOTE:) This calls `less` so, set PAGER to blank first, to not.
@@ -71,7 +75,7 @@ pre_src_configure() {
 
 # This hook is neccesary for automatic updating of the cfg-update index, please do not modify it!
 #pre_pkg_setup() {
-#	[[ $ROOT = / ]] && : cfg-update --index
+#	[[ $ROOT = / ]] && cfg-update --index
 #}
 
 #!/bin/bash

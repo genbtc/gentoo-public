@@ -5,6 +5,8 @@ EAPI=8
 
 inherit linux-info
 
+PYTHON_COMPAT=( python3_{9..12} )
+
 DESCRIPTION="NoteBook FanControl"
 HOMEPAGE="https://github.com/nbfc-linux/nbfc-linux"
 SRC_URI="https://github.com/nbfc-linux/nbfc-linux/archive/${PV}.tar.gz -> ${P}.tar.gz"
@@ -20,8 +22,8 @@ DEPEND="${RDEPEND}"
 
 pkg_setup() {
     local CONFIG_CHECK=" \
-        ~CROS_EC_SYSFS \
-        ~ACPI_EC_DEBUGFS \
+        ~CONFIG_CROS_EC_SYSFS \
+        ~CONFIG_ACPI_EC_DEBUGFS \
     "
 #    linux-info_pkg_setup   #uncomment this when modules are confirmed required
 }

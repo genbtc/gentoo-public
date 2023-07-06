@@ -49,7 +49,7 @@ if {![catch {
 source [file join [file dirname \$myName] \$myGorilla]
 EOF
     dobin gorilla15
-    #make desktop file (handmade)
+    #make desktop file (handmade?)
 cat << EOF > gorilla15.desktop
 [Desktop Entry]
 Name=Password Gorilla
@@ -64,9 +64,9 @@ Terminal=false
 Categories=Utility;
 EOF
 #Desktop Entry
-    insinto usr/share/applications
-    doins gorilla15.desktop
-    #or just use this
+#    insinto usr/share/applications
+#    doins gorilla15.desktop
+#just use this:
     # @FUNCTION: make_desktop_entry
     # @USAGE: <command> [name] [icon] [type] [fields]
 #Handle Icons
@@ -75,9 +75,11 @@ EOF
 #    VECTORICONS="vector-logo/"+["gorilla-logo.fig  gorilla-logo-lines.pbm  gorilla-logo.svg"]
 #    doicon ${ICONS}
 #    doicon ${VECTORICONS}
-    newicon pics/vector-logo/gorilla-logo.svg password-gorilla.svg
-    newicon pics/gorilla-splash.gif password-gorilla-splash.gif
-    make_desktop_entry "gorilla15" "Password Gorilla" "password-gorilla-splash" "Utility" "Keywords=safe;security;vault;password;manager"
+#    newicon pics/vector-logo/gorilla-logo.svg password-gorilla.svg
+#    newicon pics/gorilla-splash.gif password-gorilla-splash.gif
+#just do this:
+    doicon pics/vector-logo/gorilla-logo.svg pics/gorilla-splash.gif
+    make_desktop_entry "gorilla15" "Password Gorilla" "gorilla-splash.gif" "Utility" "Keywords=safe;security;vault;password;manager"
 }
 
 xdgupdate() {

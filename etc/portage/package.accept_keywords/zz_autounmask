@@ -16,4 +16,7 @@ net-analyzer/ssh-audit
 # required by @world (argument)
 #=gui-libs/gtk-4.10.3 ~amd64
 # required by net-misc/gnome-remote-desktop (argument)
-=net-misc/gnome-remote-desktop-44.1 ~amd64
+#>=net-misc/gnome-remote-desktop-44.1 ~amd64
+# required by dev-util/radare2-5.8.8-r1::gentoo
+# required by dev-util/radare2 (argument)
+=dev-libs/capstone-5.0_rc4 ~amd64
