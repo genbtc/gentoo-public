@@ -1,30 +1,34 @@
 #!/bin/bash
-
-bouncer='https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds'
-gentoo_release='/usr/share/openpgp-keys/gentoo-release.asc'
-isos="${HOME}/iso/gentoo/downloads"
+# 2023 Spawns_Carpeting @gentoo - v0.2
 
 source /lib/gentoo/functions.sh
 
+bouncer='https://bouncer.gentoo.org/'
+gentoo_release='/usr/share/openpgp-keys/gentoo-release.asc'
+isos="${HOME}/iso/gentoo/downloads"
+
 die() {
-    echo $@
-    edie 1
+    local ret="${1}"
+    shift
+    eend "${ret}" "$@"
+    [[ ${ret} -ne 0 ]] && exit "${ret}"
 }
 
 _wget() {
-    wget --quiet --show-progress $@
+    wget \
+        ${REFRESH_WGET_OPTS} \
+        --quiet \
+        --show-progress \
+        "$@"
 }
 
 retry() {
-    local tries=$1
-    local backoff=1
-    shift
-    while [[ ${tries} -gt 0 ]]; do
-        _wget --continue $@ && return 0
-        eerror "failure during download, sleeping for ${backoff} until next retry"
-        sleep ${backoff}
-        [[ ${backoff} -lt 32 ]] && backoff=$((${backoff} * 2))
-    done
+    _wget \
+        --continue \
+        --retry-connrefused \
+        --retry-on-http-error=404 \
+        --waitretry=1 \
+        "$@"
 }
 
 parse_latest_txt() {
@@ -35,25 +39,37 @@ file="${1}"
 if [[ -z ${file} ]]; then
     echo "expected 1 argument" > /dev/stderr
     exit 1
+elif [[ ${file} = "-h" || ${file} = "--help" ]]; then
+    echo "pass the file you want to refresh as the first argument" > /dev/stderr
+    echo "examples:" > /dev/stderr
+    echo '  refresh.sh install-amd64-minimal' > /dev/stderr
+    echo '  refresh.sh livegui-amd64' > /dev/stderr
+    echo '  refresh.sh stage3-amd64-openrc' > /dev/stderr
+    exit 1
 fi
 
 pushd "${isos}"
 
+arch=$(cut -d '-' -f 2 <<<${file})
+directory="/fetch/root/all/releases/${arch}/autobuilds"
+
 ebegin "fetching latest-${file}.txt\n"
-_wget "${bouncer}/latest-${file}.txt" || die "failed to fetch ${latest-${file}.txt}"
+_wget "${bouncer}/${directory}/latest-${file}.txt"
+die $? "failed to fetch ${latest-${file}.txt}"
 latest=$(< "latest-${file}.txt" parse_latest_txt)
+rm "latest-${file}.txt"
 einfo "parsed ${latest} from latest-${file}.txt"
-eend 0
 
 ebegin "fetching signature for ${file}\n"
-retry 25 "${bouncer}/current-${1}/${latest}.asc" || die "failed to fetch ${latest}.asc"
-eend 0
+retry "${bouncer}/${directory}/current-${1}/${latest}.asc"
+die $? "failed to fetch ${latest}.asc"
 
 ebegin "fetching ${latest}\n"
-retry 25 "${bouncer}/current-${1}/${latest}" || die "failed to fetch ${latest}"
-eend 0
+retry "${bouncer}/${directory}/current-${1}/${latest}"
+die $? "failed to fetch ${latest}"
 
 ebegin "verifying signature for ${latest}\n"
 gemato gpg-wrap -K ${gentoo_release} -R -- gpg --verify "${latest}.asc" "${latest}"
 verified=$?
-eend ${verified}
+die ${verified}
+
