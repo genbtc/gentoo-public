@@ -1,0 +1,20 @@
+Kubler Documentation
+---------------------
+build.sh - # Populate _build_order_images and _build_order_builders by checking image dependencies for given image target_ids
+         - interactive dep graph
+         - # Check image dependencies and populate _required_images, _required_builders and _required_engines. Recursive
+         - # Check builder dependencies and populate _build_order_builder and _required_cores. Recursive.
+         - run_interactive_builder()
+clean.sh -  # Delete all existing Docker images for given namespace_id
+dep-graph.sh - # Check image dependencies and populate global var _dep_graph. Recursive.
+new.sh  - function add_namespace() - single/multi - set up container index+info+metadata
+        - init_image_base_dir() - # Create empty dir for given image and return the absolute path 
+        - add_image() - add_builder() - main() namespace,image,builder
+push.sh - push_image to remote host
+update.sh - update_builders() - is_newer_stage3_date()
+          - update_stage3_date() - # Update STAGE3_DATE in build.conf for all builders in all namespaces
+          - update_portage()
+          - main() - # clone kubler-images repo , sync container,  "check all namespaces for new releases"
+
+Youtube Video - Gentoo as a Docker Build System? by Janos Pasztor - https://www.youtube.com/watch?v=bbC6HXUUjjg
+ interactive dep graph

@@ -1,11 +1,19 @@
-gentoo
------
-chroot's = use my script @ https://github.com/genbtc/gentoo-public/blob/main/chroot/genr8-chroot.sh
-container's -- choose between docker/podman/lxc/lxd
-bwrap's -- sys-apps/bubblwrap unpriveleged sandboxing tool, user namespaces 
+prior art
+----------
+chroot's = this began with arch-chroot and it was forked
+    Kangie fork @ https://gitlab.com/Matt.Jolly/kangie-gentoo-scripts/-/blob/master/gentoo-chroot/gentoo-chroot.sh
+    genr8 fork @ https://github.com/genbtc/gentoo-public/blob/main/chroot/genr8-chroot.sh
+bootstrap -- just portage , documentation by Spawns_Carpeting @ https://wiki.gentoo.org/wiki/User:Spawns/Bootstrap_with_emerge
+bwrap's -- sys-apps/bubblwrap = unpriveleged sandboxing tool + user namespaces 
 unshare's -- more namespaces
-VM's -- entire linux system in Virtualbox or QEMU, or other
+VM's -- QEMU, (virtualbox, vmware), etc. entire linux system, can boot with a EFI + UKI
+container's -- choose between docker, podman, lxc/lxd
+kubler -- NEW !!!! full fledged gentoo container orchestrator system - documentation by Kangie @ https://lemmy.srcfiles.zip/post/3841
+cross-boss -- New gentoo user project (crossdev) https://github.com/chewi/cross-boss/
+chroot-build-helper -- hairu's gentoo user project combines everything (currently not hosted) COMING SOON!!
 
+Idea:
+--------
 binhosts (binpkgs)
 +
 portage - client/server
@@ -53,3 +61,7 @@ this will force it to happen
 
 the emerge -G option (capital G this time) will try to force it to use binpkgs ONLY (both local + remote) things may be skipped or rejected
 
+Gentoo can compile all its source packages into a different directory.
+We can create a destination directory and ask gentoo to compile a software and all the dependencies, and put it into a new root fs.
+the variable for this is emerge --root=/SOMEDESTDIR
+(not all packages ebuilds have been sanitized to allow for this)
