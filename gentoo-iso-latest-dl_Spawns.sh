@@ -1,5 +1,5 @@
 #!/bin/bash
-# 2023 Spawns_Carpeting @gentoo - v0.2
+# 2023 Spawns_Carpeting @gentoo - v0.21
 
 source /lib/gentoo/functions.sh
 
@@ -18,12 +18,13 @@ _wget() {
     wget \
         ${REFRESH_WGET_OPTS} \
         --quiet \
-        --show-progress \
         "$@"
 }
 
 retry() {
     _wget \
+        ${RETRY_WGET_OPTS} \
+        --show-progress \
         --continue \
         --retry-connrefused \
         --retry-on-http-error=404 \
@@ -53,22 +54,26 @@ pushd "${isos}"
 arch=$(cut -d '-' -f 2 <<<${file})
 directory="/fetch/root/all/releases/${arch}/autobuilds"
 
-ebegin "fetching latest-${file}.txt\n"
+echo
+ebegin "Fetching latest-${file}.txt ...\n"
 _wget "${bouncer}/${directory}/latest-${file}.txt"
 die $? "failed to fetch ${latest-${file}.txt}"
 latest=$(< "latest-${file}.txt" parse_latest_txt)
 rm "latest-${file}.txt"
 einfo "parsed ${latest} from latest-${file}.txt"
 
-ebegin "fetching signature for ${file}\n"
+echo
+ebegin "Fetching signature for ${file} ...\n"
 retry "${bouncer}/${directory}/current-${1}/${latest}.asc"
 die $? "failed to fetch ${latest}.asc"
 
-ebegin "fetching ${latest}\n"
+echo
+ebegin "Fetching ISO ${latest} ...\n"
 retry "${bouncer}/${directory}/current-${1}/${latest}"
 die $? "failed to fetch ${latest}"
 
-ebegin "verifying signature for ${latest}\n"
+echo
+ebegin "Verifying signature for ${latest}\n"
 gemato gpg-wrap -K ${gentoo_release} -R -- gpg --verify "${latest}.asc" "${latest}"
 verified=$?
 die ${verified}
