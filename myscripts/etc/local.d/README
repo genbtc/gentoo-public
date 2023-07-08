@@ -1,5 +1,3 @@
-###
-# /etc/local.d/  README
 This directory should contain programs or scripts which are to be run
 when the local service is started or stopped.
 

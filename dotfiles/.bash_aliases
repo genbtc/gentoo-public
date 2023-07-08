@@ -2,7 +2,7 @@
 #script by @genr8eofl copyright 2023 - AGPL3 License
 alias mv='mv -i'
 alias cp='cp -i'
-alias l='ls -AlZ'
+alias l='ls -alZ --color'
 alias ls='ls -alZ --color'
 alias less='less -R'
 alias dmesg='dmesg -x --color=always | less -R'
@@ -15,32 +15,44 @@ alias ps='ps faux --headers'
 alias listen='lsof -i -P -n | grep LISTEN'
 alias netstat='netstat -4lpn'
 alias stripcolors='sed "s/\x1B\[\([0-9]\{1,2\}\(;[0-9]\{1,2\}\)\?\)\?[mGK]//g"'
+alias cats='spc'
+#vars
+COLOR1="\033[01;31m"
+COLOR2="\033[01;32m"
+COLOR3="\033[01;33m"
+COLOR4="\033[01;34m"
+ENDCOLOR="\033[00m"
+export serverdir="/run/user/1000/gvfs/smb-share:server=10.1.1.1,share=raidz-4tbx4/DiskImages/LinuxDD"
+#linux kernel
 export KERNEL="/usr/src/linux"
 alias diffk='${KERNEL}/scripts/diffconfig'
-#vars
-export serverdir="/run/user/1000/gvfs/smb-share:server=10.1.1.1,share=raidz-4tbx4/DiskImages/LinuxDD"
+#Get summary, or summary / commit hash
+function changelog()  { grep -A 4 "^commit" "$1" | grep -E "(^    )"; }
+function changelog2() { grep -A 4 "^commit" "$1" | grep -E "(^    |^commit)"; }
 
+ff(){ find "$(pwd)/" -type f -name '*'"$1"'*' ; }   #findfile
+gf(){ grep -n "$1" . -R ; } #grepfile
+
+#works like sort | uniq, but no need to sort. uses AWK array in RAM to cache seen
 uniqawk()  { awk '(a[$0]++==0)' "$1" ; }
+#make alternating pairs with even/odd lines combined
+# ie: a 3 line file AAA\n BBB\n CCCC\n would become:      AAA BBB\n BBB CCC\n
 doubleawk() { awk '{ a[NR]=$1; if (NR>1) print a[NR-1],$1; }' "$1" ; }
 
-ff(){ find "$(pwd)/" -type f -name '*'"$1"'*' ; }
-gf(){ grep -n "$1" . -R ; }
-
+#IMA works
 #alias imafindmissing="dmesg | grep 'IMA-signature-required' | awk '{print \$14}' | sort | uniq"
 #alias imafixmissing="imafindmissing | cut -d\" -f2 | while read D; do evm_sign_cmd $D; done"
 #alias evm_sign_cmd="evmctl sign -a sha512 -k /etc/keys/signing_key.priv -s"
 #alias ima_hash_cmd="evmctl ima_hash -a sha512 -k /etc/keys/signing_key.priv -s"
 #alias ima_fix2_cmd='evmctl2 ima_fix2 -s'
 #alias ima_clear='evmctl2 ima_clear -s'
-imacleanfix() { evmctl2 ima_clear -s "$@"; imafix2 -s "$@"; }
+imacleanfix() { evmctl2 ima_clear -s "$@"; imafix2 -s "$@"; }   #Fixes one bad signature if verification failed
 #rather use imafix2 program :
 #(/usr/local/bin/imafix2 custom compiled from self-authored patch @/usr/local/src/ima-evm-utils/imafix2.c)
 
-function changelog()  { grep -A 4 "^commit" "$1" | grep -E "(^    )"; }
-function changelog2() { grep -A 4 "^commit" "$1" | grep -E "(^commit|^    )"; }
-
+#Gentoo Portage aliases
 alias eq='equery'
-eqd() { d=$(dirname "$(eq w "$1")"); echo "$d"; ls -at "$d"; }
+eqwd() { d=$(dirname "$(eq w "$1")"); echo "$d"; ls -at "$d"; }
 alias ~~='ACCEPT_KEYWORDS="~amd64"'
 ebuild2() { ebuild "$(equery which "$(echo "$1"| awk '{print $1}')")"  "$2" ; }
 enano()   {  nano  "$(equery which "$1")" ; }
@@ -55,16 +67,20 @@ useflags()     { efile "/etc/portage/package.use/flags" "$@" ; }
 keywordflags() { efile "/etc/portage/package.accept_keywords/${1/'/'/-}" "$@" ; }
 worldflags()   { efile "/var/lib/portage/world" "$@" ; }
 
-fixelogbugz() {
-  cd /var/cache/buildlogs/build || exit
-  ls "$1"
-  log=$(echo "$1" | sed 's/\.gz//g')
-  zcat "$1" > "$log"
-  touch -r "$1$log"
-  ls "$log"*
-  rm -i "$1"
-  gzip "$log"
-  ls "$log"*
+ediff() { diffebuild "$@" ; }
+#NEW: diffebuild is now ediff
+#Usage:"$1"= sys-libs/ncurses-6.3_p20221203-r2
+diffebuild() {
+    declare -a pkgq=($(qatom "$1" -F "%{CATEGORY} %{PN} %{PV} %{PR}"))
+    declare -a cutpkg=($(echo "$1" | cut -f1,2 -d'/' --output-delimiter=' '))
+    newdir=$(portageq get_repo_path / gentoo)
+    : ${newdir:=/var/db/repos/gentoo}   # colon : trick, set the default var
+    oldvdb=$(portageq vdb_path / )
+    : ${oldvdb:=/var/db/pkg}
+    newpkg="${newdir}/${pkgq[0]}/${pkgq[1]}/${cutpkg[1]}.ebuild"
+    oldpkg="${oldvdb}/${pkgq[0]}/${pkgq[1]}-${pkgq[2]}*/${pkgq[1]}-${pkgq[2]}*.ebuild" #wildcard %PR -r1
+    #Output:           #(unquoted to do * expansion) ^^                     ^^
+    diffy "${newpkg}" ${oldpkg}
 }
 
 #OLD: diffebuild.txt
@@ -84,26 +100,29 @@ diffebuildold() {
 	diffy "${newpkg}" "${oldpkg}"
 }
 
-ediff() { diffebuild "$@" ; }
-#Usage:"$1"= sys-libs/ncurses-6.3_p20221203-r2
-diffebuild() {
-    declare -a pkgq=($(qatom "$1" -F "%{CATEGORY} %{PN} %{PV} %{PR}"))
-    declare -a cutpkg=($(echo "$1" | cut -f1,2 -d'/' --output-delimiter=' '))
-    newdir=$(portageq get_repo_path / gentoo)
-    : ${newdir:=/var/db/repos/gentoo}
-    oldvdb=$(portageq vdb_path / )
-    : ${oldvdb:=/var/db/pkg}
-    newpkg="${newdir}/${pkgq[0]}/${pkgq[1]}/${cutpkg[1]}.ebuild"
-    oldpkg="${oldvdb}/${pkgq[0]}/${pkgq[1]}-${pkgq[2]}*/${pkgq[1]}-${pkgq[2]}*.ebuild" #wildcard %PR -r1
-    #Output:           #(unquoted to do * expansion) ^^                     ^^
-    diffy "${newpkg}" ${oldpkg}
+
+#Sometimes FEATURES="compress-log" plus force-cancelling a build results
+# in build.log.gz's that are "truncated". remake them entirely. save timestamp.
+fixelogbugz() {
+  cd /var/cache/buildlogs/build || exit
+  ls "$1"
+  log=$(echo "$1" | sed 's/\.gz//g')
+  zcat "$1" > "$log"
+  touch -r "$1$log"
+  ls "$log"*
+  rm -i "$1"
+  gzip "$log"
+  ls "$log"*
 }
 
-#-SELINUX->
-#FIXED?TODO make work for multiple files / FIX: Double Quoted everything
-chownse() { chown genr8eofl: "$@"; chcon -v -u user_u "$@"; }
-sechown() { chown genr8eofl: "$@"; chcon -v -u user_u "$@"; }
+# SELINUX related functions -->
 
+#Take/Change ownership user/context to me. Should work for multiple files.
+chownse() { chown genr8eofl: "$@"; chcon -v -u user_u "$@"; }
+
+#Compile a selinux policy module and install it:
+#Usage:  semakemod foobar.te
+#Caveat: "strict" policy is given as hardcoded, ../modules dir is my other invention
 semakefile() { make -f /usr/share/selinux/strict/include/Makefile "$@" || return 3; }
 semakemod() {
   pp=$(echo "${1//.te/.pp}")
@@ -117,12 +136,9 @@ semakemod() {
   fi
 }
 
-COLOR1="\033[01;31m"
-COLOR2="\033[01;32m"
-COLOR3="\033[01;33m"
-COLOR4="\033[01;34m"
-ENDCOLOR="\033[00m"
+#Compare module source vs built binary, check if hash has changed, if it has, rebuild.
 secheckmods() {
+#scan dir for files that need updating and build them.
  for D in *.te; do
   pp=$(echo "${D//.te/.pp}")
   if [[ -e "${pp}" ]]; then
@@ -151,6 +167,8 @@ pp2cil() { /usr/libexec/selinux/hll/pp "$@" ; }
 
 aud2te(){ tail -n "$1" "$2" | audit2why -eR >> "$2" ; nano +-1 "$2" ; }
 
+#invented a way to check if a module is providing lines of CIL
+# that would be duplicates of previous policy
 sedupecheck() {
   if [[ $(semodule -r "$1") ]]; then
     cat "$1".te | audit2why \
@@ -160,6 +178,8 @@ sedupecheck() {
 	echo "Error: The module cannot be unloaded safely. check my circular deps?"
   fi
 }
+#related, gather a list of all the major statements, and extract the type.
+# NOTE: inaccurate but good enough to copy/paste/tweak/fixgaps
 setypegrep() {
   grep "^allow\|dontaudit\|auditallow" "$1"\
    | awk '{print $2"\n"$3}' | sed 's/\;//' \
@@ -169,10 +189,15 @@ setypegrep() {
 }	#pattern deficiency, misses interfaces(type_t) and type_t { com bin at io ns }#
 	# doesnt check if they're valid, gets weird words.
 
+#Important to reset dynamic context of generated cache files that have been mis-tagged. Why?
+# portage regenerates them, the code would come from the eclasses, and those don't set them itself for some reason. or call an update.
+#  or the .fc file type is not taking effect on these dynamic files because the program isnt selinux aware somehow ?
+#do: setenforce 0; serestoremime; setenforce 1
 serestoremime() {
     sed -e 's#HOME_DIR/\\#/home/genr8eofl/#' /etc/selinux/strict/policy/mime-icon-cache.fc | grep -v "^#\|.*?" | cut -d' ' -f1 | xargs restorecon -RFv
 }
 
+#super old script for disk stats
 oldsuperprocdiskstats() {
   pushd /usr/local/src/aspersa-mirror || exit
   ./superprocdiskstats "$1"
