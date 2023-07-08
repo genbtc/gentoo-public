@@ -1,0 +1,23 @@
+--- firefox-102.13.0/ipc/chromium/src/third_party/libevent/configure.ac	2023-06-29 14:12:06.000000000 -0400
++++ firefox-102.13.0/ipc/chromium/src/third_party/libevent/configure.ac	2023-07-08 14:29:16.343641886 -0400
+@@ -78,7 +78,7 @@
+ AC_ARG_ENABLE(gcc-hardening,
+      AS_HELP_STRING(--enable-gcc-hardening, enable compiler security checks),
+ [if test x$enableval = xyes; then
+-    CFLAGS="$CFLAGS -D_FORTIFY_SOURCE=2 -fstack-protector-all"
++    CFLAGS="$CFLAGS -D_FORTIFY_SOURCE=3 -fstack-protector-all"
+     CFLAGS="$CFLAGS -fwrapv -fPIE -Wstack-protector"
+     CFLAGS="$CFLAGS --param ssp-buffer-size=1"
+ fi])
+
+--- firefox-102.13.0/ipc/chromium/src/third_party/libevent/CMakeLists.txt	2023-06-29 14:12:07.000000000 -0400
++++ firefox-102.13.0/ipc/chromium/src/third_party/libevent/CMakeLists.txt	2023-07-08 14:31:47.223641751 -0400
+@@ -308,7 +308,7 @@
+              -Wstack-protector
+              "--param ssp-buffer-size=1")
+ 
+-        add_definitions(-D_FORTIFY_SOURCE=2)
++        add_definitions(-D_FORTIFY_SOURCE=3)
+     endif()
+ 
+     if (EVENT__ENABLE_GCC_FUNCTION_SECTIONS)
