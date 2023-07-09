@@ -25,6 +25,7 @@ cp myscripts/mount-chroot.sh myscripts/
 cp /mnt/crucialp1/make-grub-rescue-stage4.sh myscripts/
 cp /mnt/crucialp1/make-isofs-stage4.sh myscripts/
 cp /mnt/crucialp1/make-squashfs-stage4.sh myscripts/
+cp /mnt/crucialp1/extract-livegui-squashfs.sh myscripts/
 #(perms/selinux)
 chown genr8eofl: . -R
 restorecon -RFv .
