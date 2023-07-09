@@ -1,0 +1,126 @@
+app-admin/conky-1.17.0-r1 iostats math lua-cairo bundled-toluapp
+app-admin/doas-6.8.2 persist
+app-admin/keepassxc-2.7.5-r1 yubikey -network
+app-admin/sxid-4.2-r2 -mail
+app-arch/libarchive-3.6.2-r1 lzo blake2
+app-crypt/gnupg-2.2.41 nls smartcard tools
+app-editors/nano-7.2-r1 magic justify
+app-emulation/libvirt-9.3.0 -virt-network -virt-network libssh lxc parted virtualbox
+app-emulation/qemu-7.2.3 io-uring sdl-image spice ssh virgl vte usbredir virtfs qemu_softmmu_targets_ppc qemu_softmmu_targets_ppc64
+app-emulation/virtualbox-7.0.8a -sdk -python
+app-misc/ddcutil-1.4.1 drm
+app-misc/pax-utils-1.3.5 python
+app-portage/conf-update-1.0.3-r1 colordiff
+app-portage/portage-utils-0.96-r1 static -qmanifest -qtegrity
+app-text/poppler-23.05.0 boost png tiff
+app-text/xmlto-0.0.28-r10 text
+dev-lang/lua-5.1.5-r200 deprecated readline
+dev-lang/python-3.11.4 lto pgo tk
+dev-lang/rust-1.69.0-r1 rustfmt
+dev-libs/boost-1.82.0-r1 python
+dev-libs/capstone-5.0_rc4 python
+dev-libs/libpcre2-10.42-r1 pcre32 static-libs
+dev-libs/openct-0.6.20-r5 pcsc-lite
+dev-python/ipython-8.13.2 nbconvert notebook -nbconvert
+dev-python/numpy-1.24.4 lapack
+dev-python/pillow-9.5.0 webp
+dev-python/PyQt5-5.15.9 gui widgets printsupport
+dev-python/pyzmq-25.1.0 drafts
+dev-python/QtPy-2.3.1 -network -sql printsupport
+dev-qt/qtgui-5.15.9 dbus egl
+dev-qt/qtquickcontrols2-5.15.9 widgets
+dev-qt/qtwidgets-5.15.9 dbus
+dev-util/android-tools-34.0.0 python
+dev-util/geany-plugins-1.38-r5 debugger pretty-printer scope workbench
+dev-util/unicorn-2.0.1 python
+dev-util/xdelta-3.0.11-r1 lzma
+dev-vcs/git-2.41.0 tk
+gnome-base/gvfs-1.50.4-r1 mtp -http
+media-gfx/fbida-2.14-r6 -X
+media-gfx/geeqie-2.0.1-r4 exif tiff xmp
+media-gfx/graphicsmagick-1.3.40 png
+media-gfx/graphviz-8.0.5 python tcl perl gtk2
+media-gfx/gthumb-3.12.2-r4 tiff webp
+media-gfx/imagemagick-7.1.1.6 webp zip tiff
+media-gfx/nomacs-3.16.224-r5 -tiff -opencv
+media-libs/dav1d-1.0.0 xxhash
+media-libs/flac-1.4.2-r1 ogg
+media-libs/freetype-2.13.0 harfbuzz
+media-libs/gd-2.3.3-r3 fontconfig
+media-libs/libmypaint-1.6.1-r2 gegl
+media-libs/libpng-1.6.39 apng
+media-libs/libvpx-1.12.0-r1 postproc
+media-libs/mesa-23.0.3-r1 d3d9 gles1 zink
+media-libs/sdl-image-1.2.12_p20220527-r1 png
+media-libs/sdl-mixer-1.2.12_p20221010 smpeg mad
+media-plugins/audacious-plugins-4.3.1-r2 cue lame scrobbler soxr speedpitch
+media-sound/audacity-2.4.2-r3 vamp id3tag sbsms
+media-sound/deadbeef-1.9.5-r2 oss lastfm notify
+media-sound/qmmp-1.6.4 analyzer archive cover crossfade cue curl enca gnome ladspa lyrics notifier qsui qtmedia scrobbler shout soxr stereo tray
+media-video/ffmpeg-4.4.4-r2 x264 fdk gmp libaom libass libdrm libsoxr libxml2 openh264 openssl -samba sdl xvid x265 rav1e vpx
+media-video/mediainfo-23.04 wxwidgets
+media-video/mpv-0.35.1-r1 archive drm libmpv libcaca
+media-video/obs-studio-29.1.3 vlc fdk pipewire
+media-video/pipewire-0.3.71-r2 -sound-server ffmpeg extra
+media-video/vlc-3.0.18-r3 aom dav1d faad libass matroska mpeg srt
+net-analyzer/wireshark-4.0.6 brotli smi
+net-firewall/iptables-1.8.9 conntrack netlink nftables pcap
+net-fs/samba-4.16.10 client
+net-irc/hexchat-2.16.1-r1 perl python
+net-libs/glib-networking-2.76.0 -libproxy -gnome
+net-libs/libinfinity-0.7.1 -gtk
+net-libs/libsoup-2.74.3 -samba
+net-libs/libsoup-3.4.2 -samba
+net-libs/zeromq-4.3.4-r2 drafts
+net-misc/curl-8.0.1 -samba
+net-misc/dhcpcd-9.5.1 privsep
+net-misc/freerdp-2.10.0-r3 openh264
+net-misc/openssh-9.3_p1-r1 security-key
+net-misc/remmina-1.4.30 ssh
+net-misc/rsync-3.2.7-r2 xxhash system-zlib
+net-misc/wget2-2.0.1-r3 openssl
+net-wireless/gnuradio-3.10.6.0 network
+net-wireless/gr-osmosdr-9999 python rtlsdr
+sys-apps/acl-2.3.1-r1 static-libs
+sys-apps/attr-2.5.1-r2 static-libs
+sys-apps/file-5.44-r3 python
+sys-apps/firejail-0.9.72 contrib apparmor
+sys-apps/pcsc-lite-2.0.0 policykit
+sys-apps/pcsc-tools-1.6.2 gui
+sys-apps/util-linux-2.38.1-r2 cryptsetup magic python udev
+sys-auth/polkit-122-r1 duktape
+sys-block/fio-3.34 io-uring aio
+sys-block/gparted-1.5.0-r1 policykit
+sys-block/parted-3.6 device-mapper
+sys-block/partimage-0.6.9-r4 -ssl -pam
+sys-boot/grub-2.06-r6 sdl
+sys-devel/binutils-2.39-r5 pgo
+sys-devel/binutils-2.40-r5 pgo
+sys-devel/gcc-12.3.1_p20230526 lto pgo
+sys-fs/btrfs-progs-6.3.1 -man
+sys-fs/e2fsprogs-1.47.0-r2 -fuse
+sys-fs/fuse-2.9.9-r2 suid
+sys-fs/fuse-3.15.0 suid
+sys-fs/fuse-exfat-1.4.0 suid
+sys-kernel/gentoo-sources-6.1.31 experimental
+sys-kernel/gentoo-sources-6.1.38 experimental
+sys-kernel/linux-firmware-20230515 compress-zstd
+sys-libs/libcap-2.69 tools static-libs
+sys-libs/libcap-ng-0.8.3 static-libs
+sys-libs/libselinux-3.5 static-libs
+sys-libs/libxcrypt-4.4.33 static-libs
+sys-libs/ncurses-6.4_p20230401 gpm
+sys-libs/zlib-1.2.13-r1 static-libs minizip
+sys-process/audit-3.0.9-r1 static-libs
+sys-process/lsof-4.98.0 rpc
+sys-process/procps-3.3.17-r2 modern-top
+virtual/imagemagick-tools-0-r1 jpeg tiff
+www-client/elinks-0.16.1.1-r1 gpm
+www-client/firefox-102.13.0 eme-free hwaccel system-png lto pgo
+www-client/w3m-0.5.3_p20230121 fbcon gpm
+x11-apps/mesa-progs-8.5.0 gles2
+x11-apps/xdpyinfo-1.3.4 dga
+x11-drivers/xf86-video-qxl-0.1.6 xspice
+x11-libs/libdrm-2.4.115 video_cards_radeon
+xfce-base/xfce4-settings-4.18.2 libcanberra -xklavier
+
