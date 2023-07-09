@@ -10,10 +10,3 @@ for x in $(find /var/db/pkg -name BUILD_TIME); do
 		echo $t $q;
 	fi;
 done
-# Step2: Feed it back into emerge
-#TODO:
-#FEATURES="-getbinpkg" emerge -uav1 --usepkg=n --selective=n \
-# $(~/timestampscript 1660000000 | awk '{print "="$2}') \
-# --exclude "$(awk '{system("qatom -F\"%{CATEGORY}/%{PN}\" " $2)}' /tmp/excludelist-temp | xargs)" \
-# --exclude flaggie --exclude logclean --exclude "app-portage/*::mv"
-
