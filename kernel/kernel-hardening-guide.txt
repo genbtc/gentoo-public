@@ -1,0 +1,22 @@
+Kernel Hardening
+----------------
+
+FORTIFY_SOURCE (4.13+)
+
+(these came ported from grsec)
+GCC plugin RANDSTRUCT  (4.13+)
+GCC plugin STACKLEAK  (4.20+)
+GCC pluginSTRUCTLEAK  (4.20++)
+GCC plugin LATENT_ENTROPY (4.9+)
+
+ZERO_CALL_USED_REGS (5.15+)
+
+Memory Initialization:
+INIT_STACK_ALL (5.2+)
+INIT_STACK_ALL_ZERO / INIT_STACK_ALL_PATTERN (5.9+)
+(-ftrivial-auto-var-init=zero) (-ftrivial-auto-var-init=pattern)
+
+init_on_alloc=1 INIT_ON_ALLOC_DEFAULT_ON (5.3+)
+init_on_free=1  CONFIG_INIT_ON_FREE_DEFAULT_ON (5.3+)
+
+CONFIG_X86_KERNEL_IBT (5.18+)
