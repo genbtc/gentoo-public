@@ -1,0 +1,33 @@
+the main file
+https://github.com/gentoo/portage/blob/master/lib/portage/package/ebuild/doebuild.py#L161
+
+for binhost
+src/portage/lib/portage/emaint/modules/binhost/binhost.py
+
+QA warnings for gcc/clang compiler warnings that indicate code problems
+https://github.com/genbtc/portage/blob/master/bin/install-qa-check.d/90gcc-warnings
+and
+/usr/lib/portage/python3.11/install-qa-check.d/90gcc-warnings # ls
+05double-D
+05prefix
+10executable-issues
+10ignored-flags
+20deprecated-directories
+20runtime-directories     
+60bash-completion
+60openrc
+60pkgconfig
+60pngfix
+60systemd  
+60udev
+80libraries
+80multilib-strict
+90bad-bin-group-write
+90bad-bin-owner
+90cmake-warnings
+90config-impl-decl
+90gcc-warnings
+90world-writable
+95empty-dirs
+
+Theres also a preinst-qa-check and postinst-qa-check
