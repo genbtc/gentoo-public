@@ -1,4 +1,4 @@
-#!/usr/bin/python3.9
+#!/usr/bin/python3
 #
 # Copyright(c) 2006, Chris PeBenito <pebenito@gentoo.org>
 # Copyright(c) 2006, Gentoo Foundation

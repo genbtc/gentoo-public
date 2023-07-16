@@ -1,7 +1,10 @@
 #!/bin/bash
+#v0.4 script by genr8eofl @ gentoo - 2023 AGPL3
+
 #Part 1a - get list of installed package atoms (=category/package-version)
 cpvfile="portage-cpv.txt"
 equery -C -N list -F '=$cpv' '*' | egrep "^=" > $cpvfile
+
 #Part 1b - get list of files provided by all packages
 allfiles="portage-allfiles.txt"
 for d in `cat $cpvfile`; do

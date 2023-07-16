@@ -4,10 +4,10 @@ allflags() {
 /usr/bin/env python3 - <<EOF
 import portage
 cpv = portage.db["/"]["vartree"].dbapi.cpv_all()
-for d in cpv:
-    u = portage.db["/"]["vartree"].dbapi.aux_get(d, ['PKGUSE'])
-    if '' not in u:
-        print(d, ' '.join(u))
+for pvr in cpv:
+    use = portage.db["/"]["vartree"].dbapi.aux_get(pvr, ['PKGUSE'])
+    if '' not in use:
+        print(pvr, ' '.join(use))
 EOF
 }
 allflags
