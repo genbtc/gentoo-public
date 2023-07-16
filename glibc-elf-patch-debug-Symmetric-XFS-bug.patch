@@ -1,0 +1,45 @@
+diff -ur a/elf/cache.c b/elf/cache.c
+--- a/elf/cache.c   2023-07-14 04:27:41.486131612 +0000
++++ b/elf/cache.c   2023-07-14 04:09:14.084781560 +0000
+@@ -910,6 +910,7 @@
+ {
+   size_t hash = aux_cache_entry_id_hash (id) % aux_hash_size;
+   struct aux_cache_entry *entry;
++  fprintf(stderr, "DEBUG: inserting '%s' with ino %lld, ctime %lld, size %lld, dev %lld\n", soname, id->ino, id->ctime, id->size, id->dev);
+   for (entry = aux_hash[hash]; entry; entry = entry->next)
+     if (id->ino == entry->id.ino
+    && id->ctime == entry->id.ctime
+diff -ur a/elf/ldconfig.c b/elf/ldconfig.c
+--- a/elf/ldconfig.c   2023-07-14 04:27:41.488131687 +0000
++++ b/elf/ldconfig.c   2023-07-14 04:09:14.084781560 +0000
+@@ -705,8 +705,10 @@
+ 
+   struct dirent64 *direntry;
+   struct dlib_entry *dlibs = NULL;
++  fprintf(stderr, "DEBUG: DT_LNK: %08x, DT_REG: %08x, DT_DIR: %08x, DT_UNKNOWN: %08x\n", DT_LNK, DT_REG, DT_DIR, DT_UNKNOWN);
+   while ((direntry = readdir64 (dir)) != NULL)
+     {
++      fprintf(stderr, "DEBUG: direntry '%s' ino: %lld, type: %08x\n", direntry->d_name, direntry->d_ino, direntry->d_type);
+       int flag;
+       /* We only look at links and regular files.  */
+       if (direntry->d_type != DT_UNKNOWN
+@@ -755,9 +757,9 @@
+ 
+       struct stat lstat_buf;
+       /* We optimize and try to do the lstat call only if needed.  */
+-      if (direntry->d_type != DT_UNKNOWN)
++      /*if (direntry->d_type != DT_UNKNOWN)
+    lstat_buf.st_mode = DTTOIF (direntry->d_type);
+-      else
++   else*/
+    if (__glibc_unlikely (lstat (real_file_name, &lstat_buf)))
+      {
+        error (0, errno, _("Cannot lstat %s"), file_name);
+@@ -766,6 +768,7 @@
+ 
+       struct stat stat_buf;
+       int is_link = S_ISLNK (lstat_buf.st_mode);
++      fprintf(stderr, "DEBUG: Is link from readdir: %d, is link from stat: %d\n", S_ISLNK(DTTOIF(direntry->d_type)), is_link);
+       if (is_link)
+    {
+      /* In case of symlink, we check if the symlink refers to 

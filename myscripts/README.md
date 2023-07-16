@@ -23,3 +23,7 @@ Correct scripting practices have been attempted.
 ### my-initramfs-script.init.sh
 ### sign-this-dir.sh
 ### timestampscript.sh
+### allfiles.py
+### allfiles2.sh
+### allflags-get-pkguseflags.py
+### site-pkgs-portage-util-env_update.py
