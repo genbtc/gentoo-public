@@ -70,3 +70,11 @@ We can create a destination directory and ask gentoo to compile a software and a
 the variable for this is emerge --root=/SOMEDESTDIR
 (not all packages ebuilds have been sanitized to allow for this)
 See https://wiki.gentoo.org/wiki/User:Spawns/Bootstrap_with_emerge for more details on that. Also see my other doc .txt files.
+
+It's up to you to bear the responsibility for building and getting the correct binpkgs as requested.
+This can be complicated: 
+    mixing CFLAGS from the wrong -march= is one of my current nightmares that I'm working on fixing, by sorting through and filtering them out. TBA.
+
+The most common advice would be to maintain an identical /etc/portage/* configuration on all machines being served the binhost in question.
+Other than that, you are on your own.
+My current theory is now that each binhost needs its --configroot frozen and packaged up for re-deployment.

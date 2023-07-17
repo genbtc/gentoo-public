@@ -1,14 +1,24 @@
 Portage Binhosts
 --------------------
+To create a binhost:
 
 prefer defaults, including FEATURES="binpkg-multi-instance" 
 , file extension will be .xpak (not .tbz2)
-but need to compile binpkg with FEATURES="buildpkg"
+first step, set FEATURES="buildpkg" in make.conf, and recompile binpkgs, maybe emerge -e @world
 
 default dir goes to PKGDIR=/var/cache/binpkgs
- (need to collect them all from there periodically and move them, rsync)
+At this point your client machine has generated packages for itself.
+They do not serve though.
+ (need to collect them all from there periodically and move them to a dir they can be served from)
 
-example rsyncd.conf:
+for the sake of example, you can turn your client into a basic server
+# python -m http.server 8080
+Serving HTTP on 0.0.0.0 port 8080 (http://0.0.0.0:8080/) ...
+
+or, first use rsync as a client, rsync -rtlv $localA $remoteB)
+Then set up rsyncd (rsync server) to use custom directory trees
+example rsyncd.conf, uses rsync as a server:
+
 use chroot = yes
 [binhostA]
     path = /mnt/RaidZ-4TBx4/DiskImages/LinuxDD/./binpkgs-gentoo-atom-tablet-1/
@@ -17,6 +27,15 @@ use chroot = yes
     path = /mnt/RaidZ-4TBx4/DiskImages/LinuxDD/./binpkgs-second-one-2/
     read only
 
-GPG Signing goes above and beyond, that is documented elsewhere, check gentoo wiki.
+
+; emaint binhost --fix
+# will regenerate Packages index file
+NOTE:- currently doesnt work on $target_dir , requires a patch to write file elsewhere.
+     - see my patch @ patches/portage-binhost-py.patch
+note:(also, it pulls some stats from the running profile and full system configs)
+(when you re-generate, the top system header fields will be mismatched, namely the name of the profile)
 
 
+GPG Signing .gpkg - goes above and beyond,,, that is documented elsewhere, check gentoo wiki.
+
+To be continued.

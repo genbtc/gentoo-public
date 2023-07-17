@@ -1,0 +1,12 @@
+--- /usr/lib/python3.11/site-packages/portage/emaint/modules/binhost/binhost.py	2023-07-17 11:00:51.564158136 -0400
++++ /usr/lib/python3.11/site-packages/portage/emaint/modules/binhost/binhost.py	2023-07-17 11:00:34.892156929 -0400
+@@ -20,6 +20,9 @@
+     def __init__(self):
+         eroot = portage.settings["EROOT"]
+         self._bintree = portage.db[eroot]["bintree"]
++##commented out on purpose, set filename, and uncomment when ready to use:
++#        self._bintree._pkgindex_file = '/tmp/bintreePKG'  #added by genr8eofl
++##note: file needs to reside on a filesystem that supports locking semantics
+         self._bintree.populate()
+         self._pkgindex_file = self._bintree._pkgindex_file
+         self._pkgindex = self._bintree._load_pkgindex()
