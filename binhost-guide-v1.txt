@@ -1,4 +1,5 @@
-prior art
+# binhost-guide-v1.txt : gentoo-chroot-binhost-ideas-July0423.txt
+chroot prior art
 ----------
 chroot's = this began with arch-chroot and it was forked
     Kangie fork @ https://gitlab.com/Matt.Jolly/kangie-gentoo-scripts/-/blob/master/gentoo-chroot/gentoo-chroot.sh
@@ -12,47 +13,50 @@ kubler -- NEW !!!! full fledged gentoo container orchestrator system - documenta
 cross-boss -- New gentoo user project (crossdev) https://github.com/chewi/cross-boss/
 chroot-build-helper -- hairu's gentoo user project combines everything (currently not hosted) COMING SOON!!
 
-Idea:
+Main Idea:
 --------
+chroots (various methods above)
 binhosts (binpkgs)
-+
-portage - client/server
-=
-DISTCCBINHOST
-
+    FEATURES="binpkg-multi-instance" for .xpak by default; check
 normal way to create binpkgs:
     FEATURES="buildpkg"
+serve them
 
-files ending in .xpak's(.tbz2 + metadata) are created locally
+files ending in .xpak's(.tbz2 + metadata) are created locally as packages
  unless GPKG signing is turned on then its .gpkg
-default is $PKGDIR:=/var/cache/binpkgs
-local index: /var/cache/binpkgs/Packages
+
+default is PKGDIR=/var/cache/binpkgs
+    local index: /var/cache/binpkgs/Packages
+
+Rewrite the Packages index file:
+$ emaint binhost --fix
 
 From here, its very easy to start serving what you've created.
 
-$ cd /var/cache/binpkgs
-$ ls Packages
-$ emaint binhost --check
+$ cd /var/cache/binpkgs         #start in this PKGDIR
+$ ls Packages                   #confirm Packages index file exists
+$ emaint binhost --check        # check Packages index file is valid
 
-$ python -m http.server 8008
+$ python -m http.server 8008    #start basic HTTP server(plaintext, hide behind LAN/nginx/proxy)
 
-is enough to serve a binhost. then,
+ is enough to serve a binhost. then,
 
 export PORTAGE_BINHOST="http://192.168.1.1"
 or
-export PORTAGE_BINHOST="http://127.0.0.1:8080 http://192.168.1.1"
+export PORTAGE_BINHOST="http://127.0.0.1:8008 http://192.168.1.1"
 (you can set up multiple repositories by separating eachs' URL with a space char )
 (theres also another method to set it up, using binrepos.conf instead of the env var)
 
-emerge -g @world option on the client,
+$ emerge -g @world option on the client,
 will download the binhost index, and take it into account.
 (theres also another FEATURES variable named getbinpkg , basically forces on -g mode )
+    FEATURES="buildpkg"
 
 the process downloads the Packages file from the remote host and caches it locally stored @  
-remote index: /var/cache/edb/binhost/${REMOTEHOSTNAME}/Packages
+    remote index: /var/cache/edb/binhost/${REMOTEHOSTNAME}/Packages
 
 sometimes you need to clear the client's cache if you do too many updates on the other end, and portage (somehow) doesnt notice.
-rm -rf /var/cache/edb/binhost/*/
+$ rm -rf /var/cache/edb/binhost/*/
 
 sometimes the binhost gets cranky about USE flags or deps not matching, so theres two flags for emerge:
 --binpkg-respect-use=y
@@ -65,3 +69,4 @@ Gentoo can compile all its source packages into a different directory.
 We can create a destination directory and ask gentoo to compile a software and all the dependencies, and put it into a new root fs.
 the variable for this is emerge --root=/SOMEDESTDIR
 (not all packages ebuilds have been sanitized to allow for this)
+See https://wiki.gentoo.org/wiki/User:Spawns/Bootstrap_with_emerge for more details on that. Also see my other doc .txt files.

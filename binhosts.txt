@@ -1,0 +1,22 @@
+Portage Binhosts
+--------------------
+
+prefer defaults, including FEATURES="binpkg-multi-instance" 
+, file extension will be .xpak (not .tbz2)
+but need to compile binpkg with FEATURES="buildpkg"
+
+default dir goes to PKGDIR=/var/cache/binpkgs
+ (need to collect them all from there periodically and move them, rsync)
+
+example rsyncd.conf:
+use chroot = yes
+[binhostA]
+    path = /mnt/RaidZ-4TBx4/DiskImages/LinuxDD/./binpkgs-gentoo-atom-tablet-1/
+    read only
+[binhostB]
+    path = /mnt/RaidZ-4TBx4/DiskImages/LinuxDD/./binpkgs-second-one-2/
+    read only
+
+GPG Signing goes above and beyond, that is documented elsewhere, check gentoo wiki.
+
+
