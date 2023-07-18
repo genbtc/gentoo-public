@@ -4,14 +4,15 @@ ISODIR="/mnt/borg/ISOs"                     #choose where the source ISO is
 ISO="livegui-amd64-20230705T183202Z.iso"    #whatever ISO we want
 imgsq="image.squashfs"  #CONSTANT           #(the image inside the ISO)
 target=${ISO%.iso}                          #target directory to extract to
+sqfs="${ISO}.squashfs"
 
 #start extracting squashfs file from ISO (7z required to extract):
 # 7z x /mnt/borg/ISOs/livegui-amd64-20230705T183202Z.iso image.squashfs
 # mv image.squashfs livegui-amd64-20230705T183202Z.iso.squashfs
 7z ${ISODIR}/${ISO} $imgsq
+
 mv image.squashfs  ${sqfs}
 
-sqfs="${ISO}.squashfs"
 unsquashfs -d ${sqfs%.iso.squashfs}  $sqfs
 
 #no #gentoo="/mnt/gentoo"
