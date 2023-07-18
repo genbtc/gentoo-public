@@ -1,5 +1,5 @@
 #!/bin/bash
-#2023 genr8eofl - @ gentoo - script v0.21 partitions the disk
+#2023 genr8eofl - @ gentoo - script v0.22 partitions the disk
 
 DISKSIZE="8G"
 DISKIMG="gentoo-amazing-1.dd"
@@ -34,7 +34,11 @@ size= 50M, type= U, name="EFI"
 #,50M,U,,
 size= 150M, type= L, name="boot"
 #,150M,L,,
-size= , type= V, name="devLVMmap"
+size= , type= L, name="gentooROOT"
 #,,V,,
 EEOF
 
+#Create filesystem on this partition
+mkfs.vfat /dev/loop0p1 -n EFI -F32 -v
+mkfs.ext4 /dev/loop0p2 -L boot
+mkfs.ext4 /dev/loop0p3 -L gentooROOT
