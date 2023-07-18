@@ -1,11 +1,11 @@
 #!/bin/bash
-#script v0.22 by @genr8eofl copyright 2023 - AGPL3 License
+#script v0.23 by @genr8eofl copyright 2023 - AGPL3 License
 if ! pgrep -f allow_root ; then
     echo "Error. fusermount -Z should give root allow_other_user or allow_root , first" && exit
 fi
-echo "Found PID of server's fuse mount. Good." # Starting in 3 seconds..."
-echo "move-binpkgs-to-server.sh - script v0.22 - by @genr8eofl, continuing in 3 seconds ..."
-sleep 3
+echo "Found PID of server's fuse mount. Good." # Starting in 2 seconds..."
+echo "move-binpkgs-to-server.sh - script v0.23 - by @genr8eofl, continuing in 2 seconds ..."
+sleep 2
 #-------------------------VARIABLES--------------------------------
 #LocalDir
 pkgdirb="/var/cache/binpkgs"
@@ -34,8 +34,6 @@ fi
 echo "Begin process of copying ALL binpkgs to server now!..."
 rsync --progress -rltDv ${pkgdir}/  ${serverdir}/${targetdir}
 echo "Done copying files to server!"
-echo "Saving next dirname counter: ++ incremented  $verid  : in ${versionfile}"
-echo $verid > ${serverdir}/${versionfile}
 #--------------------------DELETE---------------------------------
 pushd ${pkgdir} || exit
 echo "Deleting ALL binpkgs locally in 10 seconds! ctrl+C to stop ..."
@@ -51,3 +49,9 @@ a=$(rm -r -I ${pkgdir}/*)
 #c=$(chown root:portage ${pkgdir})
 echo "Done, Finished deleting all local binpkgs from ${pkgdir}!"
 popd
+#
+#
+# Commented out: increment manually.
+#
+#echo "Saving next dirname counter: ++ incremented  $verid  : in ${versionfile}"
+#echo $verid > ${serverdir}/${versionfile}
