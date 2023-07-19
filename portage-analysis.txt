@@ -1,39 +1,41 @@
-the main file
+Portage Analysis (by genr8eofl - 2023)
+---------- ---------- ---------- ----------
+
+the main file:
 https://github.com/gentoo/portage/blob/master/lib/portage/package/ebuild/doebuild.py#L161
 
-for binhost
+the file for binhosts:
 src/portage/lib/portage/emaint/modules/binhost/binhost.py
 
 QA warnings for gcc/clang compiler warnings that indicate code problems
 https://github.com/genbtc/portage/blob/master/bin/install-qa-check.d/90gcc-warnings
 and
 /usr/lib/portage/python3.11/install-qa-check.d/90gcc-warnings # ls
-05double-D
-05prefix
-10executable-issues
-10ignored-flags
-20deprecated-directories
-20runtime-directories     
-60bash-completion
-60openrc
-60pkgconfig
-60pngfix
-60systemd  
-60udev
-80libraries
-80multilib-strict
-90bad-bin-group-write
-90bad-bin-owner
-90cmake-warnings
-90config-impl-decl
-90gcc-warnings
-90world-writable
-95empty-dirs
-
+	05double-D
+	05prefix
+	10executable-issues
+	10ignored-flags
+	20deprecated-directories
+	20runtime-directories     
+	60bash-completion
+	60openrc
+	60pkgconfig
+	60pngfix
+	60systemd  
+	60udev
+	80libraries
+	80multilib-strict
+	90bad-bin-group-write
+	90bad-bin-owner
+	90cmake-warnings
+	90config-impl-decl
+	90gcc-warnings
+	90world-writable
+	95empty-dirs
 Theres also a preinst-qa-check and postinst-qa-check
 
 Top 100 Largest Files in Portage:
-------------------------------------------------
+------------------------------------
 499633  depgraph.py
 253670  vartree.py
 148958  actions.py
@@ -134,6 +136,9 @@ Top 100 Largest Files in Portage:
  12786  FakeVartree.py
  11957  mappings.py
  11932  circular_dependency.py
+
+List of files in portage/bin/ directory:
+---------- ---------- ---------- ----------
 
 bin/xpak-helper.py
 ------------------
@@ -545,20 +550,74 @@ bin/phase-functions.sh
 
 
 bin/misc-functions.sh
+------------------
+	# Miscellaneous shell functions that make use of the ebuild env but don't need
+	# to be included directly in ebuild.sh.
+	#
+	# We're sourcing ebuild.sh here so that we inherit all of it's goodness,
+	# including bashrc trickery.  This approach allows us to do our miscellaneous
+	# shell work within the same env that ebuild.sh has, but without polluting
+	# ebuild.sh itself with unneeded logic and shell code.
+	#
+	install_symlink_html_docs(){}
+	canonicalize(){}
+	install_qa_check(){}
+	__dyn_instprep(){}
+	preinst_qa_check(){}
+	postinst_qa_check(){}
+	preinst_mask(){}
+	preinst_sfperms(){}
+	preinst_suid_scan(){}
+	preinst_selinux_labels(){}
+	__dyn_package(){}
+	__dyn_spec(){}
+	__dyn_rpm(){}
+	die_hooks(){}
+	success_hooks(){}
+	install_hooks(){}
+	eqatag(){}
+
 bin/lock-helper.py
+------------------
+
 bin/isolated-functions.sh
+------------------
+
 bin/gpkg-sign
+------------------
+
 bin/gpkg-helper.py
+------------------
+
 bin/glsa-check
+------------------
+
 bin/fixpackages
+------------------
+
 bin/filter-bash-environment.py
+------------------
+
 bin/etc-update
+------------------
+
 bin/estrip
 ----------
------------
-reverse list other direction
---------------
 
+....
+...
+..
+.
+----------
+.
+..
+...
+....
+----------
+reverse list other direction
+----------
+------------------
+------------------
 ./bin/:
 archive-conf
 bashrc-functions.sh
@@ -614,3 +673,5 @@ shelve-utils
 socks5-server.py
 xattr-helper.py
 xpak-helper.py
+------------------
+not Done. to be continued 07/19/23
