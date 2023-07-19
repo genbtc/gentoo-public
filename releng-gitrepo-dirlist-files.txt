@@ -1,0 +1,1646 @@
+releng/:
+total 36
+ 4096  .
+ 4096  ..
+ 4096  config
+ 4096  .git
+   49  .gitignore
+  323  README.md
+ 4096  releases
+ 4096  scripts
+ 4096  tools
+
+releng/config:
+total 16
+ 4096  .
+ 4096  ..
+ 4096  fwbuilder
+  352  README
+
+releng/config/fwbuilder:
+total 112
+  4096  .
+  4096  ..
+ 12362  demeter.fw
+ 85860  demeter.fwb
+   284  fwbuilder.service
+
+releng/.git:
+total 112
+  4096  .
+  4096  ..
+   257  config
+    73  description
+    23  HEAD
+  4096  hooks
+ 69250  index
+  4096  info
+  4096  logs
+  4096  objects
+   467  packed-refs
+  4096  refs
+
+releng/.git/hooks:
+total 72
+ 4096  .
+ 4096  ..
+  478  applypatch-msg.sample
+  896  commit-msg.sample
+ 4726  fsmonitor-watchman.sample
+  189  post-update.sample
+  424  pre-applypatch.sample
+ 1643  pre-commit.sample
+  416  pre-merge-commit.sample
+ 1492  prepare-commit-msg.sample
+ 1374  pre-push.sample
+ 4898  pre-rebase.sample
+  544  pre-receive.sample
+ 2783  push-to-checkout.sample
+ 2308  sendemail-validate.sample
+ 3650  update.sample
+
+releng/.git/info:
+total 12
+ 4096  .
+ 4096  ..
+  240  exclude
+
+releng/.git/logs:
+total 16
+ 4096  .
+ 4096  ..
+  168  HEAD
+ 4096  refs
+
+releng/.git/logs/refs:
+total 16
+ 4096  .
+ 4096  ..
+ 4096  heads
+ 4096  remotes
+
+releng/.git/logs/refs/heads:
+total 12
+ 4096  .
+ 4096  ..
+  168  master
+
+releng/.git/logs/refs/remotes:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  origin
+
+releng/.git/logs/refs/remotes/origin:
+total 12
+ 4096  .
+ 4096  ..
+  168  HEAD
+
+releng/.git/objects:
+total 16
+ 4096  .
+ 4096  ..
+ 4096  info
+ 4096  pack
+
+releng/.git/objects/info:
+total 8
+ 4096  .
+ 4096  ..
+
+releng/.git/objects/pack:
+total 9716
+    4096  .
+    4096  ..
+  825588  pack-cabe10488e57524a52afef59a2508704abb490b7.idx
+ 8991649  pack-cabe10488e57524a52afef59a2508704abb490b7.pack
+  117840  pack-cabe10488e57524a52afef59a2508704abb490b7.rev
+
+releng/.git/refs:
+total 20
+ 4096  .
+ 4096  ..
+ 4096  heads
+ 4096  remotes
+ 4096  tags
+
+releng/.git/refs/heads:
+total 12
+ 4096  .
+ 4096  ..
+   41  master
+
+releng/.git/refs/remotes:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  origin
+
+releng/.git/refs/remotes/origin:
+total 12
+ 4096  .
+ 4096  ..
+   32  HEAD
+
+releng/.git/refs/tags:
+total 8
+ 4096  .
+ 4096  ..
+
+releng/releases:
+total 32
+ 4096  .
+ 4096  ..
+ 4096  kconfig
+ 4096  overlays
+ 4096  portage
+ 4096  scripts
+ 4096  specs
+ 4096  specs-qemu
+
+releng/releases/kconfig:
+total 44
+ 4096  .
+ 4096  ..
+ 4096  alpha
+ 4096  amd64
+ 4096  arm64
+ 4096  hppa
+ 4096  ia64
+ 4096  powerpc
+ 4096  s390
+ 4096  sparc
+ 4096  x86
+
+releng/releases/kconfig/alpha:
+total 136
+  4096  .
+  4096  ..
+ 63961  installcd-4.14.83.config
+ 63972  installcd-4.14.83.nolsa.config
+
+releng/releases/kconfig/amd64:
+total 1348
+   4096  .
+   4096  ..
+ 116328  admincd-4.4.8-r1-selinux.config
+ 153196  amd64-5.10.61.config
+ 159339  amd64-5.15.59.config
+ 159413  amd64-5.15.80.config
+ 167600  amd64-6.1.38.config
+  99872  cloud-amd64-gentoo.config
+  98898  cloud-amd64-hardened.config
+ 161508  livegui-amd64-5.15.16.config
+ 235051  livegui-amd64-5.15.23.config
+   1780  livegui-amd64-5.15.23.config-changes.patch
+
+releng/releases/kconfig/arm64:
+total 688
+   4096  .
+   4096  ..
+ 251556  arm64-5.10.52.config
+ 263694  arm64-5.15.12.config
+ 173535  packet-arm64.config
+
+releng/releases/kconfig/hppa:
+total 156
+  4096  .
+  4096  ..
+ 72972  hppa32.config
+ 74900  hppa64.config
+
+releng/releases/kconfig/ia64:
+total 64
+  4096  .
+  4096  ..
+ 53978  installcd-3.8.13.config
+
+releng/releases/kconfig/powerpc:
+total 1060
+   4096  .
+   4096  ..
+  92280  installcd-ibm-4.19.config
+  93969  installcd-ppc32apple-4.19.config
+  92233  installcd-ppc64apple-4.19.config
+ 199969  installcd-ppc64le-4K-5.10.config
+ 200033  installcd-ppc64le-64K-5.10.config
+ 175616  ppc32.config
+ 216789  ppc64.config
+
+releng/releases/kconfig/s390:
+total 44
+  4096  .
+  4096  ..
+ 36265  netboot64.config
+
+releng/releases/kconfig/sparc:
+total 440
+  4096  .
+  4096  ..
+ 70808  installcd-3.8.13.config
+ 89133  installcd-4.14.39.config
+ 89276  installcd-4.14.83.config
+ 89771  installcd-4.19.44.config
+ 94652  installcd-5.4.48.config
+
+releng/releases/kconfig/x86:
+total 1432
+   4096  .
+   4096  ..
+  79917  admincd-3.0.config
+ 101560  admincd-3.18.9.config
+  84351  admincd-3.2.config
+  85001  admincd-3.4.2.config
+  90638  admincd-3.9.5.config
+  48259  installcd-2.6.24.config
+  57161  installcd-2.6.27.config
+  63652  installcd-2.6.28.config
+  66892  installcd-2.6.31.config
+  74904  installcd-2.6.37.config
+  76511  installcd-2.6.38.config
+  98591  installcd-3.18.12.config
+  81934  installcd-3.4.2.config
+  85595  installcd-3.8.13.config
+ 124296  installcd-4.14.52.config
+  64288  livecd-2.6.24.config
+ 139450  x86-5.4.38.config
+
+releng/releases/overlays:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  common
+
+releng/releases/overlays/common:
+total 16
+ 4096  .
+ 4096  ..
+ 4096  overlay
+ 4096  root_overlay
+
+releng/releases/overlays/common/overlay:
+total 20
+ 4096  .
+ 4096  ..
+ 4096  installcd
+ 4096  livecd
+ 4096  livedvd
+
+releng/releases/overlays/common/overlay/installcd:
+total 24
+ 4096  .
+ 4096  ..
+ 4096  distfiles
+ 4096  docs
+ 4096  snapshots
+ 4096  stages
+
+releng/releases/overlays/common/overlay/installcd/distfiles:
+total 12
+ 4096  .
+ 4096  ..
+  120  README
+
+releng/releases/overlays/common/overlay/installcd/docs:
+total 12
+ 4096  .
+ 4096  ..
+  232  README
+
+releng/releases/overlays/common/overlay/installcd/snapshots:
+total 12
+ 4096  .
+ 4096  ..
+  202  README
+
+releng/releases/overlays/common/overlay/installcd/stages:
+total 12
+ 4096  .
+ 4096  ..
+  110  README
+
+releng/releases/overlays/common/overlay/livecd:
+total 16
+ 4096  .
+ 4096  ..
+ 4096  docs
+ 4096  snapshots
+
+releng/releases/overlays/common/overlay/livecd/docs:
+total 12
+ 4096  .
+ 4096  ..
+  232  README
+
+releng/releases/overlays/common/overlay/livecd/snapshots:
+total 12
+ 4096  .
+ 4096  ..
+  202  README
+
+releng/releases/overlays/common/overlay/livedvd:
+total 24
+ 4096  .
+ 4096  ..
+ 4096  distfiles
+ 4096  docs
+ 4096  snapshots
+ 4096  stages
+
+releng/releases/overlays/common/overlay/livedvd/distfiles:
+total 12
+ 4096  .
+ 4096  ..
+   52  README
+
+releng/releases/overlays/common/overlay/livedvd/docs:
+total 12
+ 4096  .
+ 4096  ..
+  233  README
+
+releng/releases/overlays/common/overlay/livedvd/snapshots:
+total 12
+ 4096  .
+ 4096  ..
+  202  README
+
+releng/releases/overlays/common/overlay/livedvd/stages:
+total 12
+ 4096  .
+ 4096  ..
+  110  README
+
+releng/releases/overlays/common/root_overlay:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  home
+
+releng/releases/overlays/common/root_overlay/home:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  gentoo
+
+releng/releases/overlays/common/root_overlay/home/gentoo:
+total 20
+  4096  .
+  4096  ..
+ 10922  .xscreensaver
+
+releng/releases/portage:
+total 28
+ 4096  .
+ 4096  ..
+ 4096  isos
+ 4096  isos-qemu
+ 4096  livegui
+ 4096  stages
+ 4096  stages-qemu
+
+releng/releases/portage/isos:
+total 24
+ 4096  .
+ 4096  ..
+ 4096  package.accept_keywords
+ 4096  package.license
+ 4096  package.use
+ 4096  savedconfig
+
+releng/releases/portage/isos/package.accept_keywords:
+total 16
+ 4096  .
+ 4096  ..
+   52  admincd-packages
+   46  pre-stabilization
+
+releng/releases/portage/isos/package.license:
+total 12
+ 4096  .
+ 4096  ..
+  122  package.license
+
+releng/releases/portage/isos/package.use:
+total 48
+ 4096  .
+ 4096  ..
+   66  admincd-packages
+   25  brltty
+   92  cifs-utils
+   32  genkernel
+   34  gentoo-sources
+   38  linux-firmware
+    8  lvm
+  224  no-filecaps
+   27  no-passwdqc
+   33  wpa_supplicant
+
+releng/releases/portage/isos/savedconfig:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  sys-kernel
+
+releng/releases/portage/isos/savedconfig/sys-kernel:
+total 104
+  4096  .
+  4096  ..
+ 90279  linux-firmware
+  1594  prune_firmwares.sh
+
+releng/releases/portage/isos-qemu:
+total 36
+ 4096  .
+ 4096  ..
+ 4096  env
+ 4096  package.accept_keywords
+ 4096  package.env
+ 4096  package.license
+ 4096  package.use
+ 4096  patches
+ 4096  savedconfig
+
+releng/releases/portage/isos-qemu/env:
+total 16
+ 4096  .
+ 4096  ..
+ 4096  releng
+ 4096  sys-kernel
+
+releng/releases/portage/isos-qemu/env/releng:
+total 20
+ 4096  .
+ 4096  ..
+   88  forcelfs
+   76  nosandbox
+   54  qemu
+
+releng/releases/portage/isos-qemu/env/sys-kernel:
+total 12
+ 4096  .
+ 4096  ..
+ 1268  genkernel
+
+releng/releases/portage/isos-qemu/package.accept_keywords:
+total 12
+ 4096  .
+ 4096  ..
+   68  admincd-packages
+
+releng/releases/portage/isos-qemu/package.env:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  releng
+
+releng/releases/portage/isos-qemu/package.env/releng:
+total 20
+ 4096  .
+ 4096  ..
+   16  all
+   31  forcelfs
+   32  glibc
+
+releng/releases/portage/isos-qemu/package.license:
+total 12
+ 4096  .
+ 4096  ..
+  122  package.license
+
+releng/releases/portage/isos-qemu/package.use:
+total 48
+ 4096  .
+ 4096  ..
+   66  admincd-packages
+   25  brltty
+   92  cifs-utils
+   32  genkernel
+   34  gentoo-sources
+  116  libpcre
+   38  linux-firmware
+    8  lvm
+   24  no-asm
+  224  no-filecaps
+
+releng/releases/portage/isos-qemu/patches:
+total 16
+ 4096  .
+ 4096  ..
+ 4096  dev-lang
+ 1414  genkernel-ppc64-iso.patch
+
+releng/releases/portage/isos-qemu/patches/dev-lang:
+total 20
+ 4096  .
+ 4096  ..
+ 4096  python:3.10
+ 4096  python:3.8
+ 4096  python:3.9
+
+releng/releases/portage/isos-qemu/patches/dev-lang/python:3.10:
+total 12
+ 4096  .
+ 4096  ..
+ 1833  compileall-singlethreaded.patch
+
+releng/releases/portage/isos-qemu/patches/dev-lang/python:3.8:
+total 12
+ 4096  .
+ 4096  ..
+ 1833  compileall-singlethreaded.patch
+
+releng/releases/portage/isos-qemu/patches/dev-lang/python:3.9:
+total 12
+ 4096  .
+ 4096  ..
+ 1833  compileall-singlethreaded.patch
+
+releng/releases/portage/isos-qemu/savedconfig:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  sys-kernel
+
+releng/releases/portage/isos-qemu/savedconfig/sys-kernel:
+total 64
+  4096  .
+  4096  ..
+ 55232  linux-firmware
+
+releng/releases/portage/livegui:
+total 28
+ 4096  .
+ 4096  ..
+ 4096  env
+ 4096  package.accept_keywords
+ 4096  package.env
+ 4096  package.license
+ 4096  package.use
+
+releng/releases/portage/livegui/env:
+total 12
+ 4096  .
+ 4096  ..
+  122  international
+
+releng/releases/portage/livegui/package.accept_keywords:
+total 12
+ 4096  .
+ 4096  ..
+   46  pre-stabilization
+
+releng/releases/portage/livegui/package.env:
+total 12
+ 4096  .
+ 4096  ..
+   18  international
+
+releng/releases/portage/livegui/package.license:
+total 12
+ 4096  .
+ 4096  ..
+  122  package.license
+
+releng/releases/portage/livegui/package.use:
+total 76
+ 4096  .
+ 4096  ..
+   66  admincd-packages
+   25  brltty
+   26  chromium
+   92  cifs-utils
+   30  circular-deps
+   32  genkernel
+   34  gentoo-sources
+  201  kde
+    8  lvm
+  224  no-filecaps
+   27  no-passwdqc
+   85  python
+   42  quassel
+   49  texlive
+   41  video_cards
+   42  vmware
+   33  wpa_supplicant
+
+releng/releases/portage/stages:
+total 24
+ 4096  .
+ 4096  ..
+ 4096  package.accept_keywords
+ 4096  package.mask
+ 4096  package.use
+ 4096  profile
+
+releng/releases/portage/stages/package.accept_keywords:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  releng
+
+releng/releases/portage/stages/package.accept_keywords/releng:
+total 12
+ 4096  .
+ 4096  ..
+   24  musl
+
+releng/releases/portage/stages/package.mask:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  releng
+
+releng/releases/portage/stages/package.mask/releng:
+total 16
+ 4096  .
+ 4096  ..
+  105  openssl
+   74  rust
+
+releng/releases/portage/stages/package.use:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  releng
+
+releng/releases/portage/stages/package.use/releng:
+total 40
+ 4096  .
+ 4096  ..
+  346  cet
+  164  circular
+   90  clang
+   60  gmp
+  116  libpcre
+  223  musl
+  338  no-filecaps
+  192  openmp
+
+releng/releases/portage/stages/profile:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  package.use.force
+
+releng/releases/portage/stages/profile/package.use.force:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  releng
+
+releng/releases/portage/stages/profile/package.use.force/releng:
+total 16
+ 4096  .
+ 4096  ..
+  280  alternatives
+   77  musl
+
+releng/releases/portage/stages-qemu:
+total 32
+ 4096  .
+ 4096  ..
+ 4096  env
+ 4096  package.env
+ 4096  package.mask
+ 4096  package.use
+ 4096  patches
+ 4096  profile
+
+releng/releases/portage/stages-qemu/env:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  releng
+
+releng/releases/portage/stages-qemu/env/releng:
+total 24
+ 4096  .
+ 4096  ..
+   88  forcelfs
+   76  nosandbox
+   54  qemu
+   15  singleproc
+
+releng/releases/portage/stages-qemu/package.env:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  releng
+
+releng/releases/portage/stages-qemu/package.env/releng:
+total 24
+ 4096  .
+ 4096  ..
+   16  all
+   31  forcelfs
+   32  glibc
+  176  python
+
+releng/releases/portage/stages-qemu/package.mask:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  releng
+
+releng/releases/portage/stages-qemu/package.mask/releng:
+total 20
+ 4096  .
+ 4096  ..
+  141  glibc
+  105  openssl
+   74  rust
+
+releng/releases/portage/stages-qemu/package.use:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  releng
+
+releng/releases/portage/stages-qemu/package.use/releng:
+total 36
+ 4096  .
+ 4096  ..
+  164  circular
+   60  gmp
+  116  libpcre
+  223  musl
+   24  no-asm
+  338  no-filecaps
+  192  openmp
+
+releng/releases/portage/stages-qemu/patches:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  dev-lang
+
+releng/releases/portage/stages-qemu/patches/dev-lang:
+total 20
+ 4096  .
+ 4096  ..
+ 4096  python:3.10
+ 4096  python:3.8
+ 4096  python:3.9
+
+releng/releases/portage/stages-qemu/patches/dev-lang/python:3.10:
+total 12
+ 4096  .
+ 4096  ..
+ 1833  compileall-singlethreaded.patch
+
+releng/releases/portage/stages-qemu/patches/dev-lang/python:3.8:
+total 12
+ 4096  .
+ 4096  ..
+ 1833  compileall-singlethreaded.patch
+
+releng/releases/portage/stages-qemu/patches/dev-lang/python:3.9:
+total 12
+ 4096  .
+ 4096  ..
+ 1833  compileall-singlethreaded.patch
+
+releng/releases/portage/stages-qemu/profile:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  package.use.force
+
+releng/releases/portage/stages-qemu/profile/package.use.force:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  releng
+
+releng/releases/portage/stages-qemu/profile/package.use.force/releng:
+total 16
+ 4096  .
+ 4096  ..
+  280  alternatives
+   77  musl
+
+releng/releases/scripts:
+total 16
+ 4096  .
+ 4096  ..
+ 2631  cloud-prep.sh
+ 2450  livecd.sh
+
+releng/releases/specs:
+total 44
+ 4096  .
+ 4096  ..
+ 4096  amd64
+ 4096  arm
+ 4096  arm64
+ 4096  hppa
+ 4096  ia64
+ 4096  ppc
+ 4096  s390
+ 4096  sparc
+ 4096  x86
+
+releng/releases/specs/amd64:
+total 100
+ 4096  .
+ 4096  ..
+ 4096  clang
+ 4096  hardened
+ 4096  hardened-nomultilib
+ 4096  hardened-nomultilib-selinux
+ 4096  hardened-selinux
+ 2010  installcd-stage1.spec
+ 4914  installcd-stage2-minimal.spec
+ 4096  livegui
+ 4096  musl
+ 4096  musl-clang
+ 4096  musl-hardened
+ 4096  nomultilib
+  357  stage1-openrc.spec
+  402  stage1-systemd-mu.spec
+  367  stage1-systemd.spec
+  308  stage3d-openrc.spec
+  353  stage3d-systemd-mu.spec
+  318  stage3d-systemd.spec
+  292  stage3-openrc.spec
+  337  stage3-systemd-mu.spec
+  302  stage3-systemd.spec
+ 4096  x32
+
+releng/releases/specs/amd64/clang:
+total 32
+ 4096  .
+ 4096  ..
+  369  stage1-openrc.spec
+  428  stage1-systemd-mu.spec
+  379  stage1-systemd.spec
+  304  stage3-openrc.spec
+  363  stage3-systemd-mu.spec
+  314  stage3-systemd.spec
+
+releng/releases/specs/amd64/hardened:
+total 28
+ 4096  .
+ 4096  ..
+ 3895  admincd-stage1.spec
+ 4885  admincd-stage2.spec
+  386  stage1-openrc.spec
+  321  stage3-openrc.spec
+
+releng/releases/specs/amd64/hardened-nomultilib:
+total 16
+ 4096  .
+ 4096  ..
+  420  stage1-openrc.spec
+  355  stage3-openrc.spec
+
+releng/releases/specs/amd64/hardened-nomultilib-selinux:
+total 16
+ 4096  .
+ 4096  ..
+  444  stage1-openrc.spec
+  379  stage3-openrc.spec
+
+releng/releases/specs/amd64/hardened-selinux:
+total 16
+ 4096  .
+ 4096  ..
+  410  stage1-openrc.spec
+  345  stage3-openrc.spec
+
+releng/releases/specs/amd64/livegui:
+total 24
+ 4096  .
+ 4096  ..
+ 4096  files
+ 4981  livegui-stage1.spec
+  952  livegui-stage2.spec
+
+releng/releases/specs/amd64/livegui/files:
+total 20
+ 4096  .
+ 4096  ..
+ 2413  fsscript-stage2.sh
+ 4096  overlay
+ 4096  root_overlay
+
+releng/releases/specs/amd64/livegui/files/overlay:
+total 8
+ 4096  .
+ 4096  ..
+    0  .livegui-overlay
+
+releng/releases/specs/amd64/livegui/files/root_overlay:
+total 8
+ 4096  .
+ 4096  ..
+    0  .livegui-root_overlay
+
+releng/releases/specs/amd64/musl:
+total 16
+ 4096  .
+ 4096  ..
+  384  stage1.spec
+  287  stage3.spec
+
+releng/releases/specs/amd64/musl-clang:
+total 16
+ 4096  .
+ 4096  ..
+  412  stage1.spec
+  315  stage3.spec
+
+releng/releases/specs/amd64/musl-hardened:
+total 16
+ 4096  .
+ 4096  ..
+  429  stage1.spec
+  332  stage3.spec
+
+releng/releases/specs/amd64/nomultilib:
+total 32
+ 4096  .
+ 4096  ..
+  391  stage1-openrc.spec
+  436  stage1-systemd-mu.spec
+  401  stage1-systemd.spec
+  326  stage3-openrc.spec
+  371  stage3-systemd-mu.spec
+  336  stage3-systemd.spec
+
+releng/releases/specs/amd64/x32:
+total 32
+ 4096  .
+ 4096  ..
+  357  stage1-openrc.spec
+  402  stage1-systemd-mu.spec
+  367  stage1-systemd.spec
+  292  stage3-openrc.spec
+  337  stage3-systemd-mu.spec
+  302  stage3-systemd.spec
+
+releng/releases/specs/arm:
+total 40
+ 4096  .
+ 4096  ..
+ 4096  armv4tl
+ 4096  armv5tel
+ 4096  armv6j
+ 4096  armv6j-musl
+ 4096  armv6j-musl-hardened
+ 4096  armv7a
+ 4096  armv7a-musl
+ 4096  armv7a-musl-hardened
+
+releng/releases/specs/arm/armv4tl:
+total 32
+ 4096  .
+ 4096  ..
+  353  stage1-openrc.spec
+  398  stage1-systemd-mu.spec
+  363  stage1-systemd.spec
+  308  stage3-openrc.spec
+  353  stage3-systemd-mu.spec
+  318  stage3-systemd.spec
+
+releng/releases/specs/arm/armv5tel:
+total 32
+ 4096  .
+ 4096  ..
+  356  stage1-openrc.spec
+  401  stage1-systemd-mu.spec
+  366  stage1-systemd.spec
+  311  stage3-openrc.spec
+  356  stage3-systemd-mu.spec
+  321  stage3-systemd.spec
+
+releng/releases/specs/arm/armv6j:
+total 56
+ 4096  .
+ 4096  ..
+  365  stage1-hardfloat-openrc.spec
+  410  stage1-hardfloat-systemd-mu.spec
+  375  stage1-hardfloat-systemd.spec
+  351  stage1-openrc.spec
+  396  stage1-systemd-mu.spec
+  361  stage1-systemd.spec
+  320  stage3-hardfloat-openrc.spec
+  365  stage3-hardfloat-systemd-mu.spec
+  330  stage3-hardfloat-systemd.spec
+  306  stage3-openrc.spec
+  351  stage3-systemd-mu.spec
+  316  stage3-systemd.spec
+
+releng/releases/specs/arm/armv6j-musl:
+total 16
+ 4096  .
+ 4096  ..
+  374  stage1-hardfloat.spec
+  329  stage3-hardfloat.spec
+
+releng/releases/specs/arm/armv6j-musl-hardened:
+total 16
+ 4096  .
+ 4096  ..
+  419  stage1-hardfloat.spec
+  374  stage3-hardfloat.spec
+
+releng/releases/specs/arm/armv7a:
+total 56
+ 4096  .
+ 4096  ..
+  365  stage1-hardfloat-openrc.spec
+  410  stage1-hardfloat-systemd-mu.spec
+  375  stage1-hardfloat-systemd.spec
+  351  stage1-openrc.spec
+  396  stage1-systemd-mu.spec
+  361  stage1-systemd.spec
+  320  stage3-hardfloat-openrc.spec
+  365  stage3-hardfloat-systemd-mu.spec
+  330  stage3-hardfloat-systemd.spec
+  306  stage3-openrc.spec
+  351  stage3-systemd-mu.spec
+  316  stage3-systemd.spec
+
+releng/releases/specs/arm/armv7a-musl:
+total 16
+ 4096  .
+ 4096  ..
+  374  stage1-hardfloat.spec
+  329  stage3-hardfloat.spec
+
+releng/releases/specs/arm/armv7a-musl-hardened:
+total 16
+ 4096  .
+ 4096  ..
+  419  stage1-hardfloat.spec
+  374  stage3-hardfloat.spec
+
+releng/releases/specs/arm64:
+total 76
+ 4096  .
+ 4096  ..
+ 2240  installcd-stage1.spec
+ 4919  installcd-stage2-minimal.spec
+ 4096  llvm
+ 4096  musl
+ 4096  musl-hardened
+ 4096  musl-llvm
+  390  stage1-openrc.spec
+  435  stage1-systemd-mu.spec
+  400  stage1-systemd.spec
+  315  stage3d-openrc.spec
+  360  stage3d-systemd-mu.spec
+  325  stage3d-systemd.spec
+  299  stage3-openrc.spec
+  344  stage3-systemd-mu.spec
+  309  stage3-systemd.spec
+ 1415  stage4-minimal.spec
+
+releng/releases/specs/arm64/llvm:
+total 32
+ 4096  .
+ 4096  ..
+  399  stage1-openrc.spec
+  460  stage1-systemd-mu.spec
+  409  stage1-systemd.spec
+  308  stage3-openrc.spec
+  369  stage3-systemd-mu.spec
+  318  stage3-systemd.spec
+
+releng/releases/specs/arm64/musl:
+total 16
+ 4096  .
+ 4096  ..
+  418  stage1.spec
+  294  stage3.spec
+
+releng/releases/specs/arm64/musl-hardened:
+total 16
+ 4096  .
+ 4096  ..
+  463  stage1.spec
+  339  stage3.spec
+
+releng/releases/specs/arm64/musl-llvm:
+total 16
+ 4096  .
+ 4096  ..
+  443  stage1.spec
+  319  stage3.spec
+
+releng/releases/specs/hppa:
+total 44
+ 4096  .
+ 4096  ..
+ 4096  hppa1.1
+ 4096  hppa2.0
+ 1131  installcd-stage1.spec
+ 6715  installcd-stage2-minimal.spec
+ 4442  netboot-hppa32.spec
+ 4924  netboot-hppa64.spec
+
+releng/releases/specs/hppa/hppa1.1:
+total 32
+ 4096  .
+ 4096  ..
+  396  stage1-openrc.spec
+  441  stage1-systemd-mu.spec
+  406  stage1-systemd.spec
+  331  stage3-openrc.spec
+  376  stage3-systemd-mu.spec
+  341  stage3-systemd.spec
+
+releng/releases/specs/hppa/hppa2.0:
+total 32
+ 4096  .
+ 4096  ..
+  396  stage1-openrc.spec
+  441  stage1-systemd-mu.spec
+  406  stage1-systemd.spec
+  331  stage3-openrc.spec
+  376  stage3-systemd-mu.spec
+  341  stage3-systemd.spec
+
+releng/releases/specs/ia64:
+total 44
+ 4096  .
+ 4096  ..
+ 1834  installcd-stage1.spec
+ 5554  installcd-stage2-minimal.spec
+  354  stage1-openrc.spec
+  399  stage1-systemd-mu.spec
+  364  stage1-systemd.spec
+  289  stage3-openrc.spec
+  334  stage3-systemd-mu.spec
+  299  stage3-systemd.spec
+
+releng/releases/specs/ppc:
+total 20
+ 4096  .
+ 4096  ..
+ 4096  ppc32
+ 4096  ppc64
+ 4096  ppc64le
+
+releng/releases/specs/ppc/ppc32:
+total 52
+ 4096  .
+ 4096  ..
+ 1599  installcd-stage1.spec
+ 5843  installcd-stage2-minimal.spec
+  491  stage1-musl-hardened-openrc.spec
+  378  stage1-openrc.spec
+  423  stage1-systemd-mu.spec
+  388  stage1-systemd.spec
+  366  stage3-musl-hardened-openrc.spec
+  286  stage3-openrc.spec
+  331  stage3-systemd-mu.spec
+  296  stage3-systemd.spec
+
+releng/releases/specs/ppc/ppc64:
+total 40
+ 4096  .
+ 4096  ..
+  499  stage1-musl-hardened-openrc.spec
+  384  stage1-openrc.spec
+  429  stage1-systemd-mu.spec
+  394  stage1-systemd.spec
+  372  stage3-musl-hardened-openrc.spec
+  292  stage3-openrc.spec
+  337  stage3-systemd-mu.spec
+  302  stage3-systemd.spec
+
+releng/releases/specs/ppc/ppc64le:
+total 92
+ 4096  .
+ 4096  ..
+ 1990  installcd-stage1.spec
+ 5390  installcd-stage2-minimal.spec
+  527  stage1-musl-hardened-openrc-power9le.spec
+  507  stage1-musl-hardened-openrc.spec
+  394  stage1-openrc-power9le.spec
+  390  stage1-openrc.spec
+  455  stage1-systemd-mu-power9le.spec
+  435  stage1-systemd-mu.spec
+  404  stage1-systemd-power9le.spec
+  400  stage1-systemd.spec
+  318  stage3d-openrc-power9le.spec
+  379  stage3d-systemd-mu-power9le.spec
+  398  stage3-musl-hardened-openrc-power9le.spec
+  378  stage3-musl-hardened-openrc.spec
+  302  stage3-openrc-power9le.spec
+  298  stage3-openrc.spec
+  363  stage3-systemd-mu-power9le.spec
+  343  stage3-systemd-mu.spec
+  312  stage3-systemd-power9le.spec
+  308  stage3-systemd.spec
+
+releng/releases/specs/s390:
+total 16
+ 4096  .
+ 4096  ..
+ 4096  s390
+ 4096  s390x
+
+releng/releases/specs/s390/s390:
+total 36
+ 4096  .
+ 4096  ..
+ 4096  netboot
+  393  stage1-openrc.spec
+  376  stage1-systemd-mu.spec
+  403  stage1-systemd.spec
+  328  stage3-openrc.spec
+  311  stage3-systemd-mu.spec
+  338  stage3-systemd.spec
+
+releng/releases/specs/s390/s390/netboot:
+total 24
+ 4096  .
+ 4096  ..
+ 4096  misc
+ 5072  netboot.spec
+ 4096  portage
+
+releng/releases/specs/s390/s390/netboot/misc:
+total 16
+ 4096  .
+ 4096  ..
+  334  gentoo.exec
+   39  gentoo.parmfile
+
+releng/releases/specs/s390/s390/netboot/portage:
+total 16
+ 4096  .
+ 4096  ..
+ 4096  package.license
+ 4096  package.use
+
+releng/releases/specs/s390/s390/netboot/portage/package.license:
+total 12
+ 4096  .
+ 4096  ..
+  122  package.license
+
+releng/releases/specs/s390/s390/netboot/portage/package.use:
+total 12
+ 4096  .
+ 4096  ..
+   32  genkernel
+
+releng/releases/specs/s390/s390x:
+total 36
+ 4096  .
+ 4096  ..
+ 4096  netboot
+  402  stage1-openrc.spec
+  384  stage1-systemd-mu.spec
+  412  stage1-systemd.spec
+  337  stage3-openrc.spec
+  319  stage3-systemd-mu.spec
+  347  stage3-systemd.spec
+
+releng/releases/specs/s390/s390x/netboot:
+total 24
+ 4096  .
+ 4096  ..
+ 4096  misc
+ 5152  netboot.spec
+ 4096  portage
+
+releng/releases/specs/s390/s390x/netboot/misc:
+total 16
+ 4096  .
+ 4096  ..
+  334  gentoo.exec
+   39  gentoo.parmfile
+
+releng/releases/specs/s390/s390x/netboot/portage:
+total 16
+ 4096  .
+ 4096  ..
+ 4096  package.license
+ 4096  package.use
+
+releng/releases/specs/s390/s390x/netboot/portage/package.license:
+total 12
+ 4096  .
+ 4096  ..
+  122  package.license
+
+releng/releases/specs/s390/s390x/netboot/portage/package.use:
+total 12
+ 4096  .
+ 4096  ..
+   32  genkernel
+
+releng/releases/specs/sparc:
+total 16
+ 4096  .
+ 4096  ..
+ 4096  sparc
+ 4096  sparc64
+
+releng/releases/specs/sparc/sparc:
+total 32
+ 4096  .
+ 4096  ..
+  343  stage1.spec
+  278  stage3.spec
+  402  systemd-stage1-mu.spec
+  367  systemd-stage1.spec
+  337  systemd-stage3-mu.spec
+  302  systemd-stage3.spec
+
+releng/releases/specs/sparc/sparc64:
+total 52
+ 4096  .
+ 4096  ..
+ 1747  installcd-stage1.spec
+ 5267  installcd-stage2-minimal.spec
+ 4096  multilib
+ 3164  netboot.spec
+  352  stage1.spec
+  287  stage3.spec
+  411  systemd-stage1-mu.spec
+  376  systemd-stage1.spec
+  346  systemd-stage3-mu.spec
+  311  systemd-stage3.spec
+
+releng/releases/specs/sparc/sparc64/multilib:
+total 16
+ 4096  .
+ 4096  ..
+  233  stage1.spec
+  221  stage3.spec
+
+releng/releases/specs/x86:
+total 24
+ 4096  .
+ 4096  ..
+ 4096  hardened
+ 4096  i486
+ 4096  i686
+ 4096  musl
+
+releng/releases/specs/x86/hardened:
+total 28
+ 4096  .
+ 4096  ..
+ 3962  admincd-stage1-openrc.spec
+ 4664  admincd-stage2-openrc.spec
+  382  stage1-openrc.spec
+  317  stage3-openrc.spec
+
+releng/releases/specs/x86/i486:
+total 44
+ 4096  .
+ 4096  ..
+ 1927  installcd-stage1-openrc.spec
+ 4771  installcd-stage2-minimal-openrc.spec
+  353  stage1-openrc.spec
+  398  stage1-systemd-mu.spec
+  363  stage1-systemd.spec
+  288  stage3-openrc.spec
+  333  stage3-systemd-mu.spec
+  298  stage3-systemd.spec
+
+releng/releases/specs/x86/i686:
+total 32
+ 4096  .
+ 4096  ..
+  353  stage1-openrc.spec
+  398  stage1-systemd-mu.spec
+  363  stage1-systemd.spec
+  288  stage3-openrc.spec
+  333  stage3-systemd-mu.spec
+  298  stage3-systemd.spec
+
+releng/releases/specs/x86/musl:
+total 16
+ 4096  .
+ 4096  ..
+  378  stage1.spec
+  283  stage3.spec
+
+releng/releases/specs-qemu:
+total 36
+ 4096  .
+ 4096  ..
+ 4096  alpha
+ 4096  arm64
+ 4096  hppa
+ 4096  loong
+ 4096  m68k
+ 4096  mips
+ 4096  riscv
+
+releng/releases/specs-qemu/alpha:
+total 44
+ 4096  .
+ 4096  ..
+ 1196  installcd-stage1.spec
+ 5942  installcd-stage2-minimal.spec
+  352  stage1-openrc.spec
+  397  stage1-systemd-mu.spec
+  362  stage1-systemd.spec
+  307  stage3-openrc.spec
+  352  stage3-systemd-mu.spec
+  317  stage3-systemd.spec
+
+releng/releases/specs-qemu/arm64:
+total 12
+ 4096  .
+ 4096  ..
+ 4096  be
+
+releng/releases/specs-qemu/arm64/be:
+total 32
+ 4096  .
+ 4096  ..
+  401  stage1-openrc.spec
+  446  stage1-systemd-mu.spec
+  411  stage1-systemd.spec
+  356  stage3-openrc.spec
+  401  stage3-systemd-mu.spec
+  366  stage3-systemd.spec
+
+releng/releases/specs-qemu/hppa:
+total 32
+ 4096  .
+ 4096  ..
+ 4096  hppa1.1
+ 1168  installcd-stage1.spec
+ 6752  installcd-stage2-minimal.spec
+ 4441  netboot-hppa32.spec
+
+releng/releases/specs-qemu/hppa/hppa1.1:
+total 32
+ 4096  .
+ 4096  ..
+  433  stage1-openrc.spec
+  478  stage1-systemd-mu.spec
+  443  stage1-systemd.spec
+  368  stage3-openrc.spec
+  413  stage3-systemd-mu.spec
+  378  stage3-systemd.spec
+
+releng/releases/specs-qemu/loong:
+total 32
+ 4096  .
+ 4096  ..
+  396  stage1-openrc.spec
+  441  stage1-systemd-mu.spec
+  406  stage1-systemd.spec
+  351  stage3-openrc.spec
+  396  stage3-systemd-mu.spec
+  361  stage3-systemd.spec
+
+releng/releases/specs-qemu/m68k:
+total 32
+ 4096  .
+ 4096  ..
+  371  stage1-openrc.spec
+  416  stage1-systemd-mu.spec
+  381  stage1-systemd.spec
+  326  stage3-openrc.spec
+  371  stage3-systemd-mu.spec
+  336  stage3-systemd.spec
+
+releng/releases/specs-qemu/mips:
+total 272
+ 4096  .
+ 4096  ..
+  408  stage1-mips2-o32-musl.spec
+  413  stage1-mips2-o32-openrc.spec
+  458  stage1-mips2-o32-systemd-mu.spec
+  423  stage1-mips2-o32-systemd.spec
+  433  stage1-mips2_softfloat-o32-openrc.spec
+  443  stage1-mips2_softfloat-o32-systemd.spec
+  483  stage1-mips3-multilib-openrc.spec
+  528  stage1-mips3-multilib-systemd-mu.spec
+  493  stage1-mips3-multilib-systemd.spec
+  424  stage1-mips3-n32-openrc.spec
+  469  stage1-mips3-n32-systemd-mu.spec
+  434  stage1-mips3-n32-systemd.spec
+  423  stage1-mips3-n64-openrc.spec
+  468  stage1-mips3-n64-systemd-mu.spec
+  433  stage1-mips3-n64-systemd.spec
+  421  stage1-mipsel2-o32-musl.spec
+  426  stage1-mipsel2-o32-openrc.spec
+  471  stage1-mipsel2-o32-systemd-mu.spec
+  436  stage1-mipsel2-o32-systemd.spec
+  446  stage1-mipsel2_softfloat-o32-openrc.spec
+  456  stage1-mipsel2_softfloat-o32-systemd.spec
+  500  stage1-mipsel3-multilib-openrc.spec
+  545  stage1-mipsel3-multilib-systemd-mu.spec
+  510  stage1-mipsel3-multilib-systemd.spec
+  437  stage1-mipsel3-n32-openrc.spec
+  482  stage1-mipsel3-n32-systemd-mu.spec
+  447  stage1-mipsel3-n32-systemd.spec
+  436  stage1-mipsel3-n64-openrc.spec
+  481  stage1-mipsel3-n64-systemd-mu.spec
+  446  stage1-mipsel3-n64-systemd.spec
+  426  stage1-mipsel3-o32-openrc.spec
+  471  stage1-mipsel3-o32-systemd-mu.spec
+  436  stage1-mipsel3-o32-systemd.spec
+  363  stage3-mips2-o32-musl.spec
+  368  stage3-mips2-o32-openrc.spec
+  413  stage3-mips2-o32-systemd-mu.spec
+  378  stage3-mips2-o32-systemd.spec
+  388  stage3-mips2_softfloat-o32-openrc.spec
+  398  stage3-mips2_softfloat-o32-systemd.spec
+  438  stage3-mips3-multilib-openrc.spec
+  483  stage3-mips3-multilib-systemd-mu.spec
+  448  stage3-mips3-multilib-systemd.spec
+  379  stage3-mips3-n32-openrc.spec
+  424  stage3-mips3-n32-systemd-mu.spec
+  389  stage3-mips3-n32-systemd.spec
+  378  stage3-mips3-n64-openrc.spec
+  423  stage3-mips3-n64-systemd-mu.spec
+  388  stage3-mips3-n64-systemd.spec
+  376  stage3-mipsel2-o32-musl.spec
+  381  stage3-mipsel2-o32-openrc.spec
+  426  stage3-mipsel2-o32-systemd-mu.spec
+  391  stage3-mipsel2-o32-systemd.spec
+  401  stage3-mipsel2_softfloat-o32-openrc.spec
+  411  stage3-mipsel2_softfloat-o32-systemd.spec
+  455  stage3-mipsel3-multilib-openrc.spec
+  500  stage3-mipsel3-multilib-systemd-mu.spec
+  465  stage3-mipsel3-multilib-systemd.spec
+  392  stage3-mipsel3-n32-openrc.spec
+  437  stage3-mipsel3-n32-systemd-mu.spec
+  402  stage3-mipsel3-n32-systemd.spec
+  391  stage3-mipsel3-n64-openrc.spec
+  436  stage3-mipsel3-n64-systemd-mu.spec
+  401  stage3-mipsel3-n64-systemd.spec
+  381  stage3-mipsel3-o32-openrc.spec
+  426  stage3-mipsel3-o32-systemd-mu.spec
+  391  stage3-mipsel3-o32-systemd.spec
+
+releng/releases/specs-qemu/riscv:
+total 96
+ 4096  .
+ 4096  ..
+  431  stage1-lp64d-musl.spec
+  454  stage1-lp64d-openrc.spec
+  499  stage1-lp64d-systemd-mu.spec
+  464  stage1-lp64d-systemd.spec
+  428  stage1-lp64-musl.spec
+  451  stage1-lp64-openrc.spec
+  496  stage1-lp64-systemd-mu.spec
+  461  stage1-lp64-systemd.spec
+  485  stage1-multilib-openrc.spec
+  529  stage1-multilib-systemd-mu.spec
+  495  stage1-multilib-systemd.spec
+  386  stage3-lp64d-musl.spec
+  409  stage3-lp64d-openrc.spec
+  454  stage3-lp64d-systemd-mu.spec
+  419  stage3-lp64d-systemd.spec
+  383  stage3-lp64-musl.spec
+  406  stage3-lp64-openrc.spec
+  451  stage3-lp64-systemd-mu.spec
+  416  stage3-lp64-systemd.spec
+  440  stage3-multilib-openrc.spec
+  485  stage3-multilib-systemd-mu.spec
+  450  stage3-multilib-systemd.spec
+
+releng/scripts:
+total 16
+ 4096  .
+ 4096  ..
+ 7263  copy_buildsync.sh
+
+releng/tools:
+total 140
+  4096  .
+  4096  ..
+ 14631  catalyst-auto
+  6573  catalyst-auto-amd64.conf
+  3622  catalyst-auto-arm64.conf
+  5885  catalyst-auto-arm.conf
+   415  catalyst-auto-filter-stage4only.conf
+  2897  catalyst-auto-hppa.conf
+  1463  catalyst-auto-ia64.conf
+  2906  catalyst-auto-ppc64le.conf
+  2882  catalyst-auto-ppc.conf
+  1544  catalyst-auto-qemu-alpha.conf
+  1419  catalyst-auto-qemu-arm64.conf
+  1984  catalyst-auto-qemu-hppa.conf
+  1363  catalyst-auto-qemu-loong.conf
+  1445  catalyst-auto-qemu-m68k.conf
+    75  catalyst-auto-qemu-mips-1.conf
+    75  catalyst-auto-qemu-mips-2.conf
+    75  catalyst-auto-qemu-mips-3.conf
+    77  catalyst-auto-qemu-mips-4.conf
+  8405  catalyst-auto-qemu-mips-common
+    84  catalyst-auto-qemu-mips.conf
+    84  catalyst-auto-qemu-mipsel.conf
+  2653  catalyst-auto-qemu-riscv.conf
+  1766  catalyst-auto-s390.conf
+  1772  catalyst-auto-s390x.conf
+  2036  catalyst-auto-sparc64.conf
+  3236  catalyst-auto-x86.conf
