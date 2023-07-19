@@ -4,3 +4,6 @@ An image composes of all files and system software. When you restart to apply th
 This basically means that you can basically reverse any change at will -- simply revert to the old system image.
 No changes are ever written to the system root when in immutable mode, you will have to use one specific package manager tool to make changes, then you would reboot.
 The security system then would be layered so that you can benefit from additional security guarantees that can be made when the rootfs is completely unwritable.
+
+Consider an A/B update scheme, whatever one you're using (A), you update the opposite one (B), so you have to reboot for upgrades. then switch, repeat.
+The idea is the running system is immutable (until you reboot for updates) - like Fedora Silverblue. SUSE has one also.

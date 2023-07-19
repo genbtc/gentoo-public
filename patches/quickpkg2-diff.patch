@@ -1,0 +1,43 @@
+--- /usr/lib/python-exec/python3.11/quickpkg	2023-07-16 00:02:03.000000000 -0400
++++ /usr/lib/python-exec/python3.11/quickpkg	2023-06-30 17:09:50.422208225 -0400
+@@ -1,6 +1,7 @@
+-#!/usr/bin/python3.11
+-# Copyright 1999-2021 Gentoo Authors
++#!/usr/bin/env python
++# Copyright 1999-2023 Gentoo Authors
+ # Distributed under the terms of the GNU General Public License v2
++# Modified by genr8eofl - June30,2023 for gentoo
+ 
+ import argparse
+ import errno
+@@ -176,7 +177,8 @@
+                 if find_binary(compression_binary) is None:
+                     missing_package = compression["package"]
+                     eout.eerror(
+-                        f"File compression unsupported {binpkg_compression} (missing package: {missing_package})"
++                        "File compression unsupported %s. Missing package: %s"
++                        % (binpkg_compression, missing_package)
+                     )
+                     return 1
+ 
+@@ -316,6 +318,11 @@
+ 
+         atoms.append(cpv_atom)
+ 
++    eout.ewarn("The following packages are about to be binpkg'ed:")
++    for atom in atoms:
++        eout.ewarn(f"={atom}")
++    eout.ewarn("Press any key to continue - create these bin packages?....")
++    input()
+     for atom in atoms:
+         quickpkg_atom(options, infos, atom, eout)
+ 
+@@ -390,7 +397,7 @@
+         eout.einfo(f"{cpv}: {size_str}")
+     if infos["config_files_excluded"]:
+         print()
+-        eout.ewarn(f"Excluded config files: {infos['config_files_excluded']}")
++        eout.ewarn("Excluded config files: %d" % infos["config_files_excluded"])
+         eout.ewarn("See --help if you would like to include config files.")
+     if infos["missing"]:
+         print()
