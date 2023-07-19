@@ -31,3 +31,586 @@ and
 95empty-dirs
 
 Theres also a preinst-qa-check and postinst-qa-check
+
+Top 100 Largest Files in Portage:
+------------------------------------------------
+499633  depgraph.py
+253670  vartree.py
+148958  actions.py
+133992  config.py
+111630  doebuild.py
+107874  ./lib/portage/dep/__init__.py
+ 90388  bintree.py
+ 85602  Scheduler.py
+ 84461  RELEASE-NOTES
+ 80633  gpkg.py
+ 79515  fetch.py
+ 71752  emerge.1
+ 71291  portage_util__whirlpool.c
+ 68950  ./lib/portage/util/__init__.py
+ 64264  porttree.py
+ 64011  portage.5
+ 62136  config.py
+ 61325  ebuild.5
+ 58871  slot_collision.py
+ 58416  whirlpool.py
+ 57969  make.conf.5
+ 56699  NEWS
+ 53990  egencache
+ 51197  portageq
+ 42502  ResolverPlayground.py
+ 42498  dep_check.py
+ 42311  main.py
+ 41702  process.py
+ 41425  LinkageMapELF.py
+ 39524  output.py
+ 34584  phase-functions.sh
+ 33953  rsync.py
+ 33763  phase-helpers.sh
+ 31465  getbinpkg.py
+ 31427  glsa.py
+ 31108  manifest.py
+ 30870  Package.py
+ 29844  setup.py
+ 29784  output.py
+ 28160  locks.py
+ 26360  unmerge.py
+ 26214  sets.docbook
+ 26114  ebuild.sh
+ 25908  ./lib/portage/__init__.py
+ 25443  FetchTask.py
+ 24116  emerge-delta-webrsync
+ 23454  etc-update
+ 23204  EbuildBuild.py
+ 22622  EbuildPhase.py
+ 22035  dbapi.py
+ 21565  UseManager.py
+ 21241  Binpkg.py
+ 20942  search.py
+ 20936  emerge-webrsync
+ 20748  output_helpers.py
+ 20487  make.conf.example
+ 20306  misc-functions.sh
+ 20049  git.py
+ 20007  doins.py
+ 19951  dispatch-conf
+ 19579  qa.docbook
+ 19413  xpak.py
+ 19287  prepare_build_dirs.py
+ 19275  versions.py
+ 18552  isolated-functions.sh
+ 18485  news.py
+ 18469  sync.py
+ 18231  AbstractEbuildProcess.py
+ 18212  ebuild.1
+ 18092  LICENSE
+ 17406  estrip
+ 17014  update.py
+ 16789  metadata.py
+ 16769  ./lib/portage/dbapi/__init__.py
+ 16731  quickpkg
+ 16684  LocationsManager.py
+ 16566  checksum.py
+ 16082  main.py
+ 15636  package_tracker.py
+ 15636  glsa-check
+ 15592  env_update.py
+ 15573  files.py
+ 15468  ebuild
+ 15189  pylintrc
+ 14806  movefile.py
+ 14745  controller.py
+ 14690  4.docbook
+ 14395  EbuildFetcher.py
+ 14268  ./lib/portage/_sets/__init__.py
+ 14093  dispatch_conf.py
+ 13915  MaskManager.py
+ 13390  sqlite.py
+ 13383  portage_util_file_copy_reflink_linux.c
+ 13272  template.py
+ 13139  syncbase.py
+ 13005  KeywordsManager.py
+ 12975  digraph.py
+ 12786  FakeVartree.py
+ 11957  mappings.py
+ 11932  circular_dependency.py
+
+bin/xpak-helper.py
+------------------
+    valid_commands = ("recompose",)
+    description = "Perform metadata operations on a binary package."
+    usage = "usage: recompose <binpkg_path> <metadata_dir>\n"
+
+bin/xattr-helper.py
+------------------
+	doc = """Dump and restore extended attributes.
+		We use formats like that used by getfattr --dump.  This is meant for shell
+		helpers to save/restore.  If you're looking for a python/portage API, see
+		portage.util.movefile._copyxattr instead."""
+		https://en.wikipedia.org/wiki/Extended_file_attributes
+	def dump_xattrs(pathnames, file_out):
+	    """Dump the xattr data for |pathnames| to |file_out|"""
+	def restore_xattrs(file_in):
+		"""Read |file_in| and restore xattrs content from it
+			This expects textual data in the format written by dump_xattrs."""
+    actions = parser.add_argument_group("Actions")
+        "--dump",
+	        help="Dump the values of all extended attributes associated with paths "
+		        "passed as arguments or null-separated paths read from stdin.",
+        "--restore",
+			help="Restore extended attributes using " "a dump read from stdin.",
+
+bin/socks5-server.py
+------------------
+	# SOCKSv5 proxy server for network-sandbox
+	class Socks5Server:
+	# An asynchronous SOCKSv5 server.
+	async def handle_proxy_conn(self, reader, writer):
+		"""Handle incoming client connection. Perform SOCKSv5 request
+			 exchange, open a proxied connection and start relaying."""
+    async def handle_proxied_conn(self, proxied_reader, writer, parent_task):
+        """Handle the proxied connection. Relay incoming data to the client."""
+	print(f"Usage: {sys.argv[0]} <socket-path>")
+
+bin/shelve-utils
+------------------
+	from portage.util.shelve import dump, restore
+    parser = argparse.ArgumentParser(prog="shelve-utils")
+    subparsers = parser.add_subparsers(help="sub-command help")
+	#
+    dump_command = subparsers.add_parser("dump", help="dump shelve database")
+    dump_command.add_argument("src", help="input shelve file")
+    dump_command.add_argument("dest", help="output pickle file")
+    dump_command.set_defaults(func=dump)
+	#
+    restore_command = subparsers.add_parser("restore", help="restore shelve database")
+    restore_command.add_argument("src", help="input pickle file")
+    restore_command.add_argument("dest", help="output shelve file")
+	restore_command.set_defaults(func=restore)
+
+
+bin/save-ebuild-env.sh
+------------------
+	# @FUNCTION: __save_ebuild_env
+	# @DESCRIPTION: echo the current environment to stdout, filtering out redundant info.
+	__save_ebuild_env() {
+	# --exclude-init-phases causes pkg_nofetch and src_* phase functions to
+	# be excluded from the output. These function are not needed for installation
+	# or removal of the packages, and can therefore be safely excluded.
+		if has --exclude-init-phases $* ; then
+	# unset misc/other variables inherited from the calling environment
+	#
+	# There's no need to bloat environment.bz2 with internally defined
+	# functions and variables, so filter them out if possible.
+	 unset -f long list of stuff
+	 unset -x
+	# Clear out the triple underscore namespace as it is reserved by the PM.
+	# portage config variables and variables set directly by portage
+	# user config variables
+
+bin/regenworld
+------------------
+	# This script regenerates the portage world file by checking the portage
+	# logfile for all actions that you've done in the past. It ignores any
+	# arguments except --help. It is recommended that you make a backup of
+	# your existing world file (/var/lib/portage/world) before using this tool.
+	os.path.join(portage.settings["EMERGE_LOG_DIR"], "emerge.log")
+	logfile = portage.grabfile(os.path.join(eroot, "var/log/emerge.log"))
+	print("add to world:"
+	    "Please review differences between old and new files, "+
+	     "and replace the old file if desired."
+
+bin/quickpkg
+------------------
+$ ./quickpkg -h
+usage: quickpkg [options] <list of package atoms or package sets>
+
+options:
+  -h, --help            show this help message and exit
+  --umask UMASK         umask used during package creation (default is 0077)
+  --ignore-default-opts
+                        do not use the QUICKPKG_DEFAULT_OPTS environment variable
+  --include-config <y|n>
+                        include all files protected by CONFIG_PROTECT (as a security precaution, default is 'n')
+  --include-unmodified-config <y|n>
+                        include files protected by CONFIG_PROTECT that have not been modified since installation (as a security precaution,
+                        default is 'n')
+
+bin/portageq
+------------------
+	>>> Portage information query tool
+	>>> 3.0.49_p13
+	>>> Usage: portageq <command> [<option> ...]
+	Available commands:
+	   all_best_visible <eroot>
+	      Returns all best_visible packages (without .ebuild).
+	   available_eclasses <eroot> <repo_id>+
+	      Returns space-separated list of available eclasses for specified repository.
+	   best_version <eroot> <category/package>
+	      Returns highest installed matching category/package-version (without .ebuild).
+	   best_visible <eroot> [pkgtype] <atom>
+	      Returns category/package-version (without .ebuild).
+	      The pkgtype argument defaults to "ebuild" if unspecified,
+	      otherwise it must be one of ebuild, binary, or installed.
+	   colormap Display the color.map as environment variables.
+	   config_protect Returns the CONFIG_PROTECT paths.
+	   config_protect_mask Returns the CONFIG_PROTECT_MASK paths.
+	   contents <eroot> <category/package>
+	      List the files that are installed for a given package, with
+	      one file listed on each line. All file names will begin with
+	      <eroot>.
+	   debug_signal
+	      MISSING DOCUMENTATION!
+	   distdir Returns the DISTDIR path.
+	   eclass_path <eroot> <repo_id> <eclass>+
+	      Returns the path to specified eclass for specified repository.
+	   envvar <variable>+
+	      Returns a specific environment variable as exists prior to ebuild.sh.
+	      Similar to: emerge --verbose --info | grep -E '^<variable>='
+	   expand_virtual <eroot> <atom>
+	      Returns a \n separated list of atoms expanded from a
+	      given virtual atom (GLEP 37 virtuals only),
+	      excluding blocker atoms. Satisfied
+	      virtual atoms are not included in the output, since
+	      they are expanded to real atoms which are displayed.
+	      Unsatisfied virtual atoms are displayed without
+	      any expansion. The "match" command can be used to
+	      resolve the returned atoms to specific installed
+	      packages.
+	   filter_protected <eroot>
+	      Read filenames from stdin and write them to stdout if they are protected.
+	      All filenames are delimited by \n and must begin with <eroot>.
+	   gentoo_mirrors Returns the mirrors set to use in the portage configuration.
+	   get_repo_path <eroot> <repo_id>+
+	      Returns the path to the repo named argv[1], argv[0] = ${EROOT}
+	   get_repos <eroot>
+	      Returns all repos with names (repo_name file) argv[0] = ${EROOT}
+	   has_version <eroot> <category/package>
+	      Return code 0 if it's available, 1 otherwise.
+	   is_protected <eroot> <filename>
+	      Given a single filename, return code 0 if it's protected, 1 otherwise.
+	      The filename must begin with <eroot>.
+	   license_path <eroot> <repo_id> <license>+
+	      Returns the path to specified license for specified repository.
+	   list_preserved_libs <eroot>
+	      Print a list of libraries preserved during a package update in the form
+	      package: path. Returns 1 if no preserved libraries could be found,
+	      0 otherwise.
+	   mass_best_version <eroot> [<category/package>]+
+	      Returns category/package-version (without .ebuild).
+	   mass_best_visible <eroot> [<type>] [<category/package>]+
+	      Returns category/package-version (without .ebuild).
+	      The pkgtype argument defaults to "ebuild" if unspecified,
+	      otherwise it must be one of ebuild, binary, or installed.
+	   master_repos <eroot> <repo_id>+
+	      This is an alias for the master_repositories command.
+	   master_repositories <eroot> <repo_id>+
+	      Returns space-separated list of master repositories for specified repository.
+	   match <eroot> <atom>
+	      Returns a \n separated list of category/package-version.
+	      When given an empty string, all installed packages will
+	      be listed.
+	   metadata <eroot> <pkgtype> <category/package> [<key>]+
+	      Returns metadata values for the specified package.
+	      Available keys: BDEPEND,DEFINED_PHASES,DEPEND,DESCRIPTION,EAPI,HOMEPAGE,IDEPEND,INHERIT,INHERITED,IUSE,KEYWORDS,LICENSE,PDEPEND,PROPERTIES,RDEPEND,REQUIRED_USE,RESTRICT,SLOT,SRC_URI
+	   owners <eroot> [<filename>]+
+	      Given a list of files, print the packages that own the files and which
+	      files belong to each package. Files owned by a package are listed on
+	      the lines below it, indented by a single tab character (\t). All file
+	      paths must either start with <eroot> or be a basename alone.
+	      Returns 1 if no owners could be found, and 0 otherwise.
+	   pkgdir Returns the PKGDIR path.
+	   portdir Returns the PORTDIR path.
+	      Deprecated in favor of get_repo_path command.
+	   portdir_overlay Returns the PORTDIR_OVERLAY path.
+	      Deprecated in favor of get_repos & get_repo_path or repos_config commands.
+	   pquery [options] [atom]+
+	      Emulates a subset of Pkgcore's pquery tool.
+	   repos_config <eroot>
+	      This is an alias for the repositories_configuration command.
+	   repositories_configuration <eroot>
+	      Returns the configuration of repositories.
+	   signal_interrupt
+	      MISSING DOCUMENTATION!
+	   uses_configroot
+	      MISSING DOCUMENTATION!
+	   vdb_path Returns the path used for the var(installed) package database for the
+	      set environment/configuration options.
+	---
+	Pkgcore pquery compatible options:
+	usage: portageq pquery [options] [atom ...]
+	Repository matching options:
+	  --no-filters          no visibility filters (ACCEPT_KEYWORDS, package masking, etc)
+	  --repo REPO           repository to use (all repositories are used by default)
+	Package matching options:
+	  --maintainer-email MAINTAINER_EMAIL
+	                        comma-separated list of maintainer email regexes to search for
+	  --no-regex            Use exact matching instead of regex matching for --maintainer-email
+	  --orphaned            match only orphaned (maintainer-needed) packages
+	Output formatting:
+	  -n, --no-version      collapse multiple matching versions together
+
+bin/portageq-wrapper
+------------------
+	# Use safe cwd, avoiding unsafe import for bug #469338.
+	PYTHONPATH=${PORTAGE_PYTHONPATH:-${PORTAGE_PYM_PATH}} exec "${PORTAGE_PYTHON:-/usr/bin/python}" "${path}/portageq" "$@"
+
+bin/pid-ns-init
+------------------
+	main():
+	if len(argv) < 2:
+	Usage: ./pid-ns-init <main-child-pid> or <uid> <gid> <groups> <umask> <pass_fds> <binary> <argv0> [arg]..
+	if len(argv) == 2:
+    # The child process is init (pid 1) in a child pid namespace, and
+    # the current process supervises from within the global pid namespace
+    # (forwarding signals to init and forwarding exit status to the parent process).
+	else:
+	# The current process is init (pid 1) in a child pid namespace.
+    # Obtain the current nice value
+		nice_value = os.nice(0)
+	# Isolate parent process from process group SIGSTOP (bug 675870)
+        setsid = True;  os.setsid()
+	# run the child process
+		proc = subprocess.Popen(args, executable=binary, **popen_kwargs)
+    # If setsid has been called, use kill(0, signum) to
+    # forward signals to the entire process group.
+    sig_handler = functools.partial(
+        forward_kill_signal, 0 if setsid else main_child_pid)
+    for signum in KILL_SIGNALS:
+        signal.signal(signum, sig_handler)
+    # For correct operation of Ctrl+Z, forward SIGTSTP and SIGCONT.
+    sigtstp_sigcont_handler = functools.partial(
+        forward_sigtstp_sigcont, 0 if setsid else main_child_pid)
+    for signum in SIGTSTP_SIGCONT:
+        signal.signal(signum, sigtstp_sigcont_handler)
+    # wait for child processes
+    while True:
+		run
+
+bin/phase-helpers.sh
+------------------
+	if ___eapi_has_DESTTREE_INSDESTTREE; then	fi
+	export __E_EXEDESTTREE=""
+	export __E_DOCDESTTREE=""
+	export INSOPTIONS="-m0644"
+	export EXEOPTIONS="-m0755"
+	export LIBOPTIONS="-m0644"
+	export DIROPTIONS="-m0755"
+	export MOPREFIX=${PN}
+	export PORTAGE_DOCOMPRESS_SIZE_LIMIT="128"
+	declare -a PORTAGE_DOCOMPRESS=( /usr/share/{doc,info,man} )
+	declare -a PORTAGE_DOCOMPRESS_SKIP=( /usr/share/doc/${PF}/html )
+	declare -a PORTAGE_DOSTRIP=( / )
+	has strip ${PORTAGE_RESTRICT} && PORTAGE_DOSTRIP=()
+	declare -a PORTAGE_DOSTRIP_SKIP=()
+	into(){}
+	insinto(){}
+	exeinto(){}
+	docinto(){}
+	insopts(){}
+	diropts(){}
+	exeopts(){}
+	libopts(){}
+	docompress(){}
+	dostrip(){}
+	useq(){}
+	usev(){}
+	if ___eapi_has_usex; then			usex(){} fi
+	use(){}
+	use_with(){}
+	use_enable(){}
+	unpack(){}
+	econf(){}
+	einstall(){}
+	has_version(){}
+	best_version(){}
+	if ___eapi_has_get_libdir; then		get_libdir(){} fi
+	if ___eapi_has_einstalldocs; then	einstalldocs(){} fi
+	if ___eapi_has_eapply; then			eapply(){} fi
+	if ___eapi_has_eapply_user; then	eapply_user(){}	fi
+	if ___eapi_has_in_iuse; then		in_iuse(){}	fi
+
+bin/phase-functions.sh
+------------------
+	__filter_readonly_variables(){}
+	# @FUNCTION: __filter_readonly_variables
+	# @DESCRIPTION: [--filter-sandbox] [--allow-extra-vars]
+	# Read an environment from stdin and echo to stdout while filtering variables
+	# with names that are known to cause interference:
+	# --filter-sandbox causes all SANDBOX_* variables to be filtered, which
+	# --filter-features causes the special FEATURES variable to be filtered.
+	# --filter-locale causes locale related variables such as LANG and LC_*
+	# --filter-path causes the PATH variable to be filtered. This variable
+	# ---allow-extra-vars causes some extra vars to be allowd through, such
+	__preprocess_ebuild_env(){}
+	# @FUNCTION: __preprocess_ebuild_env
+	# @DESCRIPTION:
+	# Filter any readonly variables from ${T}/environment, source it, and then
+	# save it via __save_ebuild_env(). This process should be sufficient to prevent
+	# any stale variables or functions from an arbitrary environment from
+	# interfering with the current environment. This is useful when an existing
+	# environment needs to be loaded from a binary or installed package.
+	__ebuild_phase(){}
+	__ebuild_phase_with_hooks(){}
+	__dyn_pretend(){}
+	__dyn_setup(){}
+	__dyn_unpack(){}
+	__dyn_clean(){}
+	__abort_handler(){}
+	__abort_prepare(){}
+	__abort_configure(){}
+	__abort_compile(){}
+	__abort_test(){}
+	__abort_install(){}
+	__has_phase_defined_up_to(){}
+	__dyn_prepare(){}
+	__dyn_configure(){}
+	__dyn_compile(){}
+	__dyn_test(){}
+	__dyn_install(){}
+	__dyn_help(){
+		echo
+		echo "Portage"
+		echo "Copyright 1999-2022 Gentoo Authors"
+		echo
+		echo "How to use the ebuild command:"
+		echo
+		echo "The first argument to ebuild should be an existing .ebuild file."
+		echo
+		echo "One or more of the following options can then be specified.  If more"
+		echo "than one option is specified, each will be executed in order."
+		echo
+		echo "  help        : show this help screen"
+		echo "  pretend     : execute package specific pretend actions"
+		echo "  setup       : execute package specific setup actions"
+		echo "  fetch       : download source archive(s) and patches"
+		echo "  nofetch     : display special fetch instructions"
+		echo "  digest      : create a manifest file for the package"
+		echo "  manifest    : create a manifest file for the package"
+		echo "  unpack      : unpack sources (auto-dependencies if needed)"
+		echo "  prepare     : prepare sources (auto-dependencies if needed)"
+		echo "  configure   : configure sources (auto-fetch/unpack if needed)"
+		echo "  compile     : compile sources (auto-fetch/unpack/configure if needed)"
+		echo "  test        : test package (auto-fetch/unpack/configure/compile if needed)"
+		echo "  preinst     : execute pre-install instructions"
+		echo "  postinst    : execute post-install instructions"
+		echo "  install     : install the package to the temporary install directory"
+		echo "  qmerge      : merge image into live filesystem, recording files in db"
+		echo "  merge       : do fetch, unpack, compile, install and qmerge"
+		echo "  prerm       : execute pre-removal instructions"
+		echo "  postrm      : execute post-removal instructions"
+		echo "  unmerge     : remove package from live filesystem"
+		echo "  config      : execute package specific configuration actions"
+		echo "  package     : create a tarball package in ${PKGDIR}/All"
+		echo "  rpm         : build a RedHat RPM package"
+		echo "  clean       : clean up all source and temporary files"
+		echo
+		echo "The following settings will be used for the ebuild process:"
+		echo
+		echo "  package     : ${PF}"
+		echo "  slot        : ${SLOT}"
+		echo "  category    : ${CATEGORY}"
+		echo "  description : ${DESCRIPTION}"
+		echo "  system      : ${CHOST}"
+		echo "  C flags     : ${CFLAGS}"
+		echo "  C++ flags   : ${CXXFLAGS}"
+		echo "  make flags  : ${MAKEOPTS}"
+		echo -n "  build mode  : "
+		...
+	}
+	# @FUNCTION: __ebuild_arg_to_phase
+	# @DESCRIPTION:
+	# Translate a known ebuild(1) argument into the precise
+	# name of it's corresponding ebuild phase.
+	__ebuild_arg_to_phase(){}
+		case "${arg}" in
+		pretend)		___eapi_has_pkg_pretend && phase_func=pkg_pretend
+		setup)			phase_func=pkg_setup
+		nofetch)		phase_func=pkg_nofetch
+		unpack)			phase_func=src_unpack
+		prepare)		___eapi_has_src_prepare && phase_func=src_prepare
+		configure)		___eapi_has_src_configure && phase_func=src_configure
+		compile)		phase_func=src_compile
+		test)			phase_func=src_test
+		install)		phase_func=src_install
+		preinst)		phase_func=pkg_preinst
+		postinst)		phase_func=pkg_postinst
+		prerm)			phase_func=pkg_prerm
+		postrm)			phase_func=pkg_postrm
+	__ebuild_phase_funcs(){}
+		local all_phases="src_compile pkg_config src_configure pkg_info
+			src_install pkg_nofetch pkg_postinst pkg_postrm pkg_preinst
+			src_prepare pkg_prerm pkg_pretend pkg_setup src_test src_unpack"
+	__ebuild_main(){}	# Main # Subshell/helper # sandbox # env
+
+
+bin/misc-functions.sh
+bin/lock-helper.py
+bin/isolated-functions.sh
+bin/gpkg-sign
+bin/gpkg-helper.py
+bin/glsa-check
+bin/fixpackages
+bin/filter-bash-environment.py
+bin/etc-update
+bin/estrip
+----------
+-----------
+reverse list other direction
+--------------
+
+./bin/:
+archive-conf
+bashrc-functions.sh
+binhost-snapshot
+cgroup-release-agent
+chmod-lite
+chmod-lite.py
+chpathtool.py
+clean_locks
+dispatch-conf
+dohtml.py
+doins.py
+eapi7-ver-funcs.sh
+eapi.sh
+ebuild
+ebuild-helpers
+ebuild-ipc
+ebuild-ipc.py
+ebuild-pyhelper
+ebuild.sh
+ecompress
+ecompress-file
+egencache
+emaint
+emerge
+emerge-webrsync
+emirrordist
+env-update
+estrip
+etc-update
+filter-bash-environment.py
+fixpackages
+glsa-check
+gpkg-helper.py
+gpkg-sign
+helper-functions.sh
+install.py
+install-qa-check.d
+isolated-functions.sh
+lock-helper.py
+misc-functions.sh
+phase-functions.sh
+phase-helpers.sh
+pid-ns-init
+portageq
+portageq-wrapper
+postinst-qa-check.d
+preinst-qa-check.d
+quickpkg
+regenworld
+save-ebuild-env.sh
+shelve-utils
+socks5-server.py
+xattr-helper.py
+xpak-helper.py

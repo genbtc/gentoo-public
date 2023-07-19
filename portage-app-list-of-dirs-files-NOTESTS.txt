@@ -1,0 +1,940 @@
+portage:
+  4096  bin
+  4096  cnf
+  1840  COPYING
+  6944  DEVELOPING
+  4096  doc
+   294  .editorconfig
+   548  .git-blame-ignore-revs
+   116  .gitignore
+  4096  lib
+ 18092  LICENSE
+  1280  make.conf.example-repatch.sh
+  4096  man
+   491  MANIFEST.in
+  4096  misc
+ 56699  NEWS
+     0  .portage_not_installed
+   455  .pre-commit-config.yaml
+ 15189  pylintrc
+    95  pyproject.toml
+  3559  README.md
+ 84461  RELEASE-NOTES
+    81  run-pylint
+ 29844  setup.py
+  4096  src
+  1864  TEST-NOTES
+   479  tox.ini
+
+./bin:
+  3262  archive-conf
+  1443  bashrc-functions.sh
+  4457  binhost-snapshot
+    51  cgroup-release-agent
+    15  chmod-lite -> ebuild-pyhelper
+   951  chmod-lite.py
+  5891  chpathtool.py
+  1421  clean_locks
+ 19951  dispatch-conf
+  8895  dohtml.py
+ 20007  doins.py
+  4310  eapi7-ver-funcs.sh
+  6078  eapi.sh
+ 15468  ebuild
+  4096  ebuild-helpers
+    15  ebuild-ipc -> ebuild-pyhelper
+ 10684  ebuild-ipc.py
+   618  ebuild-pyhelper
+ 26114  ebuild.sh
+  6481  ecompress
+  1746  ecompress-file
+ 53990  egencache
+  1857  emaint
+  3301  emerge
+ 20936  emerge-webrsync
+   634  emirrordist
+  1048  env-update
+ 17406  estrip
+ 23454  etc-update
+  6045  filter-bash-environment.py
+  1601  fixpackages
+ 15636  glsa-check
+  2166  gpkg-helper.py
+  2476  gpkg-sign
+  2918  helper-functions.sh
+  6314  install.py
+  4096  install-qa-check.d
+ 18552  isolated-functions.sh
+   903  lock-helper.py
+ 20306  misc-functions.sh
+ 34584  phase-functions.sh
+ 33763  phase-helpers.sh
+  5723  pid-ns-init
+ 51197  portageq
+   608  portageq-wrapper
+  4096  postinst-qa-check.d
+  4096  preinst-qa-check.d
+ 16731  quickpkg
+  4992  regenworld
+  4630  save-ebuild-env.sh
+  1339  shelve-utils
+  8140  socks5-server.py
+  4784  xattr-helper.py
+  1825  xpak-helper.py
+
+./bin/ebuild-helpers:
+ 4096  bsd
+  200  die
+ 1049  dobin
+  515  doconfd
+  359  dodir
+  885  dodoc
+  513  doenvd
+  952  doexe
+  531  dohard
+  632  doheader
+  782  dohtml
+  722  doinfo
+  485  doinitd
+ 3034  doins
+ 1333  dolib
+  189  dolib.a
+  189  dolib.so
+ 1553  doman
+ 1216  domo
+ 1053  dosbin
+  818  dosed
+ 2411  dosym
+    4  eerror -> elog
+    4  einfo -> elog
+  204  elog
+  894  emake
+    4  eqawarn -> elog
+    4  ewarn -> elog
+  871  fowners
+  938  fperms
+  490  keepdir
+    6  newbin -> newins
+    6  newconfd -> newins
+    6  newdoc -> newins
+    6  newenvd -> newins
+    6  newexe -> newins
+    6  newheader -> newins
+    6  newinitd -> newins
+ 1201  newins
+    6  newlib.a -> newins
+    6  newlib.so -> newins
+    6  newman -> newins
+    6  newsbin -> newins
+  359  nonfatal
+  299  portageq
+  245  prepall
+  245  prepalldocs
+  245  prepallinfo
+  245  prepallman
+  444  prepallstrip
+  843  prepinfo
+  364  prepman
+  436  prepstrip
+ 4096  unprivileged
+ 4096  xattr
+
+./bin/ebuild-helpers/bsd:
+  639  sed
+
+./bin/ebuild-helpers/unprivileged:
+    5  chgrp -> chown
+ 1178  chown
+
+./bin/ebuild-helpers/xattr:
+ 1369  install
+
+./bin/install-qa-check.d:
+  444  05double-D
+ 4342  05prefix
+ 5559  10executable-issues
+ 3591  10ignored-flags
+  406  20deprecated-directories
+  835  20runtime-directories
+ 3306  60bash-completion
+ 1443  60openrc
+ 5508  60pkgconfig
+  668  60pngfix
+  687  60systemd
+  442  60udev
+ 5556  80libraries
+ 1417  80multilib-strict
+ 1918  90bad-bin-group-write
+ 1566  90bad-bin-owner
+  654  90cmake-warnings
+ 3995  90config-impl-decl
+ 1277  90cython-dep
+ 8300  90gcc-warnings
+ 1042  90world-writable
+ 1518  95empty-dirs
+
+./bin/postinst-qa-check.d:
+ 5236  50xdg-utils
+
+./bin/preinst-qa-check.d:
+   34  50xdg-utils -> ../postinst-qa-check.d/50xdg-utils
+
+./.builds:
+ 1255  ci.yml
+ 1186  lint.yml
+  702  setup-python.sh
+
+./cnf:
+  2314  dispatch-conf.conf
+  2000  etc-update.conf
+  4096  logrotate.d
+ 20487  make.conf.example
+  1718  make.conf.example.alpha.diff
+  2309  make.conf.example.amd64.diff
+  2319  make.conf.example.amd64-fbsd.diff
+  1580  make.conf.example.arm64.diff
+  1592  make.conf.example.arm.diff
+  2465  make.conf.example.hppa.diff
+   663  make.conf.example.ia64.diff
+  2192  make.conf.example.loong.diff
+   900  make.conf.example.m68k.diff
+  1383  make.conf.example.mips.diff
+  2361  make.conf.example.ppc64.diff
+  3541  make.conf.example.ppc.diff
+  2332  make.conf.example.riscv.diff
+   656  make.conf.example.s390.diff
+  1257  make.conf.example.sh.diff
+  2129  make.conf.example.sparc.diff
+   728  make.conf.example.sparc-fbsd.diff
+  3759  make.conf.example.x86.diff
+  2507  make.conf.example.x86-fbsd.diff
+  7498  make.globals
+  4096  repo.postsync.d
+   641  repos.conf
+  4096  sets
+
+./cnf/logrotate.d:
+  272  elog-save-summary
+
+./cnf/repo.postsync.d:
+ 2311  example
+
+./cnf/sets:
+ 4164  portage.conf
+
+./doc:
+  4096  api
+  4096  config
+    85  config.docbook
+   257  custom.xsl
+  4096  dependency_resolution
+   200  dependency_resolution.docbook
+  4096  package
+    76  package.docbook
+  2194  portage.docbook
+ 19579  qa.docbook
+
+./doc/api:
+ 2372  conf.py
+    7  .gitignore
+  217  index.rst
+ 1141  Makefile
+
+./doc/config:
+  1900  bashrc.docbook
+ 26214  sets.docbook
+
+./doc/dependency_resolution:
+ 3281  decision_making.docbook
+ 4154  package_modeling.docbook
+ 3451  task_scheduling.docbook
+
+./doc/package:
+ 4096  ebuild
+  364  ebuild.docbook
+
+./doc/package/ebuild:
+ 4096  eapi
+ 1725  helper_functions.docbook
+ 2780  phases.docbook
+
+./doc/package/ebuild/eapi:
+   487  0.docbook
+  1598  1.docbook
+  8299  2.docbook
+  2938  3.docbook
+ 14690  4.docbook
+  3112  4-slot-abi.docbook
+  8044  5.docbook
+
+./git:
+...
+
+./lib:
+ 4096  _emerge
+ 4096  portage
+
+./lib/_emerge:
+    816  AbstractDepPriority.py
+  18231  AbstractEbuildProcess.py
+   3723  AbstractPollTask.py
+ 148958  actions.py
+   9829  AsynchronousLock.py
+   7090  AsynchronousTask.py
+    473  AtomArg.py
+   2329  BinpkgEnvExtractor.py
+   5399  BinpkgExtractorAsync.py
+   9555  BinpkgFetcher.py
+   1684  BinpkgPrefetcher.py
+  21241  Binpkg.py
+   4335  BinpkgVerifier.py
+   6827  BlockerCache.py
+   5325  BlockerDB.py
+    355  BlockerDepPriority.py
+    483  Blocker.py
+   1952  chk_updated_cfg_files.py
+    498  clear_caches.py
+   4044  CompositeTask.py
+    579  countdown.py
+   8835  create_depgraph_params.py
+   5191  create_world_atom.py
+   1056  DependencyArg.py
+    878  Dependency.py
+ 499633  depgraph.py
+   1564  DepPriorityNormalRange.py
+   1732  DepPriority.py
+   3647  DepPrioritySatisfiedRange.py
+   2050  EbuildBinpkg.py
+   5749  EbuildBuildDir.py
+  23204  EbuildBuild.py
+   2961  EbuildExecuter.py
+  14395  EbuildFetcher.py
+   1359  EbuildFetchonly.py
+   4716  EbuildIpcDaemon.py
+   3239  EbuildMerge.py
+   7597  EbuildMetadataPhase.py
+  22622  EbuildPhase.py
+    872  EbuildProcess.py
+    679  EbuildSpawnProcess.py
+   1814  emergelog.py
+  12786  FakeVartree.py
+   1774  FifoIpcDaemon.py
+   1165  _find_deep_system_runtime_deps.py
+    442  _flush_elog_mod_echo.py
+    958  getloadavg.py
+   3425  help.py
+    102  __init__.py
+    785  is_valid_package_atom.py
+   9142  JobStatusDisplay.py
+  42311  main.py
+   4817  MergeListItem.py
+   6121  MetadataRegen.py
+   2424  MiscFunctionsProcess.py
+    735  PackageArg.py
+   2626  PackageMerge.py
+   4333  PackagePhase.py
+  30870  Package.py
+   5870  PackageUninstall.py
+   4651  PackageVirtualDbapi.py
+   2681  PipeReader.py
+   6561  PollScheduler.py
+   5614  post_emerge.py
+    603  ProgressHandler.py
+   4096  resolver
+   1227  RootConfig.py
+  85602  Scheduler.py
+  20942  search.py
+   2648  SequentialTaskQueue.py
+    421  SetArg.py
+   1573  show_invalid_depstring_notice.py
+  10067  SpawnProcess.py
+   3196  stdout_spinner.py
+   3162  SubProcess.py
+   1478  Task.py
+   1538  TaskSequence.py
+    455  UninstallFailure.py
+   1326  UnmergeDepPriority.py
+  26360  unmerge.py
+   3555  UseFlagDisplay.py
+   2915  UserQuery.py
+
+./lib/_emerge/resolver:
+ 11328  backtracking.py
+ 11932  circular_dependency.py
+  3198  DbapiProvidesIndex.py
+   102  __init__.py
+ 20748  output_helpers.py
+ 39524  output.py
+ 15636  package_tracker.py
+ 58871  slot_collision.py
+
+./lib/portage:
+  2576  binpkg.py
+  4096  binrepo
+  4096  cache
+ 16566  checksum.py
+  4096  _compat_upgrade
+  8879  const.py
+ 11470  cvstree.py
+ 11537  data.py
+  4096  dbapi
+  3956  debug.py
+  4096  dep
+ 14093  dispatch_conf.py
+  8092  eapi.py
+  6757  eclass_cache.py
+  4096  elog
+  4096  emaint
+  4096  _emirrordist
+  4096  env
+  6616  exception.py
+ 31465  getbinpkg.py
+ 10222  _global_updates.py
+ 31427  glsa.py
+  3637  gpg.py
+ 80633  gpkg.py
+ 25908  __init__.py
+  2550  _legacy_globals.py
+  1550  localization.py
+ 28160  locks.py
+  6187  mail.py
+ 31108  manifest.py
+  8221  metadata.py
+  8568  module.py
+ 18485  news.py
+ 29784  output.py
+  4096  package
+ 41702  process.py
+  1573  progress.py
+  4096  proxy
+  4096  repository
+  4762  _selinux.py
+  4096  _sets
+  4096  sync
+ 17014  update.py
+  4096  util
+ 19275  versions.py
+  4096  xml
+ 19413  xpak.py
+
+./lib/portage/binrepo:
+ 4554  config.py
+    0  __init__.py
+
+./lib/portage/cache:
+  3167  anydbm.py
+  2139  cache_errors.py
+  5226  ebuild_xattr.py
+  5286  flat_hash.py
+  3197  fs_template.py
+  4096  index
+   101  __init__.py
+ 11957  mappings.py
+  5844  metadata.py
+ 13390  sqlite.py
+ 11820  sql_template.py
+ 13272  template.py
+   789  volatile.py
+
+./lib/portage/cache/index:
+  562  IndexStreamIterator.py
+  102  __init__.py
+ 1394  pkg_desc_index.py
+
+./lib/portage/_compat_upgrade:
+ 1666  binpkg_compression.py
+ 1240  binpkg_multi_instance.py
+ 4288  default_locations.py
+    0  __init__.py
+
+./lib/portage/dbapi:
+  90388  bintree.py
+   2991  _ContentsCaseSensitivityManager.py
+   4184  cpv_expand.py
+   1889  dep_expand.py
+    643  DummyTree.py
+   2545  _expand_new_virt.py
+   5690  IndexedPortdb.py
+   3743  IndexedVardb.py
+  16769  __init__.py
+  10128  _MergeProcess.py
+  64264  porttree.py
+   1685  _similar_name_search.py
+   1511  _SyncfsProcess.py
+ 253670  vartree.py
+   6019  _VdbMetadataDelta.py
+   7587  virtual.py
+
+./lib/portage/dep:
+  42498  dep_check.py
+   3780  _dnf.py
+ 107874  __init__.py
+   4396  _slot_operator.py
+   4096  soname
+
+./lib/portage/dep/soname:
+  102  __init__.py
+ 5080  multilib_category.py
+ 1491  parse.py
+ 1925  SonameAtom.py
+
+./lib/portage/elog:
+  613  filtering.py
+ 6879  __init__.py
+ 6065  messages.py
+  968  mod_custom.py
+ 2204  mod_echo.py
+ 1660  mod_mail.py
+ 3183  mod_mail_summary.py
+ 3396  mod_save.py
+ 3580  mod_save_summary.py
+  974  mod_syslog.py
+
+./lib/portage/emaint:
+  762  defaults.py
+  163  __init__.py
+ 8691  main.py
+ 4096  modules
+
+./lib/portage/emaint/modules:
+ 4096  binhost
+ 4096  config
+  173  __init__.py
+ 4096  logs
+ 4096  merges
+ 4096  move
+ 4096  resume
+ 4096  sync
+ 4096  world
+
+./lib/portage/emaint/modules/binhost:
+ 6358  binhost.py
+  524  __init__.py
+
+./lib/portage/emaint/modules/config:
+ 2520  config.py
+  534  __init__.py
+
+./lib/portage/emaint/modules/logs:
+ 1629  __init__.py
+ 3535  logs.py
+
+./lib/portage/emaint/modules/merges:
+ 1417  __init__.py
+ 9834  merges.py
+
+./lib/portage/emaint/modules/move:
+  851  __init__.py
+ 7693  move.py
+
+./lib/portage/emaint/modules/resume:
+  566  __init__.py
+ 1900  resume.py
+
+./lib/portage/emaint/modules/sync:
+  2145  __init__.py
+ 18469  sync.py
+
+./lib/portage/emaint/modules/world:
+  502  __init__.py
+ 3109  world.py
+
+./lib/portage/_emirrordist:
+  5376  Config.py
+  7223  ContentDB.py
+  4631  DeletionIterator.py
+  5079  DeletionTask.py
+ 11176  FetchIterator.py
+ 25443  FetchTask.py
+   102  __init__.py
+ 16082  main.py
+  9075  MirrorDistTask.py
+
+./lib/portage/env:
+  3054  config.py
+    52  __init__.py
+ 10311  loaders.py
+   578  validators.py
+
+./lib/portage/package:
+ 4096  ebuild
+  102  __init__.py
+
+./lib/portage/package/ebuild:
+   4096  _config
+ 133992  config.py
+   4195  deprecated_profile_check.py
+   6732  digestcheck.py
+   9424  digestgen.py
+ 111630  doebuild.py
+  79515  fetch.py
+   4689  getmaskingreason.py
+   6556  getmaskingstatus.py
+    102  __init__.py
+   4096  _ipc
+   1405  _metadata_invalid.py
+   4096  _parallel_manifest
+  19287  prepare_build_dirs.py
+   1004  profile_iuse.py
+   4987  _spawn_nofetch.py
+
+./lib/portage/package/ebuild/_config:
+   770  env_var_validation.py
+  4694  features_set.py
+  2272  helper.py
+   102  __init__.py
+ 13005  KeywordsManager.py
+  9192  LicenseManager.py
+ 16684  LocationsManager.py
+ 13915  MaskManager.py
+  9457  special_env_vars.py
+ 21565  UseManager.py
+  8443  VirtualsManager.py
+
+./lib/portage/package/ebuild/_ipc:
+  829  ExitCommand.py
+  102  __init__.py
+  212  IpcCommand.py
+ 5193  QueryCommand.py
+
+./lib/portage/package/ebuild/_parallel_manifest:
+  102  __init__.py
+ 1413  ManifestProcess.py
+ 3767  ManifestScheduler.py
+ 7859  ManifestTask.py
+
+./lib/portage/proxy:
+  102  __init__.py
+ 7762  lazyimport.py
+ 2857  objectproxy.py
+
+./lib/portage/repository:
+ 62136  config.py
+   102  __init__.py
+  4096  storage
+
+./lib/portage/repository/storage:
+  3951  hardlink_quarantine.py
+ 10940  hardlink_rcu.py
+   102  __init__.py
+  1153  inplace.py
+  2675  interface.py
+
+./lib/portage/_sets:
+  8205  base.py
+ 22035  dbapi.py
+ 15573  files.py
+ 14268  __init__.py
+  3603  libs.py
+  1719  ProfilePackageSet.py
+  2406  profiles.py
+  3535  security.py
+  1441  shell.py
+
+./lib/portage/sync:
+  3015  config_checks.py
+ 14745  controller.py
+   696  getaddrinfo_validate.py
+  1589  __init__.py
+  4096  modules
+  2485  old_tree_timestamp.py
+ 13139  syncbase.py
+
+./lib/portage/sync/modules:
+ 4096  cvs
+ 4096  git
+    0  __init__.py
+ 4096  mercurial
+ 4096  rsync
+ 4096  svn
+ 4096  webrsync
+
+./lib/portage/sync/modules/cvs:
+ 2339  cvs.py
+ 1650  __init__.py
+
+./lib/portage/sync/modules/git:
+ 20049  git.py
+  2722  __init__.py
+
+./lib/portage/sync/modules/mercurial:
+ 1403  __init__.py
+ 6125  mercurial.py
+
+./lib/portage/sync/modules/rsync:
+  1287  __init__.py
+ 33953  rsync.py
+
+./lib/portage/sync/modules/svn:
+ 1037  __init__.py
+ 2759  svn.py
+
+./lib/portage/sync/modules/webrsync:
+ 1650  __init__.py
+ 4983  webrsync.py
+
+  4096  bin
+  4096  dbapi
+  4096  dep
+  4096  ebuild
+  4096  emerge
+  4096  env
+  4096  glsa
+  4096  gpkg
+ 11871  __init__.py
+  4096  lafilefixer
+  4096  lazyimport
+  4096  lint
+  4096  locks
+  4096  news
+  4096  process
+  4096  resolver
+  2100  runTests.py
+  4096  sets
+  4096  sync
+  4096  unicode
+  4096  update
+  4096  util
+  4096  versions
+  4096  xpak
+
+     0  __init__.py
+  2658  setup_env.py
+
+  102  __init__.py
+
+   169  __init__.py
+
+   107  __init__.py
+
+   102  __init__.py
+
+ 4096  config
+  169  __init__.py
+
+  176  __init__.py
+
+  102  __init__.py
+
+ 4096  openpgp-revocs.d
+ 4096  private-keys-v1.d
+ 2774  pubring.kbx
+ 1360  trustdb.gpg
+
+ 1850  06B3A311BD775C280D22A9305D90EA06352177F6.rev
+ 1852  8DEDA2CDED49C8809287B89D8812797DDF1DD192.rev
+
+ 2055  273B030399E7BEA66A9AD42216DE7CA17BA5D42E.key
+ 2055  C99796FB85B0C3DF03314A11B5850C51167D6282.key
+
+   102  __init__.py
+
+    0  __init__.py
+
+    0  __init__.py
+
+    0  __init__.py
+  214  metadata.py
+
+  102  __init__.py
+
+   170  __init__.py
+
+  107  __init__.py
+
+  4096  binpkg_multi_instance
+   102  __init__.py
+ 42502  ResolverPlayground.py
+  4096  soname
+
+  102  __init__.py
+
+   102  __init__.py
+
+ 4096  base
+ 4096  files
+    0  __init__.py
+ 4096  shell
+
+    0  __init__.py
+
+    0  __init__.py
+
+    0  __init__.py
+
+   102  __init__.py
+
+  102  __init__.py
+
+   102  __init__.py
+
+  4096  dyn_libs
+  4096  eventloop
+  4096  file_copy
+  4096  futures
+   170  __init__.py
+
+    0  __init__.py
+
+    0  __init__.py
+
+    0  __init__.py
+
+  4096  asyncio
+     0  __init__.py
+
+    0  __init__.py
+
+  174  __init__.py
+
+  169  __init__.py
+
+./lib/portage/util:
+  4096  _async
+  1528  backoff.py
+  1133  bin_entry_point.py
+  2189  changelog.py
+  4347  _compare_files.py
+  3464  compression_probe.py
+  2403  configparser.py
+  2180  cpuinfo.py
+  1219  _ctypes.py
+  2654  _desktop_entry.py
+ 12975  digraph.py
+  4096  _dyn_libs
+  4096  elf
+  4096  endian
+ 15592  env_update.py
+  4096  _eventloop
+  2929  ExtractKernelVersion.py
+  4096  file_copy
+  2118  formatter.py
+  4096  futures
+  3029  _get_vm_info.py
+  1584  hooks.py
+  5956  _info_files.py
+ 68950  __init__.py
+  6549  install_mask.py
+  4096  iterators
+  7349  lafilefixer.py
+  4814  listdir.py
+  4339  locale.py
+ 14806  movefile.py
+  4258  mtimedb.py
+  2990  netlink.py
+   692  _path.py
+  1336  path.py
+  2530  _pty.py
+  1527  shelve.py
+  2141  SlotObject.py
+  3635  socks5.py
+  4032  _urlopen.py
+ 58416  whirlpool.py
+  4506  writeable_check.py
+  7063  _xattr.py
+
+./lib/portage/util/_async:
+ 2609  AsyncFunction.py
+ 3393  AsyncScheduler.py
+  963  AsyncTaskFuture.py
+ 4785  BuildLogger.py
+ 1103  FileCopier.py
+ 2486  FileDigester.py
+ 5953  ForkProcess.py
+  102  __init__.py
+ 7527  PipeLogger.py
+ 2587  PipeReaderBlockingIO.py
+ 1076  PopenProcess.py
+ 1360  run_main_scheduler.py
+ 4501  SchedulerInterface.py
+  644  TaskScheduler.py
+
+./lib/portage/util/_dyn_libs:
+  3834  display_preserved_libs.py
+  1070  dyn_libs.py
+   102  __init__.py
+ 41425  LinkageMapELF.py
+  2877  NeededEntry.py
+  9385  PreservedLibsRegistry.py
+  6203  soname_deps.py
+  3722  soname_deps_qa.py
+
+./lib/portage/util/elf:
+ 1345  constants.py
+ 1889  header.py
+  102  __init__.py
+
+./lib/portage/util/endian:
+ 1303  decode.py
+  102  __init__.py
+
+./lib/portage/util/_eventloop:
+ 5849  asyncio_event_loop.py
+  213  global_event_loop.py
+  102  __init__.py
+
+./lib/portage/util/file_copy:
+  909  __init__.py
+
+./lib/portage/util/futures:
+ 4096  _asyncio
+ 4942  compat_coroutine.py
+ 4096  executor
+ 2831  extendedfutures.py
+  516  futures.py
+  180  __init__.py
+ 6868  iter_completed.py
+ 6297  retry.py
+ 1854  _sync_decorator.py
+ 2237  unix_events.py
+
+./lib/portage/util/futures/_asyncio:
+ 9689  __init__.py
+ 3016  streams.py
+
+./lib/portage/util/futures/executor:
+ 4306  fork.py
+    0  __init__.py
+
+./lib/portage/util/iterators:
+  102  __init__.py
+ 2996  MultiIterGroupBy.py
+
+./lib/portage/xml:
+   102  __init__.py
+ 16789  metadata.py
+
+./man:
+  4270  color.map.5
+  3632  dispatch-conf.1
+ 10767  ebuild.1
+ 61325  ebuild.5
+  7450  egencache.1
+  3505  emaint.1
+ 71752  emerge.1
+  4775  emirrordist.1
+  1060  env-update.1
+  1731  etc-update.1
+   456  fixpackages.1
+  2339  glsa-check.1
+ 57969  make.conf.5
+ 64011  portage.5
+  2337  quickpkg.1
+  4096  ru
+  6382  xpak.5
+
+./man/ru:
+  8219  color.map.5
+  6044  dispatch-conf.1
+ 18212  ebuild.1
+  1860  env-update.1
+  3114  etc-update.1
+   858  fixpackages.1
+
+./misc:
+ 24116  emerge-delta-webrsync
+
+./src:
+ 13383  portage_util_file_copy_reflink_linux.c
+  1276  portage_util_libc.c
+ 71291  portage_util__whirlpool.c

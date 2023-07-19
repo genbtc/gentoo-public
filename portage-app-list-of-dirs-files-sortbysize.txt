@@ -1,0 +1,727 @@
+499633  depgraph.py
+253670  vartree.py
+148958  actions.py
+133992  config.py
+111630  doebuild.py
+107874  __init__.py
+90388  bintree.py
+85602  Scheduler.py
+84461  RELEASE-NOTES
+80633  gpkg.py
+79515  fetch.py
+71752  emerge.1
+71291  portage_util__whirlpool.c
+68950  __init__.py
+64264  porttree.py
+64011  portage.5
+62136  config.py
+61325  ebuild.5
+58871  slot_collision.py
+58416  whirlpool.py
+57969  make.conf.5
+56699  NEWS
+53990  egencache
+51197  portageq
+42502  ResolverPlayground.py
+42498  dep_check.py
+42311  main.py
+41702  process.py
+41425  LinkageMapELF.py
+39524  output.py
+34584  phase-functions.sh
+33953  rsync.py
+33763  phase-helpers.sh
+31465  getbinpkg.py
+31427  glsa.py
+31108  manifest.py
+30870  Package.py
+29844  setup.py
+29784  output.py
+28160  locks.py
+26360  unmerge.py
+26214  sets.docbook
+26114  ebuild.sh
+25908  __init__.py
+25443  FetchTask.py
+24116  emerge-delta-webrsync
+23454  etc-update
+23204  EbuildBuild.py
+22622  EbuildPhase.py
+22035  dbapi.py
+21565  UseManager.py
+21241  Binpkg.py
+20942  search.py
+20936  emerge-webrsync
+20748  output_helpers.py
+20487  make.conf.example
+20306  misc-functions.sh
+20049  git.py
+20007  doins.py
+19951  dispatch-conf
+19579  qa.docbook
+19413  xpak.py
+19287  prepare_build_dirs.py
+19275  versions.py
+18552  isolated-functions.sh
+18485  news.py
+18469  sync.py
+18231  AbstractEbuildProcess.py
+18212  ebuild.1
+18092  LICENSE
+17406  estrip
+17014  update.py
+16789  metadata.py
+16769  __init__.py
+16731  quickpkg
+16684  LocationsManager.py
+16566  checksum.py
+16082  main.py
+15636  package_tracker.py
+15636  glsa-check
+15592  env_update.py
+15573  files.py
+15468  ebuild
+15189  pylintrc
+14806  movefile.py
+14745  controller.py
+14690  4.docbook
+14395  EbuildFetcher.py
+14268  __init__.py
+14093  dispatch_conf.py
+13915  MaskManager.py
+13390  sqlite.py
+13383  portage_util_file_copy_reflink_linux.c
+13272  template.py
+13139  syncbase.py
+13005  KeywordsManager.py
+12975  digraph.py
+12786  FakeVartree.py
+11957  mappings.py
+11932  circular_dependency.py
+11871  __init__.py
+11820  sql_template.py
+11537  data.py
+11470  cvstree.py
+11328  backtracking.py
+11176  FetchIterator.py
+10940  hardlink_rcu.py
+10767  ebuild.1
+10684  ebuild-ipc.py
+10311  loaders.py
+10222  _global_updates.py
+10128  _MergeProcess.py
+10067  SpawnProcess.py
+9834  merges.py
+9829  AsynchronousLock.py
+9689  __init__.py
+9555  BinpkgFetcher.py
+9457  special_env_vars.py
+9424  digestgen.py
+9385  PreservedLibsRegistry.py
+9192  LicenseManager.py
+9142  JobStatusDisplay.py
+9075  MirrorDistTask.py
+8895  dohtml.py
+8879  const.py
+8835  create_depgraph_params.py
+8691  main.py
+8568  module.py
+8443  VirtualsManager.py
+8300  90gcc-warnings
+8299  2.docbook
+8221  metadata.py
+8219  color.map.5
+8205  base.py
+8140  socks5-server.py
+8092  eapi.py
+8044  5.docbook
+7859  ManifestTask.py
+7762  lazyimport.py
+7693  move.py
+7597  EbuildMetadataPhase.py
+7587  virtual.py
+7527  PipeLogger.py
+7498  make.globals
+7450  egencache.1
+7349  lafilefixer.py
+7223  ContentDB.py
+7090  AsynchronousTask.py
+7063  _xattr.py
+6944  DEVELOPING
+6879  __init__.py
+6868  iter_completed.py
+6827  BlockerCache.py
+6757  eclass_cache.py
+6732  digestcheck.py
+6616  exception.py
+6561  PollScheduler.py
+6556  getmaskingstatus.py
+6549  install_mask.py
+6481  ecompress
+6382  xpak.5
+6358  binhost.py
+6314  install.py
+6297  retry.py
+6203  soname_deps.py
+6187  mail.py
+6125  mercurial.py
+6121  MetadataRegen.py
+6078  eapi.sh
+6065  messages.py
+6045  filter-bash-environment.py
+6044  dispatch-conf.1
+6019  _VdbMetadataDelta.py
+5956  _info_files.py
+5953  ForkProcess.py
+5891  chpathtool.py
+5870  PackageUninstall.py
+5849  asyncio_event_loop.py
+5844  metadata.py
+5749  EbuildBuildDir.py
+5723  pid-ns-init
+5690  IndexedPortdb.py
+5614  post_emerge.py
+5559  10executable-issues
+5556  80libraries
+5508  60pkgconfig
+5399  BinpkgExtractorAsync.py
+5376  Config.py
+5325  BlockerDB.py
+5286  flat_hash.py
+5236  50xdg-utils
+5226  ebuild_xattr.py
+5193  QueryCommand.py
+5191  create_world_atom.py
+5080  multilib_category.py
+5079  DeletionTask.py
+4992  regenworld
+4987  _spawn_nofetch.py
+4983  webrsync.py
+4942  compat_coroutine.py
+4817  MergeListItem.py
+4814  listdir.py
+4785  BuildLogger.py
+4784  xattr-helper.py
+4775  emirrordist.1
+4762  _selinux.py
+4716  EbuildIpcDaemon.py
+4694  features_set.py
+4689  getmaskingreason.py
+4651  PackageVirtualDbapi.py
+4631  DeletionIterator.py
+4630  save-ebuild-env.sh
+4554  config.py
+4506  writeable_check.py
+4501  SchedulerInterface.py
+4457  binhost-snapshot
+4396  _slot_operator.py
+4347  _compare_files.py
+4342  05prefix
+4339  locale.py
+4335  BinpkgVerifier.py
+4333  PackagePhase.py
+4310  eapi7-ver-funcs.sh
+4306  fork.py
+4288  default_locations.py
+4270  color.map.5
+4258  mtimedb.py
+4195  deprecated_profile_check.py
+4184  cpv_expand.py
+4164  portage.conf
+4154  package_modeling.docbook
+4096 [DIR]  xpak
+4096 [DIR]  xml
+4096 [DIR]  xattr
+4096 [DIR]  world
+4096 [DIR]  webrsync
+4096 [DIR]  versions
+4096 [DIR]  util
+4096 [DIR]  util
+4096 [DIR]  update
+4096 [DIR]  unprivileged
+4096 [DIR]  unicode
+4096 [DIR]  sync
+4096 [DIR]  sync
+4096 [DIR]  sync
+4096 [DIR]  svn
+4096 [DIR]  storage
+4096 [DIR]  src
+4096 [DIR]  soname
+4096 [DIR]  soname
+4096 [DIR]  shell
+4096 [DIR]  sets
+4096 [DIR]  sets
+4096 [DIR]  _sets
+4096 [DIR]  ru
+4096 [DIR]  rsync
+4096 [DIR]  resume
+4096 [DIR]  resolver
+4096 [DIR]  resolver
+4096 [DIR]  repository
+4096 [DIR]  repo.postsync.d
+4096 [DIR]  proxy
+4096 [DIR]  process
+4096 [DIR]  private-keys-v1.d
+4096 [DIR]  preinst-qa-check.d
+4096 [DIR]  postinst-qa-check.d
+4096 [DIR]  portage
+4096 [DIR]  _parallel_manifest
+4096 [DIR]  package
+4096 [DIR]  package
+4096 [DIR]  openpgp-revocs.d
+4096 [DIR]  news
+4096 [DIR]  move
+4096 [DIR]  modules
+4096 [DIR]  modules
+4096 [DIR]  misc
+4096 [DIR]  merges
+4096 [DIR]  mercurial
+4096 [DIR]  man
+4096 [DIR]  logs
+4096 [DIR]  logrotate.d
+4096 [DIR]  locks
+4096 [DIR]  lint
+4096 [DIR]  lib
+4096 [DIR]  lazyimport
+4096 [DIR]  lafilefixer
+4096 [DIR]  iterators
+4096 [DIR]  _ipc
+4096 [DIR]  install-qa-check.d
+4096 [DIR]  index
+4096 [DIR]  gpkg
+4096 [DIR]  glsa
+4096 [DIR]  git
+4096 [DIR]  futures
+4096 [DIR]  futures
+4096 [DIR]  files
+4096 [DIR]  file_copy
+4096 [DIR]  file_copy
+4096 [DIR]  executor
+4096 [DIR]  eventloop
+4096 [DIR]  _eventloop
+4096 [DIR]  env
+4096 [DIR]  env
+4096 [DIR]  endian
+4096 [DIR]  _emirrordist
+4096 [DIR]  _emerge
+4096 [DIR]  emerge
+4096 [DIR]  emaint
+4096 [DIR]  elog
+4096 [DIR]  elf
+4096 [DIR]  ebuild-helpers
+4096 [DIR]  ebuild
+4096 [DIR]  ebuild
+4096 [DIR]  ebuild
+4096 [DIR]  eapi
+4096 [DIR]  dyn_libs
+4096 [DIR]  _dyn_libs
+4096 [DIR]  doc
+4096 [DIR]  dependency_resolution
+4096 [DIR]  dep
+4096 [DIR]  dep
+4096 [DIR]  dbapi
+4096 [DIR]  dbapi
+4096 [DIR]  cvs
+4096 [DIR]  config
+4096 [DIR]  config
+4096 [DIR]  config
+4096 [DIR]  _config
+4096 [DIR]  _compat_upgrade
+4096 [DIR]  cnf
+4096 [DIR]  cache
+4096 [DIR]  bsd
+4096 [DIR]  binrepo
+4096 [DIR]  binpkg_multi_instance
+4096 [DIR]  binhost
+4096 [DIR]  bin
+4096 [DIR]  bin
+4096 [DIR]  base
+4096 [DIR]  _asyncio
+4096 [DIR]  asyncio
+4096 [DIR]  _async
+4096 [DIR]  api
+4044  CompositeTask.py
+4032  _urlopen.py
+3995  90config-impl-decl
+3956  debug.py
+3951  hardlink_quarantine.py
+3834  display_preserved_libs.py
+3780  _dnf.py
+3767  ManifestScheduler.py
+3759  make.conf.example.x86.diff
+3743  IndexedVardb.py
+3723  AbstractPollTask.py
+3722  soname_deps_qa.py
+3647  DepPrioritySatisfiedRange.py
+3637  gpg.py
+3635  socks5.py
+3632  dispatch-conf.1
+3603  libs.py
+3591  10ignored-flags
+3580  mod_save_summary.py
+3559  README.md
+3555  UseFlagDisplay.py
+3541  make.conf.example.ppc.diff
+3535  security.py
+3535  logs.py
+3505  emaint.1
+3464  compression_probe.py
+3451  task_scheduling.docbook
+3425  help.py
+3396  mod_save.py
+3393  AsyncScheduler.py
+3306  60bash-completion
+3301  emerge
+3281  decision_making.docbook
+3262  archive-conf
+3239  EbuildMerge.py
+3198  DbapiProvidesIndex.py
+3197  fs_template.py
+3196  stdout_spinner.py
+3183  mod_mail_summary.py
+3167  anydbm.py
+3162  SubProcess.py
+3114  etc-update.1
+3112  4-slot-abi.docbook
+3109  world.py
+3054  config.py
+3034  doins
+3029  _get_vm_info.py
+3016  streams.py
+3015  config_checks.py
+2996  MultiIterGroupBy.py
+2991  _ContentsCaseSensitivityManager.py
+2990  netlink.py
+2961  EbuildExecuter.py
+2938  3.docbook
+2929  ExtractKernelVersion.py
+2918  helper-functions.sh
+2915  UserQuery.py
+2877  NeededEntry.py
+2857  objectproxy.py
+2831  extendedfutures.py
+2780  phases.docbook
+2774  pubring.kbx
+2759  svn.py
+2722  __init__.py
+2681  PipeReader.py
+2675  interface.py
+2658  setup_env.py
+2654  _desktop_entry.py
+2648  SequentialTaskQueue.py
+2626  PackageMerge.py
+2609  AsyncFunction.py
+2587  PipeReaderBlockingIO.py
+2576  binpkg.py
+2550  _legacy_globals.py
+2545  _expand_new_virt.py
+2530  _pty.py
+2520  config.py
+2507  make.conf.example.x86-fbsd.diff
+2486  FileDigester.py
+2485  old_tree_timestamp.py
+2476  gpkg-sign
+2465  make.conf.example.hppa.diff
+2424  MiscFunctionsProcess.py
+2411  dosym
+2406  profiles.py
+2403  configparser.py
+2372  conf.py
+2361  make.conf.example.ppc64.diff
+2339  glsa-check.1
+2339  cvs.py
+2337  quickpkg.1
+2332  make.conf.example.riscv.diff
+2329  BinpkgEnvExtractor.py
+2319  make.conf.example.amd64-fbsd.diff
+2314  dispatch-conf.conf
+2311  example
+2309  make.conf.example.amd64.diff
+2272  helper.py
+2237  unix_events.py
+2204  mod_echo.py
+2194  portage.docbook
+2192  make.conf.example.loong.diff
+2189  changelog.py
+2180  cpuinfo.py
+2166  gpkg-helper.py
+2145  __init__.py
+2141  SlotObject.py
+2139  cache_errors.py
+2129  make.conf.example.sparc.diff
+2118  formatter.py
+2100  runTests.py
+2055  C99796FB85B0C3DF03314A11B5850C51167D6282.key
+2055  273B030399E7BEA66A9AD42216DE7CA17BA5D42E.key
+2050  EbuildBinpkg.py
+2000  etc-update.conf
+1952  chk_updated_cfg_files.py
+1925  SonameAtom.py
+1918  90bad-bin-group-write
+1900  resume.py
+1900  bashrc.docbook
+1889  header.py
+1889  dep_expand.py
+1864  TEST-NOTES
+1860  env-update.1
+1857  emaint
+1854  _sync_decorator.py
+1852  8DEDA2CDED49C8809287B89D8812797DDF1DD192.rev
+1850  06B3A311BD775C280D22A9305D90EA06352177F6.rev
+1840  COPYING
+1825  xpak-helper.py
+1814  emergelog.py
+1774  FifoIpcDaemon.py
+1746  ecompress-file
+1732  DepPriority.py
+1731  etc-update.1
+1725  helper_functions.docbook
+1719  ProfilePackageSet.py
+1718  make.conf.example.alpha.diff
+1685  _similar_name_search.py
+1684  BinpkgPrefetcher.py
+1666  binpkg_compression.py
+1660  mod_mail.py
+1650  __init__.py
+1650  __init__.py
+1629  __init__.py
+1601  fixpackages
+1598  1.docbook
+1592  make.conf.example.arm.diff
+1589  __init__.py
+1584  hooks.py
+1580  make.conf.example.arm64.diff
+1573  show_invalid_depstring_notice.py
+1573  progress.py
+1566  90bad-bin-owner
+1564  DepPriorityNormalRange.py
+1553  doman
+1550  localization.py
+1538  TaskSequence.py
+1528  backoff.py
+1527  shelve.py
+1518  95empty-dirs
+1511  _SyncfsProcess.py
+1491  parse.py
+1478  Task.py
+1443  bashrc-functions.sh
+1443  60openrc
+1441  shell.py
+1421  clean_locks
+1417  __init__.py
+1417  80multilib-strict
+1413  ManifestProcess.py
+1405  _metadata_invalid.py
+1403  __init__.py
+1394  pkg_desc_index.py
+1383  make.conf.example.mips.diff
+1369  install
+1360  trustdb.gpg
+1360  run_main_scheduler.py
+1359  EbuildFetchonly.py
+1345  constants.py
+1339  shelve-utils
+1336  path.py
+1333  dolib
+1326  UnmergeDepPriority.py
+1303  decode.py
+1287  __init__.py
+1280  make.conf.example-repatch.sh
+1277  90cython-dep
+1276  portage_util_libc.c
+1257  make.conf.example.sh.diff
+1255  ci.yml
+1240  binpkg_multi_instance.py
+1227  RootConfig.py
+1219  _ctypes.py
+1216  domo
+1201  newins
+1186  lint.yml
+1178  chown
+1165  _find_deep_system_runtime_deps.py
+1153  inplace.py
+1141  Makefile
+1133  bin_entry_point.py
+1103  FileCopier.py
+1076  PopenProcess.py
+1070  dyn_libs.py
+1060  env-update.1
+1056  DependencyArg.py
+1053  dosbin
+1049  dobin
+1048  env-update
+1042  90world-writable
+1037  __init__.py
+1004  profile_iuse.py
+974  mod_syslog.py
+968  mod_custom.py
+963  AsyncTaskFuture.py
+958  getloadavg.py
+952  doexe
+951  chmod-lite.py
+938  fperms
+909  __init__.py
+903  lock-helper.py
+900  make.conf.example.m68k.diff
+894  emake
+885  dodoc
+878  Dependency.py
+872  EbuildProcess.py
+871  fowners
+858  fixpackages.1
+851  __init__.py
+843  prepinfo
+835  20runtime-directories
+829  ExitCommand.py
+818  dosed
+816  AbstractDepPriority.py
+789  volatile.py
+785  is_valid_package_atom.py
+782  dohtml
+770  env_var_validation.py
+762  defaults.py
+735  PackageArg.py
+728  make.conf.example.sparc-fbsd.diff
+722  doinfo
+702  setup-python.sh
+696  getaddrinfo_validate.py
+692  _path.py
+687  60systemd
+679  EbuildSpawnProcess.py
+668  60pngfix
+663  make.conf.example.ia64.diff
+656  make.conf.example.s390.diff
+654  90cmake-warnings
+644  TaskScheduler.py
+643  DummyTree.py
+641  repos.conf
+639  sed
+634  emirrordist
+632  doheader
+618  ebuild-pyhelper
+613  filtering.py
+608  portageq-wrapper
+603  ProgressHandler.py
+579  countdown.py
+578  validators.py
+566  __init__.py
+562  IndexStreamIterator.py
+548  .git-blame-ignore-revs
+534  __init__.py
+531  dohard
+524  __init__.py
+516  futures.py
+515  doconfd
+513  doenvd
+502  __init__.py
+498  clear_caches.py
+491  MANIFEST.in
+490  keepdir
+487  0.docbook
+485  doinitd
+483  Blocker.py
+479  tox.ini
+473  AtomArg.py
+456  fixpackages.1
+455  UninstallFailure.py
+455  .pre-commit-config.yaml
+444  prepallstrip
+444  05double-D
+442  _flush_elog_mod_echo.py
+442  60udev
+436  prepstrip
+421  SetArg.py
+406  20deprecated-directories
+364  prepman
+364  ebuild.docbook
+359  nonfatal
+359  dodir
+355  BlockerDepPriority.py
+299  portageq
+294  .editorconfig
+272  elog-save-summary
+257  custom.xsl
+245  prepallman
+245  prepallinfo
+245  prepalldocs
+245  prepall
+217  index.rst
+214  metadata.py
+213  global_event_loop.py
+212  IpcCommand.py
+204  elog
+200  die
+200  dependency_resolution.docbook
+189  dolib.so
+189  dolib.a
+180  __init__.py
+176  __init__.py
+174  __init__.py
+173  __init__.py
+170  __init__.py
+170  __init__.py
+169  __init__.py
+169  __init__.py
+169  __init__.py
+163  __init__.py
+116  .gitignore
+107  __init__.py
+107  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+102  __init__.py
+101  __init__.py
+95  pyproject.toml
+85  config.docbook
+81  run-pylint
+76  package.docbook
+52  __init__.py
+51  cgroup-release-agent
+34  50xdg-utils -> ../postinst-qa-check.d/50xdg-utils
+15  ebuild-ipc -> ebuild-pyhelper
+15  chmod-lite -> ebuild-pyhelper
+7  .gitignore
+6  newsbin -> newins
+6  newman -> newins
+6  newlib.so -> newins
+6  newlib.a -> newins
+6  newinitd -> newins
+6  newheader -> newins
+6  newexe -> newins
+6  newenvd -> newins
+6  newdoc -> newins
+6  newconfd -> newins
+6  newbin -> newins
+5  chgrp -> chown
+4  ewarn -> elog
+4  eqawarn -> elog
+4  einfo -> elog
+4  eerror -> elog
