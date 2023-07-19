@@ -7,32 +7,6 @@ https://github.com/gentoo/portage/blob/master/lib/portage/package/ebuild/doebuil
 the file for binhosts:
 src/portage/lib/portage/emaint/modules/binhost/binhost.py
 
-QA warnings for gcc/clang compiler warnings that indicate code problems
-https://github.com/genbtc/portage/blob/master/bin/install-qa-check.d/90gcc-warnings
-and
-/usr/lib/portage/python3.11/install-qa-check.d/90gcc-warnings # ls
-	05double-D
-	05prefix
-	10executable-issues
-	10ignored-flags
-	20deprecated-directories
-	20runtime-directories     
-	60bash-completion
-	60openrc
-	60pkgconfig
-	60pngfix
-	60systemd  
-	60udev
-	80libraries
-	80multilib-strict
-	90bad-bin-group-write
-	90bad-bin-owner
-	90cmake-warnings
-	90config-impl-decl
-	90gcc-warnings
-	90world-writable
-	95empty-dirs
-Theres also a preinst-qa-check and postinst-qa-check
 
 Top 100 Largest Files in Portage:
 ------------------------------------
@@ -357,7 +331,7 @@ bin/portageq
 
 bin/portageq-wrapper
 ------------------
-	# Use safe cwd, avoiding unsafe import for bug #469338.
+	#pythonpath wrapper 	# Use safe cwd, avoiding unsafe import for bug #469338.
 	PYTHONPATH=${PORTAGE_PYTHONPATH:-${PORTAGE_PYM_PATH}} exec "${PORTAGE_PYTHON:-/usr/bin/python}" "${path}/portageq" "$@"
 
 bin/pid-ns-init
@@ -620,14 +594,71 @@ reverse list other direction
 ------------------
 ./bin/:
 archive-conf
+	# archive-conf -- save off a config file in the dispatch-conf archive dir
+	#  Written by Wayne Davison <gentoo@blorf.net> with code snagged from
+	#  Jeremy Wohl's dispatch-conf script and the portage chkcontents script.
+	def archive_conf():
+	"Usage: archive-conf /CONFIG/FILE [/CONFIG/FILE...]"
+    # Find all the CONTENTS files in VDB_PATH.
+        ["find", eroot_vdb_path, "-type", "f", "-name", "CONTENTS"],
+    # Search for the saved md5 checksum of all the specified config files
+    # and see if the current file is unmodified or not.
+        portage.dispatch_conf.file_archive(archive, conf, md5_match_hash[conf], "")
+        if md5_match_hash[conf]:
+            portage.dispatch_conf.file_archive_post_process(archive)
+
 bashrc-functions.sh
+	register_die_hook(){}
+	register_success_hook(){}
+	__strip_duplicate_slashes(){}
+	KV_major(){}
+	KV_minor(){}
+	KV_micro(){}
+	KV_to_int(){}
+	_RC_GET_KV_CACHE=""
+	get_KV(){}
+
 binhost-snapshot
-cgroup-release-agent
-chmod-lite
-chmod-lite.py
+	$ ./binhost-snapshot 
+	usage: binhost-snapshot [options] <src_pkg_dir> <snapshot_dir> <snapshot_uri> <binhost_dir>
+
+	This program will copy src_pkg_dir to snapshot_dir and inside
+	binhost_dir it will create a Packages index file which refers to
+	snapshot_uri. This is intended to solve race conditions on binhosts as
+	described at http://crosbug.com/3225.
+
+	Required Arguments:
+	  src_pkg_dir  - the source ${PKGDIR}
+	  snapshot_dir - destination snapshot directory (must not exist)
+	  snapshot_uri - URI which refers to snapshot_dir from the
+	                 client side
+	  binhost_dir  - directory in which to write Packages index with
+	                 snapshot_uri
+    Optional Arguments (undocumented):
+		--hardlinks - create hardlinks (y or n, default is y)
+
+cgroup-release-agent (internal)
+	#!/bin/sh:
+	exec rmdir "/sys/fs/cgroup/portage/${1}"
+chmod-lite			 (internal wrapper)
+	#pythonpath wrapper
+chmod-lite.py		 (internal)
+	# Emulate 'chmod -fR a+rX,u+w,g-w,o-w' with minimal chmod calls.
 chpathtool.py
+	usage: chpathtool.py [-h] location old new
+	chpathtool.py: error: the following arguments are required: location, old, new
+	#doc = """Helper tool for converting installed files to custom prefixes.
+	#		In other words, eprefixy ${D} for Gentoo/Prefix."""
+
 clean_locks
-dispatch-conf
+	# You must specify directories with hardlink-locks to clean.
+	# You may optionally specify --force, which will remove all
+	# of the locks, even if we can't establish if they are in use.
+	# Please attempt cleaning without force first.
+	for y in portage.locks.hardlock_cleanup(x, remove_all_locks=force):
+		print(y)
+
+dispatch-conf		(main program)
 dohtml.py
 doins.py
 eapi7-ver-funcs.sh
@@ -636,42 +667,131 @@ ebuild
 ebuild-helpers
 ebuild-ipc
 ebuild-ipc.py
-ebuild-pyhelper
+ebuild-pyhelper		(internal wrapper)
 ebuild.sh
 ecompress
 ecompress-file
 egencache
-emaint
-emerge
-emerge-webrsync
-emirrordist
-env-update
+emaint				(main program)
+emerge				(main program)
+emerge-webrsync		(main program)
+emirrordist			(main program)
+env-update			(main program)
 estrip
-etc-update
+etc-update			(main program)
+
 filter-bash-environment.py
-fixpackages
-glsa-check
-gpkg-helper.py
-gpkg-sign
-helper-functions.sh
-install.py
-install-qa-check.d
-isolated-functions.sh
-lock-helper.py
-misc-functions.sh
-phase-functions.sh
-phase-helpers.sh
-pid-ns-init
-portageq
-portageq-wrapper
-postinst-qa-check.d
-preinst-qa-check.d
-quickpkg
-regenworld
-save-ebuild-env.sh
-shelve-utils
-socks5-server.py
-xattr-helper.py
-xpak-helper.py
+	usage: filter-bash-environment.py PATTERN
+	Exactly one PATTERN argument required
+	#description=
+    #   "Filter out variable assignments for variable "
+    #   "names matching a given PATTERN "
+    #   "while leaving bash function definitions and here-documents "
+    #   "intact. The PATTERN is a space separated list of variable names"
+    #   " and it supports python regular expression syntax."
+
+fixpackages			(tiny util)
+	#description = """The fixpackages program performs package move updates on
+	#				configuration files, installed packages, and binary packages."""
+    #The fixpackages program is not intended for use with ROOT != "/". 
+	#  Instead use `emaint --fix movebin` and/or `emaint --fix moveinst.` 
+
+glsa-check			(main program)
+gpkg-helper.py		(internal GPKG helpers)
+gpkg-sign			(main program)
+helper-functions.sh	(internal main helpers)
+
+install.py			(internal wrapper)
+	#python Wrapper for coreutils install binary
+	def copy_xattrs(opts, files):
+    """ Copy the extended attributes using portage.util.movefile._copyxattr """
+	def Which(filename, path=None, exclude=None):
+    """ Find the absolute path of 'filename' in a given search 'path' """
+
+install-qa-check.d  (QA main)
+isolated-functions.sh (internal main helpers)
+lock-helper.py		(internal helper)
+
+misc-functions.sh	(internal main helpers)
+	# Miscellaneous shell functions that make use of the ebuild env but don't need
+	# to be included directly in ebuild.sh.
+	MISC_FUNCTIONS_ARGS="$@"
+	source "${PORTAGE_BIN_PATH}/ebuild.sh" || exit 1
+	install_symlink_html_docs(){}
+	canonicalize(){}
+	#QA
+	install_qa_check(){}
+	__dyn_instprep(){}
+	preinst_qa_check(){}
+	postinst_qa_check(){}
+	preinst_mask(){}
+	#SFP( Smart FileSystem Permissions) FEATURES=sfperms
+	preinst_sfperms(){}
+	#SUID (suidctl.conf) FEATURES=suidctl
+	preinst_suid_scan(){}
+	#SELINUX	FEATURES=selinux
+	preinst_selinux_labels(){}	
+	__dyn_package(){}
+	__dyn_spec(){}
+		Summary: ${DESCRIPTION}
+		Name: ${PN}
+		Version: ${PV}
+		Release: ${PR}
+		License: GPL
+		Group: portage/${CATEGORY}
+		Source: ${PF}.tar.gz
+		__END1__
+	__dyn_rpm(){}	
+	#HOOKS
+	die_hooks(){}
+	success_hooks(){}
+	install_hooks(){}
+	#QA
+	eqatag(){}
+	if [[ -n "${MISC_FUNCTIONS_ARGS}" ]]; then __source_all_bashrcs; ${x}; fi
+
+
+phase-functions.sh	(internal main functions)
+phase-helpers.sh	(internal main helpers)
+pid-ns-init			(internal wrapper)
+portageq			(main program)
+portageq-wrapper	(internal wrapper)
+postinst-qa-check.d (QA main)
+preinst-qa-check.d  (QA main)
+quickpkg			(main program)
+regenworld			(main program)
+save-ebuild-env.sh	(internal metadata processing)
+shelve-utils		(tiny user utility)
+socks5-server.py	(tiny user script)
+xattr-helper.py		(tiny user script)
+xpak-helper.py		(tiny user script)
 ------------------
 not Done. to be continued 07/19/23
+
+
+QA warnings for gcc/clang compiler warnings that indicate code problems
+https://github.com/genbtc/portage/blob/master/bin/install-qa-check.d/90gcc-warnings
+and
+/usr/lib/portage/python3.11/install-qa-check.d/90gcc-warnings # ls
+	05double-D
+	05prefix
+	10executable-issues
+	10ignored-flags
+	20deprecated-directories
+	20runtime-directories     
+	60bash-completion
+	60openrc
+	60pkgconfig
+	60pngfix
+	60systemd  
+	60udev
+	80libraries
+	80multilib-strict
+	90bad-bin-group-write
+	90bad-bin-owner
+	90cmake-warnings
+	90config-impl-decl
+	90gcc-warnings
+	90world-writable
+	95empty-dirs
+Theres also a preinst-qa-check and postinst-qa-check
