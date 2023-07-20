@@ -1,5 +1,5 @@
 #!/bin/sh
-# diffebuild.sh script 0.4 - created by genr8eofl @ gentoo - Feb 26, 2023 - GPL2
+# diffebuild.sh old script 0.4 - created by genr8eofl @ gentoo - Feb 26, 2023 - July 20, 2023 - GPL2
 
 diffebuild() {
     declare -a newpkgq=($(qatom "$1" -F "%{CATEGORY} %{PN} %{PV} %{PR}"))
