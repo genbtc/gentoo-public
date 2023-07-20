@@ -1,0 +1,2 @@
+# 2023 gentoo from - https://wiki.gentoo.org/wiki/Binary_package_guide
+$ emerge -e @world --exclude="acct-group/* acct-user/* virtual/* app-eselect/* sys-kernel/* sys-firmware/* dev-python/* dev-java/* dev-ruby/* dev-perl/* dev-lua/* dev-php/* dev-tex/* dev-texlive/* x11-themes/* */*-bin"

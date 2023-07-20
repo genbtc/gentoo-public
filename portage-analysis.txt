@@ -1,10 +1,10 @@
-Portage Analysis (by genr8eofl - 2023)
+Portage Analysis v3.0.49 (by genr8eofl - July 19 2023)
 ---------- ---------- ---------- ----------
 
-the main file:
+the main ebuild file:
 https://github.com/gentoo/portage/blob/master/lib/portage/package/ebuild/doebuild.py#L161
 
-the file for binhosts:
+the main file for binhosts:
 src/portage/lib/portage/emaint/modules/binhost/binhost.py
 
 
@@ -551,6 +551,16 @@ bin/misc-functions.sh
 	install_hooks(){}
 	eqatag(){}
 
+....
+...
+..
+.
+----------
+.
+..
+...
+....
+----------
 bin/lock-helper.py
 ------------------
 
@@ -588,9 +598,9 @@ bin/estrip
 ...
 ....
 ----------
-reverse list other direction
+start list alphabetical order reverse direction
 ----------
-------------------
+--------------
 ------------------
 ./bin/:
 archive-conf
@@ -772,7 +782,7 @@ not Done. to be continued 07/19/23
 QA warnings for gcc/clang compiler warnings that indicate code problems
 https://github.com/genbtc/portage/blob/master/bin/install-qa-check.d/90gcc-warnings
 and
-/usr/lib/portage/python3.11/install-qa-check.d/90gcc-warnings # ls
+/usr/lib/portage/python3.11/install-qa-check.d/ # ls
 	05double-D
 	05prefix
 	10executable-issues
@@ -794,4 +804,113 @@ and
 	90gcc-warnings
 	90world-writable
 	95empty-dirs
-Theres also a preinst-qa-check and postinst-qa-check
+Theres also a bin/preinst-qa-check.d/
+	50xdg-utils
+ and bin/postinst-qa-check.d/ dir
+	50xdg-utils
+
+src/portage_util__whirlpool.c
+    .m_name = "_whirlpool",
+    .m_doc = "Reference Whirlpool implementation",
+    {"update", (PyCFunction) Whirlpool_update, METH_O,
+     "Hash data passed as argument"
+    {"digest", (PyCFunction) Whirlpool_digest, METH_NOARGS,
+     "Finalize and return digest as bytes"
+
+src/portage_util_file_copy_reflink_linux.c
+	 * _reflink_linux_file_copy - Copy between two file descriptors, with
+	 *  reflink and sparse file support.
+    .m_name = "reflink_linux",
+    .m_doc = "Module for reflink_linux copy operations",
+    .ml_name = "file_copy",
+    .ml_meth = _reflink_linux_file_copy,
+    .ml_doc = "Copy between two file descriptors with reflink and sparse file support."
+
+src/portage_util_libc.c
+	.m_name = "libc",
+	.m_doc = "Module for converting case using the system locale",
+	.ml_name = "tolower",
+	.ml_meth = _libc_tolower,
+	.ml_doc = "Convert to lower case using system locale."
+	.ml_name = "toupper",
+	.ml_meth = _libc_toupper,
+	.ml_doc = "Convert to upper case using system locale."
+
+
+portage/lib/portage/util/:
+[DIR]_async
+backoff.py
+bin_entry_point.py (internal python wrapper)
+#    Adjust sys.argv[0] to point to a script in PORTAGE_BIN_PATH, and                                                                                                             
+#    then execute the script, in order to implement entry_points when                                                                                                             
+#    portage has been installed by pip.
+changelog.py (internal, likely niche/deprecated)
+ class ChangeLogTypeSort:
+ #	Helps to sort file names by file type and other criteria.
+	def _file_type_lt(a, b)
+	#	Defines an ordering between file types.
+	def __lt__(self, other):
+	#	Compare different file names, first by file type and then                                                                                                                
+	#	for ebuilds by version and lexicographically for others.                                                                                                                 
+	#	EBUILD < MISC < AUX < DIST < None    	
+		# Sort by file type as defined by _file_type_lt().
+        # Files have the same type.                                                                                                                                              
+        if self.file_type == "EBUILD":                                                                                                                                           
+            # Sort by version. Lowest first.                   
+			return vercmp(ver, other_ver) < 0
+		# Sort lexicographically. 
+		return self.file_name < other.file_name
+_compare_files.py
+compression_probe.py
+def compression_probe(f):                                                                                                                                                        
+#    Identify the compression type of a file. Returns one of the                                                                                                                  
+#    following identifier strings:                                                                                                                                                
+#    "bzip2 gzip lz4 lzip lzop xz zstd                                                                                                                                                                         
+    "bzip2": { "package": "app-arch/bzip2",                                                                                                                                             
+    "gzip": { "package": "app-arch/gzip",                                                                                                                                              
+    "lz4": { "package": "app-arch/lz4",                                                                                                                                               
+    "lzip": { "package": "app-arch/lzip",                                                                                                                                              
+    "lzop": { "package": "app-arch/lzop",                                                                                                                                              
+    "xz": { "package": "app-arch/xz-utils",                                                                                                                                          
+    "zstd": { "package": "app-arch/zstd",
+
+configparser.py
+#    Read configuration files from given paths into the specified                                                                                                                 
+#    ConfigParser, handling path encoding portably
+	def read_configs()
+
+cpuinfo.py
+_ctypes.py
+_desktop_entry.py
+digraph.py
+[DIR]_dyn_libs
+[DIR]elf
+[DIR]endian
+env_update.py
+[DIR]_eventloop
+ExtractKernelVersion.py
+[DIR]file_copy
+formatter.py
+[DIR]futures
+_get_vm_info.py
+hooks.py
+_info_files.py
+__init__.py
+install_mask.py
+[DIR]iterators
+lafilefixer.py
+listdir.py
+locale.py
+movefile.py
+mtimedb.py
+netlink.py
+_path.py
+path.py
+_pty.py
+[DIR]__pycache__
+shelve.py
+SlotObject.py
+socks5.py
+_urlopen.py
+whirlpool.py
+writeable_check.py

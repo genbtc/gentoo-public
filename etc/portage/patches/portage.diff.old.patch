@@ -1,0 +1,51 @@
+genr8too /usr/lib/python3.10/site-packages # diff -r portage /root/portage3028/usr/lib/python3.10/site-packages/portage
+diff -r portage/emaint/modules/binhost/binhost.py /root/portage3028/usr/lib/python3.10/site-packages/portage/emaint/modules/binhost/binhost.py
+24d23
+< #        self._bintree._pkgindex_file = '/var/cache/binpkgs/Packages'
+diff -r portage/package/ebuild/config.py /root/portage3028/usr/lib/python3.10/site-packages/portage/package/ebuild/config.py
+1223,1224d1222
+< #        print("self._iuse_effective: ", self._iuse_effective) #
+< #        print("self._iuse_implicit_match: ", self._iuse_implicit_match) #
+2317c2315
+< #        print("iuse_implicit: ", iuse_implicit) #
+---
+>
+
+genr8too /usr/lib/python3.10/site-packages # diff -r _emerge/ /root/portage3028/usr/lib/python3.10/site-packages/_emerge/
+diff -r _emerge/Package.py /root/portage3028/usr/lib/python3.10/site-packages/_emerge/Package.py
+731c731
+< #        print(self.cpv, "use_str: ",use_str);
+---
+>
+diff -r _emerge/depgraph.py /root/portage3028/usr/lib/python3.10/site-packages/_emerge/depgraph.py
+2935,2940d2934
+<             eg = 'elibc_' + self._frozen_config.pkgsettings[self._frozen_config.target_root]["ELIBC"] #
+<             kl = 'kernel_' + self._frozen_config.pkgsettings[self._frozen_config.target_root]["KERNEL"] #
+< #            print("e: ", e)
+< #            print("k: ", k)
+< #            flags.intersection_update('elibc_glibc','kernel_linux') #genr8
+<             flags.intersection_update(eg,kl) #genr8
+2943,2944d2936
+< #                print("_reinstall_for_flags: ", flags) #genr8
+< #                return set() #genr8
+diff -r _emerge/resolver/output.py /root/portage3028/usr/lib/python3.10/site-packages/_emerge/resolver/output.py
+205,206d204
+<         print("cur_use", cur_use) #
+<         print("cur_iuse", cur_iuse) #
+219,220d216
+<         print("old_use", old_use) #
+<         print("old_iuse", old_iuse) #
+224,225d219
+< #        print("self.use_expand_hidden", self.use_expand_hidden) #
+<
+242,244d235
+<             print("reinstall_for_flags", list(reinstall_for_flags)) #
+< #            print("reinst_flags_map", list(reinst_flags_map)) #
+< #            print("reinst_expand_map", list(reinst_expand_map)) #
+256,260d246
+<         print("cur_use", cur_use) #
+<         print("cur_iuse", cur_iuse) #
+<         print("old_use", old_use) #
+<         print("old_iuse", old_iuse) #
+<
+
