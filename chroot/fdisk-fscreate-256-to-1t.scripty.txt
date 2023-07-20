@@ -1,0 +1,22 @@
+#!/bin/bash
+NAME1=devuan
+DEV1=/dev/nvme1n1p5
+SIZE1=31457280512
+OUTNUM1=12
+TARGET_DISK=/dev/nvme0n1
+
+NAME2=ldme
+DEV2=/dev/nvme1n1p6
+SIZE2=21705523712
+OUTNUM2=13
+
+(
+echo n # Add a new partition
+echo ${OUTNUM2} # Partition number
+echo   # First sector (Accept default: 1)
+echo +$(( ${SIZE2} / 512 ))  # Last sector (Accept default: varies)
+echo w # Write changes
+) | fdisk ${TARGET_DISK}
+
+#dd if=/dev/nvme1n1p5 of=/dev/nvme0n1p12 bs=2M conv=fsync status=progress
+
