@@ -31,8 +31,12 @@ cp /etc/resolv.conf ${target}/etc
 #mv /mnt/crucialp1/livegui-amd64-20230705T183202Z/etc/portage/make.conf /mnt/crucialp1/livegui-amd64-20230705T183202Z/etc/portage/make.conf.dist
 #cp gentoo-livegui-amd64-20230604T170201Z-etc-portage-make.conf /mnt/crucialp1/livegui-amd64-20230705T183202Z/etc/portage/make.conf
 
+#Selinux relabeling from outside even when guest chroot is not selinux enabled
+#setfiles -r /mnt/crucialp1/livegui-amd64-20230705T183202Z/ /etc/selinux/targeted/contexts/files/file_contexts /mnt/crucialp1/livegui-amd64-20230705T183202Z/{*}
+
 ##bind repos tree, enter chroot, emerge stuff
 #mount --bind /var/db/repos/ var/db/repos/
 #gentoo-chroot $target
 #emerge-webrsync
 #emerge -avuDU @world
+

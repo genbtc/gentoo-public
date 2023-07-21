@@ -602,7 +602,7 @@ start list alphabetical order reverse direction
 ----------
 --------------
 ------------------
-./bin/:
+bin/:
 archive-conf
 	# archive-conf -- save off a config file in the dispatch-conf archive dir
 	#  Written by Wayne Davison <gentoo@blorf.net> with code snagged from
@@ -837,7 +837,7 @@ src/portage_util_libc.c
 	.ml_doc = "Convert to upper case using system locale."
 
 
-portage/lib/portage/util/:
+lib/portage/util/:
 [DIR]_async
 backoff.py
 bin_entry_point.py (internal python wrapper)
@@ -914,3 +914,150 @@ socks5.py
 _urlopen.py
 whirlpool.py
 writeable_check.py
+
+
+lib/_emerge/:
+[DIR]resolver
+AbstractDepPriority.py
+AbstractEbuildProcess.py
+AbstractPollTask.py
+actions.py
+AsynchronousLock.py
+AsynchronousTask.py
+AtomArg.py
+BinpkgEnvExtractor.py
+BinpkgExtractorAsync.py
+BinpkgFetcher.py
+BinpkgPrefetcher.py
+Binpkg.py
+BinpkgVerifier.py
+BlockerCache.py
+BlockerDB.py
+BlockerDepPriority.py
+Blocker.py
+chk_updated_cfg_files.py
+clear_caches.py
+CompositeTask.py
+countdown.py
+create_depgraph_params.py
+create_world_atom.py
+DependencyArg.py
+Dependency.py
+depgraph.py
+DepPriorityNormalRange.py
+DepPriority.py
+DepPrioritySatisfiedRange.py
+EbuildBinpkg.py
+EbuildBuildDir.py
+EbuildBuild.py
+EbuildExecuter.py
+EbuildFetcher.py
+EbuildFetchonly.py
+EbuildIpcDaemon.py
+EbuildMerge.py
+EbuildMetadataPhase.py
+EbuildPhase.py
+EbuildProcess.py
+EbuildSpawnProcess.py
+emergelog.py
+FakeVartree.py
+FifoIpcDaemon.py
+_find_deep_system_runtime_deps.py
+_flush_elog_mod_echo.py
+getloadavg.py
+help.py
+is_valid_package_atom.py
+JobStatusDisplay.py
+main.py
+MergeListItem.py
+MetadataRegen.py
+MiscFunctionsProcess.py
+PackageArg.py
+PackageMerge.py
+PackagePhase.py
+Package.py
+PackageUninstall.py
+PackageVirtualDbapi.py
+PipeReader.py
+PollScheduler.py
+post_emerge.py
+ProgressHandler.py
+RootConfig.py
+Scheduler.py
+search.py
+SequentialTaskQueue.py
+SetArg.py
+show_invalid_depstring_notice.py
+SpawnProcess.py
+stdout_spinner.py
+SubProcess.py
+Task.py
+TaskSequence.py
+UninstallFailure.py
+UnmergeDepPriority.py
+unmerge.py
+UseFlagDisplay.py
+
+lib/_emerge/resolver:
+backtracking.py
+circular_dependency.py
+DbapiProvidesIndex.py
+output_helpers.py
+output.py
+package_tracker.py
+
+
+# $ grep getbinpkg -r
+#Incomplete list but more useful this way:
+./cnf/make.conf.example:# serving the tbz2's for your system. Running emerge with either '--getbinpkg'
+./cnf/make.conf.example:# or '--getbinpkgonly' will cause portage to retrieve the metadata from all
+./NEWS:* portage: getbinpkg: Fix --getbinpkgonly command list with e.g. rsync (bug #866197).
+./NEWS:* Fix getbinpkg fetching (bug #864160)
+./lib/portage/tests/util/test_mtimedb.py:                    "--getbinpkg": True,
+./lib/portage/tests/emerge/test_simple.py:                emerge_cmd + ("-e", "--getbinpkgonly", "dev-libs/A"),
+./lib/portage/tests/emerge/test_simple.py:                + ("-fe", "--getbinpkgonly", "dev-libs/A"),
+./lib/portage/tests/emerge/test_actions.py:        is called, it must use ``getbinpkg_refresh=True``.
+./lib/portage/tests/emerge/test_actions.py:        bt.populate.assert_called_once_with(getbinpkgs=False, getbinpkg_refresh=True)
+./lib/portage/tests/dbapi/test_bintree.py:    def test_populate_with_getbinpkgs(
+./lib/portage/tests/dbapi/test_bintree.py:        bt.populate(getbinpkgs=True, getbinpkg_refresh=refresh)
+./lib/portage/tests/dbapi/test_bintree.py:        ppopulate_remote.assert_called_once_with(getbinpkg_refresh=refresh)
+./lib/portage/__init__.py:        "portage.getbinpkg",
+./lib/portage/getbinpkg.py:# getbinpkg.py -- Portage binary-package helper functions
+./lib/portage/getbinpkg.py:        "portage.getbinpkg.make_metadata_dict() is deprecated",
+./lib/portage/getbinpkg.py:            "portage.getbinpkg.ParseLinks is deprecated",
+./lib/portage/getbinpkg.py:        "portage.getbinpkg.create_conn() is deprecated",
+./lib/portage/getbinpkg.py:        "portage.getbinpkg.make_ftp_request() is deprecated",
+./lib/portage/getbinpkg.py:        "portage.getbinpkg.make_http_request() is deprecated",
+./lib/portage/getbinpkg.py:        "portage.getbinpkg.match_in_array() is deprecated",
+./lib/portage/getbinpkg.py:        "portage.getbinpkg.dir_get_list() is deprecated",
+./lib/portage/getbinpkg.py:        "portage.getbinpkg.file_get_metadata() is deprecated",
+./lib/portage/getbinpkg.py:            "Use of portage.getbinpkg.file_get() without the fcmd "
+./lib/portage/getbinpkg.py:        "portage.getbinpkg.file_get_lib() is deprecated",
+./lib/portage/getbinpkg.py:        "portage.getbinpkg.dir_get_metadata() is deprecated",
+./lib/portage/_global_updates.py:            # only populated with local packages here (getbinpkgs=0).
+./lib/portage/const.py:        "getbinpkg",
+./lib/portage/dbapi/bintree.py:    def populate(self, getbinpkgs=False, getbinpkg_refresh=False, add_repos=()):
+./lib/portage/dbapi/bintree.py:    def _populate_remote(self, getbinpkg_refresh=True):
+./lib/portage/dbapi/bintree.py:        success = portage.getbinpkg.file_get(url, mydest, fcmd=fcmd)
+./lib/_emerge/main.py:        "--getbinpkg": y_or_n,
+./lib/_emerge/main.py:        "--getbinpkgonly": y_or_n,
+./lib/_emerge/Binpkg.py:        if self.opts.getbinpkg and self._bintree.isremote(pkg.cpv):
+./lib/_emerge/Binpkg.py:        # --getbinpkg is enabled.
+./lib/_emerge/Scheduler.py:        __slots__ = ("fetchonly", "getbinpkg", "pretend")
+./lib/_emerge/Scheduler.py:            and "--getbinpkg" in self.myopts
+./lib/_emerge/actions.py:    if "--getbinpkg" in emerge_config.opts or quickpkg_direct:
+./lib/_emerge/actions.py:                getbinpkgs="--getbinpkg" in emerge_config.opts, **kwargs
+./lib/_emerge/actions.py:                    getbinpkgs="--getbinpkg" in emerge_config.opts,
+./lib/_emerge/actions.py:                    getbinpkg_refresh=True,
+./RELEASE-NOTES:    - Bug 711178 emerge --getbinpkg event loop recursion regression
+./RELEASE-NOTES:    - Bug 625246 emerge --getbinpkg: https support for If-Modified-Since
+./RELEASE-NOTES:    - Bug 614474 emerge: fix --autounmask-continue to work with --getbinpkg
+./RELEASE-NOTES:  binary packages (--usepkgonly or --getbinpkgonly) together with --update and
+./man/make.conf.5:.B getbinpkg
+./man/emerge.1:.BR "\-\-getbinpkg [ y | n ]" ", " \-g
+./man/emerge.1:.BR "\-\-getbinpkgonly [ y | n ]" ", " \-G
+./man/emerge.1:Therefore, \fB\-\-usepkgonly\fR (or \fB\-\-getbinpkgonly\fR) must be
+./man/emerge.1:(\fB\-\-usepkgonly\fR or \fB\-\-getbinpkgonly\fR) together with
+./man/emerge.1:implicitly, such as \fB\-\-getbinpkg\fR.
+./man/portage.5:Specifies URI of repository used for `emerge \-\-getbinpkg`.
+
