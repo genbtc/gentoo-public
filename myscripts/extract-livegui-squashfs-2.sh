@@ -10,6 +10,6 @@ target=${ISO%.iso}                          #target directory to extract to
 # 7z x /mnt/borg/ISOs/livegui-amd64-20230716T164653Z.iso image.squashfs
 # mv image.squashfs livegui-amd64-20230716T164653Z.iso.squashfs
 # unsquashfs -d livegui-amd64-20230716T164653Z livegui-amd64-20230716T164653Z.iso.squashfs
-7z ${ISODIR}/${ISO}  $imgsq
+7z x ${ISODIR}/${ISO}  ${imgsq}
 mv image.squashfs  ${isosqfs}
 unsquashfs -d ${isosqfs%.iso.squashfs}  ${target}
