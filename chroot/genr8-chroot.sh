@@ -95,6 +95,7 @@ chroot_teardown() {
     umount "${CHROOT_ACTIVE_MOUNTS[@]}"
   fi
   unset CHROOT_ACTIVE_MOUNTS
+  sleep 1
   umount -l $(realpath ${CHROOT_DIR})
 }
 
