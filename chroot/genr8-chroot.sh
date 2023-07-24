@@ -19,6 +19,11 @@
 #   -m | --bind-makeconf | MOUNT_MAKECONF
 #   -r | --bind-hostrepos | MOUNT_HOSTREPOS
 #   -u | --user | USERSPEC=user[:group]
+#
+#Note, the target chroot directory *SHOULD* be a mountpoint.
+#-This ensures that tools such as findmnt(8) have an accurate hierarchy of
+# the mounted filesystems within the chroot.
+#-Note, code changed, now this happens automatically
 
 usage() {
   cat <<EOF
@@ -35,14 +40,7 @@ Options:
 
 /path/to/chroot is REQUIRED, the obvious choice is /mnt/gentoo
 
-command is optional. If unspecified, ${0##*/} will launch /bin/bash by default.
-
-Note, the target chroot directory *SHOULD* be a mountpoint.
--This ensures that tools such as findmnt(8) have an accurate hierarchy of
- the mounted filesystems within the chroot.
--Tip, you can bind mount the directory on itself to make it a mountpoint:
- 'mount --bind /your/chroot /your/chroot'   (as a workaround)
--Note, code changed, now this happens automatically, these warnings can deprecate
+[command] is optional. If unspecified, ${0##*/} will launch /bin/bash by default.
 
 EOF
   exit 2
@@ -150,12 +148,11 @@ chroot_add_file() {
     #
     # 1. The file truly does not exist, so the variable becomes equal to $CHROOT_DIR/$1.
     # 2. $1/$2 is (or resolves to) a broken link.
-    # The environment clearly intends for there to be a file here, but something's wrong.
-    #  Maybe it normally creates the target at boot time?
-    # In either case we'll (try to) take care of it by creating a dummy file at the target,
-    #  so that we have something to bind to.
-    #
+    # The environment clearly intends for there to be a file here, but something's wrong. Maybe it
+    #      normally creates the target at boot time.  We'll (try to) take care of it by
+    #      creating a dummy file at the target, so that we have something to bind to.
     # Case 1.
+    #commented out because other files may error out and its ok.
     #[[ ${DST_FILE} = "${CHROOT_DIR}/${1}" ]] && return 0
     # Case 2.
     install -Dm644 /dev/null "${DST_FILE}" || die "${DST_FILE} does not exist in chroot and a dummy file to bind to could not be created"
@@ -261,10 +258,10 @@ EOF
     chroot_bind_device $dir_binpkgs "${CHROOT_DIR}${dir_binpkgs}"
   fi
 
-#MAIN:
+#CHROOT:
   # Run it!
-  CHROOT_ARGS=()
-  [[ $USERSPEC ]] && CHROOT_ARGS+=(--userspec "$USERSPEC")
+  chroot_args=()
+  [[ $userspec ]] && chroot_args+=(--userspec "$userspec")
   # If arguments = 0, run a shell
   if [ ${#ARGS[@]} -eq 0 ]; then
     SHELL=/bin/bash chroot "${CHROOT_ARGS[@]}" -- "$CHROOT_DIR"
@@ -300,7 +297,7 @@ fi
 
 CHROOT_DIR=$1
 shift
-ARGS=("$@")
+args=("$@")
 
-#run program
+#run main
 $DEBUG gentoo-chroot

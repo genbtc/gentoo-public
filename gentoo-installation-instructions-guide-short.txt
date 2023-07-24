@@ -1,0 +1,108 @@
+Download a Minimal Install cd (generic)
+Boot your computer/VM with the minimal ISO.                                                                                                           
+ it should boot to a livecd root prompt with network enabled
+Create the disk partitions - a use script
+Create the ext4 filesystems:
+# mkfs.ext4 /dev/sda1 -L boot
+# mkfs.ext4 /dev/sda3 -L gentoo
+Mount the filesystems: (repeat everytime you reboot)
+# mount /dev/sda3 /mnt/gentoo
+# mkdir -p /mnt/gentoo/boot (only do once)
+# mount /dev/sda1 /mnt/gentoo/boot
+# cd /mnt/gentoo
+Download your particular stage3 now, using browser
+https://gentoo.osuosl.org/releases/amd64/autobuilds/
+Verify file if needed, then                                                                                                                           
+Extract the archive:
+# tar --xattrs-include='*.*' --numeric-owner -xpf stage3*
+Mount the chroot filesystems: (repeat everytime you reboot)
+or manually:
+# mount --types proc /proc /mnt/gentoo/proc
+# mount --rbind /sys /mnt/gentoo/sys
+# mount --make-rslave /mnt/gentoo/sys
+# mount --rbind /dev /mnt/gentoo/dev
+# mount --make-rslave /mnt/gentoo/dev
+# mount --bind /run /mnt/gentoo/run
+# mount --make-slave /mnt/gentoo/run
+copy DNS resolver into chroot
+# cp /etc/resolv.conf etc
+make sure DNS is valid (if not, add 8.8.8.8 googleDNS)
+# ping gentoo.org
+enter & activate chroot.
+# chroot . /bin/bash
+# source /etc/profile
+portage repository download, first sync ( -k to keep)
+# emerge-webrsync
+change the CPU arch, -march=native default very early on, before any new packages
+# nano /etc/portage/make.conf to add this line CFLAGS (use COMMON var)
+COMMON_FLAGS="${COMMON_FLAGS} -march=native" , (after -O2 -pipe line)
+#binpkgs - save packages in /var/cache/binpkgs
+FEATURES="${FEATURES} buildpkg"
+keep the default C english single locale (otherwise add optional ones to /etc/locale.gen first)                                                                                                
+# nano /etc/locale.gen
+    #uncomment:
+    en_US ISO-8859-1
+    en_US.UTF-8 UTF-8
+    #add:
+    C.UTF8 UTF
+# don't need international language translations
+INSTALL_MASK="/usr/share/locale"
+set timezone
+# ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
+
+use distribution's premade gentoo-kernel-bin                                                                                                          
+this _WILL_ install dracut and make the initramfs and put that and the latest kernel in /boot,                                                        
+                                                                                                                                                      
+make sure boot is mounted and populated                                                                                                               
+# ls -al /boot
+
+install grub to the MBR on the disk                                                                                                                   
+# grub-install /dev/sda
+
+# grub-mkconfig -o /boot/grub/grub.cfg                                                                                                                
+grub is installed                                                                                                                                     
+Reboot into your working system. Handbook Part 1 finished.                                                                                            
+                                                                                                                                                      
+Continue on to read fully at your own leisure:                                                                                                        
+Working With Gentoo  = https://wiki.gentoo.org/wiki/Handbook:AMD64/Full/Working                                                                       
+Working With Portage = https://wiki.gentoo.org/wiki/Handbook:AMD64/Full/Portage                                                                       
+                                                                                                                                                      
+Continuing on with the system setup:                                            
+Things to do:
+genfstab (make /etc/fstab)
+two programs for CPU FLAGS customiztion                                                                                                                     
+# emerge cpuid2cpuflags resolve-march-native
+run passwd to set root password (prompts for pwquality)                                                                                                                           
+# passwd                                                                                                                                              
+# #For DHCP                                                                                                                                           
+set up network, /etc/conf.d/net , symlink "ln -s net.enp0s3 net.lo"                                                                                   
+# emerge dhcpcd                                                                                                                                       
+# nano /etc/conf.d/net                                                                                                                                     
+	config_eth0="dhcp"
+# #For static IP regular                                                                                                                              
+	config_enp5s0f1="192.168.1.222/24"                                                                                                                    
+	routes_enp5s0f1="default via 192.168.1.1"                                                                                                             
+	dns_servers_enp5s0f1="192.168.1.1"
+
+#to query packages
+emerge gentoolkit portage-utils eix wgetpaste                                                                                                         
+
+#SSH                                                                                                                                                      
+emerge openssh                                                                                                                                        
+rc-update add sshd                                                                                                                                    
+rc-service sshd start 
+openssh can not login as root even with key, must create additional user to log in that way -or- edit /etc/ssh/sshd_config                                                                                                                        
+
+Some use flags
+USE="${USE} -fonts -themes"                                                                                                                           
+#from my system                                                                                                                                       
+USE="${USE} -nls -firmware -ipv6 -bluetooth -telemetry -wifi -wireless -ppp -modemmanager -cups -gps -geolocation -mono -sendmail -kerberos -ldap -u> 
+USE="${USE} -policykit -udisks -pulseaudio -smartcard"                                                                                                
+USE="${USE} -doc -examples -handbook"
+
+#reboot                                                                                                                                               
+                                                                                                                                                      
+#update world                                                                                                                                         
+emerge -avuDU @world
+
+#you're done ! Enjoy Gentoo !
