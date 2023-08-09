@@ -6,6 +6,7 @@
 #KERNEL_VERSION=5.4.129-gentoo-dist
 KERNEL_VERSION=`uname -r`
 
+STARTUPDIR=${PWD}
 #Create dir Structure
 mkdir initramfs
 cd initramfs
@@ -28,24 +29,30 @@ cp /lib/modules/$KERNEL_VERSION/kernel/drivers/nvme/host/nvme-core.ko .
 
 #lddtree comes from Pax-utils + requires dev-python/pyelftools : needed USE="python" flag, emerge pax-utils
 #Some(a lot) of these are optional. purpose is to copy the program plus its ld shared libs
-lddtree --copy-to-tree . `which blkid`
-lddtree --copy-to-tree . `which vim`
-lddtree --copy-to-tree . `which busybox`
-lddtree --copy-to-tree . `which cat`
-lddtree --copy-to-tree . `which dmesg`
-lddtree --copy-to-tree . `which echo`
-lddtree --copy-to-tree . `which ls`
-lddtree --copy-to-tree . `which mkdir`
-lddtree --copy-to-tree . `which modprobe`
-lddtree --copy-to-tree . `which mount`
-lddtree --copy-to-tree . `which sh`
-lddtree --copy-to-tree . `which umount`
-lddtree --copy-to-tree . `which findfs`
-lddtree --copy-to-tree . `which poweroff`
-lddtree --copy-to-tree . `which reboot`
-lddtree --copy-to-tree . `which shutdown`
-lddtree --copy-to-tree . `which switch_root`
-#lddtree --copy-to-tree . `which nano`
+#lddtree --copy-to-tree . `which blkid`
+#lddtree --copy-to-tree . `which vim`
+#lddtree --copy-to-tree . `which busybox`
+#lddtree --copy-to-tree . `which cat`
+#lddtree --copy-to-tree . `which dmesg`
+#lddtree --copy-to-tree . `which echo`
+#lddtree --copy-to-tree . `which ls`
+#lddtree --copy-to-tree . `which mkdir`
+#lddtree --copy-to-tree . `which modprobe`
+#lddtree --copy-to-tree . `which mount`
+#lddtree --copy-to-tree . `which sh`
+#lddtree --copy-to-tree . `which umount`
+#lddtree --copy-to-tree . `which findfs`
+#lddtree --copy-to-tree . `which poweroff`
+#lddtree --copy-to-tree . `which reboot`
+#lddtree --copy-to-tree . `which shutdown`
+#lddtree --copy-to-tree . `which switch_root`
+##lddtree --copy-to-tree . `which nano`
+
+cd "${STARTUPDIR}/initramfs"
+filestocopy=("busybox sh blkid findfs switch_root mount unmount modprobe mkdir ls echo cat dmesg poweroff reboot shutdown vim")
+for fl in $filestocopy; do
+	lddtree --copy-to-tree . `which $fl`
+done
 
 #Creates the actual archive
 find . -print0 | cpio --null --create --verbose --format=newc | gzip --best > /boot/initramfs-$KERNEL_VERSION.cpio.gz

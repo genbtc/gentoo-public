@@ -1,8 +1,8 @@
 #!/bin/bash
-#2023 genr8eofl - @ gentoo - script v0.22 partitions the disk
+#2023 genr8eofl - @ gentoo - script v0.23 partitions the disk
 
-DISKSIZE="20G"
-DISKIMG="gentoo-amazing-1.dd"
+DISKSIZE="25G"
+DISKIMG="gentoo-amazing-2.dd"
 #DEVLOOP="/dev/loop0"
 
 #make an 8 GigaByte file, give it an amazing name, make it sparse.
