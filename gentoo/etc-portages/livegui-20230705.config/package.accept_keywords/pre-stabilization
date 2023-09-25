@@ -1,0 +1,12 @@
+# bug 806286
+=app-accessibility/espeakup-0.90
+# required by media-libs/opencv-4.7.0::gentoo
+# required by @__auto_slot_operator_replace_installed__ (argument)
+=dev-qt/qtgui-5.15.9-r1 ~amd64
+# required by dev-qt/qtwebengine-5.15.10_p20230623::gentoo[widgets]
+# required by www-client/falkon-23.04.2::gentoo
+# required by kde-apps/kdecore-meta-23.04.2::gentoo[webengine]
+# required by kde-apps/kde-apps-meta-23.04.2::gentoo
+# required by @selected
+# required by @world (argument)
+=dev-qt/qtdeclarative-5.15.10-r1 ~amd64

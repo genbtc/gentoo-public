@@ -1,0 +1,14 @@
+#!/bin/sh
+#(manual admin mode)
+CHECKREQS_DONOTHING="yes";
+I_KNOW_WHAT_I_AM_DOING="yes";
+
+pre_src_configure() {
+        echo "Estimated Merge Times: "
+        qlop -v -t "${CATEGORY}"/"${PN}"
+        echo "::0 BashRC $FUNCNAME(): "
+    if [ -n EMERGEINFO ]; then
+        echo ">>> emerge --info embedded into environment as \$EMERGEINFO"
+        export EMERGEINFO=$(emerge --ignore-default-opts --info );
+    fi
+}

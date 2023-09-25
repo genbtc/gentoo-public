@@ -1,0 +1,6 @@
+# required by kde-misc/kweather-23.04.2::gentoo
+# required by kde-apps/kdeutils-meta-23.04.2::gentoo
+# required by kde-apps/kde-apps-meta-23.04.2::gentoo[utils]
+# required by @selected
+# required by @world (argument)
+>=dev-qt/qtpositioning-5.15.9 geoclue
