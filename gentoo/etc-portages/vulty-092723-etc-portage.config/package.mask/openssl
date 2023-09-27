@@ -1,0 +1,2 @@
+#prevent openssl 3.0 upgrades until further notice June 25 2023 - genr8eofl
+#>=dev-libs/openssl-3.0.0

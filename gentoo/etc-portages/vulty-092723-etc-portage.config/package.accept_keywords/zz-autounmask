@@ -1,0 +1,7 @@
+# package.accept_keywords# required by @selected
+# required by @world (argument)
+=sys-process/bashtop-0.9.25 ~amd64
+# required by sys-process/minicoredumper (argument)
+=sys-process/minicoredumper-2.0.2 ~amd64
+# required by ima-evm-utils (argument)
+=app-crypt/ima-evm-utils-1.4-r1 ~amd64

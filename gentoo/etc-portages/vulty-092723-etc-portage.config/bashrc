@@ -1,0 +1,8 @@
+#!/bin/sh
+# /etc/portage/bashrc
+#if [ "${EBUILD_PHASE}" == "preinst" ]; then
+#
+#fi
+pre_src_configure () {
+    qlop -t "${CATEGORY}/${PN}"
+}

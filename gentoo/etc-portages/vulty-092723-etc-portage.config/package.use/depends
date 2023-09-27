@@ -1,0 +1,25 @@
+#- app-misc/mime-types-2.1.53::gentoo (Change USE: +nginx)
+#(dependency required by "www-servers/nginx-1.23.3::gentoo" [ebuild])
+#(dependency required by "@selected" [set])
+#(dependency required by "@world" [argument])
+app-misc/mime-types nginx
+#emerge: there are no ebuilds built with USE flags to satisfy ">=dev-python/numpy-1.19.5[lapack,python_targets_python3_9(-)?,python_targets_python3_10(-)?,python_targets_python3_11(-)?]".
+#!!! One of the following packages is required to complete your request:
+#- dev-python/numpy-1.24.2::gentoo (Change USE: +lapack)
+#(dependency required by "dev-python/scipy-1.10.0::gentoo" [ebuild])
+#(dependency required by "@selected" [set])
+#(dependency required by "@world" [argument])
+dev-python/numpy lapack
+# required by www-apps/nextcloud-25.0.3::gentoo
+# required by nextcloud (argument)
+dev-lang/php pdo gd zip xmlwriter truetype xmlreader sqlite intl curl
+# required by dev-php/pecl-imagick-3.7.0-r1::gentoo
+# required by www-apps/nextcloud-25.0.3::gentoo[imagemagick]
+# required by nextcloud (argument)
+>=media-gfx/imagemagick-7.1.0.62 -openmp
+=media-gfx/imagemagick-7.1.0.62 jpeg perl postscript tiff
+# required by (virtual/httpd-php-8.1:8.1/8.1::gentoo, ebuild scheduled for merge) USE=""
+dev-lang/php:8.1 fpm
+# required by net-im/synapse-1.77.0-r1::gentoo
+# required by net-im/synapse (argument)
+>=dev-python/pillow-9.4.0 webp
