@@ -71,13 +71,19 @@ echo "Creating directory structure hierarchy for: /dev,sys,proc,run,tmp"
 #if [-e fs marker exists]; then
 ##script Copy in and #Extract Tar of Stage3.xz
 STAGE3="stage3-amd64-hardened-selinux-openrc-20230924T163139Z.tar.xz"
-cp ${STAGING}/${STAGE3}  ${TARGET}
-echo "Copying ${STAGE3} to ${TARGET}"
+if [ ! -e ${TARGET}/${STAGE3} ]; then
+    #Store stage3 inside image itself so extract script can work
+    echo "Copying ${STAGE3} to root of image  @ ${TARGET}"
+    cp --no-clobber ${STAGING}/${STAGE3}  ${TARGET}
+fi
+#TODO: Theres nothing to chroot into yet.
+#if
+echo "Almost Done! Ready and waiting for you :"
+echo " extract stage3 with Script #3 next phase: extract-stage3-all.sh"
+#TODO: if its extracted already:
+echo "Done! to enter, Run: genr8-chroot ${TARGET}"
 cd ${TARGET}
-echo "Done! Ready and waiting to extract stage3 with Script #3 next phase: extract-stage3-all.sh"
-
-#skipped. # TODO : Hold off on this, theres nothing to chroot into yet.
 #else:
-#chroot in, go!
-#genr8-chroot ${TARGET}
+#do the chroot in, just go!
+genr8-chroot ${TARGET}
 #fi

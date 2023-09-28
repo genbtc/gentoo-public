@@ -1,5 +1,7 @@
 #!/bin/sh
-port="portly"
+#@2023 genr8eofl @gentoo IRC - mount-chroot-dir.sh
+
+port="gentoo"
 mount --types proc /proc /mnt/${port}/proc
 mount --rbind /sys /mnt/${port}/sys
 mount --make-rslave /mnt/${port}/sys
