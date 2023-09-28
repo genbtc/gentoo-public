@@ -1,8 +1,10 @@
 #!/bin/bash
-#2023 genr8eofl - @ gentoo - script v0.15 mounts the amazing partition dd
+#2023 genr8eofl - @ gentoo - script v0.17 mounts the amazing partition dd
+# use /home/genr8eofl/src/gentoo-public/myscripts/make-partition-truncate.sh first
 
 #start with a single file that has an entire disk inside it
-DDNAME="gentoo-amazing-1-hardenedselinux1"
+STAGING="/mnt/crucialp1/"
+DDNAME="stage3-gentoo-hardened-selinux-092423"
 DISKIMG="${DDNAME}.dd"
 if [ ! -e ${DISKIMG} ]; then
     echo "Cannot find ${DISKIMG} file" && exit 9
@@ -25,39 +27,57 @@ fi
 chcon -t fixed_disk_device_t /dev/loop*
 #chcon -t virtual_disk_device_t /dev/loop1*
 
-#create new mount point /
+#create new mount point root / , p3
 TARGET="/mnt/${DDNAME}/"
 if [ ! -e ${TARGET} ]; then
     mkdir -p ${TARGET}
+    echo "Creating Root target mount dir: ${TARGET} !"
+else
+    echo "Found existing Root target mount dir: ${TARGET} ..."
 fi
-#mount it, go!
-mount ${DEVLOOP}p3 ${TARGET}/
+#mount p3, go!
+mount ${DEVLOOP}p3 ${TARGET}
+echo "Mounted Root FS (partition 3) on ${TARGET}"
 
-#create new boot/ mount points in new fs structure
+#create new boot/ mount points in new fs structure, p2
 BOOTTARGET="/mnt/${DDNAME}/boot/"
 if [ ! -e ${BOOTTARGET} ]; then
     mkdir -p ${BOOTTARGET}
+    echo "Creating Boot target mount dir: ${BOOTTARGET} !"
+else
+    echo "Found existing Boot target mount dir: ${BOOTTARGET} ..."
 fi
-#mount it, go!
-mount ${DEVLOOP}p2 ${TARGET}/boot/
+#mount p2, go!
+mount ${DEVLOOP}p2 ${BOOTTARGET}
+echo "Mounted Boot (partition 2) on ${BOOTTARGET}"
 
-#create new boot/efi/ mount points in new new fs structure
+#create new boot/efi/ mount points in new new fs structure, p1
 EFITARGET="/mnt/${DDNAME}/boot/efi/"
 if [ ! -e ${EFITARGET} ]; then
     mkdir -p ${EFITARGET}
+    echo "Creating EFI target mount dir: ${EFITARGET} !"
+else
+    echo "Found existing EFI target mount dir: ${EFITARGET} ..."
 fi
-#mount it, go!
-mount ${DEVLOOP}p1 ${TARGET}/boot/efi/
+#mount p1, go!
+mount ${DEVLOOP}p1 ${EFITARGET}
+echo "Mounted EFI (partition 1) on ${EFITARGET}"
 
-#Create dir structure
+#Create stub dir structure
 mkdir -p ${TARGET}/{dev,sys,proc,run,tmp}
+echo "Creating directory structure hierarchy for: /dev,sys,proc,run,tmp"
 
+#TODO: needs to be conditional for first run or second run;
+#if [-e fs marker exists]; then
 ##script Copy in and #Extract Tar of Stage3.xz
-#cp /mnt/crucialp1/stage3-amd64-hardened-nomultilib-selinux-openrc-20230625T165009Z.tar.xz ${TARGET}
-#cd ${TARGET}
-#extract-stage3-all.sh
-##skipped.
+STAGE3="stage3-amd64-hardened-selinux-openrc-20230924T163139Z.tar.xz"
+cp ${STAGING}/${STAGE3}  ${TARGET}
+echo "Copying ${STAGE3} to ${TARGET}"
+cd ${TARGET}
+echo "Done! Ready and waiting to extract stage3 with Script #3 next phase: extract-stage3-all.sh"
 
-#Hold off on this, theres nothing to chroot into.
+#skipped. # TODO : Hold off on this, theres nothing to chroot into yet.
+#else:
 #chroot in, go!
-genr8-chroot ${TARGET}
+#genr8-chroot ${TARGET}
+#fi

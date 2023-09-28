@@ -1,19 +1,19 @@
 #!/bin/bash
-#2023 genr8eofl - @ gentoo - script v0.23 partitions the disk
+#2023 genr8eofl - @ gentoo - script v0.24 partitions the amazing disk
 
 DISKSIZE="25G"
-DISKIMG="gentoo-amazing-2.dd"
+DISKIMG="stage3-gentoo-hardened-selinux-092423.dd"
 #DEVLOOP="/dev/loop0"
 
-#make an 8 GigaByte file, give it an amazing name, make it sparse.
-truncate -s ${DISKSIZE} ${DISKIMG}
+#make an 25 GigaByte file, give it an amazing name, makes it sparse.
+truncate --size=${DISKSIZE} ${DISKIMG}
 
 #selinux context needs to be file read/write/ioctl'ed by kernel_t
 #sesearch -A -s kernel_t -c file -p write | grep read
 chcon -t tmpfs_t ${DISKIMG}
 
 #WARNING #!!! delete previous loop devices !!!# WARNING#
-losetup -D
+losetup --detach-all
 
 #create loop device
 DEVLOOP=$(losetup --find --show --partscan ${DISKIMG})
