@@ -1,11 +1,13 @@
 #!/bin/bash
-# 2023 Spawns_Carpeting @gentoo - v0.21
+# 2023 Spawns_Carpeting @gentoo - v0.22
 
-source /lib/gentoo/functions.sh
+if [ -e /lib/gentoo/functions.sh ]; then
+	source /lib/gentoo/functions.sh
+fi
 
 bouncer='https://bouncer.gentoo.org/'
 gentoo_release='/usr/share/openpgp-keys/gentoo-release.asc'
-isos="${HOME}/iso/gentoo/downloads"
+isos="${HOME}/Downloads"
 
 die() {
     local ret="${1}"
@@ -43,9 +45,9 @@ if [[ -z ${file} ]]; then
 elif [[ ${file} = "-h" || ${file} = "--help" ]]; then
     echo "pass the file you want to refresh as the first argument" > /dev/stderr
     echo "examples:" > /dev/stderr
-    echo '  refresh.sh install-amd64-minimal' > /dev/stderr
-    echo '  refresh.sh livegui-amd64' > /dev/stderr
-    echo '  refresh.sh stage3-amd64-openrc' > /dev/stderr
+    echo '  ${0} install-amd64-minimal' > /dev/stderr
+    echo '  ${0} livegui-amd64' > /dev/stderr
+    echo '  ${0} stage3-amd64-openrc' > /dev/stderr
     exit 1
 fi
 
