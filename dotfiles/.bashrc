@@ -10,7 +10,8 @@ __update_prompt() {
     fi
 }
 
+#source /root/.config/broot/launcher/bash/br
 
-source /root/.config/broot/launcher/bash/br
+PATH=$PATH:/root/myscripts
 
-PATH=$PATH:~/myscripts
+source /root/.bash_aliases

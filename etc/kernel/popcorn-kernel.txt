@@ -1,0 +1,2 @@
+Popcorn kernel uses these kernel.d snippets
+https://codeberg.org/ranguli/gentoo-popcorn-kernel/

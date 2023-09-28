@@ -1,0 +1,7 @@
+Good blog @ 
+https://blog.verbum.org/2020/08/22/immutable-%E2%86%92-reprovisionable-anti-hysteresis/
+
+Conclusion: We want reprovisionable, anti-hysteresis systems
+
+There a whole lot of current terms for what I’ve covered above, "gitops", "managed configuration", "cattle", stateless", "immutable infrastructure" etc. I’m suggesting the goal is: reprovisionable infrastructure with anti-hysteresis properties.
+But, I’d also be happy if we used "reprovisionable" instead of "cattle", and also if we introduced the term "anti-hysteresis" instead of "immutable" (where applicable).

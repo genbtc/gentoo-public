@@ -1,8 +1,8 @@
 #!/bin/bash
-#2023 genr8eofl - @ gentoo - script v0.14 mounts the amazing partition dd
+#2023 genr8eofl - @ gentoo - script v0.15 mounts the amazing partition dd
 
 #start with a single file that has an entire disk inside it
-DDNAME="gentoo-amazing-1"
+DDNAME="gentoo-amazing-1-hardenedselinux1"
 DISKIMG="${DDNAME}.dd"
 if [ ! -e ${DISKIMG} ]; then
     echo "Cannot find ${DISKIMG} file" && exit 9
@@ -52,11 +52,12 @@ mount ${DEVLOOP}p1 ${TARGET}/boot/efi/
 #Create dir structure
 mkdir -p ${TARGET}/{dev,sys,proc,run,tmp}
 
-#TODO: script Copy in and #Extract Tar of Stage3.xz
-cp /mnt/crucialp1/stage3-amd64-hardened-nomultilib-selinux-openrc-20230625T165009Z.tar.xz ${TARGET}
-cd ${TARGET}
-extract-stage3-all.sh
+##script Copy in and #Extract Tar of Stage3.xz
+#cp /mnt/crucialp1/stage3-amd64-hardened-nomultilib-selinux-openrc-20230625T165009Z.tar.xz ${TARGET}
+#cd ${TARGET}
+#extract-stage3-all.sh
+##skipped.
 
 #Hold off on this, theres nothing to chroot into.
 #chroot in, go!
-#genr8-chroot ${TARGET}
+genr8-chroot ${TARGET}
