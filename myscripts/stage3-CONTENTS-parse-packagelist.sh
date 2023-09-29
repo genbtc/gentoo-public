@@ -1,5 +1,5 @@
 #!/bin/bash
-# genr8eofl @2023 - gentoo - stage3-CONTENTS-get-packagelist.sh script v0.1
+# genr8eofl @2023 - gentoo - stage3-CONTENTS-parse-packagelist.sh script v0.15
 
 #INPUT:
 CONTENTSFILE="${1-:/home/genr8eofl/Downloads/stage3-amd64-desktop-openrc-20230924T163139Z.tar.xz.CONTENTS}"

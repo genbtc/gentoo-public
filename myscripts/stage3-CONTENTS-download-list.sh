@@ -1,5 +1,5 @@
 #!/bin/bash
-# stage3-CONTENTS-download-list.sh script v0.1 - genr8eofl @gentoo - Sept 28, 2023
+# stage3-CONTENTS-download-list.sh script v0.15 - genr8eofl @gentoo - Sept 28, 2023
 
 #INPUT:
 STAGE3_AMD64="stage3-amd64"
@@ -41,6 +41,6 @@ grep "^${STAGE3_AMD64}" ${AWKCONTENTS}.tmp |
 rm ${GREPCONTENTS}.tmp ${AWKCONTENTS}.tmp
 
 #90% of this script can be replaced by this snippet for url
-grep "${WEBDIR}${STAGE3_AMD64}.*CONTENTS.gz" ${DIRLIST}.txt | awk '{print $2}'
-
-#Need to download them later
+#grep "${WEBDIR}${STAGE3_AMD64}.*CONTENTS.gz" ${DIRLIST}.txt | awk '{print $2}'
+#TODO:Need to download them later
+#did, see other script : stage3-CONTENTS-download-CONTENTS.sh
