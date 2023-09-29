@@ -31,7 +31,7 @@ sed -i 's#^\[[[:digit:]]*\]##' ${AWKCONTENTS}.tmp
 #stage3-amd64-desktop-openrc-20230924T163139Z.tar.xz.CONTENTS.gz
 #stage3-amd64...
 
-SEDCONTENTS="${DIRLIST}-CONTENTS-packages"
+SEDCONTENTS="${DIRLIST}-CONTENTS-stages"
 #filter admin/install/livegui/x32arch out
 grep "^${STAGE3_AMD64}" ${AWKCONTENTS}.tmp |
 # tee to stdout and to final result file
@@ -40,7 +40,7 @@ grep "^${STAGE3_AMD64}" ${AWKCONTENTS}.tmp |
 #remove tmp files
 rm ${GREPCONTENTS}.tmp ${AWKCONTENTS}.tmp
 
-#90% of this script can be replaced by this snippet
+#90% of this script can be replaced by this snippet for url
 grep "${WEBDIR}${STAGE3_AMD64}.*CONTENTS.gz" ${DIRLIST}.txt | awk '{print $2}'
 
 #Need to download them later

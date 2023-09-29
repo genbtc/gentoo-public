@@ -2,10 +2,9 @@
 # genr8eofl @2023 - gentoo - stage3-CONTENTS-get-packagelist.sh script v0.1
 
 #INPUT:
-#CONTENTSFILE="/home/genr8eofl/Downloads/stage3-amd64-desktop-openrc-20230924T163139Z.tar.xz.CONTENTS"
+CONTENTSFILE="${1-:/home/genr8eofl/Downloads/stage3-amd64-desktop-openrc-20230924T163139Z.tar.xz.CONTENTS}"
 #(does not work for admincd/minimal-installcd, only stage3)
 #TODO: accept input piped on stdin also
-CONTENTSFILE="${1}"
 # cat $CONTENTSFILE
 # ...
 #drwxr-xr-x  root/root           0 2023-09-24 17:52 ./var/db/pkg/
