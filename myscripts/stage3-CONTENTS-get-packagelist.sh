@@ -3,6 +3,8 @@
 
 #INPUT:
 #CONTENTSFILE="/home/genr8eofl/Downloads/stage3-amd64-desktop-openrc-20230924T163139Z.tar.xz.CONTENTS"
+#(does not work for admincd/minimal-installcd, only stage3)
+#TODO: accept input piped on stdin also
 CONTENTSFILE="${1}"
 # cat $CONTENTSFILE
 # ...
