@@ -1,5 +1,5 @@
 #!/bin/bash
-# stage3-CONTENTS-download.sh script v0.1 - genr8eofl @gentoo - Sept 28, 2023
+# stage3-CONTENTS-download-list.sh script v0.1 - genr8eofl @gentoo - Sept 28, 2023
 
 #INPUT:
 STAGE3_AMD64="stage3-amd64"
