@@ -1,6 +1,6 @@
 #!/bin/bash
-#alldepgraphs.sh script v0.1 - custom written by genBTC/genr8eofl @ gentoo, (c) 2021 - 2023
-#LICENSE - Creative Commons 4.0, Attribution
+# equery-alldepgraphs.sh script v0.1 - custom written by genBTC/genr8eofl @ gentoo, (c) 2021 - 2023
+# LICENSE - Creative Commons 4.0, Attribution
 
 #Part 1a - get list of installed package atoms (=category/package-version)
 cpvfile="portage-cpv.txt"

@@ -1,5 +1,6 @@
 #!/bin/bash
-#v0.2 script by genr8eofl @ gentoo 2023 - AGPL3
+# find-vdb-get-flags-PKGUSE.py v0.2 - by genr8eofl @ gentoo 2023 - AGPL3
+
 allflags() {
 /usr/bin/env python3 - <<EOF
 import portage

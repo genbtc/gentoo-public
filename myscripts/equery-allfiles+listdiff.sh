@@ -1,5 +1,5 @@
 #!/bin/bash
-#v0.4 script by genr8eofl @ gentoo - 2023 AGPL3
+# equery-allfiles+listdiff.sh v0.4 script by genr8eofl @ gentoo - 2023 AGPL3
 
 #Part 1a - get list of installed package atoms (=category/package-version)
 cpvfile="portage-cpv.txt"
