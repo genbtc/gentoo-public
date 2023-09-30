@@ -5,7 +5,11 @@
 # subsequently modified by -@genr8eofl, 2023
 #  (ran shellcheck) (sorted code for readability) (comments)
 #  (unshare removed) (auto bind mount itself - old warning)
-#TODO: needs fix:
+#   modified Sept 28, 2023
+#TODO: FIX: fix warning messages:
+#mount: /mnt/stage3/usr/src/linux: mount point is not a directory.
+#       dmesg(1) may have more information after failed mount system call.
+#DONE: TODO: needs fix:
 #mount: /mnt/crucialp1/gentoo-livegui-amd64-20230604T170201Z/usr/src/linux: mount point is not a directory.
 #-rw-r--r--.  1 root root root:object_r:mnt_t    0 Jul  4 02:24 linux
 #livegui comes with empty dir, causing a blank 0 file to be created and this warning. Fix somehow ?
@@ -17,13 +21,14 @@
 #   -n | --no-bind-bashrc | NO_MOUNT_BASHRC
 #   -b | --bind-binpkgs | MOUNT_BINPKGS
 #   -m | --bind-makeconf | MOUNT_MAKECONF
-#   -r | --bind-hostrepos | MOUNT_HOSTREPOS
+#   -r | --bind-hostrepos | MOUNT_HOSTREPOS (main gentoo repo bound regardless)
 #   -u | --user | USERSPEC=user[:group]
 #
 #Note, the target chroot directory *SHOULD* be a mountpoint.
 #-This ensures that tools such as findmnt(8) have an accurate hierarchy of
 # the mounted filesystems within the chroot.
 #-Note, code changed, now this happens automatically
+#-Diagnostic Messages updated accordingly
 
 usage() {
   cat <<EOF
@@ -48,6 +53,7 @@ EOF
 
 shopt -s extglob
 
+#shellcheck disable=SC2059  # "Don't use variables in the printf format string. Use printf '..%s..' "$foo""
 out() { printf "$1 $2\n" "${@:3}"; }
 error() { out "==> \033[1;31mERROR\033[0m:" "$@"; } >&2
 warning() { out "==> \033[1;33mWARNING\033[0m:" "$@"; } >&2
@@ -94,7 +100,7 @@ chroot_teardown() {
   fi
   unset CHROOT_ACTIVE_MOUNTS
   sleep 1
-  umount -l $(realpath ${CHROOT_DIR})
+  umount -l "$(realpath "${CHROOT_DIR}")"
 }
 
 chroot_bind_device() {
@@ -161,7 +167,7 @@ chroot_add_file() {
   chroot_add_mount "${SRC_FILE}" "${DST_FILE}" --bind
 }
 
-# Relevant paths
+# path variables
 dir_vardbrepos="/var/db/repos"
 dir_vardbgentoo="/var/db/repos/gentoo"
 dir_binpkgs="/var/cache/binpkgs"
@@ -181,30 +187,34 @@ gentoo-chroot() {
   [[ -d $CHROOT_DIR ]] || die "Can't create chroot on non-directory %s" "$CHROOT_DIR"
 
   # bind mount to itself now. must come before chroot_setup and subsequent check
-  warning "$CHROOT_DIR is not a mountpoint. This can cause undesirable side effects."
-  warning "Doing it for you now! Bind Mounting:  ${CHROOT_DIR} to itself ..."
-  realchrootdir=$(realpath ${CHROOT_DIR})
-  mount --bind ${realchrootdir} ${realchrootdir}   #TODO: what about errors?
-  #on exit, does an umount lazy in chroot_teardown() function
+  if ! mountpoint -q "$CHROOT_DIR"; then
+      warning "$CHROOT_DIR is not a mountpoint, and causes undesirable side effects."
+      msg2 "Fixing! Bind Mounting ${CHROOT_DIR} to itself for you ..."
+      realchrootdir=$(realpath "${CHROOT_DIR}")
+      mount --bind "${realchrootdir}" "${realchrootdir}"   #TODO: what about errors?
+      #on exit, does an umount lazy in chroot_teardown() function
+  fi
 
   # actually do setup chroot (all basic mounts)
   chroot_setup "$CHROOT_DIR" || die "failed to setup chroot %s" "$CHROOT_DIR"
 
   # warn if somehow its still not mounted, NonFatal?
+  #these warnings can be deprecated soon or at some point later, soon.
   if ! mountpoint -q "$CHROOT_DIR"; then
-    warning "$CHROOT_DIR is not a mountpoint. This may have undesirable side effects."
-	#DONE#TODO: can bind-mount itself to itself in the script but leave it to the user for now#DONE
+    warning "$CHROOT_DIR is not a mountpoint. This has undesirable side effects."
     warning "-Tip, you can bind mount the directory on itself to make it a mountpoint:"
     warning " 'mount --bind /your/chroot /your/chroot'   (as a workaround)"
+	warning "#DONE#TODO#: can bind-mount itself to itself in the script now instead of leaving it to the user"
   fi
-  #these warnings can be deprecated soon or at some point later
 
-  # copy host's /etc/resolv.conf for network DNS server settings
+  # DNS Resolver, always use host's /etc/resolv.conf for network DNS nameserver settings [ALWAYS]
+  #TODO: make optional
   CHROOT_FILES+=( "${file_resolvconf}" )
 
-  # new bashrc - Create our bashrc which does useful gentoo functions like env-update and setting $PS1 (chroot)
+  # .bashrc - Create new bashrc which does useful gentoo functions like env-update and setting $PS1=(chroot)
   if [[ -z ${NO_MOUNT_BASHRC+x} ]]; then
-	if [ ! -r ${gentoo_bashrc} ]; then
+    #only populates this file in /tmp once, (caveat: when editing this script, rm /tmp/gentoo-bashrc)
+	if [[ ! -r ${gentoo_bashrc} ]]; then
 		cat > ${gentoo_bashrc} <<EOF
 #!/usr/bin/env bash
 source /etc/profile && env-update
@@ -216,12 +226,57 @@ EOF
     CHROOT_FILES+=( "${root_bashaliases}:/root/.bash_aliases" ) # genr8 keeps his aliases in here :)
   fi
 
-  # Make.conf, re-use the host system's /etc/portage/make.conf (optional)
+  # Kernel Source dir, '-k', /usr/src/linux, Kernels can be shared (caveat: may need make clean) [DEFAULT]
+  if [[ -z ${NO_MOUNT_KERNEL_SOURCE+x} ]] && [[ -d "${dir_usrclinux}" ]]; then
+    if [[ ! -d "${CHROOT_DIR}${dir_usrclinux}" ]]; then
+        if [[ ! -s "${CHROOT_DIR}${dir_usrclinux}" ]]; then
+            warning "Empty Blocker file found for ./usr/src/linux , Deleting."
+            rm "${CHROOT_DIR}${dir_usrclinux}"
+        fi
+        msg "Creating blank dir for mountpoint! Binding now."
+        mkdir -p "${CHROOT_DIR}${dir_usrclinux}"
+    fi
+    if [[ -d "${CHROOT_DIR}${dir_usrclinux}" ]]; then
+        msg "Binding $dir_usrclinux now."
+        chroot_bind_device $dir_usrclinux "${CHROOT_DIR}${dir_usrclinux}"
+    else
+        warning "Kernel usr/src/linux directory/symlink still has issues. not bound yet."
+    fi
+  fi
+
+#GENTOO SPECIFIC:
+
+  # Make.conf, re-use the host system's /etc/portage/make.conf           (optional)
   if [[ -n ${MOUNT_MAKECONF+x} ]]; then
     CHROOT_FILES+=( "${file_makeconf}" )
   fi
 
-  # the user can provide this env var to list arbitrary files to mount (optional)
+  # Repos, '-r', Portage repos config, /etc/portage/repos.conf           (optional)
+  #              Portage Repository DB, /var/db/repos/         (all are not needed)
+  if [[ -n ${MOUNT_HOSTREPOS+x} ]]; then
+    chroot_bind_device $file_reposconf "${CHROOT_DIR}${file_reposconf}"
+    chroot_bind_device $dir_vardbrepos "${CHROOT_DIR}${dir_vardbrepos}"
+  else
+    # A fresh stage3 may not have /var/db/repos/gentoo/, create, bind it  [DEFAULT]
+    if [[ ! -d "${CHROOT_DIR}${dir_vardbgentoo}" ]]; then
+      ignore_error rm "${CHROOT_DIR}${dir_vardbgentoo}"
+      mkdir -p "${CHROOT_DIR}${dir_vardbgentoo}"
+    fi
+    chroot_bind_device $dir_vardbgentoo "${CHROOT_DIR}${dir_vardbgentoo}"
+  fi
+
+  # Distfiles, '-f', /var/cache/distfiles, Try avoid redundant downloads  [DEFAULT]
+  if [[ -z ${NO_MOUNT_DISTFILES+x} ]]; then
+    chroot_bind_device $dir_distfiles "${CHROOT_DIR}${dir_distfiles}"
+  fi
+
+  # Binpkgs, '-b', /var/cache/binpkgs,  carry over from the host         (optional)
+  if [[ -n ${MOUNT_BINPKGS+x} ]] && [[ -d "${dir_binpkgs}" ]]; then
+    chroot_bind_device $dir_binpkgs "${CHROOT_DIR}${dir_binpkgs}"
+  fi
+
+  #User Extendable:
+  # Additional Files, the user can provide this env var to list arbitrary files to mount (optional)
   if (( ${#ADDITIONAL_CHROOT_FILES[@]} )); then
     CHROOT_FILES+=( "${ADDITIONAL_CHROOT_FILES}" )
   fi
@@ -229,39 +284,10 @@ EOF
       chroot_add_file "${FILE}" || die "failed to setup ${FILE}"
   done
 
-  # Kernel Source dir, /usr/src/linux, Kernels can be shared (caveat: may need make clean)
-  if [[ -z ${NO_MOUNT_KERNEL_SOURCE+x} ]]; then
-    chroot_bind_device $dir_usrclinux "${CHROOT_DIR}${dir_usrclinux}"
-  fi
-
-#GENTOO SPECIFIC:
-  # Distfiles, /var/cache/distfiles, Try and avoid redundant downloads
-  if [[ -z ${NO_MOUNT_DISTFILES+x} ]]; then
-    chroot_bind_device $dir_distfiles "${CHROOT_DIR}${dir_distfiles}"
-  fi
-
-  # Portage Repository DB, /var/db/repos/gentoo , and /etc/portage/repos.conf
-  if [[ -n ${MOUNT_HOSTREPOS+x} ]]; then
-    chroot_bind_device $file_reposconf "${CHROOT_DIR}${file_reposconf}"
-    chroot_bind_device $dir_vardbrepos "${CHROOT_DIR}${dir_vardbrepos}"
-  else
-    # A fresh stage3 may not have /var/db/repos/gentoo, create it.
-    if [ ! -d "${CHROOT_DIR}${dir_vardbgentoo}" ]; then
-      ignore_error rm "${CHROOT_DIR}${dir_vardbgentoo}"
-      mkdir -p "${CHROOT_DIR}${dir_vardbgentoo}"
-    fi
-    chroot_bind_device $dir_vardbgentoo "${CHROOT_DIR}${dir_vardbgentoo}"
-  fi
-
-  # Binpkgs, /var/cache/binpkgs, (optional)
-  if [[ -d "${dir_binpkgs}" ]] && [[ -n ${MOUNT_BINPKGS+x} ]]; then
-    chroot_bind_device $dir_binpkgs "${CHROOT_DIR}${dir_binpkgs}"
-  fi
-
 #CHROOT:
   # Run it!
-  chroot_args=()
-  [[ $userspec ]] && chroot_args+=(--userspec "$userspec")
+  CHROOT_ARGS=()
+  [[ $USERSPEC ]] && CHROOT_ARGS+=(--userspec "$USERSPEC")
   # If arguments = 0, run a shell
   if [ ${#ARGS[@]} -eq 0 ]; then
     SHELL=/bin/bash chroot "${CHROOT_ARGS[@]}" -- "$CHROOT_DIR"
@@ -281,23 +307,30 @@ do
     -b | --bind-binpkgs ) MOUNT_BINPKGS=1 ; shift ;;
     -f | --no-bind-distfiles ) NO_MOUNT_DISTFILES=1 ; shift ;;
     -d | --debug ) DEBUG=1; echo -e "\e[1;35mEnabling very-basic debug!\e[0m"; set -x; shift ;;
-    -h | --help ) usage; exit 0 ;;
+    -h | --help )
+        usage;
+        #shellcheck disable=2317 # "Command appears to be unreachable. Check usage (or ignore if invoked indirectly)."
+        exit 0 ;;
     -k | --no-bind-kernel) NO_MOUNT_KERNEL_SOURCE=1; shift ;;
     -m | --bind-makeconf ) MOUNT_MAKECONF=1 ; shift ;;
     -n | --no-bind-bashrc ) NO_MOUNT_BASHRC=1 ; shift ;;
     -r | --bind-hostrepos ) MOUNT_HOSTREPOS=1 ; shift ;;
-    -u | --user ) USERSPEC="${2}"; shift 2 ;;
+    -u | --user )
+        #shellcheck disable=2034 # "USERSPEC appears unused. Verify use (or export if used externally)"
+        USERSPEC="${2}"; shift 2 ;;
     -- ) shift ; break ;;
   esac
 done
 
-if [ $# -eq 0 ]; then
+#executable Boilerplate
+if [[ $# -eq 0 ]]; then
+  #shellcheck disable=2317 # "Command appears to be unreachable. Check usage (or ignore if invoked indirectly)."
   usage || die "missing parameters - please specify a chroot directory!"
 fi
 
 CHROOT_DIR=$1
 shift
-args=("$@")
+ARGS=("$@")
 
-#run main
+#run scripts main function
 $DEBUG gentoo-chroot
