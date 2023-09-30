@@ -1,20 +1,22 @@
 #!/bin/bash
-# equery-alldepgraphs.sh script v0.1 - custom written by genBTC/genr8eofl @ gentoo, (c) 2021 - 2023
+# equery-ALLDEPGRAPHS.sh script v0.2 - custom written by genBTC/genr8eofl @ gentoo, (c) 2021 - 2023
 # LICENSE - Creative Commons 4.0, Attribution
+# Output:
 
 #Part 1a - get list of installed package atoms (=category/package-version)
-cpvfile="portage-cpv.txt"
-if [[ ! -e $cpvfile ]]; then
-    equery -C -N list -F '=$cpv' '*' | egrep "^=" > $cpvfile
+CPVFILE="portage-cpv.txt"
+if [[ ! -e ${CPVFILE} ]]; then
+#shellcheck disable=2016,2196 #(syntax is correct)
+    equery -C -N list -F '=$cpv' '*' | grep -E "^=" > ${CPVFILE}
 fi
 
-#Part 1b - get list of files provided by all packages
-alldepgraphs="portage-alldepgraphs.txt"
-for d in `cat $cpvfile`; do
-   echo $d;  #show some progress @ stdout
-   equery -C depgraph $d >> ${alldepgraphs} #Warning, appends write
-done
+#Part 1b - get dependency tree depgraph for all packages
+echo "This takes about 5 minutes..."
+ALLDEPGRAPHS="portage-ALLDEPGRAPHS.txt"
+while read -r d; do
+   echo "$d";  #show package progress @ stdout
+   equery -C depgraph "$d" >> ${ALLDEPGRAPHS} #Warning, appends write
+done < ${CPVFILE}
 
-#sort ${alldepgraphs}.tmp | uniq > $alldepgraphs
-#rm ${alldepgraphs}.tmp
-#TODO:build more features
+echo "Finished! The CPV installed package list File is @ ${CPVFILE}"
+echo "Finished! The All DepGraphs txt File is @ ${ALLDEPGRAPHS}"
