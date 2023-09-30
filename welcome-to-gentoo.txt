@@ -37,7 +37,9 @@ gentoopm (python)
 
 portconf::guru
  portconf -cpu #current profile use flags, works
- #all profiles use flags does not work, must set PORTDIR=/var/db/repos/gentoo portconf, then it works.
+ portconf -apu all profiles use flags does not work, must set PORTDIR=/var/db/repos/gentoo portconf, then it works.
+ # patch for this available in /etc/portage/patches/
+ # https://github.com/genbtc/gentoo-public/blob/main/etc/portage/patches/app-portage/portconf/PORTDIR.patch
 portpeek
  portpeek -aq , -adc , -z  
 
