@@ -15,7 +15,9 @@ Stage3:
     extract-stage3-all.sh
 5. genr8-chroot into /mnt/stage3_1 (arch-chroot for/from me/gentoo)
     genr8-chroot.sh
+    (binds /etc/resolv.conf DISTDIR=/var/cache/distfiles, PORTDIR=/var/db/repos/gentoo)
 6. fix /etc/portage/ and make.conf (FEATURES="buildpkg")
+    (make.conf can be optionally bound in from the host with genr8-chroot -m)
 7. quickpkg --include-config=y '*/*'
 8. ctrl^D (exit chroot)
 9. mv /mnt/stage3_1/var/cache/binpks ~/binpkg-storage/stage3_1
