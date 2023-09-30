@@ -1,15 +1,16 @@
 #!/bin/bash
-# equery-allfiles+listdiff.sh v0.4 script by genr8eofl @ gentoo - 2023 AGPL3
+# equery-allfiles+listdiff.sh v0.41 script by genr8eofl @ gentoo - 2023 AGPL3
 
 #Part 1a - get list of installed package atoms (=category/package-version)
 cpvfile="portage-cpv.txt"
+#shellcheck disable=2016,2196 #(syntax is correct)
 equery -C -N list -F '=$cpv' '*' | egrep "^=" > $cpvfile
 
 #Part 1b - get list of files provided by all packages
 allfiles="portage-allfiles.txt"
-for d in `cat $cpvfile`; do
-   echo $d;  #show some progress @ stdout
-   equery -C files $d >> ${allfiles}.tmp
+for d in $(cat $cpvfile); do
+   echo "$d";  #show some progress @ stdout
+   equery -C files "$d" >> ${allfiles}.tmp
 done
 sort ${allfiles}.tmp | uniq > $allfiles
 rm ${allfiles}.tmp
