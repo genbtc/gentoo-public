@@ -8,10 +8,10 @@ blue="\033[01;34m"
 non="\033[00m"
 
 for iommu_group in $(find /sys/kernel/iommu_groups/ -maxdepth 1 -mindepth 1 -type d | sort -V); do
-    echo -e "$yellow IOMMU Group $(basename "$iommu_group") $non";
+    echo -e "$yellow IOMMU Group" "$(basename "$iommu_group")" "$non";
     for device in $(ls -1 "$iommu_group"/devices/); do
-        echo -en $green "     ";
+        echo -en "$green      ";
         result=($(lspci -nns "$device"));
-        echo -e ${result[0]} $non ${result[@]}
+        echo -e "${result[0]}" "$non" "${result[@]}"
     done;
 done
