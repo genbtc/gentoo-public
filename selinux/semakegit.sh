@@ -1,0 +1,1 @@
+../myscripts/semakegit.sh
