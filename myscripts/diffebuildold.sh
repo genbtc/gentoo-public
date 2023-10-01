@@ -1,5 +1,7 @@
-#!/bin/sh
-# diffebuild.sh old script 0.4 - created by genr8eofl @ gentoo - Feb 26, 2023 - July 20, 2023 - GPL2
+#!/bin/bash
+# diffebuild.sh old script 0.41 - created by genr8eofl @ gentoo - Feb 26, 2023 - July 20, 2023 - GPL2
+# compare new ebuild from latest remote sync to old ebuild from existing installed systems local pkg database
+# Usage: diffebuild sys-apps/portage-3.0.49-r2
 
 diffebuild() {
     declare -a newpkgq=($(qatom "$1" -F "%{CATEGORY} %{PN} %{PV} %{PR}"))
