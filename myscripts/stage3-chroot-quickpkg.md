@@ -34,4 +34,4 @@ Things do with stage3's:
 2. download all -CONTENTS.gz's, one by one (wget, foreach)  
     [stage3-CONTENTS-download-all.sh](stage3-CONTENTS-download-all.sh)  
 3. parse -CONTENTS.gz's - make stage3-xxx-packageslist.txt files (vdb list inside)  
-    [stage3-CONTENTS-parse-packagelist-recursive.sh](stage3-CONTENTS-parse-packagelist-recursive.sh)  
+    [stage3-CONTENTS-parse-packagelist-ALL.sh](stage3-CONTENTS-parse-packagelist-ALL.sh)  

@@ -10,11 +10,11 @@ WEBDIR="https://mirrors.rit.edu/gentoo/releases/amd64/autobuilds/current-${STAGE
 STAGESFILE="elinks-dump-gentoo-release-autobuilds-dirlisting-Sept2823-CONTENTS-stages.txt"
 
 #RE-PROCESSING
-STAGE3DLS=($(grep "${STAGE3_AMD64}.*tar\.xz" ${STAGESFILE} | sed 's#\.CONTENTS\.gz##'))
+STAGE3DLS=($(grep "${STAGE3_AMD64}.*tar\.xz" "${STAGESFILE}" | sed 's#\.CONTENTS\.gz##'))
 #an array, for each
-for stage in ${STAGE3DLS[@]}; do
-	echo ${stage}
-	wget --no-clobber ${WEBDIR}/${stage}	#dont let default behavior redownload as duplicates if script is rerun
+for stage in "${STAGE3DLS[@]}"; do
+	echo "${stage}"
+	wget --no-clobber "${WEBDIR}/${stage}"	#dont let default behavior redownload as duplicates if script is rerun
 done
 
 #OUTPUT Files:
