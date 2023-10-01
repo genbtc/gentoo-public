@@ -6,22 +6,22 @@ DISKSIZE="25G"  #enough
 DISKIMG="${1-:stage3-gentoo-hardened-selinux-092423.dd}"
 
 #Create a large enough file, sparse, give it a name
-if [ -e ${DISKIMG} ]; then
+if [ -e "${DISKIMG}" ]; then
     echo "Error! Disk Image found, it was already created!"
     echo
     echo "  Run: amazing-mount-fs-partitions.sh ${DISKIMG}" && exit
 else
-    truncate --size=${DISKSIZE} ${DISKIMG}
+    truncate --size="${DISKSIZE}" "${DISKIMG}"
     echo "Created disk image: ${DISKIMG} !"
 fi
 
 #selinux, context needs to be file read/write/ioctl'ed by kernel_t
 #sesearch -A -s kernel_t -c file -p write | grep read
-chcon -t tmpfs_t ${DISKIMG}
+chcon -t tmpfs_t "${DISKIMG}"
 
 #DEVLOOP="/dev/loop0"
 SANITYCHECK=$(losetup)
-if [ -e ${SANITYCHECK} ]; then
+if [ -e "${SANITYCHECK}" ]; then
     echo "Error. Loop device already exists! Why!? Exiting..." && exit
 else
     echo "WARNING !!! detaching previous loop devices ! WARNING !"
@@ -29,8 +29,8 @@ else
 fi
 
 #Create Loop Device
-DEVLOOP=$(losetup --find --show --partscan ${DISKIMG})
-if [ ! -e ${DEVLOOP} ]; then
+DEVLOOP=$(losetup --find --show --partscan "${DISKIMG}")
+if [ ! -e "${DEVLOOP}" ]; then
     echo "Error. Failed to set up Loop Device or Loop Device not found. Exiting!" && exit
 #GOTO: END
 else
@@ -41,7 +41,7 @@ fi
 
 #Create Partitions (if we didnt error and exit by now )
 #sfdisk - programmatic partition script (WARNING, ALWAYS WIPE!)
-sfdisk --wipe=always ${DEVLOOP} <<EEOF
+sfdisk --wipe=always "${DEVLOOP}" <<EEOF
 #(very specific syntax, watch out for whitespace)
 label: gpt
 size= 50M, type= U, name="EFI"
