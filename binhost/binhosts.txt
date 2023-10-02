@@ -1,3 +1,6 @@
+##### by genr8eofl @gentoo IRC - 2023 LICENSE - Creative Commons 4.0, Attribution
+# portage binhosts crash course 1
+
 Portage Binhosts
 --------------------
 To create a binhost:
@@ -12,30 +15,37 @@ They do not serve though.
  (need to collect them all from there periodically and move them to a dir they can be served from)
 
 for the sake of example, you can turn your client into a basic server
-# python -m http.server 8080
+and serve it right out of the PKGDIR
+# /var/cache/binpkgs # python -m http.server 8080
 Serving HTTP on 0.0.0.0 port 8080 (http://0.0.0.0:8080/) ...
 
-or, first use rsync as a client, rsync -rtlv $localA $remoteB)
+or, first use rsync as a client, rsync -rtlv $PKGDIR $remoteB/storage)
 Then set up rsyncd (rsync server) to use custom directory trees
-example rsyncd.conf, uses rsync as a server:
 
+#example rsyncd.conf, uses rsync as a server:
 use chroot = yes
 [binhostA]
-    path = /mnt/RaidZ-4TBx4/DiskImages/LinuxDD/./binpkgs-gentoo-atom-tablet-1/
+    path = /storage/./binpkgs-gentoo-atom-tablet-1/
     read only
 [binhostB]
-    path = /mnt/RaidZ-4TBx4/DiskImages/LinuxDD/./binpkgs-second-one-2/
+    path = /storage/./binpkgs-second-one-2/
     read only
 
+Then set up 
+#/etc/portage/binrepos.conf - on the client:
+[binhost1]
+sync-uri = rsync://10.1.1.1/binhost1
+[binhost2]
+sync-uri = rsync://10.1.1.1/binhost2
 
-; emaint binhost --fix
-# will regenerate Packages index file
+# to regenerate Packages index file
+# emaint binhost --fix
 NOTE:- currently doesnt work on $target_dir , requires a patch to write file elsewhere.
      - see my patch @ patches/portage-binhost-py.patch
+#https://github.com/genbtc/gentoo-public/blob/main/binhost/portage-binhost-py.patch
 note:(also, it pulls some stats from the running profile and full system configs)
 (when you re-generate, the top system header fields will be mismatched, namely the name of the profile)
 
-
 GPG Signing .gpkg - goes above and beyond,,, that is documented elsewhere, check gentoo wiki.
 
-To be continued.
+To be continued. Later.
