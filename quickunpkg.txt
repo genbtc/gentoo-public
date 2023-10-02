@@ -1,0 +1,2 @@
+original quickunpkg from https://github.com/zoobab/quickunpkg from Zoobab
+reproduced directly without changes, cloned as Oct 01, 2023 - no updates since 2018
