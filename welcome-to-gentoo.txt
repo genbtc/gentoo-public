@@ -1,6 +1,13 @@
-# 2023 genr8eofl - welcome to gentoo
+# 2023 - welcome to gentoo
+# ##### by genr8eofl @gentoo IRC - 2023 LICENSE - Creative Commons 4.0, Attribution
 
 welcome to gentoo!
+
+first you have to install it, for that you will need this,
+https://wiki.gentoo.org/wiki/Handbook_Talk:AMD64/Installation/
+
+but you can skip that instruction and move onto my short guide cheat sheet if you are so advanced:
+https://github.com/genbtc/gentoo-public/blob/main/gentoo-installation-instructions-guide-short.txt
 
 the package manager is named portage, but the main command is emerge
 man emerge
@@ -23,18 +30,18 @@ emerge common options:
 --exclude
 --backtrack=30 or 999 for extreme luck
 
-
-to Maintain package.use, package.accept_keywords w/ periodic maintenance:
-enalyze
+be sure to Maintain package.use, package.accept_keywords w/ periodic maintenance:
+a tool named enalyze
+or
 echo $(emerge -epvO @world) >> somefile/do it manually
 
 Interact, query with package databases:
 eix
 portageq
-portage-utils (q)
-equery (gentoolkit)
-gentoopm (python)
-
+portage-utils (q command)
+gentoolkit (equery command)
+gentoopm (gentoopmq command + python script library)
+others:
 portconf::guru
  portconf -cpu #current profile use flags, works
  portconf -apu all profiles use flags does not work, must set PORTDIR=/var/db/repos/gentoo portconf, then it works.
@@ -42,8 +49,7 @@ portconf::guru
  # https://github.com/genbtc/gentoo-public/blob/main/etc/portage/patches/app-portage/portconf/PORTDIR.patch
 portpeek
  portpeek -aq , -adc , -z  
-
-
+Useful for system maintenance:
 emaint
 usage: usage: emaint [options] COMMAND
 The emaint program provides an interface to system health checks and maintenance.
@@ -60,8 +66,55 @@ Commands:
   sync           Check repos.conf settings and sync repositories.
   world          Check and fix problems in the world file.
 
+eselect
+Usage: eselect <global options> <module name> <module options>
+
+Global options:
+  --brief                   Make output shorter
+  --colour=<yes|no|auto>    Enable or disable colour output (default 'auto')
+  --eprefix=<path>          Override the EPREFIX variable for a cross-prefix build
+  --root=<path>             The target root path for eselect's operations
+
+Built-in modules:
+  help                      Display a help message
+  usage                     Display a usage message
+  version                   Display version information
+
+Extra modules:
+  arptables                 Manage the iptables/arptables/ebtables symlinks
+  bashcomp                  Manage contributed bash-completion scripts
+  binutils                  Manage installed versions of sys-devel/binutils
+  ctags                     Manage /usr/bin/ctags implementations
+  ebtables                  Manage the iptables/arptables/ebtables symlinks
+  editor                    Manage the EDITOR environment variable
+  emacs                     Manage /usr/bin/emacs version
+  env                       Manage environment variables set in /etc/env.d/
+  etags                     Manage /usr/bin/etags implementations
+  fontconfig                Manage fontconfig /etc/fonts/conf.d symlinks
+  gcc                       Manage installed versions of sys-devel/gcc
+  gnuclient                 Manage /usr/bin/gnuclient implementations
+  iptables                  Manage the iptables/arptables/ebtables symlinks
+  kernel                    Manage the /usr/src/linux symlink
+  locale                    Manage the LANG environment variable
+  lua                       Manage lua symlinks
+  modules                   Query eselect modules
+  mpg123                    Manage /usr/bin/mpg123 implementation
+  news                      Read Gentoo ("GLEP 42") news items
+  notify-send               Manage /usr/bin/notify-send implementation
+  package-manager           Manage the PACKAGE_MANAGER environment variable
+  pager                     Manage the PAGER environment variable
+  pinentry                  Manage /usr/bin/pinentry implementation
+  profile                   Manage the make.profile symlink
+  rc                        Manage /etc/init.d scripts in runlevels
+  repository                Manage repository list in repos.conf
+  rust                      Manage the Rust compiler versions
+  vi                        Manage /usr/bin/vi implementations
+  visual                    Manage the VISUAL environment variable
+  wxwidgets                 Manage the system default wxWidgets profile
+
 
 Editing Make.conf:
+#example /etc/portage/make.conf
 
 #push for weekly updates at least
 PORTAGE_SYNC_STALE="7"
@@ -74,6 +127,7 @@ PORTAGE_LOGDIR="/var/cache/buildlogs"
 PORTAGE_ELOG_CLASSES="${PORTAGE_ELOG_CLASSES} info"
 PORTAGE_ELOG_SYSTEM="${PORTAGE_ELOG_SYSTEM} save"
 
+#CPU FLAGS
 app-portage/cpuid2cpuflags
 CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt rdrand sha sse sse2 sse3 sse4_1 sse4_2 sse4a ssse3"
 these change more between machines generations, you might want to settle on a simpler single common denominator
@@ -83,6 +137,7 @@ optionally: app-misc/resolve-march-native
 put it in COMMON_FLAGS, the cache params are optional
 otherwise just feel free to use -march=native 
 
+#SMT
 You can tweak make's thread parameter for your CPU and RAM usage. I have more than enough myself.
 Usually its 2GB of ram per GCC thread max, so you might need swap.
 Stick to lowering the threads if you are running out of memory (OOM)
@@ -93,22 +148,24 @@ MAKEOPTS="-j18 -l17"
 PORTAGE_SCHEDULING_POLICY="idle"
 PORTAGE_NICENESS=19
 
+#Colors
 This enables pretty colors in the compile spam as much as possible
 #Super-Ultra-Mega-Force Colors on: (by sam_)
 CLICOLOR_FORCE=1
 CMAKE_COLOR_DIAGNOSTICS=ON
 CMAKE_COMPILER_COLOR_DIAGNOSTICS=ON
 
+#Build Binpkgs
 You want to be building the packages you compile as backups so you have easy times swapping in/out packages without recompiling
 I advise everyone use this even if they think they wont need it, you can always clear them out when they fill up.
 #PKGDIR="/var/cache/binpkgs"
 #(bin packages: build & get)
 FEATURES="${FEATURES} buildpkg"
 
-Note: you can regenerate the /var/cache/binpkgs/Packages index file with the 
+#Note: you can regenerate the /var/cache/binpkgs/Packages index file with the 
 'emaint binhost --fix' command
 
-#optional,advanced:
+#binhost (optional/advanced)
 if you want to use a remote binhost, you need this in make.conf and 
 #FEATURES="${FEATURES} getbinpkg"
 and something like this in /etc/portage/binrepos.conf
@@ -124,7 +181,7 @@ export PORTAGE_BINHOST="rsync://10.1.1.1/binhost1 rsync://10.1.1.2:2222/binhost2
 Prevent rogue setuid (suid) +s binaries from being installed at the highest root privelege level by portage.
 NOTE: can break some programs functionality until you manually whitelist them, remember this.
 
-#optional,advanced:
+#skip foreign locales (optional/advanced)
 prevent locales from clogging up disk
 INSTALL_MASK="/usr/share/locale"
 
@@ -133,10 +190,10 @@ EMERGE_DEFAULT_OPTS="--ask --verbose --tree --changed-use --keep-going \
 --autounmask=y --autounmask-write=y --autounmask-use=y \
 --binpkg-respect-use=y --binpkg-changed-deps=y --with-bdeps=y"
 
--
-Cron should be installed and scripts made.
-prefer something like cronie
-Syslog should be installed
-possibly use rsyslog and logrotate
-Auditd should be installed
+
+#Cron should be installed and scripts made.
+# = prefer something like cronie
+#Syslog should be installed
+# + possibly use rsyslog and logrotate
+#Auditd should be installed
 
