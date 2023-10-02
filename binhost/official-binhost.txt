@@ -1,0 +1,4 @@
+#official binhost guide
+https://wiki.gentoo.org/wiki/Experimental_binary_package_host
+#signed binpkgs available here
+https://gentoo.osuosl.org/experimental/amd64/binpkg/default/linux/17.1/x86-64/
