@@ -1,5 +1,6 @@
 #!/bin/bash
-# 2023 Spawns_Carpeting @gentoo - v0.22
+# 2023 Spawns_Carpeting @gentoo - v0.23
+#Requires gentoo functions & gemato, gpg, wget
 
 if [ -e /lib/gentoo/functions.sh ]; then
 	source /lib/gentoo/functions.sh
