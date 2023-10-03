@@ -4,10 +4,9 @@
 # Note: this is part 2, use part 1 make-partition-truncate.sh first
 
 STAGINGDIR="${PWD:-/mnt/crucialp1/}"
-#Done, but needs .dd
+#Take arg $1 from command line, or hardcode default filepath here
 DISKIMG="${1:-gentooROOT-stage3-amd64-hardened-nomultilib-selinux-openrc-1.dd}"
 #start with a single file that has an entire disk inside it
-DDNAME="${DISKIMG%.dd}"
 if [ ! -e "${DISKIMG}" ]; then
     echo "Cannot find ${DISKIMG} file" > /dev/stderr && exit 9
 fi
@@ -30,6 +29,9 @@ fi
 #SELinux Relabel:
 chcon -t fixed_disk_device_t -v "${DEVLOOP}"*
 #chcon -t virtual_disk_device_t -v /dev/loop0*
+
+#chop .dd extension off to use for dirname
+DDNAME="${DISKIMG%.dd}"
 
 #3-Create new mount point root / , p3
 TARGET="/mnt/${DDNAME}/"
@@ -73,13 +75,17 @@ echo "Created directory structure hierarchy for: /dev,sys,proc,run,tmp"
 
 #TODO: refactor this name out to $2
 #Copy in and Extract Tar of Stage3.xz / or check if exists already.
-STAGE3="stage3-amd64-hardened-nomultilib-selinux-openrc-20231001T170148Z.tar.xz"
+STAGE3=("${DDNAME//_1}"*.tar.xz)
+#"-stage3-amd64-hardened-nomultilib-selinux-openrc-20231001T170148Z.tar.xz"
+#doesnt exist
 if [ ! -e "${TARGET}/${STAGE3}" ]; then
     #Store stage3 inside image itself so extract script can work
     echo "Copying ${STAGE3} to root of image  @ ${TARGET}"
     cp --no-clobber "${STAGINGDIR}/${STAGE3}"  "${TARGET}"
     #TODO: this still seems un-needed
-elif [ ! -e "${TARGET}"/.extractedtar ]; then
+fi
+#It exists
+if [ ! -e "${TARGET}"/.extractedtar ]; then
     cd "${TARGET}" || exit 1
     echo "Extracting ${STAGE3} with tar to root mount dir @ ${TARGET} ............."
     tar xpf "${STAGINGDIR}/${STAGE3}" --xattrs-include='*.*' --numeric-owner --skip-old-files
