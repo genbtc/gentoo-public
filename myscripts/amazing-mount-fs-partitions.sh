@@ -1,14 +1,13 @@
 #!/bin/bash
-# amazing-mount-fs-partitions.sh script v0.4 by @genr8eofl copyright 2023 - AGPL3 License
+# amazing-mount-fs-partitions.sh script v0.5 by @genr8eofl copyright 2023 - AGPL3 License
 # Description: mounts the amazing partition dd!
 # Note: this is part 2, use part 1 make-partition-truncate.sh first
 
 STAGINGDIR="${PWD:-/mnt/crucialp1/}"
-#TODO: refactor this name to be passed in $1
 #Done, but needs .dd
-DDNAME="${1:-gentooROOT-stage3-amd64-hardened-nomultilib-selinux-openrc-100123}"
+DISKIMG="${1:-gentooROOT-stage3-amd64-hardened-nomultilib-selinux-openrc-1.dd}"
 #start with a single file that has an entire disk inside it
-DISKIMG="${DDNAME}.dd"
+DDNAME="${DISKIMG%.dd}"
 if [ ! -e "${DISKIMG}" ]; then
     echo "Cannot find ${DISKIMG} file" > /dev/stderr && exit 9
 fi
@@ -73,33 +72,23 @@ mkdir -p "${TARGET}"/{dev,sys,proc,run,tmp}
 echo "Created directory structure hierarchy for: /dev,sys,proc,run,tmp"
 
 #TODO: refactor this name out to $2
-#TODO: needs to be conditional for first run or second run;
-#if [-e fs marker exists]; then
-#Copy in and Extract Tar of Stage3.xz
+#Copy in and Extract Tar of Stage3.xz / or check if exists already.
 STAGE3="stage3-amd64-hardened-nomultilib-selinux-openrc-20231001T170148Z.tar.xz"
-#TODO: copy in ? or extract in ?
 if [ ! -e "${TARGET}/${STAGE3}" ]; then
     #Store stage3 inside image itself so extract script can work
     echo "Copying ${STAGE3} to root of image  @ ${TARGET}"
     cp --no-clobber "${STAGINGDIR}/${STAGE3}"  "${TARGET}"
-#TODO: this seems excessive, just script tar to extract it here.
-else
+    #TODO: this still seems un-needed
+elif [ ! -e "${TARGET}"/.extractedtar ]; then
     cd "${TARGET}" || exit 1
     echo "Extracting ${STAGE3} with tar to root mount dir @ ${TARGET} ............."
-    tar xpf "${STAGINGDIR}/${STAGE3}" --xattrs-include='*.*' --numeric-owner
+    tar xpf "${STAGINGDIR}/${STAGE3}" --xattrs-include='*.*' --numeric-owner --skip-old-files
+    touch "${TARGET}"/.extractedtar
+else
+    echo ".extractedtar file found - skipping extraction of .tar.xz"
 fi
-
-#TODO: more logic
-#Theres nothing to chroot into yet.
-#if
-#echo "Almost Done! Ready and waiting for you :"
-#echo " extract stage3 with Script #3 next phase: extract-stage3-all.sh"
-#or
-#else if
-# or if its extracted already:
 echo "Done! now Run: genr8-chroot ${TARGET}"
 cd "${TARGET}" || exit 1
-#else:
+# or if its extracted already:
 #do the chroot in, just go!
 #genr8-chroot "${TARGET}"
-#fi
