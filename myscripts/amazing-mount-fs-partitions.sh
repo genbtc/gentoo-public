@@ -1,36 +1,38 @@
 #!/bin/bash
-# amazing-mount-fs-partitions.sh script v0.2 - 2023 genr8eofl @ gentoo
-# Description: mounts the amazing partition dd
-# 	use /home/genr8eofl/src/gentoo-public/myscripts/make-partition-truncate.sh first
+# amazing-mount-fs-partitions.sh script v0.3 by @genr8eofl copyright 2023 - AGPL3 License
+# Description: mounts the amazing partition dd!
+# Note: this is part 2, use part 1 make-partition-truncate.sh first
 
-#start with a single file that has an entire disk inside it
-STAGING="/mnt/crucialp1/"
+STAGINGDIR="${PWD:-/mnt/crucialp1/"
 #TODO: refactor this name to be passed in $1
-DDNAME="stage3_1"
+#Done, but needs .dd
+DDNAME="${1:-gentooROOT-stage3-amd64-hardened-nomultilib-selinux-openrc-100123}"
+#start with a single file that has an entire disk inside it
 DISKIMG="${DDNAME}.dd"
 if [ ! -e "${DISKIMG}" ]; then
-    echo "Cannot find ${DISKIMG} file" && exit 9
+    echo "Cannot find ${DISKIMG} file" > /dev/stderr && exit 9
 fi
 
-#load .dd into loop device
+#Load .dd into loop device
 DEVLOOP=$(losetup --find --show --partscan "${DISKIMG}")
 if [ ! -e "${DEVLOOP}" ]; then
-    echo "Error. Failed to set up Loop Device or Loop Device not found. Exiting!" && exit
+    echo "Error. Failed to set up Loop Device or Loop Device not found. Exiting!" > /dev/stderr && exit 6
 else
     echo "Found loop device: ${DEVLOOP} !"
 fi
 
-#(my Selinux garbage)
+#TODO: cleanup (my Selinux garbage)
+#TODO  if selinux, relabel.
 #genr8too /mnt/crucialp1 # restorecon -RFv /dev/loop1*
 #Relabeled /dev/loop1p1 from system_u:object_r:device_t to system_u:object_r:fixed_disk_device_t
 #Relabeled /dev/loop1p2 from system_u:object_r:device_t to system_u:object_r:fixed_disk_device_t
 #Relabeled /dev/loop1p3 from system_u:object_r:device_t to system_u:object_r:fixed_disk_device_t
 # or
 #SELinux Relabel:
-chcon -t fixed_disk_device_t /dev/loop*
+chcon -t fixed_disk_device_t "${DEVLOOP}*"
 #chcon -t virtual_disk_device_t /dev/loop1*
 
-#create new mount point root / , p3
+#3-Create new mount point root / , p3
 TARGET="/mnt/${DDNAME}/"
 if [ ! -e "${TARGET}" ]; then
     mkdir -p "${TARGET}"
@@ -42,7 +44,7 @@ fi
 mount "${DEVLOOP}p3" "${TARGET}"
 echo "Mounted Root FS (partition 3) on ${TARGET}"
 
-#create new boot/ mount points in new fs structure, p2
+#2-Create new boot/ mount points in new fs structure, p2
 BOOTTARGET="/mnt/${DDNAME}/boot/"
 if [ ! -e "${BOOTTARGET}" ]; then
     mkdir -p "${BOOTTARGET}"
@@ -54,7 +56,7 @@ fi
 mount "${DEVLOOP}p2" "${BOOTTARGET}"
 echo "Mounted Boot (partition 2) on ${BOOTTARGET}"
 
-#create new boot/efi/ mount points in new new fs structure, p1
+#1-Create new boot/efi/ mount points in new new fs structure, p1
 EFITARGET="/mnt/${DDNAME}/boot/efi/"
 if [ ! -e "${EFITARGET}" ]; then
     mkdir -p "${EFITARGET}"
@@ -66,20 +68,22 @@ fi
 mount "${DEVLOOP}p1" "${EFITARGET}"
 echo "Mounted EFI (partition 1) on ${EFITARGET}"
 
-#Create stub dir structure
+#Create stub top-level dir structure
 mkdir -p "${TARGET}/{dev,sys,proc,run,tmp}"
 echo "Creating directory structure hierarchy for: /dev,sys,proc,run,tmp"
 
 #TODO: refactor this name out to $2
 #TODO: needs to be conditional for first run or second run;
 #if [-e fs marker exists]; then
-##script Copy in and #Extract Tar of Stage3.xz
-STAGE3="stage3-amd64-hardened-selinux-openrc-20230924T163139Z.tar.xz"
+#Copy in and Extract Tar of Stage3.xz
+STAGE3="stage3-amd64-hardened-nomultilib-selinux-openrc-20231001T170148Z.tar.xz"
 if [ ! -e "${TARGET}/${STAGE3}" ]; then
     #Store stage3 inside image itself so extract script can work
     echo "Copying ${STAGE3} to root of image  @ ${TARGET}"
-    cp --no-clobber "${STAGING}/${STAGE3}"  "${TARGET}"
+    cp --no-clobber "${STAGINGDIR}/${STAGE3}"  "${TARGET}"
+#TODO: this seems excessive, just script tar to extract it here.
 fi
+
 #TODO: more logic
 #Theres nothing to chroot into yet.
 #if
@@ -88,7 +92,7 @@ echo " extract stage3 with Script #3 next phase: extract-stage3-all.sh"
 #else if
 # or if its extracted already:
 echo "Done! to enter, Run: genr8-chroot ${TARGET}"
-cd "${TARGET}" || exit
+cd "${TARGET}" || exit 1
 #else:
 #do the chroot in, just go!
 genr8-chroot "${TARGET}"
