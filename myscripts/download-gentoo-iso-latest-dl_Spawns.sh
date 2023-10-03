@@ -1,5 +1,5 @@
 #!/bin/bash
-# 2023 Spawns_Carpeting @gentoo - v0.23
+# 2023 Spawns_Carpeting @gentoo - v0.3
 #Requires gentoo functions & gemato, gpg, wget
 
 if [ -e /lib/gentoo/functions.sh ]; then
@@ -8,7 +8,6 @@ fi
 
 bouncer='https://bouncer.gentoo.org/'
 gentoo_release='/usr/share/openpgp-keys/gentoo-release.asc'
-isos="${HOME}/Downloads"
 
 die() {
     local ret="${1}"
@@ -41,20 +40,20 @@ parse_latest_txt() {
 
 file="${1}"
 if [[ -z ${file} ]]; then
-    echo "expected 1 argument" > /dev/stderr
+    echo "Usage: expected 1 argument" > /dev/stderr
     exit 1
 elif [[ ${file} = "-h" || ${file} = "--help" ]]; then
-    echo "pass the file you want to refresh as the first argument" > /dev/stderr
+    echo "Usage: pass the target you want to refresh as the first argument" > /dev/stderr
     echo "examples:" > /dev/stderr
     echo '  ${0} install-amd64-minimal' > /dev/stderr
     echo '  ${0} livegui-amd64' > /dev/stderr
     echo '  ${0} stage3-amd64-openrc' > /dev/stderr
+    echo '  ${0} stage3-amd64-hardened-nomultilib-selinux-openrc' > /dev/stderr
     exit 1
 fi
 
-pushd "${isos}"
 
-arch=$(cut -d '-' -f 2 <<<${file})
+arch=$(cut -d '-' -f 2 <<< "${file}")
 directory="/fetch/root/all/releases/${arch}/autobuilds"
 
 echo
@@ -63,7 +62,7 @@ _wget "${bouncer}/${directory}/latest-${file}.txt"
 die $? "failed to fetch ${latest-${file}.txt}"
 latest=$(< "latest-${file}.txt" parse_latest_txt)
 rm "latest-${file}.txt"
-einfo "parsed ${latest} from latest-${file}.txt"
+einfo "Parsed stage ${latest} from latest-${file}.txt\n"
 
 echo
 ebegin "Fetching signature for ${file} ...\n"
@@ -71,12 +70,12 @@ retry "${bouncer}/${directory}/current-${1}/${latest}.asc"
 die $? "failed to fetch ${latest}.asc"
 
 echo
-ebegin "Fetching ISO ${latest} ...\n"
+ebegin "Downloading latest release autobuild ${latest} ...\n"
 retry "${bouncer}/${directory}/current-${1}/${latest}"
 die $? "failed to fetch ${latest}"
 
 echo
-ebegin "Verifying signature for ${latest}\n"
+ebegin "Verifying signature of release ${latest}\n"
 gemato gpg-wrap -K ${gentoo_release} -R -- gpg --verify "${latest}.asc" "${latest}"
 verified=$?
 die ${verified}
