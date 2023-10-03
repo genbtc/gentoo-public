@@ -40,6 +40,10 @@ if [ ! -e "${TARGET}" ]; then
 else
     echo "Found existing Root target dir: ${TARGET} ..."
 fi
+#mount p3, go!
+mount "${DEVLOOP}p3" "${TARGET}"
+echo "Mounted Root FS (partition 3) on ${TARGET}"
+
 #2-Create new boot/ mount points in new fs structure, p2
 BOOTTARGET="${TARGET}/boot/"
 if [ ! -e "${BOOTTARGET}" ]; then
@@ -48,6 +52,10 @@ if [ ! -e "${BOOTTARGET}" ]; then
 else
     echo "Found existing Boot target dir: ${BOOTTARGET} ..."
 fi
+#mount p2, go!
+mount "${DEVLOOP}p2" "${BOOTTARGET}"
+echo "Mounted Boot (partition 2) on ${BOOTTARGET}"
+
 #1-Create new boot/efi/ mount points in new new fs structure, p1
 EFITARGET="${TARGET}/boot/efi/"
 if [ ! -e "${EFITARGET}" ]; then
@@ -56,13 +64,6 @@ if [ ! -e "${EFITARGET}" ]; then
 else
     echo "Found existing EFI target dir: ${EFITARGET} ..."
 fi
-
-#mount p3, go!
-mount "${DEVLOOP}p3" "${TARGET}"
-echo "Mounted Root FS (partition 3) on ${TARGET}"
-#mount p2, go!
-mount "${DEVLOOP}p2" "${BOOTTARGET}"
-echo "Mounted Boot (partition 2) on ${BOOTTARGET}"
 #mount p1, go!
 mount "${DEVLOOP}p1" "${EFITARGET}"
 echo "Mounted EFI (partition 1) on ${EFITARGET}"
@@ -76,21 +77,27 @@ echo "Created directory structure hierarchy for: /dev,sys,proc,run,tmp"
 #if [-e fs marker exists]; then
 #Copy in and Extract Tar of Stage3.xz
 STAGE3="stage3-amd64-hardened-nomultilib-selinux-openrc-20231001T170148Z.tar.xz"
+#TODO: copy in ? or extract in ?
 if [ ! -e "${TARGET}/${STAGE3}" ]; then
     #Store stage3 inside image itself so extract script can work
     echo "Copying ${STAGE3} to root of image  @ ${TARGET}"
     cp --no-clobber "${STAGINGDIR}/${STAGE3}"  "${TARGET}"
 #TODO: this seems excessive, just script tar to extract it here.
+else
+    cd "${TARGET}" || exit 1
+    echo "Extracting ${STAGE3} with tar to root mount dir @ ${TARGET} ............."
+    tar xpf "${STAGINGDIR}/${STAGE3}" --xattrs-include='*.*' --numeric-owner
 fi
 
 #TODO: more logic
 #Theres nothing to chroot into yet.
 #if
-echo "Almost Done! Ready and waiting for you :"
-echo " extract stage3 with Script #3 next phase: extract-stage3-all.sh"
+#echo "Almost Done! Ready and waiting for you :"
+#echo " extract stage3 with Script #3 next phase: extract-stage3-all.sh"
+#or
 #else if
 # or if its extracted already:
-echo "Done! to enter, Run: genr8-chroot ${TARGET}"
+echo "Done! now Run: genr8-chroot ${TARGET}"
 cd "${TARGET}" || exit 1
 #else:
 #do the chroot in, just go!
