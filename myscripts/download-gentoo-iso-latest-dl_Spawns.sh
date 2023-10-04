@@ -40,7 +40,7 @@ parse_latest_txt() {
 
 file="${1}"
 if [[ -z ${file} ]]; then
-    echo "Usage: expected 1 argument" > /dev/stderr
+    echo "Usage: expected 1 argument, see --help" > /dev/stderr
     exit 1
 elif [[ ${file} = "-h" || ${file} = "--help" ]]; then
     echo "Usage: pass the target you want to refresh as the first argument" > /dev/stderr
@@ -65,7 +65,7 @@ rm "latest-${file}.txt"
 einfo "Parsed stage ${latest} from latest-${file}.txt\n"
 
 echo
-ebegin "Fetching signature for ${file} ...\n"
+ebegin "Fetching signature .asc for ${file} ...\n"
 retry "${bouncer}/${directory}/current-${1}/${latest}.asc"
 die $? "failed to fetch ${latest}.asc"
 
@@ -77,6 +77,5 @@ die $? "failed to fetch ${latest}"
 echo
 ebegin "Verifying signature of release ${latest}\n"
 gemato gpg-wrap -K ${gentoo_release} -R -- gpg --verify "${latest}.asc" "${latest}"
-verified=$?
-die ${verified}
+die $? "failed to verify! ${latest}"
 
