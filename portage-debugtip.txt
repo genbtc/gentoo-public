@@ -1,1 +1,5 @@
 #<sam_> genr8eofl: I'd likely need a copy of the vdb + world file + /etc/portage (you can sanitize /etc/portage to remove anything personal, just need to keep the visibility stuff, ditto vdb)
+
+# example VDB bundling command?:
+#  tar czv --exclude='*environment.bz2' --exclude='*.ebuild' --exclude='CONTENTS' -f var-db-pkg-no-envbz2-no-ebuild-no-CONTENTS.tar.gz /var/db/pkg/
+# Reason: 338MB uncompressed, 68MB compressed, 20MB without env, 19MB without ebuild, 3.5MB without CONTENTS

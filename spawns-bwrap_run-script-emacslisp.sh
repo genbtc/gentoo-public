@@ -32,7 +32,7 @@ bwrap_run() {
             --ro-bind /var/lib/portage /var/lib/portage \
             --ro-bind /var/cache/ /var/cache \
             "$@"
-    ) &    
+    ) &
     status=$(<"${pipe}" jq "select(.\"exit-code\") | .\"exit-code\"")
     if [[ ${status} = [0-9]* ]]; then
         return "${status}"

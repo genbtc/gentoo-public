@@ -1,0 +1,350 @@
+bin/archive-conf
+	# archive-conf -- save off a config file in the dispatch-conf archive dir
+bin/bashrc-functions.sh
+	# misc internal functions (success/die hook + strip dup slashes + get KV minor.major.micro)
+bin/binhost-snapshot
+    # "This program will copy src_pkg_dir to snapshot_dir and inside binhost_dir it will create a Packages index file "
+    # "which refers to snapshot_uri. This is intended to solve race conditions on binhosts as described at http://crosbug.com/3225."
+bin/chmod-lite
+	# bash wrapper for bin/chmod-lite.py python script
+bin/chmod-lite.py
+	# Emulate 'chmod -fR a+rX,u+w,g-w,o-w' with minimal chmod calls.
+bin/chpathtool.py
+	# Helper tool for converting installed files to custom prefixes.
+bin/clean_locks
+	# specify directories with hardlink-locks to clean. (on the command line)
+bin/dispatch-conf
+	# dispatch-conf -- Integrate modified configs, post-emerge
+bin/dohtml.py
+	# will install the files in the list of files (space-separated list) into /usr/share/doc/${PF}/html
+bin/doins.py
+	# Core implementation of doins ebuild helper command. This script is designed to be executed by ebuild-helpers/doins.
+bin/eapi.sh
+	# eapi functions, phase numbers & prototypes
+bin/eapi7-ver-funcs.sh
+	# Eapi7 version tests, version compares, split, cut, parse.
+bin/ebuild
+	# Main script - you know this.
+#EBUILD-HELPERS: These are each of all the granular functions for the EAPI functions, written in bash usually
+bin/ebuild-helpers/bsd/sed
+bin/ebuild-helpers/die
+bin/ebuild-helpers/dobin
+bin/ebuild-helpers/doconfd
+bin/ebuild-helpers/dodir
+bin/ebuild-helpers/dodoc
+bin/ebuild-helpers/doenvd
+bin/ebuild-helpers/doexe
+bin/ebuild-helpers/dohard
+bin/ebuild-helpers/doheader
+bin/ebuild-helpers/dohtml
+bin/ebuild-helpers/doinfo
+bin/ebuild-helpers/doinitd
+bin/ebuild-helpers/doins
+bin/ebuild-helpers/dolib
+bin/ebuild-helpers/dolib.a
+bin/ebuild-helpers/dolib.so
+bin/ebuild-helpers/doman
+bin/ebuild-helpers/domo
+bin/ebuild-helpers/dosbin
+bin/ebuild-helpers/dosed
+bin/ebuild-helpers/dosym
+bin/ebuild-helpers/eerror
+bin/ebuild-helpers/einfo
+bin/ebuild-helpers/elog
+bin/ebuild-helpers/emake
+bin/ebuild-helpers/eqawarn
+bin/ebuild-helpers/ewarn
+bin/ebuild-helpers/fowners
+bin/ebuild-helpers/fperms
+bin/ebuild-helpers/keepdir
+bin/ebuild-helpers/newbin
+bin/ebuild-helpers/newconfd
+bin/ebuild-helpers/newdoc
+bin/ebuild-helpers/newenvd
+bin/ebuild-helpers/newexe
+bin/ebuild-helpers/newheader
+bin/ebuild-helpers/newinitd
+bin/ebuild-helpers/newins
+bin/ebuild-helpers/newlib.a
+bin/ebuild-helpers/newlib.so
+bin/ebuild-helpers/newman
+bin/ebuild-helpers/newsbin
+bin/ebuild-helpers/nonfatal
+bin/ebuild-helpers/portageq
+bin/ebuild-helpers/prepall
+bin/ebuild-helpers/prepalldocs
+bin/ebuild-helpers/prepallinfo
+bin/ebuild-helpers/prepallman
+bin/ebuild-helpers/prepallstrip
+bin/ebuild-helpers/prepinfo
+bin/ebuild-helpers/prepman
+bin/ebuild-helpers/prepstrip
+bin/ebuild-helpers/unprivileged/chgrp
+bin/ebuild-helpers/unprivileged/chown
+bin/ebuild-helpers/xattr/install
+#END EBUILD-HELPERS
+#BIN/e*
+bin/ebuild-ipc
+	# wrapper stub to call ebuild-ipc.py
+bin/ebuild-ipc.py
+	# This is a helper which ebuild processes can use to communicate with portage's main python process.
+bin/ebuild-pyhelper
+	# seems to be symlinked to bin/ebuild-ipc which calls bin/ebuild-ipc.py
+bin/ebuild.sh
+#***# main builder program
+bin/ecompress
+	# handle compressing of files, PORTAGE_COMPRESS , PORTAGE_COMPRESS_FLAGS , PORTAGE_COMPRESS_SUFFIX
+bin/ecompress-file
+	# compress_file() calls ecompress
+bin/egencache
+	# egencache - generate metadata cache for ebuild repositories
+bin/emaint
+#&&&# Main """System health checks and maintenance utilities.""" program
+bin/emerge
+#***# Main merge program
+bin/emerge-webrsync
+#   # Main sync program
+bin/emirrordist
+	# wrapper stub to call emirrordist_main()
+bin/env-update
+	# env-update - updates environment settings automatically
+    # env-update  reads the files in /etc/env.d and automatically generates /etc/profile.env and /etc/ld.so.conf.
+	# Then ldconfig(8) is run to update /etc/ld.so.cache.  env-update is run by emerge(1) automatically after each package merge.
+    # Also, if you make  changes  to  /etc/env.d, you  should  run env-update yourself for changes to take effect immediately. 
+bin/estrip
+	# estrip queue/dequeue for dostrip logic, toolchain involvement
+	# prepstrip for scanelf checks in install_qa_check
+	# preserve_xattr in xattr-helper.py
+	# save_elf_sources(), save_elf_debug(), process_elf(), process_ar()
+bin/etc-update
+	# etc-update - handle configuration file updates
+    #USAGE: etc-update [options] [--automode <mode>] [paths to scan]
+	#etc-update  is  supposed to be run after merging a new package to see if there are updates to the configuration files. 
+	#   		 If a new configuration file will override an old one, etc-update will prompt the user for a decision.
+bin/filter-bash-environment.py
+	# Filter out variable assignments for variable vnames matching a given PATTERN while leaving bash function definitions and here-documents intact.
+	# The PATTERN is a space separated list of variable names and it supports python regular expression syntax.
+bin/fixpackages
+	# fixpackages -- performs package move updates on configuration files, installed packages, and binary packages.
+bin/glsa-check
+	# usage: glsa-check <option> [glsa-id | all | new | affected]
+	# List a summary for the given GLSA(s) or set and whether they affect the system
+	#Modes:
+	#  -l, --list        List a summary for the given GLSA(s) or set and whether they affect the system
+	#  -d, --dump        Show all information about the GLSA(s) or set
+	#  --print           Alias for --dump
+	#  -t, --test        Test if this system is affected by the GLSA(s) or set and output the GLSA ID(s)
+	#  -p, --pretend     Show the necessary steps to remediate the system
+	#  -f, --fix         (experimental) Attempt to remediate the system based on the instructions given in the GLSA(s) or set. This will only upgrade
+	#                    (when an upgrade path exists) or remove packages
+	#  -i, --inject      Inject the given GLSA(s) into the glsa_injected file
+	#  -m, --mail        Send a mail with the given GLSAs to the administrator
+bin/gpkg-helper.py
+	# usage: compose <package_cpv> <binpkg_path> <metadata_dir> <image_dir>"
+	# internal gpkg package file+metadata compression creation helper, no signing yet
+bin/gpkg-sign
+	# usage: gpkg-sign [options] <gpkg package file>
+	# requires "BINPKG_GPG_SIGNING_GPG_HOME" and "BINPKG_GPG_SIGNING_KEY" set
+bin/helper-functions.sh
+	# For routines we want to use in ebuild-helpers/ but don't want to expose to the general ebuild environment.
+	## API functions for doing parallel processing
+	__multijob_init() __multijob_post_fork()
+	## Find a free fd and redirect the specified file via it.
+	__redirect_alloc_fd()
+#BEGIN INSTALL-QA-Helper Functions
+bin/preinst-qa-check.d/50xdg-utils
+bin/postinst-qa-check.d/50xdg-utils
+	# Check for missing calls to xdg-utils regen functions
+	xdg_desktop_database_check()
+bin/install-qa-check.d/05double-D
+	# Check for accidential install into ${D}/${D}
+	DD_check()
+bin/install-qa-check.d/05prefix
+	# Prefix specific QA checks
+	install_qa_check_prefix()
+bin/install-qa-check.d/10executable-issues
+	# Check for major issues with built executables: insecure RPATHs, text relocations, executable stacks
+	elf_check()
+bin/install-qa-check.d/10ignored-flags
+	# QA checks for ignored *FLAGS.
+	ignored_flag_check()
+bin/install-qa-check.d/20deprecated-directories
+	# Check for deprecated directories
+	deprecated_dir_check()
+bin/install-qa-check.d/20runtime-directories
+	# Check for directories that need to be created at runtime
+	runtime_dir_check()
+bin/install-qa-check.d/60bash-completion
+	# QA checks for bash-completion files
+	bashcomp_check()
+bin/install-qa-check.d/60openrc
+	# QA checks for OpenRC init.d files.
+	openrc_check()
+bin/install-qa-check.d/60pkgconfig
+	# Check for pkg-config file issues
+	pkgconfig_check()
+bin/install-qa-check.d/60pngfix
+	# Check for issues with PNG files
+	pngfix_check()
+bin/install-qa-check.d/60systemd
+	# QA checks for systemd units.
+	systemd_check()
+bin/install-qa-check.d/60udev
+	# Check udev rule installs
+	udev_check()
+bin/install-qa-check.d/80libraries
+	# Check for issues with installed libraries
+	scanelf_lib_check()
+bin/install-qa-check.d/80multilib-strict
+	# Strict multilib directory checks
+	multilib_strict_check()
+bin/install-qa-check.d/90bad-bin-group-write
+	# Warn about globally-installed executables (in /bin, /usr/bin, /sbin,
+	# /usr/sbin, or /opt/bin) that are group-writable by a nonzero GID.
+	#
+	# This check doesn't work on non-root prefix installations at
+	# the moment, because every executable therein is owned by a nonzero GID.
+	bad_bin_group_write_check()
+bin/install-qa-check.d/90bad-bin-owner
+	# Warn about globally-installed executables (in /bin, /usr/bin, /sbin,
+	# /usr/sbin, or /opt/bin) that are owned by a nonzero UID.
+	#
+	# This check doesn't work on non-root prefix installations at
+	# the moment, because every executable therein is owned by a nonzero UID.
+	bad_bin_owner_check()
+bin/install-qa-check.d/90cmake-warnings
+	# Check for CMake invalid option warnings
+	cmake_warn_check()
+bin/install-qa-check.d/90config-impl-decl
+	# Check for implicit function declaration warnings in configure logs
+	# ebuilds should set the QA_CONFIG_IMPL_DECL_SKIP array to skip known false positives.
+	config_impl_decl_check()
+bin/install-qa-check.d/90cython-dep
+	# Check for missing dev-python/cython dep based on output from setuptools cythonize() support
+	cython_dep_check()
+bin/install-qa-check.d/90gcc-warnings
+	# Check for important gcc warnings
+	gcc_warn_check()
+bin/install-qa-check.d/90world-writable
+	# Check for world-writable files
+	world_writable_check()
+bin/install-qa-check.d/95empty-dirs
+	# Warn about and/or remove empty directories installed by ebuild.
+	find_empty_dirs()
+#END INSTALL-QA-Helper Functions
+bin/install.py
+	# wrap the install binary for compatibility, including copy_xattrs()
+bin/isolated-functions.sh
+	# internal signal wrapper stdin handler bash pipe debug trace stuff ....
+	# also eqawarn , elog , einfo , ewarn, eerror, ebegin, eend, debug-print()
+bin/lock-helper.py
+    # Make locks quiet since unintended locking messages displayed on stdout would corrupt the intended output of this program.
+bin/meson.build
+	# own build config, says which dir these binaries get installed to
+bin/misc-functions.sh
+	# Miscellaneous shell functions that make use of the ebuild env but don't need to be included directly in ebuild.sh.
+	install_symlink_html_docs()
+	canonicalize()
+	install_qa_check()
+	preinst_qa_check()
+	postinst_qa_check()
+	preinst_mask()
+	preinst_sfperms()
+	preinst_suid_scan()
+	preinst_selinux_labels()
+	die_hooks()
+	success_hooks()
+	install_hooks()
+	eqatag()
+bin/phase-functions.sh
+	# Read an environment from stdin and echo to stdout while filtering variables with names that are known to cause interference
+	__filter_readonly_variables()
+	# Filter any readonly variables from ${T}/environment, source it, and then save it via __save_ebuild_env().
+	__preprocess_ebuild_env()
+	# abstract prototypes
+	__ebuild_phase()
+	__ebuild_phase_with_hooks()
+	# It appears that '${PF}' is already prepared; skipping.
+	# Remove '${PORTAGE_BUILDDIR}/.pretended' to force pretend.
+	__dyn_pretend()
+	# Remove '${PORTAGE_BUILDDIR}/.setuped' to force setup.
+	__dyn_setup()
+	# ">>> Source unpacked in ${WORKDIR}"
+	__dyn_unpack()
+	__dyn_clean()
+	__abort_handler()
+	__abort_prepare()
+	__abort_configure()
+	__abort_compile()
+	__abort_test()
+	__abort_install()
+	__has_phase_defined_up_to()
+	# Remove '${PORTAGE_BUILDDIR}/.prepared' to force prepare.
+	__dyn_prepare()
+	# Remove '${PORTAGE_BUILDDIR}/.configured' to force configuration.
+	__dyn_configure()
+	# Remove '${PORTAGE_BUILDDIR}/.compiled' to force compilation.
+	__dyn_compile()
+	# Remove '${PORTAGE_BUILDDIR}/.tested' to force test.
+	__dyn_test()
+	# Remove '${PORTAGE_BUILDDIR}/.installed' to force install.
+	__dyn_install()
+	# How to use the ebuild command (unused)
+	__dyn_help()
+	# Translate a known ebuild(1) argument into the precise name of it's corresponding ebuild phase.
+	__ebuild_arg_to_phase()
+	__ebuild_phase_funcs()
+	# Run all the phases
+	__ebuild_main()
+bin/phase-helpers.sh
+	into()
+	insinto()
+	exeinto()
+	docinto()
+	insopts()
+	diropts()
+	exeopts()
+	libopts()
+	docompress()
+	dostrip()
+	useq()
+	usev()
+	use()
+	use_with()
+	use_enable()
+	unpack()
+	econf()
+	einstall()
+	has_version()
+	best_version()
+bin/pid-ns-init
+	# PID namespace init python starter script
+ 	# Usage: {} <main-child-pid> or <uid> <gid> <groups> <umask> <pass_fds> <binary> <argv0> [arg]..
+bin/portageq
+	# > Portage information query tool
+bin/portageq-wrapper
+	# stub wrapper
+bin/quickpkg
+	# quickly zip up installed system files on root dir and reverse make them into new packages for reuse
+	# usage: quickpkg [options] <list of package atoms or package sets>
+bin/regenworld
+    # regenerates the portage world file by checking the portage logfile for all actions that you've done in the past
+bin/save-ebuild-env.sh
+	# echo the current environment to stdout, filtering out redundant info.
+	__save_ebuild_env()
+bin/shelve-utils
+	# dump & restore shelve database (shelve<->pickle converter)
+bin/socks5-server.py
+	# An asynchronous SOCKSv5 server. Handle incoming client connection.
+	# Perform SOCKSv5 request exchange, open a proxied connection and start relaying.
+bin/xattr-helper.py
+	# Dump and restore extended attributes.
+	# Dump the values of all extended attributes associated with paths passed as arguments or null-separated paths read from stdin.
+	# Restore extended attributes using " "a dump read from stdin.
+	# Dump the xattr data for |pathnames| to |file_out|
+	dump_xattrs(pathnames, file_out)
+    # Read |file_in| and restore xattrs content from it
+	restore_xattrs(file_in)
+bin/xpak-helper.py
+	# Perform metadata operations on a binary package.
+	# usage: recompose <binpkg_path> <metadata_dir>
