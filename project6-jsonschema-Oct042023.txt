@@ -31,7 +31,10 @@ This has been the version chosen to base the new forked ebuilds on.
 (this package has chosen >=pyrsistent 0.19.3 (current as of now) for DEPEND too)
 
 dev-python/jsonschema-specifications
+https://github.com/python-jsonschema/jsonschema-specifications/
 quickChange jsonschema ebuild to 4.17.3 ish with a 4.18.6 name (old one matches better than the new 4.19.1 one)
 # 1 diff in the ebuild between json-spec 03.6 and json-spec-07.1 - 03.6 one was never in our gentoo tree, earliest we had is 05.2
 PYTHON_COMPAT=( pypy3 python3_{8..11} )										      |	PYTHON_COMPAT=( pypy3 python3_{10..12} )
 	>=dev-python/referencing-0.23.0[${PYTHON_USEDEP}]							  |		>=dev-python/referencing-0.28.0[${PYTHON_USEDEP}]
+#earliest ebuild
+https://github.com/gentoo/gentoo/commit/95839028f025737a95567dc21ecfe906b5316dad
