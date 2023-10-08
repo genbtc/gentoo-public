@@ -350,7 +350,7 @@ bin/xpak-helper.py
 	# usage: recompose <binpkg_path> <metadata_dir>
 lib/_emerge/resolver/__init__.py
 lib/_emerge/resolver/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/_emerge/resolver/DbapiProvidesIndex.py
 lib/_emerge/resolver/backtracking.py
 lib/_emerge/resolver/circular_dependency.py
@@ -358,100 +358,529 @@ lib/_emerge/resolver/output.py
 lib/_emerge/resolver/output_helpers.py
 lib/_emerge/resolver/package_tracker.py
 lib/_emerge/resolver/slot_collision.py
-lib/_emerge/AbstractDepPriority.py
-lib/_emerge/AbstractEbuildProcess.py
-lib/_emerge/AbstractPollTask.py
-lib/_emerge/AsynchronousLock.py
-lib/_emerge/AsynchronousTask.py
-lib/_emerge/AtomArg.py
-lib/_emerge/Binpkg.py
-lib/_emerge/BinpkgEnvExtractor.py
-lib/_emerge/BinpkgExtractorAsync.py
-lib/_emerge/BinpkgFetcher.py
-lib/_emerge/BinpkgPrefetcher.py
-lib/_emerge/BinpkgVerifier.py
-lib/_emerge/Blocker.py
-lib/_emerge/BlockerCache.py
-lib/_emerge/BlockerDB.py
-lib/_emerge/BlockerDepPriority.py
-lib/_emerge/CompositeTask.py
-lib/_emerge/DepPriority.py
-lib/_emerge/DepPriorityNormalRange.py
-lib/_emerge/DepPrioritySatisfiedRange.py
-lib/_emerge/Dependency.py
-lib/_emerge/DependencyArg.py
-lib/_emerge/EbuildBinpkg.py
-lib/_emerge/EbuildBuild.py
-lib/_emerge/EbuildBuildDir.py
-lib/_emerge/EbuildExecuter.py
-lib/_emerge/EbuildFetcher.py
-lib/_emerge/EbuildFetchonly.py
-lib/_emerge/EbuildIpcDaemon.py
-lib/_emerge/EbuildMerge.py
-lib/_emerge/EbuildMetadataPhase.py
-lib/_emerge/EbuildPhase.py
-lib/_emerge/EbuildProcess.py
-lib/_emerge/EbuildSpawnProcess.py
-lib/_emerge/FakeVartree.py
-lib/_emerge/FifoIpcDaemon.py
-lib/_emerge/JobStatusDisplay.py
-lib/_emerge/MergeListItem.py
-lib/_emerge/MetadataRegen.py
-lib/_emerge/MiscFunctionsProcess.py
-lib/_emerge/Package.py
-lib/_emerge/PackageArg.py
-lib/_emerge/PackageMerge.py
-lib/_emerge/PackagePhase.py
-lib/_emerge/PackageUninstall.py
-lib/_emerge/PackageVirtualDbapi.py
-lib/_emerge/PipeReader.py
-lib/_emerge/PollScheduler.py
-lib/_emerge/ProgressHandler.py
-lib/_emerge/RootConfig.py
-lib/_emerge/Scheduler.py
-lib/_emerge/SequentialTaskQueue.py
-lib/_emerge/SetArg.py
-lib/_emerge/SpawnProcess.py
-lib/_emerge/SubProcess.py
-lib/_emerge/Task.py
-lib/_emerge/TaskSequence.py
-lib/_emerge/UninstallFailure.py
-lib/_emerge/UnmergeDepPriority.py
-lib/_emerge/UseFlagDisplay.py
-lib/_emerge/UserQuery.py
 lib/_emerge/__init__.py
+	# python module - empty.
 lib/_emerge/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
+lib/_emerge/AbstractDepPriority.py
+	#class AbstractDepPriority(SlotObject):
+    #    __slots__ = (
+    #        "buildtime",
+    #        "buildtime_slot_op",
+    #        "runtime",
+    #        "runtime_post",
+    #        "runtime_slot_op",
+	# >=, !=, ==, <= comparison operators
+	# stub class
+lib/_emerge/AbstractEbuildProcess.py
+	#class AbstractEbuildProcess(SpawnProcess):
+lib/_emerge/AbstractPollTask.py
+	#class AbstractPollTask(AsynchronousTask):
+lib/_emerge/AsynchronousLock.py
+	#class AsynchronousLock(AsynchronousTask):
+lib/_emerge/AsynchronousTask.py
+	#class AsynchronousTask(SlotObject):
+lib/_emerge/AtomArg.py
+	#class AtomArg(DependencyArg):
+    #	__slots__ = ("atom", "pset")
+	# stub class
+lib/_emerge/Binpkg.py
+	#class Binpkg(CompositeTask):
+lib/_emerge/BinpkgEnvExtractor.py
+	#class BinpkgEnvExtractor(CompositeTask):
+	#	Extract environment.bz2 for a binary or installed package.
+lib/_emerge/BinpkgExtractorAsync.py
+	#class BinpkgExtractorAsync(SpawnProcess):
+	#	__slots__ = ("features", "image_dir", "pkg", "pkg_path")
+lib/_emerge/BinpkgFetcher.py
+	#class BinpkgFetcher(CompositeTask):
+	#	__slots__ = ("pkg", "pretend", "logfile", "pkg_path", "pkg_allocated_path")
+lib/_emerge/BinpkgPrefetcher.py
+	#class BinpkgPrefetcher(CompositeTask):
+	#    __slots__ = ("pkg",) + ( "pkg_path",  "pkg_allocated_path", "_bintree" )
+lib/_emerge/BinpkgVerifier.py
+	#class BinpkgVerifier(CompositeTask):
+	#    __slots__ = ("logfile", "pkg", "_digests", "_pkg_path")
+lib/_emerge/Blocker.py
+	#class Blocker(Task):
+	#	__slots__ = ("root", "atom", "cp", "eapi", "priority", "satisfied")
+	# stub class
+lib/_emerge/BlockerCache.py
+	#class BlockerCache(portage.cache.mappings.MutableMapping):
+    #    This caches blockers of installed packages so that dep_check does not
+	#	 have to be done for every single installed package on every invocation of emerge.
+	#    The cache is invalidated whenever it is detected that something
+	#    has changed that might alter the results of dep_check() calls:
+lib/_emerge/BlockerDB.py
+	#class BlockerDB:
+	#    def findInstalledBlockers(self, new_pkg):
+	#        Search for installed run-time blockers in the root where
+	#        new_pkg is planned to be installed. This ignores build-time
+	#        blockers, since new_pkg is assumed to be built already.
+	#	 def discardBlocker(self, pkg):
+    #		 Discard a package from the list of potential blockers.
+	#		 This will match any package(s) with identical cpv or cp:slot.
+lib/_emerge/BlockerDepPriority.py
+	#class BlockerDepPriority(DepPriority):
+	# stub class
+lib/_emerge/CompositeTask.py
+	#class CompositeTask(AsynchronousTask):
+	#    __slots__ = ("_current_task",)
+	# + several method functions
+lib/_emerge/DepPriority.py
+	#class DepPriority(AbstractDepPriority):
+	#    __slots__ = ("satisfied", "optional", "ignored")
+	#        Note: These priorities are only used for measuring hardness in the circular dependency display via digraph.debug_print(), and nothing more.
+	#		 For actual merge order calculations, the measures defined by the DepPriorityNormalRange and DepPrioritySatisfiedRange classes are used.
+	#        Attributes                       Hardness
+    #    buildtime_slot_op                       0
+    #    buildtime                              -1
+    #    runtime                                -2
+    #    runtime_post                           -3
+    #    optional                               -4
+    #    (none of the above)                    -5
+lib/_emerge/DepPriorityNormalRange.py
+	#class DepPriorityNormalRange:
+	#    DepPriority properties              Index      Category
+	#    buildtime                                      HARD
+	#    runtime                                3       MEDIUM
+	#    runtime_post                           2       MEDIUM_SOFT
+	#    optional                               1       SOFT
+	#    (none of the above)                    0       NONE
+lib/_emerge/DepPrioritySatisfiedRange.py
+	#class DepPrioritySatisfiedRange:
+	#    DepPriority                         Index      Category
+	#    not satisfied and buildtime                    HARD
+	#    not satisfied and runtime              7       MEDIUM
+	#    satisfied and buildtime_slot_op        6       MEDIUM_SOFT
+	#    satisfied and buildtime                5       MEDIUM_SOFT
+	#    satisfied and runtime                  4       MEDIUM_SOFT
+	#    runtime_post                           3       MEDIUM_POST
+	#    satisfied and runtime_post             2       MEDIUM_POST
+	#    optional                               1       SOFT
+	#    (none of the above)                    0       NONE
+lib/_emerge/Dependency.py
+	#class Dependency(SlotObject):
+    #    __slots__ = (
+    #        "atom",
+    #        "blocker",
+    #        "child",
+    #        "depth",
+    #        "parent",
+    #        "onlydeps",
+    #        "priority",
+    #        "root",
+    #        "want_update",
+    #        "collapsed_parent",
+    #        "collapsed_priority", )
+lib/_emerge/DependencyArg.py
+	#class DependencyArg:
+	#    __slots__ = (	"arg", "force_reinstall", "internal", "reset_depth", "root_config")
+lib/_emerge/EbuildBinpkg.py
+	#class EbuildBinpkg(CompositeTask):
+	#    This assumes that src_install() has successfully completed.
+    #    __slots__ = (	"pkg", "settings") + (
+    #        "_binpkg_tmpfile",
+    #        "_binpkg_info",
+    #        "pkg_allocated_path", )
+lib/_emerge/EbuildBuild.py
+	#class EbuildBuild(CompositeTask):
+    #    __slots__ = (
+    #        "args_set",
+    #        "config_pool",
+    #        "find_blockers",
+    #        "ldpath_mtimes",
+    #        "logger",
+    #        "opts",
+    #        "pkg",
+    #        "pkg_count",
+    #        "prefetcher",
+    #        "settings",
+    #        "world_atom",
+    #    ) + ("_build_dir", "_buildpkg", "_ebuild_path", "_issyspkg", "_tree")
+lib/_emerge/EbuildBuildDir.py
+	#class EbuildBuildDir(SlotObject):
+	#    __slots__ = (	"scheduler", "settings", "locked", "_catdir", "_lock_obj")
+lib/_emerge/EbuildExecuter.py
+	#class EbuildExecuter(CompositeTask):
+	#    __slots__ = (	"pkg", "settings")
+	#    _phases = (	"prepare", "configure", "compile", "test", "install")
+lib/_emerge/EbuildFetcher.py
+	#class EbuildFetcher(CompositeTask):
+    #    __slots__ = (
+    #        "config_pool",
+    #        "ebuild_path",
+    #        "fetchonly",
+    #        "fetchall",
+    #        "logfile",
+    #        "pkg",
+    #        "prefetch",
+    #        "_fetcher_proc", )
+	#   def async_already_fetched(self, settings):
+    #	    Returns True if all files already exist locally and have correct digests, otherwise return False.
+lib/_emerge/EbuildFetchonly.py
+	#class EbuildFetchonly(SlotObject):
+	#    __slots__ = (	"fetch_all", "pkg", "pretend", "settings")
+lib/_emerge/EbuildIpcDaemon.py
+	#class EbuildIpcDaemon(FifoIpcDaemon):
+	#    This class serves as an IPC daemon, which ebuild processes can use to communicate with portage's main python process.
+	#    __slots__ = (	"commands",)
+lib/_emerge/EbuildMerge.py
+	#class EbuildMerge(CompositeTask):
+    #    __slots__ = (
+    #        "exit_hook",
+    #        "find_blockers",
+    #        "logger",
+    #        "ldpath_mtimes",
+    #        "pkg",
+    #        "pkg_count",
+    #        "pkg_path",
+    #        "postinst_failure",
+    #        "pretend",
+    #        "settings",
+    #        "tree",
+    #        "world_atom",
+lib/_emerge/EbuildMetadataPhase.py
+	#class EbuildMetadataPhase(SubProcess):
+	#    Asynchronous interface for the ebuild "depend" phase which is used to extract metadata from the ebuild.
+	#    __slots__ = (
+	#        "cpv",
+	#        "eapi_supported",
+	#        "ebuild_hash",
+	#        "fd_pipes",
+	#        "metadata",
+	#        "portdb",
+	#        "repo_path",
+	#        "settings",
+	#        "write_auxdb",
+	#        "_eapi",
+	#        "_eapi_lineno",
+	#        "_raw_metadata", )
+lib/_emerge/EbuildPhase.py
+	#class EbuildPhase(CompositeTask):
+	#    __slots__ = (	"actionmap", "fd_pipes", "phase", "settings") + ("_ebuild_lock",)
+#***# Main Program file
+lib/_emerge/EbuildProcess.py
+	#class EbuildProcess(AbstractEbuildProcess):
+	#    __slots__ = (	"actionmap",)
+	#	"portage.package.ebuild.doebuild:_doebuild_spawn,_spawn_actionmap"
+lib/_emerge/EbuildSpawnProcess.py
+	#class EbuildSpawnProcess(AbstractEbuildProcess):
+	#    __slots__ = (	"fakeroot_state", "spawn_func")
+	#    Used by doebuild.spawn() to manage the spawned process.
+lib/_emerge/FakeVartree.py
+	#class FakeVardbGetPath:
+	#    Implements the vardbapi.getpath() method which is used in error handling
+	#    code for the Package class and vartree.get_provide().
+	#class FakeVartree(vartree):
+	#    This is implements an in-memory copy of a vartree instance that provides
+	#    all the interfaces required for use by the depgraph. 
+lib/_emerge/FifoIpcDaemon.py
+	#class FifoIpcDaemon(AbstractPollTask):
+	#    __slots__ = (	"input_fifo", "output_fifo", "_files")
+lib/_emerge/JobStatusDisplay.py
+	#class JobStatusDisplay:
+	#   _bound_properties = ("curval", "failed", "running")
+	#		Don't update the display unless at least this much time has passed, in units of seconds.
+	#_	min_display_latency = 2
+	# display output , load average, jobs display status
+lib/_emerge/MergeListItem.py
+	#class MergeListItem(CompositeTask):
+	#    __slots__ = (
+	#        "args_set",
+	#        "binpkg_opts",
+	#        "build_opts",
+	#        "config_pool",
+	#        "emerge_opts",
+	#        "find_blockers",
+	#        "logger",
+	#        "mtimedb",
+	#        "pkg",
+	#        "pkg_count",
+	#        "pkg_to_replace",
+	#        "prefetcher",
+	#        "settings",
+	#        "statusMessage",
+	#        "world_atom",
+	#    ) + ("_install_task",)
+lib/_emerge/MetadataRegen.py
+	#class MetadataRegen(AsyncScheduler):
+lib/_emerge/MiscFunctionsProcess.py
+	#class MiscFunctionsProcess(AbstractEbuildProcess):
+	#    Spawns misc-functions.sh with an existing ebuild environment.
+lib/_emerge/Package.py
+	#class Package(Task):
+	# lots of stuff
+lib/_emerge/PackageArg.py
+	#class PackageArg(DependencyArg):
+lib/_emerge/PackageMerge.py
+	#class PackageMerge(CompositeTask):
+	#    __slots__ = ("merge", "postinst_failure")
+lib/_emerge/PackagePhase.py
+	#class PackagePhase(CompositeTask):
+	#    Invokes the package phase and handles PKG_INSTALL_MASK.
+	#    __slots__ = (
+	#        "actionmap",
+	#        "fd_pipes",
+	#        "logfile",
+	#        "settings",
+	#        "_pkg_install_mask",
+	#        "_proot",    )
+lib/_emerge/PackageUninstall.py
+	#class PackageUninstall(CompositeTask):
+	#    Uninstall a package asynchronously in a subprocess. When both parallel-install and ebuild-locks FEATURES are enabled,
+	#    it is essential for the ebuild-locks code to execute in a subprocess, since the portage.locks module does not behave
+	#    as desired if we try to lock the same file multiple times concurrently from the same process for ebuild-locks phases
+	#    such as pkg_setup, pkg_prerm, and pkg_postrm.
+	#    __slots__ = (
+	#        "world_atom",
+	#        "ldpath_mtimes",
+	#        "opts",
+	#        "pkg",
+	#        "settings",
+	#        "_builddir_lock",    )
+lib/_emerge/PackageVirtualDbapi.py
+	#class PackageVirtualDbapi(dbapi):
+	#    A dbapi-like interface class that represents the state of the installed package database as new packages are installed,
+	# 	 replacing any packages that previously existed in the same slot. The main difference between this class and fakedbapi 
+	# 	 is that this one uses Package instances internally (passed in via cpv_inject() and cpv_remove() calls).
+lib/_emerge/PipeReader.py
+	#class PipeReader(AbstractPollTask):
+	#    Reads output from one or more files and saves it in memory, for retrieval via the getvalue() method.
+	#	 This is driven by the scheduler's poll() loop, so it runs entirely within the current process.
+lib/_emerge/PollScheduler.py
+	#class PollScheduler:
+    # max time between loadavg checks (milliseconds)
+	# (maybe related to lib/_emerge/JobStatusDisplay.py )
+lib/_emerge/ProgressHandler.py
+	#class ProgressHandler:
+	# (related to PollScheduler.py & JobStatusDisplay.py )
+lib/_emerge/RootConfig.py
+	#class RootConfig:
+    #	This is used internally by depgraph to track information about a particular $ROOT.
+	#    __slots__ = (	"mtimedb", "root", "setconfig", "sets", "settings", "trees")
+	#    pkg_tree_map = {	"ebuild": "porttree", "binary": "bintree", "installed": "vartree"}
+lib/_emerge/Scheduler.py
+	# huge file
+lib/_emerge/SequentialTaskQueue.py
+	#class SequentialTaskQueue(SlotObject):
+	#    __slots__ = ("max_jobs", "running_tasks") + ("_scheduling", "_task_queue")
+lib/_emerge/SetArg.py
+	#class SetArg(DependencyArg):
+	#    __slots__ = ("name", "pset")
+lib/_emerge/SpawnProcess.py
+    #class SpawnProcess(SubProcess):
+    #    Constructor keyword args are passed into portage.process.spawn().
+    #    The required "args" keyword argument will be passed as the first spawn() argument.
+    #    _spawn_kwarg_names = (
+    #        "env",
+    #        "opt_name",
+    #        "fd_pipes",
+    #        "uid",
+    #        "gid",
+    #        "groups",
+    #        "umask",
+    #        "logfile",
+    #        "path_lookup",
+    #        "pre_exec",
+    #        "close_fds",
+    #        "unshare_ipc",
+    #        "unshare_mount",
+    #        "unshare_pid",
+    #        "unshare_net",  )
+    #    __slots__ = (
+    #        ("args", "log_filter_file")
+    #        + _spawn_kwarg_names
+    #        + ( "_main_task",
+    #            "_main_task_cancel",
+	#            "_selinux_type",     )    )
+lib/_emerge/SubProcess.py
+    #class SubProcess(AbstractPollTask):
+    #    __slots__ = ("pid",) + ("_dummy_pipe_fd", "_files", "_waitpid_id")
+    #    _cancel_timeout = 1  # seconds # This is how much time we allow for waitpid to succeed after we've sent a kill signal to our subprocess.
+	#	_async_wait(), _async_waitpid(), _async_waitpid_cb()
+lib/_emerge/Task.py
+	#class Task(SlotObject):
+	#    __slots__ = ("_hash_key", "_hash_value")
+	# abstract class
+lib/_emerge/TaskSequence.py
+    #class TaskSequence(CompositeTask):
+    #    A collection of tasks that executes sequentially. Each task must have a addExitListener() method 
+	#	 that can be used as a means to trigger movement from one task to the next.
+    #    __slots__ = ("_task_queue",)
+lib/_emerge/UninstallFailure.py
+	#class UninstallFailure(portage.exception.PortageException):
+	#    An instance of this class is raised by unmerge() when an uninstallation fails.
+lib/_emerge/UnmergeDepPriority.py
+    #class UnmergeDepPriority(AbstractDepPriority):
+    #    __slots__ = (
+    #        "ignored",
+    #        "optional",
+    #        "satisfied",    )
+    #	Combination of properties           Priority  Category
+    #	runtime_slot_op                        0       HARD
+    #	runtime                               -1       HARD
+    #	runtime_post                          -2       HARD
+    #	buildtime                             -3       SOFT
+    #	(none of the above)                   -3       SOFT
+lib/_emerge/UseFlagDisplay.py
+	#class UseFlagDisplay:
+	#    __slots__ = ("name", "enabled", "forced")
+lib/_emerge/UserQuery.py
+	#class UserQuery:
+	#  	The UserQuery class is used to prompt the user with a set of responses, as well as accepting and handling the responses.
 lib/_emerge/_find_deep_system_runtime_deps.py
+	#def _find_deep_system_runtime_deps(graph):
 lib/_emerge/_flush_elog_mod_echo.py
+    #Dump the mod_echo output now so that our other notifications are shown last.
+	#def _flush_elog_mod_echo():
+	#	mod_echo.finalize()
 lib/_emerge/actions.py
 lib/_emerge/chk_updated_cfg_files.py
+	#def chk_updated_cfg_files(eroot, config_protect):
+	#    result = list(portage.util.find_updated_config_files(target_root, config_protect))
+	#    Notify in colorized output, when config Files Need Updating
 lib/_emerge/clear_caches.py
+	#def clear_caches(trees):
+	#   d["porttree"].dbapi.melt()
+	#   d["porttree"].dbapi._aux_cache.clear()
+	#   d["bintree"].dbapi._clear_cache()
+	#	d["vartree"].dbapi._linkmap._clear_cache()
 lib/_emerge/countdown.py
+	#def countdown(secs=5, doing="Starting"):
+	#	">>> Waiting {secs} seconds before starting...\n"
 lib/_emerge/create_depgraph_params.py
+	#def create_depgraph_params(myopts, myaction):
+    # configure emerge engine parameters
 lib/_emerge/create_world_atom.py
+	#def create_world_atom(pkg, args_set, root_config, before_install=False):
+	#	Create a new atom for the world file if one does not exist.  If the argument atom is precise enough to identify a specific slot then a slot atom 
+	#	will be returned. Atoms that are in the system set may also be stored in world since a user might want to select multiple slots of a slotted package 
+	#	like gcc for example. Unslotted system packages will not be stored in world.
 lib/_emerge/depgraph.py
+	# Exposes a depgraph interface to dep_check.
+	#	_dep_check_graph_interface = collections.namedtuple("_dep_check_graph_interface", (
+	#        # Checks if parent package will replace child.
+	#        "will_replace_child",
+	#        # Indicates a removal action, like depclean or prune.
+	#        "removal_action",
+	#        # Checks if update is desirable for a given package.
+	#        "want_update_pkg",	),	)
 lib/_emerge/emergelog.py
+	# We disable emergelog by default, since it's called from dblink.merge() 
+	# and we don't want that to trigger log writes unless it's really called via emerge.
 lib/_emerge/getloadavg.py
+	# Uses /proc/loadavg to emulate os.getloadavg() (if missing).  Raises OSError if the load average was unobtainable.
 lib/_emerge/help.py
+	#def emerge_help():
+	#    print(bold("emerge:") + " command-line interface to the Portage system")
+	#    print(bold("Usage:"))
 lib/_emerge/is_valid_package_atom.py
+	#def insert_category_into_atom(atom, category):
+    #	Handle '*' character for "extended syntax" wildcard support.
+	#def is_valid_package_atom(x, allow_repo=False, allow_build_id=True):
 lib/_emerge/main.py
+    #options = [
+    #    "--alphabetical",
+    #    "--ask-enter-invalid",
+    #    "--buildpkgonly",
+    #    "--changed-use",
+    #    "--columns",
+    #    "--debug",
+    #    "--digest",
+    #    "--emptytree",
+    #    "--verbose-conflicts",
+    #    "--fetchonly",
+    #    "--fetch-all-uri",
+    #    "--ignore-default-opts",
+    #    "--noconfmem",
+    #    "--newrepo",
+    #    "--newuse",
+    #    "--nodeps",
+    #    "--noreplace",
+    #    "--nospinner",
+    #    "--oneshot",
+    #    "--onlydeps",
+    #    "--pretend",
+    #    "--quiet-repo-display",
+    #    "--quiet-unmerge-warn",
+    #    "--resume",
+    #    "--searchdesc",
+    #    "--skipfirst",
+    #    "--tree",
+    #    "--unordered-display",
+    #    "--update",
+    #    "--update-if-installed",	]
+    #shortmapping = {
+    #    "1": "--oneshot",
+    #    "B": "--buildpkgonly",
+    #    "c": "--depclean",
+    #    "C": "--unmerge",
+    #    "d": "--debug",
+    #    "e": "--emptytree",
+    #    "f": "--fetchonly",
+    #    "F": "--fetch-all-uri",
+    #    "h": "--help",
+    #    "n": "--noreplace",
+    #    "N": "--newuse",
+    #    "o": "--onlydeps",
+    #    "O": "--nodeps",
+    #    "p": "--pretend",
+    #    "P": "--prune",
+    #    "r": "--resume",
+    #    "s": "--search",
+    #    "S": "--searchdesc",
+    #    "t": "--tree",
+    #    "u": "--update",
+    #    "U": "--changed-use",
+    #    "V": "--version",	}
+#***# Main Main Program
 lib/_emerge/post_emerge.py
+	#def clean_logs(settings):
+	#def display_news_notification(root_config, myopts):
+	#def show_depclean_suggestion():
+	#def post_emerge(myaction, myopts, myfiles, target_root, trees, mtimedb, retval):
 lib/_emerge/search.py
+	# original style code very long search function
+#***# Main Search Program
 lib/_emerge/show_invalid_depstring_notice.py
+	#def show_invalid_depstring_notice(parent_node, error_msg):
+	#	msg1 = ( "\n\n!!! Invalid or corrupt dependency specification: "
+	#	msg.append("Portage is unable to process the dependencies of the package ")
 lib/_emerge/stdout_spinner.py
+	#class stdout_spinner:
+	#    scroll_msgs = [	"3.1415926535897932384626433832795028841971694",	#        "Inaccuracy saves a world of explanation.",
+	#	 twirl_sequence = "/-\\|/-\\|/-\\|/-\\|\\-/|\\-/|\\-/|\\-/|"
+	# update display, scroll, spin, basic, early, quiet
 lib/_emerge/unmerge.py
+	#def _unmerge_display(
+	#def unmerge(
+#***# Main Unmerge Program
 lib/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/__init__.py
-lib/portage/_compat_upgrade/__init__.py
+#***# Main Init Initialize Portage Program
+	# lots of stuff is in this , imports, dependencies, unicode, forkwatcher, createtrees, = boilerplate set up and inits
+lib/portage/_compat_upgrade/__init__.py	# empty
 lib/portage/_emirrordist/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/_compat_upgrade/binpkg_compression.py
+	#COMPAT_BINPKG_COMPRESS = "bzip2"
+	#	If the current installation is still configured to use the old default BINPKG_COMPRESS=bzip2 setting,
+	#	then patch make.globals inside ${ED} to maintain backward compatibility,
 lib/portage/_compat_upgrade/binpkg_multi_instance.py
+	#COMPAT_FEATURES = 'FEATURES="${FEATURES} -binpkg-multi-instance"'
+	#    If the current installation is still has binpkg-multi-instance disabled, 
+	#	 then patch make.globals inside ${ED} to maintain backward compatibility.
 lib/portage/_compat_upgrade/default_locations.py
+	#COMPAT_DISTDIR = "usr/portage/distfiles"
+	#COMPAT_PKGDIR = "usr/portage/packages"
+	#COMPAT_RPMDIR = "usr/portage/rpm"
+	#COMPAT_MAIN_REPO = "usr/portage"
+    #	If the current installation is still configured to use any of the legacy default /usr/portage locations, 
+	#	then patch make.globals and repos.conf inside ${ED} to maintain compatible defaults
 lib/portage/_compat_upgrade/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/_emirrordist/Config.py
 lib/portage/_emirrordist/ContentDB.py
 lib/portage/_emirrordist/DeletionIterator.py
@@ -464,25 +893,117 @@ lib/portage/_emirrordist/main.py
 lib/portage/_global_updates.py
 lib/portage/_legacy_globals.py
 lib/portage/_selinux.py
-lib/portage/_sets/ProfilePackageSet.py
 lib/portage/_sets/__init__.py
+	# lots of stuff in this file.
+	#class SetConfig:
+	#def _create_default_config(self):
+    #    Create a default hardcoded set configuration for a portage version that does not support set configuration files.
+	# 	 This is only used in the current branch of portage if _ENABLE_SET_CONFIG is False.
+    #    Even if it's not used in this branch, keep it here in order to minimize the diff between branches.
+	#def load_default_config(settings, trees):
 lib/portage/_sets/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/_sets/base.py
+	#class PackageSet:
+    #	Set this to operations that are supported by your subclass. While technically there is no difference between "merge" and "unmerge" regarding
+    # 	package sets, the latter doesn't make sense for some sets like "system" or "security" and therefore isn't supported by them.
+    #	_operations = ["merge"]
+    #	description = "generic package set"
+	#class EditablePackageSet(PackageSet):
+	#class InternalPackageSet(EditablePackageSet):
+	#class DummyPackageSet(PackageSet):
 lib/portage/_sets/dbapi.py
+	#	__all__ = [
+	#    "CategorySet",
+	#    "ChangedDepsSet",
+	#    "DowngradeSet",
+	#    "EverythingSet",
+	#    "OwnerSet",
+	#    "SubslotChangedSet",
+	#    "VariableSet",	]
+	#_operations = ["merge", "unmerge"]
+	#_builderGetRepository, singleBuilder, multiBuilder
+	#class EverythingSet(PackageSet):
+	#	Package set which contains SLOT atoms to match all installed packages
+	#	load()
+	#class OwnerSet(PackageSet):
+	#	Package set which contains all packages that own one or more files.
+	#	mapPathsToAtoms()
+	#class VariableSet(EverythingSet):
+	#	Package set which contains all packages that match specified values of a specified variable.
+	#	_filter()
+	#class SubslotChangedSet(PackageSet):
+	#   Package set which contains all packages for which the subslot of the highest visible ebuild 
+	#	is different than the currently installed version.
+	#	load() # bestmatch-visible
+	#class DowngradeSet(PackageSet):
+	#   Package set which contains all packages for which the highest visible ebuild version
+	#	is lower than the currently installed version.
+	#	load() # bestmatch-visible
+	#class UnavailableSet(EverythingSet):
+    #   Package set which contains all installed packages for which there are no visible ebuilds
+    #   corresponding to the same $CATEGORY/$PN:$SLOT.
+	#	_filter()
+	#class UnavailableBinaries(EverythingSet):
+    #   Package set which contains all installed packages for which corresponding binary packages
+    #   are not available.
+	#	_filter()
+	#class CategorySet(PackageSet):
+	#	Package set containing {visible/all} packages of category
+	#class AgeSet(EverythingSet):
+	#	older or newer than TIMESTAMP
+	#	_aux_keys = ("BUILD_TIME",)
+	#class DateSet(EverythingSet):
+	#	older or newer than: # options specified: 'package', 'filestamp', 'seconds', 'date'
+	#	_aux_keys = ("BUILD_TIME",)
+	#class RebuiltBinaries(EverythingSet):
+	#	if binaries have been rebuilt since last install
+	#	_aux_keys = ("BUILD_TIME",)
+	#class ChangedDepsSet(PackageSet):
+	#	Package set which contains all installed packages for which the vdb *DEPEND entries are outdated
+	#	compared to corresponding portdb entries.
+	# get all *DEPEND variables from vdb & portdb and compare them.
 lib/portage/_sets/files.py
+	#__all__ = [
+	#    "StaticFileSet",
+	#    "ConfigFileSet",
+	#    "WorldSelectedSet",
+	#    "WorldSelectedPackagesSet",
+	#    "WorldSelectedSetsSet",	]
+	#class StaticFileSet(EditablePackageSet):
+	#class ConfigFileSet(PackageSet):
+	#class WorldSelectedSet(EditablePackageSet):
+    #	Set of packages and subsets that were directly installed by the user
+	#class WorldSelectedPackagesSet(EditablePackageSet):
+	#  	Set of packages that were directly installed by the user
+	#class WorldSelectedSetsSet(EditablePackageSet):
+	#   Set of sets that were directly installed by the user
 lib/portage/_sets/libs.py
+	#class LibraryConsumerSet(PackageSet):
+	#class LibraryFileConsumerSet(LibraryConsumerSet):
+    #	Package set which contains all packages that consume the specified library file(s).
+	#class PreservedLibraryConsumerSet(LibraryConsumerSet):
+lib/portage/_sets/ProfilePackageSet.py
+	#class ProfilePackageSet(PackageSet):
 lib/portage/_sets/profiles.py
+	#__all__ = ["PackagesSystemSet"]
+	#class PackagesSystemSet(PackageSet):
 lib/portage/_sets/security.py
+	#__all__ = ["SecuritySet", "NewGlsaSet", "NewAffectedSet", "AffectedSet"]
+	#class SecuritySet(PackageSet):
+	#    description = "package set that includes all packages possibly affected by a GLSA"
 lib/portage/_sets/shell.py
+	#__all__ = ["CommandOutputSet"]
+	#class CommandOutputSet(PackageSet):
+	#	This class creates a PackageSet from the output of any shell command. The shell command should produce one atom per line
 lib/portage/binpkg.py
 lib/portage/binrepo/__init__.py
 lib/portage/binrepo/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/binrepo/config.py
 lib/portage/cache/__init__.py
 lib/portage/cache/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/cache/anydbm.py
 lib/portage/cache/cache_errors.py
 lib/portage/cache/ebuild_xattr.py
@@ -491,7 +1012,7 @@ lib/portage/cache/fs_template.py
 lib/portage/cache/index/IndexStreamIterator.py
 lib/portage/cache/index/__init__.py
 lib/portage/cache/index/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/cache/index/pkg_desc_index.py
 lib/portage/cache/mappings.py
 lib/portage/cache/metadata.py
@@ -512,7 +1033,7 @@ lib/portage/dbapi/_SyncfsProcess.py
 lib/portage/dbapi/_VdbMetadataDelta.py
 lib/portage/dbapi/__init__.py
 lib/portage/dbapi/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/dbapi/_expand_new_virt.py
 lib/portage/dbapi/_similar_name_search.py
 lib/portage/dbapi/bintree.py
@@ -524,14 +1045,14 @@ lib/portage/dbapi/virtual.py
 lib/portage/debug.py
 lib/portage/dep/__init__.py
 lib/portage/dep/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/dep/_dnf.py
 lib/portage/dep/_slot_operator.py
 lib/portage/dep/dep_check.py
 lib/portage/dep/soname/SonameAtom.py
 lib/portage/dep/soname/__init__.py
 lib/portage/dep/soname/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/dep/soname/multilib_category.py
 lib/portage/dep/soname/parse.py
 lib/portage/dispatch_conf.py
@@ -539,7 +1060,7 @@ lib/portage/eapi.py
 lib/portage/eclass_cache.py
 lib/portage/elog/__init__.py
 lib/portage/elog/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/elog/filtering.py
 lib/portage/elog/messages.py
 lib/portage/elog/mod_custom.py
@@ -551,12 +1072,12 @@ lib/portage/elog/mod_save_summary.py
 lib/portage/elog/mod_syslog.py
 lib/portage/emaint/__init__.py
 lib/portage/emaint/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/emaint/defaults.py
 lib/portage/emaint/main.py
 lib/portage/emaint/modules/__init__.py
 lib/portage/emaint/modules/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/emaint/modules/binhost/__init__.py
 lib/portage/emaint/modules/binhost/binhost.py
 lib/portage/emaint/modules/binhost/meson.build
@@ -583,7 +1104,7 @@ lib/portage/emaint/modules/world/meson.build
 lib/portage/emaint/modules/world/world.py
 lib/portage/env/__init__.py
 lib/portage/env/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/env/config.py
 lib/portage/env/loaders.py
 lib/portage/env/validators.py
@@ -598,7 +1119,7 @@ lib/portage/locks.py
 lib/portage/mail.py
 lib/portage/manifest.py
 lib/portage/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/metadata.py
 lib/portage/module.py
 lib/portage/news.py
@@ -613,7 +1134,7 @@ lib/portage/package/ebuild/_config/UseManager.py
 lib/portage/package/ebuild/_config/VirtualsManager.py
 lib/portage/package/ebuild/_config/__init__.py
 lib/portage/package/ebuild/_config/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/package/ebuild/_config/env_var_validation.py
 lib/portage/package/ebuild/_config/features_set.py
 lib/portage/package/ebuild/_config/helper.py
@@ -623,14 +1144,14 @@ lib/portage/package/ebuild/_ipc/IpcCommand.py
 lib/portage/package/ebuild/_ipc/QueryCommand.py
 lib/portage/package/ebuild/_ipc/__init__.py
 lib/portage/package/ebuild/_ipc/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/package/ebuild/_metadata_invalid.py
 lib/portage/package/ebuild/_parallel_manifest/ManifestProcess.py
 lib/portage/package/ebuild/_parallel_manifest/ManifestScheduler.py
 lib/portage/package/ebuild/_parallel_manifest/ManifestTask.py
 lib/portage/package/ebuild/_parallel_manifest/__init__.py
 lib/portage/package/ebuild/_parallel_manifest/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/package/ebuild/_spawn_nofetch.py
 lib/portage/package/ebuild/config.py
 lib/portage/package/ebuild/deprecated_profile_check.py
@@ -641,7 +1162,7 @@ lib/portage/package/ebuild/fetch.py
 lib/portage/package/ebuild/getmaskingreason.py
 lib/portage/package/ebuild/getmaskingstatus.py
 lib/portage/package/ebuild/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/package/ebuild/prepare_build_dirs.py
 lib/portage/package/ebuild/profile_iuse.py
 lib/portage/package/meson.build
@@ -649,23 +1170,23 @@ lib/portage/process.py
 lib/portage/progress.py
 lib/portage/proxy/__init__.py
 lib/portage/proxy/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/proxy/lazyimport.py
 lib/portage/proxy/objectproxy.py
 lib/portage/repository/__init__.py
 lib/portage/repository/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/repository/config.py
 lib/portage/repository/storage/__init__.py
 lib/portage/repository/storage/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/repository/storage/hardlink_quarantine.py
 lib/portage/repository/storage/hardlink_rcu.py
 lib/portage/repository/storage/inplace.py
 lib/portage/repository/storage/interface.py
 lib/portage/sync/__init__.py
 lib/portage/sync/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/sync/config_checks.py
 lib/portage/sync/controller.py
 lib/portage/sync/getaddrinfo_validate.py
@@ -673,27 +1194,27 @@ lib/portage/sync/modules/__init__.py
 lib/portage/sync/modules/cvs/__init__.py
 lib/portage/sync/modules/cvs/cvs.py
 lib/portage/sync/modules/cvs/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/sync/modules/git/__init__.py
 lib/portage/sync/modules/git/git.py
 lib/portage/sync/modules/git/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/sync/modules/mercurial/__init__.py
 lib/portage/sync/modules/mercurial/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/sync/modules/mercurial/mercurial.py
 lib/portage/sync/modules/meson.build
 lib/portage/sync/modules/rsync/__init__.py
 lib/portage/sync/modules/rsync/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/sync/modules/rsync/rsync.py
 lib/portage/sync/modules/svn/__init__.py
 lib/portage/sync/modules/svn/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/sync/modules/svn/svn.py
 lib/portage/sync/modules/webrsync/__init__.py
 lib/portage/sync/modules/webrsync/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/sync/modules/webrsync/webrsync.py
 lib/portage/sync/old_tree_timestamp.py
 lib/portage/sync/syncbase.py
@@ -715,7 +1236,7 @@ lib/portage/util/_async/SchedulerInterface.py
 lib/portage/util/_async/TaskScheduler.py
 lib/portage/util/_async/__init__.py
 lib/portage/util/_async/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/util/_async/run_main_scheduler.py
 lib/portage/util/_compare_files.py
 lib/portage/util/_ctypes.py
@@ -725,14 +1246,14 @@ lib/portage/util/_dyn_libs/NeededEntry.py
 lib/portage/util/_dyn_libs/PreservedLibsRegistry.py
 lib/portage/util/_dyn_libs/__init__.py
 lib/portage/util/_dyn_libs/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/util/_dyn_libs/display_preserved_libs.py
 lib/portage/util/_dyn_libs/dyn_libs.py
 lib/portage/util/_dyn_libs/soname_deps.py
 lib/portage/util/_dyn_libs/soname_deps_qa.py
 lib/portage/util/_eventloop/__init__.py
 lib/portage/util/_eventloop/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/util/_eventloop/asyncio_event_loop.py
 lib/portage/util/_eventloop/global_event_loop.py
 lib/portage/util/_get_vm_info.py
@@ -750,30 +1271,30 @@ lib/portage/util/cpuinfo.py
 lib/portage/util/digraph.py
 lib/portage/util/elf/__init__.py
 lib/portage/util/elf/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/util/elf/constants.py
 lib/portage/util/elf/header.py
 lib/portage/util/endian/__init__.py
 lib/portage/util/endian/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/util/endian/decode.py
 lib/portage/util/env_update.py
 lib/portage/util/file_copy/__init__.py
 lib/portage/util/file_copy/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/util/formatter.py
 lib/portage/util/futures/__init__.py
 lib/portage/util/futures/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/util/futures/_asyncio/__init__.py
 lib/portage/util/futures/_asyncio/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/util/futures/_asyncio/streams.py
 lib/portage/util/futures/_sync_decorator.py
 lib/portage/util/futures/compat_coroutine.py
 lib/portage/util/futures/executor/__init__.py
 lib/portage/util/futures/executor/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/util/futures/executor/fork.py
 lib/portage/util/futures/extendedfutures.py
 lib/portage/util/futures/futures.py
@@ -785,7 +1306,7 @@ lib/portage/util/install_mask.py
 lib/portage/util/iterators/MultiIterGroupBy.py
 lib/portage/util/iterators/__init__.py
 lib/portage/util/iterators/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/util/lafilefixer.py
 lib/portage/util/listdir.py
 lib/portage/util/locale.py
@@ -802,12 +1323,12 @@ lib/portage/versions.py
 # XML
 lib/portage/xml/__init__.py
 lib/portage/xml/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 lib/portage/xml/metadata.py
 lib/portage/xpak.py
 	# create tbz2 & xpak binary packages, files & metadata
 src/meson.build
-	# system build script, config for installing this package
+	# ( system build script, config for installing this package )
 
 # C ports of crucial util functions: 
 src/portage_util__whirlpool.c
