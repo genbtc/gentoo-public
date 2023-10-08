@@ -339,12 +339,12 @@ bin/socks5-server.py
 	# Perform SOCKSv5 request exchange, open a proxied connection and start relaying.
 bin/xattr-helper.py
 	# Dump and restore extended attributes.
-	# Dump the values of all extended attributes associated with paths passed as arguments or null-separated paths read from stdin.
-	# Restore extended attributes using " "a dump read from stdin.
-	# Dump the xattr data for |pathnames| to |file_out|
-	dump_xattrs(pathnames, file_out)
-    # Read |file_in| and restore xattrs content from it
-	restore_xattrs(file_in)
+	#  Dump the values of all extended attributes associated with paths passed as arguments or null-separated paths read from stdin.
+	#  Restore extended attributes using " "a dump read from stdin.
+	#def dump_xattrs(pathnames, file_out):
+	#  Dump the xattr data for |pathnames| to |file_out|
+	#def restore_xattrs(file_in):
+    #  Read |file_in| and restore xattrs content from it
 bin/xpak-helper.py
 	# Perform metadata operations on a binary package.
 	# usage: recompose <binpkg_path> <metadata_dir>
@@ -736,6 +736,44 @@ lib/_emerge/_flush_elog_mod_echo.py
 	#def _flush_elog_mod_echo():
 	#	mod_echo.finalize()
 lib/_emerge/actions.py
+#***# huge 4000 line file mostly original style
+    #def action_build(
+    #def action_config(settings, trees, myopts, myfiles):
+    #def action_depclean(
+    #def calc_depclean(settings, trees, ldpath_mtimes, myopts, action, args_set, spinner):
+    #def _calc_depclean(settings, trees, ldpath_mtimes, myopts, action, args_set, spinner):
+    #def action_deselect(settings, trees, opts, atoms):
+    #class _info_pkgs_ver:
+    #def action_info(settings, trees, myopts, myfiles):
+    #def action_regen(settings, portdb, max_jobs, max_load):
+    #def action_search(root_config, myopts, myfiles, spinner):
+    #def action_sync(
+    #def action_uninstall(settings, trees, ldpath_mtimes, opts, action, files, spinner):
+    #def adjust_configs(myopts, trees):
+    #def adjust_config(myopts, settings):
+    #def display_missing_pkg_set(root_config, set_name):
+    #def relative_profile_path(portdir, abs_profile):
+    #def get_libc_version(vardb: portage.dbapi.vartree.vardbapi) -> list[str]:
+    #def get_profile_version(
+    #def getportageversion(
+    #class _emerge_config(SlotObject):
+    #def load_emerge_config(emerge_config=None, env=None, **kargs):
+    #def getgccversion(chost=None):
+    #def validate_ebuild_environment(trees):
+    #def check_procfs():
+    #def config_protect_check(trees):
+    #def apply_priorities(settings):
+    #def nice(settings):
+    #def ionice(settings):
+    #def set_scheduling_policy(settings):
+    #def setconfig_fallback(root_config):
+    #def get_missing_sets(root_config):
+    #def missing_sets_warning(root_config, missing_sets):
+    #def ensure_required_sets(trees):
+    #def expand_set_arguments(myfiles, myaction, root_config):
+    #def repo_name_check(trees):
+    #def repo_name_duplicate_check(trees):
+    #def run_action(emerge_config):
 lib/_emerge/chk_updated_cfg_files.py
 	#def chk_updated_cfg_files(eroot, config_protect):
 	#    result = list(portage.util.find_updated_config_files(target_root, config_protect))
@@ -780,6 +818,7 @@ lib/_emerge/is_valid_package_atom.py
     #	Handle '*' character for "extended syntax" wildcard support.
 	#def is_valid_package_atom(x, allow_repo=False, allow_build_id=True):
 lib/_emerge/main.py
+#***# Main Main Program
     #options = [
     #    "--alphabetical",
     #    "--ask-enter-invalid",
@@ -881,6 +920,9 @@ lib/portage/_compat_upgrade/default_locations.py
 	#	then patch make.globals and repos.conf inside ${ED} to maintain compatible defaults
 lib/portage/_compat_upgrade/meson.build
 	# ( system build script, config for installing this package )
+lib/portage/_emirrordist/__init__.py	# empty
+lib/portage/_emirrordist/main.py
+	#	"emirrordist - a fetch tool for mirroring " "of package distfiles"
 lib/portage/_emirrordist/Config.py
 lib/portage/_emirrordist/ContentDB.py
 lib/portage/_emirrordist/DeletionIterator.py
@@ -888,11 +930,31 @@ lib/portage/_emirrordist/DeletionTask.py
 lib/portage/_emirrordist/FetchIterator.py
 lib/portage/_emirrordist/FetchTask.py
 lib/portage/_emirrordist/MirrorDistTask.py
-lib/portage/_emirrordist/__init__.py
-lib/portage/_emirrordist/main.py
 lib/portage/_global_updates.py
+	#def _global_updates(trees, prev_mtimes, quiet=False, if_mtime_changed=True):
+    #	Perform new global updates if they exist in 'profiles/updates/'
+    #	subdirectories of all active repositories (PORTDIR + PORTDIR_OVERLAY).
+	#def _do_global_updates(trees, prev_mtimes, quiet=False, if_mtime_changed=True):
+    #	'update pass'",
+    #	'binary update'",
+    #	'/var/db update'",
+    #	'/var/db move'",
+    #	'/var/db SLOT move'",
+    #	'binary move'",
+    #	'binary SLOT move'",
+    #	'update /etc/portage/package.*'",
+    #def _world_repo_match(atoma, atomb):
+	#   Check whether to perform a world change from atoma to atomb.
 lib/portage/_legacy_globals.py
+	#portage._initializing_globals = True
+	#def _get_legacy_global(name):
+	#    ("config_root", "PORTAGE_CONFIGROOT"),
+	#    ("target_root", "ROOT"),
+	#    ("sysroot", "SYSROOT"),
+	#    ("eprefix", "EPREFIX"),
 lib/portage/_selinux.py
+	#copyfile,getcontext,is_selinux_enabled,mkdir,rename,settype,setexec,setfscreate,symlink
+	#class spawn_wrapper:
 lib/portage/_sets/__init__.py
 	# lots of stuff in this file.
 	#class SetConfig:
@@ -997,11 +1059,22 @@ lib/portage/_sets/shell.py
 	#class CommandOutputSet(PackageSet):
 	#	This class creates a PackageSet from the output of any shell command. The shell command should produce one atom per line
 lib/portage/binpkg.py
-lib/portage/binrepo/__init__.py
+	#def get_binpkg_format(binpkg_path, check_file=False, remote=False):
+	#	file_ext_format = "xpak"   or 	"gpkg"
+lib/portage/binrepo/__init__.py	# empty
 lib/portage/binrepo/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/binrepo/config.py
-lib/portage/cache/__init__.py
+	#class BinRepoConfig:
+    #	__slots__ = (
+    #	  "name",
+    #  	  "name_fallback",
+    #  	  "fetchcommand",
+    #  	  "priority",
+    #  	  "resumecommand",
+    #  	  "sync_uri",
+#CACHE
+lib/portage/cache/__init__.py	# empty
 lib/portage/cache/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/cache/anydbm.py
@@ -1021,9 +1094,31 @@ lib/portage/cache/sqlite.py
 lib/portage/cache/template.py
 lib/portage/cache/volatile.py
 lib/portage/checksum.py
+	# Summary of all available hashes and their implementations,
+	# MD5: hashlib
+	# SHA1: hashlib
+	# SHA256: hashlib
+	# SHA512: hashlib
+	# RMD160: hashlib, pycrypto, mhash
+	# WHIRLPOOL: hashlib, bundled (C), bundled (Python)
+	# BLAKE2B (512): hashlib
+	# BLAKE2S (512): hashlib
+	# SHA3_256: hashlib
+	# SHA3_512: hashlib
+	#def verify_all(filename, mydict, calc_prelink=0, strict=0):
+	#    Verify all checksums against a file.
+	#def perform_checksum(filename, hashname="MD5", calc_prelink=0):
+	#    Run a specific checksum against a file
+	#def perform_multiple_checksums(filename, hashes=["MD5"], calc_prelink=0):
+	#    Run a group of checksums against a file.
+	#def checksum_str(data, hashname="MD5"):
+	#    Run a specific checksum against a byte string.
 lib/portage/const.py
+	# list of constants/default variables
 lib/portage/cvstree.py
+	#CVS version control consistency checks (old)
 lib/portage/data.py
+	# global initialization, user modes, file permissions, priveleges, env vars
 lib/portage/dbapi/DummyTree.py
 lib/portage/dbapi/IndexedPortdb.py
 lib/portage/dbapi/IndexedVardb.py
@@ -1032,6 +1127,7 @@ lib/portage/dbapi/_MergeProcess.py
 lib/portage/dbapi/_SyncfsProcess.py
 lib/portage/dbapi/_VdbMetadataDelta.py
 lib/portage/dbapi/__init__.py
+	# tons of stuff in here!
 lib/portage/dbapi/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/dbapi/_expand_new_virt.py
@@ -1043,26 +1139,45 @@ lib/portage/dbapi/porttree.py
 lib/portage/dbapi/vartree.py
 lib/portage/dbapi/virtual.py
 lib/portage/debug.py
+	#def set_trace(on=True):
+	#class trace_handler:
 lib/portage/dep/__init__.py
+	# tons of stuff in here!
 lib/portage/dep/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/dep/_dnf.py
 lib/portage/dep/_slot_operator.py
 lib/portage/dep/dep_check.py
 lib/portage/dep/soname/SonameAtom.py
+	#class SonameAtom:
+   	#	__slots__ = ("multilib_category", "soname", "_hash_key", "_hash_value")
 lib/portage/dep/soname/__init__.py
 lib/portage/dep/soname/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/dep/soname/multilib_category.py
+	#def compute_multilib_category(elf_header):
+    #	Compute a multilib category from an ELF header.
 lib/portage/dep/soname/parse.py
+	#def parse_soname_deps(s):
+    #	Parse a REQUIRES or PROVIDES dependency string, and raise InvalidData if necessary.
 lib/portage/dispatch_conf.py
+#### Main dispatch-conf program
+	# file-archive, archive-copy, archive-rotate, perform_conf_update_hooks
 lib/portage/eapi.py
+	# prototypes, attributes and definitions and rules for which EAPI goes to what feature
 lib/portage/eclass_cache.py
+	#class cache:
+    #	Maintains the cache information about eclasses used in ebuild.
+#ELOG
 lib/portage/elog/__init__.py
+	# tons of stuff in here!
 lib/portage/elog/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/elog/filtering.py
+	# Output
 lib/portage/elog/messages.py
+	# logging
+#ELOG
 lib/portage/elog/mod_custom.py
 lib/portage/elog/mod_echo.py
 lib/portage/elog/mod_mail.py
@@ -1070,16 +1185,24 @@ lib/portage/elog/mod_mail_summary.py
 lib/portage/elog/mod_save.py
 lib/portage/elog/mod_save_summary.py
 lib/portage/elog/mod_syslog.py
-lib/portage/emaint/__init__.py
+#ELOG
+#EMAINT
+lib/portage/emaint/__init__.py # empty
+	# System health checks and maintenance utilities.
 lib/portage/emaint/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/emaint/defaults.py
+	# emaint usage description --check, --fix, --version
 lib/portage/emaint/main.py
-lib/portage/emaint/modules/__init__.py
+	#def emaint_main(myargv):
+lib/portage/emaint/modules/__init__.py	# empty
+	# Plug-in modules for system health checks and maintenance.
 lib/portage/emaint/modules/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/emaint/modules/binhost/__init__.py
 lib/portage/emaint/modules/binhost/binhost.py
+	#class BinhostHandler:
+    #	Generate a metadata index for binary packages
 lib/portage/emaint/modules/binhost/meson.build
 lib/portage/emaint/modules/config/__init__.py
 lib/portage/emaint/modules/config/config.py
@@ -1102,30 +1225,252 @@ lib/portage/emaint/modules/sync/sync.py
 lib/portage/emaint/modules/world/__init__.py
 lib/portage/emaint/modules/world/meson.build
 lib/portage/emaint/modules/world/world.py
+#EMAINT
+#ENV
 lib/portage/env/__init__.py
 lib/portage/env/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/env/config.py
+    #__all__ = [
+    #    "ConfigLoaderKlass",
+    #    "GenericFile",
+    #    "PackageKeywordsFile",
+    #    "PackageUseFile",
+    #    "PackageMaskFile",
+    #    "PortageModulesFile",	]
+	#class ConfigLoaderKlass(UserDict):
+	#class GenericFile(UserDict):
+	#class PackageKeywordsFile(ConfigLoaderKlass):
+	#class PackageUseFile(ConfigLoaderKlass):
+	#class PackageMaskFile(ConfigLoaderKlass):
+	#class PortageModulesFile(ConfigLoaderKlass):
 lib/portage/env/loaders.py
+	#def RecursiveFileLoader(filename):
+	#class DataLoader:
+	#class EnvLoader(DataLoader):
+	#class TestTextLoader(DataLoader):
+	#class FileLoader(DataLoader):
+	#class ItemFileLoader(FileLoader):
+	#class KeyListFileLoader(FileLoader):
+	#class KeyValuePairFileLoader(FileLoader):
 lib/portage/env/validators.py
+	#def PackagesFileValidator(atom):
+    #	This function mutates atoms that begin with - or *
+	#	It then checks to see if that atom is valid, and if so returns True, else it returns False.
 lib/portage/exception.py
+	#class PortageException(Exception):
+	#class PortageKeyError(KeyError, PortageException):
+	#class CorruptionError(PortageException):
+	#class InvalidDependString(PortageException):
+	#class InvalidVersionString(PortageException):
+	#class SecurityViolation(PortageException):
+	#class IncorrectParameter(PortageException):
+	#class MissingParameter(PortageException):
+	#class ParseError(PortageException):
+	#class InvalidData(PortageException):
+	#class InvalidDataType(PortageException):
+	#class InvalidLocation(PortageException):
+	#class FileNotFound(InvalidLocation):
+	#class DirectoryNotFound(InvalidLocation):
+	#class IsADirectory(PortageException):
+	#class OperationNotPermitted(PortageException):
+	#class OperationNotSupported(PortageException):
+	#class PermissionDenied(PortageException):
+	#class TryAgain(PortageException):
+	#class TimeoutException(PortageException):
+	#class AlarmSignal(TimeoutException):
+	#class ReadOnlyFileSystem(PortageException):
+	#class CommandNotFound(PortageException):
+	#class AmbiguousPackageName(ValueError, PortageException):
+	#class PortagePackageException(PortageException):
+	#class PackageNotFound(PortagePackageException):
+	#class PackageSetNotFound(PortagePackageException):
+	#class InvalidPackageName(PortagePackageException):
+	#class InvalidBinaryPackageFormat(PortagePackageException):
+	#class InvalidCompressionMethod(PortagePackageException):
+	#class CompressorNotFound(PortagePackageException):
+	#class CompressorOperationFailed(PortagePackageException):
+	#class InvalidAtom(PortagePackageException):
+	#class UnsupportedAPIException(PortagePackageException):
+	#class SignatureException(PortageException):
+	#class DigestException(SignatureException):
+	#class GPGException(SignatureException):
+	#class MissingSignature(SignatureException):
+	#class InvalidSignature(SignatureException):
+	#class UntrustedSignature(SignatureException):
 lib/portage/getbinpkg.py
+	#def make_metadata_dict(data):
+	#class ParseLinks(html_parser_HTMLParser):
+	#def create_conn(baseurl, conn=None):
+	#def make_ftp_request(conn, address, rest=None, dest=None):
+	#def make_http_request(conn, address, _params={}, headers={}, dest=None):
+	#def match_in_array(array, prefix="", suffix="", match_both=1, allow_overlap=0):
+	#def dir_get_list(baseurl, conn=None):
+	#def file_get_metadata(baseurl, conn=None, chunk_size=3000):
+	#def file_get(. . .)
+	#def file_get_lib(baseurl, dest, conn=None):
+	#def dir_get_metadata(. . .)
+	#def _cmp_cpv(d1, d2):
+	#class PackageIndex:
 lib/portage/glsa.py
+	#def get_applied_glsas(settings):
+	#	Return a list of applied or injected GLSA IDs
+	#def wrap(text, width, caption=""):
+	#	Wraps the given text at column I{width}, optionally indenting it
+	#def get_glsa_list(myconfig):
+	#	 Returns a list of all available GLSAs in the given repository by comparing 
+	#	 the filelist there with the pattern described in the config.
+	#def getListElements(listnode):
+	#	xml - Get all <li> elements for a given <ol> or <ul> node.
+	#def getText(node, format, textfd=None):
+	#	Main XML node parser function
+	#def getMultiTagsText(rootnode, tagname, format):
+	#	Returns a list with the text of all subnodes of type I{tagname} under I{rootnode} 
+	#def makeAtom(pkgname, versionNode):
+	#	 creates - a (syntactical) valid portage atom -
+	#	 from the given package name and information in the I{versionNode}
+	#def makeVersion(versionNode):
+	#	creates - a version string (format <op><version>) -
+	#	from the information in the I{versionNode}
+	#def match(atom, dbapi, match_type="default"):
+	#    wrapper that calls revisionMatch() or portage.dbapi.dbapi.match() depending on the given atom.
+	#def revisionMatch(revisionAtom, dbapi, match_type="default"):
+	#	handler for the special >~, >=~, <=~ and <~ atoms that are supposed to behave
+    #	as > and < except that they are limited to the same version, the range only applies to the revision part.
+	#def getMinUpgrade(vulnerableList, unaffectedList, portdbapi, vardbapi, minimize=True):
+	#    Checks if the system-state is matching an atom in I{vulnerableList} and returns string describing
+	#    the lowest version for the package that matches an atom in I{unaffectedList} and is greater than the currently installed version
+	#def format_date(datestr):
+	#	    Takes a date (announced, revised) date from a GLSA and formats it as readable text (i.e. "January 1, 2008").
+	#class GlsaTypeException(Exception):
+	#class GlsaFormatException(Exception):
+	#class GlsaArgumentException(Exception):
+	#	# simple Exception classes to catch specific errors
+	#class Glsa:
+	#	# GLSA xml data wrapper class
+	#	    This class is a wrapper for the XML data and provides methods to access and display the contained data.
+	#***# main function with submethods
 lib/portage/gpg.py
+	#class GPG:
+    #	Unlock GPG, must call dircetly from main program for get correct TTY
+    #    self.digest_algo = self.settings.get("BINPKG_GPG_SIGNING_DIGEST")
+    #    self.signing_gpg_home = self.settings.get("BINPKG_GPG_SIGNING_GPG_HOME")
+    #    self.signing_gpg_key = self.settings.get("BINPKG_GPG_SIGNING_KEY")
+	#    def gpg_keepalive(self):
+    #	    Call GPG unlock command every 5 mins to avoid the passphrase expired.
 lib/portage/gpkg.py
+	#class tar_stream_writer:
+	#    One-pass helper function that return a file-like object for create a file inside of a tar container.
+	#    This helper allowed streaming add a new file to tar without prior knows the file size.
+	#    With optional call and pipe data through external program, the helper can transparently save compressed data.
+	#    With optional checksum helper, this helper can create corresponding checksum and GPG signature.
+	#class tar_stream_reader:
+	#    helper function that return a file-like object for read a file inside of a tar container.
+	#    This helper allowed transparently streaming read a compressed file in tar.
+	#    With optional call and pipe compressed data through external  program, and return the uncompressed data.
+	#class checksum_helper:
+	#    Do checksum generation and GPG Signature generation and verification
+	#class tar_safe_extract:
+	#    A safer version of tar extractall that doing sanity check. Note that this does not solve all security problems.
+	#class gpkg:
+    #	Gentoo binary package - https://www.gentoo.org/glep/glep-0078.html
+	#	 gpkg class handle all gpkg operations for one package.  basename is the package basename.
+	#	 def unpack_metadata(self, dest_dir=None):
+	#        Unpack metadata to dest_dir.
+	#    def get_metadata(self, want=None):
+	#        get package metadata. (local file)
+	#    def get_metadata_url(self, url, want=None):
+	#        Return the requested metadata from url gpkg. (remote)
+    #    def compress(self, root_dir, metadata, clean=False):
+    #        Use initialized configuation create new gpkg file from root_dir. Will overwrite any exists file.
+	#    def decompress(self, decompress_dir):
+	#        decompress current gpkg to decompress_dir
+	#    def update_metadata(self, metadata, new_basename=None):
+	#        Update metadata in the gpkg file.
+	#    def update_signature(self, keep_current_signature=False):
+	#        Add / update signature in the gpkg file.
+	#        if keep_current_signature is True, keep the current signature, otherwise, re-signing it.
+	#    def _quickpkg(self, contents, metadata, root_dir, protect=None):
+	#        Similar to compress, but for quickpkg.
+	#        Will compress the given files to image with root, ignoring all other files.
+	#    def _record_checksum(self, checksum_info, tarinfo):
+	#        Record checksum result for the given file.
+	#        Replace old checksum if already exists.
+	#    def _add_manifest(self, container):
+	#        Add Manifest to the container based on current checksums.
+	#        Creare GPG signatue if needed.
+	#	 def _load_manifest(self, manifest_string):
+	#		 Check, load, and return manifest in a list by files
+	#    def _add_signature(self, checksum_info, tarinfo, container, manifest=True):
+	#        Add GPG signature for the given tarinfo file.
+	#        manifest: add to manifest
+	#    def _verify_binpkg(self, metadata_only=False):
+	#        Verify current GPKG file.
+	#    def _get_binary_cmd(self, compression, mode):
+	#        get command list from portage and try match compressor
+	#	 + more internal tar file manager_commands
 lib/portage/installation.py
+	#Enum("InstallationType", [
+	#        "SOURCE",  # Portage is not installed, but running from its source tree.
+	#        "MODULE",  # Portage is installed solely as a Python module.
+	#        "SYSTEM",  # Portage is fully installed to the system, possibly prefixed. ], )
 lib/portage/localization.py
+	#def _(mystr):
+	#    Always returns unicode
+	#def localization_example():
+	#    Dict references allow translators to rearrange word order.
+	#def localized_size(num_bytes):
+	#    Return pretty localized size string for num_bytes size
 lib/portage/locks.py
+	#__all__ = [
+	#    "lockdir",
+	#    "unlockdir",
+	#    "lockfile",
+	#    "unlockfile",
+	#    "hardlock_name",
+	#    "hardlink_is_mine",
+	#    "hardlink_lockfile",
+	#    "unhardlink_lockfile",
+	#    "hardlock_cleanup",	]
 lib/portage/mail.py
 lib/portage/manifest.py
+	#class FileNotInManifestException(PortageException):
+	#def manifest2AuxfileFilter(filename):
+	#def manifest2MiscfileFilter(filename):
+	#def guessManifestFileType(filename):
+	#def guessThinManifestFileType(filename):
+	#def parseManifest2(line):
+	#class ManifestEntry:
+	#class Manifest2Entry(ManifestEntry):
+	#class Manifest:
+	#	Create new Manifest instance for package in pkgdir.
+	#	+ all kinds of manifest manager functions
 lib/portage/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/metadata.py
+	# action metadata
+	#def action_metadata(settings, portdb, myopts, porttrees=None):
+	#	">>> Updating Portage cache\n"
 lib/portage/module.py
+	#class InvalidModuleName(PortageException):
+	#	An invalid or unknown module name
+	#class ModuleVersionError(PortageException):
+	#	An incompatible module version
+	#class Module:
+	#	Class to define and hold our plug-in module
+	#class Modules:
+	#	Dynamic modules system for loading and retrieving any of the installed emaint modules and/or provided class's
 lib/portage/news.py
+	#class NewsManager:
+    #	This object manages GLEP 42 style news items.  It will cache news items	that have previously shown up 
+	#	and notify users when there are relevant news items that apply to their packages that the user has not previously read.
 lib/portage/output.py
-lib/portage/package/__init__.py
-lib/portage/package/ebuild/__init__.py
+	# xterms, titles, colorize, color.map, terminal, tty, compatibility, console style, EOutput, ProgressBar, TermProgressBar 
+#PACKAGE
+lib/portage/package/__init__.py	# empty
+lib/portage/package/ebuild/__init__.py	# empty
+lib/portage/package/meson.build
+	# ( system build script, config for installing this package )
 lib/portage/package/ebuild/_config/KeywordsManager.py
 lib/portage/package/ebuild/_config/LicenseManager.py
 lib/portage/package/ebuild/_config/LocationsManager.py
@@ -1165,14 +1510,40 @@ lib/portage/package/ebuild/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/package/ebuild/prepare_build_dirs.py
 lib/portage/package/ebuild/profile_iuse.py
-lib/portage/package/meson.build
+#PACKAGE
 lib/portage/process.py
+	#sandbox_capable = os.path.isfile(SANDBOX_BINARY) and os.access(SANDBOX_BINARY, os.X_OK)
+	#fakeroot_capable = os.path.isfile(FAKEROOT_BINARY) and os.access(
+	#def sanitize_fds():
+	#def spawn_bash(mycommand, debug=False, opt_name=None, **keywords):
+	#def spawn_sandbox(mycommand, opt_name=None, **keywords):
+	#def spawn_fakeroot(mycommand, fakeroot_state=None, opt_name=None, **keywords):
+	#def atexit_register(func, *args, **kargs):
+	#def run_exitfuncs():
+	#	atexit.register(run_exitfuncs)
+	#class _dummy_list(list):
+	#	spawned_pids = _dummy_list()
+	#def cleanup():
+	#class EnvStats:
+	#	def calc_env_stats(env) -> EnvStats:
+	#def spawn( . . . )
+	#def _has_ipv6():
+	#def _configure_loopback_interface():
+	#def _exec( . . . )
+	#class _unshare_validator:
+	#def _setup_pipes(fd_pipes, close_fds=True, inheritable=None):
+	#def find_binary(binary):
 lib/portage/progress.py
+	#class ProgressHandler:
+	#class ProgressBar(ProgressHandler):
+    #	Class to set up and return a Progress Bar
 lib/portage/proxy/__init__.py
 lib/portage/proxy/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/proxy/lazyimport.py
 lib/portage/proxy/objectproxy.py
+#PROXY
+#REPOSITORY
 lib/portage/repository/__init__.py
 lib/portage/repository/meson.build
 	# ( system build script, config for installing this package )
@@ -1184,14 +1555,18 @@ lib/portage/repository/storage/hardlink_quarantine.py
 lib/portage/repository/storage/hardlink_rcu.py
 lib/portage/repository/storage/inplace.py
 lib/portage/repository/storage/interface.py
+#REPOSITORY
+#SYNC
 lib/portage/sync/__init__.py
+	# this fill is full of huge stuff
 lib/portage/sync/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/sync/config_checks.py
 lib/portage/sync/controller.py
 lib/portage/sync/getaddrinfo_validate.py
-lib/portage/sync/modules/__init__.py
+lib/portage/sync/modules/__init__.py # empty 
 lib/portage/sync/modules/cvs/__init__.py
+	# module spec CVS init
 lib/portage/sync/modules/cvs/cvs.py
 lib/portage/sync/modules/cvs/meson.build
 	# ( system build script, config for installing this package )
@@ -1218,7 +1593,8 @@ lib/portage/sync/modules/webrsync/meson.build
 lib/portage/sync/modules/webrsync/webrsync.py
 lib/portage/sync/old_tree_timestamp.py
 lib/portage/sync/syncbase.py
-lib/portage/update.py
+#SYNC
+#UTIL
 lib/portage/util/ExtractKernelVersion.py
 lib/portage/util/SlotObject.py
 lib/portage/util/__init__.py
@@ -1319,18 +1695,57 @@ lib/portage/util/shelve.py
 lib/portage/util/socks5.py
 lib/portage/util/whirlpool.py
 lib/portage/util/writeable_check.py
-lib/portage/versions.py
-# XML
-lib/portage/xml/__init__.py
+#UTIL
+lib/portage/xml/__init__.py	# empty
 lib/portage/xml/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/xml/metadata.py
+	#XML metadata
+	#	_all__ = ("MetaDataXML", "parse_metadata_use")
+#XML
+#continue with lib/
+lib/portage/update.py
+	#ignored_dbentries = ("CONTENTS", "environment.bz2")
+	#def update_dbentry(update_cmd, mycontent, eapi=None, parent=None):
+	#***# Main vdb update function
+	#def update_dbentries(update_iter, mydata, eapi=None, parent=None):
+	#	 Performs update commands and returns a  dict containing only the updated items.
+	#def fixdbentries(update_iter, dbdir, eapi=None, parent=None):
+	#    Performs update commands which result in search and replace operations for each of the files in dbdir (excluding $ignored_dbentries)
+	#def grab_updates(updpath, prev_mtimes=None):
+	#	 Returns all the updates from the given directory as a sorted list of tuples,
+	#	 each containing (file_path, statobj, content)
+	#def parse_updates(mycontent):
+	#	 Valid updates are returned as a list of split update commands.
+	#def update_config_files( . . .)
+	#	 Perform global updates on /etc/portage/package.*, /etc/portage/profile/package.*,
+	#    /etc/portage/profile/packages and /etc/portage/sets.
+	#def dep_transform(mydep, oldkey, newkey):
+lib/portage/versions.py
+	#PMS spec
+	#	 version compare regexes, pkg cat, compare, split, best
 lib/portage/xpak.py
+	#XPAK
 	# create tbz2 & xpak binary packages, files & metadata
+
+#SRC
 src/meson.build
 	# ( system build script, config for installing this package )
-
+	# subdir('portage'), subdir('_emerge')
 # C ports of crucial util functions: 
 src/portage_util__whirlpool.c
+	#Whirlpool
+	#	self contained Whirlpool crypto function written in C
 src/portage_util_file_copy_reflink_linux.c
+	#reflink_linux
+	#	"Module for reflink_linux copy operations", provides file copy
+	# "file_copy"
+	#	 "Copy between two file descriptors with reflink and sparse file support."
+	# _reflink_linux_file_copy
 src/portage_util_libc.c
+	#libc
+	#	Module for converting case using the system locale", provides toupper/tolower
+	# toupper
+	#	"Convert to upper case using system locale."
+	# tolower
+	#	"Convert to lower case using system locale."
