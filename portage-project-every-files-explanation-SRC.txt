@@ -1,0 +1,21 @@
+#SRC
+src/meson.build
+	# ( system build script, config for installing this package )
+	# subdir('portage'), subdir('_emerge')
+# C ports of crucial util functions: 
+src/portage_util__whirlpool.c
+	#Whirlpool
+	#	self contained Whirlpool crypto function written in C
+src/portage_util_file_copy_reflink_linux.c
+	#reflink_linux
+	#	"Module for reflink_linux copy operations", provides file copy
+	# "file_copy"
+	#	 "Copy between two file descriptors with reflink and sparse file support."
+	# _reflink_linux_file_copy
+src/portage_util_libc.c
+	#libc
+	#	Module for converting case using the system locale", provides toupper/tolower
+	# toupper
+	#	"Convert to upper case using system locale."
+	# tolower
+	#	"Convert to lower case using system locale."

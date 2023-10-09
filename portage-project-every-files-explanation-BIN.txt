@@ -1,16 +1,43 @@
 bin/archive-conf
 	# archive-conf -- save off a config file in the dispatch-conf archive dir
+    #def archive_conf():
+    # "Usage: archive-conf /CONFIG/FILE [/CONFIG/FILE...]"
+    # Find all the CONTENTS files in VDB_PATH.
+    #    ["find", eroot_vdb_path, "-type", "f", "-name", "CONTENTS"],
+    # Search for the saved md5 checksum of all the specified config files and see if the current file is unmodified or not.
+    #    portage.dispatch_conf.file_archive(archive, conf, md5_match_hash[conf], "")
+    #    if md5_match_hash[conf]:
+    # 	   portage.dispatch_conf.file_archive_post_process(archive)
 bin/bashrc-functions.sh
-	# misc internal functions (success/die hook + strip dup slashes + get KV minor.major.micro)
+	# misc internal functions (success/die hook + strip dupe slashes + get version KV minor.major.micro)
+    register_die_hook(){}
+    register_success_hook(){}
+    __strip_duplicate_slashes(){}
+    V_major(){}
+    KV_minor(){}
+    KV_micro(){}
+    KV_to_int(){}
+    get_KV(){}
 bin/binhost-snapshot
-    # "This program will copy src_pkg_dir to snapshot_dir and inside binhost_dir it will create a Packages index file "
-    # "which refers to snapshot_uri. This is intended to solve race conditions on binhosts as described at http://crosbug.com/3225."
+    # This program will copy src_pkg_dir to snapshot_dir and inside binhost_dir it will create a Packages index file
+    #  which refers to snapshot_uri. This is intended to solve race conditions on binhosts as described at http://crosbug.com/3225.
+    # $ ./binhost-snapshot
+    # usage: binhost-snapshot [options] <src_pkg_dir> <snapshot_dir> <snapshot_uri> <binhost_dir>
+    # Required Arguments:  
+    #   src_pkg_dir  - the source ${PKGDIR}     
+    #   snapshot_dir - destination snapshot directory (must not exist)      
+    #   snapshot_uri - URI which refers to snapshot_dir from the client side
+    #   binhost_dir  - directory in which to write Packages index with snapshot_uri
+    # Optional Arguments (undocumented): 
+	#   --hardlinks - create hardlinks (y or n, default is y)
 bin/chmod-lite
-	# bash wrapper for bin/chmod-lite.py python script
+	# bash wrapper for bin/chmod-lite.py python script pythonpath
 bin/chmod-lite.py
 	# Emulate 'chmod -fR a+rX,u+w,g-w,o-w' with minimal chmod calls.
 bin/chpathtool.py
 	# Helper tool for converting installed files to custom prefixes.
+    # usage: chpathtool.py [-h] location old new                                                                                                                                                                                                                                
+    # chpathtool.py: error: the following arguments are required: location, old, new
 bin/clean_locks
 	# specify directories with hardlink-locks to clean. (on the command line)
 bin/dispatch-conf
@@ -124,21 +151,24 @@ bin/etc-update
 bin/filter-bash-environment.py
 	# Filter out variable assignments for variable vnames matching a given PATTERN while leaving bash function definitions and here-documents intact.
 	# The PATTERN is a space separated list of variable names and it supports python regular expression syntax.
+    # usage: filter-bash-environment.py PATTERN 	(Exactly one PATTERN argument required)
 bin/fixpackages
 	# fixpackages -- performs package move updates on configuration files, installed packages, and binary packages.
+	# The fixpackages program is not intended for use with ROOT != "/".
+    # Instead use `emaint --fix movebin` and/or `emaint --fix moveinst.
 bin/glsa-check
 	# usage: glsa-check <option> [glsa-id | all | new | affected]
 	# List a summary for the given GLSA(s) or set and whether they affect the system
 	#Modes:
-	#  -l, --list        List a summary for the given GLSA(s) or set and whether they affect the system
-	#  -d, --dump        Show all information about the GLSA(s) or set
-	#  --print           Alias for --dump
-	#  -t, --test        Test if this system is affected by the GLSA(s) or set and output the GLSA ID(s)
+	#  -l, --list List a summary for the given GLSA(s) or set and whether they affect the system
+	#  -d, --dump Show all information about the GLSA(s) or set
+	#  --print    Alias for --dump
+	#  -t, --test Test if this system is affected by the GLSA(s) or set and output the GLSA ID(s)
 	#  -p, --pretend     Show the necessary steps to remediate the system
-	#  -f, --fix         (experimental) Attempt to remediate the system based on the instructions given in the GLSA(s) or set. This will only upgrade
-	#                    (when an upgrade path exists) or remove packages
+	#  -f, --fix  (experimental) Attempt to remediate the system based on the instructions given in the GLSA(s) or set. This will only upgrade
+	#      (when an upgrade path exists) or remove packages
 	#  -i, --inject      Inject the given GLSA(s) into the glsa_injected file
-	#  -m, --mail        Send a mail with the given GLSAs to the administrator
+	#  -m, --mail Send a mail with the given GLSAs to the administrator
 bin/gpkg-helper.py
 	# usage: compose <package_cpv> <binpkg_path> <metadata_dir> <image_dir>"
 	# internal gpkg package file+metadata compression creation helper, no signing yet
@@ -233,7 +263,11 @@ bin/install-qa-check.d/95empty-dirs
 	find_empty_dirs()
 #END INSTALL-QA-Helper Functions
 bin/install.py
-	# wrap the install binary for compatibility, including copy_xattrs()
+	# python wrapper for the coreutils install binary for compatibility, including copy_xattrs()
+    #def copy_xattrs(opts, files):
+    #   Copy the extended attributes using portage.util.movefile._copyxattr
+    #def Which(filename, path=None, exclude=None):
+    #   Find the absolute path of 'filename' in a given search 'path'
 bin/isolated-functions.sh
 	# internal signal wrapper stdin handler bash pipe debug trace stuff ....
 	# also eqawarn , elog , einfo , ewarn, eerror, ebegin, eend, debug-print()
@@ -245,21 +279,34 @@ bin/misc-functions.sh
 	# Miscellaneous shell functions that make use of the ebuild env but don't need to be included directly in ebuild.sh.
 	install_symlink_html_docs()
 	canonicalize()
+	#QA
 	install_qa_check()
 	preinst_qa_check()
 	postinst_qa_check()
 	preinst_mask()
+	# #SFP( Smart FileSystem Permissions) FEATURES=sfperms
 	preinst_sfperms()
+	# #SUID (suidctl.conf) FEATURES=suidctl
 	preinst_suid_scan()
+	# #SELINUX    FEATURES=selinux
 	preinst_selinux_labels()
+	# #HOOKS
 	die_hooks()
 	success_hooks()
 	install_hooks()
+	#QA
 	eqatag()
 bin/phase-functions.sh
 	# Read an environment from stdin and echo to stdout while filtering variables with names that are known to cause interference
+    # --filter-sandbox causes all SANDBOX_* variables to be filtered, which      
+    # --filter-features causes the special FEATURES variable to be filtered.     
+    # --filter-locale causes locale related variables such as LANG and LC_*      
+    # --filter-path causes the PATH variable to be filtered. This variable
+    # ---allow-extra-vars causes some extra vars to be allowd through, such
 	__filter_readonly_variables()
 	# Filter any readonly variables from ${T}/environment, source it, and then save it via __save_ebuild_env().
+    # This process should be sufficient to prevent any stale variables or functions from an arbitrary environment from
+    # interfering with the current environment. This is useful when an existing  environment needs to be loaded from a binary or installed package.
 	__preprocess_ebuild_env()
 	# abstract prototypes
 	__ebuild_phase()
@@ -293,9 +340,27 @@ bin/phase-functions.sh
 	__dyn_help()
 	# Translate a known ebuild(1) argument into the precise name of it's corresponding ebuild phase.
 	__ebuild_arg_to_phase()
-	__ebuild_phase_funcs()
-	# Run all the phases
+ case "${arg}" in
+ pretend) ___eapi_has_pkg_pretend && phase_func=pkg_pretend
+ setup)   phase_func=pkg_setup
+ nofetch) phase_func=pkg_nofetch
+ unpack)  phase_func=src_unpack
+ prepare) ___eapi_has_src_prepare && phase_func=src_prepare
+ configure)      ___eapi_has_src_configure && phase_func=src_configure
+ compile) phase_func=src_compile
+ test)    phase_func=src_test
+ install) phase_func=src_install
+ preinst) phase_func=pkg_preinst
+ postinst)phase_func=pkg_postinst
+ prerm)   phase_func=pkg_prerm
+ postrm)  phase_func=pkg_postrm
+    __ebuild_phase_funcs()
+ local all_phases="src_compile pkg_config src_configure pkg_info
+     src_install pkg_nofetch pkg_postinst pkg_postrm pkg_preinst
+     src_prepare pkg_prerm pkg_pretend pkg_setup src_test src_unpack"
+	# Main # Subshell/helper # sandbox # env
 	__ebuild_main()
+	# Main # Runs all the phases
 bin/phase-helpers.sh
 	into()
 	insinto()
@@ -317,6 +382,12 @@ bin/phase-helpers.sh
 	einstall()
 	has_version()
 	best_version()
+    if ___eapi_has_get_libdir; then     get_libdir(){} fi   
+    if ___eapi_has_einstalldocs; then   einstalldocs(){} fi 
+    if ___eapi_has_eapply; then  eapply(){} fi
+    if ___eapi_has_eapply_user; then    eapply_user(){} fi  
+    if ___eapi_has_in_iuse; then in_iuse(){} fi
+    if ___eapi_has_usex; then    usex(){} fi
 bin/pid-ns-init
 	# PID namespace init python starter script
  	# Usage: {} <main-child-pid> or <uid> <gid> <groups> <umask> <pass_fds> <binary> <argv0> [arg]..
@@ -326,25 +397,69 @@ bin/portageq-wrapper
 	# stub wrapper
 bin/quickpkg
 	# quickly zip up installed system files on root dir and reverse make them into new packages for reuse
+ 	# $ ./quickpkg -h
 	# usage: quickpkg [options] <list of package atoms or package sets>
+	#
+	# options:
+	#  -h, --help     show this help message and exit
+	#  --umask UMASK  umask used during package creation (default is 0077)
+	#  --ignore-default-opts
+	#   do not use the QUICKPKG_DEFAULT_OPTS environment variable
+	#  --include-config <y|n>
+	#   include all files protected by CONFIG_PROTECT (as a security precaution, default is 'n')
+	#  --include-unmodified-config <y|n>
+	#   include files protected by CONFIG_PROTECT that have not been modified since installation (as a security precaution,
+	#   default is 'n')
 bin/regenworld
     # regenerates the portage world file by checking the portage logfile for all actions that you've done in the past
 bin/save-ebuild-env.sh
 	# echo the current environment to stdout, filtering out redundant info.
-	__save_ebuild_env()
+    # @FUNCTION: __save_ebuild_env
+    # @DESCRIPTION: echo the current environment to stdout, filtering out redundant info.
+    __save_ebuild_env()
+    # --exclude-init-phases causes pkg_nofetch and src_* phase functions to
+    # be excluded from the output. These function are not needed for installation
+    # or removal of the packages, and can therefore be safely excluded.
+    #    if has --exclude-init-phases $* ; then
+    #  		unset misc/other variables inherited from the calling environment
+    # There's no need to bloat environment.bz2 with internally defined
+    # functions and variables, so filter them out if possible.
+    #  	unset -f long list of env var stuff
+    # Clear out the triple underscore namespace as it is reserved by the PM.
+	#
+    # save portage config variables and variables set directly by portage user config variables
 bin/shelve-utils
 	# dump & restore shelve database (shelve<->pickle converter)
+	# usage: shelve-utils [-h] {dump,restore} ...
+	#   dump   dump shelve database
+	# 	   src  input shelve file
+	#	   dest output pickle file
+	#   restorerestore shelve database
+	#  	   src  input pickle file
+	#  	   dest output shelve file
 bin/socks5-server.py
 	# An asynchronous SOCKSv5 server. Handle incoming client connection.
 	# Perform SOCKSv5 request exchange, open a proxied connection and start relaying.
+    # SOCKSv5 proxy server for network-sandbox
+    #class Socks5Server:
+    # An asynchronous SOCKSv5 server.
+    #async def handle_proxy_conn(self, reader, writer):
+    #    Handle incoming client connection. Perform SOCKSv5 request exchange, open a proxied connection and start relaying.
+    #async def handle_proxied_conn(self, proxied_reader, writer, parent_task):
+    #    Handle the proxied connection. Relay incoming data to the client.
+    # Usage: {sys.argv[0]} <socket-path>
 bin/xattr-helper.py
 	# Dump and restore extended attributes.
-	# Dump the values of all extended attributes associated with paths passed as arguments or null-separated paths read from stdin.
-	# Restore extended attributes using " "a dump read from stdin.
-	# Dump the xattr data for |pathnames| to |file_out|
-	dump_xattrs(pathnames, file_out)
-    # Read |file_in| and restore xattrs content from it
-	restore_xattrs(file_in)
+    #    We use formats like that used by getfattr --dump.  This is meant for shell helpers to save/restore. 
+	#    If you're looking for a python/portage API, see
+    #     portage.util.movefile._copyxattr instead.
+    #    https://en.wikipedia.org/wiki/Extended_file_attributes
+	#  Dump the values of all extended attributes associated with paths passed as arguments or null-separated paths read from stdin.
+	#def dump_xattrs(pathnames, file_out):
+	#  Dump the xattr data for |pathnames| to |file_out|
+	#  Restore extended attributes using " "a dump read from stdin.
+	#def restore_xattrs(file_in):
+    #  Read |file_in| and restore xattrs content from it
 bin/xpak-helper.py
 	# Perform metadata operations on a binary package.
 	# usage: recompose <binpkg_path> <metadata_dir>
