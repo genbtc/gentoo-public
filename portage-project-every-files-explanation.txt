@@ -348,7 +348,8 @@ bin/xattr-helper.py
 bin/xpak-helper.py
 	# Perform metadata operations on a binary package.
 	# usage: recompose <binpkg_path> <metadata_dir>
-lib/_emerge/resolver/__init__.py
+#RESOLVER
+lib/_emerge/resolver/__init__.py # empty
 lib/_emerge/resolver/meson.build
 	# ( system build script, config for installing this package )
 lib/_emerge/resolver/DbapiProvidesIndex.py
@@ -358,6 +359,8 @@ lib/_emerge/resolver/output.py
 lib/_emerge/resolver/output_helpers.py
 lib/_emerge/resolver/package_tracker.py
 lib/_emerge/resolver/slot_collision.py
+#RESOLVER
+#_EMERGE
 lib/_emerge/__init__.py
 	# python module - empty.
 lib/_emerge/meson.build
@@ -892,16 +895,19 @@ lib/_emerge/stdout_spinner.py
 	#	 twirl_sequence = "/-\\|/-\\|/-\\|/-\\|\\-/|\\-/|\\-/|\\-/|"
 	# update display, scroll, spin, basic, early, quiet
 lib/_emerge/unmerge.py
-	#def _unmerge_display(
-	#def unmerge(
+	#def _unmerge_display(...)
+	#def unmerge(...)
 #***# Main Unmerge Program
 lib/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/__init__.py
 #***# Main Init Initialize Portage Program
 	# lots of stuff is in this , imports, dependencies, unicode, forkwatcher, createtrees, = boilerplate set up and inits
+lib/portage/meson.build
+	# ( system build script, config for installing this package )
+#COMPAT_UPGRADE
 lib/portage/_compat_upgrade/__init__.py	# empty
-lib/portage/_emirrordist/meson.build
+lib/portage/_compat_upgrade/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/_compat_upgrade/binpkg_compression.py
 	#COMPAT_BINPKG_COMPRESS = "bzip2"
@@ -918,9 +924,11 @@ lib/portage/_compat_upgrade/default_locations.py
 	#COMPAT_MAIN_REPO = "usr/portage"
     #	If the current installation is still configured to use any of the legacy default /usr/portage locations, 
 	#	then patch make.globals and repos.conf inside ${ED} to maintain compatible defaults
-lib/portage/_compat_upgrade/meson.build
-	# ( system build script, config for installing this package )
+#COMPATUPGRADE
+#EMIRRORDIST
 lib/portage/_emirrordist/__init__.py	# empty
+lib/portage/_emirrordist/meson.build
+	# ( system build script, config for installing this package )
 lib/portage/_emirrordist/main.py
 	#	"emirrordist - a fetch tool for mirroring " "of package distfiles"
 lib/portage/_emirrordist/Config.py
@@ -955,6 +963,7 @@ lib/portage/_legacy_globals.py
 lib/portage/_selinux.py
 	#copyfile,getcontext,is_selinux_enabled,mkdir,rename,settype,setexec,setfscreate,symlink
 	#class spawn_wrapper:
+#SETS
 lib/portage/_sets/__init__.py
 	# lots of stuff in this file.
 	#class SetConfig:
@@ -1299,6 +1308,7 @@ lib/portage/exception.py
 	#class InvalidSignature(SignatureException):
 	#class UntrustedSignature(SignatureException):
 lib/portage/getbinpkg.py
+	#some DEPRECATED
 	#def make_metadata_dict(data):
 	#class ParseLinks(html_parser_HTMLParser):
 	#def create_conn(baseurl, conn=None):
@@ -1433,6 +1443,11 @@ lib/portage/locks.py
 	#    "unhardlink_lockfile",
 	#    "hardlock_cleanup",	]
 lib/portage/mail.py
+	#def _force_ascii_if_necessary(s):
+	#def TextMessage(_text):
+	#def create_message(sender, recipient, subject, body, attachments=None):
+	#def send_mail(mysettings, message):
+	# send mail
 lib/portage/manifest.py
 	#class FileNotInManifestException(PortageException):
 	#def manifest2AuxfileFilter(filename):
@@ -1445,8 +1460,6 @@ lib/portage/manifest.py
 	#class Manifest:
 	#	Create new Manifest instance for package in pkgdir.
 	#	+ all kinds of manifest manager functions
-lib/portage/meson.build
-	# ( system build script, config for installing this package )
 lib/portage/metadata.py
 	# action metadata
 	#def action_metadata(settings, portdb, myopts, porttrees=None):
@@ -1537,7 +1550,7 @@ lib/portage/progress.py
 	#class ProgressHandler:
 	#class ProgressBar(ProgressHandler):
     #	Class to set up and return a Progress Bar
-lib/portage/proxy/__init__.py
+lib/portage/proxy/__init__.py	# empty
 lib/portage/proxy/meson.build
 	# ( system build script, config for installing this package )
 lib/portage/proxy/lazyimport.py
@@ -1598,6 +1611,7 @@ lib/portage/sync/syncbase.py
 lib/portage/util/ExtractKernelVersion.py
 lib/portage/util/SlotObject.py
 lib/portage/util/__init__.py
+# this is a huge file of random important crap
 lib/portage/util/_async/AsyncFunction.py
 lib/portage/util/_async/AsyncScheduler.py
 lib/portage/util/_async/AsyncTaskFuture.py
@@ -1692,8 +1706,11 @@ lib/portage/util/mtimedb.py
 lib/portage/util/netlink.py
 lib/portage/util/path.py
 lib/portage/util/shelve.py
+	#shelve db pickle
 lib/portage/util/socks5.py
+	#socks5 proxy
 lib/portage/util/whirlpool.py
+	#whirlpool crypto
 lib/portage/util/writeable_check.py
 #UTIL
 lib/portage/xml/__init__.py	# empty

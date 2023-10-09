@@ -18,11 +18,11 @@ Top 100 Largest Files in Portage:
 107874  ./lib/portage/dep/__init__.py
  90388  bintree.py
  85602  Scheduler.py
- 84461  RELEASE-NOTES
+ 84461  RELEASE-NOTES					#NOTES
  80633  gpkg.py
  79515  fetch.py
- 71752  emerge.1
- 71291  portage_util__whirlpool.c
+ 71752  emerge.1						#manpage
+ 71291  portage_util__whirlpool.c		#cryptodata
  68950  ./lib/portage/util/__init__.py
  64264  porttree.py
  64011  portage.5
@@ -30,8 +30,8 @@ Top 100 Largest Files in Portage:
  61325  ebuild.5
  58871  slot_collision.py
  58416  whirlpool.py
- 57969  make.conf.5
- 56699  NEWS
+ 57969  make.conf.5						#example.conf
+ 56699  NEWS							#NEWS
  53990  egencache
  51197  portageq
  42502  ResolverPlayground.py
@@ -51,7 +51,7 @@ Top 100 Largest Files in Portage:
  29784  output.py
  28160  locks.py
  26360  unmerge.py
- 26214  sets.docbook
+ 26214  sets.docbook					#docs
  26114  ebuild.sh
  25908  ./lib/portage/__init__.py
  25443  FetchTask.py
@@ -70,7 +70,7 @@ Top 100 Largest Files in Portage:
  20049  git.py
  20007  doins.py
  19951  dispatch-conf
- 19579  qa.docbook
+ 19579  qa.docbook						#docs
  19413  xpak.py
  19287  prepare_build_dirs.py
  19275  versions.py
@@ -79,7 +79,7 @@ Top 100 Largest Files in Portage:
  18469  sync.py
  18231  AbstractEbuildProcess.py
  18212  ebuild.1
- 18092  LICENSE
+ 18092  LICENSE							#LICENSE
  17406  estrip
  17014  update.py
  16789  metadata.py
@@ -93,10 +93,10 @@ Top 100 Largest Files in Portage:
  15592  env_update.py
  15573  files.py
  15468  ebuild
- 15189  pylintrc
+ 15189  pylintrc							#dev lint
  14806  movefile.py
  14745  controller.py
- 14690  4.docbook
+ 14690  4.docbook							#docs
  14395  EbuildFetcher.py
  14268  ./lib/portage/_sets/__init__.py
  14093  dispatch_conf.py
@@ -112,6 +112,7 @@ Top 100 Largest Files in Portage:
  11932  circular_dependency.py
 
 List of files in portage/bin/ directory:
+#(in reverse alphabetical order)
 ---------- ---------- ---------- ----------
 
 bin/xpak-helper.py
@@ -598,7 +599,7 @@ bin/estrip
 ...
 ....
 ----------
-start list alphabetical order reverse direction
+(start list alphabetical order reverse direction)
 ----------
 --------------
 ------------------
@@ -836,7 +837,8 @@ src/portage_util_libc.c
 	.ml_meth = _libc_toupper,
 	.ml_doc = "Convert to upper case using system locale."
 
-
+------------------------------------------------------------------------------------------
+#UTIL DIR
 lib/portage/util/:
 [DIR]_async
 backoff.py
@@ -998,6 +1000,7 @@ UnmergeDepPriority.py
 unmerge.py
 UseFlagDisplay.py
 
+#EMERGE RESOLVER
 lib/_emerge/resolver:
 backtracking.py
 circular_dependency.py
