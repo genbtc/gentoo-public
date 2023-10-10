@@ -1337,9 +1337,8 @@ lib/portage/util/compression_probe.py
 	#    "xz": { "package": "app-arch/xz-utils",
 	#    "zstd": { "package": "app-arch/zstd",   
 lib/portage/util/configparser.py
-	#def read_configs()   
-	#	Read configuration files from given paths into the specified                                                                                                                                                                                                             
-	#    ConfigParser, handling path encoding portably                                                                                                                                                                                                                            
+	#def read_configs()
+	#	Read configuration files from given paths into the specified ConfigParser, handling path encoding portably
 lib/portage/util/cpuinfo.py
 lib/portage/util/digraph.py
 lib/portage/util/elf/__init__.py

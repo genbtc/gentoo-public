@@ -36,7 +36,7 @@ bin/chmod-lite.py
 	# Emulate 'chmod -fR a+rX,u+w,g-w,o-w' with minimal chmod calls.
 bin/chpathtool.py
 	# Helper tool for converting installed files to custom prefixes.
-    # usage: chpathtool.py [-h] location old new                                                                                                                                                                                                                                
+    # usage: chpathtool.py [-h] location old new
     # chpathtool.py: error: the following arguments are required: location, old, new
 bin/clean_locks
 	# specify directories with hardlink-locks to clean. (on the command line)

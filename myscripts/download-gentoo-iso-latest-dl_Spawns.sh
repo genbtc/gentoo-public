@@ -1,5 +1,5 @@
 #!/bin/bash
-# 2023 Spawns_Carpeting @gentoo - v0.3
+# 2023 Spawns_Carpeting @gentoo - v0.4
 #Requires gentoo functions & gemato, gpg, wget
 
 if [ -e /lib/gentoo/functions.sh ]; then
@@ -35,7 +35,7 @@ retry() {
 }
 
 parse_latest_txt() {
-    grep '^[^#]' | cut -d ' ' -f 1 | cut -d '/' -f 2
+    sed -n '6p' | grep '^[^#]' | cut -d ' ' -f 1 | cut -d '/' -f 2
 }
 
 file="${1}"
