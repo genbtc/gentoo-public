@@ -4,6 +4,7 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias l='ls -alZ --color'
 alias ls='ls -alZ --color'
+alias lt='ls -t  | head'
 alias less='less -R'
 alias dmesg='dmesg -x --color=always | less -R'
 alias diffy='diff -y --suppress-common-lines -W240'
@@ -22,6 +23,7 @@ COLOR2="\033[01;32m"
 COLOR3="\033[01;33m"
 COLOR4="\033[01;34m"
 ENDCOLOR="\033[00m"
+export mydir="/home/genr8eofl/src/gentoo-public/"
 export serverdir="/run/user/1000/gvfs/smb-share:server=10.1.1.1,share=raidz-4tbx4/DiskImages/LinuxDD"
 #linux kernel
 export KERNEL="/usr/src/linux"
@@ -56,7 +58,7 @@ eqwd() { d=$(dirname "$(eq w "$1")"); echo "$d"; ls -at "$d"; }
 alias ~~='ACCEPT_KEYWORDS="~amd64"'
 ebuild2() { ebuild "$(equery which "$(echo "$1"| awk '{print $1}')")"  "$2" ; }
 enano()   {  nano  "$(equery which "$1")" ; }
-eclass() { portageq eclass_path / gentoo "$1" ; }
+eclass() { nano "$(portageq eclass_path / gentoo "$1")" ; }
 emergelog() { awk  '{$1= strftime("%m-%d-%Y %H:%M:%S",$1); print }' /var/log/emerge.log | less -R; }
 
 efile() {
@@ -119,6 +121,7 @@ fixelogbugz() {
 
 #Take/Change ownership user/context to me. Should work for multiple files.
 chownse() { chown genr8eofl: "$@"; chcon -v -u user_u "$@"; }
+chownser() { chown genr8eofl: "$@"; chcon -v -u user_u "$@"; restorecon -RFv "$@"; }
 
 #Compile a selinux policy module and install it:
 #Usage:  semakemod foobar.te
@@ -135,7 +138,7 @@ semakemod() {
     return 9
   fi
 }
-
+alias semakegit='command semakegit.sh'
 #Compare module source vs built binary, check if hash has changed, if it has, rebuild.
 secheckmods() {
 #scan dir for files that need updating and build them.
@@ -184,7 +187,7 @@ setypegrep() {
   grep "^allow\|dontaudit\|auditallow" "$1"\
    | awk '{print $2"\n"$3}' | sed 's/\;//' \
     | cut -d':' -f1 | uniqawk | grep -v "self" \
-     | awk '{print "    type " $1;}' \
+     | awk '{print "    type " $1";"}' \
   | tee /tmp/setypes-"$1" | more ;
 }	#pattern deficiency, misses interfaces(type_t) and type_t { com bin at io ns }#
 	# doesnt check if they're valid, gets weird words.
@@ -203,3 +206,4 @@ oldsuperprocdiskstats() {
   ./superprocdiskstats "$1"
   echo ; cat /tmp/procdiskstats | ./rel | ./align ; popd || exit ;
 }
+
