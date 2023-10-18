@@ -1,31 +1,57 @@
-Ideas: 
+genr8eofl's my Gentoo Portage Ideas:
+#genr8eofl original work, (Dated October 17, 2023) = LICENSE: CCSA 4.0, Attribution
 
-Portage on the web
-Portage Binhost Daemon
-Portage Server/Client API
+1. Portage on the web
+2. Portage Binhost Daemon
+3. Portage Server/Client API
 
-ask Portage whats installed
-ask portage how to resolve deps
-ask portage what binpkgs it can fulfill
-queue portage jobs remotely
-build packages remotely
-SPEC FILE for building.
-spec.json:
+package queriers: gentoolkit equery, q*, portageq, eix, gentoopm now
+
+equery + portageq + gentoopm are python, eix/q = C
+
+ask Portage whats installed - query
+ask portage how to resolve deps - depgraph
+ask portage what binpkgs it can fulfill - binpkg
+queue portage jobs remotely - queue
+build packages remotely - build
+SPEC FILE for building. - spec
+package-spec.json:
     {
+		"dependsonset": "@system",
         "arch": "v2",
         "CFLAGS": "-O2 -pipe",
         "make.confVAR1": "1",
         "make.confVAR2": "2"
     }
-portage_execute_command: emerge --buildpkgonly --remote 192.168.2.2 <pkgname>
 
-make it work like distCC except not in src_compile, just pkg_fetch and pkg_install
+ask portage to execute one command at a time - execute
+portage_execute_command: -execute - emerge --buildpkgonly --remote 192.168.2.2 <pkgname>
+internally make it work like distCC except not in src_compile, just pkg_fetch and pkg_install
 
+What Could be Taken Further:
 Portage OSTree . 
 Bootstrap
+Immutable
+Reproducible
 
-one thing I think that would be helpful is to convert Public concepts into gentooisms lingo and then into some python api code, or CLI one-liner.
+Goal:
+if we can absorb or adapt mainstream concepts into gentoo-isms/gentoo processes & lingo, then into some python api code, or CLI one-liner.
 
-package queriers: equery, q*, portageq, eix, gentoopm now
+Get Portage Web Enabled:
+-------------------------
+FASTAPI
+-------
+Fastapi - experimental project used to connect to the gentoo wiki and run commands on a gentoo host
+https://github.com/genbtc/gentoowiki-fastapi
+this proved the concept that any command can be run as a fastapi hook and the command line can be captured on stdout and displayed as HTML
+the issue is command line + stdout + fork + FD is already complicated and information and time is lost across that boundary
+if we can get access to the internals of portage we can use Py object representations for full types and use only the actual python methods we need - instead of the whole program - to speed up response time
 
-equery + portageq + gentoopm are python, eix/q = C
+that lead me to this idea
+FastAPI + WebSocket + JSON RPC
+-------------------------------
+I've come across this project after using the Flask like FastAPI + Uvicorn combination for python web fun
+https://github.com/permitio/fastapi_websocket_rpc/
+we should be able to attach this project to the internals of portage
+to have one portage talk the other in a client/server scenario with very little added work, 
+and just a few quick dependencies of python fastapi + native uvicorn
