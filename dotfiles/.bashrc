@@ -12,6 +12,6 @@ __update_prompt() {
 
 #source /root/.config/broot/launcher/bash/br
 
-PATH=$PATH:/root/myscripts
+PATH=$PATH:/home/genr8eofl/src/gentoo-public/myscripts
 
-source /root/.bash_aliases
+source ~/.bash_aliases
