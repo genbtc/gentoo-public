@@ -1,0 +1,12 @@
+policy_module(secureboot, 1.0)
+#Secureboot
+#for /usr/share/secureboot/keys and /etc/keys/secureboot
+type secureboot_t;
+type secureboot_keys_t;
+
+gen_require(`
+    attribute file_type, security_file_type, auth_file_type;
+')
+attribute secureboot_file;
+typeattribute secureboot_t file_type, security_file_type, auth_file_type, secureboot_file;
+typeattribute secureboot_keys_t file_type, security_file_type, auth_file_type, secureboot_file;

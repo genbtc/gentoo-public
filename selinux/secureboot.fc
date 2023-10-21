@@ -1,0 +1,2 @@
+/etc/keys/secureboot(/.*)?        gen_context(system_u:object_r:secureboot_keys_t,s0)
+/usr/share/secureboot/keys(/.*)?  gen_context(system_u:object_r:secureboot_keys_t,s0)
