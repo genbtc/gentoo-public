@@ -1,20 +1,23 @@
 #!/bin/bash
-# timestamps script, find-vardbpkg-BUILD_TIME.sh v0.3 -  by genr8eofl @ gentoo - copyright 2023 - AGPL3 License
-# Description: Gather BUILD_TIME installation emerge Timestamp from vdb varPkgDB
+# timestamps script, find-vardbpkg-BUILD_TIME.sh v0.4 -  by genr8eofl @ gentoo - copyright 2023 - AGPL3 License
+# Description: Gather emerge BUILD_TIME installation Timestamp from vdb varPkgDB, compare with some older time, print results
 
 if [[ $# -eq 0 ]]; then
-	echo "Usage: # $(basename "$0")  1670008162  (must provide a timestamp)" && exit
+	echo "Usage: # $(basename "$0")  1670008162  (timestamp cutoff to find OLDER packages)" && exit
 fi
+
 #shellcheck disable=2044 #(warning): For loops over find output are fragile. Use find -exec or a while read loop.
 for x in $(find /var/db/pkg -name BUILD_TIME); do
-	btime=$(cat "$x");
+	#read vdb file from disk
+	read btime < "$x"
 #shellcheck disable=2001 #(style): See if you can use ${variable//search/replace} instead.
-	cpv=$(echo "$x" | sed 's|/var/db/pkg/||g; s|/BUILD_TIME||g;');
-#	cpv=$(echo "$f" | sed 's|/BUILD_TIME||g');
-	#compare numeric timestamp, if X is earlier than first parameter $1, jle
+	#chop cruft off path to get Category Package Version + Revision
+	cpv=$(echo "$x" | sed 's|/var/db/pkg/||g; s|/BUILD_TIME||g;')
+	#numerical compare timestamp, if X is earlier than first parameter $1, jle
 	if (( "$btime" <= "$1" )); then
-		echo "$btime" "$cpv";	#package is older.
-	fi;
+		echo "$btime" "$cpv";	#package is older. print out.
+	fi
+	#done
 done
 
 #OUTPUT:

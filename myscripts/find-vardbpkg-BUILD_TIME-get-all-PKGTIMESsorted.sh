@@ -1,12 +1,12 @@
 #!/bin/bash
-# find-vardbpkg-BUILD_TIME-get-all-PKGTIMESsorted.sh v0.3 by @genr8eofl copyright 2023 - AGPL3 License
+# find-vardbpkg-BUILD_TIME-get-all-PKGTIMESsorted.sh v0.4 by @genr8eofl copyright 2023 - AGPL3 License
 # Description: Get BUILD_TIME, human date, sorted list of packages and timestamps.
 #shellcheck disable=2128 #SC2128 (warning): Expanding an array without an index only gives the first elemen
 
-PKGDIR="/var/db/pkg"
-find $PKGDIR -type f -name BUILD_TIME | sed 's|/var/db/pkg/||g' > BUILDTIMES.tmp
+PKGDIR="/var/db/pkg/"
+find $PKGDIR -type f -name BUILD_TIME | sed "s|$PKGDIR||g" > BUILDTIMES.tmp
 while read -ra PKG; do
-	read -ra epoch < "$PKGDIR/$PKG";
+	read -ra epoch < "$PKGDIR$PKG";
     humandate=$(date --date=@"$epoch")
     echo "$epoch   =   $humandate   =   $PKG" >> PKGTIMES.tmp
 done < BUILDTIMES.tmp;
