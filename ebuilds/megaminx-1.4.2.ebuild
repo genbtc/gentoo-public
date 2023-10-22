@@ -33,8 +33,7 @@ src_configure() {
 }
 
 src_install() {
-    mv ${BUILD_DIR}/Megaminx ${BUILD_DIR}/megaminx
-    dobin ${BUILD_DIR}/megaminx
+    newbin ${BUILD_DIR}/Megaminx megaminx
     einstalldocs
 }
 
