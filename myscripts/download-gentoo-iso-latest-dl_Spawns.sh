@@ -6,7 +6,8 @@ if [ -e /lib/gentoo/functions.sh ]; then
 	source /lib/gentoo/functions.sh
 fi
 
-bouncer='https://bouncer.gentoo.org/'
+#bouncer='https://bouncer.gentoo.org/'
+bouncer=${GENTOO_MIRRORS}
 gentoo_release='/usr/share/openpgp-keys/gentoo-release.asc'
 
 die() {
@@ -54,10 +55,12 @@ fi
 
 
 arch=$(cut -d '-' -f 2 <<< "${file}")
-directory="/fetch/root/all/releases/${arch}/autobuilds"
+#directory="/fetch/root/all/releases/${arch}/autobuilds"
+directory="releases/${arch}/autobuilds"
 
 echo
 ebegin "Fetching latest-${file}.txt ...\n"
+echo "${bouncer}"
 _wget "${bouncer}/${directory}/latest-${file}.txt"
 die $? "failed to fetch ${latest-${file}.txt}"
 latest=$(< "latest-${file}.txt" parse_latest_txt)
