@@ -10,8 +10,6 @@ __update_prompt() {
     fi
 }
 
-#source /root/.config/broot/launcher/bash/br
-
-PATH=$PATH:/home/genr8eofl/src/gentoo-public/myscripts
+PATH=$PATH:~/gentoo-public/myscripts
 
 source ~/.bash_aliases

@@ -56,7 +56,9 @@ imacleanfix() { evmctl2 ima_clear -s "$@"; imafix2 -s "$@"; }   #Fixes one bad s
 alias eq='equery'
 eqwd() { d=$(dirname "$(eq w "$1")"); echo "$d"; ls -at "$d"; }
 alias ~~='ACCEPT_KEYWORDS="~amd64"'
-ebuild2() { ebuild "$(equery which "$(echo "$1"| awk '{print $1}')")"  "$2" ; }
+#ebuild2() { ebuild "$(equery which "$(echo "$1"| awk '{print $1}')")"  "$2" ; }
+#ebuild2() { ebuild "$(equery which "$(awk '{print $1}'<<< $1)")"  "$2" ; }
+ebuild2() { ebuild "$(equery which "$1")"  "$2" ; }
 enano()   {  nano  "$(equery which "$1")" ; }
 eclass() { nano "$(portageq eclass_path / gentoo "$1")" ; }
 emergelog() { awk  '{$1= strftime("%m-%d-%Y %H:%M:%S",$1); print }' /var/log/emerge.log | less -R; }
@@ -68,6 +70,8 @@ efile() {
 useflags()     { efile "/etc/portage/package.use/flags" "$@" ; }
 keywordflags() { efile "/etc/portage/package.accept_keywords/${1/'/'/-}" "$@" ; }
 worldflags()   { efile "/var/lib/portage/world" "$@" ; }
+maskflags()    { efile "/etc/portage/package.mask/flags" "$@" ; }
+unmaskflags()  { efile "/etc/portage/package.unmask/flags" "$@" ; }
 
 ediff() { diffebuild "$@" ; }
 #NEW: diffebuild is now ediff
@@ -133,12 +137,14 @@ semakemod() {
     cp -bvf "$pp" ../modules/
     restorecon -RFv ../modules/
     semodule -i ../modules/"$pp"
+    semakegit "$@"
   else
     echo -e "${COLOR4}ERROR $?:${ENDCOLOR} There was an error with ${1} inside semakemod"
     return 9
   fi
 }
-alias semakegit='command semakegit.sh'
+semakegit() { semakegit.sh "$@" | grep -v "skipped" ; }
+
 #Compare module source vs built binary, check if hash has changed, if it has, rebuild.
 secheckmods() {
 #scan dir for files that need updating and build them.
@@ -168,8 +174,9 @@ secheckmods() {
 
 pp2cil() { /usr/libexec/selinux/hll/pp "$@" ; }
 
+#TODO: Make better.
 aud2te(){ tail -n "$1" "$2" | audit2why -eR >> "$2" ; nano +-1 "$2" ; }
-
+#TODO: Make better.
 #invented a way to check if a module is providing lines of CIL
 # that would be duplicates of previous policy
 sedupecheck() {
@@ -191,13 +198,14 @@ setypegrep() {
   | tee /tmp/setypes-"$1" | more ;
 }	#pattern deficiency, misses interfaces(type_t) and type_t { com bin at io ns }#
 	# doesnt check if they're valid, gets weird words.
-
+#TODO: make better
 #Important to reset dynamic context of generated cache files that have been mis-tagged. Why?
 # portage regenerates them, the code would come from the eclasses, and those don't set them itself for some reason. or call an update.
 #  or the .fc file type is not taking effect on these dynamic files because the program isnt selinux aware somehow ?
-#do: setenforce 0; serestoremime; setenforce 1
 serestoremime() {
+    setenforce 0
     sed -e 's#HOME_DIR/\\#/home/genr8eofl/#' /etc/selinux/strict/policy/mime-icon-cache.fc | grep -v "^#\|.*?" | cut -d' ' -f1 | xargs restorecon -RFv
+    setenforce 1
 }
 
 #super old script for disk stats
