@@ -1,0 +1,242 @@
+alsa_read_config(virtualbox_t)
+
+hexchat_run(user_t, user_r)
+mullvad_run(initrc_t, system_r)
+mullvad_run(user_t, user_r)
+psensor_run(user_t, user_r)
+qemu_run(user_t, user_r)
+transmission_run(user_t, user_r)
+
+application_domain(hexchat_t, hexchat_exec_t)
+application_domain(mullvad_t, mullvad_exec_t)
+application_domain(psensor_t, psensor_exec_t)
+application_domain(qemu_t, qemu_exec_t)
+application_domain(transmission_t, transmission_exec_t)
+application_domain(virtualbox_t, virtualbox_exec_t)
+
+auth_use_nsswitch(virtualbox_t)
+
+corecmd_exec_bin(mullvad_t)
+corecmd_exec_bin(virtualbox_t)
+
+corecmd_exec_shell(mullvad_t)
+corecmd_exec_shell(virtualbox_t)
+
+corenet_all_recvfrom_netlabel(virtualbox_t)
+
+corenet_port(freenas_tunnel_port_t)
+corenet_port(netcat_port_t)
+corenet_port(pfsense_tunnel_port_t)
+
+corenet_sendrecv_http_client_packets(virtualbox_t)
+
+corenet_tcp_connect_http_port(virtualbox_t)
+corenet_tcp_sendrecv_generic_if(virtualbox_t)
+corenet_tcp_sendrecv_generic_node(virtualbox_t)
+
+dbus_all_session_bus_client(psensor_t)
+dbus_all_session_bus_client(transmission_t)
+dbus_all_session_bus_client(xscreensaver_t)
+
+dbus_connect_all_session_bus(psensor_t)
+dbus_connect_all_session_bus(transmission_t)
+dbus_connect_all_session_bus(xscreensaver_t)
+
+dbus_send_system_bus(transmission_t)
+
+dbus_system_bus_client(systemd_logind_t)
+dbus_system_bus_client(xscreensaver_t)
+dbus_system_bus_unconfined(xscreensaver_t)
+
+dev_mounton_sysfs_dirs(virtd_t)
+
+dev_read_rand(mullvad_t)
+dev_read_rand(virtualbox_t)
+
+dev_read_realtime_clock(virtualbox_t)
+dev_read_sound_mixer(virtualbox_t)
+
+dev_read_sysfs(mplayer_t)
+dev_read_sysfs(mullvad_t)
+dev_read_sysfs(psensor_t)
+dev_read_sysfs(transmission_t)
+dev_read_sysfs(xscreensaver_t)
+
+dev_read_urand(hexchat_t)
+dev_read_urand(psensor_t)
+dev_read_urand(transmission_t)
+dev_read_urand(virtualbox_t)
+
+dev_read_video_dev(virtualbox_t)
+
+dev_remount_sysfs(virtd_t)
+
+dev_rw_dri(mplayer_t) 
+dev_rw_dri(mullvad_t)
+dev_rw_dri(virtualbox_t)
+dev_rw_dri(xscreensaver_t) 
+
+dev_rwx_zero(virtualbox_t)
+dev_write_sound_mixer(virtualbox_t)
+dev_write_video_dev(virtualbox_t)
+
+domain_public_key(kernel_t)
+domain_use_interactive_fds(hexchat_t)
+domain_use_interactive_fds(psensor_t)
+domain_use_interactive_fds(transmission_t)
+domain_use_interactive_fds(virtualbox_t)
+
+domtrans_pattern(user_gkeyringd_t, ssh_agent_exec_t, user_ssh_agent_t)
+
+files_list_home(virtualbox_t)
+
+files_read_etc_files(hexchat_t)
+files_read_etc_files(mullvad_t)
+files_read_etc_files(psensor_t)
+files_read_etc_files(transmission_t)
+files_read_etc_files(virtualbox_t)
+
+files_read_etc_runtime_files(virtualbox_t)
+
+files_read_non_security_files(virtualbox_t)
+
+files_read_usr_files(hexchat_t)
+files_read_usr_files(psensor_t)
+files_read_usr_files(transmission_t)
+files_read_usr_files(virtualbox_t)
+
+fs_getattr_all_fs(hexchat_t)
+fs_getattr_all_fs(psensor_t)
+fs_getattr_all_fs(transmission_t)
+fs_getattr_all_fs(virtualbox_t)
+
+fs_list_dos(virtualbox_t)
+fs_list_inotifyfs(virtualbox_t)
+fs_read_dos_files(virtualbox_t)
+fs_read_iso9660_files(virtualbox_t)
+fs_read_removable_files(virtualbox_t)
+fs_read_removable_symlinks(virtualbox_t)
+fs_search_auto_mountpoints(virtualbox_t)
+fs_search_removable(virtualbox_t)
+
+fs_tmpfs_filetrans(virtualbox_t, virtualbox_tmpfs_t,{ dir file lnk_file sock_file fifo_file })
+
+gnome_dbus_chat_gkeyringd(user, systemd_logind_t)
+
+#ifdef(`distro_gentoo',`
+#ifndef(`enable_mls',`
+
+kernel_read_crypto_sysctls(virtualbox_t)
+kernel_read_kernel_sysctls(virtualbox_t)
+
+kernel_read_system_state(hexchat_t)
+kernel_read_system_state(psensor_t)
+kernel_read_system_state(transmission_t)
+kernel_read_system_state(virtualbox_t)
+
+logging_send_syslog_msg(virtualbox_t)
+
+manage_fifo_files_pattern(virtualbox_t, virtualbox_tmpfs_t, virtualbox_tmpfs_t)
+manage_files_pattern(virtualbox_t, virtualbox_tmpfs_t, virtualbox_tmpfs_t)
+manage_lnk_files_pattern(virtualbox_t, virtualbox_tmpfs_t, virtualbox_tmpfs_t)
+manage_sock_files_pattern(virtualbox_t, virtualbox_tmpfs_t, virtualbox_tmpfs_t)
+
+miscfiles_read_fonts(hexchat_t)
+miscfiles_read_fonts(mullvad_t)
+miscfiles_read_fonts(psensor_t)
+miscfiles_read_fonts(transmission_t)
+miscfiles_read_fonts(virtualbox_t)
+
+miscfiles_read_localization(hexchat_t)
+miscfiles_read_localization(mullvad_t)
+miscfiles_read_localization(psensor_t)
+miscfiles_read_localization(transmission_t)
+miscfiles_read_localization(virtualbox_t)
+
+mozilla_domtrans(hexchat_t)
+
+#optional_policy(`
+#policy_module(boot, 1.06)
+
+pulseaudio_run(virtualbox_t, virtualbox_roles)
+
+selinux_remount_fs(virtd_t)
+
+seutil_get_semanage_read_lock(useradd_t);
+seutil_get_semanage_trans_lock(useradd_t);
+
+selinux_get_all_booleans(mozilla_t);
+selinux_get_all_booleans(mplayer_t);
+selinux_get_all_booleans(mullvad_t);
+selinux_get_all_booleans(portage_fetch_t);
+selinux_get_all_booleans(psensor_t);
+selinux_get_all_booleans(transmission_t);
+selinux_get_all_booleans(xscreensaver_t);
+selinux_get_all_booleans(xserver_t);
+seutil_libselinux_linked(mozilla_t)
+seutil_libselinux_linked(mplayer_t)
+seutil_libselinux_linked(mullvad_t)
+seutil_libselinux_linked(portage_fetch_t)
+seutil_libselinux_linked(psensor_t)
+seutil_libselinux_linked(transmission_t)
+seutil_libselinux_linked(useradd_t);
+seutil_libselinux_linked(xscreensaver_t)
+seutil_libselinux_linked(xserver_t)
+
+seutil_manage_file_contexts(useradd_t);
+seutil_read_module_store(useradd_t);
+
+storage_raw_read_removable_device(virtualbox_t)
+storage_raw_rw_virtual_disk(virtualbox_t)
+
+#tunable_policy(`virtualbox_manage_generic_user_content',`
+#tunable_policy(`xserver_allow_dri',`
+
+userdom_dbus_send_all_users(transmission_t)
+userdom_manage_user_tmp_dirs(virtualbox_t)
+userdom_manage_user_tmp_files(virtualbox_t)
+userdom_tmp_filetrans_user_tmp(virtualbox_t, { dir file })
+userdom_user_application_domain(qemu_t, qemu_exec_t)
+userdom_user_content_access_template(hexchat, hexchat_t)
+userdom_user_content_access_template(psensor, psensor_t)
+userdom_user_content_access_template(qemu, qemu_t)
+userdom_user_content_access_template(transmission, transmission_t)
+userdom_user_content_access_template(virtualbox, virtualbox_t)
+userdom_user_home_dir_filetrans_user_home_content(qemu_t, { dir file })
+userdom_user_home_dir_filetrans_user_home_content(virtualbox_t, { dir file })
+userdom_user_runtime_filetrans_user_tmp(virtualbox_t, { dir file })
+userdom_user_tmpfs_file(hexchat_tmpfs_t)
+userdom_user_tmpfs_file(psensor_tmpfs_t)
+userdom_user_tmpfs_file(transmission_tmpfs_t)
+userdom_user_tmpfs_file(virtualbox_tmpfs_t)
+userdom_use_user_terminals(hexchat_t)
+userdom_use_user_terminals(mullvad_t)
+userdom_use_user_terminals(psensor_t)
+userdom_use_user_terminals(transmission_t)
+userdom_use_user_terminals(virtualbox_t)
+userdom_write_user_tmp_sockets(virtualbox_t)
+
+wm_application_domain(qemu_t, qemu_exec_t)
+
+xdg_cache_content(transmission_xdg_cache_t)
+xdg_config_content(hexchat_xdg_config_t)
+xdg_config_content(psensor_xdg_config_t)
+xdg_config_content(transmission_xdg_config_t)
+
+xdg_manage_all_config(transmission_t)
+xdg_manage_all_data(transmission_t)
+xdg_manage_config(xscreensaver_t)
+xdg_manage_data(xscreensaver_t)
+xdg_manage_downloads(transmission_t)
+xdg_read_cache_files(transmission_t)
+
+xserver_manage_mesa_shader_cache(mplayer_t)
+xserver_manage_mesa_shader_cache(mullvad_t)
+xserver_manage_mesa_shader_cache(xscreensaver_t)
+xserver_rw_mesa_shader_cache(virtualbox_t)
+
+xserver_user_x_domain_template(hexchat, hexchat_t, hexchat_tmpfs_t)
+xserver_user_x_domain_template(mullvad, mullvad_t, mullvad_t)
+xserver_user_x_domain_template(psensor, psensor_t, psensor_tmpfs_t)
+xserver_user_x_domain_template(transmission, transmission_t, transmission_tmpfs_t)
+xserver_user_x_domain_template(virtualbox, virtualbox_t, virtualbox_tmpfs_t)
