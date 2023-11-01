@@ -1,0 +1,16 @@
+#Example output of download-gentoo-iso-latest-dl_Spawns.sh
+genr8too /mnt/crucialp1 # download-gentoo-iso-latest-dl_Spawns.sh livegui-amd64
+
+ * Fetching latest-livegui-amd64.txt ...
+ ...
+ * Parsed file latest-livegui-amd64.txt - most recent stage is livegui-amd64-20231029T164701Z.iso
+
+ * Fetching signature .asc for livegui-amd64 ...
+ ...                                                                                                                                                                                                                                      [ ok ]
+ * Downloading latest release autobuild livegui-amd64-20231029T164701Z.iso ...
+ ...                                                                                                                                                                                                                                      [ ok ]
+ * Verifying signature of release livegui-amd64-20231029T164701Z.iso
+ ...
+gpg: Signature made Sun Oct 29 23:01:47 2023 EDT
+gpg:                using RSA key 534E4209AB49EEE1C19D96162C44695DB9F6043D
+gpg: Good signature from "Gentoo Linux Release Engineering (Automated Weekly Release Key) <releng@gentoo.org>" [ultimate]                                                                                                                 [ ok ]
