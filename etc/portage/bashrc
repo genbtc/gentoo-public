@@ -17,9 +17,17 @@ if [ "${EBUILD_PHASE}" == "preinst" ]; then
   if [ "${PN}" == "gentoo-sources" ] || [ "${PN}" == "gentoo-kernel" ] || [ "${PN}" == "gentoo-kernel-bin" ]; then
 	return;
   fi
-  #PARTDONE: TODO-This can be very slow on large packages and useless on non-binary pkgs like gentoo-sources
-  echo "::1 BashRC PreInst: Analyzing files w/ CHECKSEC..."
+  if [ "${PN}" == "x11-themes/papirus-icon-theme" ]; then    return;  fi
+  #NOTE: This can be very slow on large packages and useless on non-binary pkgs like gentoo-sources
+  echo "::1 /etc/portage/bashrc PreInst: Analyzing files w/ CHECKSEC..."
+  #Also log its output forever to special buildlogs/checksec dir
   checksec --dir=${D} | tee /var/cache/buildlogs/checksec/${PN}-${PV}-1.txt
+#weak patch, post-image, pre-fs .patch July25-2023
+  if [ "${PN}" == "x11-drivers/xf86-video-amdgpu" ]; then
+    sed -i 6i'\
+\tOption "TearFree" "On"
+' ${D}/usr/share/X11/xorg.conf.d/10-amdgpu.conf
+  fi
 fi
 #	echo "::1 Any EVM xattr Fixing here in the tmp/work/image dir \${D} will NOT copy \
 #            any security.ima/evm xattr to / root because of make.globals xattr_ignore..."
@@ -30,30 +38,46 @@ if [ "${EBUILD_PHASE}" == "postinst" ]; then
   if [ "${PN}" == "gentoo-sources" ] || [ "${PN}" == "gentoo-kernel" ] || [ "${PN}" == "gentoo-kernel-bin" ]; then
 	return;
   fi
-  echo "::2 BashRC PostInst: imafix2 SHA512 Hashing in progress..."
+  echo "::2 /etc/portage/bashrc PostInst: imafix2 SHA512 Hashing in progress..."
 																#"omit dir,path,sym,dev
   equery -C files ${PN}-${PVR} -f "obj,conf,cmd,doc,man,info,fifo" | parallel imafix2 -s
-  einfo "Logfile: ${PORTAGE_LOG_FILE}" 	#helps in elogv to correlate the logs
+  #Save LogFile to elog. helps in elogv to correlate the logs
+  einfo "Logfile: ${PORTAGE_LOG_FILE}"
 fi
 
 pre_src_configure() {
-        echo "Estimated Merge Times: "
-        qlop -t "${CATEGORY}"/"${PN}"
-		echo "::0 BashRC $FUNCNAME(): "
-#		echo ">>> ENV:" && env
+	echo "::0 /etc/portage/bashrc $FUNCNAME() begin: "
+    #display average build time
+    echo "Estimated Merge Times: "
+    qlop -v -t "${CATEGORY}"/"${PN}"
+#	#	echo ">>> ENV:" && env  #debug entire env
+    #Log emerge --info so its stored as an artifact in environment.bz2
 	if [ -n EMERGEINFO ]; then
 		echo ">>> emerge --info embedded into environment as \$EMERGEINFO"
-		export EMERGEINFO=$(emerge --ignore-default-opts --info );
+		export EMERGEINFO=$(emerge --ignore-default-opts --info);  #exports are auto-captured
 	fi
+#Enumerate --configure Options
 	if [ -f configure ] && [ ! -f meson.build ]; then
-        #package is weird
-		if [ x"${CATEGORY}"/"${PN}" == x"dev-util/rr" ]; then return; fi
+		if [ x"${CATEGORY}"/"${PN}" == x"dev-util/rr" ]; then return; fi        #package is weird
+        # PRINT OUT CONFIGURE HELP
 	 	echo ">>> $FUNCNAME() { ./configure --help }"
-		./configure --help | sed -ne '/^Optional Features/,$ p'
+		OPTFEATS=$(./configure --help | sed -ne '/^Optional Features/,$ p')
+        echo -e "${OPTFEATS}"
+        #OPT FEATURES DETECTION FOR DISABLE NLS
+        if grep -q "\--disable-nls" <<< "${OPTFEATS}" ; then
+            echo "${CATEGORY}"/"${PN}:"  "ECONF: ${ECONF}  +  EXTRA_ECONF: ${EXTRA_ECONF}  +  MY_ECONF: ${MY_ECONF}"
+            if ! grep -q "\--disable-nls" <<< "${EXTRA_ECONF}" ; then
+                einfo "\033[01;31m Disable NLS was found in configure, but NOT passed in EXTRA_ECONF. \033[00m"
+                eqawarn "\033[01;31m --disable-nls wasnt passed to configure! \033[01;33m Auto-Correcting!\033[00m"
+                export EXTRA_ECONF="${EXTRA_ECONF} --disable-nls"
+            fi
+        fi
 	fi
+#Output all meson options
     if [ -f meson_options.txt ]; then
         echo ">>> $FUNCNAME() { cat meson_options.txt }"
         cat meson_options.txt
+        #packages are weird, ignore, see bottom notes.
 		if [ x"${CATEGORY}"/"${PN}" == x"x11-libs/gtk+" ]; then return; fi
 		if [ x"${CATEGORY}"/"${PN}" == x"dev-util/pkgconf" ]; then return; fi
 		if [ x"${CATEGORY}"/"${PN}" == x"x11-base/xorg-proto" ]; then return; fi
