@@ -1,0 +1,4 @@
+Would relabel /etc/csh.env from root:object_r:etc_t to system_u:object_r:etc_runtime_t
+Would relabel /etc/ld.so.cache from root:object_r:ld_so_cache_t to system_u:object_r:ld_so_cache_t
+Would relabel /etc/profile.env from root:object_r:etc_t to system_u:object_r:etc_runtime_t
+Would relabel /etc/environment.d/10-gentoo-env.conf from root:object_r:etc_t to system_u:object_r:etc_t

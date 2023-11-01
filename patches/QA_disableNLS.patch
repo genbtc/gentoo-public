@@ -1,0 +1,22 @@
+#genBTC original work, Aug10 2022 + October 2023 - LICENSE: CCSA 4.0
+
+pre_src_configure() {
+	#Enumerate --configure Options
+	if [ -f configure ] && [ ! -f meson.build ]; then
+		if [ x"${CATEGORY}"/"${PN}" == x"dev-util/rr" ]; then return; fi        #exclude. package is weird
+        # PRINT OUT CONFIGURE HELP
+	 	echo ">>> $FUNCNAME() { ./configure --help }"
+		OPTFEATS=$(./configure --help | sed -ne '/^Optional Features/,$ p')
+        echo -e "${OPTFEATS}"
+        # OPT FEATURES DETECTION FOR DISABLE NLS
+        if grep -q "\--disable-nls" <<< "${OPTFEATS}" ; then
+            echo "${CATEGORY}"/"${PN}:"  "ECONF: ${ECONF}  +  EXTRA_ECONF: ${EXTRA_ECONF}  +  MY_ECONF: ${MY_ECONF}"
+            if ! grep -q "\--disable-nls" <<< "${EXTRA_ECONF}" ; then
+                einfo "\033[01;31m Disable NLS was found in configure, but NOT passed in EXTRA_ECONF. \033[00m"
+                eqawarn "\033[01;31m --disable-nls wasnt passed to configure! \033[01;33m Auto-Correcting!\033[00m"
+				# Adding --disable-nls
+                export EXTRA_ECONF="${EXTRA_ECONF} --disable-nls"
+            fi
+        fi
+	fi
+}
