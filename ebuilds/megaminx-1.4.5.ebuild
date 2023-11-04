@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-DESCRIPTION="Megaminx Dodecahedron Future Cube Emulator"
+DESCRIPTION="Megaminx Dodecahedron in OpenGL and Cube Solving Emulator"
 HOMEPAGE="https://github.com/genbtc/megaminx/"
 SRC_URI="${HOMEPAGE}archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 
