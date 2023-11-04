@@ -5,19 +5,20 @@ EAPI=8
 
 inherit cmake
 
+_pkgver=3.1.38
 _binaryen_revision=ee738ac1f838a090cac74ba8981e2104b6c02d44
 _llvm_project_revision=004bf170c6cbaa049601bcf92f86a9459aec2dc2
 
-DESCRIPTION="Compile C and C++ into highly-optimizable JavaScript for the web"
+DESCRIPTION="Compile C and C++ LLVM Bytecode into highly-optimizable JavaScript for the web"
 HOMEPAGE="https://emscripten.org"
-SRC_URI="git+https://github.com/kripken/emscripten#tag=$PV
+SRC_URI="git+https://github.com/kripken/emscripten#tag=$_pkgver
          git+https://github.com/llvm/llvm-project.git#commit=$_llvm_project_revision
          git+https://github.com/WebAssembly/binaryen.git#commit=$_binaryen_revision
-         files/emscripten.sh
-         files/emscripten-config
+         files/emscripten.sh #(PATH:/usr/lib/emscripten)
+         files/emscripten-config #(Env vars of PATHs)
 "
 
-LICENSE="custom"
+LICENSE="Apache-2.0-with-LLVM-exceptions UoI-NCSA MIT"
 SLOT="0"
 KEYWORDS="amd64 ~amd64 x86 ~x86"
 IUSE="nodejs python"
@@ -29,7 +30,6 @@ DEPEND="
 "
 #    acorn
 
-
 BDEPEND="
     dev-util/cmake
     dev-libs/libxml2
@@ -38,13 +38,12 @@ BDEPEND="
 "
 #    npm
 
-
 #BEGIN ARCH PKGBUILD#
 # Maintainer: Sven-Hendrik Haase <svenstaro@archlinux.org>
 # Contributor: carstene1ns <arch carsten-teibes de> - http://git.io/ctPKG
 # Contributor: Stefan Husmann <stefan-husmann@t-online.de>
 # Contributor: Vlad Kolotvin <vlad.kolotvin@gmail.com>
-
+#
 #pkgname=emscripten
 # NOTE: You need to run ./get-compatible-versions.sh after changing the pkgver!
 #_binaryen_revision=ee738ac1f838a090cac74ba8981e2104b6c02d44
@@ -88,6 +87,7 @@ src_compile() {
       -DCMAKE_INSTALL_PREFIX=/usr
   ninja -C build
 
+#This seems to be building a specific version of LLVM but gentoo may not need this if ours is OK
   # Inspired from https://github.com/WebAssembly/waterfall/blob/db2ea5eeb11b74cce9b9459be0cc88807744b1b5/src/build.py#L868
   cd "$srcdir"/llvm-project/llvm
   cmake \
@@ -115,6 +115,7 @@ src_compile() {
 src_install() {
   DESTDIR="$pkgdir" ninja -C binaryen/build install
 
+#This seems to be installing a specific version of LLVM but gentoo may not need this if ours is OK
   # Install LLVM stuff according to
   # https://github.com/emscripten-core/emscripten/blob/master/docs/packaging.md
   # and
@@ -136,19 +137,27 @@ src_install() {
       install -Dm755 "$srcdir"/llvm-project/llvm/build/bin/$bin "$pkgdir"/opt/emscripten-llvm/bin/$bin
   done
 
+#emake
   # Install emscripten
   cd "$srcdir"/emscripten
   DESTDIR="$pkgdir"/usr/lib/emscripten make install
 
+
+#Gentoo: these need doins'ed:
   # Fix permissions messed up by npm
+#my gentoo doesnt even have NPM ......
   find "${pkgdir}"/usr/lib/emscripten -type d -exec chmod 755 {} +
   chown -R root:root "${pkgdir}"/usr/lib/emscripten/
 
+#this adds ENV Vars containing installed paths but they are very obvious paths, elide?
   install -Dm644 "$srcdir"/emscripten-config "$pkgdir"/usr/lib/emscripten/.emscripten
 
+#dodoc
   install -d "$pkgdir"/usr/share/doc
   ln -s /usr/lib/emscripten/site/source/docs "$pkgdir"/usr/share/doc/$pkgname
+#this adds it to PATH - should it go to env.d ?
   install -Dm755 "$srcdir"/emscripten.sh "$pkgdir"/etc/profile.d/emscripten.sh
+#change path
   install -Dm644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }
 
@@ -157,3 +166,17 @@ src_install() {
 #            'ruby: for using websockify addon'
 #            'cmake: for emcc --show-ports')
 
+#copied from emscripten.install
+pkg_postinst() {
+  echo "You need to login again or 'source /etc/profile.d/emscripten.sh' in your"
+  echo "already running shells to be able to use emscripten."
+}
+
+#what is the gentooism for this?
+post_upgrade() {
+  echo "You may need to manually clear your emscripten cache as clang may not link"
+  echo "the new library versions with cached data properly. Use this command:"
+  echo "$ emcc --clear-cache"
+  echo "You may also need to delete ~/.emscripten if emscripten complains about old paths"
+  echo "or executables not found."
+}
