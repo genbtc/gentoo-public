@@ -1,36 +1,4 @@
 ##[130]genr8too /etc/selinux/strict/policy # ciljit mybestinterfaces.txt-linet 2>&1 1> mybestinterfaces.txt-linet.cil                                                                                                                    [7/61448]line.te:3:ERROR 'syntax error' at token ';' on line 1841:
-#policy_module(boot, 1.06)
-#policy_module(chromium-gen, 1.01)
-#policy_module(doas, 1.01)
-#policy_module(genr8policy, 1.20)
-#policy_module(gnome-keyring, 1.12)
-#policy_module(gvfs-fuse, 1.02)
-#policy_module(hexchat, 1.0.4)
-#policy_module(key-ima, 1.2)
-#policy_module(lxd, 1.0.4)
-#policy_module(minicoredumper, 2.0)
-#policy_module(mozilla-gen, 1.0.7)
-#policy_module(mullvad-daemon, 1.2.4)
-#policy_module(mullvad-gui, 1.2.2)
-#policy_module(mullvad-gui-xdg, 1.2.1)
-#policy_module(portage-gen, 1.04)
-#policy_module(psensor, 1.01)
-#policy_module(qemu-gen, 1.0.1)
-#policy_module(storagevm, 1.0.0)
-#policy_module(tmux-screen, 1.12)
-#policy_module(transmission, 1.0.3)
-#policy_module(udisks, 1.02)
-#policy_module(useradd, 1.01)
-#policy_module(virtualbox, 1.0.4)
-#policy_module(vlc, 1.05)
-#policy_module(xevent3, 1.07)
-#policy_module(xfce4-screensaver, 1.01)
-#policy_module(x-gen, 1.07)
-#ifdef(`distro_gentoo',`
-#optional_policy(`
-#ifndef(`enable_mls',`
-#tunable_policy(`virtualbox_manage_generic_user_content',`
-#tunable_policy(`xserver_allow_dri',`
 alsa_read_config(line_t)
 role system_r; mullvad_run(line_t, system_r)
 role user_r; hexchat_run(user_t, user_r)
