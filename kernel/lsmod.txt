@@ -1,0 +1,96 @@
+Module                  Size  Used by
+vboxdrv               471040  0
+af_packet              53248  0
+netconsole             20480  0
+configfs               45056  2 netconsole
+nft_reject_inet        16384  6
+nf_reject_ipv4         16384  1 nft_reject_inet
+nf_reject_ipv6         16384  1 nft_reject_inet
+nft_reject             16384  1 nft_reject_inet
+nft_masq               16384  1
+nft_ct                 20480  8
+nft_chain_nat          16384  1
+nf_tables             258048  725 nft_ct,nft_reject_inet,nft_masq,nft_chain_nat,nft_reject
+libcrc32c              16384  1 nf_tables
+wireguard              86016  0
+curve25519_x86_64      36864  1 wireguard
+libchacha20poly1305    16384  1 wireguard
+chacha_x86_64          28672  1 libchacha20poly1305
+poly1305_x86_64        28672  1 libchacha20poly1305
+ip6_udp_tunnel         16384  1 wireguard
+udp_tunnel             20480  1 wireguard
+ipv6                  462848  2 nf_reject_ipv6,wireguard
+libcurve25519_generic    53248  2 curve25519_x86_64,wireguard
+libchacha              16384  1 chacha_x86_64
+nf_log_ipv4            16384  4
+nf_log_common          16384  1 nf_log_ipv4
+xt_u32                 16384  2
+xt_LOG                 16384  4
+xt_limit               16384  4
+xt_set                 16384  8
+xt_tcpudp              16384  45
+xt_conntrack           16384  10
+xt_comment             16384  1
+xt_addrtype            16384  1
+iptable_filter         16384  1
+iptable_mangle         16384  0
+iptable_nat            16384  0
+nf_nat                 40960  3 nft_masq,nft_chain_nat,iptable_nat
+nf_conntrack          122880  4 xt_conntrack,nf_nat,nft_ct,nft_masq
+nf_defrag_ipv6         20480  1 nf_conntrack
+nf_defrag_ipv4         16384  1 nf_conntrack
+ip_tables              28672  6 iptable_filter,iptable_nat,iptable_mangle
+x_tables               32768  11 xt_conntrack,iptable_filter,xt_LOG,xt_tcpudp,xt_addrtype,xt_comment,xt_set,xt_u32,ip_tables,xt_limit,iptable_mangle
+ip_set_hash_ip         36864  3
+ip_set                 45056  2 ip_set_hash_ip,xt_set
+nfnetlink              20480  2 nf_tables,ip_set
+fuse                  139264  3
+nct6775                57344  0
+hwmon_vid              20480  1 nct6775
+hid_generic            16384  0
+snd_usb_audio         258048  0
+usbhid                 53248  0
+snd_usbmidi_lib        32768  1 snd_usb_audio
+hid                   122880  2 usbhid,hid_generic
+snd_rawmidi            32768  1 snd_usbmidi_lib
+amdgpu               5361664  17
+snd_hda_codec_realtek   135168  1
+snd_hda_codec_generic    86016  1 snd_hda_codec_realtek
+gpu_sched              36864  1 amdgpu
+snd_hda_codec_hdmi     65536  1
+ttm                    90112  1 amdgpu
+crct10dif_pclmul       16384  1
+snd_hda_intel          40960  10
+drm_kms_helper        212992  1 amdgpu
+crc32_pclmul           16384  0
+snd_hda_codec         135168  4 snd_hda_codec_generic,snd_hda_codec_hdmi,snd_hda_intel,snd_hda_codec_realtek
+syscopyarea            16384  1 drm_kms_helper
+crc32c_intel           24576  9
+snd_hwdep              16384  2 snd_usb_audio,snd_hda_codec
+sysfillrect            16384  1 drm_kms_helper
+ghash_clmulni_intel    16384  0
+snd_hda_core           86016  5 snd_hda_codec_generic,snd_hda_codec_hdmi,snd_hda_intel,snd_hda_codec,snd_hda_codec_realtek
+sysimgblt              16384  1 drm_kms_helper
+xhci_pci               20480  0
+snd_pcm               106496  8 snd_hda_codec_hdmi,snd_hda_intel,snd_usb_audio,snd_hda_codec,snd_hda_core
+aesni_intel           372736  0
+crypto_simd            16384  1 aesni_intel
+fb_sys_fops            16384  1 drm_kms_helper
+xhci_hcd              237568  1 xhci_pci
+snd_timer              32768  4 snd_pcm
+cryptd                 20480  2 crypto_simd,ghash_clmulni_intel
+igb                   217088  0
+drm                   458752  11 gpu_sched,drm_kms_helper,amdgpu,ttm
+snd                    73728  25 snd_hda_codec_generic,snd_hda_codec_hdmi,snd_hwdep,snd_hda_intel,snd_usb_audio,snd_usbmidi_lib,snd_hda_codec,snd_hda_codec_realtek,snd_timer,snd_pcm,snd_rawmidi
+usbcore               253952  5 xhci_hcd,snd_usb_audio,usbhid,snd_usbmidi_lib,xhci_pci
+be2net                131072  0
+glue_helper            16384  1 aesni_intel
+i2c_algo_bit           16384  2 igb,amdgpu
+evdev                  20480  28
+backlight              16384  2 amdgpu,drm
+soundcore              16384  1 snd
+usb_common             16384  2 xhci_hcd,usbcore
+i2c_piix4              24576  0
+ccp                    36864  0
+tiny_power_button      16384  0
+button                 20480  0

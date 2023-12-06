@@ -1,0 +1,80 @@
+[    3.340083] ACPI: bus type drm_connector registered
+[    3.544031] [drm]: amdgpu: Kernel modesetting (KMS) enabled.
+[    3.544084] amdgpu: Topology: Add CPU node
+[    3.544147] fb0: switching to amdgpudrmfb from EFI VGA
+[    3.544265] amdgpu 0000:0b:00.0: enabling device (0006 -> 0007)
+[    3.544324] [drm]: initializing kernel modesetting (RENOIR 0x1002:0x1638 0x1002:0x1636 0xC8).
+[    3.544326] amdgpu 0000:0b:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[    3.544332] [drm]: register mmio base: 0xFCD00000
+[    3.544332] [drm]: register mmio size: 524288
+[    3.544333] [drm]: PCIE atomic ops is not supported
+[    3.545308] [drm]: add ip block number 0 <soc15_common>
+[    3.545309] [drm]: add ip block number 1 <gmc_v9_0>
+[    3.545309] [drm]: add ip block number 2 <vega10_ih>
+[    3.545310] [drm]: add ip block number 3 <psp>
+[    3.545310] [drm]: add ip block number 4 <smu>
+[    3.545311] [drm]: add ip block number 5 <gfx_v9_0>
+[    3.545311] [drm]: add ip block number 6 <sdma_v4_0>
+[    3.545312] [drm]: add ip block number 7 <dm>
+[    3.545312] [drm]: add ip block number 8 <vcn_v2_0>
+[    3.545313] [drm]: add ip block number 9 <jpeg_v2_0>
+[    3.545325] amdgpu 0000:0b:00.0: amdgpu: Fetched VBIOS from VFCT
+[    3.545326] amdgpu: ATOM BIOS: 13-CEZANNE-019
+[    3.545331] Loading firmware: amdgpu/green_sardine_sdma.bin
+[    3.545332] [drm]: VCN decode is enabled in VM mode
+[    3.545332] [drm]: VCN encode is enabled in VM mode
+[    3.545333] [drm]: JPEG decode is enabled in VM mode
+[    3.545354] [drm]: vm size is 262144 GB, 4 levels, block size is 9-bit, fragment size is 9-bit
+[    3.545358] amdgpu 0000:0b:00.0: amdgpu: VRAM: 2048M 0x000000F400000000 - 0x000000F47FFFFFFF (2048M used)
+[    3.545358] amdgpu 0000:0b:00.0: amdgpu: GART: 1024M 0x0000000000000000 - 0x000000003FFFFFFF
+[    3.545359] amdgpu 0000:0b:00.0: amdgpu: AGP: 267419648M 0x000000F800000000 - 0x0000FFFFFFFFFFFF
+[    3.545362] [drm]: Detected VRAM RAM=2048M, BAR=2048M
+[    3.545363] [drm]: RAM width 128bits DDR4
+[    3.545414] [drm]: amdgpu: 2048M of VRAM memory ready
+[    3.545415] [drm]: amdgpu: 3072M of GTT memory ready.
+[    3.545416] [drm]: GART: num cpu pages 262144, num gpu pages 262144
+[    3.545532] [drm]: PCIE GART of 1024M enabled (table at 0x000000F400900000).
+[    3.545641] Loading firmware: amdgpu/green_sardine_asd.bin
+[    3.545642] Loading firmware: amdgpu/green_sardine_ta.bin
+[    3.545647] Loading firmware: amdgpu/green_sardine_pfp.bin
+[    3.545647] Loading firmware: amdgpu/green_sardine_me.bin
+[    3.545647] Loading firmware: amdgpu/green_sardine_ce.bin
+[    3.545648] Loading firmware: amdgpu/green_sardine_rlc.bin
+[    3.545651] Loading firmware: amdgpu/green_sardine_mec.bin
+[    3.545651] Loading firmware: amdgpu/green_sardine_mec2.bin
+[    3.546261] Loading firmware: amdgpu/green_sardine_dmcub.bin
+[    3.546262] [drm]: Loading DMUB firmware via PSP: version=0x01010027
+[    3.546264] Loading firmware: amdgpu/green_sardine_vcn.bin
+[    3.546265] [drm]: Found VCN firmware Version ENC: 1.20 DEC: 6 VEP: 0 Revision: 0
+[    3.546267] amdgpu 0000:0b:00.0: amdgpu: Will use PSP to load VCN firmware
+[    4.239315] [drm]: reserve 0x400000 from 0xf47f800000 for PSP TMR
+[    4.348301] amdgpu 0000:0b:00.0: amdgpu: RAS: optional ras ta ucode is not available
+[    4.360300] amdgpu 0000:0b:00.0: amdgpu: RAP: optional rap ta ucode is not available
+[    4.360503] amdgpu 0000:0b:00.0: amdgpu: SMU is initialized successfully!
+[    4.361755] [drm]: kiq ring mec 2 pipe 1 q 0
+[    4.362458] [drm]: Display Core initialized with v3.2.104!
+[    4.362778] [drm]: DMUB hardware initialized: version=0x01010027
+[    4.392274] snd_hda_intel 0000:0b:00.1: bound 0000:0b:00.0 (ops amdgpu_dm_audio_component_bind_ops [amdgpu])
+[    4.456415] [drm]: VCN decode and encode initialized successfully(under DPG Mode).
+[    4.456429] [drm]: JPEG decode initialized successfully.
+[    4.458196] amdgpu: Topology: Add dGPU node [0x1638:0x1002]
+[    4.458198] amdgpu 0000:0b:00.0: amdgpu: Shader-Engs: 1 * Shds/Shd-Eng 1 * CUs/Shd 8 = 8 active_cu_number
+[    4.459006] [drm]: fb mappable at 0x7C0CD1000     vram aper_base at 0x7C0000000
+[    4.459007] [drm]: size: 8294400     fb depth: 24     pitch: 7680
+[    4.578158] amdgpu 0000:0b:00.0: [drm]: fb0: amdgpudrmfb frame buffer device
+[    4.583368] amdgpu 0000:0b:00.0: amdgpu: ring gfx uses VM inv eng 0 on hub 0
+[    4.583369] amdgpu 0000:0b:00.0: amdgpu: ring comp_1.0.0 uses VM inv eng 1 on hub 0
+[    4.583370] amdgpu 0000:0b:00.0: amdgpu: ring comp_1.1.0 uses VM inv eng 4 on hub 0
+[    4.583371] amdgpu 0000:0b:00.0: amdgpu: ring comp_1.2.0 uses VM inv eng 5 on hub 0
+[    4.583371] amdgpu 0000:0b:00.0: amdgpu: ring comp_1.3.0 uses VM inv eng 6 on hub 0
+[    4.583372] amdgpu 0000:0b:00.0: amdgpu: ring comp_1.0.1 uses VM inv eng 7 on hub 0
+[    4.583373] amdgpu 0000:0b:00.0: amdgpu: ring comp_1.1.1 uses VM inv eng 8 on hub 0
+[    4.583373] amdgpu 0000:0b:00.0: amdgpu: ring comp_1.2.1 uses VM inv eng 9 on hub 0
+[    4.583374] amdgpu 0000:0b:00.0: amdgpu: ring comp_1.3.1 uses VM inv eng 10 on hub 0
+[    4.583375] amdgpu 0000:0b:00.0: amdgpu: ring kiq_2.1.0 uses VM inv eng 11 on hub 0
+[    4.583375] amdgpu 0000:0b:00.0: amdgpu: ring sdma0 uses VM inv eng 0 on hub 1
+[    4.583376] amdgpu 0000:0b:00.0: amdgpu: ring vcn_dec uses VM inv eng 1 on hub 1
+[    4.583377] amdgpu 0000:0b:00.0: amdgpu: ring vcn_enc0 uses VM inv eng 4 on hub 1
+[    4.583377] amdgpu 0000:0b:00.0: amdgpu: ring vcn_enc1 uses VM inv eng 5 on hub 1
+[    4.583378] amdgpu 0000:0b:00.0: amdgpu: ring jpeg_dec uses VM inv eng 6 on hub 1
+[    4.584816] [drm]: Initialized amdgpu 3.40.0 20150101 for 0000:0b:00.0 on minor 0

@@ -1,0 +1,21 @@
+genr8eofl@genr8too /usr/local/src/ima-evm-utils-9999/src $ ./imafix2
+Usage: imafix2 [-v] [OPTIONS] <pathname>
+commands:
+ imafix2 [-t fdsxm] path
+ --version 
+
+  -a, --hashalgo     sha512(default), sha1, sha224, sha256, sha384, md5, streebog, ripe-md, wp, tgr, etc
+  -s, --imasig       make IMA signature(default)
+  -d, --imahash      make IMA hash
+  -k, --key          path to signing key (defaults: /etc/keys/signing_key.x509 & /etc/keys/signing_key.priv )
+  -r, --recursive    recurse sub-directories
+  -t, --type         filter search by type: -t 'fdsm'
+                     f: Files(default), d: Directory, s: block/char/Symlink
+                     m: stay on the same filesystem (like 'find -xdev')
+  -v                 verbose, increase verbosity level++
+  -h, --help         display this help and exit
+  --version          print version number and exit
+
+Parameters missing -
+usage: imafix2 [-t fdsxm] path
+errno: Permission denied (13)

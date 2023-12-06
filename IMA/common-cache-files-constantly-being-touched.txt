@@ -1,0 +1,9 @@
+Relabeled /usr/lib64/gtk-3.0/3.0.0/immodules.cache from root:object_r:lib_t to system_u:object_r:lib_t
+Relabeled /usr/lib64/gtk-2.0/2.10.0/immodules.cache from root:object_r:lib_t to system_u:object_r:lib_t
+Relabeled /usr/lib64/graphviz/config6 from root:object_r:lib_t to system_u:object_r:lib_t
+Relabeled /usr/lib64/gconv/gconv-modules.cache from root:object_r:lib_t to system_u:object_r:lib_t
+Relabeled /usr/lib64/vlc/plugins/plugins.dat from root:object_r:lib_t to system_u:object_r:lib_t
+Relabeled /usr/lib64/libfreebl3.chk from root:object_r:lib_t to system_u:object_r:lib_t
+Relabeled /usr/lib64/libnssdbm3.chk from root:object_r:lib_t to system_u:object_r:lib_t
+Relabeled /usr/lib64/gio/modules/giomodule.cache from root:object_r:lib_t to system_u:object_r:lib_t
+
