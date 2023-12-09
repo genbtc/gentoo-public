@@ -1,0 +1,35 @@
+Started from default config, these are what is removed from my config.
+The basis for the config is to disable entire sections
+And primarily remove excess device drivers.
+The dist-kernel has tons of stuff built as a module, which is great for compatibility but terrible for compilation time.
+This config pares the modules down from over 4000 to under 700.
+This reduced overall compile time from 20 minutes to 3 minutes.
+So
+The system is AMD Ryzen based so all Intel tech is disabled.
+The network card section is disabled except for my two drivers, IGB/BE2NET.
+WLAN/WWAN/Bluetooth all disabled.
+Anything with a radio pretty much disabled.
+The IPV6 is turned into a module, as much as possible disabled,
+Meant to decrease surface area with ipv6.disable=1 bootparam but still leave enough enabled to not break anything.
+The DRM video section has all drivers disabled, (choose).
+SCSI is mostly disabled, except for the generic subsystem.
+PATA/SATA also minimalized to generics, just enough to boot AMD and Qemu
+NVME needed for boot also
+SND mostly disabled, (choose)
+INPUT mostly disabled (Ps2 keyboard/mouse)
+USB_HID mostly disabled except for generic drivers. Full USB still works. Keep USB_UAS (UASP)
+Technology found in laptops or tablets, disabled. Especially obvious wrong brand name.
+I2C disabled (caveat*)
+USB special device drivers disabled
+Misc devices drivers disabled
+Embedded devices disabled (RTC,EEPROM,GPIO,SPI,Power supply ICs, Batteries, VRM Regulators,etc)
+Media Support disabled (video capture)
+IPMI disabled.
+TPMs other than AMD disabled.
+Virtualization _drivers_ disabled for Xen/VMWare/Virtualbox, except for Virtio(Qemu)
+Platform and SoC drivers for hardware we don't have, disabled.
+kernel is not designed to be ideal for a VM, I run it on bare metal, but I like to test in a VM.
+Filesystems more than half removed, kept ones I want.
+NLS languages disabled except for barebones ascii/english
+please note these are aggressive settings and more documentation will follow, but this works for me.
+@genr8eofl 10-30-22 CC-BY-SA-4.0 w/attribution) 

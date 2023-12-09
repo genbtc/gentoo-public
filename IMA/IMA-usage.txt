@@ -1,0 +1,150 @@
+IMA -  the Linux IMA Runtime Integrity Monitoring system that is built into the kernel, a Primer
+--written by genr8eofl, December 2023  - Creative Commons BY SA 4.0, with attribution 
+
+the basis for the system is a particular signed key, then used to sign a hash of each of the main files on the system.
+
+We can create our IMA file signing key using the following example commands:
+
+openssl genrsa -out /etc/keys/IMA_signing_key.priv 4096
+openssl rsa -in /etc/keys/IMA_signing_key.priv -pubout -out /etc/keys/IMA_signing_key.pub
+
+the kernel has to be rebuilt to set up the IMA infrastructure, and the key should be built in.
+
+the default location is /etc/keys/x509_ima.der but can be specified in kernel config. suggest: /etc/keys/IMA_signing_key.priv
+(the tpm can also generate the key but thats even more complicated & advanced)
+the key should be in X509 format and RSA-4096 bit, signed with SHA-256 is what I would suggest here.
+
+keyring - kernel has a credential storage system for managing keys, using "keyctl" command
+keyctl show %.ima
+cat /proc/keys should also show a ".ima" keyring.
+
+sysfs dir = /sys/kernel/security/ima/
+
+runtime-log = cat /sys/kernel/security/ima/ascii_runtime_measurements - this file contains the appraise log and hashes/names of all appraised files
+
+ima-evm-utils - this package is necessary to perform the signing and key operations on files on the filesystem
+
+the main tool used is named evmctl but do not let anything labeled EVM apply to you or distract you now, that is even less viable than IMA in the first place, and this is a long process in itself.
+
+main commands:
+evmctl ima_{hash/clear/verify} <options> :
+"ima_hash" will add a sha256 or sha512 hash to the extended attributes (xattrs) of a file, as a "security.ima" property.
+
+"ima_clear" will erase the xattrs to start fresh.
+
+"ima_verify" will use the internal key already on the kernel keyring to verify
+
+These will be the paths to your IMA keys:
+--key  /etc/keys/IMA_signing_key.priv
+
+-r recursive mode can be done
+
+(default paths of /etc/keys/{privkey,pubkey}_evm.pem is unsuitable.)
+
+The first step is to enable IMA Appraisal in Linux. Recent Gentoo Dist-kernel & Fedora kernels for example have IMA Appraisal support built-in but not activated. To enable it, we need to add the following Linux kernel parameters to the Linux boot command line:
+
+ima_appraise=fix ima_template=ima-sig ima_policy=tcb
+
+IMA modes: 121, 122, 124. 
+last digit:
+1 - APPRAISE  = all hashes must come up as matching, and stores the data in the IMA log, or else access is denied
+2 - FIX       = every access is allowed, and will automatically create the missing attribute 
+4 - LOG       = same as 2 except the new hash is added to the IMA log
+
+ima_appraise=fix can be passed on the kernel boot command line, but the mode cannot be changed during runtime !! this greatly stifled  development and i have created some dev patches to modify the mode at runtime, AND clear the policies, which could not be done before.
+for example: cat /sys/kernel/security/ima/mode  to read. (also supports echo > write interface)
+
+IMA will be in IMA Appraisal fix-mode when the system is started up the next time. Fix-mode, unlike enforcement mode, does not require that all files be signed.
+(NOTE: by default FIX creates the worst viable hash, a digest only, we want the IMA type with a signature) appraise_type=imasig can be added as a parameter to a rule in the policy to change it.
+
+speaking of Policies:
+read the documentation @ https://www.kernel.org/doc/Documentation/ABI/testing/ima_policy
+
+A policy has to be created. My policy:
+
+/etc/ima-signed-policy.conf:
+#some default rules get auto loaded
+#appraise func=MODULE_CHECK appraise_type=imasig|modsig
+#appraise func=FIRMWARE_CHECK appraise_type=imasig
+#appraise func=KEXEC_KERNEL_CHECK appraise_type=imasig
+#appraise func=POLICY_CHECK appraise_type=imasig
+#TMPFS_MAGIC excluded
+dont_measure fsmagic=0x01021994
+dont_appraise fsmagic=0x01021994
+#Portage Temp build dir and sandbox process
+dont_appraise obj_type=portage_tmp_t
+dont_appraise subj_type=portage_sandbox_t
+#measure defaults
+measure func=MODULE_CHECK
+measure func=FIRMWARE_CHECK
+measure func=KEXEC_KERNEL_CHECK
+measure func=POLICY_CHECK
+#measure all executables
+measure func=BPRM_CHECK mask=MAY_EXEC
+#MMAPed file regions
+measure func=MMAP_CHECK mask=MAY_EXEC
+#Enforce all executables run by root
+appraise func=BPRM_CHECK uid=0
+#measure keyrings
+measure func=KEY_CHECK
+
+Measure rules just check and log, but Appraise rules are enforced and can deny access.
+
+NOTE: using the default policy can apply an appraise fowner=0 rule, so anything owned by root, is so strict that I declare it unviable. System processes have cache files not only in /run but /var BUT ALSO IN /usr !!! and this would make them all unreadable everytime the cache gets auto-updated, which turns out to be a LOT of stuff is busily secretly writing to your rootfs and re-writing spurious cache files in a way that violates this rule. This would also likely prevent any updates on the system from happening at all. As is, i've had to write several exclude rules for tmpfs and portage's selinux types so it wouldnt trip up on running freshly built executables in its temp work dir. That seems to get everything fully verified and also not so strict that everything breaks, but the "appraise executables ran by root" is a quite good baseline and I feel it can be described as the main part of the policy.
+
+It is then just a case of deploying an ima-policy file. 
+On a Fedora or Debian system, the file is located in /etc/ima/ima-policy.
+
+The policy file itself has to be signed, and then you can do 
+echo "/etc/ima-signed-policy.conf" > /sys/kernel/security/ima/policy
+
+A default policy is affected by the kernel config.
+But I prefer loading the correct custom policy from disk on the kernel's early IMA initialization, and i've created some kernel dev patches for that. 
+
+Normally everytime you load more files into the policy, it only lets you append to the rules.
+I have created some dev patches to allow sending an echo "CLEAR" command to the policy, to delete all rules and initialize a new policy fresh.
+
+The hashes can be updated with a hook in portage's /etc/portage/bashrc to be set up to Auto-IMA-hash&sign all your files with evmctl after merge.
+Parallel is used because the evmctl program is single threaded. the citation file is then needed because that author is stupid.
+The best way ive found to query the contents of what package has been merged is to use a tool like equery
+
+/etc/portage/bashrc:
+if [ "${EBUILD_PHASE}" == "preinst" ]; then
+  #create stupid parallel citation file in this stage now for the next stage, because this is the last time we can write to the ${D} dir
+  mkdir -p ~/.parallel;	touch ~/.parallel/will-cite
+#  echo "::1 Any IMA/EVM xattr Fixing here in the tmp/work/image dir \${D} will NOT copy \
+#            any security.ima/evm xattr to / root because of make.globals xattr_ignore..."
+fi
+
+if [ "${EBUILD_PHASE}" == "postinst" ]; then
+  echo "::2 /etc/portage/bashrc PostInst: imafix2 SHA512 Hashing in progress..."
+																#"omit dir,path,sym,dev
+  equery -C files ${PN}-${PVR} -f "obj,conf,cmd,doc,man,info,fifo" | parallel evmctl ima_sign --imasig --key /etc/keys/IMA_signing_key.priv --hashalgo sha512 
+  # Save LogFile to elog. helps in elogv to correlate the logs (unrelated but good)
+  einfo "PORTAGE_LOG_FILE: ${PORTAGE_LOG_FILE}"
+fi
+
+(Going through all this effort to use equery to obtain the individual files as a query from the PN Package Name plus the PVR Package Version & Revision is needed or else it can grab the wrong thing, for several reasons:)
+
+(Reason 1 is this:
+If Preinst can't work as, we can't prepare the signed hashes in advance, and without a way to hook deeper into portage, we must use Postinst.)
+
+(Reason 2: once postinst is running, our rootfs files have already been unmerged and merged. There is a gap during pkg_postrm before pkg_postinst where the files are live on the real root disk but havent been hashed/signed yet. This creates a problem for packages like vim that run their own binary (to update documentation) before this signing hook has been run. So this is an outstanding issue.)
+
+could portage devs implement this better? sure, but thats what ive come up with for now. 
+
+Other rules and things can also be added to the policy.
+
+the audit messages for denials look like this:
+
+[571243.609206] audit: type=1800 audit(1702126297.118:7489): pid=11631 uid=0 auid=0 ses=1 subj=root:sysadm_r:portage_t op=appraise_data cause=missing-hash comm="bash" name="/usr/bin/vim" dev="nvme0n1p6" ino=568828 res=0 errno=0
+
+So a "dont_appraise subj_type=portage_t" rule should probably be added to the policy too, but I use this to be informed of any programs that are being subversively executed by portage, so early after their initial creation that they would cause this error.
+
+luckily you can just go sign the file and it will be available to use next time.
+
+To verify that the file has been properly signed, we can use the following command, which will show the security.ima extended attribute’s value (in base hex):
+
+getfattr -m ^security.ima --dump myfile
+
+

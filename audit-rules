@@ -1,0 +1,84 @@
+#(Record events that modify the system's mandatory access controls)
+#=The system's mandatory access policy (SELinux) should not be arbitrarily changed by anything 
+# other than administrator action. All changes to MAC policy should be audited.
+-w /etc/selinux/ -p wa -k MAC-policy
+
+#(Record events that modify the system's discretionary access controls)
+#=The changing of file permissions could indicate that a user is attempting to gain access 
+# to information that would otherwise be disallowed. Auditing DAC modifications can facilitate 
+# the identification of patterns of abuse among both authorized and unauthorized users.
+-a always,exit -F arch=b64 -S chown -F auid>=1000 -F auid!=unset -F key=perm_mod
+-a always,exit -F arch=b64 -S chmod -F auid>=1000 -F auid!=unset -F key=perm_mod
+-a always,exit -F arch=b64 -S setxattr -F auid>=1000 -F auid!=unset -F key=perm_mod
+-a always,exit -F arch=b64 -S removexattr -F auid>=1000 -F auid!=unset -F key=perm_mod
+-a always,exit -F arch=b64 -S fchown -F auid>=1000 -F auid!=unset -F key=perm_mod
+-a always,exit -F arch=b64 -S fchownat -F auid>=1000 -F auid!=unset -F key=perm_mod
+-a always,exit -F arch=b64 -S fchmod -F auid>=1000 -F auid!=unset -F key=perm_mod
+-a always,exit -F arch=b64 -S fchmodat -F auid>=1000 -F auid!=unset -F key=perm_mod
+-a always,exit -F arch=b64 -S fsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod
+-a always,exit -F arch=b64 -S fremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod
+-a always,exit -F arch=b64 -S lchown -F auid>=1000 -F auid!=unset -F key=perm_mod
+-a always,exit -F arch=b64 -S lsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod
+-a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod
+
+#(Collects information on kernel module loading and unloading)
+#=The addition/removal of kernel modules can be used to alter the behavior of the kernel 
+# and potentially introduce malicious code into kernel space. It is important to have 
+# an audit trail of modules that have been introduced into the kernel.
+-w /usr/sbin/insmod -p x -k modules
+-w /usr/sbin/rmmod -p x -k modules
+-w /usr/sbin/modprobe -p x -k modules
+-a always,exit -F arch=b64 -S init_module,finit_module,create_module,delete_module -F key=modules
+
+#(Record attempts to alter logon and logout events)
+#=Manual editing of these files may indicate nefarious activity, such as an attacker attempting to remove evidence of an intrusion.
+-w /var/log/tallylog -p wa -k logins
+-w /var/run/faillock -p wa -k logins
+-w /var/log/lastlog -p wa -k logins
+#(Record attempts to alter process and session initiation information)
+-w /var/run/utmp -p wa -k session
+-w /var/log/btmp -p wa -k session
+-w /var/log/wtmp -p wa -k session
+
+#(Ensure auditd collects system administrator actions)
+#=The actions taken by system administrators should be audited to keep a record of what was executed on the system, for accountability
+-w /etc/sudoers -p wa -k actions
+-w /etc/sudoers.d/ -p wa -k actions
+
+#)Record information on the use of privileged commands)
+#=Privileged programs are subject to escalation-of-privilege attacks, which attempt to subvert their normal role 
+# of providing some necessary but limited capability. As such, motivation exists to monitor these programs for unusual activity.
+-a always,exit -F path=/usr/bin/fusermount3 -F perm=x -F auid>=1000 -F auid!=unset -F key=privileged
+-a always,exit -F path=/usr/bin/fusermount  -F perm=x -F auid>=1000 -F auid!=unset -F key=privileged
+-a always,exit -F path=/usr/lib/polkit-1/polkit-agent-helper-1 -F perm=x -F auid>=1000 -F auid!=unset -F key=privileged
+-a always,exit -F path=/usr/bin/pkexec -F perm=x -F auid>=1000 -F auid!=unset -F key=privileged
+
+#(Record events that modify user/group information)
+#=In addition to auditing new user and group accounts, these watches will alert the system administrator(s) to any modifications. 
+# Any unexpected users, groups, or modifications should be investigated for legitimacy.
+-w /etc/shadow -p wa -k audit_rules_usergroup_modification
+-w /etc/gshadow -p wa -k audit_rules_usergroup_modification
+-w /etc/passwd -p wa -k audit_rules_usergroup_modification
+-w /etc/group -p wa -k audit_rules_usergroup_modification
+#-w /etc/security/opasswd -p wa -k audit_rules_usergroup_modification
+
+#(Record attempts to alter time)
+#=Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, 
+# as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). 
+# All changes to the system time should be audited.
+#(Record attempts to alter time through stime) # invalid somehow
+#-a always,exit -F arch=b64 -S stime -F key=audit_time_rules
+#(Record attempts to alter time through settimeofday
+-a always,exit -F arch=b64 -S settimeofday -F key=audit_time_rules
+#(Record attempts to alter the localtime file)
+-w /etc/localtime -p wa -k audit_time_rules
+#(Record attempts to alter time through clock_settime)
+-a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change
+#(Record attempts to alter time through adjtimex)
+-a always,exit -F arch=b64 -S adjtimex -F key=audit_time_rules
+
+#(Record attempts to alter the hostname file)
+-w /etc/hostname -p wa -k audit_hostname_rules
+
+
+#source: https://github.com/trimstray/the-practical-linux-hardening-guide/wiki/Auditd

@@ -1,0 +1,185 @@
+/usr/src/linux/.config Sections
+
+Linux/x86 5.18.19-gentoo Kernel Configuration
+
+General setup
+IRQ subsystem
+Timers subsystem
+BPF subsystem
+CPU/Task time and stats accounting
+RCU Subsystem
+Scheduler features
+Kernel Performance Events And Counters
+Processor type and features
+Performance monitoring
+Power management and ACPI options
+CPU Frequency scaling
+CPU frequency scaling drivers
+shared options
+CPU Idle
+Bus options (PCI etc.)
+Binary Emulations
+General architecture-dependent options
+GCOV-based kernel profiling
+Partition Types
+IO Schedulers
+Executable file formats
+Memory Management options
+Data Access Monitoring
+Networking options
+Xtables combined modules
+Xtables targets
+Xtables matches
+Queueing/Scheduling
+Classification
+Network testing
+Device Drivers
+PCI controller drivers
+DesignWare PCI Core Support
+Mobiveil PCIe Core Support
+Cadence PCIe controllers support
+PCI Endpoint
+PCI switch controller drivers
+Generic Driver Options
+Firmware loader
+Bus devices
+Firmware Drivers
+ARM System Control and Management Interface Protocol
+EFI (Extensible Firmware Interface) Support
+Tegra firmware driver
+Protocols
+NVME Support
+Misc devices
+EEPROM support
+Texas Instruments shared transport line discipline
+SCSI device support
+SCSI support type (disk, tape, CD-ROM)
+SCSI Transports
+Controllers with non-SFF native interface
+SFF controllers with custom DMA interface
+SATA SFF controllers with BMDMA
+PATA SFF controllers with BMDMA
+PIO-only SFF controllers
+Generic fallback / legacy drivers
+IEEE 1394 (FireWire) support
+PCS device drivers
+Host-side USB support is needed for USB Network Adapter support
+Wireless WAN
+Input device support
+Userland interfaces
+Input Device Drivers
+Hardware I/O ports
+Character devices
+Serial drivers
+Non-8250 serial port support
+I2C support
+I2C Hardware Bus support
+PC SMBus host controller drivers
+ACPI drivers
+I2C system bus drivers (mostly embedded / system-on-chip)
+External I2C/SMBus adapter drivers
+Other I2C/SMBus bus drivers
+PTP clock support
+Enable PHYLIB and NETWORK_PHY_TIMESTAMPING to see the additional clocks.
+Native drivers
+Intel thermal drivers
+ACPI INT340X thermal drivers
+Multifunction device drivers
+CEC support
+Graphics support
+I2C encoder or helper chips
+ARM devices
+Display Panels
+Display Interface Bridges
+Frame buffer Devices
+Frame buffer hardware drivers
+Backlight & LCD device support
+Console display driver support
+HD-Audio
+HID support
+Special HID drivers
+USB HID support
+USB HID Boot Protocol drivers
+I2C HID support
+Intel ISH HID support
+AMD SFH HID Support
+Miscellaneous USB options
+USB Host Controller Drivers
+USB Device Class drivers
+NOTE: USB_STORAGE depends on SCSI but BLK_DEV_SD may
+also be needed; see USB_STORAGE Help for more info
+USB Imaging devices
+USB port drivers
+USB Miscellaneous drivers
+USB Physical Layer drivers
+MMC/SD/SDIO Host Controller Drivers
+LED drivers
+LED driver for blink(1) USB RGB LED is under Special HID drivers (HID_THINGM)
+Flash and Torch LED drivers
+LED Triggers
+Simple LED drivers
+RTC interfaces
+I2C RTC drivers
+SPI RTC drivers
+SPI and I2C RTC drivers
+Platform RTC drivers
+on-CPU RTC drivers
+HID Sensor RTC drivers
+DMA Devices
+DMA Clients
+DMABUF options
+Microsoft Hyper-V guest support
+Clock Source drivers
+Generic IOMMU Pagetable Support
+Remoteproc drivers
+Rpmsg drivers
+SOC (System On Chip) specific Drivers
+Amlogic SoC drivers
+Broadcom SoC drivers
+NXP/Freescale QorIQ SoC drivers
+i.MX SoC drivers
+Enable LiteX SoC Builder specific drivers
+Qualcomm SoC drivers
+Xilinx SoC drivers
+IRQ chip support
+PHY Subsystem
+PHY drivers for Broadcom platforms
+Performance monitor support
+Android
+HW tracing support
+TEE drivers
+File systems
+Caches
+CD-ROM/DVD Filesystems
+DOS/FAT/EXFAT/NT Filesystems
+Pseudo filesystems
+Security options
+Kernel hardening options
+Memory initialization
+Crypto core or helper
+Public-key cryptography
+Authenticated Encryption with Associated Data
+Block modes
+Hash modes
+Digest
+Ciphers
+Compression
+Random Number Generation
+Certificates for signature checking
+Library routines
+Crypto library routines
+Kernel hacking
+printk and dmesg options
+Compile-time checks and compiler options
+Generic Kernel Debugging Instruments
+Networking Debugging
+Memory Debugging
+Debug Oops, Lockups and Hangs
+Scheduler Debugging
+Lock Debugging (spinlocks, mutexes, etc...)
+Debug kernel data structures
+RCU Debugging
+x86 Debugging
+Kernel Testing and Coverage
+Gentoo Linux
+Support for init systems, system and service managers
