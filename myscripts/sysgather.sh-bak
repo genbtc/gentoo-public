@@ -1,0 +1,31 @@
+#!/bin/sh
+#description: lsmod psaux dmesg cpuinfo gather
+datenow=$(date +"%s")
+cd ~
+mkdir sysgather-logs
+cd sysgather-logs
+mkdir $datenow
+a="lspci"
+$($a)
+echo $a
+b="lsmod"
+$($b)
+echo $b
+c="ps faux --headers"
+$($c)
+echo $c
+d="dmesg"
+$($d)
+echo $d
+e="cat /proc/cpuinfo"
+$($e)
+echo $e
+f="dmidecode"
+$($f)
+echo $f
+g="lspci -v"
+$($g)
+echo $g
+h="lsusb"
+$($h)
+echo $h
