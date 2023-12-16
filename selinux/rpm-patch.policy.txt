@@ -1,0 +1,18 @@
+#[602891.087081] audit: type=1400 audit(1702157944.601:7841): avc:  denied  { map } for  pid=21847 comm="rpmdb" path="/var/lib/rpm/rpmdb.sqlite-shm" dev="nvme0n1p6" ino=1889835 scontext=root:sysadm_r:portage_t tcontext=root:object_r:var_lib_t tclass=file permissive=0
+
+require {
+	type portage_t;
+	type var_lib_t;
+	class file map;
+}
+
+#============= portage_t ==============
+# audit(1702157944.601:7841):
+#  scontext="root:sysadm_r:portage_t" tcontext="root:object_r:var_lib_t"
+#  class="file" perms="map"
+#  comm="rpmdb" exe="" path=""
+#  message="[602891.087081] audit: type=1400 audit(1702157944.601:7841): avc:
+#   denied  { map } for  pid=21847 comm="rpmdb" path="/var/lib/rpm/rpmdb.sqlite-
+#   shm" dev="nvme0n1p6" ino=1889835 scontext=root:sysadm_r:portage_t
+#   tcontext=root:object_r:var_lib_t tclass=file permissive=0 "
+allow portage_t var_lib_t:file map;
