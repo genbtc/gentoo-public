@@ -1,0 +1,34 @@
+#!/sbin/openrc-run
+# Mullvad Daemon
+#
+# This is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with GNU. If not, see <http://www.gnu.org/licenses/>.
+
+depend() {
+        need net net-online
+        use dns
+}
+
+export LC_ALL=en_US.UTF8
+command="/usr/bin/mullvad-daemon"
+resourcecommanddir="/opt/Mullvad\ VPN/resources"
+command_args="-v"
+command_background="yes"
+pidfile="/run/mullvad-daemon.pid"
+
+output_log="/var/log/mullvad-daemon-stdout.log"
+error_log="/var/log/mullvad-daemon-stderr.log"
+
+start_pre() {
+	ebegin "Starting Wireguard..."
+	/sbin/modprobe wireguard
+# >/dev/null 2>&1
+#	ebegin "Enabling user namespaces..."
+#	echo 1 > /proc/sys/kernel/unprivileged_userns_clone
+	eend 0
+}
