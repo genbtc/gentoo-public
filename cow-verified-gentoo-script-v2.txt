@@ -1,0 +1,266 @@
+#!/bin/sh
+# start first with this: ./myscripts/amazing-make-disk-truncate.sh verified-gentoo-1.dd 50G
+
+# Partition disks
+sgdisk -Z -o /dev/loop0 \
+ -n 1::+100M -t 1:EF00 -c 1:"esp" \
+ -n 2::+1G  -t 2:EA00 -c 2:"boot" \
+ -n 3::+1G  -t 3:8200 -c 3:"swap" \
+ -n 4::+20G -t 4:8314 -c 4:"usr" \
+ -n 5::+6G  -t 5:8319 -c 5:"usr_verity" \
+ -n 6::+20G -t 6:8304 -c 6:"root"
+
+# Format disks
+mkfs.vfat -n EFI -F32 /dev/loop0p1
+mkfs.vfat -n BOOT -F32 /dev/loop0p2
+mkswap /dev/loop0p3
+#swapon /dev/loop0p3 # enable swap for current system, optional
+cryptsetup --type luks2 --hash sha512 --cipher aes-xts-plain64 --key-size 512 --pbkdf argon2id --iter-time 3000 luksFormat /dev/loop0p4 # setup luks on the usr system partition
+cryptsetup luksOpen /dev/loop0p4 cryptusr # open the luks volume
+mkfs.btrfs -L usr /dev/mapper/cryptusr
+## We leave generating the veritypartition with veritysetup for /dev/loop0p5 later on when we have completed setting up /usr to its final state
+cryptsetup --type luks2 --hash sha512 --cipher aes-xts-plain64 --key-size 512 --pbkdf argon2id --iter-time 3000 luksFormat /dev/loop0p6 # [NOTE: It is adviced to use the same password for cryptroot and cryptusr so only one password entry is required as systemd will automatically unlock the other disk. This does not impact things too much however as later in the install both luks headers will be TPM2 backed meaning that the drives will unlock automatically according to the tpm state.] setup luks on the root system partition
+cryptsetup luksOpen /dev/loop0p6 cryptroot # open the luks volume
+mkfs.btrfs -L root /dev/mapper/cryptroot
+
+# Setup subvolumes and mount partitions
+mkdir -pv /mnt/gentoo
+## create usr subvol according to date
+mount -t btrfs -o noatime /dev/mapper/cryptusr /mnt/gentoo # nodiratime is implied by noatime
+btrfs subvolume create /mnt/gentoo/usr # create usr subvol to make snapshots easier
+umount /mnt/gentoo # unmount the filesystem
+## create root subolumes
+mount -t btrfs -o noatime /dev/mapper/cryptroot /mnt/gentoo
+for each in rootfs home; do btrfs subvolume create /mnt/gentoo/${each}; done # feel free to add more as desired
+umount /mnt/gentoo # unmount the filesystem
+
+#Mount the filesystems
+mount -t btrfs -o noatime,compress=zstd,ssd,subvol=rootfs /dev/mapper/cryptroot /mnt/gentoo # mount our rootfs subvolume
+mkdir -pv /mnt/gentoo/{boot,efi,home,usr} # create our mountpoints
+mount -t btrfs -o noatime,compress=zstd,ssd,subvol=home /dev/mapper/cryptroot /mnt/gentoo/home # mount our home subvolume
+mount /dev/loop0p1 /mnt/gentoo/efi # mount our efi partition
+mount /dev/loop0p2 /mnt/gentoo/boot # mount our boot partition
+mount -t btrfs -o noatime,compress=zstd,ssd,subvol=usr /dev/mapper/cryptusr /mnt/gentoo/usr # mount our home subvolume
+
+# Grabbing stage3
+cd /mnt/gentoo
+wget https://mirrors.rit.edu/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd-mergedusr/stage3-amd64-systemd-mergedusr-20231224T164659Z.tar.xz
+tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner # unpack stage3
+rm stage3-*.tar.xz # remove extracted stage3
+cp --dereference /etc/resolv.conf /mnt/gentoo/etc
+mkdir -pv /mnt/gentoo/etc/portage/repos.conf
+cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf # copy gentoo repo config
+## configure portage, etc.
+echo "sys-apps/systemd boot cryptsetup fido2 kernel-install ukify tpm" >> /mnt/gentoo/etc/portage/package.use/sys-apps # add systemd use flags
+
+#chroot in
+autochroot -s /bin/bash -m /mnt/gentoo # use my autochroot script to chroot in
+env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
+ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime # setup date and time to avoid issues
+## setup locales to avoid issues (generate US locales too to avoid problems)
+cat << EOF >> /etc/locale.gen
+en_US.UTF-8 UTF-8
+EOF
+
+#COW forgot to actually generate the locale first, this step needed:
+locale-gen
+#for this to work
+eselect locale set en_US.utf8 # set locale
+env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
+
+#ERROR:
+systemd-firstboot --prompt --setup-machine-id # setup system settings
+#ERROR: --machine-id=/--setup-machine-id only works with --root= or --image=.
+#ok, use with only --prompt:
+#‣ Please enter system keymap name or number (empty to skip, "list" to list options): 73
+#Selected 'en'.
+#/etc/vconsole.conf written.
+#System has not been booted with systemd as init system (PID 1). Can't operate.
+#Failed to connect to bus: Host is down
+#
+#‣ Please enter hostname for new system (empty to skip): verified
+#/etc/hostname written.
+#genr8too / # cat /etc/vconsole.conf
+#KEYMAP=en
+#genr8too / # cat /etc/hostname
+#verified
+#Thats all it did.
+cat << EOF >> /etc/vconsole.conf
+KEYMAP=en
+EOF
+cat << EOF >> /etc/hostname
+verified
+EOF
+#for machine ID we can do this:
+genr8too / # uuidgen -r | tr -d '-' > /etc/machine-id
+
+systemctl preset-all # enable default services
+#Created symlink /etc/systemd/system/multi-user.target.wants/machines.target → /usr/lib/systemd/system/machines.target.
+#Created symlink /etc/systemd/system/sysinit.target.wants/systemd-network-generator.service → /usr/lib/systemd/system/systemd-network-generator.service.
+#Created symlink /etc/systemd/system/sockets.target.wants/systemd-journald-audit.socket → /usr/lib/systemd/system/systemd-journald-audit.socket.
+#Created symlink /etc/systemd/system/systemd-journald.service.wants/systemd-journald-audit.socket → /usr/lib/systemd/system/systemd-journald-audit.socket.
+#Created symlink /etc/systemd/system/sockets.target.wants/systemd-userdbd.socket → /usr/lib/systemd/system/systemd-userdbd.socket.
+#Created symlink /etc/systemd/system/network-online.target.wants/systemd-networkd-wait-online.service → /usr/lib/systemd/system/systemd-networkd-wait-online.service.
+#Created symlink /etc/systemd/system/dbus-org.freedesktop.network1.service → /usr/lib/systemd/system/systemd-networkd.service.
+#Created symlink /etc/systemd/system/multi-user.target.wants/systemd-networkd.service → /usr/lib/systemd/system/systemd-networkd.service.
+#Created symlink /etc/systemd/system/sockets.target.wants/systemd-networkd.socket → /usr/lib/systemd/system/systemd-networkd.socket.
+#Created symlink /etc/systemd/system/ctrl-alt-del.target → /usr/lib/systemd/system/reboot.target.
+#Created symlink /etc/systemd/system/sysinit.target.wants/systemd-pstore.service → /usr/lib/systemd/system/systemd-pstore.service.
+#Created symlink /etc/systemd/system/dbus-org.freedesktop.timesync1.service → /usr/lib/systemd/system/systemd-timesyncd.service.
+#Created symlink /etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service → /usr/lib/systemd/system/systemd-timesyncd.service.
+#Created symlink /etc/systemd/system/dbus-org.freedesktop.resolve1.service → /usr/lib/systemd/system/systemd-resolved.service.
+#Created symlink /etc/systemd/system/sysinit.target.wants/systemd-resolved.service → /usr/lib/systemd/system/systemd-resolved.service.
+
+#----------------------CUT OUT FROM THIS POINT ----------------------
+
+emerge --sync # sync repos
+emerge -va app-editors/neovim app-portage/eix dev-vcs/git # grab some tools
+eselect vi set nvim # setup vi symlink
+cat << EOF >> /etc/portage/repos.conf/cow.conf
+[cow]
+location = /var/db/repos/cow
+sync-type = git
+sync-uri = https://gitlab.com/the-ebuilder/cow-tools
+EOF
+emerge --sync cow # grab cow repo
+eselect profile set cow:hardened-systemd-merged-usr # switch to hardened profile
+emerge -1av sys-devel/gcc # rebuild gcc
+emerge -1av sys-devel/binutils sys-libs/glibc # rebuild binutils, glibc
+gcc-config -l # check we are using our new hardened toolchain
+emerge -e @world # rebuild system with hardened toolchain
+## switch to clang
+mkdir -pv /etc/portage/sets
+cat << EOF > /etc/portage/sets/clang-toolchain
+sys-devel/clang
+sys-devel/lld
+sys-devel/llvm
+sys-libs/llvm-libunwind
+EOF
+emerge -av @clang-toolchain
+echo "sys-devel/clang-common default-compiler-rt default-lld" >> /etc/portage/package.use/sys-devel
+echo "sys-libs/llvm-libunwind static-libs" >> /etc/portage/package.use/sys-libs
+cat << EOF >> /etc/portage/make.conf
+COMMON_FLAGS="-march=native -O3 -pipe -fdiagnostics-color=always"
+CFLAGS="\${COMMON_FLAGS} -flto=thin"
+CXXFLAGS="\${COMMON_FLAGS} -flto=thin"
+FCFLAGS="\${COMMON_FLAGS}"
+FFLAGS="\${COMMON_FLAGS}"
+
+CC="clang"
+CXX="clang++"
+AR="llvm-ar"
+NM="llvm-nm"
+RANLIB="llvm-ranlib"
+OBJCOPY="llvm-objcopy"
+OBJDUMP="llvm-objdump"
+
+LDFLAGS="\${LDFLAGS} -fuse-ld=lld -rtlib=compiler-rt -unwindlib=libunwind -Wl,--as-needed -Wl,--undefined-version"
+EOF
+emerge -e @world # rebuild with hardened clang toolchain
+# perform normal in chroot steps for install until world update
+emerge --ask --changed-use --deep --keep-going --update --verbose --with-bdeps=y @world # full system upgrade
+
+
+# --------- CUT OUT UP TO THIS POINT-------------------------#
+
+# Install kernel
+mkdir -pv /etc/portage/sets
+cat << EOF >> /etc/portage/sets/kernel-base
+app-crypt/sbctl
+app-crypt/sbsigntools
+app-crypt/tpm2-abrmd
+app-crypt/tpm2-openssl
+app-crypt/tpm2-pkcs11
+app-crypt/tpm2-tools
+app-crypt/tpm2-totp
+app-crypt/tpm2-tss
+#sys-firmware/intel-microcode # for intel cpu's only, use linux-firmware's use flag for amd
+sys-kernel/dracut
+sys-kernel/gentoo-kernel
+sys-kernel/installkernel-systemd
+sys-kernel/linux-firmware
+EOF
+
+echo "sys-kernel/gentoo-kernel initramfs modules-sign savedconfig" >> /etc/portage/package.use/sys-kernel
+
+#emerge this set now
+emerge -va @kernel-base
+
+## configure mounting
+cat << EOF > /usr/lib/systemd/system/home.mount
+[Unit]
+Description=Mount home subvolume
+Conflicts=umount.target
+Before=local-fs.target
+After=swap.target
+
+[Mount]
+What=/dev/mapper/cryptroot
+Where=/home
+Type=btrfs
+Options=subvol=home,noatime,compress=zstd,ssd
+
+[Install]
+WantedBy=local-fs.target
+EOF
+
+cat << EOF > /usr/lib/systemd/system/usr.mount
+[Unit]
+Description=Mount usr subvolume
+Conflicts=umount.target
+Before=local-fs.target
+After=swap.target
+
+[Mount]
+What=/dev/mapper/cryptusr
+Where=/usr
+Type=btrfs
+Options=subvol=usr,ro,noatime,compress=zstd,ssd
+
+[Install]
+WantedBy=local-fs.target
+EOF
+
+systemctl enable home.mount usr.mount # enable the mounting targets
+#Created symlink /etc/systemd/system/local-fs.target.wants/home.mount → /usr/lib/systemd/system/home.mount.
+#Created symlink /etc/systemd/system/local-fs.target.wants/usr.mount → /usr/lib/systemd/system/usr.mount.
+
+# setup /usr/local symlink
+rm -r /usr/local
+mkdir /var/usr_local
+ln -sf /var/usr_local /usr/local
+
+exit # exit the chroot
+umount -Rl /mnt/gentoo/usr # unmount usr
+veritysetup format /dev/mapper/cryptusr /dev/loop0p5 | grep Root | cut -f2 >> /mnt/gentoo/roothash
+mount -t btrfs -o ro,noatime,compress=zstd,ssd,subvol=usr /dev/mapper/cryptusr /mnt/gentoo/usr # mount our usr subvolume read only
+arch-chroot /mnt/gentoo # chroot back in
+env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
+
+## ADD SECURE BOOT USEFLAG GLOBALLY TO MAKE.CONF TOO!
+cat << EOF >> /etc/portage/make.conf
+SECUREBOOT_SIGN_KEY="/usr/share/secureboot/keys/db/db.key"
+SECUREBOOT_SIGN_CERT="/usr/share/secureboot/keys/db/db.pem"
+EOF
+sbctl create-keys
+mkdir /etc/secureboot
+ln -sf /usr/share/secureboot/files.db /etc/secureboot/files.db # setup symlink for secure boot database
+
+## configure dracut
+mkdir -pv /etc/dracut.conf.d
+cat << EOF >> /etc/dracut.conf.d/001-verifiedboot.conf
+show_modules=yes
+add_drivers+=' tpm_crb '
+add_dracutmodules+=' tpm2-tss '
+install_items+=" /usr/lib64/cryptsetup/libcryptsetup-token-systemd-tpm2.so "
+uefi=yes
+early_microcode=yes
+uefi_stub=/usr/lib/systemd/boot/efi/linuxx64.efi.stub
+uefi_secureboot_cert=/usr/share/secureboot/keys/db/db.pem
+uefi_secureboot_key=/usr/share/secureboot/keys/db/db.key
+kernel_cmdline="rd.luks.name=$(blkid -s UUID -o value /dev/loop0p6)=cryptroot rd.luks.options=$(blkid -s UUID -o value /dev/nvme0n1p6)=tpm2-device=/dev/tpmrm0,discard root=/dev/mapper/cryptroot rootflags=subvol=rootfs,noatime,compress=zstd,ssd rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p4) rd.luks.options=$(blkid -s UUID -o value /dev/nvme0n1p6)=tpm2-device=/dev/tpmrm0,discard systemd.verity=1 roothash=$(cat /roothash) systemd.verity_root_data=/dev/mapper/cryptusr systemd.verity_root_hash=UUID=$(blkid -s UUID -o value /dev/nvme0n1p5) systemd.verity_root_options=panic-on-corruption quiet loglevel=0 rw lockdown=confidentiality mce=0 page_alloc.shuffle=1 init_on_free=1 init_on_alloc=1 efi=disable_early_pci_dma page_alloc.shuffle=1 vsyscall=none debugfs=off oops=panic module.sig_enforce=1"
+EOF
+rm -rf /boot/{.*,*} /efi/{.*,*} # remove any files created by the emerge of the kernel
+bootctl install --esp-path=/efi --boot-path=/boot # install bootloader
+for each in BOOT/BOOTx64.efi systemd/systemd-bootx64.efi; do sbctl sign -s /efi/EFI/${each}; done # sign required files
+emerge --config sys-kernel/gentoo-kernel # configure the kernel

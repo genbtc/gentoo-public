@@ -1,6 +1,7 @@
-#!/bin/sh
-#2023 genr8eofl squashfs-mount script v0.1 @gentoo
-# mount the first squashfs in current dir
-sqfs=($(/bin/ls ./*.squashfs))
+#!/bin/bash
+# squashfs-mount script v0.2 - @genr8eofl copyright 2023 - AGPL3 License
+# Description: mounts the first squashfs in current dir
+
+sqfs=(*.squashfs)
 gentoo="/mnt/gentoo"
 mount -t squashfs -o rw ${sqfs} ${gentoo}

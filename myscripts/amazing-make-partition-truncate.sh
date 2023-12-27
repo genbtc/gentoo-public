@@ -1,11 +1,11 @@
 #!/bin/bash
 #2023 genr8eofl @ gentoo - amazing-make-partition-truncate.sh v0.32 - partitions the amazing disk image
 #this is part 1, part 2 is amazing-mount-fs-partitions.sh
-#Usage: # ./$0 [disk-image-filename ($1)]
+#Usage: # ./$0 [disk-image-filename($1)] [size($2)]
 
 #takes $1 arg on command line or default to hard coded value
-DISKIMG="${1:-gentooROOT-stage3-amd64-hardened-nomultilib-selinux-openrc-100123.dd}"
-DISKSIZE="25G"  #enough
+DISKIMG="${1:-verified-gentoo-1.dd}"
+DISKSIZE="${2:-50G}"
 
 #Existing?
 if [ -e "${DISKIMG}" ]; then
