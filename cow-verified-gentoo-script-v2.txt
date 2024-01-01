@@ -176,7 +176,7 @@ app-crypt/tpm2-totp
 app-crypt/tpm2-tss
 #sys-firmware/intel-microcode # for intel cpu's only, use linux-firmware's use flag for amd
 sys-kernel/dracut
-sys-kernel/gentoo-kernel
+sys-kernel/gentoo-kernel		#possibly try -bin
 sys-kernel/installkernel-systemd
 sys-kernel/linux-firmware
 EOF
@@ -238,6 +238,7 @@ arch-chroot /mnt/gentoo # chroot back in
 env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 
 ## ADD SECURE BOOT USEFLAG GLOBALLY TO MAKE.CONF TOO!
+# This should come first before we make usr read only?
 cat << EOF >> /etc/portage/make.conf
 SECUREBOOT_SIGN_KEY="/usr/share/secureboot/keys/db/db.key"
 SECUREBOOT_SIGN_CERT="/usr/share/secureboot/keys/db/db.pem"
@@ -258,9 +259,27 @@ early_microcode=yes
 uefi_stub=/usr/lib/systemd/boot/efi/linuxx64.efi.stub
 uefi_secureboot_cert=/usr/share/secureboot/keys/db/db.pem
 uefi_secureboot_key=/usr/share/secureboot/keys/db/db.key
-kernel_cmdline="rd.luks.name=$(blkid -s UUID -o value /dev/loop0p6)=cryptroot rd.luks.options=$(blkid -s UUID -o value /dev/nvme0n1p6)=tpm2-device=/dev/tpmrm0,discard root=/dev/mapper/cryptroot rootflags=subvol=rootfs,noatime,compress=zstd,ssd rd.luks.name=$(blkid -s UUID -o value /dev/nvme0n1p4) rd.luks.options=$(blkid -s UUID -o value /dev/nvme0n1p6)=tpm2-device=/dev/tpmrm0,discard systemd.verity=1 roothash=$(cat /roothash) systemd.verity_root_data=/dev/mapper/cryptusr systemd.verity_root_hash=UUID=$(blkid -s UUID -o value /dev/nvme0n1p5) systemd.verity_root_options=panic-on-corruption quiet loglevel=0 rw lockdown=confidentiality mce=0 page_alloc.shuffle=1 init_on_free=1 init_on_alloc=1 efi=disable_early_pci_dma page_alloc.shuffle=1 vsyscall=none debugfs=off oops=panic module.sig_enforce=1"
+kernel_cmdline="rd.luks.name=$(blkid -s UUID -o value /dev/loop0p6)=cryptroot rd.luks.options=$(blkid -s UUID -o value /dev/loop0p6)=tpm2-device=/dev/tpmrm0,discard root=/dev/mapper/cryptroot rootflags=subvol=rootfs,noatime,compress=zstd,ssd rd.luks.name=$(blkid -s UUID -o value /dev/loop0p4) rd.luks.options=$(blkid -s UUID -o value /dev/loop0p6)=tpm2-device=/dev/tpmrm0,discard systemd.verity=1 roothash=$(cat /roothash) systemd.verity_root_data=/dev/mapper/cryptusr systemd.verity_root_hash=UUID=$(blkid -s UUID -o value /dev/loop0p5) systemd.verity_root_options=panic-on-corruption quiet loglevel=0 rw lockdown=confidentiality mce=0 page_alloc.shuffle=1 init_on_free=1 init_on_alloc=1 efi=disable_early_pci_dma page_alloc.shuffle=1 vsyscall=none debugfs=off oops=panic module.sig_enforce=1"
 EOF
 rm -rf /boot/{.*,*} /efi/{.*,*} # remove any files created by the emerge of the kernel
 bootctl install --esp-path=/efi --boot-path=/boot # install bootloader
-for each in BOOT/BOOTx64.efi systemd/systemd-bootx64.efi; do sbctl sign -s /efi/EFI/${each}; done # sign required files
+
+#(chroot) genr8too / # bootctl install --esp-path=/efi --boot-path=/boot
+#Created "/efi/EFI/systemd".
+#Created "/efi/EFI/BOOT".
+#Created "/efi/loader".
+#Created "/boot/loader".
+#Created "/boot/loader/entries".
+#Created "/boot/EFI".
+#Created "/boot/EFI/Linux".
+#Copied "/usr/lib/systemd/boot/efi/systemd-bootx64.efi.signed" to "/efi/EFI/systemd/systemd-bootx64.efi".
+#Copied "/usr/lib/systemd/boot/efi/systemd-bootx64.efi.signed" to "/efi/EFI/BOOT/BOOTX64.EFI".
+#⚠️ Mount point '/efi' which backs the random seed file is world accessible, which is a security hole! ⚠️
+#⚠️ Random seed file '/efi/loader/.#bootctlrandom-seedb73388e3ee66409f' is world accessible, which is a security hole! ⚠️
+#Random seed file /efi/loader/random-seed successfully written (32 bytes).
+#Failed to write 'LoaderSystemToken' EFI variable: No such file or directory
+
+sbctl sign -s /efi/EFI/BOOT/BOOTx64.efi                 # sign required files
+sbctl sign -s /efi/EFI/BOOT/systemd/systemd-bootx64.efi # sign required files
+
 emerge --config sys-kernel/gentoo-kernel # configure the kernel
