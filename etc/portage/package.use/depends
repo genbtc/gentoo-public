@@ -232,7 +232,8 @@ dev-util/unicorn python
 #    net-misc/spice-gtk[usbredir,gtk3,introspection] required by (app-emulation/virt-manager-4.0.0-3:0/0::gentoo, installed) USE="gtk -policykit -sasl -test" PYTHON_SINGLE_TARGET="python3_10 -python3_8 -python3_9"
 #                       ^^^^^^^^
 #
-net-misc/spice-gtk usbredir
+#net-misc/spice-gtk usbredir
+# (see virt file)
 
 #virtual/imagemagick-tools:0
 #
@@ -247,5 +248,7 @@ net-misc/spice-gtk usbredir
 #-opencl -openexr -pango -perl -postscript -q32 -q8 -raw -static-libs -test -tiff -wmf" conflicts with
 #    media-gfx/imagemagick[jpeg,svg,tiff] required by (virtual/imagemagick-tools-0-r1-3:0/0::gentoo, installed) USE="jpeg svg tiff -perl -png"
 #                                   ^^^^
+#virtual/imagemagick-tools tiff
 
-virtual/imagemagick-tools tiff
+#begin autounmask from Feb12-23
+>=dev-python/pyzmq-25.0.2 drafts

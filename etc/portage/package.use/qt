@@ -1,0 +1,3 @@
+# required by dev-qt/qt-creator-11.0.3::gentoo[help]
+# required by dev-qt/qt-creator (argument)
+>=dev-qt/qttools-6.5.3 designer

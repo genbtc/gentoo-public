@@ -1,0 +1,14 @@
+#Program msgfmt found: YES (/usr/bin/msgfmt)
+#Program msginit found: YES (/usr/bin/msginit)
+#Program msgmerge found: YES (/usr/bin/msgmerge)
+#Program xgettext found: YES (/usr/bin/xgettext)
+#Program itstool found: YES (/usr/bin/itstool)
+
+[binaries]
+gettext = 'disabled'
+msgfmt = 'disabled'
+msginit = 'disabled'
+msgmerge = 'disabled'
+xgettext = 'disabled'
+intltool = 'disabled'
+itstool = 'disabled'

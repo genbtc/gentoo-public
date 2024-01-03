@@ -1,0 +1,769 @@
+diff -ur /etc/portage/binrepos.conf /home/genr8eofl/src/gentoo-public/etc/portage/binrepos.conf
+--- /etc/portage/binrepos.conf	2024-01-02 12:06:32.180700097 -0500
++++ /home/genr8eofl/src/gentoo-public/etc/portage/binrepos.conf	2023-07-08 15:44:10.410999242 -0400
+@@ -1,8 +1,19 @@
+-#[binhost8]
+-#sync-uri = rsync://10.1.1.1/binhost8
+-#[binhost9]
+-#sync-uri = rsync://10.1.1.1/binhost9
+-#[binhost-dir]
+-#sync-uri = file:///run/user/1000/gvfs/smb-share:server=10.1.1.1,share=raidz-4tbx4/DiskImages/LinuxDD/gentoo-zen3-var-cache-binpkgs-10/
+-[binhost-file]
+-sync-uri = file:///mnt/crucialp1/systemd-verified-cow-1-binpkgs/
++[binhost1]
++sync-uri = rsync://10.1.1.1/binhost1
++[binhost2]
++sync-uri = rsync://10.1.1.1/binhost2
++[binhost3]
++sync-uri = rsync://10.1.1.1/binhost3
++[binhost4]
++sync-uri = rsync://10.1.1.1/binhost4
++[binhost5]
++sync-uri = rsync://10.1.1.1/binhost5
++[binhost6]
++sync-uri = rsync://10.1.1.1/binhost6
++[binhost7]
++sync-uri = rsync://10.1.1.1/binhost7
++[binhost8]
++sync-uri = rsync://10.1.1.1/binhost8
++[binhost9]
++sync-uri = rsync://10.1.1.1/binhost9
++
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/: default_linux_amd64_17.1_no-multilib_hardened_selinux+openrc
+diff -ur /etc/portage/env/binutils-deterministic.conf /home/genr8eofl/src/gentoo-public/etc/portage/env/binutils-deterministic.conf
+--- /etc/portage/env/binutils-deterministic.conf	2023-10-14 15:38:13.199480776 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/env/binutils-deterministic.conf	2023-07-08 15:44:10.402999242 -0400
+@@ -1,3 +1,3 @@
+ # ${PORTAGE_CONFIG}/env/binutils-deterministic
+-EXTRA_ECONF="${EXTRA_ECONF} --enable-deterministic-archives"
++EXTRA_ECONF="--enable-deterministic-archives"
+ 
+diff -ur /etc/portage/env/binutils-execstack.conf /home/genr8eofl/src/gentoo-public/etc/portage/env/binutils-execstack.conf
+--- /etc/portage/env/binutils-execstack.conf	2023-10-14 15:38:22.351480097 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/env/binutils-execstack.conf	2023-07-08 15:44:10.402999242 -0400
+@@ -1 +1 @@
+-EXTRA_ECONF="${EXTRA_ECONF} --enable-warn-execstack --enable-warn-rwx-segments --enable-default-execstack=no"
++EXTRA_ECONF="--enable-warn-execstack --enable-warn-rwx-segments --enable-default-execstack=no"
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/env: deterministic.conf
+diff -ur /etc/portage/env/disable-nls.conf /home/genr8eofl/src/gentoo-public/etc/portage/env/disable-nls.conf
+--- /etc/portage/env/disable-nls.conf	2023-10-14 15:13:47.675589545 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/env/disable-nls.conf	2023-07-08 15:44:10.402999242 -0400
+@@ -1 +1 @@
+-EXTRA_ECONF="${EXTRA_ECONF} --disable-nls"
++EXTRA_ECONF="--disable-nls"
+diff -ur /etc/portage/env/gnupg-disnls-selinux.conf /home/genr8eofl/src/gentoo-public/etc/portage/env/gnupg-disnls-selinux.conf
+--- /etc/portage/env/gnupg-disnls-selinux.conf	2023-10-14 15:39:08.342476684 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/env/gnupg-disnls-selinux.conf	2023-07-08 15:44:10.402999242 -0400
+@@ -1 +1 @@
+-EXTRA_ECONF="${EXTRA_ECONF} --enable-selinux-support"
++EXTRA_ECONF="--enable-selinux-support --disable-nls"
+diff -ur /etc/portage/env/grub-stack-protector.conf /home/genr8eofl/src/gentoo-public/etc/portage/env/grub-stack-protector.conf
+--- /etc/portage/env/grub-stack-protector.conf	2023-10-14 15:40:12.414471928 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/env/grub-stack-protector.conf	2023-07-08 15:44:10.402999242 -0400
+@@ -1 +1 @@
+-EXTRA_ECONF="${EXTRA_ECONF} --enable-stack-protector"
++EXTRA_ECONF="--enable-stack-protector"
+diff -ur /etc/portage/env/ima-evm-utils-default-hash.conf /home/genr8eofl/src/gentoo-public/etc/portage/env/ima-evm-utils-default-hash.conf
+--- /etc/portage/env/ima-evm-utils-default-hash.conf	2023-10-14 15:40:06.286472383 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/env/ima-evm-utils-default-hash.conf	2023-07-08 15:44:10.402999242 -0400
+@@ -1 +1 @@
+-EXTRA_ECONF="${EXTRA_ECONF} --with-default-hash=sha512"
++EXTRA_ECONF="--with-default-hash=sha512"
+Only in /etc/portage/env: meson-disable-nls.conf
+Only in /etc/portage/env: meson-disable-nls.native
+diff -ur /etc/portage/env/shadow-fcaps.conf /home/genr8eofl/src/gentoo-public/etc/portage/env/shadow-fcaps.conf
+--- /etc/portage/env/shadow-fcaps.conf	2023-10-14 15:40:32.854470411 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/env/shadow-fcaps.conf	2023-07-08 15:44:10.403999242 -0400
+@@ -1 +1 @@
+-EXTRA_ECONF="${EXTRA_ECONF} --with-fcaps=yes"
++EXTRA_ECONF="--with-fcaps=yes"
+diff -ur /etc/portage/env/tk64bit.conf /home/genr8eofl/src/gentoo-public/etc/portage/env/tk64bit.conf
+--- /etc/portage/env/tk64bit.conf	2023-10-14 15:40:20.918471297 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/env/tk64bit.conf	2023-07-08 15:44:10.402999242 -0400
+@@ -1 +1 @@
+-EXTRA_ECONF="${EXTRA_ECONF} --enable-64bit"
++EXTRA_ECONF="--enable-64bit"
+diff -ur /etc/portage/env/tunables.conf /home/genr8eofl/src/gentoo-public/etc/portage/env/tunables.conf
+--- /etc/portage/env/tunables.conf	2023-10-14 15:20:38.347559066 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/env/tunables.conf	2023-07-08 15:44:10.402999242 -0400
+@@ -1 +1 @@
+-EXTRA_ECONF="${EXTRA_ECONF} --enable-tunables=yes --enable-memory-tagging"
++EXTRA_ECONF="--enable-tunables=yes --enable-memory-tagging --enable-profile"
+Only in /etc/portage/env: Wno-deprecated-declarations.conf
+Only in /etc/portage/gnupg: crls.d
+Only in /etc/portage/gnupg: .getuto.last
+Only in /etc/portage/gnupg: private-keys-v1.d
+Only in /etc/portage/gnupg: pubring.kbx
+Only in /etc/portage/gnupg: pubring.kbx~
+Only in /etc/portage/gnupg: trustdb.gpg
+diff -ur /etc/portage/make.conf /home/genr8eofl/src/gentoo-public/etc/portage/make.conf
+--- /etc/portage/make.conf	2024-01-02 12:04:13.356700222 -0500
++++ /home/genr8eofl/src/gentoo-public/etc/portage/make.conf	2023-07-08 15:44:10.410999242 -0400
+@@ -1,17 +1,8 @@
+ #genr8eofl has known and loved many make.conf scripts but this one is mine forever.
+ # original work, LICENSE: CCSA 4.0 , (C) 2021/2022/2023
+-# globals: /usr/share/portage/config/make.globals
+-# This sets the language of build output to English. # Please keep this setting intact when reporting bugs.
+-LC_MESSAGES=C.utf8
++# shortcuts: /usr/share/portage/config/make.globals
+ 
+-#Super-Ultra-Mega-Force Colors on: (by sam_)
+-CLICOLOR_FORCE=1
+-CMAKE_COLOR_DIAGNOSTICS=ON
+-CMAKE_COMPILER_COLOR_DIAGNOSTICS=ON
+-DIAG_COLOR="-fdiagnostics-color=always"
+-#march=native
+-CPU_ARCH_FLAGS="-march=znver3 -mshstk"
+-COMMON_FLAGS="${CPU_ARCH_FLAGS} -O2 -pipe ${DIAG_COLOR}"
++COMMON_FLAGS="-march=znver3 -mshstk -O2 -pipe -fdiagnostics-color=always"
+  # -Wno-deprecated-declarations"
+  # -fsanitize=address -ggdb3"
+ #LDFLAGS="-fsanitize=address"
+@@ -23,20 +14,28 @@
+ #RUSTFLAGS="-Copt-level=O2 -Ctarget-cpu=native"
+ GOAMD64="v3"
+ 
++#Super-Ultra-Mega-Force Colors on: (by sam_)
++CLICOLOR_FORCE=1
++CMAKE_COLOR_DIAGNOSTICS=ON
++CMAKE_COMPILER_COLOR_DIAGNOSTICS=ON
++
+ #[DIRS]
+ PORTAGE_LOGDIR="/var/cache/buildlogs"
+ #DISTDIR="/var/cache/distfiles"
+ #PKGDIR="/var/cache/binpkgs"
+-#PKGDIR="/home/genr8eofl/.cache/gvfs/smb-share:server=10.1.1.1,share=raidz-4tbx4/DiskImages/LinuxDD/gentoo-zen3-var-cache-binpkgs-10"
++#PKGDIR="/mnt/gentoo/var/cache/binpkgs"
++#PKGDIR="/home/genr8eofl/.cache/gvfs/smb-share:server=10.1.1.1,share=raidz-4tbx4/DiskImages/LinuxDD/gentoo-zen3-var-cache-binpkgs-9"
+ #uncomment line in /usr/lib/python3.11/site-packages/portage/emaint/modules/binhost/binhost.py ,then run: emaint binhost --fix
+ 
+ #PORTDIR="/var/db/repos/gentoo"
+ GENTOO_MIRRORS="rsync://10.1.1.1/ https://mirrors.rit.edu/gentoo/ https://gentoo.osuosl.org/ https://mirror.rackspace.com/gentoo/ https://mirror.leaseweb.com/gentoo/"
+ #SELINUX_GIT_REPO="https://github.com/perfinion/hardened-refpolicy"
+-#PORTAGE_BINHOST="file:///mnt/crucialp1/systemd-verified-cow-1-binpkgs/"
+ 
+-#MAKE MULTI-THREADED N+1 load average
+-MAKEOPTS="-j17"
++# This sets the language of build output to English. # Please keep this setting intact when reporting bugs.
++LC_MESSAGES=C.utf8
++
++#MAKE MULTI-THREADED N+2 #, cap at N+1 load average
++MAKEOPTS="-j18"
+ 
+ #[USE FLAGS]
+ #PROFILE DEFAULT (@07-05-23):
+@@ -56,31 +55,37 @@
+ ##(elogind - session control = generic analog of systemd)
+ ##(sqlite  - embedded sql database)
+ USE="${USE} audit elogind sqlite"
+-##(verify-sig - circular dependency signify)
+-USE="${USE} verify-sig"
+ #(XFCE, X & related)
+-USE="${USE} X opengl truetype gtk xv xinerama vdpau"
++USE="${USE} X opengl truetype gtk xv xinerama vdpau vulkan"
+ USE="${USE} vaapi" # circular dependency libva -> opengl -> mesa -> libva
+ USE="${USE} xvfb xorg xa osmesa"
+ #(Major GUI Frameworks)
+ USE="${USE} gtk3 qt5 sdl sdl2 vulkan"
+-#(Misc Others):
+-USE="${USE} jpeg jpeg2k svg xml"
+ #(Archives)
+-USE="${USE} zstd lz4 lzma"
+-#(Sound/media)
++USE="${USE} zstd lz4 lzma xml"
++#(Misc Others):
++USE="${USE} verify-sig"  # circular dependency signify
++#(Sound)
+ USE="${USE} alsa lm-sensors libnotify"
+-USE="${USE} aac flac mp3 opus ogg vorbis jack"
++USE="${USE} aac flac mp3 opus ogg vorbis"
+ USE="${USE} cairo ffmpeg gstreamer imlib portaudio rdp sndfile usb vnc"
+ #(system/+more)
++##(udev - automatic device discovery)-nope
+ USE="${USE} lvm samba fuse keyring"
+ USE="${USE} startup-notification system-info vala introspection"
++USE="${USE} jpeg jpeg2k svg"
+ USE="${USE} bash-completion snappy"
+-USE="${USE} modules-sign secureboot"
+ #DONTUSe="${DONUTS} python curl gnome dbus smartcard subversion suid"
+ 
+ #[CUSTOM FEATURES]
+-#FEATURES="${FEATURES} mount-sandbox"
++FEATURES="${FEATURES} mount-sandbox"
++FEATURES="${FEATURES} cgroup"
++#(-allsandboxesever-)
++#FEATURES="${FEATURES} sandbox usersandbox userpriv usersync userfetch ipc-sandbox mount-sandbox network-sandbox pid-sandbox"
++#(+safemodedisable+) ONLY use _if_ stuff breaks (ie: in a chroot)
++#FEATURES="${FEATURES} -userpriv -userfetch -usersandbox -sandbox -sesandbox -selinux"
++#(++extrasafedisable++) (extra thorough)
++#FEATURES="${FEATURES} -ipc-sandbox -network-sandbox -pid-sandbox -preserve-libs"
+ #(performance)
+ FEATURES="${FEATURES} parallel-install"
+ # "-merge-sync" (fast and dirty, dont sync to disk)
+@@ -97,15 +102,15 @@
+ 
+ #EMERGE SETTINGS ( -avtU)
+ EMERGE_DEFAULT_OPTS="--ask --verbose --tree --changed-use --keep-going \
+---autounmask=y --autounmask-write=y --autounmask-use=y --autounmask-continue=y"
+-#--binpkg-respect-use=y --binpkg-changed-deps=y --with-bdeps=y"
++--autounmask=y --autounmask-write=y --autounmask-use=y \
++--binpkg-respect-use=y --binpkg-changed-deps=y --with-bdeps=y"
+ # --unordered-display 
+ # --jobs=8 --load-average=16
+ # --noreplace || --selective=n
+ # --deep &| --complete-graph
+ 
+ #[MISC ADJUSTMENTS]
+-LLVM_TARGETS="AMDGPU X86 BPF WebAssembly"
++LLVM_TARGETS="AMDGPU X86 NVPTX BPF"
+ VIDEO_CARDS="dummy fbdev vesa virtualbox vmware nouveau amdgpu radeonsi virgl" #libDRM needs video_cards_radeon too
+ LCD_DEVICES="framebuffer ncurses text"
+ INPUT_DEVICES="libinput"
+@@ -123,9 +128,8 @@
+ COLLECTD_PLUGINS=""
+ CALLIGRA_FEATURES=""
+ LIBREOFFICE_EXTENSIONS=""
+-#prevent locales from clogging up disk # bugged. we need /usr/share/obs/obs-studio/locale/en-US.ini
+-INSTALL_MASK="/usr/share/locale/ /opt/vscodium/locales/ /usr/share/X11/locale/ /usr/share/obs/obs-studio/locale/ /usr/lib/python3.11/site-packages/sphinx/locale/ /usr/lib/python3.11/site-packages/gajim/locale/"
+-LOCALEPURGE=true
++#prevent locales from clogging up disk
++INSTALL_MASK="/usr/share/locale/ /opt/vscodium/locales/ /usr/share/X11/locale/"
+ 
+ #(Logger: ElogV)
+ #Documentation (from /usr/share/portage/config/make.conf.example)
+@@ -149,16 +153,9 @@
+ 
+ #rsync, prefer new algorithm
+ PORTAGE_RSYNC_EXTRA_OPTS="--new-compress"
+-#sync, complain after a week old
++#rsync, complain after a week
+ PORTAGE_SYNC_STALE="7"
+-#rsync, quick connection timeout
+-RSYNC_TIMEOUT="7"
+-
+ #emerge, shorter countdown timer, for --depclean
+ CLEAN_DELAY="2"
+-
+-#secureboot USE flag
+-SECUREBOOT_SIGN_KEY="/etc/keys/signing_key.priv"
+-SECUREBOOT_SIGN_CERT="/etc/keys/signing_key.pem"
+-MODULES_SIGN_KEY="${SECUREBOOT_SIGN_KEY}"
+-MODULES_SIGN_HASH="sha512"
++#rsync, quick timeout, was 180
++RSYNC_TIMEOUT="10"
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/: make.profile.is.default_linux_amd64_17.1_no-multilib_hardened_selinux+openrc
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/: make.profile.txt
+Only in /etc/portage/package.accept_keywords: app-admin-mkosi
+Only in /etc/portage/package.accept_keywords: app-admin-s-tui
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: app-alternatives-yacc
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: app-backup-borgbackup
+Only in /etc/portage/package.accept_keywords: app-crypt-ima-evm-utils
+Only in /etc/portage/package.accept_keywords: app-misc-dasel
+Only in /etc/portage/package.accept_keywords: app-misc-yq
+Only in /etc/portage/package.accept_keywords: app-portage-pfl
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: app-portage-portage-utils
+diff -ur /etc/portage/package.accept_keywords/cpuid /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords/cpuid
+--- /etc/portage/package.accept_keywords/cpuid	2023-10-17 00:34:49.235266274 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords/cpuid	2023-07-08 15:44:10.406999242 -0400
+@@ -1,4 +1,4 @@
+ # required by sys-apps/cpu-x-4.5.2::gentoo[cpu]
+ # required by sys-apps/cpu-x (argument)
+->=dev-libs/libcpuid-0.6.2 ~amd64
++=dev-libs/libcpuid-0.6.2 ~amd64
+ 
+Only in /etc/portage/package.accept_keywords: dev-lang-bacon
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: dev-libs-spdlog-1.11.0
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: dev-python-meson-python-0.12.0
+Only in /etc/portage/package.accept_keywords: dev-python-pyotherside
+Only in /etc/portage/package.accept_keywords: dev-qt-qt-creator
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: dev-qt-qt-creator-8.0.1
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: dev-qt-qtquicktimeline
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: dev-util-pkgcheck-0.10.20
+Only in /etc/portage/package.accept_keywords: eudev
+Only in /etc/portage/package.accept_keywords: ffmpeg
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: gentoo-sources
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: gnome
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: gui-libs-libadwaita
+diff -ur /etc/portage/package.accept_keywords/ima-evm-utils /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords/ima-evm-utils
+--- /etc/portage/package.accept_keywords/ima-evm-utils	2023-10-11 16:58:58.691452742 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords/ima-evm-utils	2023-07-08 15:44:10.404999242 -0400
+@@ -1 +1 @@
+-app-crypt/ima-evm-utils
++app-crypt/ima-evm-utils **
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: .jupyter~
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: jupyter
+Only in /etc/portage/package.accept_keywords: jupyter.disabled~
+Only in /etc/portage/package.accept_keywords: lxde-base-lxterminal
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: maturin
+Only in /etc/portage/package.accept_keywords: net-analyzer-ssh-audit
+diff -ur /etc/portage/package.accept_keywords/net-firewall-iptables /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords/net-firewall-iptables
+--- /etc/portage/package.accept_keywords/net-firewall-iptables	2023-09-29 19:17:32.865018570 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords/net-firewall-iptables	2023-07-08 15:44:10.404999242 -0400
+@@ -1 +1 @@
+-~net-firewall/iptables-1.8.9-r1
++net-firewall/iptables
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: net-wireless-gnuradio-3.10.4.0
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: net-wireless-gnuradio-3.10.4.0-r1
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: notepadqq
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: ntfs3g
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: perl.disabled~
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: pythonpkgs
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: sci-libs-tensorflow
+Only in /etc/portage/package.accept_keywords: secpol
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: spek
+Only in /etc/portage/package.accept_keywords: sys-apps-eza
+Only in /etc/portage/package.accept_keywords: sys-apps-gnome-disk-utility
+Only in /etc/portage/package.accept_keywords: sys-apps-rootlesskit
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: sys-devel-binutils
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: sys-devel-gcc
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: sys-devel-gcc-12.2.1
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: sys-devel-m4-1.4.19-r1
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: sys-kernel-gentoo-kernel-bin-6-1-3
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: sys-kernel-gentoo-sources-5.15.86
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: tpm2
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: transmission
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: transmission.disabled~
+Only in /etc/portage/package.accept_keywords: www-apps-jellyfin
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: www-client-firefox-109.0.1
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords: x11-libs-pixman-0.42.2
+diff -ur /etc/portage/package.accept_keywords/zz_autounmask /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords/zz_autounmask
+--- /etc/portage/package.accept_keywords/zz_autounmask	2024-01-02 11:55:36.924700685 -0500
++++ /home/genr8eofl/src/gentoo-public/etc/portage/package.accept_keywords/zz_autounmask	2023-07-08 15:44:10.406999242 -0400
+@@ -1,43 +1,22 @@
+ # required by dev-util/rr (argument)
+-#=dev-util/rr-5.6.0-r2 ~amd64
+-=dev-util/rr-5.6.0-r4 ~amd64
+-~dev-util/rr-5.6.0 ~amd64
++=dev-util/rr-5.6.0-r2 ~amd64
+ # required by dev-util/rt-tests (argument)
+-#dev-util/rt-tests
+-#
+-# required by dev-util/radare2-5.8.8-r1::gentoo
+-# required by dev-util/radare2 (argument)
+-#=dev-libs/capstone-5.0_rc4 ~amd64
+-#8/10/23 ^ / commented out 10/15/23
+-#~dev-libs/capstone-5.0 ~amd64
+-# required by media-sound/musikcube (argument)
+-=media-sound/musikcube-3.0.1 ~amd64
+-#07/20/23 ^
+-
+-#(9/26/23)
+-# required by media-libs/vulkan-loader-1.3.261::gentoo
+-# required by media-video/ffmpeg-9999::gentoo[vulkan]
+-# required by media-video/handbrake-1.6.1::gentoo
+-# required by @selected
+-# required by @world (argument)
+-#=dev-util/vulkan-headers-1.3.261 ~amd64
+-# required by media-libs/mesa-23.1.6::gentoo[zink]
+-# required by www-client/firefox-115.2.1::gentoo
+-# required by @__auto_slot_operator_replace_installed__ (argument)
+-#=media-libs/vulkan-loader-1.3.261 ~amd64
+-#~dev-util/vulkan-tools-1.3.261 ~amd64
+-# required by dev-util/vulkan-tools-1.3.261-r1::gentoo[cube]
++dev-util/rt-tests
++dev-lang/bacon
++net-analyzer/ssh-audit
++# required by virtual/dist-kernel-6.2.14::gentoo
++# required by sys-kernel/gentoo-kernel-6.2.14::gentoo
++# required by sys-kernel/gentoo-kernel-bin-6.2.12::gentoo
+ # required by @selected
+ # required by @world (argument)
+-#=dev-util/glslang-1.3.261 ~amd64
+-#(10/16/23)
+-#^
+-
+-
+-# required by dev-python/pyopenssl-23.3.0::gentoo
+-# required by app-crypt/yubikey-manager-5.2.0::gentoo[ssl]
++>=virtual/dist-kernel-6.1.1 ~amd64
++>=sys-kernel/gentoo-kernel-6.1.1 ~amd64
++# required by gnome-base/nautilus-43.1::gentoo
+ # required by @selected
+ # required by @world (argument)
+-=dev-python/cryptography-41.0.5 ~amd64
+-# required by dev-python/tpm2-pytss (argument)
+-=dev-python/tpm2-pytss-2.1.0-r1 ~amd64
++#=gui-libs/gtk-4.10.3 ~amd64
++# required by net-misc/gnome-remote-desktop (argument)
++#>=net-misc/gnome-remote-desktop-44.1 ~amd64
++# required by dev-util/radare2-5.8.8-r1::gentoo
++# required by dev-util/radare2 (argument)
++=dev-libs/capstone-5.0_rc4 ~amd64
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.env: cmake
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.env: disabled
+diff -ur /etc/portage/package.env/disable-nls /home/genr8eofl/src/gentoo-public/etc/portage/package.env/disable-nls
+--- /etc/portage/package.env/disable-nls	2023-10-17 00:44:50.321221663 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/package.env/disable-nls	2023-07-08 15:44:10.407999242 -0400
+@@ -8,7 +8,7 @@
+ >=app-backup/timeshift-22.06.1-r1        disable-nls.conf
+ >=app-cdr/brasero-3.12.3        disable-nls.conf
+ >=app-crypt/gcr-3.41.0        disable-nls.conf
+->=app-crypt/gnupg-2.2.35-r1        disable-nls.conf
++#>=app-crypt/gnupg-2.2.35-r1        disable-nls.conf selinux.conf
+ >=app-crypt/libsecret-0.20.5-r3        disable-nls.conf
+ >=app-crypt/seahorse-42.0        disable-nls.conf
+ >=app-editors/mousepad-0.5.9        disable-nls.conf
+@@ -26,8 +26,8 @@
+ >=dev-libs/libdbusmenu-16.04.0-r2	disable-nls.conf
+ >=dev-libs/glib-2.72.3        disable-nls.conf
+ >=dev-libs/json-glib-1.6.6-r1        disable-nls.conf
+-#>=dev-libs/libbytesize-2.7        disable-nls.conf
+-#>=dev-libs/libfilezilla-0.37.2        disable-nls.conf
++>=dev-libs/libbytesize-2.7        disable-nls.conf
++>=dev-libs/libfilezilla-0.37.2        disable-nls.conf
+ >=dev-libs/libgnome-games-support-1.8.2        disable-nls.conf
+ >=dev-libs/libpwquality-1.4.4-r1        disable-nls.conf
+ >=dev-libs/newt-0.52.21_p20210816        disable-nls.conf
+@@ -161,7 +161,7 @@
+ >=sys-apps/xdg-desktop-portal-gnome-43.1 disable-nls.conf
+ >=sys-apps/xdg-desktop-portal-gtk-1.14.1 disable-nls.conf
+ >=mate-extra/mate-system-monitor-1.26.0	     disable-nls.conf
+-#>=gnome-base/gnome-mime-data-2.18.0-r1	    disable-nls.conf
++>=gnome-base/gnome-mime-data-2.18.0-r1	    disable-nls.conf
+ >=xfce-extra/xfce4-battery-plugin-1.1.4       disable-nls.conf
+ >=xfce-extra/xfce4-wavelan-plugin-0.6.3       disable-nls.conf
+ >=xfce-extra/xfce4-genmon-plugin-4.1.1        disable-nls.conf
+@@ -183,4 +183,3 @@
+ >=xfce-extra/xfce4-indicator-plugin-2.4.1     disable-nls.conf
+ lxde-base/lxappearance          disable-nls.conf
+ >=media-gfx/eom-1.26.0-r1       disable-nls.conf
+->=lxde-base/lxterminal-0.4.0    disable-nls.conf
+Only in /etc/portage/package.env: fluxbox
+Only in /etc/portage/package.env: glib-adwaita-dconf-debug
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.env: glibc
+Only in /etc/portage/package.env: glibc-debug
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.env: gtk
+Only in /etc/portage/package.env: gtk-debug
+Only in /etc/portage/package.env: meson-disable-nls
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.env: shadow
+Only in /etc/portage/package.env: thunar-debug.disabled~
+Only in /etc/portage/package.env: xemacs-debug
+File /etc/portage/package.license is a regular file while file /home/genr8eofl/src/gentoo-public/etc/portage/package.license is a directory
+Only in /etc/portage/package.mask: eudev-udev-libudev
+Only in /etc/portage/package.mask: flags
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.mask: gcc
+Only in /etc/portage/package.mask: handbrake
+Only in /etc/portage/package.mask: jsonschema
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.mask: lxd
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.mask: nautilus
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.mask: openssl
+Only in /etc/portage/package.mask: sxid
+Only in /etc/portage/package.mask: systemd-utils
+Only in /etc/portage/package.unmask: catalyst
+Only in /etc/portage/package.unmask: eudev
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.unmask: gcc
+diff -ur /etc/portage/package.unmask/gkrellm /home/genr8eofl/src/gentoo-public/etc/portage/package.unmask/gkrellm
+--- /etc/portage/package.unmask/gkrellm	2023-10-17 18:47:16.307301952 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/package.unmask/gkrellm	2023-07-08 15:44:10.392999242 -0400
+@@ -1,5 +1 @@
+ #Unmaintained - Masked in profile, unmasked by me
+-# required by app-admin/s-tui (argument)
+-# /etc/portage/package.mask/guru:
+-#genr8eofl @ 01/08/23 - All of ::GURU is masked for your safety
+-=app-admin/s-tui-1.1.3-r1
+diff -ur /etc/portage/package.unmask/::guru /home/genr8eofl/src/gentoo-public/etc/portage/package.unmask/::guru
+--- /etc/portage/package.unmask/::guru	2023-07-09 13:28:40.096424985 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/package.unmask/::guru	2023-07-08 15:44:10.392999242 -0400
+@@ -6,4 +6,3 @@
+ x11-themes/qogir-icon-theme::guru
+ media-libs/imgui::guru
+ dev-python/tweepy::guru
+-media-sound/musikcube::guru
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.unmask: opentmpfiles
+diff -ur /etc/portage/package.use/depends /home/genr8eofl/src/gentoo-public/etc/portage/package.use/depends
+--- /etc/portage/package.use/depends	2023-10-17 00:41:11.159237929 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/package.use/depends	2023-07-08 15:44:10.400999242 -0400
+@@ -232,8 +232,7 @@
+ #    net-misc/spice-gtk[usbredir,gtk3,introspection] required by (app-emulation/virt-manager-4.0.0-3:0/0::gentoo, installed) USE="gtk -policykit -sasl -test" PYTHON_SINGLE_TARGET="python3_10 -python3_8 -python3_9"
+ #                       ^^^^^^^^
+ #
+-#net-misc/spice-gtk usbredir
+-# (see virt file)
++net-misc/spice-gtk usbredir
+ 
+ #virtual/imagemagick-tools:0
+ #
+@@ -248,7 +247,5 @@
+ #-opencl -openexr -pango -perl -postscript -q32 -q8 -raw -static-libs -test -tiff -wmf" conflicts with
+ #    media-gfx/imagemagick[jpeg,svg,tiff] required by (virtual/imagemagick-tools-0-r1-3:0/0::gentoo, installed) USE="jpeg svg tiff -perl -png"
+ #                                   ^^^^
+-#virtual/imagemagick-tools tiff
+ 
+-#begin autounmask from Feb12-23
+->=dev-python/pyzmq-25.0.2 drafts
++virtual/imagemagick-tools tiff
+Only in /etc/portage/package.use: eudev
+diff -ur /etc/portage/package.use/flags /home/genr8eofl/src/gentoo-public/etc/portage/package.use/flags
+--- /etc/portage/package.use/flags	2024-01-01 07:46:52.233791627 -0500
++++ /home/genr8eofl/src/gentoo-public/etc/portage/package.use/flags	2023-07-08 15:44:10.400999242 -0400
+@@ -1,3 +1,4 @@
++#sys-apps/fwupd udev
+ app-admin/conky iostats math lua-cairo bundled-toluapp
+ app-admin/keepassxc yubikey -network
+ app-admin/sxid -mail
+@@ -17,6 +18,8 @@
+ dev-util/geany-plugins debugger pretty-printer scope workbench
+ dev-vcs/git tk
+ gnome-base/gvfs mtp -http
++#gnome-base/nautilus -previewer -sendto
++#mate-extra/mate-utils udisks applet
+ media-gfx/fbida -X
+ media-gfx/geeqie exif tiff xmp
+ media-gfx/imagemagick webp
+@@ -28,10 +31,10 @@
+ media-sound/audacity vamp id3tag sbsms
+ media-sound/deadbeef oss lastfm notify
+ media-sound/qmmp analyzer archive cover crossfade cue curl enca gnome ladspa lyrics notifier qsui qtmedia scrobbler shout soxr stereo tray
+-media-video/ffmpeg gmp libaom libass libdrm libsoxr libxml2 openh264 openssl -samba xvid x265 rav1e vpx
++media-video/ffmpeg gmp libaom libass libdrm libsoxr libxml2 openh264 openssl -samba sdl xvid x265 rav1e vpx
+ media-video/mediainfo wxwidgets
+ media-video/mpv archive drm libmpv libcaca
+-media-video/obs-studio vlc fdk pipewire
++media-video/obs-studio vlc fdk
+ media-video/vlc aom dav1d faad libass matroska mpeg srt
+ net-analyzer/wireshark brotli smi
+ net-firewall/iptables conntrack netlink nftables pcap
+@@ -55,7 +58,7 @@
+ sys-fs/e2fsprogs -fuse
+ sys-fs/fuse-exfat suid
+ sys-fs/fuse suid
+-sys-kernel/linux-firmware savedconfig
++#sys-kernel/linux-firmware savedconfig
+ sys-libs/libcap tools
+ sys-libs/ncurses gpm
+ sys-process/procps modern-top
+@@ -71,12 +74,13 @@
+ media-gfx/imagemagick zip
+ sys-block/gparted policykit
+ net-libs/zeromq drafts
++sys-boot/grub sdl
+ dev-lang/python tk
+ sys-apps/pcsc-tools gui
+ sys-apps/pcsc-lite policykit
+ media-gfx/graphviz python tcl perl gtk2
+ dev-libs/openct pcsc-lite
+-net-libs/libinfinity server
++net-libs/libinfinity gtk server
+ app-admin/doas persist
+ www-client/w3m fbcon gpm
+ #x11-terms/rxvt-unicode 256-color blink fading-colors gdk-pixbuf xft
+@@ -85,28 +89,14 @@
+ media-gfx/imagemagick tiff
+ net-misc/openssh security-key
+ xfce-base/xfce4-settings libcanberra -xklavier
++media-video/obs-studio pipewire
+ dev-python/ipython nbconvert notebook -nbconvert #matplotlib
+ #===================May 20, 2023===================================#
+ app-office/abiword -goffice
+ sys-auth/pambase gnome-keyring
++#net-misc/freerdp server
++#x11-wm/mutter screencast
+ media-gfx/gthumb tiff webp
+ app-text/poppler boost png tiff
+ sys-apps/systemd-utils -udev
+ sys-kernel/linux-firmware compress-zstd
+-media-sound/musikcube -libopenmpt
+-dev-util/vulkan-tools cube
+-media-gfx/fbida fbcon
+-sys-process/atop -dist-kernel
+-#app-admin/ryzen_smu modules-sign
+-www-client/firefox openh264
+-app-emulation/virt-manager gui policykit
+-#virtual/libudev eudev
+-media-sound/musikcube pipewire
+-dev-qt/qttools designer qml
+-=sys-kernel/linux-firmware-20230919 -savedconfig
+-app-editors/xemacs debug
+-sys-libs/glibc profile test
+-=dev-python/jsonschema-specifications-2023.3.6 test
+-sys-kernel/installkernel-gentoo grub
+-sys-devel/gdb debuginfod
+-app-emulation/libvirt virt-network
+diff -ur /etc/portage/package.use/pipewire /home/genr8eofl/src/gentoo-public/etc/portage/package.use/pipewire
+--- /etc/portage/package.use/pipewire	2023-07-21 10:48:05.355104687 -0400
++++ /home/genr8eofl/src/gentoo-public/etc/portage/package.use/pipewire	2023-07-08 15:44:10.400999242 -0400
+@@ -1,2 +1,2 @@
+-media-video/pipewire -sound-server extra
++media-video/pipewire -sound-server ffmpeg extra
+ media-sound/pulseaudio -daemon
+Only in /etc/portage/package.use: qt
+Only in /etc/portage/package.use: virt
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/package.use: zz-autounmask
+diff -ur /etc/portage/package.use/zz_autounmask /home/genr8eofl/src/gentoo-public/etc/portage/package.use/zz_autounmask
+--- /etc/portage/package.use/zz_autounmask	2023-12-29 16:13:15.733996996 -0500
++++ /home/genr8eofl/src/gentoo-public/etc/portage/package.use/zz_autounmask	2023-07-08 15:44:10.400999242 -0400
+@@ -1,26 +1,3 @@
+ #begin autounmask, blank Feb12-23
+-#
++# 
+ >=dev-python/pyzmq-25.0.2 drafts
+-# required by media-gfx/tuxpaint-0.9.29::gentoo
+-# required by @selected
+-# required by @world (argument)
+->=media-libs/sdl2-image-2.6.3 png
+-# required by sys-devel/gdb-13.2-r2::gentoo[debuginfod]
+-# required by dev-python/pydevd-2.10.0::gentoo
+-# required by dev-python/debugpy-1.6.6::gentoo
+-# required by dev-python/ipykernel-6.26.0::gentoo[python_targets_python3_11,-test,-python_targets_python3_10]
+-# required by dev-python/jupyterlab-4.0.9::gentoo
+-# required by dev-python/notebook-7.0.6::gentoo
+-# required by dev-python/ipython-8.17.2::gentoo[notebook,python_targets_python3_11,-python_targets_python3_10]
+-# required by @selected
+-# required by @world (argument)
+->=dev-libs/elfutils-0.189-r4 debuginfod
+-# required by media-sound/jack2-1.9.22::gentoo[opus]
+-# required by virtual/jack-2::gentoo
+-# required by www-client/firefox-115.5.0::gentoo
+-# required by @selected
+-# required by @world (argument)
+->=media-libs/opus-1.4 custom-modes
+-# required by app-crypt/swtpm-0.8.1-r2::gentoo
+-# required by app-crypt/swtpm (argument)
+->=net-libs/gnutls-3.8.0 pkcs11 tools
+Only in /etc/portage/patches: app-arch
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/patches/app-crypt: gorilla
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/patches/app-portage/elogv: elogv.patch
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/patches/app-portage: portage-utils
+Only in /etc/portage/patches: dev-python
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/patches: portage.diff.old.patch
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/: PKGUSE-grep-cmd-July0823-3.txt
+Only in /etc/portage/: portage-2024-update-diffs.txt
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/profile: llvm-targets-use-force.txt
+diff -ur /etc/portage/profile/package.provided /home/genr8eofl/src/gentoo-public/etc/portage/profile/package.provided
+--- /etc/portage/profile/package.provided	2024-01-03 11:20:12.762625045 -0500
++++ /home/genr8eofl/src/gentoo-public/etc/portage/profile/package.provided	2023-07-08 15:44:10.408999242 -0400
+@@ -1,26 +1,17 @@
+-#never even wanted. Dragged in by chrome
+ app-text/ghostscript-gpl-10.01.1
+ net-print/cups-2.4.2-r7
+ app-text/yelp-tools-42.1
++ # chrome NEEDS liberation-fonts, but virtual/ttf-fonts provides dejavu alternatively, seems ok
++media-fonts/liberation-fonts-2.1.3
++ # nautilus ,dont want trackers (skip/TODO)
++#app-misc/tracker-miners-3.4.2-r1
++#app-misc/tracker-3.4.2
++ # nautilus
++#gnome-base/nautilus-43.2
+ 
+-#stop kernels from updating each time so much
+-#virtual/dist-kernel-6.9.9
+-#sys-kernel/gentoo-kernel-bin-6.9.9
+-#sys-kernel/gentoo-kernel-6.9.9
+-#sys-kernel/gentoo-sources-6.9.9
++#stop kernel-bin from updating each time so much
++virtual/dist-kernel-6.3.10
++sys-kernel/gentoo-kernel-6.3.10
+ 
+-#(INstalled on 12/29/23)
+-#libvirt, (qemu? new dep) sprung on us
+-#app-crypt/swtpm-0.8.0
+-
+-#gnuradio adds -r1
+-#net-wireless/gnuradio-3.10.7.0-r1
+-
+-#ffmpeg 6 is blocked by VLC[vaapi] and handbrake-1.5 not 1.6
+-#[ebuild     UD ] media-video/ffmpeg-4.4.4-r3:0/56.58.58::gentoo [4.4.4-r4:0/56.58.58::gentoo] U
+-#/etc/portage/package.mask/handbrake
+-media-video/ffmpeg-6.0.0
+-
+-# required by app-emulation/libvirt-9.4.0-r4::gentoo[virt-network]
+-net-dns/dnsmasq-2.89-r1 #USE= ipv6 script
+-net-misc/radvd-2.19-r5  # pulls selinux policies also
++#already have, -r1 just adds icons
++net-wireless/gnuradio-3.10.6.0-r1
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/repos.conf: eselect-repo.conf
+diff -ur /etc/portage/repos.conf/eselect-repo.conf~ /home/genr8eofl/src/gentoo-public/etc/portage/repos.conf/eselect-repo.conf~
+--- /etc/portage/repos.conf/eselect-repo.conf~	2023-02-24 01:34:23.902886564 -0500
++++ /home/genr8eofl/src/gentoo-public/etc/portage/repos.conf/eselect-repo.conf~	2023-01-18 16:12:55.777256919 -0500
+@@ -5,8 +5,9 @@
+ sync-type = git
+ sync-uri = https://github.com/gentoo-mirror/guru.git
+ 
+-[librewolf]
+-location = /var/db/repos/librewolf
+-sync-type = git
+-sync-uri = https://gitlab.com/librewolf-community/browser/gentoo.git
+ 
++
++[mv]
++location = /var/db/repos/mv
++sync-type = git
++sync-uri = https://github.com/gentoo-mirror/mv.git
+diff -ur /etc/portage/repos.conf/gentoo.conf /home/genr8eofl/src/gentoo-public/etc/portage/repos.conf/gentoo.conf
+--- /etc/portage/repos.conf/gentoo.conf	2023-12-03 17:57:28.787380466 -0500
++++ /home/genr8eofl/src/gentoo-public/etc/portage/repos.conf/gentoo.conf	2023-07-08 15:44:10.408999242 -0400
+@@ -5,18 +5,18 @@
+ location = /var/db/repos/gentoo
+ sync-type = rsync
+ sync-uri = rsync://rsync.gentoo.org/gentoo-portage
++#sync-type = webrsync
+ auto-sync = yes
+ sync-rsync-verify-jobs = 1
+ sync-rsync-verify-metamanifest = yes
+ sync-rsync-verify-max-age = 24
+ sync-openpgp-key-path = /usr/share/openpgp-keys/gentoo-release.asc
+ sync-openpgp-keyserver = hkps://keys.gentoo.org
+-sync-openpgp-key-refresh-retry-count = 5
+-sync-openpgp-key-refresh-retry-overall-timeout = 60
++sync-openpgp-key-refresh-retry-count = 40
++sync-openpgp-key-refresh-retry-overall-timeout = 1200
+ sync-openpgp-key-refresh-retry-delay-exp-base = 2
+-sync-openpgp-key-refresh-retry-delay-max = 20
+-sync-openpgp-key-refresh-retry-delay-mult = 3
+-#sync-type = webrsync
++sync-openpgp-key-refresh-retry-delay-max = 60
++sync-openpgp-key-refresh-retry-delay-mult = 4
+ sync-webrsync-verify-signature = yes
+ sync-webrsync-delta = true
+ 
+Only in /etc/portage/repos.conf: guru.conf
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/repos.conf: layman.conf
+Only in /etc/portage/: savedconfig
+Only in /home/genr8eofl/src/gentoo-public/etc/portage/sets: acct-group-user~
+Only in /etc/portage/sets: secpol
+Only in /etc/portage/sets: world-app-1.txt
+diff -ur /etc/portage/suidctl.conf /home/genr8eofl/src/gentoo-public/etc/portage/suidctl.conf
+--- /etc/portage/suidctl.conf	2023-12-18 19:16:22.616815743 -0500
++++ /home/genr8eofl/src/gentoo-public/etc/portage/suidctl.conf	2023-07-08 15:44:10.399999242 -0400
+@@ -1,8 +1,7 @@
+-# genbtc (c)2022+2023+August
++# genbtc (c)2022+2023
+ # find / -xdev -type f \( -perm -004000 -o -perm -002000 \) -exec ls -lg {} \; 2>/dev/null >suidfiles.txt
+-#Doas.
+ /usr/bin/doas
+-#VirtualBox
++/usr/bin/fusermount3
+ /usr/lib64/virtualbox/VBoxHeadless
+ /usr/lib64/virtualbox/VBoxNetAdpCtl
+ /usr/lib64/virtualbox/VBoxNetDHCP
+@@ -10,11 +9,8 @@
+ /usr/lib64/virtualbox/VBoxSDL
+ /usr/lib64/virtualbox/VBoxVolInfo
+ /usr/lib64/virtualbox/VirtualBoxVM
+-#Dbus
+ /usr/libexec/dbus-daemon-launch-helper
+-#LXC user networking
+ /usr/libexec/lxc/lxc-user-nic
+-#VMWare
+ /usr/lib/vmware/bin/vmware-vmx
+ /usr/lib/vmware/bin/vmware-vmx-debug
+ /usr/lib/vmware/bin/vmware-vmx-stats
+@@ -86,18 +82,7 @@
+ #/usr/bin/screen-4.9.0
+ ## -rwxr-s--x. 1 root locate 319K May 23 23:42 /usr/bin/plocate
+ #/usr/bin/plocate
+-/usr/bin/fusermount3
+ ## -rws--x--x. 1 root root 39K Jul  5 20:35 /usr/bin/fusermount
+ /usr/bin/fusermount
+ ## -rws--x--x. 1 root root 271K Jul  7 10:17 /usr/bin/sudo
+ /usr/bin/sudo
+-## -rws--x--x. 1 root root 22K Aug 10 15:45 /usr/libexec/spice-client-glib-usb-acl-helper
+-#/usr/libexec/spice-client-glib-usb-acl-helper
+-## -rwxr-s--x. 1 root mail 14K Sep 19 21:43 /usr/libexec/emacs/29.1/x86_64-pc-linux-gnu/movemail
+-#/usr/libexec/emacs/29.1/x86_64-pc-linux-gnu/movemail
+-##app-cdr/cdrtools-3.02_alpha09-r3
+-#/usr/sbin/rscsi
+-## -rws--x--x. 1 root root 58K Sep 27 14:49 /usr/bin/ksu
+-#/usr/bin/ksu
+-## -rwxr-s--x. 1 root utmp 479K Dec 18 19:16 /usr/bin/screen-4.9.1
+-#/usr/bin/screen-4.9.1

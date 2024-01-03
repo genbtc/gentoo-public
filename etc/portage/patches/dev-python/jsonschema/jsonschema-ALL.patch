@@ -1,0 +1,92 @@
+--- a/jsonschema/tests/test_cli.py	2020-02-01 19:00:00.000000000 -0500
++++ b/jsonschema/tests/test_cli.py	2023-10-04 17:53:06.968992651 -0400
+@@ -12,6 +12,8 @@
+ import tempfile
+ import warnings
+ 
++from pyrsistent import m
++
+ from jsonschema import Draft4Validator, Draft202012Validator
+ from jsonschema.exceptions import (
+     SchemaError,
+@@ -64,13 +66,13 @@
+ 
+ class TestCLI(TestCase):
+     def run_cli(
+-        self, argv, files=None, stdin=StringIO(), exit_code=0, **override,
++        self, argv, files=m(), stdin=StringIO(), exit_code=0, **override,
+     ):
+         arguments = cli.parse_args(argv)
+         arguments.update(override)
+ 
+         self.assertFalse(hasattr(cli, "open"))
+-        cli.open = fake_open(files or {})
++        cli.open = fake_open(files)
+         try:
+             stdout, stderr = StringIO(), StringIO()
+             actual_exit_code = cli.run(
+--- a/jsonschema/_types.py	2020-02-01 19:00:00.000000000 -0500
++++ b/jsonschema/_types.py	2023-10-04 17:52:57.887992659 -0400
+@@ -4,20 +4,23 @@
+ import numbers
+ 
+ from attrs import evolve, field, frozen
+-from rpds import HashTrieMap
++from pyrsistent import pmap
++from pyrsistent.typing import PMap
+ 
+ from jsonschema.exceptions import UndefinedTypeCheck
+ 
+ 
+-# unfortunately, the type of HashTrieMap is generic, and if used as an attrs
++# unfortunately, the type of pmap is generic, and if used as an attrs
+ # converter, the generic type is presented to mypy, which then fails to match
+ # the concrete type of a type checker mapping
+ # this "do nothing" wrapper presents the correct information to mypy
+-def _typed_map_converter(
+-    init_val: Mapping[str, Callable[[TypeChecker, Any], bool]],
+-) -> HashTrieMap[str, Callable[[TypeChecker, Any], bool]]:
+-    return HashTrieMap.convert(init_val)
+-
++def _typed_pmap_converter(
++    init_val: typing.Mapping[
++        str,
++        Callable[[TypeChecker, Any], bool],
++    ],
++) -> PMap[str, Callable[[TypeChecker, Any], bool]]:
++    return pmap(init_val)
+ 
+ def is_array(checker, instance):
+     return isinstance(instance, list)
+@@ -78,9 +81,9 @@
+             The initial mapping of types to their checking functions.
+     """
+ 
+-    _type_checkers: HashTrieMap[
++    _type_checkers: PMap[
+         str, Callable[[TypeChecker, Any], bool],
+-    ] = field(default=HashTrieMap(), converter=_typed_map_converter)
++    ] = field(default=pmap(), converter=_typed_pmap_converter)
+ 
+     def __repr__(self):
+         types = ", ".join(repr(k) for k in sorted(self._type_checkers))
+--- a/jsonschema/validators.py	2020-02-01 19:00:00.000000000 -0500
++++ b/jsonschema/validators.py	2023-10-04 17:45:55.460993038 -0400
+@@ -17,7 +17,7 @@
+ 
+ from attrs import define, field, fields
+ from jsonschema_specifications import REGISTRY as SPECIFICATIONS
+-from rpds import HashTrieMap
++from pyrsistent import m
+ import referencing.exceptions
+ import referencing.jsonschema
+ 
+@@ -899,7 +899,7 @@
+         self,
+         base_uri,
+         referrer,
+-        store=HashTrieMap(),
++        store=m(),
+         cache_remote=True,
+         handlers=(),
+         urljoin_cache=None,

@@ -1,0 +1,4 @@
+#10/19/23 See package.provided and package.mask also.
+#no need to downgrade or upgrade. just pin
+#handbrake is involved
+=media-video/ffmpeg-4.4.4-r4 ~amd64

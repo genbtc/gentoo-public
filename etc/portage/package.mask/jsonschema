@@ -1,0 +1,12 @@
+#pulls in rust/maturin,
+#copied to myoverlay, locked to =4.18.0
+#rdbps.py changed to pyrsistent >=0.18.0
+# dev-python/pyrsistent 0.19.3 installed works
+#myoverlay = v4.18.0
+>=dev-python/jsonschema-4.19.1
+#myoverlay = v0.23.0
+>=dev-python/referencing-0.30.2
+# dev-python/jupyter-events-0.7.0 #works
+#myoverlay = 2023.3.6
+>=dev-python/jsonschema-specifications-2023.7.1
+#(re-went over Nov 29,2023)

@@ -8,7 +8,7 @@
 >=app-backup/timeshift-22.06.1-r1        disable-nls.conf
 >=app-cdr/brasero-3.12.3        disable-nls.conf
 >=app-crypt/gcr-3.41.0        disable-nls.conf
-#>=app-crypt/gnupg-2.2.35-r1        disable-nls.conf selinux.conf
+>=app-crypt/gnupg-2.2.35-r1        disable-nls.conf
 >=app-crypt/libsecret-0.20.5-r3        disable-nls.conf
 >=app-crypt/seahorse-42.0        disable-nls.conf
 >=app-editors/mousepad-0.5.9        disable-nls.conf
@@ -26,8 +26,8 @@
 >=dev-libs/libdbusmenu-16.04.0-r2	disable-nls.conf
 >=dev-libs/glib-2.72.3        disable-nls.conf
 >=dev-libs/json-glib-1.6.6-r1        disable-nls.conf
->=dev-libs/libbytesize-2.7        disable-nls.conf
->=dev-libs/libfilezilla-0.37.2        disable-nls.conf
+#>=dev-libs/libbytesize-2.7        disable-nls.conf
+#>=dev-libs/libfilezilla-0.37.2        disable-nls.conf
 >=dev-libs/libgnome-games-support-1.8.2        disable-nls.conf
 >=dev-libs/libpwquality-1.4.4-r1        disable-nls.conf
 >=dev-libs/newt-0.52.21_p20210816        disable-nls.conf
@@ -161,7 +161,7 @@
 >=sys-apps/xdg-desktop-portal-gnome-43.1 disable-nls.conf
 >=sys-apps/xdg-desktop-portal-gtk-1.14.1 disable-nls.conf
 >=mate-extra/mate-system-monitor-1.26.0	     disable-nls.conf
->=gnome-base/gnome-mime-data-2.18.0-r1	    disable-nls.conf
+#>=gnome-base/gnome-mime-data-2.18.0-r1	    disable-nls.conf
 >=xfce-extra/xfce4-battery-plugin-1.1.4       disable-nls.conf
 >=xfce-extra/xfce4-wavelan-plugin-0.6.3       disable-nls.conf
 >=xfce-extra/xfce4-genmon-plugin-4.1.1        disable-nls.conf
@@ -183,3 +183,4 @@
 >=xfce-extra/xfce4-indicator-plugin-2.4.1     disable-nls.conf
 lxde-base/lxappearance          disable-nls.conf
 >=media-gfx/eom-1.26.0-r1       disable-nls.conf
+>=lxde-base/lxterminal-0.4.0    disable-nls.conf

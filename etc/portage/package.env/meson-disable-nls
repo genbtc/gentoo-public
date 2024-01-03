@@ -1,0 +1,3 @@
+x11-libs/xapp       meson-disable-nls.conf
+#app-editors/ghex    meson-disable-nls.conf #gnome required msgfmt to convert .in xml desktop files
+media-libs/gegl     meson-disable-nls.conf

@@ -1,0 +1,3 @@
+dev-libs/glib           debugsyms.conf installsources.conf
+gui-libs/libadwaita     debugsyms.conf installsources.conf
+gnome-base/dconf        debugsyms.conf installsources.conf

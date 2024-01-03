@@ -1,0 +1,5 @@
+# required by dev-libs/libgudev-238-r1::gentoo
+# required by gnome-base/gvfs-1.50.6::gentoo[udev]
+# required by @selected
+# required by @world (argument)
+>=virtual/libudev-251-r1 -sticky-tags eudev

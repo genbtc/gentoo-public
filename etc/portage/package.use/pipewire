@@ -1,2 +1,2 @@
-media-video/pipewire -sound-server ffmpeg extra
+media-video/pipewire -sound-server extra
 media-sound/pulseaudio -daemon

@@ -1,0 +1,13 @@
+--- a/main.c	2021-11-16 14:25:52.000000000 -0500
++++ b/main.c	2024-01-01 06:46:11.512794894 -0500
+@@ -751,7 +751,9 @@
+ 	cfile_window *cfw;
+ 	struct utimbuf tv;
+ 
+-	v1printf("writing %s\n", ttent->fullname);
++	if (strstr(ttent->fullname, "metadata/md5-cache") == NULL) {
++		v1printf("writing %s\n", ttent->fullname);
++	}
+ 	fd = open(ttent->fullname, O_CREAT|O_TRUNC|O_WRONLY, ttent->mode);
+ 	if(fd < 0) {
+ 		v0printf("failed writing %s\n", ttent->fullname);

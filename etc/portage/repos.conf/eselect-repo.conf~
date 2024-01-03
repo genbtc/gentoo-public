@@ -5,9 +5,8 @@ location = /var/db/repos/guru
 sync-type = git
 sync-uri = https://github.com/gentoo-mirror/guru.git
 
-
-
-[mv]
-location = /var/db/repos/mv
+[librewolf]
+location = /var/db/repos/librewolf
 sync-type = git
-sync-uri = https://github.com/gentoo-mirror/mv.git
+sync-uri = https://gitlab.com/librewolf-community/browser/gentoo.git
+

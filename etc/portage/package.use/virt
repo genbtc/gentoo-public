@@ -1,0 +1,4 @@
+# required by app-emulation/virt-manager-4.1.0::gentoo[-test,gui]
+# required by @selected
+# required by @world (argument)
+>=net-misc/spice-gtk-0.42-r3 usbredir

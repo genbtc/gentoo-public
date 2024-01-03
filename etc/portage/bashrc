@@ -1,4 +1,4 @@
-#genBTC original work, Aug10 2022 + 2023 - LICENSE: CCSA 4.0
+#genBTC original work, Aug10 2022 + Dec 2023 - LICENSE: CCSA 4.0
 #_valid_phases="
 #		src_prepare src_unpack src_configure src_compile src_install src_test
 #		pkg_config pkg_info pkg_nofetch pkg_pretend pkg_setup pkg_preinst pkg_prerm pkg_postinst pkg_postrm"
@@ -13,25 +13,30 @@ if [ "${EBUILD_PHASE}" == "preinst" ]; then
   # create parallel file in this stage, for the next stage, because now is the last time we can write to here
   # pwd = ${D}
   mkdir -p ~/.parallel;	touch ~/.parallel/will-cite
-  # kernels can be skipped from my shenanigans, have too many files, and slow.
+  # kernels can be skipped from my shenanigans, have too many files, and slow on large packages.
   if [ "${PN}" == "gentoo-sources" ] || [ "${PN}" == "gentoo-kernel" ] || [ "${PN}" == "gentoo-kernel-bin" ]; then
 	return;
   fi
-  if [ "${PN}" == "x11-themes/papirus-icon-theme" ]; then    return;  fi
-  #NOTE: This can be very slow on large packages and useless on non-binary pkgs like gentoo-sources
+  if [ "${PN}" == "papirus-icon-theme" ]; then    return;  fi
+  #NOTE: This can be very slow on large packages and useless on non-binary pkgs
   echo "::1 /etc/portage/bashrc PreInst: Analyzing files w/ CHECKSEC..."
-  #Also log its output forever to special buildlogs/checksec dir
-  checksec --dir=${D} | tee /var/cache/buildlogs/checksec/${PN}-${PV}-1.txt
-#weak patch, post-image, pre-fs .patch July25-2023
-  if [ "${PN}" == "x11-drivers/xf86-video-amdgpu" ]; then
-    sed -i 6i'\
-\tOption "TearFree" "On"
-' ${D}/usr/share/X11/xorg.conf.d/10-amdgpu.conf
+  #Checksec - Also log its output forever to special buildlogs/checksec dir
+  checkseclog="/var/cache/buildlogs/checksec/${PN}-${PV}-1.txt"
+  checksec --dir=${D} | tee ${checkseclog}
+  einfo "ChecksecLog: ${checkseclog}" #save logfile name for later
+#weak patch, post-image, pre-fs .patch July25-2023 #DOESNT EVEN WORK RIGHT! Dec15-2023 #FIXED JAN3 2024
+#TODO: create scheme for post-install patches
+  if [ x"${CATEGORY}"/"${PN}" == x"x11-drivers/xf86-video-amdgpu" ]; then
+    sed -i 6i'\tOption "TearFree" "On"' ${D}/usr/share/X11/xorg.conf.d/10-amdgpu.conf
   fi
 fi
+#NOTE:
 #	echo "::1 Any EVM xattr Fixing here in the tmp/work/image dir \${D} will NOT copy \
 #            any security.ima/evm xattr to / root because of make.globals xattr_ignore..."
 
+if [ "${EBUILD_PHASE}" == "postrm" ]; then
+    echo "::R /etc/portage/bashrc PostRM Hook: "    #empty for now
+fi
 
 if [ "${EBUILD_PHASE}" == "postinst" ]; then
   # kernels can be skipped from my shenanigans, have too many files, and slow.
@@ -40,7 +45,7 @@ if [ "${EBUILD_PHASE}" == "postinst" ]; then
   fi
   echo "::2 /etc/portage/bashrc PostInst: imafix2 SHA512 Hashing in progress..."
 																#"omit dir,path,sym,dev
-  equery -C files ${PN}-${PVR} -f "obj,conf,cmd,doc,man,info,fifo" | parallel imafix2 -s
+  equery -C files ${PN}-${PVR} -f "obj,conf,cmd,doc,man,info,fifo" | parallel -j 32 imafix2 -s
   #Save LogFile to elog. helps in elogv to correlate the logs
   einfo "Logfile: ${PORTAGE_LOG_FILE}"
 fi
@@ -65,10 +70,11 @@ pre_src_configure() {
         echo -e "${OPTFEATS}"
         #OPT FEATURES DETECTION FOR DISABLE NLS
         if grep -q "\--disable-nls" <<< "${OPTFEATS}" ; then
-            echo "${CATEGORY}"/"${PN}:"  "ECONF: ${ECONF}  +  EXTRA_ECONF: ${EXTRA_ECONF}  +  MY_ECONF: ${MY_ECONF}"
-            if ! grep -q "\--disable-nls" <<< "${EXTRA_ECONF}" ; then
-                einfo "\033[01;31m Disable NLS was found in configure, but NOT passed in EXTRA_ECONF. \033[00m"
-                eqawarn "\033[01;31m --disable-nls wasnt passed to configure! \033[01;33m Auto-Correcting!\033[00m"
+            iuse=$(grep -q -w "nls" <<< "${IUSE}");
+            if ! $iuse && ! grep -q "\--disable-nls" <<< "${ECONF} ${EXTRA_ECONF} ${MY_ECONF}" ; then
+                echo "${CATEGORY}"/"${PN}:"  "ECONF: ${ECONF}  +  EXTRA_ECONF: ${EXTRA_ECONF}  +  MY_ECONF: ${MY_ECONF}"
+                einfo "\033[01;31m Disable NLS was found in configure, but NOT passed in ECONF. \033[00m"
+                eqawarn "\033[01;31m --disable-nls wasnt passed to configure! \033[01;33m Auto-Adding the correct Fix!\033[00m"
                 export EXTRA_ECONF="${EXTRA_ECONF} --disable-nls"
             fi
         fi
@@ -86,7 +92,8 @@ pre_src_configure() {
 		if [ x"${CATEGORY}"/"${PN}" == x"x11-misc/shared-mime-info" ]; then return; fi
         if [ x"${CATEGORY}"/"${PN}" == x"app-crypt/seahorse" ]; then return; fi
         echo ">>> $FUNCNAME() { meson configure }"  #TODO see if a "meson configure --list --print" exists
-		PAGER= meson configure || cat || die
+		PAGER=  meson configure || cat || die
+    fi
 #NOTE: maybe this is fixed July 2023, next time, go back to check.
 #TODO: This can hang sometimes, when the meson structure is not valid for top-level,
 # requiring a kill -9 $PID. or killall meson.  WHY?!
@@ -94,7 +101,6 @@ pre_src_configure() {
 #portage   7620  0.0  0.0   6636  1628 pts/2    S+   05:34   0:00  |                   \_ cat
 #(NOTE:) This calls `less` so, set PAGER to blank first, to not.
 #(NOTE:) Use cat instead to output fully to logfile.
-    fi
 }
 
 # This hook is neccesary for automatic updating of the cfg-update index, please do not modify it!
@@ -108,7 +114,3 @@ pre_src_configure() {
 #[ "`type -t BashrcdMain`" = function ] || \
 #. "${PORTAGE_CONFIGROOT%/}/etc/portage/bashrc.d/bashrcd.sh"
 #BashrcdMain "$@"
-
-#PORTAGE_VERBOSE=1 #no need
-#PORTAGE_DEBUG=1   #useless spam
-

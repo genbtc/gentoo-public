@@ -1,3 +1,26 @@
 #begin autounmask, blank Feb12-23
-# 
+#
 >=dev-python/pyzmq-25.0.2 drafts
+# required by media-gfx/tuxpaint-0.9.29::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-libs/sdl2-image-2.6.3 png
+# required by sys-devel/gdb-13.2-r2::gentoo[debuginfod]
+# required by dev-python/pydevd-2.10.0::gentoo
+# required by dev-python/debugpy-1.6.6::gentoo
+# required by dev-python/ipykernel-6.26.0::gentoo[python_targets_python3_11,-test,-python_targets_python3_10]
+# required by dev-python/jupyterlab-4.0.9::gentoo
+# required by dev-python/notebook-7.0.6::gentoo
+# required by dev-python/ipython-8.17.2::gentoo[notebook,python_targets_python3_11,-python_targets_python3_10]
+# required by @selected
+# required by @world (argument)
+>=dev-libs/elfutils-0.189-r4 debuginfod
+# required by media-sound/jack2-1.9.22::gentoo[opus]
+# required by virtual/jack-2::gentoo
+# required by www-client/firefox-115.5.0::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-libs/opus-1.4 custom-modes
+# required by app-crypt/swtpm-0.8.1-r2::gentoo
+# required by app-crypt/swtpm (argument)
+>=net-libs/gnutls-3.8.0 pkcs11 tools

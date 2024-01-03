@@ -1,0 +1,15 @@
+dev-python/aiofiles
+dev-python/aiosqlite
+dev-python/json5
+dev-python/jupyter-events
+dev-python/jupyter-server
+dev-python/jupyter-server-fileid
+dev-python/jupyter-server-ydoc
+dev-python/jupyter-ydoc
+dev-python/jupyterlab
+dev-python/jupyterlab-server
+dev-python/nbclassic
+dev-python/notebook-shim
+dev-python/python-json-logger
+dev-python/y-py
+dev-python/ypy-websocket

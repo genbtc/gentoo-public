@@ -1,1 +1,5 @@
 #Unmaintained - Masked in profile, unmasked by me
+# required by app-admin/s-tui (argument)
+# /etc/portage/package.mask/guru:
+#genr8eofl @ 01/08/23 - All of ::GURU is masked for your safety
+=app-admin/s-tui-1.1.3-r1

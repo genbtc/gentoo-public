@@ -1,0 +1,3 @@
+#removes my patch for RDEPEND mail? (virtual/mailutils)
+=app-admin/sxid-4.2-r3
+#note it does have good selinux? (sec-policy/selinux-sxid)
