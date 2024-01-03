@@ -1,9 +1,9 @@
-#source /etc/grub.conf; grub-install --modules="${GRUB_MODULES}" --sbat ~/SBAT-gentoo.csv --bootloader-id="GRUB" --disable-shim-lock
+#!/bin/sh
+# grub-install --modules="${GRUB_MODULES}" --sbat ~/SBAT-gentoo.csv --bootloader-id="GRUB" --disable-shim-lock
 GRUB_MODULES="
+	tpm
 	cpuid
 	linuxefi
-	play
-	tpm
 	all_video
 	boot
 	btrfs
@@ -43,6 +43,7 @@ GRUB_MODULES="
 	part_msdos
 	part_gpt
 	password_pbkdf2
+	play
 	png
 	probe
 	reboot
@@ -61,4 +62,12 @@ GRUB_MODULES="
 	zfs
 	zfscrypt
 	zfsinfo
-	"
+"
+
+grub-install --modules="${GRUB_MODULES}" --bootloader-id="GRUB" --disable-shim-lock \
+ --sbat << EOF >>
+sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
+grub,3,Free Software Foundation,grub,2:2.06r9,https://www.gnu.org/software/grub/
+grub.gentoo,1,Gentoo Linux,grub,2:2.06r9,https://packages.gentoo.org/sys-boot/grub/
+EOF
+
