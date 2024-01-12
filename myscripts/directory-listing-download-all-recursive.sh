@@ -3,18 +3,15 @@
 # stage3-CONTENTS-download-all.sh script v0.22 - genr8eofl @gentoo - Sept 28, 2023
 
 #INPUT:
-PLATFORM="x86-64_hardened"
+PLATFORM="x86-64-v3"
 WEBDIR="https://mirrors.rit.edu/gentoo/releases/amd64/binpackages/17.1/${PLATFORM}/"
 
 #RE-PROCESSING
-if [[ -e "target.txt" ]]; then
-    elinks --dump $(cat "target.txt") > "elinks.txt"
+if [[ -e "target.txt" && ! -e "elinks.txt" ]]; then
+    elinks --dump $(cat "target.txt") | grep "${WEBDIR}" | awk '{print $2}' | sort -r | uniq | grep -E -v "\?C=" > "elinks.txt"
 fi
 if [[ -e "elinks.txt" ]]; then
-    FILEDLS=($(grep "${WEBDIR}" "elinks.txt" | awk '{print $2}' | sort | uniq | tee "elinks-dl.txt"))
-fi
-if [[ -e "elinks-dl.txt" ]]; then
-    FILEDLS=($(cat "elinks-dl.txt"))
+    FILEDLS=($(cat "elinks.txt"))
 fi
 
 CWD=$(basename "${PWD}")
@@ -23,10 +20,8 @@ CWD=$(basename "${PWD}")
 for filedl in "${FILEDLS[@]}"; do
     CATDIR=$(basename "${filedl}")
     if [[ ! ${filedl} =~ ${CWD} ]]; then
+#        echo "skip - ${filedl} !notmatch! ${CWD}"
         continue    #skip links that dont match local path
-    fi
-    if [[ "${filedl}" =~ "?C=" ]]; then
-        continue    #skip junk files, "index.html?C=S;O=A"
     fi
     #RECURSION
     if [[ "/" == "${filedl: -1}" ]]; then
@@ -41,7 +36,7 @@ for filedl in "${FILEDLS[@]}"; do
         continue
     fi
     #dont issue duplicate requests to the network, and dont clobber overwrite existing
-    if [[ -e ${filedl} ]]; then
+    if [[ ! -e ${filedl} ]]; then
     	echo "Downloading:      ${filedl} ..."
     	wget --no-clobber "${filedl}"
     else
