@@ -1,0 +1,156 @@
+## <summary>policy for xfce4_interfaces v1.2.7 </summary>
+
+########################################
+# Declarations
+interface(`xfce4_template_init',`
+
+	type $1_t;
+	type $1_exec_t;
+	attribute_role $1_roles;
+	role $1_roles types $1_t;
+
+	userdom_user_application_domain($1_t, $1_exec_t)
+	optional_policy(`
+		wm_application_domain($1_t, $1_exec_t)
+	')
+')
+
+########################################
+# xfce4_template local policy
+interface(`xfce4_template_load',`
+	gen_require(`
+        type user_t;
+        role user_r;
+	')
+	#Important, sets user exec, entrypoint & transition
+	$1_run(user_t, user_r)
+	#self Re-exec:
+	#audit: type=1400 audit(1663202392.974:119236): avc:  denied  { execute_no_trans } for  pid=25475 comm="sh" path="/usr/bin/xfce4-power-manager" dev="nvme0n1p8" ino=575415 scontext=user_u:user_r:$1_t tcontext=system_u:object_r:$1_exec_t tclass=file permissive=0
+	allow $1_t $1_exec_t:file { execute_no_trans };
+    #allow user basic access
+    allow user_t $1_t:dir { search_dir_perms };
+    allow user_t $1_t:file { read open getattr };
+    allow user_t $1_t:process { getattr signal };
+    #Self
+    allow $1_t self:process { signal_perms getsched setsched };
+	#allow $1_t self:shm { create_shm_perms };
+	#allow $1_t self:sem { create_sem_perms };
+')
+
+#########################################
+# xfce4_template interfaces()
+interface(`xfce4_template_interfaces',`
+
+	seutil_libselinux_linked($1_t)
+	selinux_get_all_booleans($1_t)
+
+    corecmd_search_bin($1_t)
+
+    dev_read_urand($1_t)
+    dev_read_rand($1_t)
+    dev_read_sysfs($1_t)
+    kernel_read_system_state($1_t)
+
+	files_read_etc_files($1_t)
+	files_read_usr_files($1_t)
+	files_map_usr_files($1_t)
+	files_search_home($1_t)
+
+	fs_getattr_all_fs($1_t)
+
+	domain_use_interactive_fds($1_t)
+	userdom_use_user_terminals($1_t)
+	getty_use_fds($1_t)
+
+	miscfiles_read_fonts($1_t)
+	miscfiles_read_localization($1_t)
+
+	userdom_list_user_home_content($1_t)
+	userdom_search_user_home_dirs($1_t)
+	userdom_manage_user_runtime_dirs($1_t)
+	userdom_read_user_home_content_symlinks($1_t)
+
+	userdom_search_user_runtime_root($1_t)
+	userdom_search_user_runtime($1_t)
+
+	xdg_read_data_files($1_t)
+	xdg_search_cache_dirs($1_t)
+	xdg_search_config_dirs($1_t)
+
+	xserver_read_user_xauth($1_t)
+	xserver_read_xkb_libs($1_t)
+	xserver_stream_connect($1_t)
+	xserver_use_user_fonts($1_t)
+	allow xserver_t $1_t:file { open read };
+	allow xserver_t $1_t:shm { associate getattr read unix_read unix_write write setattr destroy };
+
+	gen_require(`
+		type	gnome_xdg_config_t;
+	')
+	allow $1_t gnome_xdg_config_t:dir { list_dir_perms };
+	allow $1_t gnome_xdg_config_t:file { read_file_perms map };
+')
+
+#user session dbus
+interface(`xfce4_template_dbus',`
+	gen_require(`
+		type	user_runtime_t;
+		type	user_t;
+		type	session_dbusd_tmp_t;
+	')
+
+    #selinux version of secure_getenv cant read DBUS_SESSION_BUS_SOCKET environment var or whatever, fall back to regular insecure getenv
+    allow user_t $1_t:process { noatsecure };
+
+    #system dbus:
+	dbus_list_system_bus_runtime($1_t)
+
+	#user session dbus:
+	dbus_connect_all_session_bus($1_t)
+	dbus_all_session_bus_client($1_t)
+	dbus_spec_session_bus_client(user,$1_t)
+
+	#Sep 15 03:52:52 genr8too dbus-daemon[14398]: avc:  denied  { send_msg } for msgtype=method_return dest=:1.245 spid=14421 tpid=26414 scontext=user_u:user_r:user_t tcontext=user_u:user_r:$1_t tclass=dbus permissive=1
+	allow user_t $1_t:dbus { send_msg };
+	#Sep 15 03:52:52 genr8too dbus-daemon[14398]: avc:  denied  { send_msg } for msgtype=method_call interface=org.freedesktop.DBus.Properties member=GetAll dest=:1.1 spid=26414 tpid=14421 scontext=user_u:user_r:$1_t tcontext=user_u:user_r:user_t tclass=dbus permissive=1
+	allow $1_t user_t:dbus { send_msg };
+	allow $1_t user_runtime_t:file { create map open read write getattr };
+	# /tmp/dbus-pZKGw2QdAU ( gconf file full of )
+	allow $1_t session_dbusd_tmp_t:sock_file { write };
+')
+
+#(system dbus)
+interface(`xfce4_template_dbus_system',`
+	dbus_system_bus_client($1_t)
+	dbus_system_bus_connect($1_t)
+')
+
+#(gconf dconf xfconfd)
+interface(`xfce4_template_gconf',`
+	gen_require(`
+		type	gconfd_t;
+        type    gconf_tmp_t;
+        type    user_tmp_t;
+    ')
+
+	gnome_stream_connect_gconf($1_t)
+	gnome_dbus_chat_gconfd($1_t)
+	allow $1_t gconf_tmp_t:dir { manage_dir_perms };
+	allow $1_t gconf_tmp_t:file { manage_file_perms map append };
+
+    filetrans_pattern(gconfd_t, user_tmp_t, user_runtime_t, dir, "dconf")
+    filetrans_pattern(gconfd_t, user_tmp_t, user_runtime_t, file, "user")
+
+')
+
+#psensor_template interfaces2()
+interface(`xfce4_template_user_tmp_runtime',`
+    gen_require(`
+        type    user_tmp_t;
+        type    user_runtime_t;
+    ')
+
+    allow $1_t user_tmp_t:dir manage_dir_perms;
+    allow $1_t user_tmp_t:file { manage_file_perms map };
+    allow $1_t user_runtime_t:file { create map open read write };
+')

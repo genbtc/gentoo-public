@@ -1,0 +1,25 @@
+policy_module(stub-main, 1.0.2)
+
+type stub_main_t;
+type stub_main_exec_t;
+attribute_role stub_main_roles;
+role stub_main_roles types stub_main_t;
+
+userdom_user_application_domain(stub_main_t, stub_main_exec_t)
+
+gen_require(`
+    type user_t;
+    role user_r;
+')
+#Important, sets the transition Entrypoint
+stub_main_run(user_t, user_r)
+#Self Re-exec
+can_exec(stub_main_t, stub_main_exec_t)
+
+allow user_t stub_main_t:process { getattr getsched ptrace sigchld sigkill signal signull sigstop transition };
+allow user_t stub_main_t:dir { getattr ioctl lock open read search };
+allow user_t stub_main_t:file { getattr ioctl lock open read };
+allow user_t stub_main_t:lnk_file { getattr read };
+
+corecmd_exec_bin(stub_main_t)
+corecmd_exec_shell(stub_main_t)
