@@ -1,0 +1,9 @@
+# sqlite-query-use.sh sys-libs/glibc-2.38
++------------------------+----------------------------------------------------------------------------------------------------+
+|          cpv           |                                                use                                                 |
++------------------------+----------------------------------------------------------------------------------------------------+
+| sys-libs/glibc-2.38-r9 | abi_x86_64 amd64 elibc_glibc kernel_linux multiarch ssp static-libs                                |
+| sys-libs/glibc-2.38-r9 | abi_x86_64 amd64 elibc_glibc kernel_linux multiarch multilib ssp stack-realign static-libs systemd |
+| sys-libs/glibc-2.38-r9 | abi_x86_64 amd64 elibc_glibc kernel_linux multiarch multilib ssp stack-realign static-libs systemd |
+| sys-libs/glibc-2.38-r9 | abi_x86_64 amd64 elibc_glibc kernel_linux multiarch ssp static-libs                                |
++------------------------+----------------------------------------------------------------------------------------------------+
