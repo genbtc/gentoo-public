@@ -6,7 +6,7 @@
 
 #Take arg $1 from command line, or hardcode default filepath here
 DISKIMG="${1:-/dev/sda}"
-DDNAME="${2:-gentoo}"
+DIRNAME="${2:-gentoo}"
 
 #start with a single disk/image file that has an entire disk inside it
 if [ ! -e "${DISKIMG}" ]; then
@@ -14,7 +14,7 @@ if [ ! -e "${DISKIMG}" ]; then
 fi
 
 #3-Create new mount point /mnt/___ for root fs / , 3
-TARGET="/mnt/${DDNAME}/"
+TARGET="/mnt/${DIRNAME}/"
 if [ ! -e "${TARGET}" ]; then
     mkdir -p "${TARGET}"
     echo "Creating Root target dir: ${TARGET} !"
@@ -22,7 +22,7 @@ else
     echo "Found existing Root target dir: ${TARGET} ..."
 fi
 #mount 3, go!
-mount "${DEVLOOP}3" "${TARGET}"
+mount "${DISKIMG}3" "${TARGET}"
 echo "Mounted Root FS (partition 3) on ${TARGET}"
 
 #2-Create new boot/ mount points for new fs structure, 2
@@ -34,7 +34,7 @@ else
     echo "Found existing Boot target dir: ${BOOTTARGET} ..."
 fi
 #mount 2, go!
-mount "${DEVLOOP}2" "${BOOTTARGET}"
+mount "${DISKIMG}2" "${BOOTTARGET}"
 echo "Mounted Boot (partition 2) on ${BOOTTARGET}"
 
 #1-Create new boot/efi/ mount points for new fs structure, 1
@@ -46,7 +46,7 @@ else
     echo "Found existing EFI target dir: ${EFITARGET} ..."
 fi
 #mount 1, go!
-mount "${DEVLOOP}1" "${EFITARGET}"
+mount "${DISKIMG}1" "${EFITARGET}"
 echo "Mounted EFI (partition 1) on ${EFITARGET}"
 
 #Create stub top-level dir structure
@@ -71,8 +71,6 @@ if [ ! -e "${TARGET}"/.extractedtar ]; then
 else
     echo ".extractedtar file found - skipping extraction of .tar.xz"
 fi
+
 echo "Done! now Run: genr8-chroot ${TARGET}"
 cd "${TARGET}" || exit 1
-# or if its extracted already:
-#do the chroot in, just go!
-#genr8-chroot "${TARGET}"
