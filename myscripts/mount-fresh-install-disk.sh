@@ -26,7 +26,7 @@ mount "${DISKIMG}3" "${TARGET}"
 echo "Mounted Root FS (partition 3) on ${TARGET}"
 
 #2-Create new boot/ mount points for new fs structure, 2
-BOOTTARGET="${TARGET}/boot/"
+BOOTTARGET="${TARGET}boot/"
 if [ ! -e "${BOOTTARGET}" ]; then
     mkdir -p "${BOOTTARGET}"
     echo "Creating Boot target dir: ${BOOTTARGET} !"
@@ -38,7 +38,7 @@ mount "${DISKIMG}2" "${BOOTTARGET}"
 echo "Mounted Boot (partition 2) on ${BOOTTARGET}"
 
 #1-Create new boot/efi/ mount points for new fs structure, 1
-EFITARGET="${TARGET}/boot/efi/"
+EFITARGET="${TARGET}boot/efi/"
 if [ ! -e "${EFITARGET}" ]; then
     mkdir -p "${EFITARGET}"
     echo "Creating EFI target dir: ${EFITARGET} !"
@@ -53,21 +53,22 @@ echo "Mounted EFI (partition 1) on ${EFITARGET}"
 mkdir -p "${TARGET}"/{dev,sys,proc,run,tmp}
 echo "Created directory structure hierarchy for: /dev,sys,proc,run,tmp"
 
-#Copy in and Extract Tar of Stage3.xz / or check if exists already.
+#Copy in and Extract Tar of Stage3.tar.xz / or check if exists already.
 STAGE3=(*.tar.xz)
-#doesnt exist
+#A) doesnt exist
 if [ ! -e "${TARGET}/${STAGE3}" ]; then
     #Store stage3 inside image itself so extract script can work
     echo "Copying ${STAGE3} to root of image  @ ${TARGET}"
     cp --no-clobber "${STAGE3}"  "${TARGET}"
     #TODO: this still seems un-needed
 fi
-#It exists
+#B) It exists
 if [ ! -e "${TARGET}"/.extractedtar ]; then
     cd "${TARGET}" || exit 1
-    echo "Extracting ${STAGE3} with tar to root mount dir @ ${TARGET} ............."
+    echo "Extracting ${STAGE3} with tar to rootfs mount dir @ ${TARGET} ............."
     tar xpf "${STAGE3}" --xattrs-include='*.*' --numeric-owner --skip-old-files
     touch "${TARGET}"/.extractedtar
+    echo "Done extracting stage3 to ${TARGET} !"
 else
     echo ".extractedtar file found - skipping extraction of .tar.xz"
 fi
