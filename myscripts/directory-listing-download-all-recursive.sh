@@ -19,7 +19,7 @@ CWD=$(basename "${PWD}")
 #an array, for each
 for filedl in "${FILEDLS[@]}"; do
     CATDIR=$(basename "${filedl}")
-    if [[ ! ${filedl} =~ ${CWD} ]]; then
+    if [[ ! ${filedl} =~ ${CWD}/ ]]; then
 #        echo "skip - ${filedl} !notmatch! ${CWD}"
         continue    #skip links that dont match local path
     fi

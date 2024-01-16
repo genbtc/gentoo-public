@@ -1,5 +1,5 @@
 #!/bin/bash
-#2024 genr8eofl @ gentoo - make-partition-truncate.sh v0.33 - partitions the disk/disk-image
+#2024 genr8eofl @ gentoo - make-partition-disk v0.34 - partitions the disk/disk-image
 #Usage: # ./$0 [/dev/disk-or-image-filename($1)]
 DISK="${1:-/dev/sda}"
 
