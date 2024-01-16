@@ -1,5 +1,5 @@
 #!/bin/bash
-#2023 genr8eofl @ gentoo - amazing-make-partition-truncate.sh v0.32 - partitions the amazing disk image
+#2023 genr8eofl @ gentoo - amazing-make-partition-truncate.sh v0.33 - partitions the amazing disk image
 #this is part 1, part 2 is amazing-mount-fs-partitions.sh
 #Usage: # ./$0 [disk-image-filename($1)] [size($2)]
 
@@ -49,20 +49,20 @@ fi
 sfdisk --wipe=always "${DEVLOOP}" <<EEOF
 #(very specific syntax, watch out for whitespace)
 label: gpt
-size= 50M, type= U, name="EFI"
-#,50M,U,,
-size= 150M, type= L, name="boot"
-#,150M,L,,
+size= 100M, type= U, name="EFI"
+#,100M,U,,
+size= 250M, type= L, name="boot"
+#,250M,L,,
 size= , type= L, name="gentooROOT"
 #,,V,,
 EEOF
 echo "Created disk image w/ partitions: EFI (p1), boot (p2), gentooROOT (p3) !"
 
 #Create Filesystems on each of these partitions
-mkfs.vfat /dev/loop0p1 -n EFI -F32 -v
-mkfs.ext4 /dev/loop0p2 -L boot
-mkfs.ext4 /dev/loop0p3 -L gentooROOT
-echo "Created filesystems w/ mkfs: (root/boot = ext4, EFI = fat32)"
+mkfs.vfat "${DEVLOOP}"p1 -n EFI -F32 -v
+mkfs.ext4 "${DEVLOOP}"p2 -L boot
+mkfs.ext4 "${DEVLOOP}"p3 -L gentooROOT
+echo "Created filesystems w/ mkfs: (EFI = fat32, boot/root = ext4)"
 echo
 echo "Complete! Finished making amazing disk image, partitions & filesystems! All done."
 echo "To mount the root filesystem, Run:"

@@ -1,10 +1,10 @@
 #!/bin/bash
-# mount-disk.sh script v0.8 by @genr8eofl copyright 2024 - AGPL3 License
-# Description: mounts the partition dd! (adapted from mount-partition-disk.sh & amazing-mount-fs-partitions.sh)
+# mount-disk-partition.sh script v0.8 by @genr8eofl copyright 2024 - AGPL3 License
+# Description: mounts the partition dd! (adapted from amazing-mount-fs-partitions.sh)
 # Note: this expects an image containing only 3 filesystem, or 3 partition, (ie /dev/sda3)
 DISK="${1:-/dev/sda}"
 
-#Create mount point under /mnt to hold rootfs /
+#Create mount point under /mnt to hold rootfs / (ie /mnt/gentoo)
 TARGET="${2:-/mnt/gentoo/}"
 
 if [ ! -e "${TARGET}" ]; then
@@ -18,9 +18,10 @@ fi
 mount ${DISK}3 $TARGET
 echo "Mounted Root FS Partition on ${TARGET}"
 mount ${DISK}2 $TARGET/boot
-echo "Mounted Boot Partition on ${TARGET}/boot"
+echo "Mounted Boot Partition on ${TARGET}boot"
 mount ${DISK}1 $TARGET/boot/efi
-echo "Mounted EFI Partition on ${TARGET}/boot/efi"
+echo "Mounted EFI Partition on ${TARGET}boot/efi"
+#TODO: error if doesnt exist due to fresh install
 
 #Complete!
 echo "Done! now Run: genr8-chroot ${TARGET}"
