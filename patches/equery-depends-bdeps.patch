@@ -1,0 +1,248 @@
+From 18329c412b2526e9d5f002097c9196b18288419c Mon Sep 17 00:00:00 2001
+From: John Turner <jturner.usa@gmail.com>
+Date: Fri, 12 Jan 2024 17:42:35 -0500
+Subject: [PATCH 2/4] walk reverse dep graph by depkind
+
+Instead of processing an rdeps full dependencies list, we walk each
+depkind at a time, and optionally ignore certain depkinds if depkinds
+variable is not None.
+
+An extra depkind parameter to print_fn has been added and the method's
+return type is now a dict of lists, where the key is a depkind and the
+list is all of the rdeps we have collected.
+---
+ pym/gentoolkit/dependencies.py | 120 ++++++++++++++++++++-------------
+ 1 file changed, 72 insertions(+), 48 deletions(-)
+
+diff --git a/gentoolkit/dependencies.py b/gentoolkit/dependencies.py
+index 8dd4867..367f607 100644
+--- a/gentoolkit/dependencies.py
++++ b/gentoolkit/dependencies.py
+@@ -11,6 +11,8 @@
+ # Imports
+ # =======
+ 
++from enum import StrEnum
++
+ import portage
+ from portage.dep import paren_reduce
+ 
+@@ -24,6 +26,13 @@
+ # =======
+ 
+ 
++class DependencyKind(StrEnum):
++    DEPEND = "DEPEND"
++    RDEPEND = "RDEPEND"
++    BDEPEND = "BDEPEND"
++    PDEPEND = "PDEPEND"
++
++
+ class Dependencies(Query):
+     """Access a package's dependencies and reverse dependencies.
+ 
+@@ -102,11 +111,18 @@ def get_rdepend(self, **kwargs):
+         """Get the contents of RDEPEND and parse it with self.parser."""
+         return self._get_depend(("RDEPEND",), **kwargs)
+ 
++    def get_bdepend(self, **kwargs):
++        """Get the contents of BDEPEND and parse it with self.parser."""
++        return self._get_depend(("BDEPEND",), **kwargs)
++
+     def get_all_depends(self, **kwargs):
+         """Get the contents of ?DEPEND and parse it with self.parser."""
+         env_vars = ("DEPEND", "PDEPEND", "RDEPEND", "BDEPEND")
+         return self._get_depend(env_vars, **kwargs)
+ 
++    def get_depends_kind(self, kind, **kwargs):
++        return self._get_depend((kind,), **kwargs)
++
+     def graph_depends(
+         self,
+         max_depth=1,
+@@ -178,6 +194,7 @@ def graph_reverse_depends(
+         max_depth=-1,
+         only_direct=True,
+         printer_fn=None,
++        depkinds=None,
+         # The rest of these are only used internally:
+         depth=0,
+         depcache=None,
+@@ -225,62 +242,69 @@ def graph_reverse_depends(
+             raise errors.GentoolkitFatalError(err % (self.__class__.__name__,))
+ 
+         if depcache is None:
+-            depcache = dict()
++            depcache = {depkind: dict() for depkind in DependencyKind}
+         if seen is None:
+-            seen = set()
++            seen = {depkind: set() for depkind in DependencyKind}
+         if result is None:
+-            result = list()
++            result = {depkind: list() for depkind in DependencyKind}
+ 
+         if depth == 0:
+-            pkgset = tuple(Dependencies(x) for x in pkgset)
++            pkgset = list(Dependencies(pkg) for pkg in pkgset)
+ 
+         pkgdep = None
+         for pkgdep in pkgset:
+-            raw_depends = pkgdep.get_all_depends(raw=True)
+-            if self.cp not in raw_depends:
+-                # fast path for obviously non-matching packages. This saves
+-                # us the work of instantiating a whole Atom() for *every*
+-                # dependency of *every* package in pkgset.
+-                continue
+-            try:
+-                all_depends = depcache[pkgdep]
+-            except KeyError:
+-                all_depends = uniqify(pkgdep.get_all_depends())
+-                depcache[pkgdep] = all_depends
+-
+-            dep_is_displayed = False
+-            for dep in all_depends:
+-                # TODO: Add ability to determine if dep is enabled by USE flag.
+-                #       Check portage.dep.use_reduce
+-                if dep.intersects(self):
+-                    pkgdep.depth = depth
+-                    pkgdep.matching_dep = dep
+-                    if printer_fn is not None:
+-                        printer_fn(pkgdep, dep_is_displayed=dep_is_displayed)
+-                    result.append(pkgdep)
+-                    dep_is_displayed = True
+-
+-            # if --indirect specified, call ourselves again with the dep
+-            # Do not call if we have already called ourselves.
+-            if (
+-                dep_is_displayed
+-                and not only_direct
+-                and pkgdep.cpv not in seen
+-                and (depth < max_depth or max_depth == -1)
+-            ):
+-                seen.add(pkgdep.cpv)
+-                result.append(
+-                    pkgdep.graph_reverse_depends(
+-                        pkgset=pkgset,
+-                        max_depth=max_depth,
+-                        only_direct=only_direct,
+-                        printer_fn=printer_fn,
+-                        depth=depth + 1,
+-                        depcache=depcache,
+-                        seen=seen,
+-                        result=result,
++            for depkind in DependencyKind:
++                if depkinds is not None and depkind in depkinds is False:
++                    continue
++
++                if self.cp not in pkgdep.get_all_depends(raw=True):
++                    # fast path for obviously non-matching packages. This saves
++                    # us the work of instantiating a whole Atom() for *every*
++                    # dependency of *every* package in pkgset.
++                    continue
++
++                try:
++                    depends = depcache[depkind][pkgdep]
++                except KeyError:
++                    depends = pkgdep.get_depends_kind(depkind)
++                    depcache[depkind][pkgdep] = depends
++
++                dep_is_displayed = False
++                for dep in depends:
++                    # TODO: Add ability to determine if dep is enabled by USE flag.
++                    #       Check portage.dep.use_reduce
++                    if dep.intersects(self):
++                        pkgdep.depth = depth
++                        pkgdep.matching_dep = dep
++                        if printer_fn is not None:
++                            printer_fn(
++                                pkgdep, depkind, dep_is_displayed=dep_is_displayed
++                            )
++                        result[depkind].append(pkgdep)
++                        dep_is_displayed = True
++
++                # if --indirect specified, call ourselves again with the dep
++                # Do not call if we have already called ourselves.
++                if (
++                    dep_is_displayed
++                    and not only_direct
++                    and pkgdep.cpv not in seen[depkind]
++                    and (depth < max_depth or max_depth == -1)
++                ):
++                    seen[depkind].add(pkgdep.cpv)
++                    result[depkind].append(
++                        pkgdep.graph_reverse_depends(
++                            pkgset=pkgset,
++                            max_depth=max_depth,
++                            only_direct=only_direct,
++                            printer_fn=printer_fn,
++                            depth=depth + 1,
++                            depkinds=depkinds,
++                            depcache=depcache,
++                            seen=seen,
++                            result=result,
++                        )
+                     )
+-                )
+ 
+         if depth == 0:
+             return result
+
+From 5c4ee9a0c1abe4219b57faf07427927d7c9a0c4c Mon Sep 17 00:00:00 2001
+From: John Turner <jturner.usa@gmail.com>
+Date: Fri, 12 Jan 2024 17:49:31 -0500
+Subject: [PATCH 3/4] add extra field depkind in the print functions
+
+---
+ pym/gentoolkit/equery/depends.py | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/gentoolkit/equery/depends.py b/gentoolkit/equery/depends.py
+index 8ec5f75..f3309ab 100644
+--- a/gentoolkit/equery/depends.py
++++ b/gentoolkit/equery/depends.py
+@@ -47,18 +47,18 @@ def __init__(self, verbose=True):
+         else:
+             self.print_fn = self.print_quiet
+ 
+-    def __call__(self, dep, dep_is_displayed=False):
+-        self.format_depend(dep, dep_is_displayed)
++    def __call__(self, dep, depkind, dep_is_displayed=False):
++        self.format_depend(dep, depkind, dep_is_displayed)
+ 
+     @staticmethod
+-    def print_verbose(indent, cpv, use_conditional, depatom):
++    def print_verbose(indent, cpv, use_conditional, depatom, depkind):
+         """Verbosely prints a set of dep strings."""
+ 
+         sep = " ? " if (depatom and use_conditional) else ""
+-        pp.uprint(indent + pp.cpv(cpv), "(" + use_conditional + sep + depatom + ")")
++        pp.uprint(indent + pp.cpv(cpv), depkind, "=", "(" + use_conditional + sep + depatom + ")")
+ 
+     @staticmethod
+-    def print_quiet(indent, cpv, use_conditional, depatom):
++    def print_quiet(indent, cpv, use_conditional, depatom, depkind):
+         """Quietly prints a subset set of dep strings."""
+ 
+         pp.uprint(indent + cpv)
+@@ -83,7 +83,7 @@ def print_formated(pkg):
+                 )
+             )
+ 
+-    def format_depend(self, dep, dep_is_displayed):
++    def format_depend(self, dep, depkind, dep_is_displayed):
+         """Format a dependency for printing.
+ 
+         @type dep: L{gentoolkit.dependencies.Dependencies}
+@@ -121,9 +121,9 @@ def format_depend(self, dep, dep_is_displayed):
+ 
+             if dep_is_displayed:
+                 indent = indent + " " * len(str(dep.cpv))
+-                self.print_fn(indent, "", use_conditional, formatted_dep)
++                self.print_fn(indent, "", use_conditional, formatted_dep, depkind)
+             else:
+-                self.print_fn(indent, str(dep.cpv), use_conditional, formatted_dep)
++                self.print_fn(indent, str(dep.cpv), use_conditional, formatted_dep, depkind)
+ 
+ 
+ # =========
+
