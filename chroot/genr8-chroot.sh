@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
 #
+# Usage:
+#  # genr8-chroot /mnt/gentoo
+#
 # Shamelessly "borrowed" from Arch to make Gentoo development in chroots easier;
 # Thanks for doing all of the hard work! -@Kangie, 2022
 # subsequently modified by -@genr8eofl, 2023
 #  (ran shellcheck) (sorted code for readability) (comments)
 #  (unshare removed) (auto bind mount itself - old warning)
 #   modified Sept 28, 2023
-#TODO: FIX: fix warning messages:
-#mount: /mnt/stage3/usr/src/linux: mount point is not a directory.
-#       dmesg(1) may have more information after failed mount system call.
-#DONE: TODO: needs fix:
-#mount: /mnt/crucialp1/gentoo-livegui-amd64-20230604T170201Z/usr/src/linux: mount point is not a directory.
-#-rw-r--r--.  1 root root root:object_r:mnt_t    0 Jul  4 02:24 linux
-#livegui comes with empty dir, causing a blank 0 file to be created and this warning. Fix somehow ?
 #
 # Options:
 #   -d | --debug
