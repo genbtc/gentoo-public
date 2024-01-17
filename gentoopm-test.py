@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+# https://github.com/projg2/gpyutils/blob/master/gpyutils/scripts/depgraph.py
+
+# gpyutils
+# (c) 2017-2024 Michał Górny <mgorny@gentoo.org>
+# SPDX-License-Identifier: GPL-2.0-or-later
+# edited to remove networkx digraphs
+
 from gentoopm import get_package_manager
 from gentoopm.basepm.atom import PMAtom
 from gpyutils.ansi import ANSI
