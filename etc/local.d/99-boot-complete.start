@@ -1,0 +1,3 @@
+#!/bin/sh
+dateNow=$(date +"%F_%H-%M-%S")
+echo "<1>!!! Boot Complete !!! $dateNow " > /dev/kmsg
