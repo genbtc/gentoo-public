@@ -1,6 +1,6 @@
 #!/bin/sh
-# Description: lsmod psaux dmesg cpuinfo string to file gatherer tool v0.51 
-# Author: genr8eofl @ gentoo - Dec 2023 + Jan 2024
+# Description: lsmod psaux dmesg cpuinfo string to file gatherer tool v0.52
+# Author: genr8eofl @ gentoo - Dec 2023 + Jan 2024 - LICENSE AGPL3
 
 datenow=$(date +"%s")
 mkdir -p sysgather-logs
@@ -51,11 +51,11 @@ stringtofile2 "emerge --info" "emerge-info"
 stringtofile "resolve-march-native"
 stringtofile "cpuid2cpuflags"
 
-stringtofile2 "nvme-cli smart-log /dev/root" "nvme-cli-smart-log-devroot"
+stringtofile2 "nvme smart-log /dev/root" "nvme-smart-log-devroot"
 stringtofile2 "smartctl -a /dev/root" "smartctl-a-devroot"
 
 stringtofile2 "ip l" "ip-l"
 stringtofile2 "ip a" "ip-a"
 stringtofile2 "ip r" "ip-r"
 
-
+find . -size 0 -delete
