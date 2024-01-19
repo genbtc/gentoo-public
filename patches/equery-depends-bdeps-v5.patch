@@ -1,0 +1,262 @@
+From 2812ed36010ffd5ed4709294425ee32c0d2e859f Mon Sep 17 00:00:00 2001
+From: John Turner <jturner.usa@gmail.com>
+Date: Fri, 10 Nov 2023 14:09:17 -0500
+Subject: [PATCH 1/5] .dir-locals.el
+
+---
+ .dir-locals.el | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 .dir-locals.el
+
+diff --git a/.dir-locals.el b/.dir-locals.el
+new file mode 100644
+index 0000000..875e474
+--- /dev/null
++++ b/.dir-locals.el
+@@ -0,0 +1,3 @@
++((python-ts-mode . ((fmt-executable . "black")
++                    (fmt-args . ("-"))
++                    (eval . (add-hook 'before-save-hook 'fmt-current-buffer nil t)))))
+
+From a97a7c57f3cd9baaeab5bd3fb3dd7f77b20f914f Mon Sep 17 00:00:00 2001
+From: John Turner <jturner.usa@gmail.com>
+Date: Fri, 12 Jan 2024 19:58:19 -0500
+Subject: [PATCH 2/5] create DependencyKind enum
+
+---
+ pym/gentoolkit/dependencies.py | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/pym/gentoolkit/dependencies.py b/pym/gentoolkit/dependencies.py
+index 8dd4867..586ef90 100644
+--- a/pym/gentoolkit/dependencies.py
++++ b/pym/gentoolkit/dependencies.py
+@@ -11,6 +11,8 @@
+ # Imports
+ # =======
+ 
++from enum import Enum
++
+ import portage
+ from portage.dep import paren_reduce
+ 
+@@ -24,6 +26,13 @@
+ # =======
+ 
+ 
++class DependencyKind(Enum):
++    DEPEND = "DEPEND"
++    RDEPEND = "RDEPEND"
++    BDEPEND = "BDEPEND"
++    PDEPEND = "PDEPEND"
++
++
+ class Dependencies(Query):
+     """Access a package's dependencies and reverse dependencies.
+ 
+
+From 67448f2c3fbe8224eb242a312f762ba1cde750e4 Mon Sep 17 00:00:00 2001
+From: John Turner <jturner.usa@gmail.com>
+Date: Fri, 12 Jan 2024 20:12:17 -0500
+Subject: [PATCH 3/5] add method get_bdepend and get_depends_kind
+
+---
+ pym/gentoolkit/dependencies.py | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/pym/gentoolkit/dependencies.py b/pym/gentoolkit/dependencies.py
+index 586ef90..1819f62 100644
+--- a/pym/gentoolkit/dependencies.py
++++ b/pym/gentoolkit/dependencies.py
+@@ -111,11 +111,18 @@ def get_rdepend(self, **kwargs):
+         """Get the contents of RDEPEND and parse it with self.parser."""
+         return self._get_depend(("RDEPEND",), **kwargs)
+ 
++    def get_bdepend(self, **kwargs):
++        """Get the contents of BDEPEND and parse it with self.parser."""
++        return self._get_depend(("BDEPEND",), **kwargs)
++
+     def get_all_depends(self, **kwargs):
+         """Get the contents of ?DEPEND and parse it with self.parser."""
+         env_vars = ("DEPEND", "PDEPEND", "RDEPEND", "BDEPEND")
+         return self._get_depend(env_vars, **kwargs)
+ 
++    def get_depends_kind(self, kind, **kwargs):
++        return self._get_depend((kind,), **kwargs)
++
+     def graph_depends(
+         self,
+         max_depth=1,
+
+From 8df2c9ec00416d5274459044ac20c977e8791ec0 Mon Sep 17 00:00:00 2001
+From: John Turner <jturner.usa@gmail.com>
+Date: Sat, 13 Jan 2024 15:59:46 -0500
+Subject: [PATCH 4/5] add --depkind cli option to equery depends
+
+---
+ pym/gentoolkit/equery/depends.py | 38 ++++++++++++++++++++++++++++++--
+ 1 file changed, 36 insertions(+), 2 deletions(-)
+
+diff --git a/pym/gentoolkit/equery/depends.py b/pym/gentoolkit/equery/depends.py
+index 8ec5f75..ccb5fb0 100644
+--- a/pym/gentoolkit/equery/depends.py
++++ b/pym/gentoolkit/equery/depends.py
+@@ -14,7 +14,7 @@
+ from getopt import gnu_getopt, GetoptError
+ 
+ import gentoolkit.pprinter as pp
+-from gentoolkit.dependencies import Dependencies
++from gentoolkit.dependencies import Dependencies, DependencyKind
+ from gentoolkit.equery import format_options, mod_usage, CONFIG
+ from gentoolkit.helpers import get_cpvs, get_installed_cpvs
+ from gentoolkit.cpv import CPV
+@@ -29,6 +29,7 @@
+     "only_direct": True,
+     "max_depth": -1,
+     "package_format": None,
++    "depkind": None,
+ }
+ 
+ # =======
+@@ -155,6 +156,10 @@ def print_help(with_description=True):
+                 (" -D, --indirect", "search both direct and indirect dependencies"),
+                 (" -F, --format=TMPL", "specify a custom output format"),
+                 ("     --depth=N", "limit indirect dependency tree to specified depth"),
++                (
++                    "     --depkind=?DEPEND",
++                    "search for specific kind of dependency (BDEPEND RDEPEND etc)",
++                ),
+             )
+         )
+     )
+@@ -185,12 +190,29 @@ def parse_module_options(module_opts):
+                 print_help(with_description=False)
+                 sys.exit(2)
+             QUERY_OPTS["max_depth"] = depth
++        elif opt in ("--depkind"):
++            if posarg in ("DEPEND", "BDEPEND", "RDEPEND", "PDEPEND"):
++                QUERY_OPTS["depkind"] = posarg
++            else:
++                err = "Module option --depkind must be one of (DEPEND BDEPEND RDEPEND PDEPEND) (got '%s')"
++                sys.stdout.write(pp.error(err % posarg))
++                print()
++                print_help(with_description=False)
++                sys.exit(2)
+ 
+ 
+ def main(input_args):
+     """Parse input and run the program"""
+     short_opts = "hadDF:"  # -d, --direct was old option for default action
+-    long_opts = ("help", "all-packages", "direct", "indirect", "format", "depth=")
++    long_opts = (
++        "help",
++        "all-packages",
++        "direct",
++        "indirect",
++        "format",
++        "depth=",
++        "depkind=",
++    )
+ 
+     try:
+         module_opts, queries = gnu_getopt(input_args, short_opts, long_opts)
+@@ -206,6 +228,17 @@ def main(input_args):
+         print_help()
+         sys.exit(2)
+ 
++    if QUERY_OPTS["depkind"] is None:
++        depkind = None
++    elif QUERY_OPTS["depkind"] == "DEPEND":
++        depkind = DependencyKind.DEPEND
++    elif QUERY_OPTS["depkind"] == "BDEPEND":
++        depkind = DependencyKind.BDEPEND
++    elif QUERY_OPTS["depkind"] == "RDEPEND":
++        depkind = DependencyKind.RDEPEND
++    elif QUERY_OPTS["depkind"] == "PDEPEND":
++        depkind = DependencyKind.PDEPEND
++
+     #
+     # Output
+     #
+@@ -230,6 +263,7 @@ def main(input_args):
+             pkgset=sorted(pkggetter(), key=CPV),
+             max_depth=QUERY_OPTS["max_depth"],
+             only_direct=QUERY_OPTS["only_direct"],
++            depkind=depkind,
+             printer_fn=dep_print,
+         ):
+             got_match = True
+
+From b881b07604fc7283c7c2b5218a8641e44f61b33f Mon Sep 17 00:00:00 2001
+From: John Turner <jturner.usa@gmail.com>
+Date: Sat, 13 Jan 2024 16:50:33 -0500
+Subject: [PATCH 5/5] extend graph_reverse_depends to optionally walk revdeps
+ by depkind
+
+The "Dependencies" class's "graph_reverse_depends" method searched all
+dependencies defined for a package with no ability to search only
+BDEPEND for example.
+
+This commit adds the ability to search only a specific dependency kind
+using the "--depkind" flag. It does not support limiting to a set of
+depkinds (BDEPEND and DEPEND but not RDEPEND for example) and does not
+display any additional information in the output.
+---
+ pym/gentoolkit/dependencies.py | 19 ++++++++++++++-----
+ 1 file changed, 14 insertions(+), 5 deletions(-)
+
+diff --git a/pym/gentoolkit/dependencies.py b/pym/gentoolkit/dependencies.py
+index 1819f62..cbf53f8 100644
+--- a/pym/gentoolkit/dependencies.py
++++ b/pym/gentoolkit/dependencies.py
+@@ -194,6 +194,7 @@ def graph_reverse_depends(
+         max_depth=-1,
+         only_direct=True,
+         printer_fn=None,
++        depkind=None,
+         # The rest of these are only used internally:
+         depth=0,
+         depcache=None,
+@@ -250,22 +251,29 @@ def graph_reverse_depends(
+         if depth == 0:
+             pkgset = tuple(Dependencies(x) for x in pkgset)
+ 
++        if depkind is None:
++            get_depends = lambda pkgdep, _, **kwargs: pkgdep.get_all_depends(**kwargs)
++        else:
++            get_depends = lambda pkgdep, depkind, **kwargs: pkgdep.get_depends_kind(
++                depkind.value, **kwargs
++            )
++
+         pkgdep = None
+         for pkgdep in pkgset:
+-            raw_depends = pkgdep.get_all_depends(raw=True)
++            raw_depends = get_depends(pkgdep, depkind, raw=True)
+             if self.cp not in raw_depends:
+                 # fast path for obviously non-matching packages. This saves
+                 # us the work of instantiating a whole Atom() for *every*
+                 # dependency of *every* package in pkgset.
+                 continue
+             try:
+-                all_depends = depcache[pkgdep]
++                depends = depcache[pkgdep]
+             except KeyError:
+-                all_depends = uniqify(pkgdep.get_all_depends())
+-                depcache[pkgdep] = all_depends
++                depends = uniqify(get_depends(pkgdep, depkind))
++                depcache[pkgdep] = depends
+ 
+             dep_is_displayed = False
+-            for dep in all_depends:
++            for dep in depends:
+                 # TODO: Add ability to determine if dep is enabled by USE flag.
+                 #       Check portage.dep.use_reduce
+                 if dep.intersects(self):
+@@ -291,6 +299,7 @@ def graph_reverse_depends(
+                         max_depth=max_depth,
+                         only_direct=only_direct,
+                         printer_fn=printer_fn,
++                        depkind=depkind,
+                         depth=depth + 1,
+                         depcache=depcache,
+                         seen=seen,
