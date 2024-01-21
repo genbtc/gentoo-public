@@ -3,7 +3,6 @@
 
 EAPI=8
 
-#DISTUTILS_USE_PEP517=setuptools
 PYTHON_COMPAT=( pypy3 python3_{10..12} )
 
 if [[ ${PV} == "9999" ]] ; then
@@ -14,8 +13,7 @@ else
     KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~loong ~m68k ~mips ppc ppc64 ~riscv ~s390 ~sparc x86 ~arm64-macos ~x64-macos"
 fi
 
-#inherit distutils-r1
-inherit python-r1
+inherit distutils-r1 meson
 
 DESCRIPTION="A helper library to implement the Gentoo Package Manager Specification"
 HOMEPAGE="https://github.com/Jannik2099/pms-utils/"
