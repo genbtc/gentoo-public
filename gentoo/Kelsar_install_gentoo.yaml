@@ -1,0 +1,381 @@
+---
+
+- name: Prepare Disk
+  tags:
+    - disk
+  hosts: all
+  vars:
+    maindisk: /dev/xvda
+    lukspw: 'Gentoo12345678'
+    swapsize: '2GiB'
+
+  tasks:
+    # - name: Ensure needed packages
+    #   ansible.builtin.package:
+    #     name:
+    #       - parted
+    #       - dosfstools
+    #       - btrfs-progs
+    #       - python3-btrfs
+    #       - python3-btrfsutil
+    #       - cryptsetup
+
+    - name: Ensure ESP
+      community.general.parted:
+        device: "{{ maindisk }}"
+        number: "1"
+        fs_type: 'fat32'
+        state: present
+        unit: 'GB'
+        label: 'gpt'
+        name: boot
+        part_start: '0%'
+        part_end: '1GiB'
+        flags: ['esp']
+
+    - name: Ensure OS Partition
+      community.general.parted:
+        device: "{{ maindisk }}"
+        number: "2"
+        fs_type: 'btrfs'
+        state: present
+        unit: 'GB'
+        label: 'gpt'
+        name: gentoo
+        part_end: '-{{ swapsize }}'
+        part_start: '2GiB'
+
+    - name: Determine Type of OS Partition
+      ansible.builtin.command: "sfdisk --part-type {{ maindisk }} 2"
+      changed_when: false
+      register: os_type
+
+    - name: Set Discoverable Type for OS Partition
+      ansible.builtin.command: "sfdisk --part-type {{ maindisk }} 2 4f68bce3-e8cd-4db1-96e7-fbcaf984b709"
+      changed_when: true
+      when: os_type.stdout | lower != '4f68bce3-e8cd-4db1-96e7-fbcaf984b709'
+
+    - name: Ensure encrypted OS
+      community.crypto.luks_device:
+        device: "{{ maindisk }}2"
+        state: opened
+        type: 'luks2'
+        passphrase: "{{ lukspw }}"
+        name: gentoo
+
+    - name: Ensure swap partition
+      community.general.parted:
+        device: "{{ maindisk }}"
+        number: "3"
+        fs_type: 'linux-swap'
+        state: present
+        unit: 'GB'
+        label: 'gpt'
+        part_start: '-{{ swapsize }}'
+        part_end: '100%'
+        flags: ['swap']
+
+    # since parted is not able to set GUID Partition types, we need to be a bit creative
+    - name: Determine Type of swap Partition
+      ansible.builtin.command: "sfdisk --part-type {{ maindisk }} 3"
+      changed_when: false
+      register: swap_type
+
+    - name: Set Discoverable Type for swap Partition
+      ansible.builtin.command: "sfdisk --part-type {{ maindisk }} 3 0657fd6d-a4ab-43c4-84e5-0933c84b4f4f"
+      changed_when: true
+      when: swap_type.stdout | lower != '0657fd6d-a4ab-43c4-84e5-0933c84b4f4f'
+
+    - name: Ensure encrypted swap
+      community.crypto.luks_device:
+        device: "{{ maindisk }}3"
+        type: 'luks2'
+        state: opened
+        passphrase: "{{ lukspw }}"
+        name: swap
+
+    - name: Format ESP
+      community.general.filesystem:
+        dev: "{{ maindisk }}1"
+        fstype: vfat
+
+    - name: Format swap
+      community.general.filesystem:
+        dev: "/dev/mapper/swap"
+        fstype: swap
+
+    - name: Format root
+      community.general.filesystem:
+        dev: "/dev/mapper/gentoo"
+        fstype: btrfs
+        opts: '-L gentoo'
+
+    - name: Ensure Subvolumes on root
+      community.general.btrfs_subvolume:
+        filesystem_label: "gentoo"
+        name: "{{ item }}"
+        automount: true
+      loop:
+        - '/@'
+        - '/@home'
+        - '/@var'
+        - '/@portage'
+
+    - name: Set @ as default Subvolume
+      community.general.btrfs_subvolume:
+        filesystem_label: "gentoo"
+        name: "/@"
+        default: true
+        automount: true
+
+- name: Prepare chroot
+  tags:
+    - chroot_prepare
+  hosts: all
+  vars:
+    maindisk: /dev/xvda
+  tasks:
+    - name: Ensure mountpoint
+      ansible.builtin.file:
+        path: '/mnt/gentoo'
+        state: directory
+        mode: '0755'
+        owner: root
+        group: root
+
+    - name: Mount @root
+      ansible.posix.mount:
+        path: '/mnt/gentoo'
+        src: 'LABEL=gentoo'
+        fstype: btrfs
+        opts: 'noatime,subvol=@'
+        state: 'ephemeral'
+      ignore_errors: true
+
+    - name: Ensure Subvolume mountpoints
+      ansible.builtin.file:
+        path: '/mnt/gentoo/{{ item }}'
+        state: directory
+        owner: root
+        group: root
+        mode: '0775'
+      loop:
+        - boot
+        - dev
+        - proc
+        - sys
+        - home
+        - var
+        - var/db
+        - var/db/repos
+
+    - name: Mount Stuff...
+      ansible.posix.mount:
+        path: "/mnt/gentoo/{{ item.0 }}"
+        src: "{{ item.1 }}"
+        fstype: "{{ item.2 }}"
+        opts: "{{ item.3 }}"
+        state: 'ephemeral'
+      ignore_errors: true
+      loop:
+        - ['boot', "{{ maindisk }}1", 'vfat', 'defaults']
+        - ['dev', '/dev', 'none', 'rbind']
+        - ['proc', 'none', 'proc', 'defaults']
+        - ['sys', '/sys', 'none', 'rbind']
+        - ['home', 'LABEL=gentoo', 'btrfs', 'noatime,subvol=@home']
+        - ['var', 'LABEL=gentoo', 'btrfs', 'noatime,subvol=@var']
+        - ['var/db/repos', 'LABEL=gentoo', 'btrfs', 'noatime,subvol=@portage']
+
+- name: Download and extract stage3
+  tags:
+    - stage3
+  hosts: all
+  tasks:
+    - name: Check if we have a system allready
+      ansible.builtin.stat:
+        path: '/mnt/gentoo/bin/bash'
+      register: chroot_bash
+
+    - name: Handle stage3
+      when: not chroot_bash.stat.exists
+      block:
+        - name: Parse stage3 infos
+          ansible.builtin.set_fact:
+            stage3_info: "{{ item | split(',') | last | split(' ') | first }}"
+          loop: "{{ lookup('ansible.builtin.url', 'https://distfiles.gentoo.org/releases/amd64/autobuilds/latest-stage3-amd64-systemd-mergedusr.txt', wantlist=true) }}"
+          when: item | ansible.builtin.regex_search('^2023')
+
+        - name: Tell which stage3 should be downloaded
+          ansible.builtin.debug:
+            var: stage3_info
+
+        - name: "Download stage3 {{ stage3_info }}"
+          ansible.builtin.get_url:
+            url: "https://distfiles.gentoo.org/releases/amd64/autobuilds/{{ stage3_info }}"
+            dest: '/mnt/gentoo/stage3.tar.xz'
+            mode: '0600'
+            owner: root
+            group: root
+
+        - name: Extract stage3
+          ansible.builtin.shell: "tar -C /mnt/gentoo -xpvf /mnt/gentoo/stage3.tar.xz --xattrs-include='*.*' --numeric-owner > /dev/null 2> /dev/null"
+          args:
+            creates: '/mnt/gentoo/bin/bash'
+          # ansible.builtin.unarchive:
+          #   remote_src: true
+          #   src: '/mnt/gentoo/stage3.tar.xz'
+          #   dest: '/mnt/gentoo/'
+          #   creates: '/mnt/gentoo/bin/bash'
+
+- name: Configure fileis inside chroot
+  tags:
+    - chroot_config
+  hosts: all
+  vars:
+    maindisk: /dev/xvda
+
+  tasks:
+    - name: Copy resolv.conf
+      ansible.builtin.copy:
+        remote_src: true
+        src: '/etc/resolv.conf'
+        dest: '/mnt/gentoo/etc/resolv.conf'
+        owner: root
+        group: root
+        mode: '0664'
+
+    - name: Ensure root has .ssh
+      ansible.builtin.file:
+        path: '/mnt/gentoo/root/.ssh'
+        state: directory
+        owner: root
+        group: root
+        mode: '0700'
+
+    - name: Copy root authorized_keys
+      ansible.builtin.copy:
+        remote_src: true
+        # src: '/root/.ssh/authorized_keys'
+        content: 'sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBBuWliYHcKgXEIe/nN8pLhpKMGvsTbY4XxXLlLejeHh/NaIfDZKKa/jwowMPwhISsNakZ5xHmAHhm49IUMSCAJcAAAAEc3NoOg== tetja@ray'
+        dest: '/mnt/gentoo/root/.ssh/authorized_keys'
+        owner: root
+        group: root
+        mode: '0600'
+
+    - name: Write fstab
+      ansible.posix.mount:
+        fstab: '/mnt/gentoo/etc/fstab'
+        path: "/{{ item.0 }}"
+        src: "{{ item.1 }}"
+        fstype: "{{ item.2 }}"
+        opts: "{{ item.3 }}"
+        state: 'present'
+      loop:
+        - ['boot', "{{ maindisk }}1", 'vfat', 'noauto']
+        - ['', 'LABEL=gentoo', 'btrfs', 'noatime,subvol=@']
+        - ['home', 'LABEL=gentoo', 'btrfs', 'noatime,subvol=@home']
+        - ['var', 'LABEL=gentoo', 'btrfs', 'noatime,subvol=@var']
+        - ['var/db/repos', 'LABEL=gentoo', 'btrfs', 'noatime,subvol=@portage']
+
+    - name: Write package.use/systemd
+      ansible.builtin.copy:
+        content: "sys-apps/systemd tpm cryptsetup fido2 gnuefi boot"
+        dest: '/mnt/gentoo/etc/portage/package.use/systemd'
+        mode: '0664'
+        owner: root
+
+    - name: Write package.use/openssh
+      ansible.builtin.copy:
+        content: "net-misc/openssh security-key"
+        dest: '/mnt/gentoo/etc/portage/package.use/openssh'
+        mode: '0664'
+        owner: root
+
+    - name: Write package.use/all
+      ansible.builtin.copy:
+        content: "*/* networkmanager dbus"
+        dest: '/mnt/gentoo/etc/portage/package.use/all'
+        mode: '0664'
+        owner: root
+
+    - name: Write package.license
+      ansible.builtin.copy:
+        content: sys-kernel/linux-firmware linux-fw-redistributable no-source-code
+        dest: '/mnt/gentoo/etc/portage/package.license'
+        mode: '0664'
+        owner: root
+
+    - name: Write empty /etc/kernel/cmdline so installkernel will not write stupid kernel cmdline
+      ansible.builtin.copy:
+        content: ''
+        dest: '/mnt/gentoo/etc/kernel/cmdline'
+        owner: root
+        mode: '0644'
+
+- name: Do Stuff inside chroot
+  tags:
+    - chroot
+  hosts: all
+  tasks:
+    - name: Sync Portage Tree
+      ansible.builtin.command: "chroot /mnt/gentoo /bin/bash -c 'env-update; . /etc/profile; emerge --quiet --sync'"
+      args:
+        creates: '/mnt/gentoo/var/db/repos/gentoo/metadata/timestamp'
+      register: result
+      # libvirt returner has problems with big output, so add --quiet or ignore errors
+
+    - name: Insall systemd-boot
+      ansible.builtin.command: "chroot /mnt/gentoo /bin/bash -c 'env-update; . /etc/profile; emerge -uDU systemd; bootctl install'"
+      args:
+        creates: '/mnt/gentoo/boot/EFI'
+
+    - name: Install a kernel
+      ansible.builtin.command: "chroot /mnt/gentoo /bin/bash -c 'env-update; . /etc/profile; emerge --quiet-build linux-firmware sys-kernel/installkernel-systemd-boot && emerge --quiet-build gentoo-kernel-bin'"
+      args:
+        creates: '/mnt/gentoo/usr/src/linux2'
+
+    - name: Update @world
+      ansible.builtin.command: "chroot /mnt/gentoo /bin/bash -c 'env-update; . /etc/profile; emerge -vuDU --quiet-build @world'"
+      register: result
+
+    - name: Enable sshd
+      ansible.builtin.command: "chroot /mnt/gentoo /bin/bash -c 'env-update; . /etc/profile; systemctl enable sshd'"
+      args:
+        creates: '/mnt/gentoo/etc/systemd/system/multi-user.target.wants/sshd.service'
+
+    - name: Install NetworkManager
+      ansible.builtin.command: "chroot /mnt/gentoo /bin/bash -c 'env-update; . /etc/profile; emerge -vuDU --quiet-build net-misc/networkmanager'"
+      args:
+        creates: '/mnt/gentoo/usr/bin/nmtui'
+
+    - name: Enable NetworkManager
+      ansible.builtin.command: "chroot /mnt/gentoo /bin/bash -c 'env-update; . /etc/profile; systemctl enable NetworkManager'"
+      args:
+        creates: '/mnt/gentoo/etc/systemd/system/network.target.wants/NetworkManager.service'
+
+    - name: Install Ansible
+      ansible.builtin.command: "chroot /mnt/gentoo /bin/bash -c 'env-update; . /etc/profile; emerge -1 rust-bin && emerge ansible-core ansible-lint'"
+      args:
+        creates: '/mnt/gentoo/usr/bin/ansible'
+
+- name: Cleanup
+  tags:
+    - clean
+    - never
+  hosts: all
+  vars:
+    maindisk: /dev/vda
+  tasks:
+    - name: Umount everything
+      # since ansible.posix.mount can not do lazy umount, we call a command
+      ansible.builtin.command: "umount -l /mnt/gentoo"
+      args:
+        removes: /mnt/gentoo/home
+
+    - name: Close encrypted devices
+      community.crypto.luks_device:
+        device: "{{ maindisk }}{{ item }}"
+        state: closed
+      loop:
+        - 3
+        - 2
