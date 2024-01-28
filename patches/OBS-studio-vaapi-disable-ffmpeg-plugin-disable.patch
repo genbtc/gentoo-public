@@ -1,0 +1,18 @@
+--- a/plugins/CMakeLists.txt	2024-01-28 13:59:36.520845915 -0500
++++ b/plugins/CMakeLists.txt	2024-01-28 14:05:35.394819280 -0500
+@@ -60,7 +60,6 @@
+     add_subdirectory(mac-virtualcam)
+   endif()
+   check_obs_browser()
+-  add_subdirectory(obs-ffmpeg)
+   add_subdirectory(obs-filters)
+   add_subdirectory(obs-outputs)
+   if(OS_WINDOWS)
+@@ -177,7 +176,6 @@
+ add_subdirectory(image-source)
+ add_subdirectory(obs-x264)
+ add_subdirectory(obs-libfdk)
+-add_subdirectory(obs-ffmpeg)
+ add_subdirectory(obs-outputs)
+ add_subdirectory(obs-filters)
+ add_subdirectory(obs-transitions)
