@@ -1,0 +1,5 @@
+# 3.13 F16C Instructions
+# copied from https://docs.oracle.com/cd/E37838_01/html/E61064/gnycx.html#scrolltoc
+# Intel/AMD Mnemonic
+VCVTPH2PS	Convert 16-bit FP values to Single-Precision FP values
+VCVTPS2PH	Convert Single-Precision FP value to 16-bit FP value

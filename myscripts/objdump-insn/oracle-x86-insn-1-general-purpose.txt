@@ -1,0 +1,256 @@
+# 3.2 General-Purpose Instructions
+# copied from https://docs.oracle.com/cd/E37838_01/html/E61064/ennbz.html#scrolltoc 
+
+# 3.2.1 Data Transfer Instructions
+BSWAP	byte swap
+CBW		convert byte to word
+CDQ		convert doubleword to quadword
+CDQE	convert doubleword to quadword
+CMOVA	conditional move if above
+CMOVAE	conditional move if above or equal
+CMOVB	conditional move if below
+CMOVBE	conditional move if below or equal
+CMOVC	conditional move if carry
+CMOVE	conditional move if equal
+CMOVG	conditional move if greater
+CMOVGE	conditional move if greater or equal
+CMOVL	conditional move if less
+COMVLE	conditional move if less or equal
+CMOVNA	conditional move if not above
+CMOVNAE	conditional move if not above or equal
+CMOVNB	conditional move if not below
+CMOVNBE	conditional move if not below or equal
+CMOVNC	conditional move if not carry
+CMOVNE	conditional move if not equal
+CMOVNG	conditional move if greater
+CMOVNGE	conditional move if not greater or equal
+CMOVNL	conditional move if not less
+CMOVNLE	conditional move if not above or equal
+CMOVNO	conditional move if not overflow
+CMOVNP	conditional move if not parity
+CMOVNS	conditional move if not sign (non-negative)
+CMOVNZ	conditional move if not zero
+CMOVO	conditional move if overflow
+CMOVP	conditional move if parity
+CMOVPE	conditional move if parity even
+CMOVPO	conditional move if parity odd
+CMOVS	conditional move if sign (negative)
+CMOVZ	conditional move if zero
+CMPXCHG	compare and exchange
+CMPXCHG8B	compare and exchange 8 bytes
+CQO		convert quadword to octword
+CQO		convert quadword to octword
+CWD		convert word to doubleword
+CWDE	convert word to doubleword in %eax register
+INVPCID Invalidate Process-Context Identifierpage 3-416 (253666-048US/Sep.2013)mov{bwlq}
+MOV		move data between immediate values, general purpose registers, segment registers, and memory
+MOVABS	move immediate value to register
+MOVABS	move immediate value to register {AL, AX, GAX, RAX}
+MOVSX	move and sign extend
+MOVZX	move and zero extend
+POP		pop stack
+POPA	pop general-purpose registers from stack
+POPAD	pop general-purpose registers from stack
+PUSH	push onto stack
+PUSHA	push general-purpose registers onto stack
+PUSHAD	push general-purpose registers onto stack
+XADD	exchange and add
+XCHG	exchange
+XCHG	exchange
+
+# 3.2.2 Binary Arithmetic Instructions
+ADC		add with carry
+ADD		integer add
+CMP		compare
+DEC		decrement
+DIV		divide (unsigned)
+IDIV	divide (signed)
+IMUL	multiply (signed)
+INC		increment
+MUL		multiply (unsigned)
+NEG		negate
+SBB		subtract with borrow
+SUB		subtract
+
+# 3.2.3 Decimal Arithmetic Instructions
+AAA     ASCII adjust after addition
+AAD     ASCII adjust before division
+AAM     ASCII adjust after multiplication
+AAS     ASCII adjust after subtraction
+DAA		decimal adjust after addition
+DAS		decimal adjust after subtraction
+
+# 3.2.4 Logical Instructions
+AND		bitwise logical AND
+NOT		bitwise logical NOT
+OR		bitwise logical OR
+XOR		bitwise logical exclusive OR
+
+# 3.2.5 Shift and Rotate Instructions 
+RCL		rotate through carry left
+RCR		rotate through carry right
+ROL		rotate left
+ROR		rotate right
+SAL		shift arithmetic left
+SAR		shift arithmetic right
+SHL		shift logical left
+SHLD	shift left double
+SHR		shift logical right
+SHRD	shift right double
+
+# 3.2.6 Bit and Byte Instructions
+BSF		bit scan forward
+BSR		bit scan reverse
+BT		bit test
+BTC		bit test and complement
+BTR		bit test and reset
+BTS		bit test and set
+SETA	set byte if above
+SETAE	set byte if above or equal
+SETB	set byte if below
+SETBE	set byte if below or equal
+SETC	set byte if carry
+SETE	set byte if equal
+SETG	set byte if greater
+SETGE	set byte if greater or equal
+SETL	set byte if less
+SETLE	set byte if less or equal
+SETNA	set byte if not above
+SETNAE	set byte if not above or equal
+SETNB	set byte if not below
+SETNBE	set byte if not below or equal
+SETNC	set byte if not carry
+SETNE	set byte if not equal
+SETNG	set byte if not greater
+SETNGE	set byte if not greater or equal
+SETNL	set byte if not less
+SETNLE	set byte if not less or equal
+SETNO	set byte if not overflow
+SETNP	set byte if not parity
+SETNS	set byte if not sign (non-negative)
+SETNZ	set byte if not zero
+SETO	set byte if overflow
+SETP	set byte if parity
+SETPE	set byte if parity even
+SETPO	set byte if parity odd
+SETS	set byte if sign (negative)
+SETZ	set byte if zero
+TEST	logical compare
+
+# 3.2.7 Control Transfer Instructions
+BOUND	detect value out of range
+CALL	call procedure
+ENTER	high-level procedure entry
+INT		software interrupt
+INTO	interrupt on overflow
+IRET	return from interrupt
+JA		jump if above
+JAE		jump if above or equal
+JB		jump if below
+JBE		jump if below or equal
+JC		jump if carry
+JCXZ	jump register %cx zero
+JE		jump if equal
+JECXZ	jump register %ecx zero
+JG		jump if greater
+JGE		jump if greater or equal
+JL		jump if less
+JLE		jump if less or equal
+JMP		jump
+JNAE	jump if not above or equal
+JNB		jump if not below
+JNBE	jump if not below or equal
+JNC		jump if not carry
+JNE		jump if not equal
+JNG		jump if not greater
+JNGE	jump if not greater or equal
+JNL		jump if not less
+JNLE	jump if not less or equal
+JNO		jump if not overflow
+JNP		jump if not parity
+JNS		jump if not sign (non-negative)
+JNZ		jump if not zero
+JO		jump if overflow
+JP		jump if parity
+JPE		jump if parity even
+JPO		jump if parity odd
+JS		jump if sign (negative)
+JZ		jump if zero
+CALL	call far procedure
+LEAVE	high-level procedure exit
+LOOP	loop with %ecx counter
+LOOPE	loop with %ecx and equal
+LOOPNE	loop with %ecx and not equal
+LOOPNZ	loop with %ecx and not zero
+LOOPZ	loop with %ecx and zero
+RET		return from far procedure
+RET		return
+
+# 3.2.8 String Instructions
+CMPS	compare string
+CMPSB	compare byte string
+CMPSD	compare doubleword string
+CMPSW	compare word string
+LODS	load string
+LODSB	load byte string
+LODSD	load doubleword string
+LODSW	load word string
+MOVS	move string
+MOVSB	move byte string
+MOVSD	move doubleword string
+MOVSW	move word string
+REP		repeat while %ecx not zero
+REPNE	repeat while not equal
+REPNZ	repeat while not zero
+REPE	repeat while equal
+REPZ	repeat while zero
+SCAS	scan string
+SCASB	scan byte string
+SCASD	scan doubleword string
+SCASW	scan word string
+STOS	store string
+STOSB	store byte string
+STOSD	store doubleword string
+STOSW	store word string
+
+# 3.2.9 I/O Instructions
+IN		read from a port
+INS		input string from a port
+INSB	input byte string from port
+INSD	input doubleword string from port
+INSW	input word string from port
+OUT		write to a port
+OUTS	output string to port
+OUTSB	output byte string to port
+OUTSD	output doubleword string to port
+OUTSW	output word string to port
+
+# 3.2.10 Flag Control (EFLAG) Instructions
+CLC		clear carry flag
+CLD		clear direction flag
+CLI		clear interrupt flag
+CMC		complement carry flag
+LAHF	load flags into %ah register
+POPF	pop %eflags from stack
+POPFL	pop %eflags from stack
+PUSHF	push %eflags onto stack
+PUSHFL	push %eflags onto stack
+SAHF	store %ah register into flags
+STC		set carry flag
+STD		set direction flag
+STI		set interrupt flag
+
+# 3.2.11 Segment Register Instructions
+LDS		load far pointer using %ds
+LES		load far pointer using %es
+LFS		load far pointer using %fs
+LGS		load far pointer using %gs
+LSS		load far pointer using %ss
+
+# 3.2.12 Miscellaneous Instructions
+CPUID	processor identification
+LEA		load effective address
+NOP		no operation
+UD2		undefined instruction
+XLAT	table lookup translation
+XLATB	table lookup

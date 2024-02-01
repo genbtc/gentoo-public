@@ -1,0 +1,12 @@
+# copied from https://docs.oracle.com/cd/E37838_01/html/E61064/gntbv.html#scrolltoc
+
+# 3.6 AES Instructions
+# and/or
+# 3.6.1 Advanced Vector Extensions of AES Instructions
+AESDEC          Perform One Round of an AES Decryption Flow
+AESDECLAST      Perform Last Round of an AES Decryption Flow
+AESENC          Perform One Round of an AES Encryption Flow
+AESENCLAST      Perform Last Round of an AES Encryption Flow
+AESIMC          Perform the AES InvMixColumn Transformation
+AESKEYGENASSIST AES Round Key Generation Assist
+

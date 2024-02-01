@@ -1,0 +1,33 @@
+# copied from https://docs.oracle.com/cd/E37838_01/html/E61064/eojdf.html#scrolltoc
+# 3.33 Operating System Support Instructions
+# The operating system support instructions provide functionality for process management, performance monitoring, debugging, and other systems tasks.
+# Table 73  Operating System Support Instructions
+# Intel/AMD Mnemonic			Description
+ARPL			adjust requested privilege level			
+CLTS			clear the task-switched flag			
+HLT			    halt processor
+INVD			invalidate cache, no writeback			
+INVLPG			invalidate TLB entry			
+LAR			    load access rights
+LGDT			load global descriptor table (GDT) register			
+LIDT			load interrupt descriptor table (IDT) register			
+LLDT			load local descriptor table (LDT) register
+LMSW			load machine status word			
+LOCK			lock bus
+LSL			    load segment limit
+LTR			    load task register			
+RDMSR			read model-specific register			
+RDPMC			read performance monitoring counters			
+RDTSC			read time stamp 
+RSM			    return from system management mode (SMM)			
+SGDT			store global descriptor table (GDT) register			
+SIDT			store interrupt descriptor table (IDT) register			
+SLDT			store local descriptor table (LDT) register			
+SMSW			store machine status word
+STR			    store task register
+SYSENTER		fast system call, transfers to a flat protected model kernel at CPL=0
+SYSEXIT			fast system call, transfers to a flat protected mode kernal at CPL=3
+VERR			verify segment for reading
+VERW			verify segment for writing
+WBINVD			invalidate cache, with writeback
+WRMSR			write model-specific register

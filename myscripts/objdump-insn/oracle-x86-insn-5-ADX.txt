@@ -1,0 +1,6 @@
+# 3.5 ADX Instructions
+# copied from https://docs.oracle.com/cd/E37838_01/html/E61064/gsexi.html#scrolltoc
+	
+ADCX    Unsigned Integer Addition of Two Operands With Carry Flag
+ADOX    Unsigned Integer Addition of Two Operands With Overflow Flag
+

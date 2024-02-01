@@ -1,0 +1,468 @@
+# 3.9 AVX512 Instructions
+# The AVX512 instructions includes the following subsets:
+# AVX512BW    Vector Byte and Word Instructions
+# AVX512DQ    Doubleword and Quadword Instructions
+# AVX512VL    Vector Length Extensions
+# AVX512CD    Conflict Detection Instructions
+# AVX512ER    Exponential and Reciprocal Instructions
+# AVX512IFMA  Integer Fused Multiply-Add Instructions
+# AVX512PF    Prefetch Instructions
+# AVX512VBMI  Vector Bit Manipulation Instructions
+# Table 26  AVX512 Instructions
+Intel/AMD Mnemonic		CPUID Feature Flag Description
+KADDB		AVX512DQ Bitwise Logical AND Masks
+KADDD		AVX512BW Add Two Masks
+KADDQ		AVX512BW Add Two Masks
+KADDW		AVX512DQ Add Two Masks
+KANDB		AVX512DQ Bitwise Logical AND Masks
+KANDD		AVX512BW Bitwise Logical AND Masks
+KANDNB		AVX512DQ Bitwise Logical AND NOT Masks
+KANDND		AVX512BW Bitwise Logical AND NOT Masks
+KANDNQ		AVX512BW Bitwise Logical AND NOT Masks
+KANDQ		AVX512BW Bitwise Logical AND Masks
+KMOVB		AVX512DQ Move from and to Mask Registers
+KMOVD		AVX512BW Move from and to Mask Registers
+KMOVQ		AVX512BW Move from and to Mask Registers
+KNOTB		AVX512DQ NOT Mask Register
+KNOTD		AVX512BW NOT Mask Register
+KNOTQ		AVX512BW NOT Mask Register
+KORB		AVX512DQ Bitwise Logical OR Masks
+KORD		AVX512BW Bitwise Logical OR Masks
+KORQ		AVX512BW Bitwise Logical OR Masks
+KORTESTB	AVX512DQ OR Masks And Set Flags
+KORTESTD	AVX512BW OR Masks And Set Flags
+KORTESTQ	AVX512BW OR Masks And Set Flags
+KSHIFTLB	AVX512DQ Shift Left Mask Registers
+KSHIFTLD	AVX512BW Shift Left Mask Registers
+KSHIFTLQ	AVX512BW Shift Left Mask Registers
+KSHIFTRB	AVX512DQ Shift Right Mask Registers
+KSHIFTRD	AVX512BW Shift Right Mask Registers
+KSHIFTRQ	AVX512BW Shift Right Mask Registers
+KTESTB		AVX512DQ Packed Bit Test Masks and Set Flags
+KTESTD		AVX512BW Packed Bit Test Masks and Set Flags
+KTESTQ		AVX512BW Packed Bit Test Masks and Set Flags
+KTESTW		AVX512DQ Packed Bit Test Masks and Set Flags
+KUNPCKDQ	AVX512BW Unpack for Mask Registers
+KUNPCKWD	AVX512BW Unpack for Mask Registers
+KXNORB		AVX512DQ Bitwise Logical XNOR Masks
+KXNORD		AVX512BW Bitwise Logical XNOR Masks
+KXNORQ		AVX512BW Bitwise Logical XNOR Masks
+KXORB		AVX512DQ Bitwise Logical XOR Masks
+KXORD		AVX512BW Bitwise Logical XOR Masks
+KXORQ		AVX512BW Bitwise Logical XOR Masks
+VADDPD		AVX512VL Add Packed Double-Precision Floating-Point Values
+VADDPS		AVX512VL Add Packed Single-Precision Floating-Point Values
+VALIGND		AVX512VL Align Doubleword Vectors
+VALIGNQ		AVX512VL Align Quadword Vectors
+VANDNPD		AVX512DQ AVX512VL Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values
+VANDNPS		AVX512DQ AVX512VL Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values
+VANDPD		AVX512VL AVX512DQ Bitwise Logical AND of Packed Double-Precision Floating-Point Values
+VANDPS		AVX512VL AVX512DQ Bitwise Logical AND of Packed Single-Precision Floating-Point Values
+VBLENDMPD		AVX512VL Blend Float64/Float32 Vectors Using an OpMask Control
+VBLENDMPS		AVX512VL Blend Float64/Float32 Vectors Using an OpMask Control
+VBROADCASTF32X2		AVX512DQ AVX512VL Broadcast Two Single-Precision Floating-Point Data
+VBROADCASTF32X4		AVX512VL Broadcast 128 bits of 4 Single-Precision Floating-Point Data
+VBROADCASTF32X8		AVX512DQ Broadcast 256 bits of 8 Single-Precision Floating-Point Data
+VBROADCASTF64X2		AVX512DQ AVX512VL Broadcast 128 bits of 2 Double-Precision Floating-Point Data
+VBROADCASTI32x2		AVX512DQ AVX512VL Broadcast Two Dword Data
+VBROADCASTI32X4		AVX512VL Broadcast 128 bits of 4 Doubleword Integer Data
+VBROADCASTI32X8		AVX512DQ Broadcast 256 bits of 8 Doubleword Integer Data
+VBROADCASTI64X2		AVX512DQ AVX512VL Broadcast 128 bits of 2 Quadword Integer Data
+VBROADCASTSS		AVX512VL Broadcast Low Single-Precision Floating-Point Data
+VCMPPD		AVX512VL Compare Packed Double-Precision Floating-Point Values
+VCMPPS		AVX512VL Compare Packed Single-Precision Floating-Point Values
+VCOMPRESSPD		AVX512VL Store Sparse Packed Double-Precision Floating-Point Values into Dense Memory
+VCOMPRESSPS		AVX512VL Store Sparse Packed Single-Precision Floating-Point Values into Dense Memory
+VCVTDQ2PD		AVX512VL Convert Packed Dword Integers to Packed Double-Precision FP Values
+VCVTDQ2PS		AVX512VL Convert Packed Dword Integers to Packed Single-Precision FP Values
+VCVTPD2DQ		AVX512VL Convert Packed Double-Precision FP Values to Packed Dword Integers
+VCVTPD2PS		AVX512VL Convert Packed Double-Precision FP Values to Packed Single-Precision FP Values
+VCVTPD2QQ		AVX512VL AVX512DQ Convert Packed Double-Precision Floating-Point Values to Packed Quadword Integers
+VCVTPD2UDQ		AVX512VL Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers
+VCVTPD2UQQ		AVX512DQ AVX512VL Convert Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers
+VCVTPH2PS		AVX512VL Convert 16-bit FP values to Single-Precision FP values
+VCVTPS2DQ		AVX512VL Convert Packed Single-Precision FP Values to Packed Dword Integers
+VCVTPS2PD		AVX512VL Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values
+VCVTPS2PH		AVX512VL Convert Single-Precision FP value to 16-bit FP value
+VCVTPS2QQ		AVX512VL AVX512DQ Convert Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values
+VCVTPS2UDQ		AVX512VL Convert Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values
+VCVTPS2UQQ		AVX512DQ AVX512VL Convert Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values
+VCVTQQ2PD		AVX512VL AVX512DQ Convert Packed Quadword Integers to Packed Double-Precision Floating-Point Values
+VCVTQQ2PS		AVX512VL AVX512DQ Convert Packed Quadword Integers to Packed Single-Precision Floating-Point Values
+VCVTTPD2DQ		AVX512VL Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers
+VCVTTPD2QQ		AVX512DQ AVX512VL Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Quadword Integers
+VCVTTPD2UDQ		AVX512VL Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Doubleword Integers
+VCVTTPD2UQQ		AVX512DQ AVX512VL Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Unsigned Quadword Integers
+VCVTTPS2DQ		AVX512VL Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers
+VCVTTPS2QQ		AVX512VL AVX512DQ Convert with Truncation Packed Single Precision Floating-Point Values to Packed Singed Quadword Integer Values
+VCVTTPS2UDQ		AVX512VL Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Unsigned Doubleword Integer Values
+VCVTTPS2UQQ		AVX512DQ AVX512VL Convert with Truncation Packed Single Precision Floating-Point Values to Packed Unsigned Quadword Integer Values
+VCVTUDQ2PD		AVX512VL Convert Packed Unsigned Doubleword Integers to Packed Double-Precision Floating-Point Values
+VCVTUDQ2PS		AVX512VL Convert Packed Unsigned Doubleword Integers to Packed Single-Precision Floating-Point Values
+VCVTUQQ2PD		AVX512VL AVX512DQ Convert Packed Unsigned Quadword Integers to Packed Double-Precision Floating-Point Values
+VCVTUQQ2PS		AVX512VL AVX512DQ Convert Packed Unsigned Quadword Integers to Packed Single-Precision Floating-Point Values
+VDBPSADBW		AVX512VL AVX512BW Double Block Packed Sum-Absolute-Differences (SAD) on Unsigned Bytes
+VDIVPD		    AVX512VL Divide Packed Double-Precision Floating-Point Values
+VDIVPS		    AVX512VL Divide Packed Single-Precision Floating-Point Values
+VEXP2PD		    AVX512ER Approximation to the Exponential 2^x of Packed Double-Precision Floating-Point Values with Less Than 2^-23 Relative Error
+VEXP2PS		    AVX512ER Approximation to the Exponential 2^x of Packed Single-Precision Floating-Point Values with Less Than 2^-23 Relative Error
+VEXPANDPD		AVX512VL Load Sparse Packed Double-Precision Floating-Point Values from Dense Memory
+VEXPANDPS		AVX512VL Load Sparse Packed Single-Precision Floating-Point Values from Dense Memory
+VEXTRACTF32X4	AVX512VL Extract 128 bits of Packed Single-Precision Floating-Point Values
+VEXTRACTF64X2	AVX512VL Extract 128 bits of Packed Double-Precision Floating-Point Values
+VEXTRACTI32X4	AVX512VL Extract 128 bits of Packed Single-Precision Floating-Point Values
+VEXTRACTI64X2	AVX512VL AVX512DQ Extract 128 bits of Quadword integer Values
+VFIXUPIMMPD		AVX512VL Fix Up Special Packed Float64 Values
+VFIXUPIMMPS		AVX512VL Fix Up Special Packed Float32 Values
+VFMADD132PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFMADD132PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFMADD213PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFMADD213PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFMADD231PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFMADD231PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFMADDSUB132PD	AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFMADDSUB132PS	AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFMADDSUB213PD	AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFMADDSUB213PS	AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFMADDSUB231PD	AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFMADDSUB231PS	AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFMSUB132PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFMSUB132PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFMSUB213PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFMSUB213PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFMSUB231PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFMSUB231PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFMSUBADD132PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFMSUBADD132PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFMSUBADD213PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFMSUBADD213PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFMSUBADD231PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFMSUBADD231PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFNMADD132PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFNMADD132PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFNMADD213PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFNMADD213PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFNMADD231PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFNMADD231PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFNMSUB132PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFNMSUB132PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFNMSUB213PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFNMSUB213PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFNMSUB231PD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VFNMSUB231PS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VFPCLASSPD		AVX512VL AVX512DQ Tests Types Of a Packed Float64 Values
+VFPCLASSPS		AVX512VL AVX512DQ Tests Types Of a Packed Float32 Values
+VFPCLASSSD		AVX512DQ Tests Types Of a Scalar Float64 Values
+VFPCLASSSS		AVX512DQ Tests Types Of a Scalar Float32 Values
+VGATHERDPD		AVX512VL Gather Packed DP FP Values Using Signed Dword/Qword Indices
+VGATHERDPS		AVX512VL Gather Packed SP FP Values Using Signed Dword/Qword Indices
+VGATHERPF0DPD		AVX512PF Parse Prefetch Packed SP/DP Data Values with Signed Dword, Signed Qword Indices Using T0 Hint
+VGATHERPF0DPS		AVX512PF Parse Prefetch Packed SP/DP Data Values with Signed Dword, Signed Qword Indices Using T0 Hint
+VGATHERPF0QPD		AVX512PF Parse Prefetch Packed SP/DP Data Values with Signed Dword, Signed Qword Indices Using T0 Hint
+VGATHERPF0QPS		AVX512PF Parse Prefetch Packed SP/DP Data Values with Signed Dword, Signed Qword Indices Using T0 Hint
+VGATHERPF1DPD		AVX512PF Sparse Prefetch Packed SP/DP Data Values with Signed Dword, Signed Qword Indices Using T1 Hint
+VGATHERPF1DPS		AVX512PF Sparse Prefetch Packed SP/DP Data Values with Signed Dword, Signed Qword Indices Using T1 Hint
+VGATHERPF1QPD		AVX512PF Sparse Prefetch Packed SP/DP Data Values with Signed Dword, Signed Qword Indices Using T1 Hint
+VGATHERPF1QPS		AVX512PF Sparse Prefetch Packed SP/DP Data Values with Signed Dword, Signed Qword Indices Using T1 Hint
+VGATHERQPD		AVX512VL Gather Packed Single, Packed Double with Signed Qword Indices
+VGATHERQPS		AVX512VL Gather Packed Single, Packed Double with Signed Qword Indices
+VGETEXPPD		AVX512VL Convert Exponents of Packed DP FP Values to DP FP Values
+VGETEXPPS		AVX512VL Convert Exponents of Packed SP FP Values to SP FP Values
+VGETMANTPD		AVX512VL Extract Float64 Vector of Normalized Mantissas from Float64 Vector
+VGETMANTPS		AVX512VL Extract Float32 Vector of Normalized Mantissas from Float32 Vector
+VINSERTF32X4		AVX512VL Insert Packed Floating-Point Values
+VINSERTF32X8		AVX512DQ Insert Packed Floating-Point Values
+VINSERTF64X2		AVX512DQ AVX512VL Insert Packed Floating-Point Values
+VINSERTI32X4		AVX512VL Insert Packed Integer Values
+VINSERTI32X8		AVX512DQ Insert Packed Integer Values
+VINSERTI64X2		AVX512DQ AVX512VL Insert Packed Integer Values
+VMAXPD		AVX512VL Maximum of Packed Double-Precision Floating-Point Values
+VMAXPS		AVX512VL Maximum of Packed Single-Precision Floating-Point Values
+VMINPD		AVX512VL Minimum of Packed Double-Precision Floating-Point Values
+VMINPS		AVX512VL Minimum of Packed Single-Precision Floating-Point Values
+VMOVAPD		AVX512VL Move Aligned Packed Double-Precision Floating-Point Values
+VMOVAPS		AVX512VL Move Aligned Packed Single-Precision Floating-Point Values
+VMOVDDUP		AVX512VL Replicate Double FP Values
+VMOVDQA32		AVX512VL Move Aligned Packed Integer Values
+VMOVDQA64		AVX512VL Move Aligned Packed Integer Values
+VMOVDQU16		AVX512VL AVX512BW Move Unaligned Packed Integer Values
+VMOVDQU32		AVX512VL Move Unaligned Packed Integer Values
+VMOVDQU64		AVX512VL Move Unaligned Packed Integer Values
+VMOVDQU8		AVX512BW AVX512VL Move Unaligned Packed Integer Values
+VMOVNTDQ		AVX512VL Store Packed Integers Using Non-Temporal Hint
+VMOVNTDQA		AVX512VL Load Double Quadword Non-Temporal Aligned Hint
+VMOVNTPD		AVX512VL Store Packed Double-Precision Floating-Point Values Using Non-Temporal Hint
+VMOVNTPS		AVX512VL Store Packed Single-Precision Floating-Point Values Using Non-Temporal Hint
+VMOVSHDUP		AVX512VL Replicate Single FP Values
+VMOVSLDUP		AVX512VL Replicate Single FP Values
+VMOVUPD		AVX512VL Move Unaligned Packed Double-Precision Floating-Point Values
+VMOVUPS		AVX512VL Move Unaligned Packed Single-Precision Floating-Point Values
+VMULPD		AVX512VL Multiply Packed Double-Precision Floating-Point Values
+VMULPS		AVX512VL Multiply Packed Single-Precision Floating-Point Values
+VORPD		AVX512DQ AVX512VL Bitwise Logical OR of Packed Double Precision Floating-Point Values
+VORPS		AVX512DQ AVX512VL Bitwise Logical OR of Packed Single Precision Floating-Point Values
+VPABSB		AVX512VL AVX512BW Packed Absolute Value
+VPABSD		AVX512VL Packed Absolute Value
+VPABSQ		AVX512VL Packed Absolute Value
+VPABSW		AVX512VL AVX512BW Packed Absolute Value
+VPACKSSDW		AVX512VL AVX512BW Pack with Signed Saturation
+VPACKSSWB		AVX512VL AVX512BW Pack with Signed Saturation
+VPACKUSDW		AVX512VL AVX512BW Pack with Unsigned Saturation
+VPACKUSWB		AVX512VL AVX512BW Pack with Unsigned Saturation
+VPADDB		AVX512BW AVX512VL Add Packed Integers
+VPADDD		AVX512VL Add Packed Integers
+VPADDQ		AVX512VL Add Packed Integers
+VPADDSB		AVX512VL AVX512BW Add Packed Signed Integers with Signed Saturation
+VPADDSW		AVX512VL AVX512BW Add Packed Signed Integers with Signed Saturation
+VPADDUSB	AVX512VL AVX512BW Add Packed Unsigned Integers with Unsigned Saturation
+VPADDUSW	AVX512VL AVX512BW Add Packed Unsigned Integers with Unsigned Saturation
+VPADDW		AVX512BW AVX512VL Add Packed Integers
+VPALIGNR	AVX512BW AVX512VL Packed Align Right
+VPANDD		AVX512VL Logical AND
+VPANDND		AVX512VL Logical AND NOT
+VPANDNQ		AVX512VL Logical AND NOT
+VPANDQ		AVX512VL Logical AND
+VPAVGB		AVX512BW AVX512VL Average Packed Integers
+VPAVGW		AVX512BW AVX512VL Average Packed Integers
+VPBLENDMB		AVX512VL AVX512BW Blend Byte/Word Vectors Using an OpMask Control
+VPBLENDMD		AVX512VL Blend Int32/Int64 Vectors Using an OpMask Control
+VPBLENDMQ		AVX512VL Blend Int32/Int64 Vectors Using an OpMask Control
+VPBLENDMW		AVX512VL AVX512BW Blend Byte/Word Vectors Using an OpMask Control
+VPBROADCASTB		AVX512VL AVX512BW Load with Broadcast Integer Data from General Purpose Register
+VPBROADCASTD		AVX512VL Load with Broadcast Integer Data from General Purpose Register
+VPBROADCASTMB2Q		AVX512VL AVX512CD Broadcast Mask to Vector Register
+VPBROADCASTMW2D		AVX512VL AVX512CD Broadcast Mask to Vector Register
+VPBROADCASTQ		AVX512VL Load with Broadcast Integer Data from General Purpose Register
+VPBROADCASTW		AVX512VL AVX512BW Load with Broadcast Integer Data from General Purpose Register
+VPCMPB		    AVX512BW AVX512VL Compare Packed Byte Values Into Mask
+VPCMPD		    AVX512VL Compare Packed Integer Values into Mask
+VPCMPEQQ		AVX512VL Compare Packed Qword Data for Equal
+VPCMPGTB		AVX512VL AVX512BW Compare Packed Signed Integers for Greater Than
+VPCMPGTD		AVX512VL Compare Packed Signed Integers for Greater Than
+VPCMPGTQ		AVX512VL Compare Packed Data for Greater Than
+VPCMPGTW		AVX512VL AVX512BW Compare Packed Signed Integers for Greater Than
+VPCMPQ		AVX512VL Compare Packed Integer Values into Mask
+VPCMPUB		AVX512VL AVX512BW Compare Packed Byte Values Into Mask
+VPCMPUD		AVX512VL Compare Packed Integer Values into Mask
+VPCMPUQ		AVX512VL Compare Packed Integer Values into Mask
+VPCMPUW		AVX512VL AVX512BW Compare Packed Word Values Into Mask
+VPCMPW		AVX512BW AVX512VL Compare Packed Word Values Into Mask
+VPCOMPRESSD		AVX512VL Store Sparse Packed Doubleword Integer Values into Dense Memory/Register
+VPCOMPRESSQ		AVX512VL Store Sparse Packed Quadword Integer Values into Dense Memory/Register
+VPCONFLICTD		AVX512VL AVX512CD Detect Conflicts Within a Vector of Packed Dword/Qword Values into Dense Memory/ Register
+VPCONFLICTQ		AVX512VL AVX512CD Detect Conflicts Within a Vector of Packed Dword/Qword Values into Dense Memory/ Register
+VPERMD		    AVX512VL Permute Packed Doublewords/Words Elements
+VPERMI2B		AVX512VL AVX512VBMI Full Permute of Bytes from Two Tables Overwriting the Index
+VPERMI2D		AVX512VL Full Permute From Two Tables Overwriting the Index
+VPERMI2PD		AVX512VL Full Permute From Two Tables Overwriting the Index
+VPERMI2PS		AVX512VL Full Permute From Two Tables Overwriting the Index
+VPERMI2Q		AVX512VL Full Permute From Two Tables Overwriting the Index
+VPERMI2W		AVX512VL AVX512BW Full Permute From Two Tables Overwriting the Index
+VPERMILPD		AVX512VL Permute In-Lane of Pairs of Double-Precision Floating-Point Values
+VPERMILPS		AVX512VL Permute In-Lane of Quadruples of Single-Precision Floating-Point Values
+VPERMPD		    AVX512VL Permute Double-Precision Floating-Point Elements
+VPERMPS		    AVX512VL Permute Single-Precision Floating-Point Elements
+VPERMQ		    AVX512VL Qwords Element Permutation
+VPERMT2B		AVX512VL AVX512VBMI Full Permute of Bytes from Two Tables Overwriting a Table
+VPERMT2D		AVX512VL Full Permute from Two Tables Overwriting one Table
+VPERMT2PD		AVX512VL Full Permute from Two Tables Overwriting one Table
+VPERMT2PS		AVX512VL Full Permute from Two Tables Overwriting one Table
+VPERMT2Q		AVX512VL Full Permute from Two Tables Overwriting one Table
+VPERMT2W		AVX512VL AVX512BW Full Permute from Two Tables Overwriting one Table
+VPERMW		    AVX512VL AVX512BW Permute Packed Doublewords/Words Elements
+VPEXPANDD		AVX512VL Load Sparse Packed Doubleword Integer Values from Dense Memory / Register
+VPEXPANDQ		AVX512VL Load Sparse Packed Quadword Integer Values from Dense Memory / Register
+VPEXTRB		    AVX512BW Extract Byte/Dword/Qword
+VPEXTRD		    AVX512DQ Extract Byte/Dword/Qword
+VPGATHERDD		AVX512VL Gather Packed Dword Values Using Signed Dword/Qword Indices
+VPGATHERDQ		AVX512VL Gather Packed Dword, Packed Qword with Signed Dword Indices
+VPGATHERQD		AVX512VL Gather Packed Dword, Packed Qword with Signed Qword Indices
+VPGATHERQQ		AVX512VL Gather Packed Dword, Packed Qword with Signed Qword Indices
+VPINSRB		    AVX512BW Insert Byte
+VPINSRD		    AVX512DQ Insert DWord
+VPINSRQ		    AVX512DQ Insert QWord
+VPINSRW		    AVX512BW Insert Word
+VPLZCNTD		AVX512CD AVX512VL Count the Number of Leading Zero Bits for Packed Dword, Packed Qword Values
+VPLZCNTQ		AVX512CD AVX512VL Count the Number of Leading Zero Bits for Packed Dword, Packed Qword Values
+VPMADD52HUQ		AVX512VL AVX512IFMA Packed Multiply of Unsigned 52-bit Unsigned Integers and Add High 52-bit Products to 64-bit Accumulators
+VPMADD52LUQ		AVX512VL AVX512IFMA Packed Multiply of Unsigned 52-bit Integers and Add the Low 52-bit Products to Qword Accumulators
+VPMADDUBSW		AVX512VL AVX512BW Multiply and Add Packed Signed and Unsigned Bytes
+VPMADDWD		AVX512BW AVX512VL Multiply and Add Packed Integers
+VPMAXSB		AVX512BW AVX512VL Maximum of Packed Signed Byte Integers
+VPMAXSD		AVX512VL Maximum of Packed Signed Dword Integers
+VPMAXSQ		AVX512VL Maximum of Packed Signed Qword Integers
+VPMAXSW		AVX512VL AVX512BW Maximum of Packed Signed Word Integers
+VPMAXUB		AVX512VL AVX512BW Maximum of Packed Unsigned Byte Integers
+VPMAXUD		AVX512VL Maximum of Packed Unsigned Dword Integers
+VPMAXUQ		AVX512VL Maximum of Packed Unsigned QWord Integers
+VPMAXUW		AVX512VL AVX512BW Maximum of Packed Unsigned Word Integers
+VPMINSB		AVX512VL AVX512BW Minimum of Packed Signed Byte Integers
+VPMINSD		AVX512VL Minimum of Packed Signed DWord Integers
+VPMINSQ		AVX512VL Minimum of Packed Signed QWord Integers
+VPMINSW		AVX512VL AVX512BW Minimum of Packed Signed Word Integers
+VPMINUB		AVX512VL AVX512BW Minimum of Packed Unsigned Byte Integers
+VPMINUD		AVX512VL Minimum of Packed Unsigned DWord Integers
+VPMINUQ		AVX512VL Minimum of Packed Unsigned QWord Integers
+VPMINUW		AVX512VL AVX512BW Minimum of Packed Unsigned Word Integers
+VPMOVB2M	AVX512VL AVX512BW Convert a Vector Register to a Mask
+VPMOVD2M	AVX512VL AVX512DQ Convert a Vector Register to a Mask
+VPMOVDB		AVX512VL Down Convert DWord to Byte
+VPMOVDW		AVX512VL Down Convert DWord to Word
+VPMOVM2B		AVX512VL AVX512BW Convert a Mask Register to a Vector Register
+VPMOVM2D		AVX512DQ AVX512VL Convert a Mask Register to a Vector Register
+VPMOVM2Q		AVX512DQ AVX512VL Convert a Mask Register to a Vector Register
+VPMOVM2W		AVX512VL AVX512BW Convert a Mask Register to a Vector Register
+VPMOVQ2M		AVX512VL AVX512DQ Convert a Vector Register to a Mask
+VPMOVQB		AVX512VL Down Convert QWord to Byte
+VPMOVQD		AVX512VL Down Convert QWord to DWord
+VPMOVQW		AVX512VL Down Convert QWord to Word
+VPMOVSDB		AVX512VL Down Convert DWord to Byte
+VPMOVSDW		AVX512VL Down Convert DWord to Word
+VPMOVSQB		AVX512VL Down Convert QWord to Byte
+VPMOVSQD		AVX512VL Down Convert QWord to DWord
+VPMOVSQW		AVX512VL Down Convert QWord to Word
+VPMOVSWB		AVX512BW AVX512VL Down Convert Word to Byte
+VPMOVSXBD		AVX512VL Packed Move Sign Extend - Byte to Dword
+VPMOVSXBQ		AVX512VL Packed Move Sign Extend - Byte to Qword
+VPMOVSXBW		AVX512VL AVX512BW Packed Move Sign Extend - Byte to Word
+VPMOVSXDQ		AVX512VL Packed Move Sign Extend - Dword to Qword
+VPMOVSXWD		AVX512VL Packed Move Sign Extend - Word to Dword
+VPMOVSXWQ		AVX512VL Packed Move Sign Extend - Word to Qword
+VPMOVUSDB		AVX512VL Down Convert DWord to Byte
+VPMOVUSDW		AVX512VL Down Convert DWord to Word
+VPMOVUSQB		AVX512VL Down Convert QWord to Byte
+VPMOVUSQD		AVX512VL Down Convert QWord to DWord
+VPMOVUSQW		AVX512VL Down Convert QWord to Word
+VPMOVUSWB		AVX512VL AVX512BW Down Convert Word to Byte
+VPMOVW2M		AVX512VL AVX512BW Convert a Vector Register to a Mask
+VPMOVWB		    AVX512VL AVX512BW Down Convert Word to Byte
+VPMOVZXBD		AVX512VL Packed Move Zero Extend - Byte to Dword
+VPMOVZXBQ		AVX512VL Packed Move Zero Extend - Byte to Qword
+VPMOVZXBW		AVX512VL AVX512BW Packed Move Zero Extend - Byte to Word
+VPMOVZXDQ		AVX512VL Packed Move Zero Extend - Dword to Qword
+VPMOVZXWD		AVX512VL Packed Move Zero Extend - Word to Dword
+VPMOVZXWQ		AVX512VL Packed Move Zero Extend - Word to Qword
+VPMULDQ		    AVX512VL Multiply Packed Signed Dword Integers
+VPMULHRSW		AVX512VL AVX512BW Packed Multiply High with Round and Scale
+VPMULHUW		AVX512BW AVX512VL Multiply Packed Unsigned Integers and Store High Result
+VPMULHW		    AVX512VL AVX512BW Multiply Packed Signed Integers and Store High Result
+VPMULLD		    AVX512VL Multiply Packed Signed Dword Integers, Store Low Result
+VPMULLQ		    AVX512DQ AVX512VL Multiply Packed Integers and Store Low Result
+VPMULLW		    AVX512VL AVX512BW Multiply Packed Signed Integers and Store Low Result
+VPMULTISHIFTQB	AVX512VL AVX512VBMI Select Packed Unaligned Bytes from Quadword Sources
+VPMULUDQ		AVX512VL Multiply Packed Unsigned Doubleword Integers
+VPORD		AVX512VL Bitwise Logical OR
+VPORQ		AVX512VL Bitwise Logical OR
+VPROLD		AVX512VL Bit Rotate Left
+VPROLQ		AVX512VL Bit Rotate Left
+VPROLVD		AVX512VL Bit Rotate Left
+VPROLVQ		AVX512VL Bit Rotate Left
+VPRORD		AVX512VL Bit Rotate Right
+VPRORQ		AVX512VL Bit Rotate Right
+VPRORVD		AVX512VL Bit Rotate Right
+VPRORVQ		AVX512VL Bit Rotate Right
+VPSADBW		AVX512VL AVX512BW Compute Sum of Absolute Differences
+VPSCATTERDD		AVX512VL Scatter Packed Dword with Signed Dword Indices
+VPSCATTERDQ		AVX512VL Scatter Packed Qword with Signed Dword Indices
+VPSCATTERQD		AVX512VL Scatter Packed Dword with Signed Qword Indices
+VPSCATTERQQ		AVX512VL Scatter Packed Qword with Signed Qword Indices
+VPSHUFB		AVX512VL AVX512BW Packed Shuffle Bytes
+VPSHUFD		AVX512VL Shuffle Packed Doublewords
+VPSHUFHW		AVX512BW AVX512VL Shuffle Packed High Words
+VPSHUFLW		AVX512BW AVX512VL Shuffle Packed Low Words
+VPSLLD		AVX512VL Shift Packed Data Left Logical
+VPSLLDQ		AVX512BW AVX512VL Shift Double Quadword Left Logical
+VPSLLQ		AVX512VL Shift Packed Data Left Logical
+VPSLLVD		AVX512VL Variable Bit Shift Left Logical
+VPSLLVQ		AVX512VL Variable Bit Shift Left Logical
+VPSLLVW		AVX512VL AVX512BW Variable Bit Shift Left Logical
+VPSLLW		AVX512VL AVX512BW Shift Packed Data Left Logical
+VPSRAD		AVX512VL Shift Packed Data Right Arithmetic
+VPSRAQ		AVX512VL Shift Quadwords to Right
+VPSRAVD		AVX512VL Variable Bit Shift Right Arithmetic
+VPSRAVQ		AVX512VL Variable Bit Shift Right Arithmetic
+VPSRAVW		AVX512VL AVX512BW Variable Bit Shift Right Arithmetic
+VPSRAW		AVX512VL AVX512BW Shift Packed Data Right Arithmetic
+VPSRLD		AVX512VL Shift Doublewords to Right
+VPSRLDQ		AVX512BW AVX512VL Shift Double Quadwords Right Logical
+VPSRLQ		AVX512VL Shift Quadwords to Right
+VPSRLVD		AVX512VL Variable Bit Shift Right Logical
+VPSRLVQ		AVX512VL Variable Bit Shift Right Logical
+VPSRLVW		AVX512VL AVX512BW Variable Bit Shift Right Logical
+VPSRLW		AVX512VL AVX512BW Shift Packed Data Right Logical
+VPSUBB		AVX512VL AVX512BW Subtract Packed Integers
+VPSUBD		AVX512VL Subtract Packed Integers
+VPSUBQ		AVX512VL Subtract Packed Quadword Integers
+VPSUBSB		AVX512BW AVX512VL Subtract Packed Signed Integers with Signed Saturation
+VPSUBSW		AVX512BW AVX512VL Subtract Packed Signed Integers with Signed Saturation
+VPSUBUSB		AVX512VL AVX512BW Subtract Packed Unsigned Integers with Unsigned Saturation
+VPSUBUSW		AVX512VL AVX512BW Subtract Packed Unsigned Integers with Unsigned Saturation
+VPSUBW		AVX512VL AVX512BW Subtract Packed Integers
+VPTERNLOGD		AVX512VL Bitwise Ternary Logic
+VPTERNLOGQ		AVX512VL Bitwise Ternary Logic
+VPTESTMB		AVX512VL AVX512BW Logical AND and Set Mask
+VPTESTMD		AVX512VL Logical AND and Set Mask
+VPTESTMQ		AVX512VL Logical AND and Set Mask
+VPTESTMW		AVX512VL AVX512BW Logical AND and Set Mask
+VPTESTNMB		AVX512VL AVX512BW Logical NAND and Set
+VPTESTNMD		AVX512VL Logical NAND and Set
+VPTESTNMQ		AVX512VL Logical NAND and Set
+VPTESTNMW		AVX512VL AVX512BW Logical NAND and Set
+VPUNPCKHBW		AVX512VL AVX512BW Unpack High Data
+VPUNPCKHDQ		AVX512VL Unpack High Data
+VPUNPCKHQDQ		AVX512VL Unpack High Data
+VPUNPCKHWD		AVX512VL AVX512BW Unpack High Data
+VPUNPCKLBW		AVX512VL AVX512BW Unpack Low Data
+VPUNPCKLDQ		AVX512VL Unpack Low Data
+VPUNPCKLQDQ		AVX512VL Unpack Low Data
+VPUNPCKLWD		AVX512VL AVX512BW Unpack Low Data
+VPXORD		    AVX512VL Logical Exclusive OR
+VPXORQ		    AVX512VL Logical Exclusive OR
+VRANGEPD		AVX512DQ AVX512VL Range Restriction Calculation For Packed Pairs of Float64 Values
+VRANGEPS		AVX512DQ AVX512VL Range Restriction Calculation For Packed Pairs of Float32 Values
+VRANGESD		AVX512DQ Range Restriction Calculation From a pair of Scalar Float64 Values
+VRANGESS		AVX512DQ Range Restriction Calculation From a Pair of Scalar Float32 Values
+VRCP14PD		AVX512VL Compute Approximate Reciprocals of Packed Float64 Values
+VRCP14PS		AVX512VL Compute Approximate Reciprocals of Packed Float32 Values
+VRCP28PD		AVX512ER Approximation to the Reciprocal of Packed Double-Precision Floating-Point Values with Less Than 2^-28 Relative Error
+VRCP28PS		AVX512ER Approximation to the Reciprocal of Packed Single-Precision Floating-Point Values with Less Than 2^-28 Relative Error
+VRCP28SD		AVX512ER Approximation to the Reciprocal of Scalar Double-Precision Floating-Point Value with Less Than 2^-28 Relative Error
+VRCP28SS		AVX512ER Approximation to the Reciprocal of Scalar Single-Precision Floating-Point Value with Less Than 2^-28 Relative Error
+VREDUCEPD		AVX512DQ AVX512VL Perform Reduction Transformation on Packed Float64 Values
+VREDUCEPS		AVX512DQ AVX512VL Perform Reduction Transformation on Packed Float32 Values
+VREDUCESS		AVX512DQ Perform a Reduction Transformation on a Scalar Float32 Value
+VRNDSCALEPD		AVX512VL Round Packed Float64 Values To Include A Given Number Of Fraction Bits
+VRNDSCALEPS		AVX512VL Round Packed Float32 Values To Include A Given Number Of Fraction Bits
+VRSQRT14PD		AVX512VL Compute Approximate Reciprocals of Square Roots of Packed Float64 Values
+VRSQRT14PS		AVX512VL Compute Approximate Reciprocals of Square Roots of Packed Float32 Values
+VSCALEFPD		AVX512VL Scale Packed Float64 Values With Float64 Values
+VSCALEFPS		AVX512VL Scale Packed Float32 Values With Float32 Values
+VSCATTERDPD		AVX512VL Scatter Double-Precision Floating-Point Values with Signed Dword Indices
+VSCATTERDPS		AVX512VL Scatter Single-Precision Floating-Point Values with Signed Dword Indices
+VSCATTERPF0DPD		AVX512PF Prefetch Sparse Byte Memory Locations Containing Double-Precision Data With Signed Dword Indices
+VSCATTERPF0DPS		AVX512PF Prefetch Sparse Byte Memory Locations Containing Single-Precision Data With Signed Dword Indices
+VSCATTERPF0QPD		AVX512PF Prefetch Sparse Byte Memory Locations Containing Double-Precision Data With Signed Qword Indices
+VSCATTERPF0QPS		AVX512PF Prefetch Sparse Byte Memory Locations Containing Single-Precision Data With Signed Qword Indices
+VSCATTERPF1DPD		AVX512PF Prefetch Sparse Byte Memory Locations Containing Double-Precision Data With Signed Dword Indices
+VSCATTERPF1DPS		AVX512PF Prefetch Sparse Byte Memory Locations Containing Single-Precision Data With Signed Dword Indices
+VSCATTERPF1QPD		AVX512PF Prefetch Sparse Byte Memory Locations Containing Double-Precision Data With Signed Qword Indices
+VSCATTERPF1QPS		AVX512PF Prefetch Sparse Byte Memory Locations Containing Single-Precision Data With Signed Qword Indices
+VSCATTERQPD		AVX512VL Scatter Double-Precision Floating-Point Values With Signed Qword Indices
+VSCATTERQPS		AVX512VL Scatter Single-Precision Floating-Point Values With Signed Qword Indices
+VSHUFF32X4		AVX512VL Shuffle Packed Values at 128-bit Granularity
+VSHUFF64X2		AVX512VL Shuffle Packed Values at 128-bit Granularity
+VSHUFI32X4		AVX512VL Shuffle Packed Values at 128-bit Granularity
+VSHUFI64X2		AVX512VL Shuffle Packed Values at 128-bit Granularity
+VSHUFPD		AVX512VL Shuffle Packed Double-Precision Floating-Point Values
+VSHUFPS		AVX512VL Packed Interleave Shuffle of Quadruplets of Single-Precision Floating-Point Values
+VSQRTPD		AVX512VL Square Root of Double-Precision Floating-Point Values
+VSQRTPS		AVX512VL Square Root of Single-Precision Floating-Point Values
+VSUBPD		AVX512VL Subtract Packed Double-Precision Floating-Point Values
+VSUBPS		AVX512VL Subtract Packed Single-Precision Floating-Point Values
+VUNPCKHPD		AVX512VL Unpack and Interleave High Packed Double-Precision Floating-Point Values
+VUNPCKHPS		AVX512VL Unpack and Interleave High Packed Single-Precision Floating-Point Values
+VUNPCKLPD		AVX512VL Unpack and Interleave Low Packed Double-Precision Floating-Point Values
+VUNPCKLPS		AVX512VL Unpack and Interleave Low Packed Single-Precision Floating-Point Values
+VXORPD		AVX512DQ AVX512VL Bitwise Logical XOR of Packed Double Precision Floating-Point Values
+VXORPS		AVX512DQ AVX512VL Bitwise Logical XOR of Packed Single Precision Floating-Point Values
+

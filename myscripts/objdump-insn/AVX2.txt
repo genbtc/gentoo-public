@@ -1,0 +1,144 @@
+# copied from https://docs.oracle.com/cd/E37838_01/html/E61064/gntae.html#scrolltoc
+# 3.8 AVX2 Instructions
+MOVNTDQA	Load Double Quadword Non-Temporal Aligned Hint
+MPSADBW		Compute Multiple Packed Sums of Absolute Difference
+PABSB	    Packed Absolute Value
+PABSW	    Packed Absolute Value
+PABSD	    Packed Absolute Value
+PABSQ		Packed Absolute Value
+PACKSSWB	Pack with Signed Saturation
+PACKSSDW	Pack with Signed Saturation
+PACKUSDW	Pack with Unsigned Saturation
+PACKUSWB	Pack with Unsigned Saturation
+PADDB		Add Packed Integers
+PADDW		Add Packed Integers
+PADDD		Add Packed Integers
+PADDQ		Add Packed Integers
+PADDSB		Add Packed Signed Integers with Signed Saturation
+PADDSW		Add Packed Signed Integers with Signed Saturation
+PADDUSB     Add Packed Unsigned Integers with Unsigned Saturation
+PADDUSW		Add Packed Unsigned Integers with Unsigned Saturation
+PALIGNR		Packed Align Right
+PAND		Logical AND
+PANDN		Logical AND NOT
+PAVGB		Average Packed Integers
+PAVGW		Average Packed Integers
+PBLENDVB	Variable Blend Packed Bytes
+PBLENDW		Blend Packed Words
+PCMPEQB     Compare Packed Integers for Equality
+PCMPEQW     Compare Packed Integers for Equality
+PCMPEQD     Compare Packed Integers for Equality
+PCMPEQQ		Compare Packed Integers for Equality
+PCMPGTB     Compare Packed Integers for Greater Than
+PCMPGTW     Compare Packed Integers for Greater Than
+PCMPGTD     Compare Packed Integers for Greater Than
+PCMPGTQ		Compare Packed Integers for Greater Than
+PHADDSW		Packed Horizontal Add and Saturate
+PHADDW	    Packed Horizontal Add
+PHADDD		Packed Horizontal Add
+PHSUBSW		Packed Horizontal Subtract and Saturate
+PHSUBW	    Packed Horizontal Subtract
+PHSUBD		Packed Horizontal Subtract
+PMADDUBSW	Multiply and Add Packed Signed and Unsigned Bytes
+PMADDWD		Multiply and Add Packed Integers
+PMAXSB	    Maximum of Packed Signed Integers
+PMAXSW	    Maximum of Packed Signed Integers
+PMAXSD	    Maximum of Packed Signed Integers
+PMAXSQ		Maximum of Packed Signed Integers
+PMAXUB		Maximum of Packed Unsigned Byte Integers
+PMAXUD	    Maximum of Packed Unsigned Integers
+PMAXUQ		Maximum of Packed Unsigned Integers
+PMAXUW		Maximum of Packed Word Integers
+PMINSB		Minimum of Packed Signed Byte Integers
+PMINSD	    Minimum of Packed Signed Integers
+PMINSQ		Minimum of Packed Signed Integers
+PMINSW		Minimum of Packed Signed Word Integers
+PMINUB		Minimum of Packed Unsigned Byte Integers
+PMINUD	    Minimum of Packed Unsigned Integers
+PMINUQ		Minimum of Packed Unsigned Integers
+PMINUW		Minimum of Packed Word Integers
+PMOVMSKB	Move Byte Mask
+PMOVSX		Packed Move with Sign Extend
+PMOVZX		Packed Move with Zero Extend
+PMULDQ		Multiply Packed Doubleword Integers
+PMULHRSW	Packed Multiply High with Round and Scale
+PMULHUW		Multiply Packed Unsigned Integers and Store High Result
+PMULHW		Multiply Packed Signed Integers and Store High Result
+PMULLD		Multiply Packed Integers and Store Low Result
+PMULLW		Multiply Packed Signed Integers and Store Low Result
+PMULUDQ		Multiply Packed Unsigned Doubleword Integers
+POR		    Bitwise Logical Or
+PSADBW		Compute Sum of Absolute Differences
+PSHUFB		Packed Shuffle Bytes
+PSHUFD		Shuffle Packed Doublewords
+PSHUFHW		Shuffle Packed High Words
+PSHUFLW		Shuffle Packed Low Words
+PSIGNB	    Packed SIGN
+PSIGNW	    Packed SIGN
+PSIGND	    Packed SIGN
+PSLLDQ	    Shift Double Quadword Left Logical
+PSLLW	    Bit Shift Left
+PSLLD	    Bit Shift Left
+PSLLQ	    Bit Shift Left
+PSRAW	    Bit Shift Arithmetic Right
+PSRAD	    Bit Shift Arithmetic Right
+PSRAQ	    Bit Shift Arithmetic Right
+PSRLDQ	    Shift Double Quadword Right Logical
+PSRLW	    Shift Packed Data Right Logical
+PSRLD	    Shift Packed Data Right Logical
+PSRLQ	    Shift Packed Data Right Logical
+PSUBB	    Packed Integer Subtract
+PSUBW	    Packed Integer Subtract
+PSUBD	    Packed Integer Subtract
+PSUBQ	    Packed Integer Subtract
+PSUBSB	    Subtract Packed Signed Integers with Signed Saturation
+PSUBSW		Subtract Packed Signed Integers with Signed Saturation
+PSUBUSB     Subtract Packed Unsigned Integers with Unsigned Saturation
+PSUBUSW		Subtract Packed Unsigned Integers with Unsigned Saturation
+PUNPCKHBW	Unpack High Data
+PUNPCKHDQ	Unpack High Data
+PUNPCKHQDQ	Unpack High Data
+PUNPCKLBW	Unpack Low Data
+PUNPCKLWD	Unpack Low Data
+PUNPCKLDQ	Unpack Low Data
+PUNPCKLQDQ	Unpack Low Data
+PXOR	    Exclusive Or
+PXORD	    Exclusive Or
+PXORQ	    Exclusive Or
+VBROADCAST		Load with Broadcast Floating-Point Data
+VEXTRACTI128	Extract packed Integer Values
+VEXTRACTI32x4	Extract packed Integer Values
+VEXTRACTI64x4	Extract packed Integer Values
+VGATHERDPS	Gather Packed Single, Packed Double with Signed Dword
+VGATHERDPD	Gather Packed Single, Packed Double with Signed Dword
+VGATHERQPS	Gather Packed Single, Packed Double with Signed Qword Indices
+VGATHERQPD	Gather Packed Single, Packed Double with Signed Qword Indices
+VINSERTI128	    Insert Packed Integer Values
+VINSERTI32x4	Insert Packed Integer Values
+VINSERTI64x4	Insert Packed Integer Values
+VPBLENDD    Blend Packed Dwords
+VPBROADCAST	    Load Integer and Broadcast
+VPBROADCAST     Broadcast Integer Data
+VBROADCASTI128	Broadcast Integer Data
+VPERM2I128	Permute Integer Values
+VPERMD		Permute Packed Doublewords/Elements
+VPERMPD		Permute Double-Precision Floating-Point Elements
+VPERMPS		Permute Single-Precision Floating-Point Elements
+VPERMQ		Qwords Element Permutation
+VPGATHERDD	Gather Packed Dword, Packed Qword with Signed Dword Indices
+VPGATHERDQ	Gather Packed Dword, Packed Qword with Signed Dword Indices
+VPGATHERDD	Gather Packed Dword, Packed Qword with Signed Dword Indices
+VPGATHERDQ	Gather Packed Dword, Packed Qword with Signed Dword Indices
+VPGATHERQD	Gather Packed Dword, Packed Qword with Signed Qword Indices
+VPGATHERQQ	Gather Packed Dword, Packed Qword with Signed Qword Indices
+VPGATHERQD	Gather Packed Dword, Packed Qword with Signed Qword Indices
+VPGATHERQQ	Gather Packed Dword, Packed Qword with Signed Qword Indices
+VPMASKMOV	Conditional SIMD Integer Packed Loads and Stores
+VPSLLVW     Variable Bit Shift Left Logical
+VPSLLVD     Variable Bit Shift Left Logical
+VPSLLVQ		Variable Bit Shift Left Logical
+VPSRAVD     Variable Bit Shift Right Arithmetic
+VPSRAVQ		Variable Bit Shift Right Arithmetic
+VPSRLVW     Variable Bit Shift Right Logical
+VPSRLVD     Variable Bit Shift Right Logical
+VPSRLVQ		Variable Bit Shift Right Logical

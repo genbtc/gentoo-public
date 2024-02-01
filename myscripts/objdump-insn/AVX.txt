@@ -1,0 +1,381 @@
+# copied from https://docs.oracle.com/cd/E37838_01/html/E61064/gntbd.html#scrolltoc
+# 3.7 AVX Instructions
+ADDPD	Add Packed Double-Precision Floating-Point Values
+ADDPS	Add Packed Single-Precision Floating-Point Values
+ADDSD	Add Scalar Double-Precision Floating-Point Values
+ADDSS	Add Scalar Single-Precision Floating-Point Values
+ADDSUBPD	Packed Double-FP Add/Subtract
+ADDSUBPS	Packed Single-FP Add/Subtract
+ANDNPD	Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values
+ANDNPS	Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values
+ANDPD	Bitwise Logical AND of Packed Double-Precision Floating-Point Values
+ANDPS	Bitwise Logical AND of Packed Single-Precision Floating-Point Values
+BLENDPD	Blend Packed Double Precision Floating-Point Values
+BLENDPS	Blend Packed Single Precision Floating-Point Values
+BLENDVPD	Variable Blend Packed Double Precision Floating-Point Values
+BLENDVPS	Variable Blend Packed Single Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPD	Compare Packed Double-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPPS	Compare Packed Single-Precision Floating-Point Values
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSD	Compare Scalar Double-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+CMPSS	Compare Scalar Single-Precision Floating-Point Value
+COMISD	Compare Scalar Ordered Double-Precision Floating-Point Values and Set EFLAGS
+COMISS	Compare Scalar Ordered Single-Precision Floating-Point Values and Set EFLAGS
+CVTDQ2PD	Convert Packed Doubleword Integers to Packed Double-Precision Floating-Point Values
+CVTDQ2PS	Convert Packed Doubleword Integers to Packed Single-Precision Floating-Point Values
+CVTPD2DQ	Convert Packed Double-Precision Floating-Point Values to Packed Doubleword Integers
+CVTPD2PS	Convert Packed Double-Precision Floating-Point Values to Packed Single-Precision Floating-Point Values
+CVTPS2DQ	Convert Packed Single-Precision Floating-Point Values to Packed Signed Doubleword Integer Values
+CVTPS2PD	Convert Packed Single-Precision Floating-Point Values to Packed Double-Precision Floating-Point
+CVTSD2SI	Convert Scalar Double-Precision Floating-Point Value to Doubleword Integer
+CVTSD2SS	Convert Scalar Double-Precision Floating-Point Value to Scalar Single-Precision Floating-Point Value
+CVTSI2SD	Convert Doubleword Integer to Scalar Double-Precision Floating-Point Value
+CVTSI2SS	Convert Doubleword Integer to Scalar Single-Precision Floating-Point Value
+CVTSS2SD	Convert Scalar Single-Precision Floating-Point Value to Scalar Double-Precision Floating-Point Value
+CVTSS2SI	Convert Scalar Single-Precision Floating-Point Value to Doubleword Integer
+CVTTPD2DQ	Convert with Truncation Packed Double-Precision Floating-Point Values to Packed Doubleword
+CVTTPS2DQ	Convert with Truncation Packed Single-Precision Floating-Point Values to Packed Signed Doubleword
+CVTTSD2SI	Convert with Truncation Scalar Double-Precision Floating-Point Value to Signed Integer
+CVTTSS2SI	Convert with Truncation Scalar Single-Precision Floating-Point Value to Integer
+DIVPD	Divide Packed Double-Precision Floating-Point Values
+DIVPS	Divide Packed Single-Precision Floating-Point Values
+DIVSD	Divide Scalar Double-Precision Floating-Point Value
+DIVSS	Divide Scalar Single-Precision Floating-Point Values
+DPPD	Dot Product of Packed Double Precision Floating-Point Values
+DPPS	Dot Product of Packed Single Precision Floating-Point Values
+EXTRACTPS	Extract Packed Floating-Point Values
+HADDPD	Packed Double-FP Horizontal Add
+HADDPS	Packed Single-FP Horizontal Add
+HSUBPD	Packed Double-FP Horizontal Subtract
+HSUBPS	Packed Single-FP Horizontal Subtract
+INSERTPS	Insert Scalar Single-Precision Floating-Point Value
+LDDQU	Load Unaligned Integer 128 Bits
+LDMXCSR	Load MXCSR Register
+MASKMOVDQU	Store Selected Bytes of Double Quadword
+MAXPD	Maximum of Packed Double-Precision Floating-Point Values
+MAXPS	Maximum of Packed Single-Precision Floating-Point Values
+MAXSD	Return Maximum Scalar Double-Precision Floating-Point Value
+MAXSS	Return Maximum Scalar Single-Precision Floating-Point Value
+MINPD	Minimum of Packed Double-Precision Floating-Point Values
+MINPS	Minimum of Packed Single-Precision Floating-Point Values
+MINSD	Return Minimum Scalar Double-Precision Floating-Point Value
+MINSS	Return Minimum Scalar Single-Precision Floating-Point Value
+MOVAPD	Move Aligned Packed Double-Precision Floating-Point Values
+MOVAPS	Move Aligned Packed Single-Precision Floating-Point Values
+MOVDMOVQ	Move Doubleword and Quadword
+MOVDDUP	Replicate Double FP Values
+MOVDQA	Move Aligned Packed Integer Values
+MOVDQU	Move Unaligned Packed Integer Values
+VMOVDQU32	Move Unaligned Packed Integer Values
+VMOVDQU64	Move Unaligned Packed Integer Values
+MOVHLPS	Move Packed Single-Precision Floating-Point Values High to Low
+MOVHPD	Move High Packed Double-Precision Floating-Point Values
+MOVHPS	Move High Packed Single-Precision Floating-Point Values
+MOVLHPS	Move Packed Single-Precision Floating-Point Values Low to High
+MOVLPD	Move Low Packed Double-Precision Floating-Point Values
+MOVLPS	Move Low Packed Single-Precision Floating-Point Values
+MOVMSKPD	Extract Packed Double-Precision Floating-Point Sign Mask
+MOVMSKPS	Extract Packed Single-Precision Floating-Point Sign Mask
+MOVNTDQ	Store Packed Integers Using Non-Temporal Hint
+MOVNTDQA	Load Double Quadword Non-Temporal Aligned Hint
+MOVNTPD	Store Packed Double-Precision Floating-Point Values Using Non-Temporal Hint
+MOVNTPS	Store Packed Single-Precision Floating-Point Values Using Non-Temporal Hint
+MOVQ	Move Quadword
+MOVSD	Move or Merge Scalar Double-Precision Floating-Point Value
+MOVSHDUP	Replicate Single FP Values
+MOVSLDUP	Replicate Single FP Values
+MOVSS	Move or Merge Scalar Single-Precision Floating-Point Value
+MOVUPD	Move Unaligned Packed Double-Precision Floating-Point Values
+MOVUPS	Move Unaligned Packed Single-Precision Floating-Point Values
+MPSADBW	Compute Multiple Packed Sums of Absolute Difference
+MULPD	Multiply Packed Double-Precision Floating-Point Values
+MULPS	Multiply Packed Single-Precision Floating-Point Values
+MULSD	Multiply Scalar Double-Precision Floating-Point Value
+MULSS	Multiply Scalar Single-Precision Floating-Point Values
+ORPD	Bitwise Logical OR of Double-Precision Floating-Point Values
+ORPS	Bitwise Logical OR of Single-Precision Floating-Point Values
+PABSB	Packed Absolute Value
+PABSW	Packed Absolute Value
+PABSD	Packed Absolute Value
+PABSQ	Packed Absolute Value
+PACKSSWB	Pack with Signed Saturation	
+PACKSSDW	Pack with Signed Saturation
+PACKUSDW	Pack with Unsigned Saturation
+PACKUSWB	Pack with Unsigned Saturation
+PADDB	Add Packed Integers
+PADDW	Add Packed Integers
+PADDD	Add Packed Integers
+PADDQ	Add Packed Integers
+PADDSB	Add Packed Signed Integers with Signed Saturation	
+PADDSW	Add Packed Signed Integers with Signed Saturation
+PADDUSB	Add Packed Unsigned Integers with Unsigned Saturation	
+PADDUSW	Add Packed Unsigned Integers with Unsigned Saturation
+PALIGNR	Packed Align Right
+PAND	Logical AND
+PANDN	Logical AND NOT
+PAVGB	Average Packed Integers	
+PAVGW	Average Packed Integers
+PBLENDVB	Variable Blend Packed Bytes
+PBLENDW	Blend Packed Words
+PCMPEQB	Compare Packed Integers for Equality
+PCMPEQW	Compare Packed Integers for Equality
+PCMPEQD	Compare Packed Integers for Equality
+PCMPEQQ	Compare Packed Integers for Equality
+PCMPESTRI	Packed Compare Explicit Length Strings, Return Index
+PCMPESTRM	Packed Compare Explicit Length Strings, Return Mask
+PCMPGTB	Compare Packed Integers for Greater Than
+PCMPGTW	Compare Packed Integers for Greater Than
+PCMPGTD	Compare Packed Integers for Greater Than
+PCMPGTQ	Compare Packed Integers for Greater Than
+PCMPISTRI	Packed Compare Implicit Length Strings, Return Index
+PCMPISTRM	Packed Compare Implicit Length Strings, Return Mask
+PEXTRB	Extract Byte
+PEXTRD	Extract Dword
+PEXTRQ	Extract Qword
+PEXTRW	Extract Word
+PHADDSW	Packed Horizontal Add and Saturate
+PHADDW	Packed Horizontal Add	
+PHADDD	Packed Horizontal Add
+PHMINPOSUW	Packed Horizontal Word Minimum
+PHSUBSW	Packed Horizontal Subtract and Saturate
+PHSUBW	Packed Horizontal Subtract	
+PHSUBD	Packed Horizontal Subtract
+PINSRB	Insert Byte
+PINSRD	Insert Dword
+PINSRQ	Insert Qword
+PINSRW	Insert Word
+PMADDUBSW	Multiply and Add Packed Signed and Unsigned Bytes
+PMADDWD	Multiply and Add Packed Integers
+PMAXSB	Maximum of Packed Signed Integers
+PMAXSW	Maximum of Packed Signed Integers
+PMAXSD	Maximum of Packed Signed Integers
+PMAXSQ	Maximum of Packed Signed Integers
+PMAXUB	Maximum of Packed Unsigned Byte Integers
+PMAXUD	Maximum of Packed Unsigned Integers	
+PMAXUQ	Maximum of Packed Unsigned Integers
+PMAXUW	Maximum of Packed Word Integers
+PMINSB	Minimum of Packed Signed Byte Integers
+PMINSD	Minimum of Packed Signed Integers	
+PMINSQ	Minimum of Packed Signed Integers
+PMINSW	Minimum of Packed Signed Word Integers
+PMINUB	Minimum of Packed Unsigned Byte Integers
+PMINUD	Minimum of Packed Unsigned Integers	
+PMINUQ	Minimum of Packed Unsigned Integers
+PMINUW	Minimum of Packed Word Integers
+PMOVMSKB	Move Byte Mask
+PMOVSX	Packed Move with Sign Extend
+PMOVZX	Packed Move with Zero Extend
+PMULDQ	Multiply Packed Doubleword Integers
+PMULHRSW	Packed Multiply High with Round and Scale
+PMULHUW	Multiply Packed Unsigned Integers and Store High Result
+PMULHW	Multiply Packed Signed Integers and Store High Result
+PMULLD	Multiply Packed Integers and Store Low Result
+PMULLW	Multiply Packed Signed Integers and Store Low Result
+PMULUDQ	Multiply Packed Unsigned Doubleword Integers
+POR		Bitwise Logical Or
+PSADBW	Compute Sum of Absolute Differences
+PSHUFB	Packed Shuffle Bytes
+PSHUFD	Shuffle Packed Doublewords
+PSHUFHW	Shuffle Packed High Words
+PSHUFLW	Shuffle Packed Low Words
+PSIGNB	Packed SIGN
+PSIGNW	Packed SIGN
+PSIGND	Packed SIGN
+PSLLDQ	Shift Double Quadword Left Logical
+PSLLW	Bit Shift Left
+PSLLD	Bit Shift Left
+PSLLQ	Bit Shift Left
+PSRAW	Bit Shift Arithmetic Right
+PSRLDQ	Shift Double Quadword Right Logical
+PSRLW	Shift Packed Data Right Logical
+PSRLW	Shift Packed Data Right Logical
+PSRLQ	Shift Packed Data Right Logical
+PSUBB	Packed Integer Subtract
+PSUBW	Packed Integer Subtract
+PSUBD	Packed Integer Subtract
+PSUBQ	Packed Integer Subtract
+PSUBSB	Subtract Packed Signed Integers with Signed Saturation	
+PSUBSW	Subtract Packed Signed Integers with Signed Saturation
+PSUBUSB	Subtract Packed Unsigned Integers with Unsigned Saturation	
+PSUBUSW	Subtract Packed Unsigned Integers with Unsigned Saturation
+PTEST	Logical Compare
+PUNPCKHBW	Unpack High Data
+PUNPCKHBD	Unpack High Data
+PUNPCKHDQ	Unpack High Data
+PUNPCKHQDQ	Unpack High Data
+PUNPCKLBW	Unpack Low Data
+PUNPCKLDD	Unpack Low Data
+PUNPCKLDQ	Unpack Low Data
+PUNPCKLQDQ	Unpack Low Data
+PXOR	Exclusive Or
+PXORD	Exclusive Or
+PXORQ	Exclusive Or
+RCPPS	Compute Reciprocals of Packed Single-Precision Floating-Point Values
+RCPSS	Compute Reciprocal of Scalar Single-Precision Floating-Point Values
+ROUNDPD	Round Packed Double Precision Floating-Point Values
+ROUNDPS	Round Packed Single Precision Floating-Point Values
+ROUNDSD	Round Scalar Double Precision Floating-Point Values
+ROUNDSS	Round Scalar Single Precision Floating-Point Values
+RSQRTPS	Compute Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values
+RSQRTSS	Compute Reciprocal of Square Root of Scalar Single-Precision Floating-Point Value
+SHUFPD	Shuffle Packed Double-Precision Floating-Point Values
+SHUFPS	Shuffle Packed Single-Precision Floating-Point Values
+SQRTPD	Square Root of Double-Precision Floating-Point Values
+SQRTPS	Square Root of Single-Precision Floating-Point Values
+SQRTSD	Compute Square Root of Scalar Double-Precision Floating-Point Value
+SQRTSS	Compute Square Root of Scalar Single-Precision Value
+STMXCSR	Store MXCSR Register State
+SUBPD	Subtract Packed Double-Precision Floating-Point Values
+SUBPS	Subtract Packed Single-Precision Floating-Point Values
+SUBSD	Subtract Scalar Double-Precision Floating-Point Value
+SUBSS	Subtract Scalar Single-Precision Floating-Point Value
+UCOMISD	Unordered Compare Scalar Double-Precision Floating-Point Values and Set EFLAGS
+UCOMISS	Unordered Compare Scalar Single-Precision Floating-Point Values and Set EFLAGS
+UNPCKHPD	Unpack and Interleave High Packed Double-Precision Floating-Point Values
+UNPCKHPS	Unpack and Interleave High Packed Single-Precision Floating-Point Values
+UNPCKLPD	Unpack and Interleave Low Packed Double-Precision Floating-Point Values
+UNPCKLPS	Unpack and Interleave Low Packed Single-Precision Floating-Point Values
+VBROADCAST	Load with Broadcast Floating-Point Data
+VEXTRACTF128	Extract Packed Floating-Point Values
+VEXTRACTF32x4	Extract Packed Floating-Point Values
+VEXTRACTF64x4	Extract Packed Floating-Point Values
+VINSERTF128		Insert Packed Floating-Point Values
+VINSERTF32x4	Insert Packed Floating-Point Values
+VINSERTF64x4	Insert Packed Floating-Point Values
+VMASKMOV	Conditional SIMD Packed Loads and Stores
+VPERM2F128	Permute Floating-Point Values
+VPERMILPD	Permute Double-Precision Floating-Point Values
+VPERMILPS	Permute Single-Precision Floating-Point Values
+VTESTPDVTESTPS	Packed Bit Test
+VZEROALL	Zero All YMM Registers
+VZEROUPPER	Zero Upper Bits of YMM Registers
+XORPD	Bitwise Logical XOR for Double-Precision Floating-Point Values
+XORPS	Bitwise Logical XOR for Single-Precision Floating-Point Values
+PCLMULQDQ	Carry-Less Multiplication Quadword (Requires PCLMULQDQ CPUID-flag)

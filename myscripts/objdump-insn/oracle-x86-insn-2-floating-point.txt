@@ -1,0 +1,107 @@
+# 3.3 Floating-Point Instructions
+# copied from https://docs.oracle.com/cd/E37838_01/html/E61064/eoizy.html#scrolltoc
+
+# 3.3.1 Data Transfer Instructions (Floating Point)
+FBLD	load BCD
+FBSTP	store BCD and pop
+FCMOVB	floating-point conditional move if below
+FCMOVBE	floating-point conditional move if below or equal
+FCMOVE	floating-point conditional move if equal
+FCMOVNB	floating-point conditional move if not below
+FCMOVNBE	floating-point conditional move if not below or equal
+FCMOVNE	floating-point conditional move if not equal
+FCMOVNU	floating-point conditional move if unordered
+FCMOVU	floating-point conditional move if unordered
+FILD	load integer
+FIST	store integer
+FISTP	store integer and pop
+FLD	    load floating-point value
+FST	    store floating-point value
+FSTP	store floating-point value and pop
+FXCH	exchange registers	
+
+# 3.3.2 Basic Arithmetic Instructions (Floating-Point)
+FABS	absolute value
+FADD	add floating-point
+FADDP	add floating-point and pop
+FCHS	change sign
+FDIV	divide floating-point
+FDIVP	divide floating-point and pop
+FDIVR	divide floating-point reverse
+FDIVRP	divide floating-point reverse and pop
+FIADD	add integer
+FIDIV	divide integer
+FIDIVR	divide integer reverse
+FIMUL	multiply integer
+FISUB	subtract integer
+FISUBR	subtract integer reverse
+FMUL	multiply floating-point
+FMULP	multiply floating-point and pop
+FPREM	partial remainder
+FPREM1	IEEE partial remainder
+FRNDINT	round to integer
+FSCALE	scale by power of two
+FSQRT	square root
+FSUB	subtract floating-point
+FSUBP	subtract floating-point and pop
+FSUBR	subtract floating-point reverse
+FSUBRP	subtract floating-point reverse and pop
+FXTRACT	extract exponent and significand	
+
+# 3.3.3 Comparison Instructions (Floating-Point)
+FCOM	compare floating-point
+FCOMI	compare floating-point and set %eflags
+FCOMIP	compare floating-point, set %eflags, and pop
+FCOMP	compare floating-point and pop
+FCOMPP	compare floating-point and pop twice
+FICOM	compare integer
+FICOMP	compare integer and pop
+FTST	test floating-point (compare with 0.0)
+FUCOM	unordered compare floating-point
+FUCOMI	unordered compare floating-point and set %eflags
+FUCOMIP	unordered compare floating-point, set %eflags, and pop
+FUCOMP	unordered compare floating-point and pop
+FUCOMPP	compare floating-point and pop twice
+FXAM	examine floating-point	
+
+# 3.3.4 Transcendental Instructions (Floating-Point)
+F2XM1   computes 2x-1
+FCOS	cosine
+FPATAN	partial arctangent
+FPTAN	partial tangent
+FSIN	sine
+FSINCOS	sine and cosine
+FYL2X   computes y * log2x
+FYL2XP1 computes y * log2(x+1)	
+
+# 3.3.5 Load Constants (Floating-Point) Instructions
+FLD1    load +1.0
+FLDL2E  load log2e
+FLDL2T  load log210
+FLDLG2  load log102
+FLDLN2  load loge2
+FLDPI	load π
+FLDZ	load +0.0	
+
+# 3.3.6 Control Instructions (Floating-Point)
+FCLEX	clear floating-point exception flags after checking for error conditions
+FDECSTP	decrement floating-point register stack pointer
+FREE	free floating-point register
+FINCSTP	increment floating-point register stack pointer
+FINIT	initialize floating-point unit after checking error conditions
+FLDCW	load floating-point unit control word
+FLDENV	load floating-point unit environment
+FNCLEX	clear floating-point exception flags without checking for error conditions
+FNINIT	initialize floating-point unit without checking error conditions
+FNOP	floating-point no operation
+FNSAVE	save floating-point unit state without checking error conditions
+FNSTCW	store floating-point unit control word without checking error conditions
+FNSTENV	store floating-point unit environment without checking error conditions
+FNSTSW	store floating-point unit status word without checking error conditions
+FRSTOR	restore floating-point unit state
+FSAVE	save floating-point unit state after checking error conditions
+FSTCW	store floating-point unit control word after checking error conditions
+FSTENV	store floating-point unit environment after checking error conditions
+FSTSW	store floating-point unit status word after checking error conditions
+FWAIT	wait for floating-point unit
+WAIT    wait for floating-point unit

@@ -1,0 +1,6 @@
+# 3.15 FSGSBASE Instructions
+# Intel/AMD Mnemonic
+RDFSBASE	Read FS/GS Segment Base
+RDGSBASE	Read FS/GS Segment Base
+WRFSBASE	Write FS/GS Segment Base
+WRGSBASE	Write FS/GS Segment Base

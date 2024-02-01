@@ -1,0 +1,19 @@
+# copied from https://docs.oracle.com/cd/E37838_01/html/E61064/gntbx.html#scrolltoc
+# 3.34 VMX Instructions
+# Table 74  VMX Instructions
+#Intel/AMD Mnemonic			Description
+INVEPT			Invalidate Translations Derived from EPT
+INVVPID			Invalidate Translations Based on VPID
+VMCALL			Call to VM Monitor
+VMCLEAR			Clear Virtual-Machine Control Structure
+VMFUNC			Invoke VM function
+VMLAUNCH        Launch/Resume Virtual Machine
+VMRESUME		Launch/Resume Virtual Machine
+VMLAUNCH        Launch/Resume Virtual Machine
+VMRESUME		Launch/Resume Virtual Machine
+VMPTRLD			Load Pointer to Virtual-Machine Control Structure
+VMPTRST			Store Pointer to Virtual-Machine Control Structure
+VMREAD			Read Field from Virtual-Machine Control Structure
+VMWRITE			Write Field to Virtual-Machine Control Structure
+VMXOFF			Leave VMX Operation
+VMXON			Enter VMX Operation

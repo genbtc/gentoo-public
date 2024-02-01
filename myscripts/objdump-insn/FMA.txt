@@ -1,0 +1,183 @@
+# 3.14 FMA Instructions
+# Table 31  FMA Instructions
+# Intel/AMD Mnemonic			Description
+VFMADD132PD			Fused Multiply-Add of Packed Double-Precision Floating-Point Values
+VFMADD213PD			Fused Multiply-Add of Packed Double-Precision Floating-Point Values
+VFMADD231PD			Fused Multiply-Add of Packed Double-Precision Floating-Point Values			
+VFMADD132PD			Fused Multiply-Add of Packed Double-Precision Floating-Point Values
+VFMADD213PD			Fused Multiply-Add of Packed Double-Precision Floating-Point Values
+VFMADD231PD			Fused Multiply-Add of Packed Double-Precision Floating-Point Values			
+VFMADD132PD			Fused Multiply-Add of Packed Double-Precision Floating-Point Values
+VFMADD213PD			Fused Multiply-Add of Packed Double-Precision Floating-Point Values
+VFMADD231PD			Fused Multiply-Add of Packed Double-Precision Floating-Point Values			
+VFMADD132PS			Fused Multiply-Add of Packed Single-Precision Floating-Point
+VFMADD213PS			Fused Multiply-Add of Packed Single-Precision Floating-Point
+VFMADD231PS			Fused Multiply-Add of Packed Single-Precision Floating-Point			
+VFMADD132PS			Fused Multiply-Add of Packed Single-Precision Floating-Point
+VFMADD213PS			Fused Multiply-Add of Packed Single-Precision Floating-Point
+VFMADD231PS			Fused Multiply-Add of Packed Single-Precision Floating-Point			
+VFMADD132PS			Fused Multiply-Add of Packed Single-Precision Floating-Point
+VFMADD213PS			Fused Multiply-Add of Packed Single-Precision Floating-Point
+VFMADD231PS			Fused Multiply-Add of Packed Single-Precision Floating-Point			
+VFMADD132SD			Fused Multiply-Add of Packed Single-Precision Floating-Point
+VFMADD213SD			Fused Multiply-Add of Packed Single-Precision Floating-Point
+VFMADD231SD			Fused Multiply-Add of Scalar Double-Precision Floating-Point			
+VFMADD132SD			Fused Multiply-Add of Scalar Double-Precision Floating-Point
+VFMADD213SD			Fused Multiply-Add of Scalar Double-Precision Floating-Point
+VFMADD231SD			Fused Multiply-Add of Scalar Double-Precision Floating-Point			
+VFMADD132SD			Fused Multiply-Add of Scalar Double-Precision Floating-Point
+VFMADD213SD			Fused Multiply-Add of Scalar Double-Precision Floating-Point
+VFMADD231SD			Fused Multiply-Add of Scalar Double-Precision Floating-Point			
+VFMADD132SS			Fused Multiply-Add of Scalar Double-Precision Floating-Point
+VFMADD213SS			Fused Multiply-Add of Scalar Double-Precision Floating-Point
+VFMADD231SS			Fused Multiply-Add of Scalar Single-Precision Floating-Point			
+VFMADD132SS			Fused Multiply-Add of Scalar Double-Precision Floating-Point
+VFMADD213SS			Fused Multiply-Add of Scalar Double-Precision Floating-Point
+VFMADD231SS			Fused Multiply-Add of Scalar Single-Precision Floating-Point			
+VFMADD132SS			Fused Multiply-Add of Scalar Double-Precision Floating-Point
+VFMADD213SS			Fused Multiply-Add of Scalar Double-Precision Floating-Point
+VFMADD231SS			Fused Multiply-Add of Scalar Single-Precision Floating-Point			
+VFMADDSUB132PD		Fused Multiply-Alternating Add/Subtract of Packed
+VFMADDSUB213PD		Fused Multiply-Alternating Add/Subtract of Packed
+VFMADDSUB231PD		Fused Multiply-Alternating Add/Subtract of Packed
+VFMADDSUB132PD		Fused Multiply-Alternating Add/Subtract of Packed
+VFMADDSUB213PD		Fused Multiply-Alternating Add/Subtract of Packed
+VFMADDSUB231PD		Fused Multiply-Alternating Add/Subtract of Packed			
+VFMADDSUB132PD		Fused Multiply-Alternating Add/Subtract of Packed
+VFMADDSUB213PD		Fused Multiply-Alternating Add/Subtract of Packed
+VFMADDSUB231PD		Fused Multiply-Alternating Add/Subtract of Packed			
+VFMADDSUB132PS		Fused Multiply-Alternating Add/Subtract of Packed
+VFMADDSUB213PS		Fused Multiply-Alternating Add/Subtract of Packed
+VFMADDSUB231PS		Fused Multiply-Alternating Add/Subtract of Packed			
+VFMADDSUB132PS		Fused Multiply-Alternating Add/Subtract of Packed
+VFMADDSUB213PS		Fused Multiply-Alternating Add/Subtract of Packed
+VFMADDSUB231PS		Fused Multiply-Alternating Add/Subtract of Packed			
+VFMADDSUB132PS		Fused Multiply-Alternating Add/Subtract of Packed
+VFMADDSUB213PS		Fused Multiply-Alternating Add/Subtract of Packed
+VFMADDSUB231PS		Fused Multiply-Alternating Add/Subtract of Packed			
+VFMSUB132PD			Fused Multiply-Subtract of Packed Double-Precision Floating-Point
+VFMSUB213PD			Fused Multiply-Subtract of Packed Double-Precision Floating-Point
+VFMSUB231PD			Fused Multiply-Subtract of Packed Double-Precision Floating-Point			
+VFMSUB132PD			Fused Multiply-Subtract of Packed Double-Precision Floating-Point
+VFMSUB213PD			Fused Multiply-Subtract of Packed Double-Precision Floating-Point
+VFMSUB231PD			Fused Multiply-Subtract of Packed Double-Precision Floating-Point			
+VFMSUB132PD         Fused Multiply-Subtract of Packed Double-Precision Floating-Point
+VFMSUB213PD         Fused Multiply-Subtract of Packed Double-Precision Floating-Point
+VFMSUB231PD			Fused Multiply-Subtract of Packed Double-Precision Floating-Point			
+VFMSUB132PS         Fused Multiply-Subtract of Packed Single-Precision Floating-Point
+VFMSUB213PS         Fused Multiply-Subtract of Packed Single-Precision Floating-Point
+VFMSUB231PS			Fused Multiply-Subtract of Packed Single-Precision Floating-Point			
+VFMSUB132PS         Fused Multiply-Subtract of Packed Single-Precision Floating-Point
+VFMSUB213PS         Fused Multiply-Subtract of Packed Single-Precision Floating-Point
+VFMSUB231PS			Fused Multiply-Subtract of Packed Single-Precision Floating-Point			
+VFMSUB132PS         Fused Multiply-Subtract of Packed Single-Precision Floating-Point
+VFMSUB213PS         Fused Multiply-Subtract of Packed Single-Precision Floating-Point
+VFMSUB231PS			Fused Multiply-Subtract of Packed Single-Precision Floating-Point			
+VFMSUB132SD         Fused Multiply-Subtract of Scalar Double-Precision Floating-Point
+VFMSUB213SD         Fused Multiply-Subtract of Scalar Double-Precision Floating-Point
+VFMSUB231SD			Fused Multiply-Subtract of Scalar Double-Precision Floating-Point			
+VFMSUB132SD         Fused Multiply-Subtract of Scalar Double-Precision Floating-Point
+VFMSUB213SD         Fused Multiply-Subtract of Scalar Double-Precision Floating-Point
+VFMSUB231SD			Fused Multiply-Subtract of Scalar Double-Precision Floating-Point			
+VFMSUB132SD         Fused Multiply-Subtract of Scalar Double-Precision Floating-Point
+VFMSUB213SD         Fused Multiply-Subtract of Scalar Double-Precision Floating-Point
+VFMSUB231SD			Fused Multiply-Subtract of Scalar Double-Precision Floating-Point			
+VFMSUB132SS         Fused Multiply-Subtract of Scalar Single-Precision Floating-Point
+VFMSUB213SS         Fused Multiply-Subtract of Scalar Single-Precision Floating-Point
+VFMSUB231SS			Fused Multiply-Subtract of Scalar Single-Precision Floating-Point			
+VFMSUB132SS         Fused Multiply-Subtract of Scalar Single-Precision Floating-Point
+VFMSUB213SS         Fused Multiply-Subtract of Scalar Single-Precision Floating-Point
+VFMSUB231SS			Fused Multiply-Subtract of Scalar Single-Precision Floating-Point			
+VFMSUB132SS         Fused Multiply-Subtract of Scalar Single-Precision Floating-Point
+VFMSUB213SS         Fused Multiply-Subtract of Scalar Single-Precision Floating-Point
+VFMSUB231SS			Fused Multiply-Subtract of Scalar Single-Precision Floating-Point			
+VFMSUBADD132PD      Fused Multiply-Alternating Subtract/Add of Packed
+VFMSUBADD213PD      Fused Multiply-Alternating Subtract/Add of Packed
+VFMSUBADD231PD		Fused Multiply-Alternating Subtract/Add of Packed			
+VFMSUBADD132PD      Fused Multiply-Alternating Subtract/Add of Packed
+VFMSUBADD213PD      Fused Multiply-Alternating Subtract/Add of Packed
+VFMSUBADD231PD		Fused Multiply-Alternating Subtract/Add of Packed			
+VFMSUBADD132PD      Fused Multiply-Alternating Subtract/Add of Packed
+VFMSUBADD213PD      Fused Multiply-Alternating Subtract/Add of Packed
+VFMSUBADD231PD		Fused Multiply-Alternating Subtract/Add of Packed			
+VFMSUBADD132PS      Fused Multiply-Alternating Subtract/Add of Packed
+VFMSUBADD213PS      Fused Multiply-Alternating Subtract/Add of Packed
+VFMSUBADD231PS		Fused Multiply-Alternating Subtract/Add of Packed			
+VFMSUBADD132PS      Fused Multiply-Alternating Subtract/Add of Packed
+VFMSUBADD213PS      Fused Multiply-Alternating Subtract/Add of Packed
+VFMSUBADD231PS		Fused Multiply-Alternating Subtract/Add of Packed			
+VFMSUBADD132PS      Fused Multiply-Alternating Subtract/Add of Packed
+VFMSUBADD213PS      Fused Multiply-Alternating Subtract/Add of Packed
+VFMSUBADD231PS		Fused Multiply-Alternating Subtract/Add of Packed			
+VFNMADD132PD        Fused Negative Multiply-Add of Packed Double-Precision
+VFNMADD213PD		Fused Negative Multiply-Add of Packed Double-Precision
+VFNMADD231PD		Fused Negative Multiply-Add of Packed Double-Precision			
+VFNMADD132PD		Fused Negative Multiply-Add of Packed Double-Precision
+VFNMADD213PD		Fused Negative Multiply-Add of Packed Double-Precision
+VFNMADD231PD		Fused Negative Multiply-Add of Packed Double-Precision			
+VFNMADD132PD		Fused Negative Multiply-Add of Packed Double-Precision
+VFNMADD213PD		Fused Negative Multiply-Add of Packed Double-Precision
+VFNMADD231PD		Fused Negative Multiply-Add of Packed Double-Precision			
+VFNMADD132PS		Fused Negative Multiply-Add of Packed Single-Precision
+VFNMADD213PS		Fused Negative Multiply-Add of Packed Single-Precision
+VFNMADD231PS		Fused Negative Multiply-Add of Packed Single-Precision			
+VFNMADD132PS		Fused Negative Multiply-Add of Packed Single-Precision
+VFNMADD213PS		Fused Negative Multiply-Add of Packed Single-Precision
+VFNMADD231PS		Fused Negative Multiply-Add of Packed Single-Precision			
+VFNMADD132PS		Fused Negative Multiply-Add of Packed Single-Precision
+VFNMADD213PS		Fused Negative Multiply-Add of Packed Single-Precision
+VFNMADD231PS		Fused Negative Multiply-Add of Packed Single-Precision			
+VFNMADD132SD		Fused Negative Multiply-Add of Scalar Double-Precision
+VFNMADD213SD		Fused Negative Multiply-Add of Scalar Double-Precision
+VFNMADD231SD		Fused Negative Multiply-Add of Scalar Double-Precision			
+VFNMADD132SD		Fused Negative Multiply-Add of Scalar Double-Precision
+VFNMADD213SD		Fused Negative Multiply-Add of Scalar Double-Precision
+VFNMADD231SD		Fused Negative Multiply-Add of Scalar Double-Precision			
+VFNMADD132SD		Fused Negative Multiply-Add of Scalar Double-Precision
+VFNMADD213SD		Fused Negative Multiply-Add of Scalar Double-Precision
+VFNMADD231SD		Fused Negative Multiply-Add of Scalar Double-Precision			
+VFNMADD132SS            Fused Negative Multiply-Add o
+VFNMADD213SS            Fused Negative Multiply-Add o
+VFNMADD231SS			Fused Negative Multiply-Add o			
+VFNMADD132SS            Fused Negative Multiply-Add o
+VFNMADD213SS            Fused Negative Multiply-Add o
+VFNMADD231SS			Fused Negative Multiply-Add o			
+VFNMADD132SS            Fused Negative Multiply-Add o
+VFNMADD213SS            Fused Negative Multiply-Add o
+VFNMADD231SS			Fused Negative Multiply-Add o			
+VFNMSUB132PD            Fused Negative Multiply-Subtract of Packed Double- Precision Floating-Point Values
+VFNMSUB213PD            Fused Negative Multiply-Subtract of Packed Double- Precision Floating-Point Values
+VFNMSUB231PD			Fused Negative Multiply-Subtract of Packed Double- Precision Floating-Point Values			
+VFNMSUB132PD            Fused Negative Multiply-Subtract of Packed Double- Precision Floating-Point Values
+VFNMSUB213PD            Fused Negative Multiply-Subtract of Packed Double- Precision Floating-Point Values
+VFNMSUB231PD			Fused Negative Multiply-Subtract of Packed Double- Precision Floating-Point Values			
+VFNMSUB132PD            Fused Negative Multiply-Subtract of Packed Double- Precision Floating-Point Values
+VFNMSUB213PD            Fused Negative Multiply-Subtract of Packed Double- Precision Floating-Point Values
+VFNMSUB231PD			Fused Negative Multiply-Subtract of Packed Double- Precision Floating-Point Values			
+VFNMSUB132PS            Fused Negative Multiply-Subtract of Packed Single-Precision
+VFNMSUB213PS            Fused Negative Multiply-Subtract of Packed Single-Precision
+VFNMSUB231PS			Fused Negative Multiply-Subtract of Packed Single-Precision			
+VFNMSUB132PS            Fused Negative Multiply-Subtract of Packed Single-Precision
+VFNMSUB213PS            Fused Negative Multiply-Subtract of Packed Single-Precision
+VFNMSUB231PS			Fused Negative Multiply-Subtract of Packed Single-Precision			
+VFNMSUB132PS            Fused Negative Multiply-Subtract of Packed Single-Precision
+VFNMSUB213PS            Fused Negative Multiply-Subtract of Packed Single-Precision
+VFNMSUB231PS			Fused Negative Multiply-Subtract of Packed Single-Precision			
+VFNMSUB132SD			Fused Negative Multiply-Subtract of Scalar Double-Precision
+VFNMSUB213SD			Fused Negative Multiply-Subtract of Scalar Double-Precision
+VFNMSUB231SD			Fused Negative Multiply-Subtract of Scalar Double-Precision			
+VFNMSUB132SD			Fused Negative Multiply-Subtract of Scalar Double-Precision
+VFNMSUB213SD			Fused Negative Multiply-Subtract of Scalar Double-Precision
+VFNMSUB231SD			Fused Negative Multiply-Subtract of Scalar Double-Precision			
+VFNMSUB132SD			Fused Negative Multiply-Subtract of Scalar Double-Precision
+VFNMSUB213SD			Fused Negative Multiply-Subtract of Scalar Double-Precision
+VFNMSUB231SD			Fused Negative Multiply-Subtract of Scalar Double-Precision			
+VFNMSUB132SS            Fused Negative Multiply-Subtract of Scalar Single-Precision
+VFNMSUB213SS            Fused Negative Multiply-Subtract of Scalar Single-Precision
+VFNMSUB231SS			Fused Negative Multiply-Subtract of Scalar Single-Precision			
+VFNMSUB132SS            Fused Negative Multiply-Subtract of Scalar Single-Precision
+VFNMSUB213SS            Fused Negative Multiply-Subtract of Scalar Single-Precision
+VFNMSUB231SS			Fused Negative Multiply-Subtract of Scalar Single-Precision			
+VFNMSUB132SS            Fused Negative Multiply-Subtract of Scalar Single-Precision
+VFNMSUB213SS            Fused Negative Multiply-Subtract of Scalar Single-Precision
+VFNMSUB231SS			Fused Negative Multiply-Subtract of Scalar Single-Precision			

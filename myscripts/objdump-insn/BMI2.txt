@@ -1,0 +1,13 @@
+# 3.11 BMI2 Instructions
+#Intel/AMD Mnemonic			Description
+BZHI		Zero High Bits Starting with Specified Bit Position
+MULX		Unsigned Multiply Without Affecting Flags
+PDEP		Parallel Bits Deposit
+PEXT		Parallel Bits Extract
+RORX		Rotate Right Logical Without Affecting Flags
+SHLX		Shift Without Affecting Flags
+SHRX		Shift Without Affecting Flags
+SHLX		Shift Without Affecting Flags
+SHRX		Shift Without Affecting Flags
+SHLX		Shift Without Affecting Flags
+SHRX		Shift Without Affecting Flags

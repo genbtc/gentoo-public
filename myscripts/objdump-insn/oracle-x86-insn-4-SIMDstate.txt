@@ -1,0 +1,8 @@
+# 3.4 SIMD State Management Instructions
+# copied from https://docs.oracle.com/cd/E37838_01/html/E61064/epmnu.html#scrolltoc
+
+# The fxsave and fxrstor instructions save and restore the state of the floating-point unit and the MMX, XMM, and MXCSR registers.
+
+FXRSTOR restore floating-point unit and SIMD state
+	
+FXSAVE  save floating-point unit and SIMD state

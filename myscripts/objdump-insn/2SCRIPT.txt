@@ -1,0 +1,31 @@
+#!/bin/sh
+#list of text files containing the instructions lists
+INSNF=(	8086.txt	MMX.txt
+SSE-f.txt	SSE-i.txt
+SSE2-f.txt  SSE2-i.txt
+SSE3.txt    SSSE3.txt
+SSE4-1.txt  SSE4-2.txt  SSE4-a.txt
+AVX.txt		AVX2.txt	AVX512.txt
+BMI1.txt	BMI2.txt	FSGSBASE.txt
+CLWB.txt	F16C.txt	FMA.txt
+VMX.txt
+oracle-x86-insn-1-general-purpose.txt
+oracle-x86-insn-2-floating-point.txt
+OS.txt
+oracle-x86-insn-4-SIMDstate.txt
+oracle-x86-insn-5-ADX.txt
+oracle-x86-insn-6-AES.txt
+)
+
+FILEA="${1:-/tmp/instruct.list}"
+
+for D in $(cat $FILEA); do
+	for I in ${INSNF[@]}; do
+		WORD="${I//.txt/}"
+		for E in $(cat $I); do
+			if [[ "$E" = "$D" ]]; then
+				echo "s/$D$/$D \t$WORD/" $FILEA;
+			fi;
+		done;
+	done;
+done;

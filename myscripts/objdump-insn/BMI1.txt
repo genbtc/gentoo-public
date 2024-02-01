@@ -1,0 +1,10 @@
+# 3.10 BMI1 Instructions
+# Table 27  BMI1 Instructions
+# Intel/AMD Mnemonic		Description
+ANDN			Logical AND NOT
+BEXTR			Bit Field Extract
+BLSI			Extract Lowest Set Isolated Bit
+BLSMSK			Get Mask Up to Lowest Set Bit
+BLSR			Reset Lowest Set Bit
+LZCNT			Count the Number of Leading Zero Bits
+TZCNT			Count the Number of Trailing Zero Bits
