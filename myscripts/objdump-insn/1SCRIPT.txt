@@ -1,11 +1,12 @@
 #!/bin/sh
 FILEA="/tmp/instruc3.txt"
+#one list at a time
 INSN="OS.txt"
 WORD="OS"
 
 for D in $(cat $FILEA); do
 	for E in $(cat $INSN); do
-		if [[ "$E" = "$D" ]]; then
+		if [[ "$E" == "$D" ]]; then
 			sed -i "s/$D$/$D \t$WORD/" $FILEA;
 		fi;
 	done;
