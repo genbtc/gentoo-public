@@ -1,50 +1,48 @@
 #!/usr/bin/env bash
 #
-# Usage:
-#  # genr8-chroot /mnt/gentoo
+# arch-chroot -> genr8-chroot (a gentoo compatible version made by a person named genr8eofl)
+# LICENSE: AGPL3
 #
-# Shamelessly "borrowed" from Arch to make Gentoo development in chroots easier;
+# Shamelessly borrowed from Arch to make Gentoo development in chroots easier;
 # Thanks for doing all of the hard work! -@Kangie, 2022
 # subsequently modified by -@genr8eofl, 2023
 #  (ran shellcheck) (sorted code for readability) (comments)
-#  (unshare removed) (auto bind mount itself - old warning)
-#   modified Sept 28, 2023
+#  (unshare removed) (auto bind mount itself - fix warning)
+# slightly modified Sept 28, 2023 & February 06, 2024
 #
-# Options:
+# Optional Parameters: (short, long options, environment var name, path)
+#   -f | --no-bind-distfiles | NO_MOUNT_DISTFILES	|	/var/cache/distfiles
+#   -k | --no-bind-kernel | NO_MOUNT_KERNEL_SOURCE	|	/usr/src/linux
+#   -n | --no-bind-bashrc | NO_MOUNT_BASHRC		|	/root/.bashrc
+#   -b | --bind-binpkgs   | MOUNT_BINPKGS		|	/var/cache/binpkgs
+#   -m | --bind-makeconf  | MOUNT_MAKECONF		|	/etc/portage/make.conf
+#   -r | --bind-hostrepos | MOUNT_HOSTREPOS 		|	/var/db/repos/* (3rd party, not ::gentoo)
 #   -d | --debug
-#   -f | --no-bind-distfiles | NO_MOUNT_DISTFILES
-#   -k | --no-bind-kernel | NO_MOUNT_KERNEL_SOURCE
-#   -n | --no-bind-bashrc | NO_MOUNT_BASHRC
-#   -b | --bind-binpkgs | MOUNT_BINPKGS
-#   -m | --bind-makeconf | MOUNT_MAKECONF
-#   -r | --bind-hostrepos | MOUNT_HOSTREPOS (main gentoo repo bound regardless)
 #   -u | --user | USERSPEC=user[:group]
 #
-#Note, the target chroot directory *SHOULD* be a mountpoint.
-#-This ensures that tools such as findmnt(8) have an accurate hierarchy of
-# the mounted filesystems within the chroot.
-#-Note, code changed, now this happens automatically
-#-Diagnostic Messages updated accordingly
 
 usage() {
+  echo "$1"
   cat <<EOF
-Usage: ${0##*/} [-options] /path/to/chroot [command]
+Usage: ${0##*/} [-o|--options] /path/to/chroot [command]
 Description:
-   Provide it with the directory path that you want to chroot into,
-   and it will handle all of the pre-requisites, plus advanced features!
-   Such as the following options. Along with the appropriate ENVVARS set
-
+   Provide a path to directory to chroot into.
+   ${0##*/} will handle all of the pre-requisite mounts, plus advanced features!
+   Includes the following options: (and each has a matching ENV VAR)
 Options:
- [ -d | --debug ], [ -u | --user <user>[:group] ],
  [ -f | --no-bind-distfiles ], [ -k | --no-bind-kernel, [ -n | --no-bind-bashrc ],
- [ -b | --bind-binpkgs ], [ -m | --bind-makeconf ], [ -r | --bind-hostrepos ]
+ [ -b | --bind-binpkgs ], [ -m | --bind-makeconf ], [ -r | --bind-hostrepos ],
+ [ -d | --debug ], [ -u | --user <user>[:group] ]
 
-/path/to/chroot is REQUIRED, the obvious choice is /mnt/gentoo
-
-[command] is optional. If unspecified, ${0##*/} will launch /bin/bash by default.
+/path/to/chroot is REQUIRED. (obvious choice is /mnt/gentoo)
+[command] is optional. If unspecified, launch a /bin/bash shell by default.
 
 EOF
-  exit 2
+  if [ "$1" == "Help" ]; then
+    exit 0
+  else
+    exit 2
+  fi
 }
 
 shopt -s extglob
@@ -173,7 +171,6 @@ file_makeconf="/etc/portage/make.conf"
 file_reposconf="/etc/portage/repos.conf"
 file_resolvconf="/etc/resolv.conf"
 gentoo_bashrc="/tmp/gentoo-bashrc"
-root_bashaliases="/root/.bash_aliases"
 
 # main - the core program
 gentoo-chroot() {
@@ -191,7 +188,7 @@ gentoo-chroot() {
       #on exit, does an umount lazy in chroot_teardown() function
   fi
 
-  # actually do setup chroot (all basic mounts)
+  # actually do setup of chroot (ALL basic mounts)
   chroot_setup "$CHROOT_DIR" || die "failed to setup chroot %s" "$CHROOT_DIR"
 
   # warn if somehow its still not mounted, NonFatal?
@@ -203,8 +200,9 @@ gentoo-chroot() {
 	warning "#DONE#TODO#: can bind-mount itself to itself in the script now instead of leaving it to the user"
   fi
 
-  # DNS Resolver, always use host's /etc/resolv.conf for network DNS nameserver settings [ALWAYS]
+  # DNS Resolver, always use host's /etc/resolv.conf for network DNS nameserver settings 	[ALWAYS]
   #TODO: make optional
+  #   -R | --no-bind-resolvconf | NO_MOUNT_RESOLVCONF /etc/resolv.conf
   CHROOT_FILES+=( "${file_resolvconf}" )
 
   # .bashrc - Create new bashrc which does useful gentoo functions like env-update and setting $PS1=(chroot)
@@ -214,18 +212,16 @@ gentoo-chroot() {
 		cat > ${gentoo_bashrc} <<EOF
 #!/usr/bin/env bash
 source /etc/profile && env-update
-export PS1="(chroot) \$PS1"
-source $root_bashaliases #genr8 personal alias file
+export PS1="(gentoo-chroot) \$PS1"
 EOF
 	fi				#^ backslash to escape the $ so it doesnt expand the variable
     CHROOT_FILES+=( "${gentoo_bashrc}:/root/.bashrc" ) # map .bashrc to /root, inside the chroot
-    CHROOT_FILES+=( "${root_bashaliases}:/root/.bash_aliases" ) # genr8 keeps his aliases in here :)
   fi
 
   # Kernel Source dir, '-k', /usr/src/linux, Kernels can be shared (caveat: may need make clean) [DEFAULT]
   if [[ -z ${NO_MOUNT_KERNEL_SOURCE+x} ]] && [[ -d "${dir_usrclinux}" ]]; then
     if [[ ! -d "${CHROOT_DIR}${dir_usrclinux}" ]]; then
-        if [[ ! -s "${CHROOT_DIR}${dir_usrclinux}" ]]; then
+        if [[ -e "${CHROOT_DIR}${dir_usrclinux}" && ! -s "${CHROOT_DIR}${dir_usrclinux}" ]]; then
             warning "Empty Blocker file found for ./usr/src/linux , Deleting."
             rm "${CHROOT_DIR}${dir_usrclinux}"
         fi
@@ -241,19 +237,20 @@ EOF
   fi
 
 #GENTOO SPECIFIC:
-
-  # Make.conf, re-use the host system's /etc/portage/make.conf           (optional)
+#
+  # Make.conf, '-m', re-use the host system's /etc/portage/make.conf     (optional)
   if [[ -n ${MOUNT_MAKECONF+x} ]]; then
     CHROOT_FILES+=( "${file_makeconf}" )
   fi
 
   # Repos, '-r', Portage repos config, /etc/portage/repos.conf           (optional)
-  #              Portage Repository DB, /var/db/repos/         (all are not needed)
+  #         Third Party Portage Repos, /var/db/repos/*/        (optional 3rd party)
   if [[ -n ${MOUNT_HOSTREPOS+x} ]]; then
     chroot_bind_device $file_reposconf "${CHROOT_DIR}${file_reposconf}"
     chroot_bind_device $dir_vardbrepos "${CHROOT_DIR}${dir_vardbrepos}"
+  # ::Gentoo Main Repo, 			   /var/db/repos/gentoo/			 [DEFAULT]
   else
-    # A fresh stage3 may not have /var/db/repos/gentoo/, create, bind it  [DEFAULT]
+    # A fresh stage3 may not have it, so create/bind it in new
     if [[ ! -d "${CHROOT_DIR}${dir_vardbgentoo}" ]]; then
       ignore_error rm "${CHROOT_DIR}${dir_vardbgentoo}"
       mkdir -p "${CHROOT_DIR}${dir_vardbgentoo}"
@@ -261,7 +258,7 @@ EOF
     chroot_bind_device $dir_vardbgentoo "${CHROOT_DIR}${dir_vardbgentoo}"
   fi
 
-  # Distfiles, '-f', /var/cache/distfiles, Try avoid redundant downloads  [DEFAULT]
+  # Distfiles, '-f', /var/cache/distfiles, cache avoids network downloads [DEFAULT]
   if [[ -z ${NO_MOUNT_DISTFILES+x} ]]; then
     chroot_bind_device $dir_distfiles "${CHROOT_DIR}${dir_distfiles}"
   fi
@@ -271,8 +268,8 @@ EOF
     chroot_bind_device $dir_binpkgs "${CHROOT_DIR}${dir_binpkgs}"
   fi
 
-  #User Extendable:
-  # Additional Files, the user can provide this env var to list arbitrary files to mount (optional)
+  #User Extendable Additional Files, 									 (optional)
+  # The user can provide this env var, a list of arbitrary files to mount
   if (( ${#ADDITIONAL_CHROOT_FILES[@]} )); then
     CHROOT_FILES+=( "${ADDITIONAL_CHROOT_FILES}" )
   fi
@@ -287,10 +284,9 @@ EOF
   # If arguments = 0, run a shell
   if [ ${#ARGS[@]} -eq 0 ]; then
     SHELL=/bin/bash chroot "${CHROOT_ARGS[@]}" -- "$CHROOT_DIR"
-  # else run the command specified in the @ARGS
   else
-    #shellcheck disable=2145 # "Argument mixes string and array. Use * or separate argument." ----->|
-    chroot "${CHROOT_ARGS[@]}" -- "$CHROOT_DIR" /bin/bash -c "source /etc/profile && env-update && ${ARGS[@]}"
+  # else run the command specified in the @ARGS ($* expands args to string with IFS) #shellcheck disable=SC2145
+    chroot "${CHROOT_ARGS[@]}" -- "$CHROOT_DIR" /bin/bash -c "source /etc/profile && env-update && $*"
   fi
 }
 
@@ -303,30 +299,25 @@ do
     -b | --bind-binpkgs ) MOUNT_BINPKGS=1 ; shift ;;
     -f | --no-bind-distfiles ) NO_MOUNT_DISTFILES=1 ; shift ;;
     -d | --debug ) DEBUG=1; echo -e "\e[1;35mEnabling very-basic debug!\e[0m"; set -x; shift ;;
-    -h | --help )
-        usage;
-        #shellcheck disable=2317 # "Command appears to be unreachable. Check usage (or ignore if invoked indirectly)."
-        exit 0 ;;
+    -h | --help )  usage "Help" ;;
     -k | --no-bind-kernel) NO_MOUNT_KERNEL_SOURCE=1; shift ;;
     -m | --bind-makeconf ) MOUNT_MAKECONF=1 ; shift ;;
     -n | --no-bind-bashrc ) NO_MOUNT_BASHRC=1 ; shift ;;
     -r | --bind-hostrepos ) MOUNT_HOSTREPOS=1 ; shift ;;
-    -u | --user )
-        #shellcheck disable=2034 # "USERSPEC appears unused. Verify use (or export if used externally)"
-        USERSPEC="${2}"; shift 2 ;;
+    -u | --user )  USERSPEC="${2}"; shift 2 ;;
     -- ) shift ; break ;;
   esac
 done
 
 #executable Boilerplate
 if [[ $# -eq 0 ]]; then
-  #shellcheck disable=2317 # "Command appears to be unreachable. Check usage (or ignore if invoked indirectly)."
-  usage || die "missing parameters - please specify a chroot directory!"
+  usage "Missing parameter - please specify a chroot directory!"
 fi
 
+#argument handling
 CHROOT_DIR=$1
 shift
 ARGS=("$@")
 
-#run scripts main function
+#run script, main function
 $DEBUG gentoo-chroot
