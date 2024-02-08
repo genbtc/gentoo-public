@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+/usr/bin/qemu-system-x86_64 \
+    -name gentoo-latest,process=gentoo-latest \
+    -pidfile gentoo-latest/gentoo-latest.pid \
+    -enable-kvm \
+    -machine q35,smm=off,vmport=off \
+    -cpu host,kvm=on,topoext \
+    -smp cores=4,threads=2,sockets=1 \
+    -m 8G \
+    -device virtio-balloon \
+    -vga none \
+    -device virtio-vga-gl,xres=1152,yres=648 \
+    -display sdl,gl=on \
+    -audiodev pa,id=audio0 \
+    -device intel-hda \
+    -device hda-duplex,audiodev=audio0 \
+    -rtc base=localtime,clock=host,driftfix=slew \
+    -device virtio-rng-pci,rng=rng0 \
+    -object rng-random,id=rng0,filename=/dev/urandom \
+    -device qemu-xhci,id=spicepass \
+    -chardev spicevmc,id=usbredirchardev1,name=usbredir \
+    -device usb-redir,chardev=usbredirchardev1,id=usbredirdev1 \
+    -chardev spicevmc,id=usbredirchardev2,name=usbredir \
+    -device usb-redir,chardev=usbredirchardev2,id=usbredirdev2 \
+    -chardev spicevmc,id=usbredirchardev3,name=usbredir \
+    -device usb-redir,chardev=usbredirchardev3,id=usbredirdev3 \
+    -device pci-ohci,id=smartpass \
+    -device usb-ccid \
+    -chardev spicevmc,id=ccid,name=smartcard \
+    -device ccid-card-passthru,chardev=ccid \
+    -device usb-ehci,id=input \
+    -device usb-kbd,bus=input.0 \
+    -k en-us \
+    -device usb-tablet,bus=input.0 \
+    -device virtio-net,netdev=nic \
+    -netdev user,hostname=gentoo-latest,hostfwd=tcp::22220-:22,id=nic \
+    -global driver=cfi.pflash01,property=secure,value=on \
+    -drive if=pflash,format=raw,unit=0,file=/usr/share/qemu/edk2-x86_64-code.fd,readonly=on \
+    -drive if=pflash,format=raw,unit=1,file=gentoo-latest/OVMF_VARS.fd \
+    -drive media=cdrom,index=0,file=gentoo-latest/install-amd64-minimal-20240128T165521Z.iso \
+    -device virtio-blk-pci,drive=SystemDisk \
+    -drive id=SystemDisk,if=none,format=qcow2,file=gentoo-latest/disk.qcow2 \
+    -fsdev local,id=fsdev0,path=/home/genr8eofl/,security_model=mapped-xattr \
+    -device virtio-9p-pci,fsdev=fsdev0,mount_tag=Public-genr8eofl \
+    -monitor unix:gentoo-latest/gentoo-latest-monitor.socket,server,nowait \
+    -serial unix:gentoo-latest/gentoo-latest-serial.socket,server,nowait
