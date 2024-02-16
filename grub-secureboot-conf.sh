@@ -1,9 +1,8 @@
 #!/bin/sh
-# grub-install --modules="${GRUB_MODULES}" --sbat ~/SBAT-gentoo.csv --bootloader-id="GRUB" --disable-shim-lock
+# grub-install --modules="${GRUB_MODULES}" --sbat ~/SBAT-gentoo.csv --bootloader-id="Gentoo" --disable-shim-lock
 GRUB_MODULES="
 	tpm
 	cpuid
-	linuxefi
 	all_video
 	boot
 	btrfs
@@ -64,10 +63,10 @@ GRUB_MODULES="
 	zfsinfo
 "
 
-grub-install --modules="${GRUB_MODULES}" --bootloader-id="GRUB" --disable-shim-lock \
+grub-install --modules="${GRUB_MODULES}" --bootloader-id="Gentoo" --disable-shim-lock \
  --sbat << EOF >>
 sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
-grub,3,Free Software Foundation,grub,2:2.06r9,https://www.gnu.org/software/grub/
-grub.gentoo,1,Gentoo Linux,grub,2:2.06r9,https://packages.gentoo.org/sys-boot/grub/
+grub,3,Free Software Foundation,grub,2:2.09,https://www.gnu.org/software/grub/
+grub.gentoo,1,Gentoo Linux,grub,2:2.09,https://packages.gentoo.org/sys-boot/grub/
 EOF
 
