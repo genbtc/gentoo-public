@@ -1,8 +1,10 @@
 #!/bin/sh
 # start first with this: ./myscripts/amazing-make-disk-truncate.sh verified-gentoo-1.dd 50G
+DEVLOOP="/dev/loop0"
+GENTOO="/mnt/gentoo"
 
 # Partition disks
-sgdisk -Z -o /dev/loop0 \
+sgdisk -Z -o "${DEVLOOP}" \
  -n 1::+100M -t 1:EF00 -c 1:"esp" \
  -n 2::+1G  -t 2:EA00 -c 2:"boot" \
  -n 3::+1G  -t 3:8200 -c 3:"swap" \
@@ -11,64 +13,63 @@ sgdisk -Z -o /dev/loop0 \
  -n 6::+20G -t 6:8304 -c 6:"root"
 
 # Format disks
-mkfs.vfat -n EFI -F32 /dev/loop0p1
-mkfs.vfat -n BOOT -F32 /dev/loop0p2
-mkswap /dev/loop0p3
-#swapon /dev/loop0p3 # enable swap for current system, optional
-cryptsetup --type luks2 --hash sha512 --cipher aes-xts-plain64 --key-size 512 --pbkdf argon2id --iter-time 3000 luksFormat /dev/loop0p4 # setup luks on the usr system partition
-cryptsetup luksOpen /dev/loop0p4 cryptusr # open the luks volume
+mkfs.vfat -n EFI -F32 "${DEVLOOP}"p1
+mkfs.vfat -n BOOT -F32 "${DEVLOOP}"p2
+mkswap "${DEVLOOP}"p3
+#swapon "${DEVLOOP}"p3 # enable swap for current system, optional
+cryptsetup --type luks2 --hash sha512 --cipher aes-xts-plain64 --key-size 512 --pbkdf argon2id --iter-time 3000 luksFormat "${DEVLOOP}"p4 # setup luks on the usr system partition
+cryptsetup luksOpen "${DEVLOOP}"p4 cryptusr # open the luks volume
 mkfs.btrfs -L usr /dev/mapper/cryptusr
-## We leave generating the veritypartition with veritysetup for /dev/loop0p5 later on when we have completed setting up /usr to its final state
-cryptsetup --type luks2 --hash sha512 --cipher aes-xts-plain64 --key-size 512 --pbkdf argon2id --iter-time 3000 luksFormat /dev/loop0p6 # [NOTE: It is adviced to use the same password for cryptroot and cryptusr so only one password entry is required as systemd will automatically unlock the other disk. This does not impact things too much however as later in the install both luks headers will be TPM2 backed meaning that the drives will unlock automatically according to the tpm state.] setup luks on the root system partition
-cryptsetup luksOpen /dev/loop0p6 cryptroot # open the luks volume
+## We leave generating the veritypartition with veritysetup for "${DEVLOOP}"p5 later on when we have completed setting up /usr to its final state
+cryptsetup --type luks2 --hash sha512 --cipher aes-xts-plain64 --key-size 512 --pbkdf argon2id --iter-time 3000 luksFormat "${DEVLOOP}"p6 # [NOTE: It is adviced to use the same password for cryptroot and cryptusr so only one password entry is required as systemd will automatically unlock the other disk. This does not impact things too much however as later in the install both luks headers will be TPM2 backed meaning that the drives will unlock automatically according to the tpm state.] setup luks on the root system partition
+cryptsetup luksOpen "${DEVLOOP}"p6 cryptroot # open the luks volume
 mkfs.btrfs -L root /dev/mapper/cryptroot
 
 # Setup subvolumes and mount partitions
-mkdir -pv /mnt/gentoo
+mkdir -pv "${GENTOO}"
 ## create usr subvol according to date
-mount -t btrfs -o noatime /dev/mapper/cryptusr /mnt/gentoo # nodiratime is implied by noatime
-btrfs subvolume create /mnt/gentoo/usr # create usr subvol to make snapshots easier
-umount /mnt/gentoo # unmount the filesystem
+mount -t btrfs -o noatime /dev/mapper/cryptusr "${GENTOO}" # nodiratime is implied by noatime
+btrfs subvolume create "${GENTOO}"/usr # create usr subvol to make snapshots easier
+umount "${GENTOO}" # unmount the filesystem
 ## create root subolumes
-mount -t btrfs -o noatime /dev/mapper/cryptroot /mnt/gentoo
-for each in rootfs home; do btrfs subvolume create /mnt/gentoo/${each}; done # feel free to add more as desired
-umount /mnt/gentoo # unmount the filesystem
+mount -t btrfs -o noatime /dev/mapper/cryptroot "${GENTOO}"
+for each in rootfs home; do btrfs subvolume create "${GENTOO}"/${each}; done # feel free to add more as desired
+umount "${GENTOO}" # unmount the filesystem
 
 #Mount the filesystems
-mount -t btrfs -o noatime,compress=zstd,ssd,subvol=rootfs /dev/mapper/cryptroot /mnt/gentoo # mount our rootfs subvolume
-mkdir -pv /mnt/gentoo/{boot,efi,home,usr} # create our mountpoints
-mount -t btrfs -o noatime,compress=zstd,ssd,subvol=home /dev/mapper/cryptroot /mnt/gentoo/home # mount our home subvolume
-mount /dev/loop0p1 /mnt/gentoo/efi # mount our efi partition
-mount /dev/loop0p2 /mnt/gentoo/boot # mount our boot partition
-mount -t btrfs -o noatime,compress=zstd,ssd,subvol=usr /dev/mapper/cryptusr /mnt/gentoo/usr # mount our home subvolume
+mount -t btrfs -o noatime,compress=zstd,ssd,subvol=rootfs /dev/mapper/cryptroot "${GENTOO}" # mount our rootfs subvolume
+mkdir -pv "${GENTOO}"/{boot,efi,home,usr} # create our mountpoints
+mount -t btrfs -o noatime,compress=zstd,ssd,subvol=home /dev/mapper/cryptroot "${GENTOO}"/home # mount our home subvolume
+mount "${DEVLOOP}"p1 "${GENTOO}"/efi # mount our efi partition
+mount "${DEVLOOP}"p2 "${GENTOO}"/boot # mount our boot partition
+mount -t btrfs -o noatime,compress=zstd,ssd,subvol=usr /dev/mapper/cryptusr "${GENTOO}"/usr # mount our home subvolume
 
 # Grabbing stage3
-cd /mnt/gentoo
+cd "${GENTOO}"
 wget https://mirrors.rit.edu/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd-mergedusr/stage3-amd64-systemd-mergedusr-20231224T164659Z.tar.xz
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner # unpack stage3
 rm stage3-*.tar.xz # remove extracted stage3
-cp --dereference /etc/resolv.conf /mnt/gentoo/etc
-mkdir -pv /mnt/gentoo/etc/portage/repos.conf
-cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf # copy gentoo repo config
+cp --dereference /etc/resolv.conf "${GENTOO}"/etc
+mkdir -pv "${GENTOO}"/etc/portage/repos.conf
+cp "${GENTOO}"/usr/share/portage/config/repos.conf "${GENTOO}"/etc/portage/repos.conf/gentoo.conf # copy gentoo repo config
 ## configure portage, etc.
-echo "sys-apps/systemd boot cryptsetup fido2 kernel-install ukify tpm" >> /mnt/gentoo/etc/portage/package.use/sys-apps # add systemd use flags
+echo "sys-apps/systemd boot cryptsetup fido2 kernel-install ukify tpm" >> "${GENTOO}"/etc/portage/package.use/sys-apps # add systemd use flags
 
 #chroot in
-autochroot -s /bin/bash -m /mnt/gentoo # use my autochroot script to chroot in
-env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
+genr8-chroot "${GENTOO}" # use my genr8-chroot script to chroot in
+
 ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime # setup date and time to avoid issues
+
 ## setup locales to avoid issues (generate US locales too to avoid problems)
 cat << EOF >> /etc/locale.gen
 en_US.UTF-8 UTF-8
 EOF
-
-#COW forgot to actually generate the locale first, this step needed:
+#generate the locale first
 locale-gen
 #for this to work
 eselect locale set en_US.utf8 # set locale
-env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 
-#ERROR:
+#Errors?:
 systemd-firstboot --prompt --setup-machine-id # setup system settings
 #ERROR: --machine-id=/--setup-machine-id only works with --root= or --image=.
 #ok, use with only --prompt:
@@ -111,57 +112,7 @@ systemctl preset-all # enable default services
 #Created symlink /etc/systemd/system/dbus-org.freedesktop.resolve1.service → /usr/lib/systemd/system/systemd-resolved.service.
 #Created symlink /etc/systemd/system/sysinit.target.wants/systemd-resolved.service → /usr/lib/systemd/system/systemd-resolved.service.
 
-#----------------------CUT OUT FROM THIS POINT ----------------------
-
-emerge --sync # sync repos
-emerge -va app-editors/neovim app-portage/eix dev-vcs/git # grab some tools
-eselect vi set nvim # setup vi symlink
-cat << EOF >> /etc/portage/repos.conf/cow.conf
-[cow]
-location = /var/db/repos/cow
-sync-type = git
-sync-uri = https://gitlab.com/the-ebuilder/cow-tools
-EOF
-emerge --sync cow # grab cow repo
-eselect profile set cow:hardened-systemd-merged-usr # switch to hardened profile
-emerge -1av sys-devel/gcc # rebuild gcc
-emerge -1av sys-devel/binutils sys-libs/glibc # rebuild binutils, glibc
-gcc-config -l # check we are using our new hardened toolchain
-emerge -e @world # rebuild system with hardened toolchain
-## switch to clang
-mkdir -pv /etc/portage/sets
-cat << EOF > /etc/portage/sets/clang-toolchain
-sys-devel/clang
-sys-devel/lld
-sys-devel/llvm
-sys-libs/llvm-libunwind
-EOF
-emerge -av @clang-toolchain
-echo "sys-devel/clang-common default-compiler-rt default-lld" >> /etc/portage/package.use/sys-devel
-echo "sys-libs/llvm-libunwind static-libs" >> /etc/portage/package.use/sys-libs
-cat << EOF >> /etc/portage/make.conf
-COMMON_FLAGS="-march=native -O3 -pipe -fdiagnostics-color=always"
-CFLAGS="\${COMMON_FLAGS} -flto=thin"
-CXXFLAGS="\${COMMON_FLAGS} -flto=thin"
-FCFLAGS="\${COMMON_FLAGS}"
-FFLAGS="\${COMMON_FLAGS}"
-
-CC="clang"
-CXX="clang++"
-AR="llvm-ar"
-NM="llvm-nm"
-RANLIB="llvm-ranlib"
-OBJCOPY="llvm-objcopy"
-OBJDUMP="llvm-objdump"
-
-LDFLAGS="\${LDFLAGS} -fuse-ld=lld -rtlib=compiler-rt -unwindlib=libunwind -Wl,--as-needed -Wl,--undefined-version"
-EOF
-emerge -e @world # rebuild with hardened clang toolchain
-# perform normal in chroot steps for install until world update
-emerge --ask --changed-use --deep --keep-going --update --verbose --with-bdeps=y @world # full system upgrade
-
-
-# --------- CUT OUT UP TO THIS POINT-------------------------#
+#Root password needs to be set.
 
 # Install kernel
 mkdir -pv /etc/portage/sets
@@ -174,11 +125,10 @@ app-crypt/tpm2-pkcs11
 app-crypt/tpm2-tools
 app-crypt/tpm2-totp
 app-crypt/tpm2-tss
-#sys-firmware/intel-microcode # for intel cpu's only, use linux-firmware's use flag for amd
 sys-kernel/dracut
-sys-kernel/gentoo-kernel		#possibly try -bin
-sys-kernel/installkernel-systemd
+sys-kernel/gentoo-kernel # try -bin
 sys-kernel/linux-firmware
+#sys-firmware/intel-microcode # for intel cpu's only, use linux-firmware's use flag for amd
 EOF
 
 echo "sys-kernel/gentoo-kernel initramfs modules-sign savedconfig" >> /etc/portage/package.use/sys-kernel
@@ -231,14 +181,13 @@ mkdir /var/usr_local
 ln -sf /var/usr_local /usr/local
 
 exit # exit the chroot
-umount -Rl /mnt/gentoo/usr # unmount usr
-veritysetup format /dev/mapper/cryptusr /dev/loop0p5 | grep Root | cut -f2 >> /mnt/gentoo/roothash
-mount -t btrfs -o ro,noatime,compress=zstd,ssd,subvol=usr /dev/mapper/cryptusr /mnt/gentoo/usr # mount our usr subvolume read only
-arch-chroot /mnt/gentoo # chroot back in
-env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
+umount -Rl "${GENTOO}"/usr # unmount usr
+veritysetup format /dev/mapper/cryptusr "${DEVLOOP}"p5 | grep Root | cut -f2 >> "${GENTOO}"/roothash
+mount -t btrfs -o ro,noatime,compress=zstd,ssd,subvol=usr /dev/mapper/cryptusr "${GENTOO}"/usr # mount our usr subvolume read only
+genr8-chroot "${GENTOO}" # chroot back in
 
-## ADD SECURE BOOT USEFLAG GLOBALLY TO MAKE.CONF TOO!
-# This should come first before we make usr read only?
+## ^ ADD SECURE BOOT USEFLAG GLOBALLY TO MAKE.CONF TOO! ^
+#TODO: This should come first before we make usr read only?
 cat << EOF >> /etc/portage/make.conf
 SECUREBOOT_SIGN_KEY="/usr/share/secureboot/keys/db/db.key"
 SECUREBOOT_SIGN_CERT="/usr/share/secureboot/keys/db/db.pem"
@@ -259,7 +208,7 @@ early_microcode=yes
 uefi_stub=/usr/lib/systemd/boot/efi/linuxx64.efi.stub
 uefi_secureboot_cert=/usr/share/secureboot/keys/db/db.pem
 uefi_secureboot_key=/usr/share/secureboot/keys/db/db.key
-kernel_cmdline="rd.luks.name=$(blkid -s UUID -o value /dev/loop0p6)=cryptroot rd.luks.options=$(blkid -s UUID -o value /dev/loop0p6)=tpm2-device=/dev/tpmrm0,discard root=/dev/mapper/cryptroot rootflags=subvol=rootfs,noatime,compress=zstd,ssd rd.luks.name=$(blkid -s UUID -o value /dev/loop0p4) rd.luks.options=$(blkid -s UUID -o value /dev/loop0p6)=tpm2-device=/dev/tpmrm0,discard systemd.verity=1 roothash=$(cat /roothash) systemd.verity_root_data=/dev/mapper/cryptusr systemd.verity_root_hash=UUID=$(blkid -s UUID -o value /dev/loop0p5) systemd.verity_root_options=panic-on-corruption quiet loglevel=0 rw lockdown=confidentiality mce=0 page_alloc.shuffle=1 init_on_free=1 init_on_alloc=1 efi=disable_early_pci_dma page_alloc.shuffle=1 vsyscall=none debugfs=off oops=panic module.sig_enforce=1"
+kernel_cmdline="rd.luks.name=$(blkid -s UUID -o value "${DEVLOOP}"p6)=cryptroot rd.luks.options=$(blkid -s UUID -o value "${DEVLOOP}"p6)=tpm2-device=/dev/tpmrm0,discard root=/dev/mapper/cryptroot rootflags=subvol=rootfs,noatime,compress=zstd,ssd rd.luks.name=$(blkid -s UUID -o value "${DEVLOOP}"p4)=cryptusr rd.luks.options=$(blkid -s UUID -o value "${DEVLOOP}"p6)=tpm2-device=/dev/tpmrm0,discard systemd.verity=1 roothash=$(cat /roothash) systemd.verity_usr_data=/dev/mapper/cryptusr systemd.verity_usr_hash=UUID=$(blkid -s UUID -o value "${DEVLOOP}"p5) systemd.verity_root_options=panic-on-corruption quiet loglevel=0 rw lockdown=confidentiality mce=0 page_alloc.shuffle=1 init_on_free=1 init_on_alloc=1 efi=disable_early_pci_dma page_alloc.shuffle=1 vsyscall=none debugfs=off oops=panic module.sig_enforce=1"
 EOF
 rm -rf /boot/{.*,*} /efi/{.*,*} # remove any files created by the emerge of the kernel
 bootctl install --esp-path=/efi --boot-path=/boot # install bootloader
@@ -279,7 +228,7 @@ bootctl install --esp-path=/efi --boot-path=/boot # install bootloader
 #Random seed file /efi/loader/random-seed successfully written (32 bytes).
 #Failed to write 'LoaderSystemToken' EFI variable: No such file or directory
 
-sbctl sign -s /efi/EFI/BOOT/BOOTx64.efi                 # sign required files
-sbctl sign -s /efi/EFI/BOOT/systemd/systemd-bootx64.efi # sign required files
+sbctl sign -s /efi/EFI/BOOT/BOOTx64.efi                 # sign required files (generic name)
+sbctl sign -s /efi/EFI/BOOT/systemd/systemd-bootx64.efi # sign required files (systemd boot)
 
 emerge --config sys-kernel/gentoo-kernel # configure the kernel
