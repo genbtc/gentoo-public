@@ -27,11 +27,11 @@ mkfs.btrfs -L root /dev/mapper/cryptroot
 
 # Setup subvolumes and mount partitions
 mkdir -pv "${GENTOO}"
-## create usr subvol according to date
-mount -t btrfs -o noatime /dev/mapper/cryptusr "${GENTOO}" # nodiratime is implied by noatime
+## create usr subvol
+mount -t btrfs -o noatime /dev/mapper/cryptusr "${GENTOO}"
 btrfs subvolume create "${GENTOO}"/usr # create usr subvol to make snapshots easier
 umount "${GENTOO}" # unmount the filesystem
-## create root subolumes
+## create root subvol
 mount -t btrfs -o noatime /dev/mapper/cryptroot "${GENTOO}"
 for each in rootfs home; do btrfs subvolume create "${GENTOO}"/${each}; done # feel free to add more as desired
 umount "${GENTOO}" # unmount the filesystem
@@ -39,7 +39,7 @@ umount "${GENTOO}" # unmount the filesystem
 #Mount the filesystems
 mount -t btrfs -o noatime,compress=zstd,ssd,subvol=rootfs /dev/mapper/cryptroot "${GENTOO}" # mount our rootfs subvolume
 mkdir -pv "${GENTOO}"/{boot,efi,home,usr} # create our mountpoints
-mount -t btrfs -o noatime,compress=zstd,ssd,subvol=home /dev/mapper/cryptroot "${GENTOO}"/home # mount our home subvolume
+#mount -t btrfs -o noatime,compress=zstd,ssd,subvol=home /dev/mapper/crypthome "${GENTOO}"/home # mount our home subvolume
 mount "${DEVLOOP}"p1 "${GENTOO}"/efi # mount our efi partition
 mount "${DEVLOOP}"p2 "${GENTOO}"/boot # mount our boot partition
 mount -t btrfs -o noatime,compress=zstd,ssd,subvol=usr /dev/mapper/cryptusr "${GENTOO}"/usr # mount our home subvolume
@@ -60,7 +60,7 @@ genr8-chroot "${GENTOO}" # use my genr8-chroot script to chroot in
 
 ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime # setup date and time to avoid issues
 
-## setup locales to avoid issues (generate US locales too to avoid problems)
+## setup locales to avoid issues (generate US locales)
 cat << EOF >> /etc/locale.gen
 en_US.UTF-8 UTF-8
 EOF
@@ -125,8 +125,10 @@ app-crypt/tpm2-pkcs11
 app-crypt/tpm2-tools
 app-crypt/tpm2-totp
 app-crypt/tpm2-tss
+sys-fs/btrfs-progs
+sys-libs/gpm
 sys-kernel/dracut
-sys-kernel/gentoo-kernel # try -bin
+sys-kernel/gentoo-kernel # -bin does not have signed modules, lockdown
 sys-kernel/linux-firmware
 #sys-firmware/intel-microcode # for intel cpu's only, use linux-firmware's use flag for amd
 EOF
@@ -171,9 +173,16 @@ Options=subvol=usr,ro,noatime,compress=zstd,ssd
 WantedBy=local-fs.target
 EOF
 
+#These are not present at initramfs time
 systemctl enable home.mount usr.mount # enable the mounting targets
 #Created symlink /etc/systemd/system/local-fs.target.wants/home.mount → /usr/lib/systemd/system/home.mount.
 #Created symlink /etc/systemd/system/local-fs.target.wants/usr.mount → /usr/lib/systemd/system/usr.mount.
+
+#BUG ? See issue @ https://github.com/dracutdevs/dracut/issues/1887
+
+# No fstab or crypttab or veritytab is needed if you run:
+"btrfs subvolume set-default usr"
+#This cannot be done without RW perm and re-generating the hash !!!!!
 
 # setup /usr/local symlink
 rm -r /usr/local
@@ -195,21 +204,24 @@ EOF
 sbctl create-keys
 mkdir /etc/secureboot
 ln -sf /usr/share/secureboot/files.db /etc/secureboot/files.db # setup symlink for secure boot database
+#/usr folder wont be present for access later
+# QEMU cannot auto enroll-keys?
 
-## configure dracut
+## configure dracut, critical !
 mkdir -pv /etc/dracut.conf.d
 cat << EOF >> /etc/dracut.conf.d/001-verifiedboot.conf
 show_modules=yes
+add_dracutmodules+=' tpm2-tss systemd-veritysetup '
 add_drivers+=' tpm_crb '
-add_dracutmodules+=' tpm2-tss '
 install_items+=" /usr/lib64/cryptsetup/libcryptsetup-token-systemd-tpm2.so "
 uefi=yes
 early_microcode=yes
 uefi_stub=/usr/lib/systemd/boot/efi/linuxx64.efi.stub
 uefi_secureboot_cert=/usr/share/secureboot/keys/db/db.pem
 uefi_secureboot_key=/usr/share/secureboot/keys/db/db.key
-kernel_cmdline="rd.luks.name=$(blkid -s UUID -o value "${DEVLOOP}"p6)=cryptroot rd.luks.options=$(blkid -s UUID -o value "${DEVLOOP}"p6)=tpm2-device=/dev/tpmrm0,discard root=/dev/mapper/cryptroot rootflags=subvol=rootfs,noatime,compress=zstd,ssd rd.luks.name=$(blkid -s UUID -o value "${DEVLOOP}"p4)=cryptusr rd.luks.options=$(blkid -s UUID -o value "${DEVLOOP}"p6)=tpm2-device=/dev/tpmrm0,discard systemd.verity=1 roothash=$(cat /roothash) systemd.verity_usr_data=/dev/mapper/cryptusr systemd.verity_usr_hash=UUID=$(blkid -s UUID -o value "${DEVLOOP}"p5) systemd.verity_root_options=panic-on-corruption quiet loglevel=0 rw lockdown=confidentiality mce=0 page_alloc.shuffle=1 init_on_free=1 init_on_alloc=1 efi=disable_early_pci_dma page_alloc.shuffle=1 vsyscall=none debugfs=off oops=panic module.sig_enforce=1"
+kernel_cmdline="rd.luks.name=$(blkid -s UUID -o value "${DEVLOOP}"p6)=cryptroot rd.luks.options=$(blkid -s UUID -o value "${DEVLOOP}"p6)=tpm2-device=/dev/tpmrm0,discard root=/dev/mapper/cryptroot rootflags=subvol=rootfs,noatime,compress=zstd,ssd rd.luks.name=$(blkid -s UUID -o value "${DEVLOOP}"p4)=cryptusr rd.luks.options=$(blkid -s UUID -o value "${DEVLOOP}"p6)=tpm2-device=/dev/tpmrm0,discard systemd.verity=1 usrhash=$(cat /usrhash) systemd.verity_usr_data=/dev/mapper/cryptusr systemd.verity_usr_hash=UUID=$(blkid -s UUID -o value "${DEVLOOP}"p5) systemd.verity_usr_options=panic-on-corruption quiet loglevel=0 rw lockdown=confidentiality mce=0 page_alloc.shuffle=1 init_on_free=1 init_on_alloc=1 efi=disable_early_pci_dma page_alloc.shuffle=1 vsyscall=none debugfs=off oops=panic module.sig_enforce=1"
 EOF
+#rd.break=pivot-root can be used to debug the internal dracut issues
 rm -rf /boot/{.*,*} /efi/{.*,*} # remove any files created by the emerge of the kernel
 bootctl install --esp-path=/efi --boot-path=/boot # install bootloader
 
@@ -232,3 +244,12 @@ sbctl sign -s /efi/EFI/BOOT/BOOTx64.efi                 # sign required files (g
 sbctl sign -s /efi/EFI/BOOT/systemd/systemd-bootx64.efi # sign required files (systemd boot)
 
 emerge --config sys-kernel/gentoo-kernel # configure the kernel
+
+#Reference Material External Sources:
+#---------------------------------------
+https://www.man7.org/linux/man-pages/man5/veritytab.5.html
+https://man.archlinux.org/man/systemd-veritysetup-generator.8
+https://man.archlinux.org/man/systemd-veritysetup%40.service.8
+https://wiki.archlinux.org/title/Dm-verity
+https://www.man7.org/linux/man-pages/man8/systemd-gpt-auto-generator.8.html
+https://uapi-group.org/specifications/specs/discoverable_partitions_specification
