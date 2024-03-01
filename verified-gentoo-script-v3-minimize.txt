@@ -8,9 +8,9 @@ sgdisk -Z -o "${DEVLOOP}" \
  -n 1::+100M -t 1:EF00 -c 1:"esp" \
  -n 2::+1G  -t 2:EA00 -c 2:"boot" \
  -n 3::+1G  -t 3:8200 -c 3:"swap" \
- -n 4::+20G -t 4:8314 -c 4:"usr" \
+ -n 4::+20G -t 4:8314 -c 4:"cryptusr" \
  -n 5::+6G  -t 5:8319 -c 5:"usr_verity" \
- -n 6::+20G -t 6:8304 -c 6:"root"
+ -n 6::+20G -t 6:8304 -c 6:"cryptroot"
 
 # Format disks
 mkfs.vfat -n EFI -F32 "${DEVLOOP}"p1
