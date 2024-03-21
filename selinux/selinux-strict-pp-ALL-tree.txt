@@ -1,0 +1,574 @@
+/usr/share/selinux/strict/
+├── acct.pp
+├── aide.pp
+├── alsa.pp
+├── android.pp
+├── apache.pp
+├── application.pp
+├── at.pp
+├── authlogin.pp
+├── base.pp
+├── bootloader.pp
+├── brctl.pp
+├── cdrecord.pp
+├── clock.pp
+├── consoletype.pp
+├── container.pp
+├── cron.pp
+├── dbus.pp
+├── devicekit.pp
+├── dirmngr.pp
+├── dmesg.pp
+├── dmidecode.pp
+├── dnsmasq.pp
+├── docker.pp
+├── dpkg.pp
+├── dracut.pp
+├── fstools.pp
+├── getty.pp
+├── git.pp
+├── gnome.pp
+├── gpg.pp
+├── gpm.pp
+├── hostname.pp
+├── include
+│   ├── admin
+│   │   ├── acct.if
+│   │   ├── aide.if
+│   │   ├── alsa.if
+│   │   ├── amanda.if
+│   │   ├── amtu.if
+│   │   ├── anaconda.if
+│   │   ├── apt.if
+│   │   ├── backup.if
+│   │   ├── bacula.if
+│   │   ├── blueman.if
+│   │   ├── bootloader.if
+│   │   ├── brctl.if
+│   │   ├── certwatch.if
+│   │   ├── cfengine.if
+│   │   ├── chkrootkit.if
+│   │   ├── cloudinit.if
+│   │   ├── consoletype.if
+│   │   ├── dmesg.if
+│   │   ├── dmidecode.if
+│   │   ├── dphysswapfile.if
+│   │   ├── dpkg.if
+│   │   ├── fakehwclock.if
+│   │   ├── fapolicyd.if
+│   │   ├── firstboot.if
+│   │   ├── hwloc.if
+│   │   ├── kdump.if
+│   │   ├── kismet.if
+│   │   ├── logrotate.if
+│   │   ├── logwatch.if
+│   │   ├── mcelog.if
+│   │   ├── mrtg.if
+│   │   ├── ncftool.if
+│   │   ├── netutils.if
+│   │   ├── passenger.if
+│   │   ├── portage.if
+│   │   ├── prelink.if
+│   │   ├── puppet.if
+│   │   ├── quota.if
+│   │   ├── rkhunter.if
+│   │   ├── rpm.if
+│   │   ├── samhain.if
+│   │   ├── sblim.if
+│   │   ├── shorewall.if
+│   │   ├── shutdown.if
+│   │   ├── sosreport.if
+│   │   ├── sudo.if
+│   │   ├── su.if
+│   │   ├── sxid.if
+│   │   ├── tboot.if
+│   │   ├── tmpreaper.if
+│   │   ├── tripwire.if
+│   │   ├── tzdata.if
+│   │   ├── updfstab.if
+│   │   ├── usbguard.if
+│   │   ├── usbmodules.if
+│   │   ├── usermanage.if
+│   │   ├── vbetool.if
+│   │   └── vpn.if
+│   ├── admin.xml
+│   ├── apps
+│   │   ├── awstats.if
+│   │   ├── calamaris.if
+│   │   ├── cdrecord.if
+│   │   ├── chromium.if
+│   │   ├── cpufreqselector.if
+│   │   ├── cryfs.if
+│   │   ├── evolution.if
+│   │   ├── games.if
+│   │   ├── gitosis.if
+│   │   ├── gnome.if
+│   │   ├── gpg.if
+│   │   ├── irc.if
+│   │   ├── java.if
+│   │   ├── libmtp.if
+│   │   ├── lightsquid.if
+│   │   ├── livecd.if
+│   │   ├── loadkeys.if
+│   │   ├── man2html.if
+│   │   ├── mandb.if
+│   │   ├── mono.if
+│   │   ├── mozilla.if
+│   │   ├── mplayer.if
+│   │   ├── openoffice.if
+│   │   ├── pulseaudio.if
+│   │   ├── qemu.if
+│   │   ├── rssh.if
+│   │   ├── screen.if
+│   │   ├── seunshare.if
+│   │   ├── sigrok.if
+│   │   ├── slocate.if
+│   │   ├── syncthing.if
+│   │   ├── telepathy.if
+│   │   ├── thunderbird.if
+│   │   ├── tvtime.if
+│   │   ├── uml.if
+│   │   ├── userhelper.if
+│   │   ├── usernetctl.if
+│   │   ├── vlock.if
+│   │   ├── vmware.if
+│   │   ├── webalizer.if
+│   │   ├── wine.if
+│   │   ├── wireshark.if
+│   │   ├── wm.if
+│   │   └── xscreensaver.if
+│   ├── apps.xml
+│   ├── build.conf
+│   ├── contrib
+│   │   ├── android.if
+│   │   ├── at.if
+│   │   ├── bitcoin.if
+│   │   ├── ceph.if
+│   │   ├── dirsrv.if
+│   │   ├── dracut.if
+│   │   ├── dropbox.if
+│   │   ├── flash.if
+│   │   ├── googletalk.if
+│   │   ├── gorg.if
+│   │   ├── kdeconnect.if
+│   │   ├── links.if
+│   │   ├── logsentry.if
+│   │   ├── makewhatis.if
+│   │   ├── mutt.if
+│   │   ├── nginx.if
+│   │   ├── openrc.if
+│   │   ├── pan.if
+│   │   ├── phpfpm.if
+│   │   ├── resolvconf.if
+│   │   ├── rtorrent.if
+│   │   ├── salt.if
+│   │   ├── skype.if
+│   │   ├── subsonic.if
+│   │   ├── uwsgi.if
+│   │   └── vde.if
+│   ├── contrib.xml
+│   ├── gentoo_tunables.xml
+│   ├── global_booleans.xml
+│   ├── global_tunables.xml
+│   ├── kernel
+│   │   ├── corecommands.if
+│   │   ├── corenetwork.if
+│   │   ├── devices.if
+│   │   ├── domain.if
+│   │   ├── files.if
+│   │   ├── filesystem.if
+│   │   ├── kernel.if
+│   │   ├── mcs.if
+│   │   ├── mls.if
+│   │   ├── selinux.if
+│   │   ├── storage.if
+│   │   ├── terminal.if
+│   │   └── ubac.if
+│   ├── kernel.xml
+│   ├── Makefile
+│   ├── roles
+│   │   ├── auditadm.if
+│   │   ├── dbadm.if
+│   │   ├── guest.if
+│   │   ├── logadm.if
+│   │   ├── secadm.if
+│   │   ├── staff.if
+│   │   ├── sysadm.if
+│   │   ├── unprivuser.if
+│   │   ├── webadm.if
+│   │   └── xguest.if
+│   ├── roles.xml
+│   ├── services
+│   │   ├── abrt.if
+│   │   ├── accountsd.if
+│   │   ├── acpi.if
+│   │   ├── afs.if
+│   │   ├── aisexec.if
+│   │   ├── amavis.if
+│   │   ├── apache.if
+│   │   ├── apcupsd.if
+│   │   ├── aptcacher.if
+│   │   ├── arpwatch.if
+│   │   ├── asterisk.if
+│   │   ├── automount.if
+│   │   ├── avahi.if
+│   │   ├── bind.if
+│   │   ├── bird.if
+│   │   ├── bitlbee.if
+│   │   ├── bluetooth.if
+│   │   ├── boinc.if
+│   │   ├── bugzilla.if
+│   │   ├── cachefilesd.if
+│   │   ├── canna.if
+│   │   ├── certbot.if
+│   │   ├── certmaster.if
+│   │   ├── certmonger.if
+│   │   ├── cgmanager.if
+│   │   ├── cgroup.if
+│   │   ├── chronyd.if
+│   │   ├── clamav.if
+│   │   ├── cobbler.if
+│   │   ├── cockpit.if
+│   │   ├── collectd.if
+│   │   ├── colord.if
+│   │   ├── comsat.if
+│   │   ├── condor.if
+│   │   ├── consolesetup.if
+│   │   ├── container.if
+│   │   ├── corosync.if
+│   │   ├── couchdb.if
+│   │   ├── courier.if
+│   │   ├── cpucontrol.if
+│   │   ├── crio.if
+│   │   ├── cron.if
+│   │   ├── ctdb.if
+│   │   ├── cups.if
+│   │   ├── cvs.if
+│   │   ├── cyphesis.if
+│   │   ├── cyrus.if
+│   │   ├── dante.if
+│   │   ├── dbskk.if
+│   │   ├── dbus.if
+│   │   ├── ddclient.if
+│   │   ├── devicekit.if
+│   │   ├── dhcp.if
+│   │   ├── dictd.if
+│   │   ├── dirmngr.if
+│   │   ├── distcc.if
+│   │   ├── djbdns.if
+│   │   ├── dkim.if
+│   │   ├── dnsmasq.if
+│   │   ├── docker.if
+│   │   ├── dovecot.if
+│   │   ├── drbd.if
+│   │   ├── eg25manager.if
+│   │   ├── entropyd.if
+│   │   ├── exim.if
+│   │   ├── fail2ban.if
+│   │   ├── fcoe.if
+│   │   ├── fetchmail.if
+│   │   ├── finger.if
+│   │   ├── firewalld.if
+│   │   ├── fprintd.if
+│   │   ├── ftp.if
+│   │   ├── gatekeeper.if
+│   │   ├── gdomap.if
+│   │   ├── geoclue.if
+│   │   ├── git.if
+│   │   ├── glance.if
+│   │   ├── glusterfs.if
+│   │   ├── gnomeclock.if
+│   │   ├── gpm.if
+│   │   ├── gpsd.if
+│   │   ├── gssproxy.if
+│   │   ├── hadoop.if
+│   │   ├── hddtemp.if
+│   │   ├── hostapd.if
+│   │   ├── hypervkvp.if
+│   │   ├── i18n_input.if
+│   │   ├── icecast.if
+│   │   ├── ifplugd.if
+│   │   ├── iiosensorproxy.if
+│   │   ├── inetd.if
+│   │   ├── inn.if
+│   │   ├── iodine.if
+│   │   ├── ircd.if
+│   │   ├── irqbalance.if
+│   │   ├── isns.if
+│   │   ├── jabber.if
+│   │   ├── kerberos.if
+│   │   ├── kerneloops.if
+│   │   ├── keystone.if
+│   │   ├── knot.if
+│   │   ├── ksmtuned.if
+│   │   ├── kubernetes.if
+│   │   ├── l2tp.if
+│   │   ├── ldap.if
+│   │   ├── likewise.if
+│   │   ├── lircd.if
+│   │   ├── lldpad.if
+│   │   ├── lowmemorymonitor.if
+│   │   ├── lpd.if
+│   │   ├── lsm.if
+│   │   ├── mailman.if
+│   │   ├── matrixd.if
+│   │   ├── mediawiki.if
+│   │   ├── memcached.if
+│   │   ├── memlockd.if
+│   │   ├── milter.if
+│   │   ├── minidlna.if
+│   │   ├── minissdpd.if
+│   │   ├── modemmanager.if
+│   │   ├── mojomojo.if
+│   │   ├── mongodb.if
+│   │   ├── mon.if
+│   │   ├── monit.if
+│   │   ├── monop.if
+│   │   ├── mpd.if
+│   │   ├── mta.if
+│   │   ├── munin.if
+│   │   ├── mysql.if
+│   │   ├── nagios.if
+│   │   ├── nessus.if
+│   │   ├── networkmanager.if
+│   │   ├── nis.if
+│   │   ├── node_exporter.if
+│   │   ├── nscd.if
+│   │   ├── nsd.if
+│   │   ├── nslcd.if
+│   │   ├── ntop.if
+│   │   ├── ntp.if
+│   │   ├── numad.if
+│   │   ├── nut.if
+│   │   ├── nx.if
+│   │   ├── obex.if
+│   │   ├── obfs4proxy.if
+│   │   ├── oddjob.if
+│   │   ├── oident.if
+│   │   ├── openca.if
+│   │   ├── openct.if
+│   │   ├── openhpi.if
+│   │   ├── opensm.if
+│   │   ├── openvpn.if
+│   │   ├── openvswitch.if
+│   │   ├── pacemaker.if
+│   │   ├── pads.if
+│   │   ├── pcscd.if
+│   │   ├── pegasus.if
+│   │   ├── perdition.if
+│   │   ├── pingd.if
+│   │   ├── pkcs.if
+│   │   ├── plymouthd.if
+│   │   ├── podman.if
+│   │   ├── policykit.if
+│   │   ├── portmap.if
+│   │   ├── portreserve.if
+│   │   ├── portslave.if
+│   │   ├── postfix.if
+│   │   ├── postfixpolicyd.if
+│   │   ├── postgresql.if
+│   │   ├── postgrey.if
+│   │   ├── powerprofiles.if
+│   │   ├── ppp.if
+│   │   ├── prelude.if
+│   │   ├── privoxy.if
+│   │   ├── procmail.if
+│   │   ├── psad.if
+│   │   ├── publicfile.if
+│   │   ├── pwauth.if
+│   │   ├── pxe.if
+│   │   ├── pyzor.if
+│   │   ├── qmail.if
+│   │   ├── qpid.if
+│   │   ├── quantum.if
+│   │   ├── rabbitmq.if
+│   │   ├── radius.if
+│   │   ├── radvd.if
+│   │   ├── rasdaemon.if
+│   │   ├── razor.if
+│   │   ├── rdisc.if
+│   │   ├── realmd.if
+│   │   ├── redis.if
+│   │   ├── remotelogin.if
+│   │   ├── resmgr.if
+│   │   ├── rhsmcertd.if
+│   │   ├── rlogin.if
+│   │   ├── rngd.if
+│   │   ├── rootlesskit.if
+│   │   ├── rpcbind.if
+│   │   ├── rpc.if
+│   │   ├── rshd.if
+│   │   ├── rsync.if
+│   │   ├── rtkit.if
+│   │   ├── rwho.if
+│   │   ├── samba.if
+│   │   ├── sanlock.if
+│   │   ├── sasl.if
+│   │   ├── sendmail.if
+│   │   ├── sensord.if
+│   │   ├── setroubleshoot.if
+│   │   ├── shibboleth.if
+│   │   ├── slpd.if
+│   │   ├── slrnpull.if
+│   │   ├── smartmon.if
+│   │   ├── smokeping.if
+│   │   ├── smstools.if
+│   │   ├── snmp.if
+│   │   ├── snort.if
+│   │   ├── soundserver.if
+│   │   ├── spamassassin.if
+│   │   ├── squid.if
+│   │   ├── ssh.if
+│   │   ├── sssd.if
+│   │   ├── stubby.if
+│   │   ├── stunnel.if
+│   │   ├── svnserve.if
+│   │   ├── switcheroo.if
+│   │   ├── sympa.if
+│   │   ├── sysstat.if
+│   │   ├── systemtap.if
+│   │   ├── tcpd.if
+│   │   ├── tcsd.if
+│   │   ├── telnet.if
+│   │   ├── tftp.if
+│   │   ├── tgtd.if
+│   │   ├── thunderbolt.if
+│   │   ├── timidity.if
+│   │   ├── tor.if
+│   │   ├── tpm2.if
+│   │   ├── transproxy.if
+│   │   ├── tuned.if
+│   │   ├── ucspitcp.if
+│   │   ├── ulogd.if
+│   │   ├── uptime.if
+│   │   ├── usbmuxd.if
+│   │   ├── uucp.if
+│   │   ├── uuidd.if
+│   │   ├── uwimap.if
+│   │   ├── varnishd.if
+│   │   ├── vdagent.if
+│   │   ├── vhostmd.if
+│   │   ├── virt.if
+│   │   ├── vnstatd.if
+│   │   ├── watchdog.if
+│   │   ├── wdmd.if
+│   │   ├── wireguard.if
+│   │   ├── xfs.if
+│   │   ├── xserver.if
+│   │   ├── zabbix.if
+│   │   ├── zarafa.if
+│   │   ├── zebra.if
+│   │   ├── zfs.if
+│   │   └── zosremote.if
+│   ├── services.xml
+│   ├── support
+│   │   ├── all_perms.spt
+│   │   ├── divert.m4
+│   │   ├── file_patterns.spt
+│   │   ├── ipc_patterns.spt
+│   │   ├── loadable_module.spt
+│   │   ├── misc_macros.spt
+│   │   ├── misc_patterns.spt
+│   │   ├── mls_mcs_macros.spt
+│   │   ├── obj_perm_sets.spt
+│   │   ├── policy.dtd
+│   │   ├── segenxml.py
+│   │   └── undivert.m4
+│   ├── system
+│   │   ├── application.if
+│   │   ├── authlogin.if
+│   │   ├── clock.if
+│   │   ├── daemontools.if
+│   │   ├── fstools.if
+│   │   ├── getty.if
+│   │   ├── hostname.if
+│   │   ├── init.if
+│   │   ├── ipsec.if
+│   │   ├── iptables.if
+│   │   ├── iscsi.if
+│   │   ├── libraries.if
+│   │   ├── locallogin.if
+│   │   ├── logging.if
+│   │   ├── lvm.if
+│   │   ├── miscfiles.if
+│   │   ├── modutils.if
+│   │   ├── mount.if
+│   │   ├── netlabel.if
+│   │   ├── raid.if
+│   │   ├── selinuxutil.if
+│   │   ├── setrans.if
+│   │   ├── sysnetwork.if
+│   │   ├── systemd.if
+│   │   ├── tmpfiles.if
+│   │   ├── udev.if
+│   │   ├── unconfined.if
+│   │   ├── userdomain.if
+│   │   ├── xdg.if
+│   │   └── xen.if
+│   └── system.xml
+├── init.pp
+├── iptables.pp
+├── irc.pp
+├── java.pp
+├── kerberos.pp
+├── libraries.pp
+├── loadkeys.pp
+├── locallogin.pp
+├── logging.pp
+├── logrotate.pp
+├── lvm.pp
+├── makewhatis.pp
+├── mandb.pp
+├── miscfiles.pp
+├── modutils.pp
+├── mount.pp
+├── mozilla.pp
+├── mplayer.pp
+├── mta.pp
+├── netutils.pp
+├── nscd.pp
+├── openct.pp
+├── openrc.pp
+├── pcscd.pp
+├── podman.pp
+├── policykit.pp
+├── portage.pp
+├── qemu.pp
+├── raid.pp
+├── resolvconf.pp
+├── rngd.pp
+├── rootlesskit.pp
+├── rpm.pp
+├── rsync.pp
+├── samba.pp
+├── screen.pp
+├── selinuxutil.pp
+├── sensord.pp
+├── setrans.pp
+├── shutdown.pp
+├── ssh.pp
+├── staff.pp
+├── storage.pp
+├── sudo.pp
+├── su.pp
+├── sysadm.pp
+├── sysnetwork.pp
+├── sysstat.pp
+├── systemd.pp
+├── tmpfiles.pp
+├── tripwire.pp
+├── udev.pp
+├── unconfined.pp
+├── unprivuser.pp
+├── usbguard.pp
+├── userdomain.pp
+├── usermanage.pp
+├── virt.pp
+├── vmware.pp
+├── wireguard.pp
+├── wireshark.pp
+├── xdg.pp
+├── xscreensaver.pp
+└── xserver.pp
+
+10 directories, 562 files
