@@ -1,0 +1,15 @@
+#!/bin/bash
+# .bash_alises IMA script by @genr8eofl copyright 2024 - AGPL3 License
+
+# IMA Aliases -->
+
+#alias imafindmissing="dmesg | grep 'IMA-signature-required' | awk '{print \$14}' | sort | uniq"
+#alias imafixmissing="imafindmissing | cut -d\" -f2 | while read D; do evm_sign_cmd $D; done"
+#alias evm_sign_cmd="evmctl sign -a sha512 -k /etc/keys/signing_key.priv -s"
+#alias ima_hash_cmd="evmctl ima_hash -a sha512 -k /etc/keys/signing_key.priv -s"
+#alias ima_fix2_cmd='evmctl2 ima_fix2 -s'
+#alias ima_clear='evmctl2 ima_clear -s'
+
+imacleanfix() { evmctl ima_clear -s "$@"; imafix2 -s "$@"; }   #Fixes one bad signature if verification failed
+#rather use imafix2 program :
+#(/usr/local/bin/imafix2 custom compiled from self-authored patch @/usr/local/src/ima-evm-utils/imafix2.c)

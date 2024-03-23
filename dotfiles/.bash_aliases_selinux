@@ -1,0 +1,90 @@
+#!/bin/bash
+# .bash_aliases script by @genr8eofl copyright 2024 - AGPL3 License
+
+# SELINUX related functions -->
+
+#Take/Change ownership user/context to me. Should work for multiple files.
+chownse() { chown genr8eofl: "$@"; chcon -v -u user_u "$@"; }
+chownser() { chown genr8eofl: "$@"; chcon -v -u user_u "$@"; restorecon -RFv "$@"; }
+
+#Compile a selinux policy module and install it:
+#Usage:  semakemod foobar.te
+#Caveat: "strict" policy is given as hardcoded, ../modules dir is my other invention
+semakefile() { make -f /usr/share/selinux/strict/include/Makefile "$@" || return 3; }
+semakemod() {
+  pp=$(echo "${1//.te/.pp}")
+  if [[ $(semakefile "$pp") ]] ; then
+    cp -bvf "$pp" ../modules/
+    restorecon -RFv ../modules/
+    semodule -i ../modules/"$pp"
+    semakegit "$@"
+  else
+    echo -e "${COLOR4}ERROR $?:${ENDCOLOR} There was an error with ${1} inside semakemod"
+    return 9
+  fi
+}
+semakegit() { semakegit.sh "$@" | grep -v "skipped" ; }
+
+#Compare module source vs built binary, check if hash has changed, if it has, rebuild.
+secheckmods() {
+#scan dir for files that need updating and build them.
+ for D in *.te; do
+  pp=$(echo "${D//.te/.pp}")
+  if [[ -e "${pp}" ]]; then
+   if semakefile "$pp" ; then
+    newsum=$(sha512sum "$pp" | awk '{print $1}')
+	oldsum=$(sha512sum ../modules/"$pp" | awk '{print $1}')
+    if [[ "${oldsum}" != "${newsum}" ]]; then
+  	  echo "   ${pp} CHANGED old=${oldsum}"
+      echo -e "[^]${COLOR4}${pp} CHANGED${ENDCOLOR} new=${newsum}"
+	  semakemod "${D}"
+    else
+      echo -e "[ ]${COLOR2}${pp} identical, ${ENDCOLOR} no need to rebuild, skipped."
+	fi
+   else
+    echo -e "${COLOR4}ERROR $?:${ENDCOLOR} There was an error processing ${D} with semakefile. Does it exist?"
+   fi
+  else
+    echo -e "${COLOR3}WARNING $?: ${pp} file does not exist! remaking now... ${ENDCOLOR}"
+	semakemod "${D}"
+  fi
+  echo
+ done
+}
+
+pp2cil() { /usr/libexec/selinux/hll/pp "$@" ; }
+
+#TODO: Make better.
+aud2te(){ tail -n "$1" "$2" | audit2why -eR >> "$2" ; nano +-1 "$2" ; }
+
+#invented a way to check if a module is providing lines of CIL
+# that would be duplicates of previous policy
+sedupecheck() {
+  if [[ $(semodule -r "$1") ]]; then
+    cat "$1".te | audit2why \
+	 | tee /tmp/sedupes-"$1" | less;
+    semodule -i ../modules/"$1".pp
+  else
+	echo "Error: The module cannot be unloaded safely. check my circular deps?"
+  fi
+}
+#TODO: Make better.
+#related, gather a list of all the major statements, and extract the type.
+# NOTE: inaccurate but good enough to copy/paste/tweak/fixgaps
+setypegrep() {
+  grep "^allow\|dontaudit\|auditallow" "$1"\
+   | awk '{print $2"\n"$3}' | sed 's/\;//' \
+    | cut -d':' -f1 | uniqawk | grep -v "self" \
+     | awk '{print "    type " $1";"}' \
+  | tee /tmp/setypes-"$1" | more ;
+}	#pattern deficiency, misses interfaces(type_t) and type_t { com bin at io ns }#
+	# doesnt check if they're valid, gets weird words.
+#TODO: make better
+#Important to reset dynamic context of generated cache files that have been mis-tagged. Why?
+# portage regenerates them, the code would come from the eclasses, and those don't set them itself for some reason. or call an update.
+#  or the .fc file type is not taking effect on these dynamic files because the program isnt selinux aware somehow ?
+serestoremime() {
+    setenforce 0
+    sed -e 's#HOME_DIR/\\#/home/genr8eofl/#' /etc/selinux/strict/policy/mime-icon-cache.fc | grep -v "^#\|.*?" | cut -d' ' -f1 | xargs restorecon -RFv
+    setenforce 1
+}
