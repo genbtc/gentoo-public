@@ -1,0 +1,95 @@
+
+## <summary>policy for hexchat</summary>
+
+########################################
+## <summary>
+##	Execute hexchat_exec_t in the hexchat domain.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`hexchat_domtrans',`
+	gen_require(`
+		type hexchat_t, hexchat_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	domtrans_pattern($1, hexchat_exec_t, hexchat_t)
+')
+
+######################################
+## <summary>
+##	Execute hexchat in the caller domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`hexchat_exec',`
+	gen_require(`
+		type hexchat_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	can_exec($1, hexchat_exec_t)
+')
+
+########################################
+## <summary>
+##	Execute hexchat in the hexchat domain, and
+##	allow the specified role the hexchat domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed to transition
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	The role to be allowed the hexchat domain.
+##	</summary>
+## </param>
+#
+interface(`hexchat_run',`
+	gen_require(`
+		type hexchat_t;
+		attribute_role hexchat_roles;
+	')
+
+	hexchat_domtrans($1)
+	roleattribute $2 hexchat_roles;
+')
+
+########################################
+## <summary>
+##	Role access for hexchat
+## </summary>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+## <param name="domain">
+##	<summary>
+##	User domain for the role
+##	</summary>
+## </param>
+#
+interface(`hexchat_role',`
+	gen_require(`
+		type hexchat_t;
+		attribute_role hexchat_roles;
+	')
+
+	roleattribute $1 hexchat_roles;
+
+	hexchat_domtrans($2)
+
+	ps_process_pattern($2, hexchat_t)
+	allow $2 hexchat_t:process { signull signal sigkill };
+')
