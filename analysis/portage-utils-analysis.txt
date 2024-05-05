@@ -1,5 +1,7 @@
-by genr8eofl - May 05, 2024
-portage-utils: Q
+#LICENSE: CC-BY-SA 4.0 Attribution - genr8eofl @ gentoo
+Q Analysis by genr8eofl - May 05, 2024 - v0.1 - investigating portage-utils v0.97
+
+portage-utils/
 -source files:
 	main.c
 	q.c
@@ -24,6 +26,7 @@ portage-utils: Q
 	qxpak.c
 
 main.c
+	int main(int argc, char **argv)
 	init_coredumps(void)
 	setup_quiet(void)
 	usage(int status, const char *flags, struct option const opts[],
@@ -40,12 +43,11 @@ main.c
 	read_one_repos_conf(const char *repos_conf, char **primary)
 	read_repos_conf(const char *configroot, const char *repos_conf, char **primary)
 	initialize_portage_env(void)
-	int main(int argc, char **argv)
 
 q.c
-	applet()
-	lookup_applet()
-	q_main()
+	q_main(int argc, char **argv)
+	lookup_applet(const char *)
+	lookup_applet_idx(const char *applet)
 	- help:
 	"install",  'i',	"Install symlinks for applets",
 	"overlays", 'o',	"Print available overlays (read from repos.conf)",
@@ -62,7 +64,9 @@ qatom.c
 	"lookup",   'l',	"Lookup atom in tree",
 
 qcheck.c
-	-help:
+	qcheck_main(int argc, char **argv)
+	qcheck_cb(tree_pkg_ctx *pkg_ctx, void *priv)
+	- help:
 	"format",	'F',	"Custom output format (default: " QCHECK_FORMAT ")",
 	"skip",		's',	"Ignore files matching the regular expression <arg>",
 	"update",	'u',	"Update missing files, chksum and mtimes for packages",
@@ -74,7 +78,10 @@ qcheck.c
 	"prelink",	'p',	"Undo prelink when calculating checksums",
 
 qdepends.c
-	-help:
+	qdepends_main(int argc, char **argv)
+	qdepends_print_depend(FILE *fp, const char *depend)
+	qdepends_results_cb(tree_pkg_ctx *pkg_ctx, void *priv)
+	- help:
 	"depend",		'd',	"Show DEPEND info",
 	"rdepend",		'r',	"Show RDEPEND info",
 	"pdepend",		'p',	"Show PDEPEND info",
@@ -87,6 +94,11 @@ qdepends.c
 	"pretty",		'S',	"Pretty format specified depend strings",
 
 qfile.c
+	qfile_main(int argc, char **argv)
+	qfile_check_plibreg(void *priv)
+	qfile_cb(tree_pkg_ctx *pkg_ctx, void *priv)
+	destroy_qfile_args(qfile_args_t *qfile_args)
+	prepare_qfile_args(const int argc, const char **argv, struct qfile_opt_state *state)
 	- help:
 	"format",		'F',	"Print matched atom using given format string",
 	"slots",		'S',	"Display installed packages with slots",
@@ -97,6 +109,15 @@ qfile.c
 	"skip-plibreg", 'P',	"Don't look in the prunelib registry",
 
 qglsa.c #ifdef APPLET_qglsa
+	qglsa_main(int argc, char **argv)
+	qglsa_load_list(void)
+	qglsa_append_to_list(const char *glsa)
+	qglsa_decode_entities(char *xml_buf, size_t len)
+	qglsa_get_xml_tag_attribute(const char *xml_buf, const char *tag, const char *attribute)
+	qglsa_get_xml_tag(const char *xml_buf, const char *tag)
+	qglsa_act_list(char *glsa)
+	qglsa_run_action(const char *overlay, qglsa_action action, const char *fixed_list,
+					 bool all_glsas, unsigned int ind, int argc, char **argv)
 	- help:
 	"list",		'l',	"List GLSAs",
 	"dump",		'd',	"Dump info about GLSAs",
@@ -106,6 +127,18 @@ qglsa.c #ifdef APPLET_qglsa
 	"inject",   'i',	"Mark specified GLSAs as fixed",
 
 qgrep.c
+	qgrep_main(int argc, char **argv)
+	qgrep_buf_list_alloc(const char length)
+	qgrep_buf_list_free(qgrep_buf_t *head)
+	qgrep_buf_list_invalidate(qgrep_buf_t *head)
+	qgrep_print_line(qgrep_buf_t *current, const char *label,
+					 const int line_number, const char zig, const regex_t* preg,
+					 const QGREP_STR_FUNC searchfunc, const char* searchstr)
+	qgrep_print_before_context(qgrep_buf_t *current, const char num_lines_before,
+							   const char *label, const int match_line_number)
+	qgrep_grepat(int fd, const char *file, const char *label,
+				 struct qgrep_grepargs *a)
+	qgrep_cache_cb(tree_pkg_ctx *pkg_ctx, void *priv)
 	- help:
 	"invert-match",		'I',	"Select non-matching lines",
 	"ignore-case",		'i',	"Ignore case distinctions",
@@ -124,6 +157,25 @@ qgrep.c
 	"after",			'A',	"Print <arg> lines of trailing context",
 
 qkeyword.c
+	qkeyword_main(int argc, char **argv)
+	decode_status(char c)
+	decode_arch(const char *arch)
+	print_keywords(const char *category, const char *ebuild, int *keywords)
+	read_keywords(char *s, int *keywords)
+	qkeyword_imlate(tree_pkg_ctx *pkg_ctx, void *priv)
+	qkeyword_kw(tree_pkg_ctx *pkg_ctx, void *priv, int what)
+	qkeyword_lstable(tree_pkg_ctx *pkg_ctx, void *priv)
+	qkeyword_ltesting(tree_pkg_ctx *pkg_ctx, void *priv)
+	qkeyword_not(tree_pkg_ctx *pkg_ctx, void *priv)
+	qkeyword_all(tree_pkg_ctx *pkg_ctx, void *priv)
+	qkeyword_dropped(tree_pkg_ctx *pkg_ctx, void *priv)
+	print_seconds_for_earthlings(const unsigned long t)
+	qkeyword_stats(tree_pkg_ctx *pkg_ctx, void *priv)
+	qkeyword_testing_only(tree_pkg_ctx *pkg_ctx, void *priv)
+	qkeyword_results_cb(tree_pkg_ctx *pkg_ctx, void *priv)
+	keyword_sort(const void *l, const void *r)
+	qkeyword_load_arches(const char *overlay)
+	qkeyword_traverse(tree_pkg_cb func, void *priv)
 	- help:
 	"matchpkg",		'p',	"match pkgname",
 	"matchcat",		'c',	"match catname",
@@ -139,6 +191,11 @@ qkeyword.c
 	"format",		'F',	"Print latest atom using given format string",
 
 qlist.c
+	qlist_main(int argc, char **argv)
+	cmpstringp(const void *p1, const void *p2)
+	umapstr(char display, tree_pkg_ctx *pkg_ctx)
+	qlist_match(tree_pkg_ctx *pkg_ctx, const char *name, depend_atom **name_atom, bool exact, bool applymasks)
+	qlist_cb(tree_pkg_ctx *pkg_ctx, void *priv)
 	- help:
 	"installed", 'I',	"Just show installed package names",
 	"binpkgs",   'k',	"Use binpkgs instead of installed packages",
@@ -157,6 +214,13 @@ qlist.c
 	"format",	 'F',	"Print matched atom using given format string",
 
 qlop.c
+	parse_date(const char *sdate, time_t *t)
+	static char *fmt_date(struct qlop_mode *flags, time_t ts, time_t te)
+	static char *fmt_elapsedtime(struct qlop_mode *flags, time_t e)
+	pkg_sort_cb(const void *l, const void *r)
+	do_emerge_log(const char *log, struct qlop_mode *flags, array_t *atoms, time_t tbegin, time_t tend)
+	static array_t *probe_proc(array_t *atoms)
+	qlop_main(int argc, char **argv)
 	- help:
 	"summary",		'c',	"Print summary of average merges (implies -a)",
 	"time",			't',	"Print time taken to complete action",
@@ -178,6 +242,26 @@ qlop.c
 	"format",		'F',	"Print matched atom using given format string",
 
 qmanifest.c #ifdef ENABLE_QMANIFEST
+	qmanifest_main(int argc, char **argv)
+	update_times(struct timeval *tv, struct stat *s)
+	compare_strings(const void *l, const void *r)
+	list_dir(char ***retlist, size_t *retcnt, const char *path)
+	write_hashes(struct timeval *tv, const char *root, const char *name, const char *type, FILE *m, gzFile gm)
+	write_hashes_dir(struct timeval *tv, const char *root, const char *name, gzFile zm)
+	process_files(struct timeval *tv, const char *dir, const char *off, FILE *m)
+	parse_layout_conf(const char *path)
+	generate_dir(const char *dir, enum type_manifest mtype)
+	gpgme_pw_cb(void *opaque, const char *uid_hint, const char *pw_info, int last_was_bad, int fd)
+	process_dir_gen(void)
+	msgs_add(verify_msg **msgs, const char *manifest, const char *ebuild, const char *fmt, ...)
+	verify_gpg_sig(const char *path, verify_msg **msgs)
+	verify_file(const char *dir, char *mfline, const char *mfest, verify_msg **msgs)
+	compare_elems(const void *l, const void *r)
+	verify_dir(const char *dir, char **elems, size_t elemslen, size_t skippath, const char *mfest, verify_msg **msgs)
+	verify_manifest(const char *dir, const char *manifest, verify_msg **msgs)
+	verify_timestamp(const char *ts)
+	format_line(const char *pfx, const char *msg)
+	process_dir_vrfy(void)
 	- help:
 	"generate",		'g',	"Generate thick Manifests",
 	"signas",		's',	"Sign generated Manifest using GPG key",
@@ -186,6 +270,59 @@ qmanifest.c #ifdef ENABLE_QMANIFEST
 	"overlay",		'o',	"Treat arguments as overlay names",
 
 qmerge.c
+	qmerge_main(int argc, char **argv)
+	qmerge_prompt(const char *p)
+	fetch(const char *destdir, const char *src)
+	qmerge_initialize(void)
+	best_version(const depend_atom *atom, int mode)
+	config_protected(
+		const char *buf, int cp_argc, char **cp_argv, int cpm_argc, char **cpm_argv)
+	crossmount_rm(
+		const char *fname, const struct stat * const st, int fd, char *qpth)
+	install_mask_check_dir(
+		char ***maskv, int maskc, const struct stat * const st, int fd, ssize_t level, enum inc_exc parent_mode, char *qpth)
+	install_mask_pwd(int iargc, char **iargv, const struct stat * const st, int fd)
+	qprint_tree_node(
+		int                   level,
+		const tree_match_ctx *mpkg,
+		const tree_match_ctx *bpkg,
+		int                   replacing)
+	pkg_run_func_at(
+		int             dirfd,
+		const char     *vdb_path,
+		const char     *phases,
+		enum pkg_phases phaseidx,
+		const char     *D,
+		const char     *T,
+		const char     *EAPI,
+		const char     *replacing)
+	merge_tree_at(
+		int fd_src, const char *src, int fd_dst, const char *dst,
+        FILE *contents, size_t eprefix_len, set **objs, char **cpathp,
+        int cp_argc, char **cp_argv, int cpm_argc, char **cpm_argv)
+	pkg_extract_xpak_cb(
+		void *ctx,
+		char *pathname,
+		int pathname_len,
+		int data_offset,
+		int data_len,
+		char *data)
+	pkg_merge(int level, const depend_atom *qatom, const tree_match_ctx *mpkg)
+	pkg_unmerge(
+		tree_pkg_ctx *pkg_ctx, depend_atom *rpkg, set *keep,
+		int cp_argc, char **cp_argv, int cpm_argc, char **cpm_argv)
+	unlink_empty(const char *buf)
+	pkg_verify_checksums(
+		const tree_match_ctx *pkg,
+		int                   strict,
+		int                   display)
+	pkg_fetch(int level, const depend_atom *qatom, const tree_match_ctx *mpkg)
+	qmerge_unmerge_cb(tree_pkg_ctx *pkg_ctx, void *priv)
+	unmerge_packages(set *todo)
+	qmerge_add_set_file(const char *pfx, const char *dir, const char *file, set *q)
+	qmerge_add_set_system(void *data, char *buf)
+	qmerge_add_set(char *buf, set *q)
+	qmerge_run(set *todo)
 	- help:
 	"fetch",	'f',	"Fetch package and newest Packages metadata",
 	"force",	'F',	"Fetch package (skipping Packages)",
@@ -199,6 +336,11 @@ qmerge.c
 	"debug",	128,	"Run shell funcs with `set -x`",
 
 qpkg.c
+	qpkg_main(int argc, char **argv)
+	qpkg_clean(char *dirp)
+	check_pkg_install_mask(char *name)
+	qpkg_make(tree_pkg_ctx *pkg)
+	qpkg_cb(tree_pkg_ctx *pkg, void *priv)
 	- help:
 	"clean",   'c', "clean pkgdir of files that are not installed",
 	"eclean",  'E', "clean pkgdir of files that are not in the tree anymore",
@@ -206,6 +348,8 @@ qpkg.c
 	"pkgdir",  'P', "alternate package directory",
 
 qsearch.c
+	qsearch_main(int argc, char **argv)
+	qsearch_cb(tree_pkg_ctx *pkg_ctx, void *priv)
 	- help:
 	"all",		 'a',	"List the descriptions of every package in the cache",
 	"search",	 's',	"Regex search package basenames",
@@ -216,6 +360,8 @@ qsearch.c
 	"format",	 'F',	"Print matched atom using given format string",
 
 qsize.c
+	qsize_main(int argc, char **argv)
+	qsize_cb(tree_pkg_ctx *pkg_ctx, void *priv)
 	- help:
 	"filesystem", 'f',	"Show size used on disk",
 	"sum",		  's',	"Include a summary",
@@ -227,6 +373,10 @@ qsize.c
 	"format",	  'F',	"Print matched atom using given format string",
 
 qtbz2.c
+	qtbz2_main(int argc, char **argv)
+	tbz2_compose(int dir_fd, const char *tarbz2, const char *xpak, const char *tbz2)
+	_tbz2_write_file(FILE *src, int dir_fd, const char *dst, size_t len)
+	tbz2_decompose(int dir_fd, const char *tbz2, const char *tarbz2, const char *xpak)
 	- help:
 	"dir",	  'd',	"Change to specified directory",
 	"join",   'j',	"Join: <tar.bz2> <xpak> <tbz2>",
@@ -236,6 +386,13 @@ qtbz2.c
 	"stdout", 'O',	"Write files to stdout",
 
 qtegrity.c
+	qtegrity_main(int argc, char **argv)
+	check_sha(char *ret_digest, char *path, char *algo)
+	static void get_fname_from_line(char * line, char **ret, int digest_size, int offset)
+	static void get_digest_from_line(char * line, char * ret, int digest_size, int offset)
+	static void get_known_good_digest(const char * fn_store, char * recorded_fname, char * ret, int recorded_digest_size)
+	static int get_size_digest(char * line)
+	static int check_file(char * filename)
 	- help:
 	"add",					'a', "Add file to store of known-good digests",
 	"ignore-non-existent",  'i', "Be silent if recorded file no longer exists",
@@ -243,6 +400,12 @@ qtegrity.c
 	//TODO "convert",		'c', "Convert known good digests to different hash function",
 
 quse.c
+	quse_main(int argc, char **argv)
+	quse_search_use_local_desc(int portdirfd, struct quse_state *state)
+	quse_search_use_desc(int portdirfd, struct quse_state *state)
+	quse_search_profiles_desc(int portdirfd, struct quse_state *state)
+	quse_describe_flag(const char *root, const char *overlay, struct quse_state *state)
+	quse_results_cb(tree_pkg_ctx *pkg_ctx, void *priv)
 	- help:
 	"exact",	'e',	"Show exact non regexp matching using strcmp",
 	"all",		'a',	"List all ebuilds, don't match anything",
@@ -254,6 +417,7 @@ quse.c
 	"format",   'F',	"Print matched atom using given format string",
 
 qwhich.c
+	qwhich_main(int argc, char **argv)
 	- help:
 	"vdb",		'I',	"Look in VDB (installed packages)",
 	"binpkg",	'b',	"Look at binary packages",
@@ -268,6 +432,8 @@ qwhich.c
 	"format",	'F',	"Print matched using given format string",
 
 qxpak.c
+	qxpak_main(int argc, char **argv)
+	_xpak_callback(void *ctx, char *pathname, int pathname_len, int data_offset, int data_len, char *data)
 	- help:
 	"list",		'l',	"List the contents of an archive",
 	"extract",	'x',	"Extract the contents of an archive",
