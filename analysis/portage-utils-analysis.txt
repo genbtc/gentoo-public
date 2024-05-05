@@ -1,214 +1,234 @@
 by genr8eofl - May 05, 2024
 portage-utils: Q
 -source files:
-    q.c
-    qatom.c
-    qcheck.c
-    qdepends.c
-    qfile.c
-    qglsa.c
-    qgrep.c
-    qkeyword.c
-    qlist.c
-    qlop.c
-    qmanifest.c
-    qmerge.c
-    qpkg.c
-    qsearch.c
-    qsize.c
-    qtbz2.c
-    qtegrity.c
-    quse.c
-    qwhich.c
-    qxpak.c
+	main.c
+	q.c
+	qatom.c
+	qcheck.c
+	qdepends.c
+	qfile.c
+	qglsa.c
+	qgrep.c
+	qkeyword.c
+	qlist.c
+	qlop.c
+	qmanifest.c
+	qmerge.c
+	qpkg.c
+	qsearch.c
+	qsize.c
+	qtbz2.c
+	qtegrity.c
+	quse.c
+	qwhich.c
+	qxpak.c
+
+main.c
+	init_coredumps(void)
+	setup_quiet(void)
+	usage(int status, const char *flags, struct option const opts[],
+		  const char * const help[], const char *desc, int blabber)
+	version_barf(void)
+	freeargv(int argc, char **argv)
+	makeargv(const char *string, int *argc, char ***argv)
+	strincr_var(const char *name, const char *s, char **value, size_t *value_len)
+	setincr_var(const char *s, set **vals)
+	get_portage_env_var(env_vars *vars, const char *name)
+	set_portage_env_var(env_vars *var, const char *value, const char *src)
+	read_portage_file(const char *file, enum portage_file_type type, void *data)
+	read_portage_profile(const char *profile, env_vars vars[], set *masks)
+	read_one_repos_conf(const char *repos_conf, char **primary)
+	read_repos_conf(const char *configroot, const char *repos_conf, char **primary)
+	initialize_portage_env(void)
+	int main(int argc, char **argv)
 
 q.c
-    applet
-    lookup_applet
-    q_main
-    - help:
-	"install",   'i',	"Install symlinks for applets",
-	"overlays",  'o',	"Print available overlays (read from repos.conf)",
-	"envvar",    'e',	"Print used variables and their found values",
-	"masks",     'm',	"Print (package.)masks for the current profile",
+	applet()
+	lookup_applet()
+	q_main()
+	- help:
+	"install",  'i',	"Install symlinks for applets",
+	"overlays", 'o',	"Print available overlays (read from repos.conf)",
+	"envvar",	'e',	"Print used variables and their found values",
+	"masks",	'm',	"Print (package.)masks for the current profile",
 
 qatom.c
-    qatom_main(int argc, char **argv)
-    - help: 
+	qatom_main(int argc, char **argv)
+	- help: 
 	"format",   'F',	"Custom output format (default: " QATOM_FORMAT ")",
 	"compare",  'c',	"Compare two atoms",
 	"scompare", 's',	"Compare two atoms in the given order data, query",
-	"print",    'p',	"Print reconstructed atom",
+	"print",	'p',	"Print reconstructed atom",
 	"lookup",   'l',	"Lookup atom in tree",
 
 qcheck.c
-    -help:
-	"format",         'F',	"Custom output format (default: " QCHECK_FORMAT ")",
-	"skip",           's',	"Ignore files matching the regular expression <arg>",
-	"update",         'u',	"Update missing files, chksum and mtimes for packages",
-	"noafk",          'A',	"Ignore missing files",
-	"badonly",        'B',	"Only print pkgs containing bad files",
-	"nohash",         'H',	"Ignore differing/unknown file chksums",
-	"nomtime",        'T',	"Ignore differing file mtimes",
+	-help:
+	"format",	'F',	"Custom output format (default: " QCHECK_FORMAT ")",
+	"skip",		's',	"Ignore files matching the regular expression <arg>",
+	"update",	'u',	"Update missing files, chksum and mtimes for packages",
+	"noafk",	'A',	"Ignore missing files",
+	"badonly",	'B',	"Only print pkgs containing bad files",
+	"nohash",	'H',	"Ignore differing/unknown file chksums",
+	"nomtime",	'T',	"Ignore differing file mtimes",
 	"skip-protected", 'P',	"Ignore files in CONFIG_PROTECT-ed paths",
-	"prelink",        'p',	"Undo prelink when calculating checksums",
+	"prelink",	'p',	"Undo prelink when calculating checksums",
 
 qdepends.c
-    -help:
-	"depend",   	'd',	"Show DEPEND info",
-	"rdepend",  	'r',	"Show RDEPEND info",
-	"pdepend",  	'p',	"Show PDEPEND info",
-	"bdepend",  	'b',	"Show BDEPEND info",
-	"query",    	'Q',	"Query reverse deps",
+	-help:
+	"depend",		'd',	"Show DEPEND info",
+	"rdepend",		'r',	"Show RDEPEND info",
+	"pdepend",		'p',	"Show PDEPEND info",
+	"bdepend",		'b',	"Show BDEPEND info",
+	"query",		'Q',	"Query reverse deps",
 	"installed",	'i',	"Search installed packages using VDB",
-	"tree",     	't',	"Search available ebuilds in the tree",
-	"use",      	'U',	"Apply profile USE-flags to conditional deps",
-	"format",   	'F',	"Print matched atom using given format string",
-	"pretty",   	'S',	"Pretty format specified depend strings",
+	"tree",			't',	"Search available ebuilds in the tree",
+	"use",			'U',	"Apply profile USE-flags to conditional deps",
+	"format",		'F',	"Print matched atom using given format string",
+	"pretty",		'S',	"Pretty format specified depend strings",
 
 qfile.c
-    - help:
-	"format",      	'F', 	"Print matched atom using given format string",
-	"slots",       	'S', 	"Display installed packages with slots",
-	"root-prefix", 	'R', 	"Assume arguments are already prefixed by $ROOT",
-	"dir",         	'd', 	"Also match directories for single component arguments",
-	"orphans",      'o', 	"List orphan files",
-	"exclude",      'x', 	"Don't look in package <arg> (used with --orphans)",
-	"skip-plibreg", 'P', 	"Don't look in the prunelib registry",
+	- help:
+	"format",		'F',	"Print matched atom using given format string",
+	"slots",		'S',	"Display installed packages with slots",
+	"root-prefix",	'R',	"Assume arguments are already prefixed by $ROOT",
+	"dir",			'd',	"Also match directories for single component arguments",
+	"orphans",		'o',	"List orphan files",
+	"exclude",		'x',	"Don't look in package <arg> (used with --orphans)",
+	"skip-plibreg", 'P',	"Don't look in the prunelib registry",
 
 qglsa.c #ifdef APPLET_qglsa
-    - help:
-	"list",    'l',	"List GLSAs",
-	"dump",    'd',	"Dump info about GLSAs",
-	"test",    't',	"Test if system is affected by GLSAs",
-	"pretend", 'p',	"Do everything but actually emerge the package",
-	"fix",     'f',	"Auto-apply GLSAs to the system",
-	"inject",  'i',	"Mark specified GLSAs as fixed",
+	- help:
+	"list",		'l',	"List GLSAs",
+	"dump",		'd',	"Dump info about GLSAs",
+	"test",		't',	"Test if system is affected by GLSAs",
+	"pretend",  'p',	"Do everything but actually emerge the package",
+	"fix",		'f',	"Auto-apply GLSAs to the system",
+	"inject",   'i',	"Mark specified GLSAs as fixed",
 
 qgrep.c
-    - help:
-	"invert-match",  	'I',	"Select non-matching lines",
-	"ignore-case",   	'i',	"Ignore case distinctions",
-	"atom-name",     	'N',	"Print the atom instead of filename for each match",
-	"count",         	'c',	"Only print a count of matching lines per FILE",
-	"list",          	'l',	"Only print FILE names containing matches",
-	"invert-list",  	'L',	"Only print FILE names containing no match",
-	"regexp",       	'e',	"Use PATTERN as a regular expression",
-	"extended",     	'x',	"Use PATTERN as an extended regular expression",
-	"installed",    	'J',	"Search in installed ebuilds instead of the tree",
-	"eclass",       	'E',	"Search in eclasses instead of ebuilds",
+	- help:
+	"invert-match",		'I',	"Select non-matching lines",
+	"ignore-case",		'i',	"Ignore case distinctions",
+	"atom-name",		'N',	"Print the atom instead of filename for each match",
+	"count",			'c',	"Only print a count of matching lines per FILE",
+	"list",				'l',	"Only print FILE names containing matches",
+	"invert-list",		'L',	"Only print FILE names containing no match",
+	"regexp",			'e',	"Use PATTERN as a regular expression",
+	"extended",			'x',	"Use PATTERN as an extended regular expression",
+	"installed",		'J',	"Search in installed ebuilds instead of the tree",
+	"eclass",			'E',	"Search in eclasses instead of ebuilds",
 	"skip-comments",	's',	"Skip comments lines",
-	"repo",         	'R',	"Print source repository name for each match (implies -N)",
-	"skip",         	'S',	"Skip lines matching <arg>",
-	"before",       	'B',	"Print <arg> lines of leading context",
-	"after",        	'A',	"Print <arg> lines of trailing context",
+	"repo",				'R',	"Print source repository name for each match (implies -N)",
+	"skip",				'S',	"Skip lines matching <arg>",
+	"before",			'B',	"Print <arg> lines of leading context",
+	"after",			'A',	"Print <arg> lines of trailing context",
 
 qkeyword.c
-    - help:
-	"matchpkg",    	'p',	"match pkgname",
-	"matchcat",    	'c',	"match catname",
-	"matchmaint",  	'm',	"match maintainer email from metadata.xml (slow)",
-	"imlate",      	'i',	"list packages that can be marked stable for <arch>",
-	"dropped",      'd',	"list packages that have dropped keywords for <arch>",
+	- help:
+	"matchpkg",		'p',	"match pkgname",
+	"matchcat",		'c',	"match catname",
+	"matchmaint",	'm',	"match maintainer email from metadata.xml (slow)",
+	"imlate",		'i',	"list packages that can be marked stable for <arch>",
+	"dropped",		'd',	"list packages that have dropped keywords for <arch>",
 	"needsstable",	't',	"list packages that have ~arch versions, but no stable versions for <arch>",
-	"stats",      	's',	"display statistics about the portage tree",
-	"all",          'a',	"list packages that have at least one version keyworded for <arch>",
-	"not",        	'n',	"list packages that aren't keyworded for <arch>",
-	"stable",     	'S',	"list latest stable version per package for <arch>",
-	"testing",    	'T',	"list latest testing version per package for <arch>",
-	"format",     	'F',	"Print latest atom using given format string",
+	"stats",		's',	"display statistics about the portage tree",
+	"all",			'a',	"list packages that have at least one version keyworded for <arch>",
+	"not",			'n',	"list packages that aren't keyworded for <arch>",
+	"stable",		'S',	"list latest stable version per package for <arch>",
+	"testing",		'T',	"list latest testing version per package for <arch>",
+	"format",		'F',	"Print latest atom using given format string",
 
 qlist.c
-    - help:
+	- help:
 	"installed", 'I',	"Just show installed package names",
 	"binpkgs",   'k',	"Use binpkgs instead of installed packages",
-	"tree",      't',	"Use available packages in the tree instead of installed",
-	"slots",     'S',	"Display installed packages with slots (use twice for subslots)",
-	"repo",      'R',	"Display installed packages with repository",
-	"umap",      'U',	"Display installed packages with flags used",
+	"tree",		 't',	"Use available packages in the tree instead of installed",
+	"slots",	 'S',	"Display installed packages with slots (use twice for subslots)",
+	"repo",		 'R',	"Display installed packages with repository",
+	"umap",		 'U',	"Display installed packages with flags used",
 	"columns",   'c',	"Display column view",
-	"masks",     'm',	"Exclude matches masked by profiles",
+	"masks",	 'm',	"Exclude matches masked by profiles",
 	"showdebug", 128,	"Show /usr/lib/debug and /usr/src/debug files",
-	"exact",     'e',	"Exact match (only CAT/PN or PN without PV)",
-	"dir",       'd',	"Only show directories",
-	"obj",       'o',	"Only show objects",
-	"sym",       's',	"Only show symlinks",
+	"exact",	 'e',	"Exact match (only CAT/PN or PN without PV)",
+	"dir",		 'd',	"Only show directories",
+	"obj",		 'o',	"Only show objects",
+	"sym",		 's',	"Only show symlinks",
 	//TODO "file", 'f',	/* "query filename for pkgname", */
-	"format",    'F',	"Print matched atom using given format string",
+	"format",	 'F',	"Print matched atom using given format string",
 
 qlop.c
-    - help:
-	"summary",   	'c',	"Print summary of average merges (implies -a)",
-	"time",      	't',	"Print time taken to complete action",
-	"average",   	'a',	"Print average time taken to complete action",
-	"predict",   	'p',	"Print prediction of time it takes to complete action",
-	"human",     	'H',	"Print elapsed time in human readable format (use with -t or -a)",
-	"machine",  	'M',	"Print start/elapsed time as seconds with no formatting",
-	"merge",    	'm',	"Show merge history",
-	"unmerge",  	'u',	"Show unmerge history",
+	- help:
+	"summary",		'c',	"Print summary of average merges (implies -a)",
+	"time",			't',	"Print time taken to complete action",
+	"average",		'a',	"Print average time taken to complete action",
+	"predict",		'p',	"Print prediction of time it takes to complete action",
+	"human",		'H',	"Print elapsed time in human readable format (use with -t or -a)",
+	"machine",		'M',	"Print start/elapsed time as seconds with no formatting",
+	"merge",		'm',	"Show merge history",
+	"unmerge",		'u',	"Show unmerge history",
 	"autoclean",	'U',	"Show autoclean unmerge history",
-	"sync",     	's',	"Show sync history",
-	"emerge",   	'E',	"Show last merge similar to how emerge(1) -v would show it",
-	"endtime",  	'e',	"Report time at which the operation finished (iso started)",
-	"running",  	'r',	"Show current emerging packages",
-	"date",     	'd',	"Limit selection to this time (1st -d is start, 2nd -d is end)",
+	"sync",			's',	"Show sync history",
+	"emerge",		'E',	"Show last merge similar to how emerge(1) -v would show it",
+	"endtime",		'e',	"Report time at which the operation finished (iso started)",
+	"running",		'r',	"Show current emerging packages",
+	"date",			'd',	"Limit selection to this time (1st -d is start, 2nd -d is end)",
 	"lastmerge",	'l',	"Limit selection to last Portage emerge action",
-	"logfile",  	'f',	"Read emerge logfile instead of $EMERGE_LOG_DIR/" QLOP_DEFAULT_LOGFILE,
-	"atoms",    	'w',	"Read package atoms to report from file",
-	"format",   	'F',	"Print matched atom using given format string",
+	"logfile",		'f',	"Read emerge logfile instead of $EMERGE_LOG_DIR/" QLOP_DEFAULT_LOGFILE,
+	"atoms",		'w',	"Read package atoms to report from file",
+	"format",		'F',	"Print matched atom using given format string",
 
 qmanifest.c #ifdef ENABLE_QMANIFEST
-    - help:
-	"generate",     'g',	"Generate thick Manifests",
-	"signas",       's',	"Sign generated Manifest using GPG key",
+	- help:
+	"generate",		'g',	"Generate thick Manifests",
+	"signas",		's',	"Sign generated Manifest using GPG key",
 	"passphrase",   'p',	"Ask for GPG key password (instead of relying on gpg-agent)",
-	"dir",          'd',	"Treat arguments as directories",
-	"overlay",      'o',	"Treat arguments as overlay names",
+	"dir",			'd',	"Treat arguments as directories",
+	"overlay",		'o',	"Treat arguments as overlay names",
 
 qmerge.c
-    - help:
-	"fetch",  	'f',	"Fetch package and newest Packages metadata",
-	"force",  	'F',	"Fetch package (skipping Packages)",
-	"search", 	's',	"Search available packages",
+	- help:
+	"fetch",	'f',	"Fetch package and newest Packages metadata",
+	"force",	'F',	"Fetch package (skipping Packages)",
+	"search",	's',	"Search available packages",
 	"install",	'K',	"Install package",
 	"unmerge",	'U',	"Uninstall package",
 	"pretend",	'p',	"Pretend only",
-	"update", 	'u',	"Update only",
-	"yes",    	'y',	"Don't prompt before overwriting",
-	"nodeps", 	'O',	"Don't merge dependencies",
-	"debug",  	128,	"Run shell funcs with `set -x`",
+	"update",	'u',	"Update only",
+	"yes",		'y',	"Don't prompt before overwriting",
+	"nodeps",	'O',	"Don't merge dependencies",
+	"debug",	128,	"Run shell funcs with `set -x`",
 
 qpkg.c
-    - help:
+	- help:
 	"clean",   'c', "clean pkgdir of files that are not installed",
 	"eclean",  'E', "clean pkgdir of files that are not in the tree anymore",
 	"pretend", 'p', "pretend only",
 	"pkgdir",  'P', "alternate package directory",
 
 qsearch.c
-    - help:
-	"all",       'a',	"List the descriptions of every package in the cache",
-	"search",    's',	"Regex search package basenames",
-	"desc",      'S',	"Regex search package descriptions (or homepage when using -H)",
+	- help:
+	"all",		 'a',	"List the descriptions of every package in the cache",
+	"search",	 's',	"Regex search package basenames",
+	"desc",		 'S',	"Regex search package descriptions (or homepage when using -H)",
 	"name-only", 'N',	"Only show package name",
 	"homepage",  'H',	"Show homepage info instead of description",
-	"repo",      'R',	"Show repository the ebuild originates from",
-	"format",    'F',	"Print matched atom using given format string",
+	"repo",		 'R',	"Show repository the ebuild originates from",
+	"format",	 'F',	"Print matched atom using given format string",
 
 qsize.c
-    - help:
+	- help:
 	"filesystem", 'f',	"Show size used on disk",
-	"sum",        's',	"Include a summary",
+	"sum",		  's',	"Include a summary",
 	"sum-only",   'S',	"Show just the summary",
 	"megabytes",  'm',	"Display all sizes in megabytes",
 	"kilobytes",  'k',	"Display all sizes in kilobytes",
-	"bytes",      'b',	"Display all sizes in bytes",
-	"ignore",     'i',	"Ignore regexp string",
-	"format",     'F',	"Print matched atom using given format string",
+	"bytes",	  'b',	"Display all sizes in bytes",
+	"ignore",	  'i',	"Ignore regexp string",
+	"format",	  'F',	"Print matched atom using given format string",
 
 qtbz2.c
-    - help:
-	"dir",    'd',	"Change to specified directory",
+	- help:
+	"dir",	  'd',	"Change to specified directory",
 	"join",   'j',	"Join: <tar.bz2> <xpak> <tbz2>",
 	"split",  's',	"Split a tbz2 into a tar.bz2 + xpak",
 	"tarbz2", 't',	"Just split the tar.bz2",
@@ -216,41 +236,41 @@ qtbz2.c
 	"stdout", 'O',	"Write files to stdout",
 
 qtegrity.c
-    - help:
-	"add",                 'a', "Add file to store of known-good digests",
-	"ignore-non-existent", 'i', "Be silent if recorded file no longer exists",
-	"show-matches",        's', "Show recorded digests that match with known-good digests",
-    //TODO "convert",      'c', "Convert known good digests to different hash function",
+	- help:
+	"add",					'a', "Add file to store of known-good digests",
+	"ignore-non-existent",  'i', "Be silent if recorded file no longer exists",
+	"show-matches",			's', "Show recorded digests that match with known-good digests",
+	//TODO "convert",		'c', "Convert known good digests to different hash function",
 
 quse.c
-    - help:
-    "exact",    	'e',	"Show exact non regexp matching using strcmp",
-    "all",      	'a',	"List all ebuilds, don't match anything",
-    "license",  	'L',	"Use the LICENSE vs IUSE",
-    "describe", 	'D',	"Describe the USE flag",
-    "installed", 	'I',	"Only search installed packages",
-    "package",  	'p',	"Restrict matching to package or category",
-    "repo",     	'R',	"Show repository the ebuild originates from",
-    "format",   	'F',	"Print matched atom using given format string",
+	- help:
+	"exact",	'e',	"Show exact non regexp matching using strcmp",
+	"all",		'a',	"List all ebuilds, don't match anything",
+	"license",  'L',	"Use the LICENSE vs IUSE",
+	"describe", 'D',	"Describe the USE flag",
+	"installed",'I',	"Only search installed packages",
+	"package",  'p',	"Restrict matching to package or category",
+	"repo",		'R',	"Show repository the ebuild originates from",
+	"format",   'F',	"Print matched atom using given format string",
 
 qwhich.c
-    - help:
-    "vdb",    	'I',	"Look in VDB (installed packages)",
-    "binpkg", 	'b',	"Look at binary packages",
-    "tree",   	't',	"Look in main tree and overlays",
-    "pretty", 	'p',	"Print (pretty) atom instead of path for use with -F",
-    "dir",    	'd',	"Print directory instead of path",
-    "repo",   	'R',	"Print repository name instead of path for tree/overlay matches",
-    "first",  	'f',	"Stop searching after first match (implies -l)",
-    "latest", 	'l',	"Only return latest version for each match",
-    "novirtual",'T',	"Skip virtual category",
-    "noacct", 	'A',	"Skip acct-user and acct-group categories",
-    "format",	'F',	"Print matched using given format string",
+	- help:
+	"vdb",		'I',	"Look in VDB (installed packages)",
+	"binpkg",	'b',	"Look at binary packages",
+	"tree",		't',	"Look in main tree and overlays",
+	"pretty",	'p',	"Print (pretty) atom instead of path for use with -F",
+	"dir",		'd',	"Print directory instead of path",
+	"repo",		'R',	"Print repository name instead of path for tree/overlay matches",
+	"first",	'f',	"Stop searching after first match (implies -l)",
+	"latest",	'l',	"Only return latest version for each match",
+	"novirtual",'T',	"Skip virtual category",
+	"noacct",	'A',	"Skip acct-user and acct-group categories",
+	"format",	'F',	"Print matched using given format string",
 
 qxpak.c
-    - help:
-    "list",	   'l',	"List the contents of an archive",
-	"extract", 'x',	"Extract the contents of an archive",
-	"create",  'c',	"Create an archive of a directory/files",
-	"dir",     'd',	"Change to specified directory",
-	"stdout",  'O',	"Write files to stdout",
+	- help:
+	"list",		'l',	"List the contents of an archive",
+	"extract",	'x',	"Extract the contents of an archive",
+	"create",	'c',	"Create an archive of a directory/files",
+	"dir",		'd',	"Change to specified directory",
+	"stdout",	'O',	"Write files to stdout",
