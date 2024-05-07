@@ -1,0 +1,312 @@
+---------------------------------------------------------------------------------------------------
+usage: q <applet> <args>  : invoke a portage utility applet
+
+currently defined applets:
+         q <applet> <args> : virtual applet
+     qatom <pkg>           : split atom strings
+    qcheck <pkgname>       : verify integrity of installed packages
+  qdepends <pkgname>       : show dependency info
+     qfile <filename>      : list all pkgs owning files
+     qgrep <expr> [pkg ...]: grep in ebuilds
+  qkeyword <action> <args> : list packages based on keywords
+     qlist <pkgname>       : list files owned by pkgname
+      qlop <pkgname>       : emerge log analyzer
+ qmanifest <misc args>     : verify or generate thick Manifest files
+    qmerge <pkgnames>      : fetch and merge binary package
+      qpkg <misc args>     : create or manipulate Gentoo binpkgs
+   qsearch <regex>         : search pkgname/desc
+     qsize <pkgname>       : calculate size usage
+     qtbz2 <misc args>     : manipulate tbz2 packages
+  qtegrity <misc args>     : verify files with IMA
+      quse <useflag>       : find pkgs using useflags
+    qwhich <pkg ...>       : find path to pkg
+     qxpak <misc args>     : manipulate xpak archives
+
+options: -[ioemvqChV]
+  -i, --install    * Install symlinks for applets
+  -o, --overlays   * Print available overlays (read from repos.conf)
+  -e, --envvar     * Print used variables and their found values
+  -m, --masks      * Print (package.)masks for the current profile
+***COMMON_OPTIONS TO ALL APPLETS***
+      --root <arg> * Set the ROOT env var
+  -v, --verbose    * Report full package versions, emit more elaborate output
+  -q, --quiet      * Tighter output; suppress warnings
+  -C, --nocolor    * Don't output color
+      --color      * Force color in output
+  -h, --help       * Print this help and exit
+  -V, --version    * Print version and exit
+***COMMON_OPTIONS TO ALL APPLETS***
+
+---------------------------------------------------------------------------------------------------
+usage: qatom [opts] <pkg> : split atom strings
+
+options: -[F:csplvqChV]
+  -F, --format <arg> * Custom output format (default: %{CATEGORY} %{PN} %{PV} %[PR] %[SLOT] %[pfx] %[sfx])
+  -c, --compare      * Compare two atoms
+  -s, --scompare     * Compare two atoms in the given order data, query
+  -p, --print        * Print reconstructed atom
+  -l, --lookup       * Lookup atom in tree
++COMMON_OPTIONS
+
+usage: qcheck [opts] <pkgname> : verify integrity of installed packages
+
+options: -[F:s:uABHTPpvqChV]
+  -F, --format <arg>   * Custom output format (default: %[CATEGORY]%[PN])
+  -s, --skip <arg>     * Ignore files matching the regular expression <arg>
+  -u, --update         * Update missing files, chksum and mtimes for packages
+  -A, --noafk          * Ignore missing files
+  -B, --badonly        * Only print pkgs containing bad files
+  -H, --nohash         * Ignore differing/unknown file chksums
+  -T, --nomtime        * Ignore differing file mtimes
+  -P, --skip-protected * Ignore files in CONFIG_PROTECT-ed paths
+  -p, --prelink        * Undo prelink when calculating checksums
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qdepends [opts] <pkgname> : show dependency info
+
+options: -[drpbIQitUF:SRvqChV]
+  -d, --depend       * Show DEPEND info
+  -r, --rdepend      * Show RDEPEND info
+  -p, --pdepend      * Show PDEPEND info
+  -b, --bdepend      * Show BDEPEND info
+  -I, --idepend      * Show IDEPEND info
+  -Q, --query        * Query reverse deps
+  -i, --installed    * Search installed packages using VDB
+  -t, --tree         * Search available ebuilds in the tree
+  -U, --use          * Apply profile USE-flags to conditional deps
+  -F, --format <arg> * Print matched atom using given format string
+  -S, --pretty       * Pretty format specified depend strings
+  -R, --resolve      * Resolve found dependencies to package versions
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qfile [opts] <filename> : list all pkgs owning files
+
+options: -[F:doRx:SPvqChV]
+  -F, --format <arg>  * Print matched atom using given format string
+  -S, --slots         * Display installed packages with slots
+  -R, --root-prefix   * Assume arguments are already prefixed by $ROOT
+  -d, --dir           * Also match directories for single component arguments
+  -o, --orphans       * List orphan files
+  -x, --exclude <arg> * Don't look in package <arg> (used with --orphans)
+  -P, --skip-plibreg  * Don't look in the prunelib registry
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qgrep [opts] <expr> [pkg ...] : grep in ebuilds
+
+options: -[IiNclLexJEsRS:B:A:vqChV]
+  -I, --invert-match  * Select non-matching lines
+  -i, --ignore-case   * Ignore case distinctions
+  -N, --atom-name     * Print the atom instead of filename for each match
+  -c, --count         * Only print a count of matching lines per FILE
+  -l, --list          * Only print FILE names containing matches
+  -L, --invert-list   * Only print FILE names containing no match
+  -e, --regexp        * Use PATTERN as a regular expression
+  -x, --extended      * Use PATTERN as an extended regular expression
+  -J, --installed     * Search in installed ebuilds instead of the tree
+  -E, --eclass        * Search in eclasses instead of ebuilds
+  -s, --skip-comments * Skip comments lines
+  -R, --repo          * Print source repository name for each match (implies -N)
+  -S, --skip <arg>    * Skip lines matching <arg>
+  -B, --before <arg>  * Print <arg> lines of leading context
+  -A, --after <arg>   * Print <arg> lines of trailing context
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qkeyword [opts] <action> <args> : list packages based on keywords
+
+options: -[p:c:m:AidtsanSTF:vqChV]
+  -p, --matchpkg <arg>   * match pkgname
+  -c, --matchcat <arg>   * match catname
+  -m, --matchmaint <arg> * match maintainer email from metadata.xml (slow)
+  -A, --showarch         * show selected arch from profile configuration
+  -i, --imlate           * list packages that can be marked stable for <arch>
+  -d, --dropped          * list packages that have dropped keywords for <arch>
+  -t, --needsstable      * list packages that have ~arch versions, but no stable versions for <arch>
+  -s, --stats            * display statistics about the portage tree
+  -a, --all              * list packages that have at least one version keyworded for <arch>
+  -n, --not              * list packages that aren't keyworded for <arch>
+  -S, --stable           * list latest stable version per package for <arch>
+  -T, --testing          * list latest testing version per package for <arch>
+  -F, --format <arg>     * Print latest atom using given format string
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qlist [opts] <pkgname> : list files owned by pkgname
+
+options: -[IktSRUcmDedosF:vqChV]
+  -I, --installed    * Just show installed package names
+  -k, --binpkgs      * Use binpkgs instead of installed packages
+  -t, --tree         * Use available packages in the tree instead of installed
+  -S, --slots        * Display installed packages with slots (use twice for subslots)
+  -R, --repo         * Display installed packages with repository
+  -U, --umap         * Display installed packages with flags used
+  -c, --columns      * Display column view
+  -m, --masks        * Exclude matches masked by profiles
+      --showdebug    * Show /usr/lib/debug and /usr/src/debug files
+  -e, --exact        * Exact match (only CAT/PN or PN without PV)
+  -d, --dir          * Only show directories
+  -o, --obj          * Only show objects
+  -s, --sym          * Only show symlinks
+  -F, --format <arg> * Print matched atom using given format string
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qlop [opts] <pkgname> : emerge log analyzer
+
+The --date option can take a few forms:
+  -d '# <day|week|month|year>[s] [ago]'  (e.g. '3 days ago')
+Or using strptime(3) formats:
+  -d '2015-12-25'           (detected as %Y-%m-%d)
+  -d '1459101740'           (detected as %s)
+  -d '%d.%m.%Y|25.12.2015'  (format is specified)
+
+options: -[ctapHMmuUsElerd:f:w:F:vqChV]
+  -c, --summary       * Print summary of average merges (implies -a)
+  -t, --time          * Print time taken to complete action
+  -a, --average       * Print average time taken to complete action
+  -p, --predict       * Print prediction of time it takes to complete action
+  -H, --human         * Print elapsed time in human readable format (use with -t or -a)
+  -M, --machine       * Print start/elapsed time as seconds with no formatting
+  -m, --merge         * Show merge history
+  -u, --unmerge       * Show unmerge history
+  -U, --autoclean     * Show autoclean unmerge history
+  -s, --sync          * Show sync history
+  -E, --emerge        * Show last merge similar to how emerge(1) -v would show it
+  -e, --endtime       * Report time at which the operation finished (iso started)
+  -r, --running       * Show current emerging packages
+  -d, --date <arg>    * Limit selection to this time (1st -d is start, 2nd -d is end)
+  -l, --lastmerge     * Limit selection to last Portage emerge action
+  -f, --logfile <arg> * Read emerge logfile instead of $EMERGE_LOG_DIR/emerge.log
+  -w, --atoms <arg>   * Read package atoms to report from file
+  -F, --format <arg>  * Print matched atom using given format string
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qmanifest [opts] <misc args> : verify or generate thick Manifest files
+
+options: -[gs:pdovqChV]
+  -g, --generate     * Generate thick Manifests
+  -s, --signas <arg> * Sign generated Manifest using GPG key
+  -p, --passphrase   * Ask for GPG key password (instead of relying on gpg-agent)
+  -d, --dir          * Treat arguments as directories
+  -o, --overlay      * Treat arguments as overlay names
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qmerge [opts] <pkgnames> : fetch and merge binary package
+
+options: -[fFsKUpuyOvqChV]
+  -f, --fetch      * Fetch package and newest Packages metadata
+  -F, --force      * Fetch package (skipping Packages)
+  -s, --search     * Search available packages
+  -K, --install    * Install package
+  -U, --unmerge    * Uninstall package
+  -p, --pretend    * Pretend only
+  -u, --update     * Update only
+  -y, --yes        * Don't prompt before overwriting
+  -O, --nodeps     * Don't merge dependencies
+      --debug      * Run shell funcs with `set -x`
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qpkg [opts] <misc args> : create or manipulate Gentoo binpkgs
+
+options: -[cEpP:vqChV]
+  -c, --clean        * clean pkgdir of files that are not installed
+  -E, --eclean       * clean pkgdir of files that are not in the tree anymore
+  -p, --pretend      * pretend only
+  -P, --pkgdir <arg> * alternate package directory
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qsearch [opts] <regex> : search pkgname/desc
+
+options: -[asSNHRF:vqChV]
+  -a, --all          * List the descriptions of every package in the cache
+  -s, --search       * Regex search package basenames
+  -S, --desc <arg>   * Regex search package descriptions (or homepage when using -H)
+  -N, --name-only    * Only show package name
+  -H, --homepage     * Show homepage info instead of description
+  -R, --repo         * Show repository the ebuild originates from
+  -F, --format <arg> * Print matched atom using given format string
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qsize [opts] <pkgname> : calculate size usage
+
+options: -[fsSmkbi:F:vqChV]
+  -f, --filesystem   * Show size used on disk
+  -s, --sum          * Include a summary
+  -S, --sum-only     * Show just the summary
+  -m, --megabytes    * Display all sizes in megabytes
+  -k, --kilobytes    * Display all sizes in kilobytes
+  -b, --bytes        * Display all sizes in bytes
+  -i, --ignore <arg> * Ignore regexp string
+  -F, --format <arg> * Print matched atom using given format string
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qtbz2 [opts] <misc args> : manipulate tbz2 packages
+
+options: -[d:jstxOvqChV]
+  -d, --dir <arg>  * Change to specified directory
+  -j, --join       * Join: <tar.bz2> <xpak> <tbz2>
+  -s, --split      * Split a tbz2 into a tar.bz2 + xpak
+  -t, --tarbz2     * Just split the tar.bz2
+  -x, --xpak       * Just split the xpak
+  -O, --stdout     * Write files to stdout
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qtegrity [opts] <misc args> : verify files with IMA
+
+options: -[a:isvqChV]
+  -a, --add <arg>           * Add file to store of known-good digests
+  -i, --ignore-non-existent * Be silent if recorded file no longer exists
+  -s, --show-matches        * Show recorded digests that match with known-good digests
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: quse [opts] <useflag> : find pkgs using useflags
+
+options: -[eaLDIp:RF:vqChV]
+  -e, --exact         * Show exact non regexp matching using strcmp
+  -a, --all           * List all ebuilds, don't match anything
+  -L, --license       * Use the LICENSE vs IUSE
+  -D, --describe      * Describe the USE flag
+  -I, --installed     * Only search installed packages
+  -p, --package <arg> * Restrict matching to package or category
+  -R, --repo          * Show repository the ebuild originates from
+  -F, --format <arg>  * Print matched atom using given format string
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qwhich [opts] <pkg ...> : find path to pkg
+
+options: -[IbtpdRflTAF:vqChV]
+  -I, --vdb          * Look in VDB (installed packages)
+  -b, --binpkg       * Look at binary packages
+  -t, --tree         * Look in main tree and overlays
+  -p, --pretty       * Print (pretty) atom instead of path for use with -F
+  -d, --dir          * Print directory instead of path
+  -R, --repo         * Print repository name instead of path for tree/overlay matches
+  -f, --first        * Stop searching after first match (implies -l)
+  -l, --latest       * Only return latest version for each match
+  -T, --novirtual    * Skip virtual category
+  -A, --noacct       * Skip acct-user and acct-group categories
+  -F, --format <arg> * Print matched using given format string
++COMMON_OPTIONS
+
+---------------------------------------------------------------------------------------------------
+usage: qxpak [opts] <misc args> : manipulate xpak archives
+
+options: -[lxcd:OvqChV]
+  -l, --list       * List the contents of an archive
+  -x, --extract    * Extract the contents of an archive
+  -c, --create     * Create an archive of a directory/files
+  -d, --dir <arg>  * Change to specified directory
+  -O, --stdout     * Write files to stdout
++COMMON_OPTIONS

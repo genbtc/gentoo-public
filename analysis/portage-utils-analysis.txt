@@ -25,6 +25,28 @@ portage-utils/
 	qwhich.c
 	qxpak.c
 
+# q --help
+currently defined applets:
+         q <applet> <args> : virtual applet
+     qatom <pkg>           : split atom strings
+    qcheck <pkgname>       : verify integrity of installed packages
+  qdepends <pkgname>       : show dependency info
+     qfile <filename>      : list all pkgs owning files
+     qgrep <expr> [pkg ...]: grep in ebuilds
+  qkeyword <action> <args> : list packages based on keywords
+     qlist <pkgname>       : list files owned by pkgname
+      qlop <pkgname>       : emerge log analyzer
+ qmanifest <misc args>     : verify or generate thick Manifest files
+    qmerge <pkgnames>      : fetch and merge binary package
+      qpkg <misc args>     : create or manipulate Gentoo binpkgs
+   qsearch <regex>         : search pkgname/desc
+     qsize <pkgname>       : calculate size usage
+     qtbz2 <misc args>     : manipulate tbz2 packages
+  qtegrity <misc args>     : verify files with IMA
+      quse <useflag>       : find pkgs using useflags
+    qwhich <pkg ...>       : find path to pkg
+     qxpak <misc args>     : manipulate xpak archives
+
 main.c
 	int main(int argc, char **argv)
 	init_coredumps(void)
@@ -44,7 +66,7 @@ main.c
 	read_repos_conf(const char *configroot, const char *repos_conf, char **primary)
 	initialize_portage_env(void)
 
-q.c
+q.c 
 	q_main(int argc, char **argv)
 	lookup_applet(const char *)
 	lookup_applet_idx(const char *applet)
@@ -55,6 +77,7 @@ q.c
 	"masks",	'm',	"Print (package.)masks for the current profile",
 
 qatom.c
+#split atom strings
 	qatom_main(int argc, char **argv)
 	- help: 
 	"format",   'F',	"Custom output format (default: " QATOM_FORMAT ")",
@@ -64,6 +87,7 @@ qatom.c
 	"lookup",   'l',	"Lookup atom in tree",
 
 qcheck.c
+#verify integrity of installed packages
 	qcheck_main(int argc, char **argv)
 	qcheck_cb(tree_pkg_ctx *pkg_ctx, void *priv)
 	- help:
@@ -78,6 +102,7 @@ qcheck.c
 	"prelink",	'p',	"Undo prelink when calculating checksums",
 
 qdepends.c
+#show dependency info
 	qdepends_main(int argc, char **argv)
 	qdepends_print_depend(FILE *fp, const char *depend)
 	qdepends_results_cb(tree_pkg_ctx *pkg_ctx, void *priv)
@@ -94,6 +119,7 @@ qdepends.c
 	"pretty",		'S',	"Pretty format specified depend strings",
 
 qfile.c
+#list all pkgs owning files
 	qfile_main(int argc, char **argv)
 	qfile_check_plibreg(void *priv)
 	qfile_cb(tree_pkg_ctx *pkg_ctx, void *priv)
@@ -127,6 +153,7 @@ qglsa.c #ifdef APPLET_qglsa
 	"inject",   'i',	"Mark specified GLSAs as fixed",
 
 qgrep.c
+#grep in ebuilds
 	qgrep_main(int argc, char **argv)
 	qgrep_buf_list_alloc(const char length)
 	qgrep_buf_list_free(qgrep_buf_t *head)
@@ -157,6 +184,7 @@ qgrep.c
 	"after",			'A',	"Print <arg> lines of trailing context",
 
 qkeyword.c
+#list packages based on keywords
 	qkeyword_main(int argc, char **argv)
 	decode_status(char c)
 	decode_arch(const char *arch)
@@ -191,6 +219,7 @@ qkeyword.c
 	"format",		'F',	"Print latest atom using given format string",
 
 qlist.c
+#list files owned by pkgname
 	qlist_main(int argc, char **argv)
 	cmpstringp(const void *p1, const void *p2)
 	umapstr(char display, tree_pkg_ctx *pkg_ctx)
@@ -214,6 +243,7 @@ qlist.c
 	"format",	 'F',	"Print matched atom using given format string",
 
 qlop.c
+#emerge log analyzer
 	parse_date(const char *sdate, time_t *t)
 	static char *fmt_date(struct qlop_mode *flags, time_t ts, time_t te)
 	static char *fmt_elapsedtime(struct qlop_mode *flags, time_t e)
@@ -242,6 +272,7 @@ qlop.c
 	"format",		'F',	"Print matched atom using given format string",
 
 qmanifest.c #ifdef ENABLE_QMANIFEST
+#verify or generate thick Manifest files
 	qmanifest_main(int argc, char **argv)
 	update_times(struct timeval *tv, struct stat *s)
 	compare_strings(const void *l, const void *r)
@@ -270,6 +301,7 @@ qmanifest.c #ifdef ENABLE_QMANIFEST
 	"overlay",		'o',	"Treat arguments as overlay names",
 
 qmerge.c
+#fetch and merge binary package
 	qmerge_main(int argc, char **argv)
 	qmerge_prompt(const char *p)
 	fetch(const char *destdir, const char *src)
@@ -336,6 +368,7 @@ qmerge.c
 	"debug",	128,	"Run shell funcs with `set -x`",
 
 qpkg.c
+#create or manipulate Gentoo binpkgs
 	qpkg_main(int argc, char **argv)
 	qpkg_clean(char *dirp)
 	check_pkg_install_mask(char *name)
@@ -348,6 +381,7 @@ qpkg.c
 	"pkgdir",  'P', "alternate package directory",
 
 qsearch.c
+#search pkgname/desc
 	qsearch_main(int argc, char **argv)
 	qsearch_cb(tree_pkg_ctx *pkg_ctx, void *priv)
 	- help:
@@ -360,6 +394,7 @@ qsearch.c
 	"format",	 'F',	"Print matched atom using given format string",
 
 qsize.c
+#calculate size usage
 	qsize_main(int argc, char **argv)
 	qsize_cb(tree_pkg_ctx *pkg_ctx, void *priv)
 	- help:
@@ -373,6 +408,7 @@ qsize.c
 	"format",	  'F',	"Print matched atom using given format string",
 
 qtbz2.c
+#manipulate tbz2 packages
 	qtbz2_main(int argc, char **argv)
 	tbz2_compose(int dir_fd, const char *tarbz2, const char *xpak, const char *tbz2)
 	_tbz2_write_file(FILE *src, int dir_fd, const char *dst, size_t len)
@@ -386,6 +422,7 @@ qtbz2.c
 	"stdout", 'O',	"Write files to stdout",
 
 qtegrity.c
+#verify files with IMA
 	qtegrity_main(int argc, char **argv)
 	check_sha(char *ret_digest, char *path, char *algo)
 	static void get_fname_from_line(char * line, char **ret, int digest_size, int offset)
@@ -400,6 +437,7 @@ qtegrity.c
 	//TODO "convert",		'c', "Convert known good digests to different hash function",
 
 quse.c
+#find pkgs using useflags
 	quse_main(int argc, char **argv)
 	quse_search_use_local_desc(int portdirfd, struct quse_state *state)
 	quse_search_use_desc(int portdirfd, struct quse_state *state)
@@ -417,6 +455,7 @@ quse.c
 	"format",   'F',	"Print matched atom using given format string",
 
 qwhich.c
+#find path to pkg
 	qwhich_main(int argc, char **argv)
 	- help:
 	"vdb",		'I',	"Look in VDB (installed packages)",
@@ -432,6 +471,7 @@ qwhich.c
 	"format",	'F',	"Print matched using given format string",
 
 qxpak.c
+#manipulate xpak archives
 	qxpak_main(int argc, char **argv)
 	_xpak_callback(void *ctx, char *pathname, int pathname_len, int data_offset, int data_len, char *data)
 	- help:
