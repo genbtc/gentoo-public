@@ -1,0 +1,27 @@
+#portage-utils 0.97 q --help
+usage: # q <applet> <args> : virtual applet
+
+   qsearch <regex>         : search pkgname/desc
+    qwhich <pkg ...>       : find path to pkg
+      quse <useflag>       : find pkgs using useflags
+  qkeyword <action> <args> : list packages based on keywords
+
+     qfile <filename>      : list all pkgs owning files
+     qlist <pkgname>       : list files owned by pkgname
+     qsize <pkgname>       : calculate size usage
+  qdepends <pkgname>       : show dependency info
+
+    qmerge <pkgnames>      : fetch and merge binary package
+      qpkg <misc args>     : create or manipulate Gentoo binpkgs
+     qxpak <misc args>     : manipulate xpak archives
+     qtbz2 <misc args>     : manipulate tbz2 packages
+
+      qlop <pkgname>       : emerge log analyzer
+    qcheck <pkgname>       : verify integrity of installed packages
+ qmanifest <misc args>     : verify or generate thick Manifest files
+  qtegrity <misc args>     : verify files with IMA
+
+     qatom <pkg>           : split atom strings
+     qgrep <expr> [pkg ...]: grep in ebuilds
+
+#More Intuitive Relevance Best Order

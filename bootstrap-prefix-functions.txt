@@ -1,0 +1,68 @@
+# grep "() {" bootstrap-prefix.sh
+is-rap() {
+rapx() { is-rap && echo "$1" || echo "$2"; }
+estatus() {
+eerror() { estatus "$*"; echo "!!! $*" 1>&2; }
+einfo() { echo "* $*"; }
+v() { echo "$@"; "$@"; }
+econf() {
+emake() {
+efetch() {
+configure_cflags() {
+configure_toolchain() {
+bootstrap_setup() {
+bootstrap_profile() {
+	kver() { uname -r|cut -d- -f1|awk -F. '{for (i=1; i<=NF; i++){s+=lshift($i,(4-i)*8)};print s}'; }
+	profile-kernel() {
+do_tree() {
+bootstrap_tree() {
+bootstrap_startscript() {
+prepare_portage() {
+bootstrap_portage() {
+fix_config_sub() {
+bootstrap_simple() {
+bootstrap_gnu() {
+python_ver() {
+bootstrap_python() {
+bootstrap_cmake_core() {
+bootstrap_cmake() {
+bootstrap_zlib_core() {
+bootstrap_zlib() {
+bootstrap_libffi() {
+bootstrap_gmp() {
+bootstrap_mpfr() {
+bootstrap_mpc() {
+bootstrap_gcc5() {
+bootstrap_sed() {
+bootstrap_findutils() {
+bootstrap_wget() {
+bootstrap_grep() {
+bootstrap_coreutils() {
+bootstrap_tar() {
+bootstrap_make() {
+bootstrap_patch() {
+bootstrap_gawk() {
+bootstrap_binutils() {
+bootstrap_texinfo() {
+bootstrap_bash() {
+bootstrap_bison() {
+bootstrap_m4() {
+bootstrap_gzip() {
+bootstrap_xz() {
+bootstrap_bzip2() {
+bootstrap_libressl() {
+bootstrap_stage_host_gentoo() {
+bootstrap_stage1() {
+bootstrap_stage1_log() {
+do_emerge_pkgs() {
+bootstrap_stage2() {
+	emerge_pkgs() {
+bootstrap_stage2_log() {
+bootstrap_stage3() {
+	get_libdir() {
+	emerge_pkgs() {
+	#with_stack_emerge_pkgs() {
+	pre_emerge_pkgs() {
+bootstrap_stage3_log() {
+set_helper_vars() {
+bootstrap_interactive() {

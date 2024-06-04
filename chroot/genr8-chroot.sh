@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 #
 # arch-chroot -> genr8-chroot (a gentoo compatible version made by a person named genr8eofl)
 # LICENSE: AGPL3
@@ -203,7 +203,7 @@ gentoo-chroot() {
   # DNS Resolver, always use host's /etc/resolv.conf for network DNS nameserver settings 	[ALWAYS]
   #TODO: make optional
   #   -R | --no-bind-resolvconf | NO_MOUNT_RESOLVCONF /etc/resolv.conf
-  CHROOT_FILES+=( "${file_resolvconf}" )
+#  CHROOT_FILES+=( "${file_resolvconf}" )
 
   # .bashrc - Create new bashrc which does useful gentoo functions like env-update and setting $PS1=(chroot)
   if [[ -z ${NO_MOUNT_BASHRC+x} ]]; then
@@ -320,4 +320,4 @@ shift
 ARGS=("$@")
 
 #run script, main function
-$DEBUG gentoo-chroot
+gentoo-chroot
