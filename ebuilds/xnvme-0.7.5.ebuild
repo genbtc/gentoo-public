@@ -24,7 +24,6 @@ DEPEND="
     dev-python/pip
     dev-python/pyelftools
     dev-util/cunit
-    dev-util/pkgconf
     dev-vcs/git
     sys-libs/liburing
     sys-libs/ncurses
@@ -32,12 +31,15 @@ DEPEND="
     sys-apps/findutils
     dev-build/make
     sys-devel/patch
+    virtual/pkgconfig
 "
 
 src_prepare() {
-    einfo "build requires linking against ncurses AND tinfo, run the following before compilation:"
-    einfo "export LDFLAGS=\"-ltinfo -lncurses\""
-    export LDFLAGS="${LDFLAGS} -ltinfo -lncurses"
+#    einfo "build requires linking against ncurses AND tinfo, run the following before compilation:"
+#    einfo "export LDFLAGS=\"-ltinfo -lncurses\""
+#    export LDFLAGS="${LDFLAGS} -ltinfo -lncurses"
+    export LDFLAGS="${LDFLAGS} $(pkg-config --libs ncurses)" || die
+    einfo "Exported LDFLAGS: ${LDFLAGS}"
     default
 }
 
