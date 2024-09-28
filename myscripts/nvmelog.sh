@@ -1,5 +1,5 @@
 #!/bin/sh
-# nvmelog.sh script v1.02 - by @genr8eofl - copyright 2023,2024 - AGPL3 License
+# nvmelog.sh script v1.1 - by @genr8eofl - copyright 2023,2024 - AGPL3 License
 
 LOGDIR=/root/nvmelogs/
 DRIVES="nvme0n1 nvme1n1"
@@ -10,6 +10,7 @@ DRIVES="nvme0n1 nvme1n1"
 today=$(date "+%Y-%m-%d")
 
 for drive in $DRIVES; do
+	nvme list                    > ${LOGDIR}${drive}-smartlog-${today}.log
 	nvme smart-log /dev/${drive} > ${LOGDIR}${drive}-smartlog-${today}.log
 	cat ${LOGDIR}${drive}-smartlog-${today}.log
 done
