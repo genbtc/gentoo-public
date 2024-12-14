@@ -47,7 +47,7 @@ src_configure() {
 }
 
 src_install() {
-	emake install INSTALL_ROOT="${D}"
+	emake install INSTALL_ROOT="${ED}"
 
 	domenu resources/ykman-gui.desktop
 	doicon -s 128 resources/icons/ykman.png

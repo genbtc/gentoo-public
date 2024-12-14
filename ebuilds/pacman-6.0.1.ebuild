@@ -65,7 +65,7 @@ src_install() {
 	meson_src_install
 	keepdir /var/lib/pacman/
 #	keepdir /var/cache/pacman/pkg/
-	rm -rf "${D}"/var/cache/
+	rm -rf "${ED}"/var/cache/
 	keepdir /usr/share/makepkg-template/
 	keepdir /usr/share/libalpm/hooks/
 }

@@ -52,7 +52,7 @@ src_configure() {
 }
 
 src_install() {
-    emake DESTDIR="${D}" install
+    emake DESTDIR="${ED}" install
     if use server ; then
         newinitd "${FILESDIR}/infinoted.initd" infinoted
         newconfd "${FILESDIR}/infinoted.confd" infinoted
@@ -68,7 +68,7 @@ src_install() {
         elog "The documents are saved in /var/lib/infinote per default."
     fi
     if ! use static-libs ; then
-        find "${D}" -name "*.a" -delete +
-        find "${D}" -name "*.la" -delete +
+        find "${ED}" -name "*.a" -delete +
+        find "${ED}" -name "*.la" -delete +
     fi
 }
