@@ -1,0 +1,12 @@
+CONFIG_NTB_NETDEV=m												      <
+CONFIG_NTB=m													      |	# CONFIG_NTB is not set
+# CONFIG_NTB_MSI is not set											      <
+CONFIG_NTB_AMD=m												      <
+CONFIG_NTB_IDT=m												      <
+CONFIG_NTB_INTEL=m												      <
+CONFIG_NTB_EPF=m												      <
+CONFIG_NTB_SWITCHTEC=m												      <
+CONFIG_NTB_PINGPONG=m												      <
+CONFIG_NTB_TOOL=m												      <
+CONFIG_NTB_PERF=m												      <
+CONFIG_NTB_TRANSPORT=m												      <

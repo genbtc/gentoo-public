@@ -1,0 +1,25 @@
+--- a/gcc-13-20241025/gcc/gcc.cc	2024-11-03 04:39:24.796110383 -0500
++++ b/gcc-13-20241025/gcc/gcc.cc	2024-11-03 05:18:50.419934810 -0500
+@@ -7772,17 +7772,17 @@
+ do_report_bug (const char **new_argv, const int nargs,
+ 	       char **out_file, char **err_file)
+ {
+-  int i, status;
++  int i, status, wres;
+   int fd = open (*out_file, O_RDWR | O_APPEND);
+   if (fd < 0)
+     return;
+-  write (fd, "\n//", 3);
++  wres = write (fd, "\n//", 3);
+   for (i = 0; i < nargs; i++)
+     {
+-      write (fd, " ", 1);
+-      write (fd, new_argv[i], strlen (new_argv[i]));
++      wres = write (fd, " ", 1);
++      wres = write (fd, new_argv[i], strlen (new_argv[i]));
+     }
+-  write (fd, "\n\n", 2);
++  wres = write (fd, "\n\n", 2);
+   close (fd);
+   new_argv[nargs] = "-E";
+   new_argv[nargs + 1] = NULL;

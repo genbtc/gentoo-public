@@ -18,7 +18,6 @@
 >=app-misc/tracker-3.3.2        disable-nls.conf
 >=app-portage/elogv-0.7.9        disable-nls.conf
 >=app-text/gnome-doc-utils-0.20.10-r2        disable-nls.conf
->=app-text/iso-codes-4.9.0        disable-nls.conf
 >=app-text/po4a-0.64        disable-nls.conf
 >=app-text/wdiff-1.2.2-r2        disable-nls.conf
 >=dev-libs/appstream-glib-0.7.18-r1        disable-nls.conf
@@ -26,12 +25,10 @@
 >=dev-libs/libdbusmenu-16.04.0-r2	disable-nls.conf
 >=dev-libs/glib-2.72.3        disable-nls.conf
 >=dev-libs/json-glib-1.6.6-r1        disable-nls.conf
-#>=dev-libs/libbytesize-2.7        disable-nls.conf
-#>=dev-libs/libfilezilla-0.37.2        disable-nls.conf
 >=dev-libs/libgnome-games-support-1.8.2        disable-nls.conf
 >=dev-libs/libpwquality-1.4.4-r1        disable-nls.conf
 >=dev-libs/newt-0.52.21_p20210816        disable-nls.conf
->=dev-util/d-feet-0.3.16        disable-nls.conf
+>=dev-debug/d-feet-0.3.16        disable-nls.conf
 >=dev-util/geany-1.38        disable-nls.conf
 >=dev-util/geany-plugins-1.38-r1        disable-nls.conf
 >=dev-util/gtk-update-icon-cache-3.24.31        disable-nls.conf
@@ -98,10 +95,7 @@
 >=sys-auth/elogind-246.10-r2        disable-nls.conf
 >=sys-auth/pam_p11-0.3.1        disable-nls.conf
 >=sys-auth/polkit-121        disable-nls.conf
-#=sys-block/gparted-1.4.0-r1     disable-nls.conf
-#=sys-block/gparted-1.5.0        disable-nls.conf
 >=sys-block/parted-3.4        disable-nls.conf
->=sys-devel/bison-3.8.2        disable-nls.conf
 >=sys-devel/m4-1.4.19        disable-nls.conf
 >=sys-libs/glibc-2.35-r8        disable-nls.conf
 >=sys-libs/libosinfo-1.10.0        disable-nls.conf
@@ -110,13 +104,11 @@
 >=sys-process/procps-3.3.17-r1        disable-nls.conf
 >=www-client/w3m-0.5.3_p20210102        disable-nls.conf
 >=x11-libs/gdk-pixbuf-2.42.8        disable-nls.conf
-#>=x11-libs/gtk+-2.24.33        disable-nls.conf
 >=x11-libs/gtk+-3.24.34        disable-nls.conf
 >=x11-libs/gtksourceview-3.24.11-r1        disable-nls.conf
 >=x11-libs/gtksourceview-4.8.2        disable-nls.conf
 >=x11-libs/libwnck-40.1        disable-nls.conf
 >=x11-libs/vte-0.68.0        disable-nls.conf
-#>=x11-libs/wxGTK-3.0.5.1        disable-nls.conf
 >=x11-libs/xapp-2.2.8        disable-nls.conf
 >=x11-misc/gxmessage-3.4.3        disable-nls.conf
 >=x11-misc/menulibre-2.2.3        disable-nls.conf
@@ -147,11 +139,9 @@
 >=xfce-extra/xfce4-netload-plugin-1.4.0        disable-nls.conf
 >=xfce-extra/xfce4-notifyd-0.6.3        disable-nls.conf
 >=xfce-extra/xfce4-places-plugin-1.8.1        disable-nls.conf
-# move xfce-extra/xfce4-power-manager xfce-base/xfce4-power-manager
 >=xfce-base/xfce4-power-manager-4.16.0        disable-nls.conf
 >=xfce-extra/xfce4-screensaver-4.16.0        disable-nls.conf
 >=xfce-extra/xfce4-screenshooter-1.9.10       disable-nls.conf
->=xfce-extra/xfce4-taskmanager-1.4.2        disable-nls.conf
 >=xfce-extra/xfce4-taskmanager-1.5.4        disable-nls.conf
 >=xfce-extra/xfce4-whiskermenu-plugin-2.7.1   disable-nls.conf
 >=xfce-extra/xfdashboard-1.0.0        disable-nls.conf
@@ -161,7 +151,6 @@
 >=sys-apps/xdg-desktop-portal-gnome-43.1 disable-nls.conf
 >=sys-apps/xdg-desktop-portal-gtk-1.14.1 disable-nls.conf
 >=mate-extra/mate-system-monitor-1.26.0	     disable-nls.conf
-#>=gnome-base/gnome-mime-data-2.18.0-r1	    disable-nls.conf
 >=xfce-extra/xfce4-battery-plugin-1.1.4       disable-nls.conf
 >=xfce-extra/xfce4-wavelan-plugin-0.6.3       disable-nls.conf
 >=xfce-extra/xfce4-genmon-plugin-4.1.1        disable-nls.conf
@@ -184,3 +173,4 @@
 lxde-base/lxappearance          disable-nls.conf
 >=media-gfx/eom-1.26.0-r1       disable-nls.conf
 >=lxde-base/lxterminal-0.4.0    disable-nls.conf
+>=x11-plugins/pidgin-otr-4.0.2-r3   disable-nls.conf

@@ -1,0 +1,2 @@
+#Disabled in favor of patch @ /etc/portage/patches/media-video/obs-studio/plugins-ffmpeg-disable.patch
+#MYCMAKEARGS="$MYCMAKEARGS -DENABLE_PLUGINS=OFF"

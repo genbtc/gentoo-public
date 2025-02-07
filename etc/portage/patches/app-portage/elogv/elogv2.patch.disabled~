@@ -1,0 +1,56 @@
+--- a/elogv	2024-02-07 20:50:49.425109280 -0500
++++ b/elogv	2024-02-07 20:49:43.259104488 -0500
+@@ -147,7 +147,7 @@
+ # Character used to print the class of an elog
+ class_char = "*"
+ list_format = "%s/%s - %s"
+-date_format = "%x"
++date_format = "%x %H:%M:%S"
+ 
+ 
+ # Exceptions classes
+@@ -608,18 +608,22 @@
+                     self.log_win.addstr(x[: self.width - 2], curses.color_pair(eerror))
+                 elif x.startswith("LOG:"):
+                     self.log_win.addstr(x[: self.width - 2], curses.color_pair(elog))
++                elif x.startswith('Logfile: '):
++                    self.logfile = x.replace('Logfile: ',"").replace('\n','')
++                    self.log_win.addstr('Logfile: ',curses.A_BOLD+curses.color_pair(elog))
++                    self.log_win.addstr(self.logfile+"\n",curses.A_BOLD+curses.color_pair(normal))
+                 else:
+                     self.log_win.addstr(x[: self.width - 2], curses.color_pair(normal))
+             except curses.error:
+                 pass
+ 
+         if not shown_all:
+-            s = _("Continue...")
++            s = _("Continue [press space]...")
+             self.log_win.addstr(
+                 self.height // 2 - 3,
+                 self.width - len(s) - 4,
+                 s,
+-                curses.color_pair(normal),
++                curses.A_BOLD+curses.color_pair(normal),
+             )
+ 
+         self.log_win.refresh()
+@@ -708,6 +712,19 @@
+             )
+ 
+ 
++
++class suspend_curses():
++    """Context Manager to temporarily leave curses mode"""
++
++    def __enter__(self):
++        curses.endwin()
++
++    def __exit__(self, exc_type, exc_val, tb):
++        newscr = curses.initscr()
++        newscr.refresh()
++        curses.doupdate()
++
++
+ if __name__ == "__main__":
+     if "--help" in sys.argv:
+         print(helptext)

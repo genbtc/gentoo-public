@@ -71,6 +71,7 @@ sedupecheck() {
 #TODO: Make better.
 #related, gather a list of all the major statements, and extract the type.
 # NOTE: inaccurate but good enough to copy/paste/tweak/fixgaps
+#  grep "(\&)"
 setypegrep() {
   grep "^allow\|dontaudit\|auditallow" "$1"\
    | awk '{print $2"\n"$3}' | sed 's/\;//' \
@@ -80,6 +81,7 @@ setypegrep() {
 }	#pattern deficiency, misses interfaces(type_t) and type_t { com bin at io ns }#
 	# doesnt check if they're valid, gets weird words.
 #TODO: make better
+
 #Important to reset dynamic context of generated cache files that have been mis-tagged. Why?
 # portage regenerates them, the code would come from the eclasses, and those don't set them itself for some reason. or call an update.
 #  or the .fc file type is not taking effect on these dynamic files because the program isnt selinux aware somehow ?
@@ -88,3 +90,8 @@ serestoremime() {
     sed -e 's#HOME_DIR/\\#/home/genr8eofl/#' /etc/selinux/strict/policy/mime-icon-cache.fc | grep -v "^#\|.*?" | cut -d' ' -f1 | xargs restorecon -RFv
     setenforce 1
 }
+
+secilbackup() {
+    find "/var/lib/selinux/strict/active/modules/400" -name 'cil' -exec bash -c 'D=$(dirname {}); B=$(basename $D); echo $B; T="/etc/selinux/strict/cil.bak.051524/"; mkdir -pv $T$B; cp -a {} $T$B' \;
+}
+

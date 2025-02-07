@@ -1,5 +1,4 @@
 set indicator
-#set mouse
 set historylog
 set stateflags
 set titlecolor bold,white,blue

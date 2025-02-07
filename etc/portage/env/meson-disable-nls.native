@@ -1,3 +1,5 @@
+#genr8too ~ # cat /etc/portage/env/meson-disable-nls.conf
+# MYMESONARGS="--native-file /etc/portage/env/meson-disable-nls.native" (THIS FILE)
 #Program msgfmt found: YES (/usr/bin/msgfmt)
 #Program msginit found: YES (/usr/bin/msginit)
 #Program msgmerge found: YES (/usr/bin/msgmerge)
@@ -12,3 +14,5 @@ msgmerge = 'disabled'
 xgettext = 'disabled'
 intltool = 'disabled'
 itstool = 'disabled'
+
+#Program msgfmt found: NO

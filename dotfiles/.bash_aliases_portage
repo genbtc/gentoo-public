@@ -1,11 +1,12 @@
 #!/bin/bash
-# .bash_aliases script by @genr8eofl copyright 2024 - AGPL3 License
+# .bash_aliases script by @genr8eofl copyright 2024, 2025 - AGPL3 License
 
 #Gentoo Portage aliases -->
 
 alias pq='portageq'
 alias eq='equery'
 eqwd() { d=$(dirname "$(eq w "$1")"); echo "$d"; ls -at "$d"; }
+eqf() { eq -q f -f "obj,conf,cmd,doc,man,info,fifo" "$@"; }
 alias ~~='ACCEPT_KEYWORDS="~amd64"'
 ebuild2() { ebuild "$(equery which "$1")"  "$2" ; }
 enano()   {  nano  "$(equery which "$1")" ; }
@@ -24,7 +25,7 @@ unmaskflags()  { efile "/etc/portage/package.unmask/flags" "$@" ; }
 
 export myoverlay="/var/db/repos/myoverlay"
 
-ediff() {
+ediff1() {
 #Usage:"$1"= sys-libs/ncurses-6.3_p20221203-r2
     declare -a pkgq=($(qatom "$1" -F "%{CATEGORY} %{PN} %{PV} %{PR}"))
     declare -a cutpkg=($(echo "$1" | cut -f1,2 -d'/' --output-delimiter=' '))
@@ -35,13 +36,13 @@ ediff() {
     newpkg="${newdir}/${pkgq[0]}/${pkgq[1]}/${cutpkg[1]}.ebuild"
     oldpkg="${oldvdb}/${pkgq[0]}/${pkgq[1]}-${pkgq[2]}*/${pkgq[1]}-${pkgq[2]}*.ebuild" #wildcard %PR -r1
     #Output:           #(unquoted to do * expansion) ^^                     ^^
+    echo "${newpkg} :                                 |                      ${oldpkg} :" #Filenames header
     diffy "${newpkg}" ${oldpkg}
 }
 
-#OLD: diffebuild.txt
+ediff2() {
 #Usage:"$1"= sys-libs/ncurses-6.3_p20221203-r2
 #       $2 = sys-libs/ncurses-6.3_p20221203
-diffebuildold() {
 	declare -a newpkgq=($(qatom "$1" -F "%{CATEGORY} %{PN} %{PV} %{PR}"))
 	declare -a cutpkg=($(echo "$2" | cut -f1,2 -d'/' --output-delimiter=' '))
 # 	newdir=/var/db/repos/gentoo
@@ -52,6 +53,7 @@ diffebuildold() {
 	newpkg="${newdir}/${newpkgq[0]}/${newpkgq[1]}/${newpkg2}.ebuild"
 	oldpkg="${oldvdb}/${cutpkg[0]}/${cutpkg[1]}/${cutpkg[1]}.ebuild"
 	#Output:
+    echo "${newpkg} :                                 |                      ${oldpkg} :" #Filenames header
 	diffy "${newpkg}" "${oldpkg}"
 }
 

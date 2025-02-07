@@ -1,0 +1,10 @@
+InstallMedium
+Network
+Disks
+InstallationFiles
+Install Base System
+Configure Kernel
+Configure System
+Install System Tools
+Configure bootloader
+Finalize

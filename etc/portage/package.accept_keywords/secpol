@@ -1,57 +1,60 @@
-#sec-policy/*
-sec-policy/apparmor-profiles ~amd64
-sec-policy/selinux-acct ~amd64
-sec-policy/selinux-aide ~amd64
-sec-policy/selinux-alsa ~amd64
-sec-policy/selinux-apache ~amd64
-sec-policy/selinux-at ~amd64
-sec-policy/selinux-base ~amd64
-sec-policy/selinux-base-policy ~amd64
-sec-policy/selinux-brctl ~amd64
-sec-policy/selinux-cdrecord ~amd64
-sec-policy/selinux-chromium ~amd64
-sec-policy/selinux-container ~amd64
-sec-policy/selinux-dbus ~amd64
-sec-policy/selinux-devicekit ~amd64
-sec-policy/selinux-dirmngr ~amd64
-sec-policy/selinux-dmidecode ~amd64
-sec-policy/selinux-dnsmasq ~amd64
-sec-policy/selinux-docker ~amd64
-sec-policy/selinux-dpkg ~amd64
-sec-policy/selinux-dracut ~amd64
-sec-policy/selinux-git ~amd64
-sec-policy/selinux-gnome ~amd64
-sec-policy/selinux-gpg ~amd64
-sec-policy/selinux-gpm ~amd64
-sec-policy/selinux-irc ~amd64
-sec-policy/selinux-kerberos ~amd64
-sec-policy/selinux-loadkeys ~amd64
-sec-policy/selinux-logrotate ~amd64
-sec-policy/selinux-makewhatis ~amd64
-sec-policy/selinux-mandb ~amd64
-sec-policy/selinux-mozilla ~amd64
-sec-policy/selinux-mplayer ~amd64
-sec-policy/selinux-openct ~amd64
-sec-policy/selinux-openrc ~amd64
-sec-policy/selinux-pcscd ~amd64
-sec-policy/selinux-podman ~amd64
-sec-policy/selinux-policykit ~amd64
-sec-policy/selinux-qemu ~amd64
-sec-policy/selinux-resolvconf ~amd64
-sec-policy/selinux-rngd ~amd64
-sec-policy/selinux-rootlesskit ~amd64
-sec-policy/selinux-samba ~amd64
-sec-policy/selinux-screen ~amd64
-sec-policy/selinux-sensord ~amd64
-sec-policy/selinux-shutdown ~amd64
-sec-policy/selinux-sudo ~amd64
-sec-policy/selinux-sysstat ~amd64
-sec-policy/selinux-tripwire ~amd64
-sec-policy/selinux-unconfined ~amd64
-sec-policy/selinux-usbguard ~amd64
-sec-policy/selinux-virt ~amd64
-sec-policy/selinux-vmware ~amd64
-sec-policy/selinux-wireguard ~amd64
-sec-policy/selinux-wireshark ~amd64
-sec-policy/selinux-xscreensaver ~amd64
-sec-policy/selinux-xserver ~amd64
+sec-policy/*
+sec-policy/apparmor-profiles
+sec-policy/selinux-acct
+sec-policy/selinux-aide
+sec-policy/selinux-alsa
+sec-policy/selinux-android
+sec-policy/selinux-apache
+sec-policy/selinux-at
+sec-policy/selinux-base
+sec-policy/selinux-base-policy
+sec-policy/selinux-brctl
+sec-policy/selinux-cdrecord
+sec-policy/selinux-chromium
+sec-policy/selinux-container
+sec-policy/selinux-dbus
+sec-policy/selinux-devicekit
+sec-policy/selinux-dirmngr
+sec-policy/selinux-dmidecode
+sec-policy/selinux-dnsmasq
+sec-policy/selinux-docker
+sec-policy/selinux-dpkg
+sec-policy/selinux-dracut
+sec-policy/selinux-git
+sec-policy/selinux-gnome
+sec-policy/selinux-gpg
+sec-policy/selinux-gpm
+sec-policy/selinux-irc
+sec-policy/selinux-java
+sec-policy/selinux-kerberos
+sec-policy/selinux-loadkeys
+sec-policy/selinux-logrotate
+sec-policy/selinux-makewhatis
+sec-policy/selinux-mandb
+sec-policy/selinux-mozilla
+sec-policy/selinux-mplayer
+sec-policy/selinux-openct
+sec-policy/selinux-openrc
+sec-policy/selinux-pcscd
+sec-policy/selinux-podman
+sec-policy/selinux-policykit
+sec-policy/selinux-qemu
+sec-policy/selinux-resolvconf
+sec-policy/selinux-rngd
+sec-policy/selinux-rootlesskit
+sec-policy/selinux-rpm
+sec-policy/selinux-samba
+sec-policy/selinux-screen
+sec-policy/selinux-sensord
+sec-policy/selinux-shutdown
+sec-policy/selinux-sudo
+sec-policy/selinux-sysstat
+sec-policy/selinux-tripwire
+sec-policy/selinux-unconfined
+sec-policy/selinux-usbguard
+sec-policy/selinux-virt
+sec-policy/selinux-vmware
+sec-policy/selinux-wireguard
+sec-policy/selinux-wireshark
+sec-policy/selinux-xscreensaver
+sec-policy/selinux-xserver

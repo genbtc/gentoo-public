@@ -1,0 +1,8 @@
+CONFIG_SSB=m													      |	# CONFIG_SSB is not set
+CONFIG_SSB_SPROM=y												      <
+CONFIG_SSB_PCIHOST_POSSIBLE=y											      <
+CONFIG_SSB_PCIHOST=y												      <
+CONFIG_SSB_DRIVER_PCICORE_POSSIBLE=y										      <
+CONFIG_SSB_DRIVER_PCICORE=y											      <
+CONFIG_SSB_DRIVER_GPIO=y											      <
+# CONFIG_USB_HCD_SSB is not set											      <

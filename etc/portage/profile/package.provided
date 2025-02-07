@@ -1,26 +1,70 @@
-#never even wanted. Dragged in by chrome
+#~never wanted. never used. Dragged in by chrome (2022)
 app-text/ghostscript-gpl-10.01.1
 net-print/cups-2.4.2-r7
 app-text/yelp-tools-42.1
 
-#stop kernels from updating each time so much
-#virtual/dist-kernel-6.9.9
-#sys-kernel/gentoo-kernel-bin-6.9.9
-#sys-kernel/gentoo-kernel-6.9.9
-#sys-kernel/gentoo-sources-6.9.9
+#stop kernels from updating each time so much (2023)
+virtual/dist-kernel-6.99.9
+sys-kernel/gentoo-kernel-bin-6.99.9
+sys-kernel/gentoo-kernel-6.99.9
+sys-kernel/gentoo-sources-6.99.9
 
-#(INstalled on 12/29/23)
-#libvirt, (qemu? new dep) sprung on us
-#app-crypt/swtpm-0.8.0
+#required by app-emulation/libvirt-9.4.0-r4::gentoo[virt-network] (2023)
+net-dns/dnsmasq-2.89-r1     #USE= ipv6 script
+# radvd = IPv6 Router Advertisement Daemon (+selinux pols)
+net-misc/radvd-2.19-r5
 
-#gnuradio adds -r1
-#net-wireless/gnuradio-3.10.7.0-r1
+#cant build now with ffmpeg 6     (December 2023)
+media-sound/audacity-2.4.2-r3
+#--depclean needs this line uncommented to run, since blocked by audacity
+#media-video/ffmpeg-6.1.1
 
-#ffmpeg 6 is blocked by VLC[vaapi] and handbrake-1.5 not 1.6
-#[ebuild     UD ] media-video/ffmpeg-4.4.4-r3:0/56.58.58::gentoo [4.4.4-r4:0/56.58.58::gentoo] U
-#/etc/portage/package.mask/handbrake
-media-video/ffmpeg-6.0.0
+#relies on (g)udev 238 and we have eudev 237 - (June 1,2024)
+sys-power/upower-1.90.4
+#Dependency gudev-1.0 found: NO found 237 but need: '>= 238'
+#Found CMake: /usr/bin/cmake (3.28.5)
+#Run-time dependency gudev-1.0 found: NO (tried cmake)
+#meson.build:72:14: ERROR: Dependency lookup for gudev-1.0 with method 'pkgconfig' failed: Invalid version, need 'gudev-1.0' ['>= 238'] found '237'.
 
-# required by app-emulation/libvirt-9.4.0-r4::gentoo[virt-network]
-net-dns/dnsmasq-2.89-r1 #USE= ipv6 script
-net-misc/radvd-2.19-r5  # pulls selinux policies also
+#reaper cant compile SWELL (Aug 1, 2024)
+media-sound/reaper-bin-7.18
+
+#curl seems sus lately (8/17/24)
+net-misc/curl-8.8.0-r1
+#yep 8.9 and 8.10 quickly came out but 8.7 remained stable along with 8.8 (9/24/24) (11/21/24)
+
+#stick to old magiccube v2 , v4 build fail; situation unclear (8/20/24)
+games-puzzle/magiccube4d-4.3.343
+
+#only polkit v123 works right (9/6/2024)
+sys-auth/polkit-124-r1
+sys-auth/polkit-125-r1
+
+#stop compiling syd so often (and no to pandoras box)
+#sys-apps/syd-3.25.1 -
+sys-apps/syd-3.27.0
+sys-apps/pandora_box-0.11.0
+
+#OBS cant compile with VLC-9999 (9/18/24) last compile 08/22/24
+media-video/obs-studio-30.2.3
+
+#hold of openssl stick to 3.0.15 (9/29/24)
+dev-libs/openssl-3.3.2
+
+#Bind-Tools wants bind to install now
+net-dns/bind-9.18.29-r2
+#keep old tools-version
+net-dns/bind-tools-9.18.0
+
+#use my own firefox 115.17 build (11/4/24)
+www-client/firefox-128.4.0
+
+#sxid, mailx suddenly (11/24/24)
+app-admin/sxid-4.20130802
+virtual/mailx-4
+
+#Clion wants wayland - disable (12/16/24)
+dev-libs/wayland-1.23.1
+
+#-r2 wants libpcre[JIT] but hardened selinux cannot (1/22/25)
+dev-util/rizin-0.7.3-r2

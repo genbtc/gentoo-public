@@ -1,0 +1,60 @@
+# genr8eofl @ gentoo - package.license file - Dec 25, 2023
+
+#==> chrome <==
+www-client/google-chrome google-chrome
+
+#==> faac <==
+media-libs/faac MPEG-4
+
+#==> firmware <==
+sys-kernel/linux-firmware linux-fw-redistributable no-source-code
+
+#==> fpdf <==
+dev-php/fpdf freedist
+
+#==> geekbench <==
+>=app-benchmarks/geekbench-5.3.1 geekbench
+
+#==> joypixels <==
+media-fonts/joypixels JoyPixels
+
+#==> manpages <==
+sys-apps/man-pages-posix freedist
+
+#==> magiccube4d <==
+>=games-puzzle/magiccube4d-2.2-r1 free-noncomm
+
+#==> memtest86-bin <==
+sys-apps/memtest86-bin PassMark-EULA
+
+#==> nbench <==
+app-benchmarks/nbench freedist
+
+#==> nmap <==
+net-analyzer/nmap NPSL-0.94
+
+#==> nvidia <==
+sys-firmware/nvidia-firmware NVIDIA-r2
+
+#==> ramspeed <==
+app-benchmarks/ramspeed Alasir
+
+#==> unrar <==
+app-arch/unrar unRAR
+
+#==> virtualbox <==
+app-emulation/virtualbox-extpack-oracle PUEL PUEL-11 PUEL-12
+
+#==> vscode <==
+app-editors/vscode Microsoft-vscode
+
+#==> spotify ==<
+media-sound/spotify Spotify
+# required by dev-util/android-studio (argument)
+>=dev-util/android-studio-2023.1.1.22 android
+# required by reaper-bin (argument)
+>=media-sound/reaper-bin-7.09 Cockos
+# required by dev-util/clion (argument)
+>=dev-util/clion-2024.1-r1 IDEA IDEA_Academic IDEA_Classroom IDEA_OpenSource IDEA_Personal
+# required by app-benchmarks/iozone (argument)
+>=app-benchmarks/iozone-3.506 freedist

@@ -1,7 +1,7 @@
 #WARNING: One or more updates/rebuilds have been skipped due to a dependency conflict:
 
 # LTO / PGO
-dev-lang/python lto pgo
+dev-lang/python   pgo #lto #not needed
 sys-devel/gcc lto pgo
 
 #  (media-libs/freetype-2.11.0-r1:2/2::gentoo, ebuild scheduled for merge) USE="X adobe-cff bzip2 cleartype-hinting png -brotli -debug -doc -fontforge -harfbuzz (-infinality) -static-libs -utils" conflicts with
@@ -44,8 +44,6 @@ net-fs/samba client
 # required by (media-video/obs-studio-9999:0/0::gentoo, ebuild scheduled for merge) USE="alsa ssl truetype -browser -decklink -fdk -jack -lua -nvenc -pipewire -pulseaudio -python -speex -v4l -vlc -wayland" LUA_SINGLE_TARGET="luajit" PYTHON_SINGLE_TARGET="python3_9 -python3_10 -python3_8"
 media-video/ffmpeg x264
 
-#(gr-osmosdr also required a custom overlay 9999)
-net-wireless/gr-osmosdr python
 #Packages: net-wireless/gnuradio net-wireless/gr-osmosdr net-wireless/gqrx
 #  (net-wireless/gnuradio-3.10.5.0-r2:0/3.10.5.0::gentoo, ebuild scheduled for merge) USE="alsa analog audio digital filter portaudio qt5 sdl utils -channels -ctrlport -doc -dtv -examples -fec -grc -iio -jack -modtool -network -oss -performance-counters -soapy -test -trellis -uhd -vocoder -wavelet -zeromq" PYTHON_SINGLE_TARGET="python3_10 -python3_9" conflicts with
 #    >=net-wireless/gnuradio-3.10:0=[audio,analog,filter,network]
@@ -56,7 +54,8 @@ net-wireless/gnuradio network
 # dev-python/PyQt5-5.15.4-r1::gentoo USE="opengl ssl -bluetooth -dbus -debug -declarative -designer -examples -gles2-only -gui -help -location -multimedia -network -positioning -printsupport -sensors -serialport -speech -sql -svg -testlib -webchannel -websockets -widgets -x11extras -xmlpatterns" PYTHON_TARGETS="python3_9 (-python3_10) -python3_8"
 #  The following REQUIRED_USE flag constraints are unsatisfied:
 #    opengl? ( gui widgets )
-dev-python/PyQt5 gui widgets
+# move dev-python/PyQt5 dev-python/pyqt5
+dev-python/pyqt5 gui widgets
 
 #  (dev-qt/qtgui-5.15.8-r1:5/5.15.8::gentoo, ebuild scheduled for merge) USE="X egl jpeg libinput png udev vnc vulkan -accessibility -dbus -debug -eglfs -evdev -gles2-only -ibus -linuxfb -test -tslib -tuio -wayland" conflicts with
 #    =dev-qt/qtgui-5.15.8*:5/5.15.8=[dbus]
@@ -83,35 +82,11 @@ dev-qt/qtwidgets dbus
 # required by (app-crypt/yubikey-manager-qt-1.2.4-2:0/0::gentoo, installed) USE="" PYTHON_SINGLE_TARGET="python3_10 -python3_11 -python3_8 -python3_9"
 dev-qt/qtquickcontrols2 widgets
 
-#!!! The ebuild selected to satisfy "media-libs/sdl-mixer" has unmet requirements.
-#  media-libs/sdl-mixer-1.2.12_p20221010::gentoo USE="flac mp3 vorbis wav -fluidsynth -mad -midi -mikmod -mod -modplug -playtools -smpeg -static-libs -timidity"
-#  The following REQUIRED_USE flag constraints are unsatisfied:
-#    mp3? ( any-of ( smpeg mad ) )
-#  The above constraints are a subset of the following complete expression:
-#    midi? ( any-of ( timidity fluidsynth ) ) timidity? ( midi ) fluidsynth? ( midi ) mp3? ( any-of ( smpeg mad ) ) smpeg? ( mp3 ) mad? ( mp3 ) mod? ( any-of ( mikmod modplug ) ) mikmod? ( mod ) modplug? ( mod )
-#(dependency required by "media-gfx/tuxpaint-0.9.28-r2::gentoo" [installed])
-#(dependency required by "@world" [argument])
-media-libs/sdl-mixer smpeg mad
-
 #  (dev-python/numpy-1.24.0:0/0::gentoo, ebuild scheduled for merge) USE="-lapack -test" PYTHON_TARGETS="python3_10 -python3_11 -python3_9" conflicts with
 #    >=dev-python/numpy-1.19.5[lapack,python_targets_python3_10(-)]
 #                             ^^^^^^^
 # required by (dev-python/scipy-1.10.0-1:0/0::gentoo, installed) USE="fortran (test-rust) -doc -test" PYTHON_TARGETS="python3_10 -python3_11 -python3_9"
 dev-python/numpy lapack
-
-#!!! The ebuild selected to satisfy ">=media-libs/opencv-3.4:=" has unmet requirements.
-#  media-libs/opencv-4.6.0-r4::gentoo USE="eigen features2d ffmpeg gstreamer gtk3 jpeg jpeg2k opengl openmp python threads vaapi -contrib (-contribcvv) -contribdnn -contribfreetype (-contribhdf) (-contribovis) (-contribsfm) (-contribxfeatures2d) (-cuda) -debug -dnnsamples -download -examples -gdal (-gflags) (-glog) -gphoto2 -ieee1394 -java -lapack -lto -opencl -opencvapps -openexr -png -qt5 (-tesseract) -testprograms -tiff -v4l (-vtk) -webp -xine" CPU_FLAGS_X86="avx avx2 f16c fma3 popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3 -avx512f" PYTHON_TARGETS="python3_10 -python3_11 -python3_9"
-#  The following REQUIRED_USE flag constraints are unsatisfied:
-#    opengl? ( qt5 )
-#  The above constraints are a subset of the following complete expression:
-#    cpu_flags_x86_avx2? ( cpu_flags_x86_f16c ) cpu_flags_x86_f16c? ( cpu_flags_x86_avx ) cuda? ( contrib tesseract? ( opencl ) ) dnnsamples? ( examples ) gflags? ( contrib )
-#    glog? ( contrib ) contribcvv? ( contrib qt5 ) contribdnn? ( contrib ) contribfreetype? ( contrib ) contribhdf? ( contrib ) contribovis? ( contrib ) contribsfm? ( contrib eigen gflags glog )
-#    contribxfeatures2d? ( contrib download ) examples? ( contribdnn ) java? ( python ) opengl? ( qt5 )
-#    python? ( any-of ( python_targets_python3_9 python_targets_python3_10 python_targets_python3_11 ) ) tesseract? ( contrib )
-#    at-most-one-of ( gtk3 qt5 )
-#            ^^^      ^^^^^^^^
-#(dependency required by "media-gfx/nomacs-3.16.224-r5::gentoo[opencv]" [ebuild])
-#(dependency required by "@world" [argument])
 
 # required by media-gfx/fbida-2.14-r5::gentoo[X]
 # required by @world (argument)
@@ -140,20 +115,6 @@ media-gfx/graphicsmagick png
 #                           ^^^^^^^^^^^^^
 # required by (app-emulation/libvirt-8.7.0-r1-2:0/8.7.0::gentoo, installed) USE="(audit) bash-completion (caps) fuse libssh libvirtd lvm lxc parted qemu (selinux) udev verify-sig virtualbox -apparmor -dtrace -firewalld -glusterfs -iscsi -iscsi-direct -libssh2 -nfs -nls -numa (-openvz) -pcap -policykit -rbd -sasl -virt-network -wireshark-plugins -xen -zfs"
 sys-block/parted device-mapper
-
-# required by net-libs/webkit-gtk-2.38.3-r410::gentoo
-# required by gnome-extra/sushi-43.0::gentoo
-# required by gnome-base/nautilus-43.1::gentoo[previewer]
-# required by @selected
-# required by @world (argument)
-#>=media-libs/harfbuzz-6.0.0 icu
-gnome-base/nautilus -previewer
-
-# required by app-emulation/libvirt-8.7.0-r1::gentoo[virt-network]
-# required by @selected
-# required by @world (argument)
-#>=net-dns/dnsmasq-2.86-r1 script ipv6
-app-emulation/libvirt -virt-network
 
 #  (app-text/xmlto-0.0.28-r10:0/0::gentoo, ebuild scheduled for merge) USE="-latex -text" conflicts with
 #    >=app-text/xmlto-0.0.28-r3[text(+)]
@@ -186,12 +147,6 @@ media-libs/gd fontconfig
 # required by @selected
 x11-libs/libdrm video_cards_radeon
 
-#  (media-libs/sdl-image-1.2.12_p20220527-r1-1:0/0::gentoo, installed) USE="jpeg png -gif -static-libs -tiff -webp" pulled in by
-#    media-libs/sdl-image[png]
-#                         ^^^
-# required by (media-gfx/tuxpaint-0.9.28-r2-1:0/0::gentoo, installed) USE=""
-media-libs/sdl-image png
-
 #  (dev-libs/capstone-5.0_rc2-r2-1:0/5::gentoo, installed) USE="python -test" PYTHON_TARGETS="python3_10 -python3_11 -python3_9" pulled in by
 #    dev-libs/capstone[python,python_targets_python3_10(-)]
 #                      ^^^^^^
@@ -213,42 +168,22 @@ dev-util/unicorn python
 #(dependency required by "@selected" [set])
 #(dependency required by "@world" [argument])
 # required by dev-python/QtPy (argument)
->=dev-python/QtPy-2.3.0 -network -sql
+# move dev-python/QtPy dev-python/qtpy
+>=dev-python/qtpy-2.3.0 -network -sql
 # required by dev-python/qtconsole-5.4.0::gentoo
 # required by dev-python/ipython-8.8.0::gentoo[qt5]
 # required by @selected
 # required by @world (argument)
->=dev-python/QtPy-2.3.0 printsupport
+# move dev-python/QtPy dev-python/qtpy
+>=dev-python/qtpy-2.3.0 printsupport
 # required by dev-python/QtPy-2.3.0::gentoo[pyqt5]
 # required by dev-python/qtconsole-5.4.0::gentoo
 # required by dev-python/ipython-8.8.0::gentoo[qt5]
 # required by @selected
 # required by @world (argument)
->=dev-python/PyQt5-5.15.7 printsupport
+# move dev-python/PyQt5 dev-python/pyqt5
+>=dev-python/pyqt5-5.15.7 printsupport
 
-#net-misc/spice-gtk:0
-#
-#  (net-misc/spice-gtk-0.41-r1:0/0::gentoo, ebuild scheduled for merge) USE="gtk3 introspection lz4 vala -mjpeg -policykit -sasl -smartcard -usbredir -wayland -webdav" conflicts with
-#    net-misc/spice-gtk[usbredir,gtk3,introspection] required by (app-emulation/virt-manager-4.0.0-3:0/0::gentoo, installed) USE="gtk -policykit -sasl -test" PYTHON_SINGLE_TARGET="python3_10 -python3_8 -python3_9"
-#                       ^^^^^^^^
-#
-#net-misc/spice-gtk usbredir
-# (see virt file)
-
-#virtual/imagemagick-tools:0
-#
-#  (virtual/imagemagick-tools-0-r1:0/0::gentoo, ebuild scheduled for merge) USE="jpeg svg -perl -png -tiff" conflicts with
-#    virtual/imagemagick-tools[jpeg,tiff] required by (dev-python/matplotlib-3.6.2-3:0/0::gentoo, installed) USE="cairo gtk3 qt5 (-doc) -examples -excel -latex -test -tk -webagg -wxwidgets" PYTHON_TARGETS="python3_10 -python3_11 -python3_9"
-#                                   ^^^^
-#    =virtual/imagemagick-tools-0-r1[jpeg,tiff] required by (dev-python/matplotlib-3.6.2-3:0/0::gentoo, installed) USE="cairo gtk3 qt5 (-doc) -examples -excel -latex -test -tk -webagg -wxwidgets" PYTHON_TARGETS="python3_10 -python3_11 -python3_9"
-#                                         ^^^^
-#media-gfx/imagemagick:0
-#
-#  (media-gfx/imagemagick-7.1.0.48-r1:0/7.1.0-43::gentoo, ebuild scheduled for merge) USE="X bzip2 cxx jpeg jpeg2k lzma openmp png svg truetype webp xml zip zlib -corefonts -djvu -fftw -fontconfig -fpx -graphviz -hdri -heif -jbig -lcms -lqr
-#-opencl -openexr -pango -perl -postscript -q32 -q8 -raw -static-libs -test -tiff -wmf" conflicts with
-#    media-gfx/imagemagick[jpeg,svg,tiff] required by (virtual/imagemagick-tools-0-r1-3:0/0::gentoo, installed) USE="jpeg svg tiff -perl -png"
-#                                   ^^^^
-#virtual/imagemagick-tools tiff
 
 #begin autounmask from Feb12-23
 >=dev-python/pyzmq-25.0.2 drafts

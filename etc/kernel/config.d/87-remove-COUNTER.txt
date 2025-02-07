@@ -1,0 +1,3 @@
+CONFIG_COUNTER=m												      |	# CONFIG_COUNTER is not set
+# CONFIG_INTERRUPT_CNT is not set										      <
+CONFIG_INTEL_QEP=m												      <

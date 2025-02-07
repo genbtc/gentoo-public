@@ -1,0 +1,14 @@
+BDEPEND=dev-util/cmake dev-libs/libxml2 dev-vcs/git dev-util/ninja app-alternatives/ninja >=dev-build/cmake-3.20.5
+DEFINED_PHASES=compile configure install postinst prepare test
+DEPEND=nodejs? ( net-libs/nodejs ) python? ( dev-lang/python ) sys-apps/which
+DESCRIPTION=Compile C and C++ LLVM Bytecode into highly-optimizable JavaScript for the web
+EAPI=8
+HOMEPAGE=https://emscripten.org
+INHERIT=cmake
+IUSE=nodejs python
+KEYWORDS=amd64 ~amd64 x86 ~x86
+LICENSE=Apache-2.0-with-LLVM-exceptions UoI-NCSA MIT
+SLOT=0
+SRC_URI=git+https://github.com/kripken/emscripten#tag=3.1.38 git+https://github.com/llvm/llvm-project.git#commit=004bf170c6cbaa049601bcf92f86a9459aec2dc2 git+https://github.com/WebAssembly/binaryen.git#commit=ee738ac1f838a090cac74ba8981e2104b6c02d44 files/emscripten.sh #(PATH:/usr/lib/emscripten) files/emscripten-config #(Env vars of PATHs)
+_eclasses_=toolchain-funcs	e56c7649b804f051623c8bc1a1c44084	multilib	c19072c3cd7ac5cb21de013f7e9832e0	flag-o-matic	288c54efeb5e2aa70775e39032695ad4	multiprocessing	30ead54fa2e2b5f9cd4e612ffc34d0fe	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	xdg-utils	baea6080dd821f5562d715887954c9d3	cmake	c7c9a62d6232cac66d4ea32d575c3e7c
+_md5_=ea05fedb29e3f31706821c367be8a648

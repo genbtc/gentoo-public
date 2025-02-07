@@ -1,0 +1,15 @@
+BDEPEND=>=sys-devel/m4-1.4.16 >=dev-lang/perl-5.10 >=sys-kernel/linux-headers-5.6 sys-libs/libseccomp dev-libs/libxslt app-text/docbook-xml-dtd sys-devel/libtool sys-devel/autoconf sys-devel/automake sys-devel/bison sys-devel/gettext virtual/pkgconfig dev-util/gperf sys-devel/bzip2 sys-devel/diffutils tmux? ( app-misc/tmux ) cgdb? ( dev-util/cgdb ) app-shells/bash sys-devel/strace valgrind? ( dev-util/valgrind ) vim? ( app-editors/vim ) rust? ( virtual/rust ) pandora? ( virtual/rust ) >=dev-vcs/git-1.8.2.1[curl] sys-devel/gnuconfig >=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.5:1.16 ) >=sys-devel/autoconf-2.71-r5 >=sys-devel/libtool-2.4.7
+DEFINED_PHASES=compile configure install prepare setup test unpack
+DEPEND=sys-libs/libseccomp sys-devel/strace sys-libs/libunwind >=sys-kernel/linux-headers-5.6
+DESCRIPTION=sydbox, a seccomp-bpf & seccomp-notify based sandbox, blocks unwanted process access to filesystem and network resources.
+EAPI=7
+HOMEPAGE=https://sydbox.exherbo.org https://pink.exherbo.org/
+INHERIT=git-r3 autotools linux-info
+IUSE=+seccomp +bpf +notify tmux cgdb valgrind vim debug static-libs rust pandora
+LICENSE=GPL-3+
+PROPERTIES=live
+RDEPEND=sys-libs/libseccomp sys-devel/strace sys-libs/libunwind
+REQUIRED_USE=rust? ( pandora ) pandora? ( rust )
+SLOT=0
+_eclasses_=git-r3	27e13c09a4c7e4c78ac812f74727e676	gnuconfig	b6b3e92f8b8c996400074b5f61a59256	toolchain-funcs	513c31b3346458ed1f3878b57da6d61c	multilib	c19072c3cd7ac5cb21de013f7e9832e0	libtool	9d3a9a889a6fa62ae794f817c156491b	autotools	6ae9a4347149b19a112caa1182d03bde	linux-info	c4f1201b96a8a2c1f3b86cc8b2c71c91
+_md5_=468c2d8a5dd7c9d67e00aac2d0b09a6f

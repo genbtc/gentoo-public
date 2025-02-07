@@ -1,21 +1,13 @@
 #!/bin/bash
-# not !/sbin/openrc-run
-# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo/xml/htdocs/proj/en/hardened/integrity/docs/evm-guide.xml,v 1.4 2013/03/09 13:55:21 swift Exp $
 
-description="Load in the EVM and IMA keys"
-start() {
-	sysctl kernel.printk_ratelimit_burst=800
-	sysctl kernel.printk_ratelimit=1
-
+description="Reset the IMA policy - blank it out"
+IMAstart() {
 	echo -n "CLEAR" > /sys/kernel/security/integrity/ima/policy
-	echo "IMA: CLEAR'ed Custom Policy." > /dev/kmsg
-	#need two here cause first one fails, "The Policy Update Failed!"
+	echo "IMA: CLEAR'ing Custom Policy..." > /dev/kmsg
+	#need two here cause first one fails, "The IMA Policy Update Failed!"
 	echo -n "CLEAR" > /sys/kernel/security/integrity/ima/policy
 	echo "IMA: CLEAR'ed Custom Policy.End" > /dev/kmsg
-
-#	dmesg -n4
-
 }
-start
+#IMAstart

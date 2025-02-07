@@ -1,0 +1,41 @@
+CONFIG_W1=m													      |	# CONFIG_W1 is not set
+CONFIG_W1_CON=y													      <
+														      <
+#														      <
+# 1-wire Bus Masters												      <
+#														      <
+# CONFIG_W1_MASTER_MATROX is not set										      <
+CONFIG_W1_MASTER_DS2490=m											      <
+CONFIG_W1_MASTER_DS2482=m											      <
+# CONFIG_W1_MASTER_DS1WM is not set										      <
+# CONFIG_W1_MASTER_GPIO is not set										      <
+# CONFIG_W1_MASTER_SGI is not set										      <
+# end of 1-wire Bus Masters											      <
+														      <
+#														      <
+# 1-wire Slaves													      <
+#														      <
+CONFIG_W1_SLAVE_THERM=m												      <
+CONFIG_W1_SLAVE_SMEM=m												      <
+CONFIG_W1_SLAVE_DS2405=m											      <
+CONFIG_W1_SLAVE_DS2408=m											      <
+# CONFIG_W1_SLAVE_DS2408_READBACK is not set									      <
+CONFIG_W1_SLAVE_DS2413=m											      <
+CONFIG_W1_SLAVE_DS2406=m											      <
+CONFIG_W1_SLAVE_DS2423=m											      <
+CONFIG_W1_SLAVE_DS2805=m											      <
+CONFIG_W1_SLAVE_DS2430=m											      <
+CONFIG_W1_SLAVE_DS2431=m											      <
+CONFIG_W1_SLAVE_DS2433=m											      <
+CONFIG_W1_SLAVE_DS2433_CRC=y											      <
+CONFIG_W1_SLAVE_DS2438=m											      <
+# CONFIG_W1_SLAVE_DS250X is not set										      <
+CONFIG_W1_SLAVE_DS2780=m											      <
+CONFIG_W1_SLAVE_DS2781=m											      <
+CONFIG_W1_SLAVE_DS28E04=m											      <
+# CONFIG_W1_SLAVE_DS28E17 is not set										      <
+# end of 1-wire Slaves												      <
+														      <
+# CONFIG_BATTERY_DS2760 is not set										      <
+# CONFIG_BATTERY_BQ27XXX_HDQ is not set										      <
+# CONFIG_BATTERY_MAX1721X is not set										      <

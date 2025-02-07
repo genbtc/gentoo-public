@@ -1,0 +1,4 @@
+cross-riscv64-unknown-none-elf/newlib  multilib
+cross-riscv64-unknown-none-elf/binutils  multilib
+cross-riscv64-unknown-none-elf/gcc  nopie multilib
+cross-riscv64-unknown-none-elf/gdb  multilib

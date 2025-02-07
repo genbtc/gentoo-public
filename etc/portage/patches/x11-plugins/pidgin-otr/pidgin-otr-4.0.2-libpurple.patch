@@ -1,0 +1,22 @@
+diff '--color=auto' -ur pidgin-otr-4.0.2/otr-plugin.c pidgin-otr-4.0.2.fixed/otr-plugin.c
+--- pidgin-otr-4.0.2/otr-plugin.c	2014-10-21 14:13:21.000000000 +0400
++++ pidgin-otr-4.0.2.fixed/otr-plugin.c	2024-11-28 22:51:28.966804439 +0300
+@@ -33,12 +33,12 @@
+ #include <gcrypt.h>
+ 
+ /* purple headers */
+-#include "pidgin.h"
+-#include "notify.h"
+-#include "version.h"
+-#include "util.h"
+-#include "debug.h"
+-#include "core.h"
++#include "pidgin/pidgin.h"
++#include "libpurple/notify.h"
++#include "libpurple/version.h"
++#include "libpurple/util.h"
++#include "libpurple/debug.h"
++#include "libpurple/core.h"
+ 
+ #ifdef USING_GTK
+ /* purple GTK headers */

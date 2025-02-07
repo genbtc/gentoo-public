@@ -1,0 +1,11 @@
+>=dev-libs/roct-thunk-interface-5.7.3
+>=dev-libs/rocr-runtime-5.7.3
+
+>=dev-util/hip-5.7.3
+>=dev-util/hipcc-5.7.3
+>=dev-util/hipify-clang-5.7.3
+
+>=dev-libs/rocm-device-libs-5.7.3
+>=dev-libs/rocm-comgr-5.7.3
+
+>=dev-util/rocminfo-5.7.3

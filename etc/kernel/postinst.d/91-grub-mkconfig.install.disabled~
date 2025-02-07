@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# this file is installed by sys-kernel/installkernel-gentoo
+
+: "${GRUB_CFG:=/boot/grub/grub.cfg}"
+
+# familiar helpers, we intentionally don't use Gentoo functions.sh
+die() {
+	echo -e " ${NOCOLOR-\e[1;31m*\e[0m }${*}" >&2
+	exit 1
+}
+
+einfo() {
+	echo -e " ${NOCOLOR-\e[1;32m*\e[0m }${*}" >&2
+}
+
+ewarn() {
+	echo -e " ${NOCOLOR-\e[1;33m*\e[0m }${*}" >&2
+}
+
+eerror() {
+	echo -e " ${NOCOLOR-\e[1;31m*\e[0m }${*}" >&2
+}
+
+main() {
+	# re-define for subst to work
+	[[ -n ${NOCOLOR+yes} ]] && NOCOLOR=
+
+	# do nothing if somehow GRUB is not installed
+	[[ -x $(command -v grub-mkconfig) ]] || { ewarn "grub-mkconfig command not available" && exit 0 ; }
+
+	[[ ${EUID} -eq 0 ]] || die "Please run this script as root"
+
+	if [[ -f ${GRUB_CFG} ]]; then
+        einfo "Backing up existing grub config as ${GRUB_CFG}~"
+        cp -v "${GRUB_CFG}"{,~} || die "Failed to save existing config"
+	fi
+
+	einfo "Generating new GRUB config as ${GRUB_CFG}"
+	local dname="${GRUB_CFG%/*}"
+	mkdir -vp "${dname}" || die "Failed to mkdir ${dname}"
+	grub-mkconfig -o "${GRUB_CFG}" || eerror "grub-mkconfig failed"
+}
+
+main

@@ -1,0 +1,6 @@
+CONFIG_GNSS=m													      |	# CONFIG_GNSS is not set
+CONFIG_GNSS_SERIAL=m												      <
+CONFIG_GNSS_MTK_SERIAL=m											      <
+CONFIG_GNSS_SIRF_SERIAL=m											      <
+CONFIG_GNSS_UBX_SERIAL=m											      <
+CONFIG_GNSS_USB=m												      <

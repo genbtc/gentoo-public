@@ -1,0 +1,11 @@
+--- a/Makefile.in	2011-10-27 09:23:21.000000000 -0400
++++ b/Makefile.in	2024-02-21 00:36:24.650686288 -0500
+@@ -267,7 +267,7 @@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+-SUBDIRS = src po
++SUBDIRS = src
+ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
+ EXTRA_DIST = \
+ 	autogen.sh		\

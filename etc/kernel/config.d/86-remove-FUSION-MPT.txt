@@ -1,0 +1,8 @@
+CONFIG_FUSION=y													      |	# CONFIG_FUSION is not set
+CONFIG_FUSION_SPI=m												      <
+CONFIG_FUSION_FC=m												      <
+CONFIG_FUSION_SAS=m												      <
+CONFIG_FUSION_MAX_SGE=40											      <
+CONFIG_FUSION_CTL=m												      <
+CONFIG_FUSION_LAN=m												      <
+CONFIG_FUSION_LOGGING=y												      <

@@ -1,0 +1,17 @@
+BDEPEND=>=dev-qt/linguist-tools-5.15:5 virtual/pkgconfig doc? ( >=dev-qt/qdoc-5.15:5 ) test? ( x11-base/xorg-server[xvfb] x11-apps/xhost )
+DEFINED_PHASES=configure install postinst postrm preinst prepare setup test
+DEPEND=>=dev-qt/qtconcurrent-5.15:5 >=dev-qt/qtcore-5.15:5 >=dev-qt/qtdeclarative-5.15:5[widgets] >=dev-qt/qtgui-5.15:5 >=dev-qt/qtnetwork-5.15:5[ssl] >=dev-qt/qtprintsupport-5.15:5 >=dev-qt/qtquickcontrols-5.15:5 >=dev-qt/qtscript-5.15:5 >=dev-qt/qtsql-5.15:5[sqlite] >=dev-qt/qtsvg-5.15:5 >=dev-qt/qtwidgets-5.15:5 >=dev-qt/qtx11extras-5.15:5 >=dev-qt/qtxml-5.15:5 >=kde-frameworks/syntax-highlighting-5.87:5 clang? ( >=dev-cpp/yaml-cpp-0.6.2:= || ( sys-devel/clang:14 sys-devel/clang:13 sys-devel/clang:12 sys-devel/clang:11 ) <sys-devel/clang-15:= ) designer? ( >=dev-qt/designer-5.15:5 ) help? ( >=dev-qt/qthelp-5.15:5 webengine? ( >=dev-qt/qtwebengine-5.15:5[widgets] ) ) perfprofiler? ( dev-libs/elfutils ) serialterminal? ( >=dev-qt/qtserialport-5.15:5 ) systemd? ( sys-apps/systemd:= ) test? ( >=dev-qt/qtdeclarative-5.15:5[localstorage] >=dev-qt/qtquickcontrols2-5.15:5 >=dev-qt/qttest-5.15:5 >=dev-qt/qtxmlpatterns-5.15:5[qml] ) !!sys-devel/llvm:0 dev-util/desktop-file-utils x11-misc/shared-mime-info
+DESCRIPTION=Lightweight IDE for C++/QML development centering around Qt
+EAPI=7
+HOMEPAGE=https://doc.qt.io/qtcreator/
+INHERIT=llvm qmake-utils virtualx xdg
+IUSE=doc systemd test webengine android +autotest autotools baremetal bazaar beautifier boot2qt +clang clearcase +cmake conan cppcheck ctfvisualizer cvs +designer docker +git glsl +help incredibuild +lsp mcu mercurial meson modeling nim perforce perfprofiler python qbs +qmake +qml qmlprofiler qnx remotelinux scxml serialterminal silversearcher subversion valgrind webassembly test
+KEYWORDS=amd64 ~arm ~x86
+LICENSE=GPL-3
+RDEPEND=>=dev-qt/qtconcurrent-5.15:5 >=dev-qt/qtcore-5.15:5 >=dev-qt/qtdeclarative-5.15:5[widgets] >=dev-qt/qtgui-5.15:5 >=dev-qt/qtnetwork-5.15:5[ssl] >=dev-qt/qtprintsupport-5.15:5 >=dev-qt/qtquickcontrols-5.15:5 >=dev-qt/qtscript-5.15:5 >=dev-qt/qtsql-5.15:5[sqlite] >=dev-qt/qtsvg-5.15:5 >=dev-qt/qtwidgets-5.15:5 >=dev-qt/qtx11extras-5.15:5 >=dev-qt/qtxml-5.15:5 >=kde-frameworks/syntax-highlighting-5.87:5 clang? ( >=dev-cpp/yaml-cpp-0.6.2:= || ( sys-devel/clang:14 sys-devel/clang:13 sys-devel/clang:12 sys-devel/clang:11 ) <sys-devel/clang-15:= ) designer? ( >=dev-qt/designer-5.15:5 ) help? ( >=dev-qt/qthelp-5.15:5 webengine? ( >=dev-qt/qtwebengine-5.15:5[widgets] ) ) perfprofiler? ( dev-libs/elfutils ) serialterminal? ( >=dev-qt/qtserialport-5.15:5 ) systemd? ( sys-apps/systemd:= ) sys-devel/gdb[python] cppcheck? ( dev-util/cppcheck ) cvs? ( dev-vcs/cvs ) git? ( dev-vcs/git ) mercurial? ( dev-vcs/mercurial ) qml? ( >=dev-qt/qtquicktimeline-5.15:5 ) silversearcher? ( sys-apps/the_silver_searcher ) subversion? ( dev-vcs/subversion ) valgrind? ( dev-util/valgrind )
+REQUIRED_USE=android? ( lsp ) boot2qt? ( remotelinux ) clang? ( lsp ) mcu? ( baremetal cmake ) python? ( lsp ) qml? ( qmake ) qnx? ( remotelinux )
+RESTRICT=!test? ( test )
+SLOT=0
+SRC_URI=https://download.qt.io/official_releases/qtcreator/6.0/6.0.0/qt-creator-opensource-src-6.0.0.tar.xz
+_eclasses_=llvm	5b4ee8759b4e9eec5cb48b46975ca56c	toolchain-funcs	513c31b3346458ed1f3878b57da6d61c	multilib	c19072c3cd7ac5cb21de013f7e9832e0	qmake-utils	a8dd17b1d94586164f5e3fc12b1c6b81	virtualx	817571665ee28575da44ee08135089e5	xdg-utils	baea6080dd821f5562d715887954c9d3	xdg	4a14c5c24f121e7da66e5aab4a168c6e
+_md5_=4902a8b874b83c4fe21bbb90024c88c4

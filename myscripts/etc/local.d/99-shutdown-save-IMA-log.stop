@@ -1,0 +1,3 @@
+#!/bin/sh
+dateNow=$(date +"%F_%H-%M-%S")
+cat /sys/kernel/security/ima/ascii_runtime_measurements > /var/log/ima/shutdown-save-IMA-log-${dateNow}

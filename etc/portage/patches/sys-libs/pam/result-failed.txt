@@ -1,0 +1,47 @@
+#Three patches apply (number #3, #4, #5) - configure.ac & Makefile.am
+#Have to run autoreconf manually, then chown portage: -R . 
+# Configure passes but compile failure.
+# even then we have a failure.
+libtool: compile:  x86_64-pc-linux-gnu-gcc -DHAVE_CONFIG_H -I. -I/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1/modules/pam_timestamp -I../.. -I/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1/libpam/include -DUSE_LOGIND=1 -I/usr/include/elogind -W -Wall -Wbad-function-cast -Wcast-align -Wcast-align=strict -Wcast-qual -Wdeprecated -Wformat=2 -Winit-self -Winline -Wmain -Wmissing-declarations -Wmissing-format-attribute -Wmissing-prototypes -Wnull-dereference
+-Wpointer-arith -Wreturn-type -Wshadow -Wstrict-prototypes -Wundef -Wuninitialized -Wunused -Wwrite-strings -march=znver3 -mshstk -O2 -pipe -fdiagnostics-color=always -c /var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1/modules/pam_timestamp/pam_timestamp.c  -fPIC -DPIC -o .libs/pam_timestamp_la-pam_timestamp.o
+In file included from /var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1/modules/pam_timestamp/pam_timestamp_check.c:42:
+/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1/modules/pam_timestamp/pam_timestamp.c: In function 'check_login_time':
+/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1/modules/pam_timestamp/pam_timestamp.c:222:13: warning: implicit declaration of function 'sd_uid_get_login_time' [-Wimplicit-function-declaration]
+  222 |         if (sd_uid_get_login_time(uid, &usec) < 0) {
+      |             ^~~~~~~~~~~~~~~~~~~~~
+/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1/modules/pam_timestamp/pam_timestamp.c: In function 'check_login_time':
+/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1/modules/pam_timestamp/pam_timestamp.c:222:13: warning: implicit declaration of function 'sd_uid_get_login_time' [-Wimplicit-function-declaration]
+  222 |         if (sd_uid_get_login_time(uid, &usec) < 0) {
+      |             ^~~~~~~~~~~~~~~~~~~~~
+/bin/sh ../../libtool  --tag=CC   --mode=link x86_64-pc-linux-gnu-gcc -I/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1/libpam/include -DUSE_LOGIND=1 -I/usr/include/elogind -W -Wall -Wbad-function-cast -Wcast-align -Wcast-align=strict -Wcast-qual -Wdeprecated -Wformat=2 -Winit-self -Winline -Wmain -Wmissing-declarations -Wmissing-format-attribute -Wmissing-prototypes -Wnull-dereference -Wpointer-arith -Wreturn-type -Wshadow -Wstrict-prototypes -Wundef -Wuninitialized -Wunused -Wwrite-strings -fpie -march=znver3 -mshstk -O2 -pipe -fdiagnostics-color=always  -pie -Wl,-z,now -Wl,-O1 -Wl,--as-needed -Wl,-z,pack-relative-relocs -Wl,--as-needed -Wl,--no-undefined -Wl,-O1 -o pam_timestamp_check pam_timestamp_check-pam_timestamp_check.o ../../libpam/libpam.la  -lelogind
+libtool: link: x86_64-pc-linux-gnu-gcc -I/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1/libpam/include -DUSE_LOGIND=1 -I/usr/include/elogind -W -Wall -Wbad-function-cast -Wcast-align -Wcast-align=strict -Wcast-qual -Wdeprecated -Wformat=2 -Winit-self -Winline -Wmain -Wmissing-declarations -Wmissing-format-attribute -Wmissing-prototypes -Wnull-dereference -Wpointer-arith -Wreturn-type -Wshadow -Wstrict-prototypes -Wundef -Wuninitialized -Wunused -Wwrite-strings -fpie -march=znver3 -mshstk -O2 -pipe -fdiagnostics-color=always -pie -Wl,-z -Wl,now -Wl,-O1 -Wl,--as-needed -Wl,-z -Wl,pack-relative-relocs -Wl,--as-needed -Wl,--no-undefined -Wl,-O1 -o .libs/pam_timestamp_check pam_timestamp_check-pam_timestamp_check.o  ../../libpam/.libs/libpam.so -lelogind
+/bin/sh ../../libtool  --tag=CC   --mode=link x86_64-pc-linux-gnu-gcc -I/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1/libpam/include -DUSE_LOGIND=1 -I/usr/include/elogind -W -Wall -Wbad-function-cast -Wcast-align -Wcast-align=strict -Wcast-qual -Wdeprecated -Wformat=2 -Winit-self -Winline -Wmain -Wmissing-declarations -Wmissing-format-attribute -Wmissing-prototypes -Wnull-dereference -Wpointer-arith -Wreturn-type -Wshadow -Wstrict-prototypes -Wundef -Wuninitialized -Wunused -Wwrite-strings -march=znver3 -mshstk -O2 -pipe -fdiagnostics-color=always  -no-undefined -avoid-version -module   -Wl,--version-script=/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1/modules/pam_timestamp/../modules.map
+-Wl,-O1 -Wl,--as-needed -Wl,-z,pack-relative-relocs -Wl,--as-needed -Wl,--no-undefined -Wl,-O1 -o pam_timestamp.la -rpath /lib64/security pam_timestamp_la-pam_timestamp.lo  pam_timestamp_la-hmacsha1.lo pam_timestamp_la-sha1.lo ../../libpam/libpam.la  -lelogind
+/usr/lib/gcc/x86_64-pc-linux-gnu/13/../../../../x86_64-pc-linux-gnu/bin/ld: pam_timestamp_check-pam_timestamp_check.o: in function `main':
+pam_timestamp_check.c:(.text.startup+0x51b): undefined reference to `sd_uid_get_login_time'
+collect2: error: ld returned 1 exit status
+make[3]: *** [Makefile:810: pam_timestamp_check] Error 1
+make[3]: *** Waiting for unfinished jobs....
+libtool: link: x86_64-pc-linux-gnu-gcc -shared  -fPIC -DPIC  .libs/pam_timestamp_la-pam_timestamp.o .libs/pam_timestamp_la-hmacsha1.o .libs/pam_timestamp_la-sha1.o   -Wl,-rpath -Wl,/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1-abi_x86_64.amd64/libpam/.libs ../../libpam/.libs/libpam.so -lelogind  -march=znver3 -mshstk -O2 -Wl,--version-script=/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1/modules/pam_timestamp/../modules.map -Wl,-O1 -Wl,--as-needed -Wl,-z
+-Wl,pack-relative-relocs -Wl,--as-needed -Wl,--no-undefined -Wl,-O1   -Wl,-soname -Wl,pam_timestamp.so -o .libs/pam_timestamp.so
+/usr/lib/gcc/x86_64-pc-linux-gnu/13/../../../../x86_64-pc-linux-gnu/bin/ld: .libs/pam_timestamp_la-pam_timestamp.o: in function `pam_sm_authenticate':
+pam_timestamp.c:(.text+0xb92): undefined reference to `sd_uid_get_login_time'
+collect2: error: ld returned 1 exit status
+make[3]: *** [Makefile:802: pam_timestamp.la] Error 1
+make[3]: Leaving directory '/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1-abi_x86_64.amd64/modules/pam_timestamp'
+make[2]: *** [Makefile:511: all-recursive] Error 1
+make[2]: Leaving directory '/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1-abi_x86_64.amd64/modules'
+make[1]: *** [Makefile:511: all-recursive] Error 1
+make[1]: Leaving directory '/var/tmp/portage/sys-libs/pam-1.6.1/work/Linux-PAM-1.6.1-abi_x86_64.amd64'
+make: *** [Makefile:441: all] Error 2
+ * ERROR: sys-libs/pam-1.6.1::gentoo failed (compile phase):
+ *   emake failed
+ *
+ * If you need support, post the output of `emerge --info '=sys-libs/pam-1.6.1::gentoo'`,
+
+
+
+#Turns out this sd_uid_get_login_time() is not present in /usr/include/elogind/systemd/sd-login.h
+#stable is @ version 246.10-r4
+#Testing is @ version 252.9-r2
+#Hopefully we will find the result of this. Sam mentioned bug @ 931115

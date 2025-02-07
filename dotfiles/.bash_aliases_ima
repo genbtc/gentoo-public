@@ -1,15 +1,30 @@
 #!/bin/bash
-# .bash_alises IMA script by @genr8eofl copyright 2024 - AGPL3 License
+# .bash_alises IMA script by @genr8eofl copyright 2024/2025 - AGPL3 License
 
 # IMA Aliases -->
 
-#alias imafindmissing="dmesg | grep 'IMA-signature-required' | awk '{print \$14}' | sort | uniq"
-#alias imafixmissing="imafindmissing | cut -d\" -f2 | while read D; do evm_sign_cmd $D; done"
 #alias evm_sign_cmd="evmctl sign -a sha512 -k /etc/keys/signing_key.priv -s"
-#alias ima_hash_cmd="evmctl ima_hash -a sha512 -k /etc/keys/signing_key.priv -s"
-#alias ima_fix2_cmd='evmctl2 ima_fix2 -s'
-#alias ima_clear='evmctl2 ima_clear -s'
-
-imacleanfix() { evmctl ima_clear -s "$@"; imafix2 -s "$@"; }   #Fixes one bad signature if verification failed
+alias ima_sign="evmctl ima_sign -k /etc/keys/signing_key.priv"
+alias ima_verify="evmctl ima_verify -k /etc/keys/signing_key.x509"
+alias ima_clear="evmctl ima_clear"
+alias ima_hash="evmctl ima_hash"
+#alias ima_fix="evmctl2 ima_fix2 -s" #libimaevm.so.2 (deprecated)
+imacleanfix() { evmctl ima_clear "$@"; imafix2 -s "$@"; }
 #rather use imafix2 program :
 #(/usr/local/bin/imafix2 custom compiled from self-authored patch @/usr/local/src/ima-evm-utils/imafix2.c)
+imasignfail() {
+    dateNow=$(date +"%F_%H-%M-%S")
+    imafix2 -s -r "$@" 2>&1 | grep SIGNFAIL | tee ~/imafix-SIGNFAIL-$dateNow.txt
+    if [ -s ~/imafix-SIGNFAIL-$dateNow.txt ]; then
+        for D in $(cat ~/imafix-SIGNFAIL-$dateNow.txt); do imacleanfix $D; done 2>&1 ~/imafix-SIGNFAIL-$dateNow-done.txt
+        if [ -s ~/imafix-SIGNFAIL-$dateNow-done.txt ]; then
+            grep -A2 "IMA(" ~/imafix-SIGNFAIL-$dateNow-done.txt
+        else
+            rm ~/imafix-SIGNFAIL-$dateNow-done.txt
+        fi
+    else
+        echo "OK, no sign failures." && rm ~/imafix-SIGNFAIL-$dateNow.txt
+    fi
+}
+#alias imafindmissing="dmesg | grep 'IMA-signature-required' | awk '{print \$14}' | sort | uniq"
+#alias imafixmissing="imafindmissing | cut -d\" -f2 | while read D; do evm_sign_cmd $D; done"

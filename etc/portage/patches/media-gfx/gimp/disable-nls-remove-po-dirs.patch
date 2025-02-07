@@ -1,0 +1,16 @@
+--- a/Makefile.am	2023-11-05 18:49:04.000000000 -0500
++++ b/Makefile.am	2024-02-21 00:46:54.258685723 -0500
+@@ -10,13 +10,6 @@
+ 	m4macros		\
+ 	cursors			\
+ 	themes			\
+-	po			\
+-	po-libgimp		\
+-	po-plug-ins		\
+-	po-python		\
+-	po-script-fu		\
+-	po-tips			\
+-	po-windows-installer	\
+ 	data			\
+ 	desktop			\
+ 	menus			\

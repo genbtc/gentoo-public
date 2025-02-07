@@ -1,0 +1,11 @@
+[user]
+	name = genBTC
+	email = genBTC@gmx.com
+[diff]
+	renames = true
+[init]
+	defaultBranch = main
+[format]
+	signoff = true
+[push]
+	autoSetupRemote = true

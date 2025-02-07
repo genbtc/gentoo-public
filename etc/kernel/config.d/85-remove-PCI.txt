@@ -1,0 +1,866 @@
+CONFIG_GENERIC_IRQ_INJECTION=y											      <
+CONFIG_GENERIC_MSI_IRQ=y											      <
+CONFIG_GENERIC_MSI_IRQ_DOMAIN=y											      <
+CONFIG_X86_NUMACHIP=y												      <
+# CONFIG_X86_VSMP is not set											      <
+CONFIG_X86_UV=y													      <
+# CONFIG_X86_INTEL_MID is not set										      <
+CONFIG_X86_INTEL_LPSS=y												      <
+CONFIG_IOSF_MBI=y												      <
+# CONFIG_IOSF_MBI_DEBUG is not set										      <
+CONFIG_XEN_PV_DOM0=y												      <
+CONFIG_XEN_PVHVM_GUEST=y											      <
+CONFIG_XEN_DOM0=y												      <
+# CONFIG_JAILHOUSE_GUEST is not set										      <
+# CONFIG_GART_IOMMU is not set											      <
+CONFIG_X86_MCE_AMD=y												      <
+CONFIG_PERF_EVENTS_INTEL_UNCORE=m										      <
+CONFIG_PERF_EVENTS_INTEL_RAPL=m											      <
+CONFIG_PERF_EVENTS_INTEL_CSTATE=m										      <
+CONFIG_AMD_NUMA=y												      <
+CONFIG_X86_64_ACPI_NUMA=y											      <
+CONFIG_PM_GENERIC_DOMAINS=y											      <
+CONFIG_PM_GENERIC_DOMAINS_SLEEP=y										      <
+CONFIG_ACPI_TABLE_LIB=y												      <
+CONFIG_ACPI_PCI_SLOT=y												      <
+CONFIG_ACPI_HOTPLUG_IOAPIC=y											      <
+CONFIG_ACPI_APEI_PCIEAER=y											      <
+CONFIG_XPOWER_PMIC_OPREGION=y											      <
+CONFIG_PCI_DIRECT=y												      <
+CONFIG_PCI_MMCONFIG=y												      <
+CONFIG_PCI_XEN=y												      <
+CONFIG_MMCONF_FAM10H=y												      <
+CONFIG_AMD_NB=y													      <
+CONFIG_KVM_AMD_SEV=y												      <
+CONFIG_BLK_MQ_PCI=y												      <
+CONFIG_MEMORY_BALLOON=y												      <
+CONFIG_BALLOON_COMPACTION=y											      <
+CONFIG_VMAP_PFN=y												      <
+CONFIG_MAPPING_DIRTY_HELPERS=y											      <
+CONFIG_PCI=y													      |	# CONFIG_PCI is not set
+CONFIG_PCI_DOMAINS=y												      <
+CONFIG_PCIEPORTBUS=y												      <
+CONFIG_HOTPLUG_PCI_PCIE=y											      <
+CONFIG_PCIEAER=y												      <
+CONFIG_PCIEAER_INJECT=m												      <
+CONFIG_PCIE_ECRC=y												      <
+CONFIG_PCIEASPM=y												      <
+CONFIG_PCIEASPM_DEFAULT=y											      <
+# CONFIG_PCIEASPM_POWERSAVE is not set										      <
+# CONFIG_PCIEASPM_POWER_SUPERSAVE is not set									      <
+# CONFIG_PCIEASPM_PERFORMANCE is not set									      <
+CONFIG_PCIE_PME=y												      <
+CONFIG_PCIE_DPC=y												      <
+CONFIG_PCIE_PTM=y												      <
+CONFIG_PCIE_EDR=y												      <
+CONFIG_PCI_MSI=y												      <
+CONFIG_PCI_MSI_IRQ_DOMAIN=y											      <
+CONFIG_PCI_QUIRKS=y												      <
+# CONFIG_PCI_REALLOC_ENABLE_AUTO is not set									      <
+CONFIG_PCI_STUB=y												      <
+CONFIG_PCI_PF_STUB=m												      <
+CONFIG_XEN_PCIDEV_FRONTEND=m											      <
+CONFIG_PCI_ATS=y												      <
+CONFIG_PCI_DOE=y												      <
+CONFIG_PCI_LOCKLESS_CONFIG=y											      <
+CONFIG_PCI_IOV=y												      <
+CONFIG_PCI_PRI=y												      <
+CONFIG_PCI_PASID=y												      <
+CONFIG_PCI_P2PDMA=y												      <
+CONFIG_PCI_LABEL=y												      <
+CONFIG_VGA_ARB=y												      <
+CONFIG_VGA_ARB_MAX_GPUS=16											      <
+CONFIG_HOTPLUG_PCI=y												      <
+CONFIG_HOTPLUG_PCI_ACPI=y											      <
+CONFIG_HOTPLUG_PCI_ACPI_IBM=m											      <
+# CONFIG_HOTPLUG_PCI_CPCI is not set										      <
+CONFIG_HOTPLUG_PCI_SHPC=y											      <
+														      <
+#														      <
+# PCI controller drivers											      <
+#														      <
+CONFIG_VMD=m													      <
+														      <
+#														      <
+# DesignWare PCI Core Support											      <
+#														      <
+# CONFIG_PCIE_DW_PLAT_HOST is not set										      <
+# CONFIG_PCI_MESON is not set											      <
+# end of DesignWare PCI Core Support										      <
+														      <
+#														      <
+# Mobiveil PCIe Core Support											      <
+#														      <
+# end of Mobiveil PCIe Core Support										      <
+														      <
+#														      <
+# Cadence PCIe controllers support										      <
+#														      <
+# end of Cadence PCIe controllers support									      <
+# end of PCI controller drivers											      <
+														      <
+#														      <
+# PCI Endpoint													      <
+#														      <
+# CONFIG_PCI_ENDPOINT is not set										      <
+# end of PCI Endpoint												      <
+														      <
+#														      <
+# PCI switch controller drivers											      <
+#														      <
+CONFIG_PCI_SW_SWITCHTEC=m											      <
+# end of PCI switch controller drivers										      <
+														      <
+CONFIG_CXL_BUS=m												      <
+CONFIG_CXL_PCI=m												      <
+# CONFIG_CXL_MEM_RAW_COMMANDS is not set									      <
+CONFIG_CXL_ACPI=m												      <
+CONFIG_CXL_MEM=m												      <
+CONFIG_CXL_PORT=m												      <
+CONFIG_CXL_SUSPEND=y												      <
+CONFIG_CXL_REGION=y												      <
+# CONFIG_RAPIDIO is not set											      <
+CONFIG_AUXILIARY_BUS=y												      <
+CONFIG_MHI_BUS_PCI_GENERIC=m											      <
+CONFIG_BLK_DEV_NVME=m												      <
+CONFIG_IBM_ASM=m												      <
+# CONFIG_PHANTOM is not set											      <
+CONFIG_TIFM_CORE=m												      <
+CONFIG_TIFM_7XX1=m												      <
+# CONFIG_SGI_XP is not set											      <
+CONFIG_HP_ILO=m													      <
+CONFIG_SGI_GRU=m												      <
+# CONFIG_SGI_GRU_DEBUG is not set										      <
+CONFIG_VMWARE_BALLOON=m												      <
+CONFIG_DW_XDATA_PCIE=m												      <
+# CONFIG_PCI_ENDPOINT_TEST is not set										      <
+CONFIG_CB710_CORE=m												      <
+# CONFIG_CB710_DEBUG is not set											      <
+CONFIG_CB710_DEBUG_ASSUMPTIONS=y										      <
+														      <
+CONFIG_INTEL_MEI=m												      <
+CONFIG_INTEL_MEI_ME=m												      <
+CONFIG_INTEL_MEI_TXE=m												      <
+CONFIG_INTEL_MEI_GSC=m												      <
+CONFIG_INTEL_MEI_HDCP=m												      <
+CONFIG_INTEL_MEI_PXP=m												      <
+CONFIG_VMWARE_VMCI=m												      <
+# CONFIG_GENWQE is not set											      <
+CONFIG_BCM_VK=m													      <
+CONFIG_BCM_VK_TTY=y												      <
+CONFIG_MISC_ALCOR_PCI=m												      <
+CONFIG_MISC_RTSX_PCI=m												      <
+# CONFIG_HABANA_AI is not set											      <
+CONFIG_UACCE=m													      <
+# CONFIG_PVPANIC_PCI is not set											      <
+CONFIG_GP_PCI1XXXX=m												      <
+# CONFIG_SCSI_BNX2_ISCSI is not set										      <
+# CONFIG_BE2ISCSI is not set											      <
+CONFIG_BLK_DEV_3W_XXXX_RAID=m											      <
+CONFIG_SCSI_HPSA=m												      <
+CONFIG_SCSI_3W_9XXX=m												      <
+CONFIG_SCSI_3W_SAS=m												      <
+CONFIG_SCSI_ACARD=m												      <
+CONFIG_SCSI_AACRAID=m												      <
+CONFIG_SCSI_AIC7XXX=m												      <
+CONFIG_AIC7XXX_CMDS_PER_DEVICE=4										      <
+CONFIG_AIC7XXX_RESET_DELAY_MS=15000										      <
+# CONFIG_AIC7XXX_DEBUG_ENABLE is not set									      <
+CONFIG_AIC7XXX_DEBUG_MASK=0											      <
+# CONFIG_AIC7XXX_REG_PRETTY_PRINT is not set									      <
+CONFIG_SCSI_AIC79XX=m												      <
+CONFIG_AIC79XX_CMDS_PER_DEVICE=4										      <
+CONFIG_AIC79XX_RESET_DELAY_MS=15000										      <
+# CONFIG_AIC79XX_DEBUG_ENABLE is not set									      <
+CONFIG_AIC79XX_DEBUG_MASK=0											      <
+# CONFIG_AIC79XX_REG_PRETTY_PRINT is not set									      <
+# CONFIG_SCSI_AIC94XX is not set										      <
+CONFIG_SCSI_MVSAS=m												      <
+# CONFIG_SCSI_MVSAS_DEBUG is not set										      <
+CONFIG_SCSI_MVSAS_TASKLET=y											      <
+CONFIG_SCSI_MVUMI=m												      <
+CONFIG_SCSI_ADVANSYS=m												      <
+CONFIG_SCSI_ARCMSR=m												      <
+CONFIG_SCSI_ESAS2R=m												      <
+CONFIG_MEGARAID_NEWGEN=y											      <
+CONFIG_MEGARAID_MM=m												      <
+CONFIG_MEGARAID_MAILBOX=m											      <
+CONFIG_MEGARAID_LEGACY=m											      <
+CONFIG_MEGARAID_SAS=m												      <
+CONFIG_SCSI_MPT3SAS=m												      <
+CONFIG_SCSI_MPT2SAS_MAX_SGE=128											      <
+CONFIG_SCSI_MPT3SAS_MAX_SGE=128											      <
+CONFIG_SCSI_MPT2SAS=m												      <
+CONFIG_SCSI_MPI3MR=m												      <
+CONFIG_SCSI_SMARTPQI=m												      <
+CONFIG_SCSI_HPTIOP=m												      <
+CONFIG_SCSI_BUSLOGIC=m												      <
+CONFIG_SCSI_FLASHPOINT=y											      <
+CONFIG_SCSI_MYRB=m												      <
+CONFIG_SCSI_MYRS=m												      <
+CONFIG_VMWARE_PVSCSI=m												      <
+CONFIG_SCSI_SNIC=m												      <
+# CONFIG_SCSI_SNIC_DEBUG_FS is not set										      <
+CONFIG_SCSI_DMX3191D=m												      <
+CONFIG_SCSI_FDOMAIN=m												      <
+CONFIG_SCSI_FDOMAIN_PCI=m											      <
+CONFIG_SCSI_ISCI=m												      <
+CONFIG_SCSI_IPS=m												      <
+CONFIG_SCSI_INITIO=m												      <
+CONFIG_SCSI_INIA100=m												      <
+CONFIG_SCSI_STEX=m												      <
+CONFIG_SCSI_SYM53C8XX_2=m											      <
+CONFIG_SCSI_SYM53C8XX_DMA_ADDRESSING_MODE=1									      <
+CONFIG_SCSI_SYM53C8XX_DEFAULT_TAGS=16										      <
+CONFIG_SCSI_SYM53C8XX_MAX_TAGS=64										      <
+CONFIG_SCSI_SYM53C8XX_MMIO=y											      <
+CONFIG_SCSI_IPR=m												      <
+CONFIG_SCSI_IPR_TRACE=y												      <
+CONFIG_SCSI_IPR_DUMP=y												      <
+CONFIG_SCSI_QLOGIC_1280=m											      <
+# CONFIG_SCSI_QLA_ISCSI is not set										      <
+CONFIG_SCSI_DC395x=m												      <
+CONFIG_SCSI_AM53C974=m												      <
+CONFIG_SCSI_WD719X=m												      <
+# CONFIG_SCSI_PMCRAID is not set										      <
+CONFIG_SCSI_PM8001=m												      <
+CONFIG_SATA_AHCI=y												      <
+CONFIG_SATA_MOBILE_LPM_POLICY=3											      <
+CONFIG_SATA_INIC162X=m												      <
+CONFIG_SATA_ACARD_AHCI=m											      <
+CONFIG_SATA_SIL24=m												      <
+CONFIG_PDC_ADMA=m												      <
+CONFIG_SATA_QSTOR=m												      <
+CONFIG_SATA_SX4=m												      <
+CONFIG_ATA_PIIX=y												      <
+CONFIG_SATA_MV=m												      <
+CONFIG_SATA_NV=m												      <
+CONFIG_SATA_PROMISE=m												      <
+CONFIG_SATA_SIL=m												      <
+CONFIG_SATA_SIS=m												      <
+CONFIG_SATA_SVW=m												      <
+CONFIG_SATA_ULI=m												      <
+CONFIG_SATA_VIA=m												      <
+CONFIG_SATA_VITESSE=m												      <
+CONFIG_PATA_ALI=m												      <
+CONFIG_PATA_AMD=m												      <
+CONFIG_PATA_ARTOP=m												      <
+CONFIG_PATA_ATIIXP=m												      <
+CONFIG_PATA_ATP867X=m												      <
+CONFIG_PATA_CMD64X=m												      <
+# CONFIG_PATA_CYPRESS is not set										      <
+CONFIG_PATA_EFAR=m												      <
+CONFIG_PATA_HPT366=m												      <
+CONFIG_PATA_HPT37X=m												      <
+CONFIG_PATA_HPT3X2N=m												      <
+CONFIG_PATA_HPT3X3=m												      <
+# CONFIG_PATA_HPT3X3_DMA is not set										      <
+CONFIG_PATA_IT8213=m												      <
+CONFIG_PATA_IT821X=m												      <
+CONFIG_PATA_JMICRON=m												      <
+CONFIG_PATA_MARVELL=m												      <
+CONFIG_PATA_NETCELL=m												      <
+CONFIG_PATA_NINJA32=m												      <
+CONFIG_PATA_NS87415=m												      <
+CONFIG_PATA_OLDPIIX=m												      <
+CONFIG_PATA_OPTIDMA=m												      <
+CONFIG_PATA_PDC2027X=m												      <
+CONFIG_PATA_PDC_OLD=m												      <
+# CONFIG_PATA_RADISYS is not set										      <
+# CONFIG_PATA_RDC is not set											      <
+CONFIG_PATA_SCH=m												      <
+CONFIG_PATA_SERVERWORKS=m											      <
+CONFIG_PATA_SIL680=m												      <
+CONFIG_PATA_SIS=m												      <
+CONFIG_PATA_TOSHIBA=m												      <
+CONFIG_PATA_TRIFLEX=m												      <
+CONFIG_PATA_VIA=m												      <
+CONFIG_PATA_WINBOND=m												      <
+CONFIG_PATA_CMD640_PCI=m											      <
+CONFIG_PATA_MPIIX=m												      <
+CONFIG_PATA_NS87410=m												      <
+CONFIG_PATA_OPTI=m												      <
+# CONFIG_PATA_RZ1000 is not set											      <
+CONFIG_PATA_ACPI=m												      <
+CONFIG_ATA_GENERIC=m												      <
+# CONFIG_PATA_LEGACY is not set											      <
+# CONFIG_FUSION is not set											      <
+														      <
+#														      <
+# IEEE 1394 (FireWire) support											      <
+#														      <
+# CONFIG_FIREWIRE is not set											      <
+# CONFIG_FIREWIRE_NOSY is not set										      <
+# end of IEEE 1394 (FireWire) support										      <
+														      <
+# CONFIG_SERIO_PCIPS2 is not set										      <
+CONFIG_GAMEPORT_EMU10K1=m											      <
+CONFIG_GAMEPORT_FM801=m												      <
+CONFIG_SERIAL_8250_PCI=y											      <
+CONFIG_SERIAL_8250_EXAR=m											      <
+CONFIG_SERIAL_8250_LPSS=m											      <
+CONFIG_SERIAL_8250_MID=y											      <
+CONFIG_SERIAL_8250_PERICOM=y											      <
+CONFIG_SERIAL_JSM=m												      <
+# CONFIG_SERIAL_RP2 is not set											      <
+# CONFIG_MOXA_INTELLIO is not set										      <
+# CONFIG_MOXA_SMARTIO is not set										      <
+CONFIG_SYNCLINK_GT=m												      <
+CONFIG_NOZOMI=m													      <
+CONFIG_HW_RANDOM_INTEL=m											      <
+CONFIG_HW_RANDOM_AMD=m												      <
+# CONFIG_APPLICOM is not set											      <
+CONFIG_DEVPORT=y												      <
+CONFIG_UV_MMTIMER=m												      <
+CONFIG_XILLYBUS=m												      <
+CONFIG_XILLYBUS_PCIE=m												      <
+CONFIG_I2C_SMBUS=m												      <
+														      <
+#														      <
+# PC SMBus host controller drivers										      <
+#														      <
+CONFIG_I2C_CCGX_UCSI=y												      <
+# CONFIG_I2C_ALI1535 is not set											      <
+# CONFIG_I2C_ALI1563 is not set											      <
+# CONFIG_I2C_ALI15X3 is not set											      <
+CONFIG_I2C_AMD756=m												      <
+CONFIG_I2C_AMD756_S4882=m											      <
+CONFIG_I2C_AMD8111=m												      <
+CONFIG_I2C_AMD_MP2=m												      <
+CONFIG_I2C_I801=m												      <
+CONFIG_I2C_ISCH=m												      <
+CONFIG_I2C_ISMT=m												      <
+CONFIG_I2C_PIIX4=m												      <
+CONFIG_I2C_NFORCE2=m												      <
+CONFIG_I2C_NFORCE2_S4985=m											      <
+CONFIG_I2C_NVIDIA_GPU=m												      <
+# CONFIG_I2C_SIS5595 is not set											      <
+# CONFIG_I2C_SIS630 is not set											      <
+CONFIG_I2C_SIS96X=m												      <
+CONFIG_I2C_VIA=m												      <
+CONFIG_I2C_VIAPRO=m												      <
+CONFIG_I2C_DESIGNWARE_BAYTRAIL=y										      <
+CONFIG_I2C_DESIGNWARE_PCI=y											      <
+CONFIG_I2C_PCI1XXXX=m												      <
+CONFIG_GPIO_EXAR=m												      <
+CONFIG_GPIO_ICH=m												      <
+# CONFIG_GPIO_VX855 is not set											      <
+# CONFIG_GPIO_SCH is not set											      <
+# PCI GPIO expanders												      <
+#														      <
+# CONFIG_GPIO_AMD8111 is not set										      <
+# CONFIG_GPIO_BT8XX is not set											      <
+# CONFIG_GPIO_ML_IOH is not set											      <
+CONFIG_GPIO_PCI_IDIO_16=m											      <
+# CONFIG_GPIO_PCIE_IDIO_24 is not set										      <
+# CONFIG_GPIO_RDC321X is not set										      <
+# end of PCI GPIO expanders											      <
+														      <
+#														      <
+CONFIG_AXP288_CHARGER=m												      <
+CONFIG_SENSORS_K8TEMP=m												      <
+CONFIG_SENSORS_K10TEMP=m											      <
+CONFIG_SENSORS_FAM15H_POWER=m											      <
+CONFIG_SENSORS_I5K_AMB=m											      <
+CONFIG_SENSORS_I5500=m												      <
+CONFIG_SENSORS_SIS5595=m											      <
+CONFIG_SENSORS_VIA686A=m											      <
+CONFIG_SENSORS_VT8231=m												      <
+CONFIG_INTEL_SOC_DTS_IOSF_CORE=m										      <
+CONFIG_INTEL_SOC_DTS_THERMAL=m											      <
+CONFIG_INT340X_THERMAL=m											      <
+CONFIG_ACPI_THERMAL_REL=m											      <
+CONFIG_INT3406_THERMAL=m											      <
+CONFIG_INTEL_PCH_THERMAL=m											      <
+# CONFIG_MFD_INTEL_QUARK_I2C_GPIO is not set									      <
+CONFIG_LPC_ICH=m												      <
+CONFIG_LPC_SCH=m												      <
+CONFIG_MFD_INTEL_LPSS_PCI=y											      <
+# CONFIG_MFD_JANZ_CMODIO is not set										      <
+# CONFIG_MFD_RDC321X is not set											      <
+CONFIG_MFD_VX855=m												      <
+CONFIG_DVB_TTUSB_BUDGET=m											      <
+CONFIG_DVB_TTUSB_DEC=m												      <
+CONFIG_MEDIA_PCI_SUPPORT=y											      <
+														      <
+#														      <
+# Media capture support												      <
+#														      <
+CONFIG_VIDEO_SOLO6X10=m												      <
+# CONFIG_VIDEO_TW5864 is not set										      <
+# CONFIG_VIDEO_TW68 is not set											      <
+CONFIG_VIDEO_TW686X=m												      <
+# CONFIG_VIDEO_ZORAN is not set											      <
+														      <
+#														      <
+# Media capture/analog TV support										      <
+#														      <
+# CONFIG_VIDEO_DT3155 is not set										      <
+														      <
+#														      <
+# Media capture/analog/hybrid TV support									      <
+#														      <
+# CONFIG_VIDEO_CX25821 is not set										      <
+CONFIG_VIDEO_SAA7134=m												      <
+CONFIG_VIDEO_SAA7134_ALSA=m											      <
+CONFIG_VIDEO_SAA7134_DVB=m											      <
+CONFIG_VIDEO_SAA7134_GO7007=m											      <
+CONFIG_VIDEO_SAA7164=m												      <
+														      <
+#														      <
+# Media digital TV PCI Adapters											      <
+#														      <
+CONFIG_DVB_B2C2_FLEXCOP_PCI=m											      <
+# CONFIG_DVB_B2C2_FLEXCOP_PCI_DEBUG is not set									      <
+CONFIG_DVB_DDBRIDGE=m												      <
+# CONFIG_DVB_DDBRIDGE_MSIENABLE is not set									      <
+CONFIG_DVB_NGENE=m												      <
+CONFIG_DVB_PLUTO2=m												      <
+CONFIG_DVB_PT1=m												      <
+# CONFIG_DVB_PT3 is not set											      <
+CONFIG_VIDEO_IPU3_CIO2=m											      <
+CONFIG_CIO2_BRIDGE=y												      <
+CONFIG_RADIO_MAXIRADIO=m											      <
+CONFIG_VIDEOBUF2_DMA_CONTIG=m											      <
+CONFIG_VIDEOBUF2_DMA_SG=m											      <
+CONFIG_VIDEOBUF2_DVB=m												      <
+CONFIG_VIDEO_SAA6588=m												      <
+CONFIG_VIDEO_SAA6752HS=m											      <
+CONFIG_MEDIA_TUNER_MT2131=m											      <
+CONFIG_MEDIA_TUNER_QM1D1B0004=m											      <
+CONFIG_DVB_MXL5XX=m												      <
+CONFIG_DVB_STV090x=m												      <
+CONFIG_DVB_STV0910=m												      <
+CONFIG_DVB_STV6110x=m												      <
+CONFIG_DVB_STV6111=m												      <
+CONFIG_DVB_TDA10086=m												      <
+CONFIG_DVB_TDA8083=m												      <
+CONFIG_DVB_TDA826X=m												      <
+CONFIG_DVB_ZL10036=m												      <
+CONFIG_DVB_ZL10039=m												      <
+CONFIG_DVB_CX22700=m												      <
+CONFIG_DVB_STV0367=m												      <
+CONFIG_DVB_TDA1004X=m												      <
+CONFIG_DVB_VES1820=m												      <
+CONFIG_DVB_ISL6405=m												      <
+CONFIG_DVB_LNBH25=m												      <
+CONFIG_DVB_LNBP21=m												      <
+CONFIG_DVB_CXD2099=m												      <
+CONFIG_AGP=y													      <
+CONFIG_AGP_AMD64=y												      <
+CONFIG_AGP_INTEL=y												      <
+CONFIG_AGP_SIS=y												      <
+CONFIG_AGP_VIA=y												      <
+CONFIG_INTEL_GTT=y												      <
+CONFIG_VGA_SWITCHEROO=y												      <
+CONFIG_DRM_MIPI_DSI=y												      <
+CONFIG_DRM_DISPLAY_HDCP_HELPER=y										      <
+CONFIG_DRM_DISPLAY_HDMI_HELPER=y										      <
+CONFIG_DRM_TTM=m												      <
+CONFIG_DRM_VRAM_HELPER=m											      <
+CONFIG_DRM_TTM_HELPER=m												      <
+CONFIG_DRM_SCHED=m												      <
+CONFIG_DRM_RADEON=m												      <
+CONFIG_DRM_RADEON_USERPTR=y											      <
+CONFIG_DRM_AMDGPU=m												      <
+CONFIG_DRM_AMDGPU_SI=y												      <
+CONFIG_DRM_AMDGPU_CIK=y												      <
+CONFIG_DRM_AMDGPU_USERPTR=y											      <
+														      <
+#														      <
+# ACP (Audio CoProcessor) Configuration										      <
+#														      <
+CONFIG_DRM_AMD_ACP=y												      <
+# end of ACP (Audio CoProcessor) Configuration									      <
+														      <
+#														      <
+# Display Engine Configuration											      <
+#														      <
+CONFIG_DRM_AMD_DC=y												      <
+CONFIG_DRM_AMD_DC_DCN=y												      <
+CONFIG_DRM_AMD_DC_HDCP=y											      <
+CONFIG_DRM_AMD_DC_SI=y												      <
+CONFIG_DRM_AMD_SECURE_DISPLAY=y											      <
+# end of Display Engine Configuration										      <
+														      <
+CONFIG_HSA_AMD=y												      <
+CONFIG_HSA_AMD_SVM=y												      <
+CONFIG_DRM_NOUVEAU=m												      <
+# CONFIG_NOUVEAU_LEGACY_CTX_SUPPORT is not set									      <
+CONFIG_NOUVEAU_DEBUG=5												      <
+CONFIG_NOUVEAU_DEBUG_DEFAULT=3											      <
+# CONFIG_NOUVEAU_DEBUG_MMU is not set										      <
+# CONFIG_NOUVEAU_DEBUG_PUSH is not set										      <
+CONFIG_DRM_NOUVEAU_BACKLIGHT=y											      <
+# CONFIG_DRM_NOUVEAU_SVM is not set										      <
+CONFIG_DRM_I915=m												      <
+CONFIG_DRM_I915_FORCE_PROBE=""											      <
+CONFIG_DRM_I915_CAPTURE_ERROR=y											      <
+CONFIG_DRM_I915_COMPRESS_ERROR=y										      <
+CONFIG_DRM_I915_USERPTR=y											      <
+CONFIG_DRM_I915_PXP=y												      <
+CONFIG_DRM_I915_REQUEST_TIMEOUT=20000										      <
+CONFIG_DRM_I915_FENCE_TIMEOUT=10000										      <
+CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND=250									      <
+CONFIG_DRM_I915_HEARTBEAT_INTERVAL=2500										      <
+CONFIG_DRM_I915_PREEMPT_TIMEOUT=640										      <
+CONFIG_DRM_I915_MAX_REQUEST_BUSYWAIT=8000									      <
+CONFIG_DRM_I915_STOP_TIMEOUT=100										      <
+CONFIG_DRM_I915_TIMESLICE_DURATION=1										      <
+CONFIG_DRM_VMWGFX=m												      <
+CONFIG_DRM_VMWGFX_FBCON=y											      <
+CONFIG_DRM_VMWGFX_MKSSTATS=y											      <
+CONFIG_DRM_GMA500=m												      <
+CONFIG_DRM_AST=m												      <
+CONFIG_DRM_MGAG200=m												      <
+CONFIG_DRM_QXL=m												      <
+# CONFIG_DRM_PANEL_RASPBERRYPI_TOUCHSCREEN is not set								      <
+CONFIG_DRM_BOCHS=m												      <
+CONFIG_DRM_CIRRUS_QEMU=m											      <
+# CONFIG_DRM_VBOXVIDEO is not set										      <
+# CONFIG_FB_CIRRUS is not set											      <
+# CONFIG_FB_PM2 is not set											      <
+# CONFIG_FB_CYBER2000 is not set										      <
+# CONFIG_FB_ASILIANT is not set											      <
+# CONFIG_FB_IMSTT is not set											      <
+# CONFIG_FB_NVIDIA is not set											      <
+# CONFIG_FB_RIVA is not set											      <
+# CONFIG_FB_I740 is not set											      <
+# CONFIG_FB_LE80578 is not set											      <
+# CONFIG_FB_MATROX is not set											      <
+# CONFIG_FB_RADEON is not set											      <
+# CONFIG_FB_ATY128 is not set											      <
+# CONFIG_FB_ATY is not set											      <
+# CONFIG_FB_S3 is not set											      <
+# CONFIG_FB_SAVAGE is not set											      <
+# CONFIG_FB_SIS is not set											      <
+# CONFIG_FB_VIA is not set											      <
+# CONFIG_FB_NEOMAGIC is not set											      <
+# CONFIG_FB_KYRO is not set											      <
+# CONFIG_FB_3DFX is not set											      <
+# CONFIG_FB_VOODOO1 is not set											      <
+# CONFIG_FB_VT8623 is not set											      <
+# CONFIG_FB_TRIDENT is not set											      <
+# CONFIG_FB_ARK is not set											      <
+# CONFIG_FB_PM3 is not set											      <
+# CONFIG_FB_CARMINE is not set											      <
+# CONFIG_FB_MB862XX is not set											      <
+# CONFIG_FB_SM712 is not set											      <
+CONFIG_SND_PCM_ELD=y												      <
+CONFIG_SND_SEQ_MIDI_EMUL=m											      <
+CONFIG_SND_OPL3_LIB=m												      <
+CONFIG_SND_OPL3_LIB_SEQ=m											      <
+CONFIG_SND_VX_LIB=m												      <
+CONFIG_SND_SB_COMMON=m												      <
+CONFIG_SND_PCI=y												      <
+CONFIG_SND_AD1889=m												      <
+CONFIG_SND_ALS300=m												      <
+CONFIG_SND_ALS4000=m												      <
+CONFIG_SND_ALI5451=m												      <
+CONFIG_SND_ASIHPI=m												      <
+CONFIG_SND_ATIIXP=m												      <
+CONFIG_SND_ATIIXP_MODEM=m											      <
+CONFIG_SND_AU8810=m												      <
+CONFIG_SND_AU8820=m												      <
+CONFIG_SND_AU8830=m												      <
+# CONFIG_SND_AW2 is not set											      <
+CONFIG_SND_AZT3328=m												      <
+CONFIG_SND_BT87X=m												      <
+# CONFIG_SND_BT87X_OVERCLOCK is not set										      <
+CONFIG_SND_CA0106=m												      <
+CONFIG_SND_CMIPCI=m												      <
+CONFIG_SND_OXYGEN_LIB=m												      <
+CONFIG_SND_OXYGEN=m												      <
+CONFIG_SND_CS4281=m												      <
+CONFIG_SND_CS46XX=m												      <
+CONFIG_SND_CS46XX_NEW_DSP=y											      <
+CONFIG_SND_CTXFI=m												      <
+CONFIG_SND_DARLA20=m												      <
+CONFIG_SND_GINA20=m												      <
+CONFIG_SND_LAYLA20=m												      <
+CONFIG_SND_DARLA24=m												      <
+CONFIG_SND_GINA24=m												      <
+CONFIG_SND_LAYLA24=m												      <
+CONFIG_SND_MONA=m												      <
+CONFIG_SND_MIA=m												      <
+CONFIG_SND_ECHO3G=m												      <
+CONFIG_SND_INDIGO=m												      <
+CONFIG_SND_INDIGOIO=m												      <
+CONFIG_SND_INDIGODJ=m												      <
+CONFIG_SND_INDIGOIOX=m												      <
+CONFIG_SND_INDIGODJX=m												      <
+CONFIG_SND_EMU10K1=m												      <
+CONFIG_SND_EMU10K1_SEQ=m											      <
+CONFIG_SND_EMU10K1X=m												      <
+CONFIG_SND_ENS1370=m												      <
+CONFIG_SND_ENS1371=m												      <
+CONFIG_SND_ES1938=m												      <
+CONFIG_SND_ES1968=m												      <
+CONFIG_SND_ES1968_INPUT=y											      <
+CONFIG_SND_ES1968_RADIO=y											      <
+CONFIG_SND_FM801=m												      <
+CONFIG_SND_FM801_TEA575X_BOOL=y											      <
+CONFIG_SND_HDSP=m												      <
+CONFIG_SND_HDSPM=m												      <
+CONFIG_SND_ICE1712=m												      <
+CONFIG_SND_ICE1724=m												      <
+CONFIG_SND_INTEL8X0=m												      <
+CONFIG_SND_INTEL8X0M=m												      <
+CONFIG_SND_KORG1212=m												      <
+CONFIG_SND_LOLA=m												      <
+CONFIG_SND_LX6464ES=m												      <
+CONFIG_SND_MAESTRO3=m												      <
+CONFIG_SND_MAESTRO3_INPUT=y											      <
+CONFIG_SND_MIXART=m												      <
+CONFIG_SND_NM256=m												      <
+CONFIG_SND_PCXHR=m												      <
+CONFIG_SND_RIPTIDE=m												      <
+CONFIG_SND_RME32=m												      <
+CONFIG_SND_RME96=m												      <
+CONFIG_SND_RME9652=m												      <
+CONFIG_SND_SONICVIBES=m												      <
+CONFIG_SND_TRIDENT=m												      <
+CONFIG_SND_VIA82XX=m												      <
+CONFIG_SND_VIA82XX_MODEM=m											      <
+CONFIG_SND_VIRTUOSO=m												      <
+CONFIG_SND_VX222=m												      <
+CONFIG_SND_YMFPCI=m												      <
+CONFIG_SND_HDA_INTEL=m												      <
+CONFIG_SND_HDA_INTEL_HDMI_SILENT_STREAM=y									      <
+# CONFIG_SND_HDA_CTL_DEV_ID is not set										      <
+CONFIG_SND_HDA_COMPONENT=y											      <
+CONFIG_SND_HDA_I915=y												      <
+# CONFIG_SND_INTEL_BYT_PREFER_SOF is not set									      <
+CONFIG_SND_SOC_AMD_ACP3x=m											      <
+CONFIG_SND_SOC_AMD_RENOIR=m											      <
+CONFIG_SND_SOC_AMD_RENOIR_MACH=m										      <
+CONFIG_SND_SOC_AMD_ACP5x=m											      <
+CONFIG_SND_SOC_AMD_ACP6x=m											      <
+CONFIG_SND_SOC_AMD_YC_MACH=m											      <
+# CONFIG_SND_SOC_AMD_ACP_COMMON is not set									      <
+CONFIG_SND_SOC_AMD_RPL_ACP6x=m											      <
+CONFIG_SND_SOC_AMD_PS=m												      <
+CONFIG_SND_SOC_AMD_PS_MACH=m											      <
+CONFIG_SND_SOC_INTEL_SST=m											      <
+CONFIG_SND_SST_ATOM_HIFI2_PLATFORM=m										      <
+# CONFIG_SND_SST_ATOM_HIFI2_PLATFORM_PCI is not set								      <
+CONFIG_SND_SST_ATOM_HIFI2_PLATFORM_ACPI=m									      <
+CONFIG_SND_SOC_INTEL_SKYLAKE=m											      <
+CONFIG_SND_SOC_INTEL_SKL=m											      <
+CONFIG_SND_SOC_INTEL_APL=m											      <
+CONFIG_SND_SOC_INTEL_KBL=m											      <
+CONFIG_SND_SOC_INTEL_GLK=m											      <
+CONFIG_SND_SOC_INTEL_CNL=m											      <
+CONFIG_SND_SOC_INTEL_CFL=m											      <
+CONFIG_SND_SOC_INTEL_CML_H=m											      <
+CONFIG_SND_SOC_INTEL_CML_LP=m											      <
+CONFIG_SND_SOC_INTEL_SKYLAKE_FAMILY=m										      <
+CONFIG_SND_SOC_INTEL_SKYLAKE_SSP_CLK=m										      <
+CONFIG_SND_SOC_INTEL_SKYLAKE_HDAUDIO_CODEC=y									      <
+CONFIG_SND_SOC_INTEL_SKYLAKE_COMMON=m										      <
+CONFIG_SND_SOC_INTEL_AVS=m											      <
+														      <
+#														      <
+# Intel AVS Machine drivers											      <
+#														      <
+														      <
+#														      <
+# Available DSP configurations											      <
+#														      <
+CONFIG_SND_SOC_INTEL_AVS_MACH_DA7219=m										      <
+CONFIG_SND_SOC_INTEL_AVS_MACH_DMIC=m										      <
+CONFIG_SND_SOC_INTEL_AVS_MACH_HDAUDIO=m										      <
+CONFIG_SND_SOC_INTEL_AVS_MACH_I2S_TEST=m									      <
+CONFIG_SND_SOC_INTEL_AVS_MACH_MAX98357A=m									      <
+CONFIG_SND_SOC_INTEL_AVS_MACH_MAX98373=m									      <
+CONFIG_SND_SOC_INTEL_AVS_MACH_NAU8825=m										      <
+CONFIG_SND_SOC_INTEL_AVS_MACH_RT274=m										      <
+CONFIG_SND_SOC_INTEL_AVS_MACH_RT286=m										      <
+CONFIG_SND_SOC_INTEL_AVS_MACH_RT298=m										      <
+CONFIG_SND_SOC_INTEL_AVS_MACH_RT5682=m										      <
+CONFIG_SND_SOC_INTEL_AVS_MACH_SSM4567=m										      <
+# end of Intel AVS Machine drivers										      <
+														      <
+CONFIG_SND_SOC_INTEL_HDA_DSP_COMMON=m										      <
+CONFIG_SND_SOC_INTEL_SOF_MAXIM_COMMON=m										      <
+CONFIG_SND_SOC_INTEL_SOF_REALTEK_COMMON=m									      <
+CONFIG_SND_SOC_INTEL_SOF_CIRRUS_COMMON=m									      <
+CONFIG_SND_SOC_INTEL_BDW_RT5650_MACH=m										      <
+CONFIG_SND_SOC_INTEL_BROADWELL_MACH=m										      <
+CONFIG_SND_SOC_INTEL_BYTCR_RT5640_MACH=m									      <
+CONFIG_SND_SOC_INTEL_BYTCR_RT5651_MACH=m									      <
+CONFIG_SND_SOC_INTEL_CHT_BSW_RT5672_MACH=m									      <
+CONFIG_SND_SOC_INTEL_CHT_BSW_RT5645_MACH=m									      <
+CONFIG_SND_SOC_INTEL_CHT_BSW_MAX98090_TI_MACH=m									      <
+CONFIG_SND_SOC_INTEL_CHT_BSW_NAU8824_MACH=m									      <
+CONFIG_SND_SOC_INTEL_BYT_CHT_CX2072X_MACH=m									      <
+CONFIG_SND_SOC_INTEL_BYT_CHT_DA7213_MACH=m									      <
+CONFIG_SND_SOC_INTEL_BYT_CHT_ES8316_MACH=m									      <
+CONFIG_SND_SOC_INTEL_BYT_CHT_NOCODEC_MACH=m									      <
+CONFIG_SND_SOC_INTEL_SKL_RT286_MACH=m										      <
+CONFIG_SND_SOC_INTEL_SKL_NAU88L25_SSM4567_MACH=m								      <
+CONFIG_SND_SOC_INTEL_SKL_NAU88L25_MAX98357A_MACH=m								      <
+CONFIG_SND_SOC_INTEL_DA7219_MAX98357A_GENERIC=m									      <
+CONFIG_SND_SOC_INTEL_BXT_DA7219_MAX98357A_COMMON=m								      <
+CONFIG_SND_SOC_INTEL_BXT_DA7219_MAX98357A_MACH=m								      <
+CONFIG_SND_SOC_INTEL_BXT_RT298_MACH=m										      <
+CONFIG_SND_SOC_INTEL_SOF_WM8804_MACH=m										      <
+CONFIG_SND_SOC_INTEL_KBL_RT5663_MAX98927_MACH=m									      <
+CONFIG_SND_SOC_INTEL_KBL_DA7219_MAX98357A_MACH=m								      <
+CONFIG_SND_SOC_INTEL_KBL_DA7219_MAX98927_MACH=m									      <
+CONFIG_SND_SOC_INTEL_KBL_RT5660_MACH=m										      <
+CONFIG_SND_SOC_INTEL_GLK_DA7219_MAX98357A_MACH=m								      <
+CONFIG_SND_SOC_INTEL_GLK_RT5682_MAX98357A_MACH=m								      <
+CONFIG_SND_SOC_INTEL_SKL_HDA_DSP_GENERIC_MACH=m									      <
+CONFIG_SND_SOC_INTEL_SOF_RT5682_MACH=m										      <
+CONFIG_SND_SOC_INTEL_SOF_CS42L42_MACH=m										      <
+CONFIG_SND_SOC_INTEL_SOF_PCM512x_MACH=m										      <
+CONFIG_SND_SOC_INTEL_SOF_ES8336_MACH=m										      <
+CONFIG_SND_SOC_INTEL_SOF_NAU8825_MACH=m										      <
+CONFIG_SND_SOC_INTEL_CML_LP_DA7219_MAX98357A_MACH=m								      <
+CONFIG_SND_SOC_INTEL_SOF_CML_RT1011_RT5682_MACH=m								      <
+CONFIG_SND_SOC_INTEL_SOF_DA7219_MAX98373_MACH=m									      <
+CONFIG_SND_SOC_INTEL_SOF_SSP_AMP_MACH=m										      <
+CONFIG_SND_SOC_INTEL_EHL_RT5660_MACH=m										      <
+CONFIG_SND_SOC_SOF_PCI_DEV=m											      <
+CONFIG_SND_SOC_SOF_PCI=m											      <
+CONFIG_SND_SOC_SOF_DEBUG_PROBES=m										      <
+CONFIG_SND_SOC_SOF_CLIENT=m											      <
+CONFIG_SND_SOC_SOF_PROBE_WORK_QUEUE=y										      <
+CONFIG_SND_SOC_SOF_INTEL_IPC4=y											      <
+CONFIG_SND_SOC_SOF_AMD_COMMON=m											      <
+CONFIG_SND_SOC_SOF_AMD_RENOIR=m											      <
+CONFIG_SND_SOC_SOF_AMD_REMBRANDT=m										      <
+CONFIG_SND_SOC_SOF_MERRIFIELD=m											      <
+CONFIG_SND_SOC_SOF_INTEL_SKL=m											      <
+CONFIG_SND_SOC_SOF_SKYLAKE=m											      <
+CONFIG_SND_SOC_SOF_KABYLAKE=m											      <
+CONFIG_SND_SOC_SOF_INTEL_APL=m											      <
+CONFIG_SND_SOC_SOF_APOLLOLAKE=m											      <
+CONFIG_SND_SOC_SOF_GEMINILAKE=m											      <
+CONFIG_SND_SOC_SOF_INTEL_CNL=m											      <
+CONFIG_SND_SOC_SOF_CANNONLAKE=m											      <
+CONFIG_SND_SOC_SOF_COFFEELAKE=m											      <
+CONFIG_SND_SOC_SOF_COMETLAKE=m											      <
+CONFIG_SND_SOC_SOF_INTEL_ICL=m											      <
+CONFIG_SND_SOC_SOF_ICELAKE=m											      <
+CONFIG_SND_SOC_SOF_JASPERLAKE=m											      <
+CONFIG_SND_SOC_SOF_INTEL_TGL=m											      <
+CONFIG_SND_SOC_SOF_TIGERLAKE=m											      <
+CONFIG_SND_SOC_SOF_ELKHARTLAKE=m										      <
+CONFIG_SND_SOC_SOF_ALDERLAKE=m											      <
+CONFIG_SND_SOC_SOF_INTEL_MTL=m											      <
+CONFIG_SND_SOC_SOF_METEORLAKE=m											      <
+CONFIG_SND_SOC_SOF_HDA_COMMON=m											      <
+CONFIG_SND_SOC_SOF_HDA_LINK=y											      <
+CONFIG_SND_SOC_SOF_HDA_AUDIO_CODEC=y										      <
+CONFIG_SND_SOC_SOF_HDA_LINK_BASELINE=m										      <
+CONFIG_SND_SOC_SOF_HDA=m											      <
+CONFIG_SND_SOC_SOF_HDA_PROBES=m											      <
+CONFIG_SND_SOC_SOF_INTEL_SOUNDWIRE_LINK_BASELINE=m								      <
+CONFIG_SND_SOC_HDAC_HDMI=m											      <
+CONFIG_SND_SOC_HDAC_HDA=m											      <
+CONFIG_SND_SOC_MAX98090=m											      <
+CONFIG_SND_SOC_RL6347A=m											      <
+CONFIG_SND_SOC_RT274=m												      <
+CONFIG_SND_SOC_RT286=m												      <
+CONFIG_SND_SOC_RT298=m												      <
+CONFIG_SND_SOC_RT1011=m												      <
+CONFIG_SND_SOC_RT1015=m												      <
+CONFIG_SND_SOC_RT1015P=m											      <
+CONFIG_SND_SOC_RT1308=m												      <
+CONFIG_SND_SOC_RT5651=m												      <
+CONFIG_SND_SOC_RT5660=m												      <
+CONFIG_SND_SOC_RT5663=m												      <
+CONFIG_SND_SOC_RT5670=m												      <
+CONFIG_SND_SOC_RT5682S=m											      <
+CONFIG_SND_SOC_NAU8825=m											      <
+CONFIG_HDMI_LPE_AUDIO=m												      <
+CONFIG_SND_SYNTH_EMUX=m												      <
+														      <
+#														      <
+# Intel ISH HID support												      <
+#														      <
+CONFIG_INTEL_ISH_HID=m												      <
+CONFIG_INTEL_ISH_FIRMWARE_DOWNLOADER=m										      <
+# end of Intel ISH HID support											      <
+														      <
+#														      <
+# AMD SFH HID Support												      <
+#														      <
+CONFIG_AMD_SFH_HID=m												      <
+# end of AMD SFH HID Support											      <
+CONFIG_USB_PCI=y												      <
+CONFIG_USB_XHCI_PCI=y												      <
+CONFIG_USB_EHCI_PCI=y												      <
+CONFIG_USB_OHCI_HCD_PCI=y											      <
+CONFIG_USB_UHCI_HCD=y												      <
+CONFIG_USB_CDNSP_PCI=m												      <
+# CONFIG_USB_CDNSP_HOST is not set										      <
+CONFIG_LEDS_INTEL_SS4200=m											      <
+CONFIG_XEN_PCI_STUB=y												      <
+CONFIG_XEN_PCIDEV_BACKEND=m											      <
+CONFIG_XEN_ACPI_PROCESSOR=m											      <
+# CONFIG_XEN_MCE_LOG is not set											      <
+CONFIG_XEN_SYMS=y												      <
+# CONFIG_RTS5208 is not set											      <
+# CONFIG_FB_SM750 is not set											      <
+# CONFIG_INTEL_ATOMISP is not set										      <
+CONFIG_VIDEO_IPU3_IMGU=m											      <
+# CONFIG_VME_BUS is not set											      <
+# CONFIG_UV_SYSFS is not set											      <
+CONFIG_AMD_PMF=m												      <
+CONFIG_AMD_HSMP=m												      <
+CONFIG_APPLE_GMUX=m												      <
+CONFIG_ASUS_WMI=m												      <
+CONFIG_ASUS_NB_WMI=m												      <
+# CONFIG_MERAKI_MX100 is not set										      <
+CONFIG_EEEPC_LAPTOP=m												      <
+CONFIG_EEEPC_WMI=m												      <
+# CONFIG_IBM_RTL is not set											      <
+CONFIG_INTEL_ATOMISP2_PM=m											      <
+CONFIG_INTEL_PMC_CORE=y												      <
+CONFIG_INTEL_PMT_CLASS=m											      <
+CONFIG_INTEL_PMT_TELEMETRY=m											      <
+CONFIG_INTEL_PMT_CRASHLOG=m											      <
+														      <
+#														      <
+# Intel Speed Select Technology interface support								      <
+#														      <
+CONFIG_INTEL_SPEED_SELECT_INTERFACE=m										      <
+# end of Intel Speed Select Technology interface support							      <
+														      <
+CONFIG_INTEL_ISHTP_ECLITE=m											      <
+CONFIG_INTEL_SDSI=m												      <
+CONFIG_INTEL_VSEC=m												      <
+CONFIG_INTEL_IPS=m												      <
+CONFIG_INTEL_SCU_PCI=y												      <
+# CONFIG_SIEMENS_SIMATIC_IPC is not set										      <
+CONFIG_P2SB=y													      <
+CONFIG_IOMMU_IOVA=m												      <
+CONFIG_IOMMU_API=y												      <
+# CONFIG_AMD_IOMMU_V2 is not set										      <
+CONFIG_EXTCON_AXP288=m												      <
+# CONFIG_NTB is not set												      <
+# CONFIG_USB4 is not set											      <
+CONFIG_INTEL_TH_PCI=m												      <
+CONFIG_CRYPTO_DEV_CCP=y												      <
+CONFIG_CRYPTO_DEV_CCP_DD=m											      <
+CONFIG_CRYPTO_DEV_SP_PSP=y											      <
+CONFIG_CRYPTO_DEV_QAT=m												      <
+CONFIG_CRYPTO_DEV_QAT_DH895xCC=m										      <
+CONFIG_CRYPTO_DEV_QAT_C3XXX=m											      <
+CONFIG_CRYPTO_DEV_QAT_C62X=m											      <
+CONFIG_CRYPTO_DEV_QAT_4XXX=m											      <
+CONFIG_CRYPTO_DEV_QAT_DH895xCCVF=m										      <
+CONFIG_CRYPTO_DEV_QAT_C3XXXVF=m											      <
+CONFIG_CRYPTO_DEV_QAT_C62XVF=m											      <
+# CONFIG_CRYPTO_DEV_NITROX_CNN55XX is not set									      <
+# CONFIG_CRYPTO_DEV_SAFEXCEL is not set										      <
+CONFIG_MMIOTRACE=y												      <
+# CONFIG_MMIOTRACE_TEST is not set										      <
+CONFIG_PROVIDE_OHCI1394_DMA_INIT=y										      <
+CONFIG_EARLY_PRINTK_USB=y											      <
+CONFIG_EARLY_PRINTK_DBGP=y											      <
+CONFIG_EARLY_PRINTK_USB_XDBC=y											      <
+# CONFIG_PUNIT_ATOM_DEBUG is not set										      <

@@ -1,0 +1,4 @@
+cross-riscv64-unknown-none-elf/newlib cross-riscv64-unknown-none-elf/newlib.conf
+cross-riscv64-unknown-none-elf/binutils cross-riscv64-unknown-none-elf/binutils.conf
+cross-riscv64-unknown-none-elf/gcc cross-riscv64-unknown-none-elf/gcc.conf
+cross-riscv64-unknown-none-elf/gdb cross-riscv64-unknown-none-elf/gdb.conf

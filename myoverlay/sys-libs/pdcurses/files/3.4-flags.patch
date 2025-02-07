@@ -1,0 +1,28 @@
+--- PDCurses-3.4/win32/mingwin32.mak	2016-03-26 06:16:10.374881585 +0000
++++ PDCurses-3.4/win32/mingwin32.mak	2016-03-26 06:24:49.520953635 +0000
+@@ -20,12 +20,11 @@
+ 
+ #CC		= $(CC)
+ 
++CFLAGS = $(USER_CFLAGS)
++LDFLAGS = $(USER_LDFLAGS)
++
+ ifeq ($(DEBUG),Y)
+-	CFLAGS  = -g -Wall -DPDCDEBUG
+-	LDFLAGS = -g
+-else
+-	CFLAGS  = -O2 -Wall
+-	LDFLAGS =
++	CFLAGS  += -DPDCDEBUG
+ endif
+ 
+ CFLAGS += -I$(PDCURSES_SRCDIR)
+@@ -51,7 +50,7 @@
+ ifeq ($(DLL),Y)
+ 	CFLAGS += -DPDC_DLL_BUILD
+ 	LIBEXE = $(CC) $(DEFFILE)
+-	LIBFLAGS = -Wl,--out-implib,pdcurses.a -shared -o
++	LIBFLAGS = -Wl,--out-implib,pdcurses.a -shared $(USER_LDFLAGS) -o
+ 	LIBCURSES = pdcurses.dll
+ 	LIBDEPS = $(LIBOBJS) $(PDCOBJS) $(DEFFILE)
+ 	CLEAN = $(LIBCURSES) *.a $(DEFFILE)

@@ -1,0 +1,11 @@
+--- a/modules/pam_issue/Makefile.am	2024-04-09 12:22:59.000000000 -0400
++++ b/modules/pam_issue/Makefile.am	2024-07-18 16:11:15.094430839 -0400
+@@ -29,7 +29,7 @@
+ 
+ securelib_LTLIBRARIES = pam_issue.la
+ pam_issue_la_LIBADD = $(top_builddir)/libpam_internal/libpam_internal.la \
+-		      $(top_builddir)/libpam/libpam.la $(SYSTEMD_LIBS)
++		      $(top_builddir)/libpam/libpam.la $(SYSTEMD_LIBS) $(LOGIND_LIBS)
+ 
+ if ENABLE_REGENERATE_MAN
+ dist_noinst_DATA = README

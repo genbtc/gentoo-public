@@ -1,0 +1,13 @@
+--- pdcurses/window.c	2013-10-03 05:28:08.000000000 +0000
++++ pdcurses/window.c	2013-10-03 05:28:18.000000000 +0000
+@@ -464,8 +464,8 @@
+             return (WINDOW *)NULL;
+     }
+ 
+-    save_curx = min(win->_curx, new->_maxx);
+-    save_cury = min(win->_cury, new->_maxy);
++    save_curx = min(win->_curx, new->_maxx - 1);
++    save_cury = min(win->_cury, new->_maxy - 1);
+ 
+     if (!(win->_flags & (_SUBPAD|_SUBWIN)))
+     {

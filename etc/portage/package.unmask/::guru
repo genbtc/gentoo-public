@@ -1,9 +1,12 @@
 app-backup/timeshift::guru
 app-portage/portage-lostfiles::guru
 app-portage/portconf::guru
+dev-python/tweepy::guru
+media-libs/imgui::guru
+media-sound/musikcube::guru
 sec-keys/openpgp-keys-aepaneshnikov::guru
 sec-keys/openpgp-keys-skyjake::guru
 x11-themes/qogir-icon-theme::guru
-media-libs/imgui::guru
-dev-python/tweepy::guru
-media-sound/musikcube::guru
+media-sound/fooyin::guru
+dev-python/ptpython::guru
+sys-power/linux-tools-power-x86::guru

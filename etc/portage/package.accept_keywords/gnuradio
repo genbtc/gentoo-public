@@ -1,13 +1,6 @@
+
 >=net-wireless/gnuradio-3.10.5.0
-
 net-wireless/gqrx
-
 net-wireless/gqrx-scanner
-
 =net-wireless/gr-osmosdr-9999 **
-
 sci-libs/volk
-
-#net-wireless/rtl-sdr
-=net-wireless/rtl-sdr-0.6.0_p20221217
-

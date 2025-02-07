@@ -1,4 +1,4 @@
 #!/bin/bash
 dateNow=$(date +"%F_%H-%M-%S")
 tpm2_eventlog <( cat /sys/kernel/security/tpm0/binary_bios_measurements ) > /var/log/tpm/tpm2_eventlog-${dateNow}
-
+tpm2_pcrread > /var/log/tpm/tpm2_pcrread-${dateNow}

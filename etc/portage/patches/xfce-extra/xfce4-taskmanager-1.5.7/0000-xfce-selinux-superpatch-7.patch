@@ -1,0 +1,546 @@
+From c976ff52c12214a7e867e96a53b4eca66a1c4c19 Mon Sep 17 00:00:00 2001
+From: genBTC <genBTC@gmx.com>
+Date: Sun, 24 Mar 2024 07:46:28 -0400
+Subject: [PATCH] ReBranch-Final v5-v6 on top of Initial Commit
+
+Signed-off-by: genBTC <genBTC@gmx.com>
+---
+ configure.ac             |   3 +
+ src/Makefile.am          |   4 +-
+ src/Makefile.in          |  37 ++++++++--
+ src/process-tree-view.c  |  13 +++-
+ src/process-tree-view.h  |   1 +
+ src/selinux.c            | 150 +++++++++++++++++++++++++++++++++++++++
+ src/selinux.h            |  23 ++++++
+ src/settings.c           |   5 ++
+ src/settings.h           |   1 +
+ src/task-manager-linux.c |   5 ++
+ src/task-manager.c       |   8 +++
+ src/task-manager.h       |   2 +-
+ 12 files changed, 343 insertions(+), 8 deletions(-)
+ create mode 100644 src/selinux.c
+ create mode 100644 src/selinux.h
+
+diff --git a/configure.ac b/configure.ac
+index e0e70a2..d8de943 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -76,6 +76,7 @@ dnl *** Check for required packages ***
+ dnl ***********************************
+ XDT_CHECK_PACKAGE([LIBXMU], [xmu], [1.1.2])
+ XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.50.0])
++XDT_CHECK_PACKAGE([GMODULE], [gmodule-2.0], [2.50.0])
+ XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [3.22.0])
+ XDT_CHECK_PACKAGE([CAIRO], [cairo], [1.5.0])
+ XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.14.0])
+@@ -174,6 +175,8 @@ echo "* Libx11:        ${LIBX11_VERSION:-no}"
+ echo "* Wnck:          ${WNCK_VERSION:-no}"
+ echo "* Cairo:         ${CAIRO_VERSION}"
+ echo "* GTK+:          ${GTK3_VERSION}"
++echo "* GLib:          ${GLIB_VERSION}"
++echo "* GModule:       ${GMODULE_VERSION}"
+ echo "* Target OS:     $target_os ($ac_os_implementation)"
+ echo "* Debug:         $enable_debug"
+ echo
+diff --git a/src/Makefile.am b/src/Makefile.am
+index be34016..7958176 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -17,6 +17,7 @@ xfce4_taskmanager_CFLAGS =						\
+ 	$(NULL)
+ 
+ xfce4_taskmanager_LDADD = 						\
++	$(GMODULE_LIBS)							\
+ 	$(CAIRO_LIBS)							\
+ 	$(LIBX11_LIBS)						\
+ 	$(LIBXMU_LIBS)						\
+@@ -54,7 +55,8 @@ if OS_SOLARIS
+ xfce4_taskmanager_SOURCES += task-manager-solaris.c
+ endif
+ if OS_LINUX
+-xfce4_taskmanager_SOURCES += task-manager-linux.c
++xfce4_taskmanager_SOURCES += task-manager-linux.c      \
++                             selinux.c			selinux.h
+ endif
+ if OS_SKEL
+ xfce4_taskmanager_SOURCES += task-manager-skel.c
+diff --git a/src/Makefile.in b/src/Makefile.in
+index 1121a80..d7d5ccb 100644
+--- a/src/Makefile.in
++++ b/src/Makefile.in
+@@ -94,7 +94,9 @@ bin_PROGRAMS = xfce4-taskmanager$(EXEEXT)
+ @OS_FREEBSD_TRUE@am__append_2 = task-manager-freebsd.c
+ @OS_BSD_TRUE@am__append_3 = task-manager-bsd.c
+ @OS_SOLARIS_TRUE@am__append_4 = task-manager-solaris.c
+-@OS_LINUX_TRUE@am__append_5 = task-manager-linux.c
++@OS_LINUX_TRUE@am__append_5 = task-manager-linux.c      \
++@OS_LINUX_TRUE@                             selinux.c			selinux.h
++
+ @OS_SKEL_TRUE@am__append_6 = task-manager-skel.c
+ subdir = src
+ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+@@ -119,8 +121,8 @@ am__xfce4_taskmanager_SOURCES_DIST = main.c process-window_ui.h \
+ 	settings-dialog.h settings.c settings.h task-manager.c \
+ 	task-manager.h app-manager.c app-manager.h \
+ 	task-manager-freebsd.c task-manager-bsd.c \
+-	task-manager-solaris.c task-manager-linux.c \
+-	task-manager-skel.c
++	task-manager-solaris.c task-manager-linux.c selinux.c \
++	selinux.h task-manager-skel.c
+ @HAVE_WNCK_TRUE@am__objects_1 =  \
+ @HAVE_WNCK_TRUE@	xfce4_taskmanager-app-manager.$(OBJEXT)
+ @OS_FREEBSD_TRUE@am__objects_2 = xfce4_taskmanager-task-manager-freebsd.$(OBJEXT)
+@@ -128,7 +130,8 @@ am__xfce4_taskmanager_SOURCES_DIST = main.c process-window_ui.h \
+ @OS_BSD_TRUE@	xfce4_taskmanager-task-manager-bsd.$(OBJEXT)
+ @OS_SOLARIS_TRUE@am__objects_4 = xfce4_taskmanager-task-manager-solaris.$(OBJEXT)
+ @OS_LINUX_TRUE@am__objects_5 =  \
+-@OS_LINUX_TRUE@	xfce4_taskmanager-task-manager-linux.$(OBJEXT)
++@OS_LINUX_TRUE@	xfce4_taskmanager-task-manager-linux.$(OBJEXT) \
++@OS_LINUX_TRUE@	xfce4_taskmanager-selinux.$(OBJEXT)
+ @OS_SKEL_TRUE@am__objects_6 =  \
+ @OS_SKEL_TRUE@	xfce4_taskmanager-task-manager-skel.$(OBJEXT)
+ am_xfce4_taskmanager_OBJECTS = xfce4_taskmanager-main.$(OBJEXT) \
+@@ -147,7 +150,8 @@ am__DEPENDENCIES_1 =
+ xfce4_taskmanager_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+ 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+ 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
++	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
++	$(am__DEPENDENCIES_1)
+ AM_V_lt = $(am__v_lt_@AM_V@)
+ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
+ am__v_lt_0 = --silent
+@@ -178,6 +182,7 @@ am__depfiles_remade = ./$(DEPDIR)/xfce4_taskmanager-app-manager.Po \
+ 	./$(DEPDIR)/xfce4_taskmanager-process-tree-model.Po \
+ 	./$(DEPDIR)/xfce4_taskmanager-process-tree-view.Po \
+ 	./$(DEPDIR)/xfce4_taskmanager-process-window.Po \
++	./$(DEPDIR)/xfce4_taskmanager-selinux.Po \
+ 	./$(DEPDIR)/xfce4_taskmanager-settings-dialog.Po \
+ 	./$(DEPDIR)/xfce4_taskmanager-settings.Po \
+ 	./$(DEPDIR)/xfce4_taskmanager-task-manager-bsd.Po \
+@@ -269,6 +274,10 @@ GLIB_CFLAGS = @GLIB_CFLAGS@
+ GLIB_LIBS = @GLIB_LIBS@
+ GLIB_REQUIRED_VERSION = @GLIB_REQUIRED_VERSION@
+ GLIB_VERSION = @GLIB_VERSION@
++GMODULE_CFLAGS = @GMODULE_CFLAGS@
++GMODULE_LIBS = @GMODULE_LIBS@
++GMODULE_REQUIRED_VERSION = @GMODULE_REQUIRED_VERSION@
++GMODULE_VERSION = @GMODULE_VERSION@
+ GMSGFMT = @GMSGFMT@
+ GREP = @GREP@
+ GTK3_CFLAGS = @GTK3_CFLAGS@
+@@ -423,6 +432,7 @@ xfce4_taskmanager_CFLAGS = \
+ 	$(NULL)
+ 
+ xfce4_taskmanager_LDADD = \
++	$(GMODULE_LIBS)							\
+ 	$(CAIRO_LIBS)							\
+ 	$(LIBX11_LIBS)						\
+ 	$(LIBXMU_LIBS)						\
+@@ -544,6 +554,7 @@ distclean-compile:
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfce4_taskmanager-process-tree-model.Po@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfce4_taskmanager-process-tree-view.Po@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfce4_taskmanager-process-window.Po@am__quote@ # am--include-marker
++@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfce4_taskmanager-selinux.Po@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfce4_taskmanager-settings-dialog.Po@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfce4_taskmanager-settings.Po@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfce4_taskmanager-task-manager-bsd.Po@am__quote@ # am--include-marker
+@@ -776,6 +787,20 @@ xfce4_taskmanager-task-manager-linux.obj: task-manager-linux.c
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+ @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfce4_taskmanager_CFLAGS) $(CFLAGS) -c -o xfce4_taskmanager-task-manager-linux.obj `if test -f 'task-manager-linux.c'; then $(CYGPATH_W) 'task-manager-linux.c'; else $(CYGPATH_W) '$(srcdir)/task-manager-linux.c'; fi`
+ 
++xfce4_taskmanager-selinux.o: selinux.c
++@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfce4_taskmanager_CFLAGS) $(CFLAGS) -MT xfce4_taskmanager-selinux.o -MD -MP -MF $(DEPDIR)/xfce4_taskmanager-selinux.Tpo -c -o xfce4_taskmanager-selinux.o `test -f 'selinux.c' || echo '$(srcdir)/'`selinux.c
++@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/xfce4_taskmanager-selinux.Tpo $(DEPDIR)/xfce4_taskmanager-selinux.Po
++@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='selinux.c' object='xfce4_taskmanager-selinux.o' libtool=no @AMDEPBACKSLASH@
++@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
++@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfce4_taskmanager_CFLAGS) $(CFLAGS) -c -o xfce4_taskmanager-selinux.o `test -f 'selinux.c' || echo '$(srcdir)/'`selinux.c
++
++xfce4_taskmanager-selinux.obj: selinux.c
++@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfce4_taskmanager_CFLAGS) $(CFLAGS) -MT xfce4_taskmanager-selinux.obj -MD -MP -MF $(DEPDIR)/xfce4_taskmanager-selinux.Tpo -c -o xfce4_taskmanager-selinux.obj `if test -f 'selinux.c'; then $(CYGPATH_W) 'selinux.c'; else $(CYGPATH_W) '$(srcdir)/selinux.c'; fi`
++@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/xfce4_taskmanager-selinux.Tpo $(DEPDIR)/xfce4_taskmanager-selinux.Po
++@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='selinux.c' object='xfce4_taskmanager-selinux.obj' libtool=no @AMDEPBACKSLASH@
++@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
++@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfce4_taskmanager_CFLAGS) $(CFLAGS) -c -o xfce4_taskmanager-selinux.obj `if test -f 'selinux.c'; then $(CYGPATH_W) 'selinux.c'; else $(CYGPATH_W) '$(srcdir)/selinux.c'; fi`
++
+ xfce4_taskmanager-task-manager-skel.o: task-manager-skel.c
+ @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfce4_taskmanager_CFLAGS) $(CFLAGS) -MT xfce4_taskmanager-task-manager-skel.o -MD -MP -MF $(DEPDIR)/xfce4_taskmanager-task-manager-skel.Tpo -c -o xfce4_taskmanager-task-manager-skel.o `test -f 'task-manager-skel.c' || echo '$(srcdir)/'`task-manager-skel.c
+ @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/xfce4_taskmanager-task-manager-skel.Tpo $(DEPDIR)/xfce4_taskmanager-task-manager-skel.Po
+@@ -933,6 +958,7 @@ distclean: distclean-am
+ 	-rm -f ./$(DEPDIR)/xfce4_taskmanager-process-tree-model.Po
+ 	-rm -f ./$(DEPDIR)/xfce4_taskmanager-process-tree-view.Po
+ 	-rm -f ./$(DEPDIR)/xfce4_taskmanager-process-window.Po
++	-rm -f ./$(DEPDIR)/xfce4_taskmanager-selinux.Po
+ 	-rm -f ./$(DEPDIR)/xfce4_taskmanager-settings-dialog.Po
+ 	-rm -f ./$(DEPDIR)/xfce4_taskmanager-settings.Po
+ 	-rm -f ./$(DEPDIR)/xfce4_taskmanager-task-manager-bsd.Po
+@@ -993,6 +1019,7 @@ maintainer-clean: maintainer-clean-am
+ 	-rm -f ./$(DEPDIR)/xfce4_taskmanager-process-tree-model.Po
+ 	-rm -f ./$(DEPDIR)/xfce4_taskmanager-process-tree-view.Po
+ 	-rm -f ./$(DEPDIR)/xfce4_taskmanager-process-window.Po
++	-rm -f ./$(DEPDIR)/xfce4_taskmanager-selinux.Po
+ 	-rm -f ./$(DEPDIR)/xfce4_taskmanager-settings-dialog.Po
+ 	-rm -f ./$(DEPDIR)/xfce4_taskmanager-settings.Po
+ 	-rm -f ./$(DEPDIR)/xfce4_taskmanager-task-manager-bsd.Po
+diff --git a/src/process-tree-view.c b/src/process-tree-view.c
+index 757be09..e52a0b9 100644
+--- a/src/process-tree-view.c
++++ b/src/process-tree-view.c
+@@ -37,6 +37,7 @@ enum
+ 	COLUMN_UID,
+ 	COLUMN_CPU,
+ 	COLUMN_PRIORITY,
++	COLUMN_SELINUX,
+ 	N_COLUMNS,
+ };
+ 
+@@ -104,7 +105,7 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
+ 	treeview->model = gtk_list_store_new (XTM_PTV_N_COLUMNS,
+ #endif
+ 		G_TYPE_STRING, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT64,
+-		G_TYPE_STRING, G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_FLOAT, G_TYPE_STRING, G_TYPE_INT,
++		G_TYPE_STRING, G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_FLOAT, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING,
+ 		G_TYPE_STRING, G_TYPE_STRING, G_TYPE_LONG);
+ 
+ 	treeview->model_filter = gtk_tree_model_filter_new (GTK_TREE_MODEL (treeview->model), NULL);
+@@ -209,6 +210,14 @@ xtm_process_tree_view_init (XtmProcessTreeView *treeview)
+ 	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
+ 	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_PRIORITY]);
+ 
++	g_object_get (treeview->settings, "column-selinux", &visible, NULL);
++	column = gtk_tree_view_column_new_with_attributes (_("SELinux"), cell_right_aligned, "text", XTM_PTV_COLUMN_SELINUX, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
++	g_object_set (column, COLUMN_PROPERTIES, NULL);
++	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_SELINUX));
++	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_SELINUX));
++	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
++	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_SELINUX]);
++
+ 	/* Set initial sort column */
+ 	{
+ 		guint sort_column_idu;
+@@ -760,6 +769,8 @@ settings_changed (GObject *object, GParamSpec *pspec, XtmProcessTreeView *treevi
+ 			column_id = COLUMN_CPU;
+ 		else if (!g_strcmp0 (pspec->name, "column-priority"))
+ 			column_id = COLUMN_PRIORITY;
++		else if (!g_strcmp0 (pspec->name, "column-selinux"))
++			column_id = COLUMN_SELINUX;
+ 
+ 		g_object_get (object, pspec->name, &visible, NULL);
+ 		gtk_tree_view_column_set_visible (gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[column_id]), visible);
+diff --git a/src/process-tree-view.h b/src/process-tree-view.h
+index 4bb232d..e3048cd 100644
+--- a/src/process-tree-view.h
++++ b/src/process-tree-view.h
+@@ -37,6 +37,7 @@ enum
+ 	XTM_PTV_COLUMN_CPU,
+ 	XTM_PTV_COLUMN_CPU_STR,
+ 	XTM_PTV_COLUMN_PRIORITY,
++	XTM_PTV_COLUMN_SELINUX,
+ 	XTM_PTV_COLUMN_BACKGROUND,
+ 	XTM_PTV_COLUMN_FOREGROUND,
+ 	XTM_PTV_COLUMN_TIMESTAMP,
+diff --git a/src/selinux.c b/src/selinux.c
+new file mode 100644
+index 0000000..5460af6
+--- /dev/null
++++ b/src/selinux.c
+@@ -0,0 +1,150 @@
++#include <config.h>
++
++#include <glib.h>
++#include <gmodule.h>
++#include "selinux.h"
++
++static int  (*getpidcon) (pid_t, char**);
++static void (*freecon) (char*);
++static int  (*is_selinux_enabled) (void);
++static gboolean has_selinux;
++
++gboolean
++load_symbols (const char *module,
++			 ...)
++{
++	GModule *mod;
++	gboolean found_all = TRUE;
++	va_list args;
++
++	mod = g_module_open (module, G_MODULE_BIND_LAZY | G_MODULE_BIND_LOCAL);
++
++	if (!mod)
++		return FALSE;
++
++	procman_debug ("Found library %s", module);
++
++	va_start (args, module);
++
++	while (1)
++	{
++		const char *name;
++		void **symbol;
++
++		name = va_arg (args, char*);
++
++		if (!name)
++			break;
++
++		symbol = va_arg (args, void**);
++
++		if (g_module_symbol (mod, name, symbol))
++			procman_debug ("Loaded symbol %s from %s", name, module);
++		else
++		{
++			procman_debug ("Could not load symbol %s from %s", name, module);
++			found_all = FALSE;
++			break;
++		}
++	}
++
++	va_end (args);
++
++	if (found_all)
++		g_module_make_resident (mod);
++	else
++		g_module_close (mod);
++
++	return found_all;
++}
++
++
++static gboolean
++load_selinux (void)
++{
++	return load_symbols ("libselinux.so.1",
++						 "getpidcon", &getpidcon,
++						 "freecon", &freecon,
++						 "is_selinux_enabled", &is_selinux_enabled,
++						 NULL);
++}
++
++
++void
++get_process_selinux_context (Task *task)
++{
++	char *con;
++	if (has_selinux && !getpidcon (task->pid, &con))
++	{
++		g_strlcpy (task->selinux, con, sizeof(task->selinux) - 1);
++		freecon (con);
++	}
++}
++
++
++gboolean
++can_show_security_context_column (void)
++{
++	if (!(has_selinux = load_selinux ())) {
++		procman_debug ("SELinux was NOT found!");
++		return FALSE;
++	}
++
++	switch (is_selinux_enabled ())
++	{
++	case 1:
++		procman_debug ("SELinux found and enabled - has_selinux?: %s",
++		 has_selinux ? "enabled" : "disabled");
++		/* We're running on an SELinux kernel */
++		return TRUE;
++
++	case -1:
++	/* Error; hide the security context column */
++	case 0:
++	/* We're not running on an SELinux kernel:
++		 hide the security context column */
++	default:
++		procman_debug ("SELinux was found, but is NOT enabled.\n");
++		return FALSE;
++	}
++}
++
++
++static gboolean
++is_debug_enabled (void)
++{
++	static gboolean init;
++	static gboolean enabled;
++
++	if (!init)
++	{
++		enabled = g_getenv ("DEBUG") != NULL;
++		init = TRUE;
++	}
++
++	return enabled;
++}
++
++
++void
++procman_debug_real (const char *file,
++					int                 line,
++					const char *func,
++					const char *format,
++					...)
++{
++	va_list args;
++	char *msg;
++
++	if (G_LIKELY (!is_debug_enabled ()))
++		return;
++
++	va_start (args, format);
++	msg = g_strdup_vprintf (format, args);
++	va_end (args);
++
++	g_print ("[%.6f] %s:%d @ %s() - %s\n",
++			1e-6 * g_get_monotonic_time (), file, line, func, msg);
++
++	g_free (msg);
++}
+diff --git a/src/selinux.h b/src/selinux.h
+new file mode 100644
+index 0000000..ee774a3
+--- /dev/null
++++ b/src/selinux.h
+@@ -0,0 +1,23 @@
++#ifndef _GSM_SELINUX_H_
++#define _GSM_SELINUX_H_
++
++#include <glib.h>
++
++void
++procman_debug_real (const char *file,
++                    int         line,
++                    const char *func,
++                    const char *format,
++                    ...) G_GNUC_PRINTF (4, 5);
++#define procman_debug(FMT, ...) procman_debug_real (__FILE__, __LINE__, __func__, FMT, ## __VA_ARGS__)
++
++gboolean
++load_symbols (const char *module, ...);
++#include "task-manager.h"
++void
++get_process_selinux_context (Task *task);
++
++gboolean
++can_show_security_context_column (void) G_GNUC_CONST;
++
++#endif /* _GSM_SELINUX_H_ */
+diff --git a/src/settings.c b/src/settings.c
+index 83cf022..07b355d 100644
+--- a/src/settings.c
++++ b/src/settings.c
+@@ -53,6 +53,7 @@ enum
+ 	PROP_COLUMN_RSS,
+ 	PROP_COLUMN_CPU,
+ 	PROP_COLUMN_PRIORITY,
++	PROP_COLUMN_SELINUX,
+ 	PROP_SORT_COLUMN_ID,
+ 	PROP_SORT_TYPE,
+ 	PROP_HANDLE_POSITION,
+@@ -118,6 +119,8 @@ xtm_settings_class_init (XtmSettingsClass *klass)
+ 		g_param_spec_boolean ("column-cpu", "ColumnCPU", "Show column CPU", TRUE, G_PARAM_READWRITE));
+ 	g_object_class_install_property (class, PROP_COLUMN_PRIORITY,
+ 		g_param_spec_boolean ("column-priority", "ColumnPriority", "Show column priority", FALSE, G_PARAM_READWRITE));
++	g_object_class_install_property (class, PROP_COLUMN_SELINUX,
++		g_param_spec_boolean ("column-selinux", "ColumnSELinux", "Show column SELinux", TRUE, G_PARAM_READWRITE));
+ 	g_object_class_install_property (class, PROP_SORT_COLUMN_ID,
+ 		g_param_spec_uint ("sort-column-id", "SortColumn", "Sort by column id", 0, G_MAXUINT, 0, G_PARAM_READWRITE));
+ 	g_object_class_install_property (class, PROP_SORT_TYPE,
+@@ -216,6 +219,8 @@ xtm_settings_bind_xfconf (XtmSettings *settings, XfconfChannel *channel)
+ 		G_OBJECT (settings), "column-cpu");
+ 	xfconf_g_property_bind (channel, SETTING_COLUMN_PRIORITY, G_TYPE_BOOLEAN,
+ 		G_OBJECT (settings), "column-priority");
++	xfconf_g_property_bind (channel, SETTING_COLUMN_SELINUX, G_TYPE_BOOLEAN,
++		G_OBJECT (settings), "column-selinux");
+ 
+ 	xfconf_g_property_bind (channel, SETTING_COLUMN_SORT_ID, G_TYPE_UINT,
+ 		G_OBJECT (settings), "sort-column-id");
+diff --git a/src/settings.h b/src/settings.h
+index f396ccf..409174c 100644
+--- a/src/settings.h
++++ b/src/settings.h
+@@ -51,6 +51,7 @@
+ #define SETTING_COLUMN_UID               "/columns/column-uid"
+ #define SETTING_COLUMN_CPU               "/columns/column-cpu"
+ #define SETTING_COLUMN_PRIORITY          "/columns/column-priority"
++#define SETTING_COLUMN_SELINUX           "/columns/column-selinux"
+ #define SETTING_COLUMN_SORT_ID           "/columns/sort-id"
+ #define SETTING_COLUMN_SORT_TYPE         "/columns/sort-type"
+ #define SETTING_COLUMN_POSITIONS         "/columns/positions"
+diff --git a/src/task-manager-linux.c b/src/task-manager-linux.c
+index e0b5d71..788dc27 100644
+--- a/src/task-manager-linux.c
++++ b/src/task-manager-linux.c
+@@ -22,6 +22,8 @@
+ 
+ #include "task-manager.h"
+ 
++#include "selinux.h" /* has_selinux && getpidcon() */
++
+ static gushort _cpu_count = 0;
+ static gulong jiffies_total_delta = 0;
+ 
+@@ -322,6 +324,9 @@ get_task_details (GPid pid, Task *task)
+ 	if (!get_task_cmdline (task))
+ 		return FALSE;
+ 
++	/* Read the SELinux context */
++	get_process_selinux_context(task);
++
+ 	return TRUE;
+ }
+ 
+diff --git a/src/task-manager.c b/src/task-manager.c
+index 0549b31..8e7a1bb 100644
+--- a/src/task-manager.c
++++ b/src/task-manager.c
+@@ -32,6 +32,8 @@
+ #include "process-tree-view.h" /* for the columns of the model */
+ #include "settings.h"
+ 
++#include "selinux.h" /* can_show_security_context_column() */
++
+ #define TIMESTAMP_DELTA 4
+ 
+ 
+@@ -106,6 +108,10 @@ xtm_task_manager_init (XtmTaskManager *manager)
+ 	g_object_get (settings, "full-command-line", &full_cmdline, NULL);
+ 	g_signal_connect (settings, "notify::more-precision", G_CALLBACK (setting_changed), manager);
+ 	g_signal_connect (settings, "notify::full-command-line", G_CALLBACK (setting_changed), manager);
++	procman_debug("Starting SELinux init...");
++	gboolean canselinux = can_show_security_context_column();
++	if (canselinux)
++		procman_debug("SELinux initialized!");
+ }
+ 
+ static void
+@@ -220,6 +226,7 @@ model_mark_tree_iter_as_removed (GtkTreeModel *model, GtkTreeIter *iter, glong t
+ 	gtk_list_store_set (GTK_LIST_STORE (model), iter,
+ 		XTM_PTV_COLUMN_CPU, 0.0,
+ 		XTM_PTV_COLUMN_CPU_STR, "-",
++		XTM_PTV_COLUMN_SELINUX, "-",
+ 		XTM_PTV_COLUMN_BACKGROUND, XTM_LEGEND_COLOR_TERMINATING,
+ 		XTM_PTV_COLUMN_FOREGROUND, XTM_LEGEND_COLOR_NONE,
+ 		XTM_PTV_COLUMN_TIMESTAMP, timestamp,
+@@ -317,6 +324,7 @@ model_update_tree_iter (XtmTaskManager *manager, GtkTreeIter *iter, glong timest
+ 		XTM_PTV_COLUMN_RSS_STR, rss,
+ 		XTM_PTV_COLUMN_CPU, (task->cpu_user + task->cpu_system),
+ 		XTM_PTV_COLUMN_CPU_STR, cpu,
++		XTM_PTV_COLUMN_SELINUX, task->selinux,
+ 		XTM_PTV_COLUMN_PRIORITY, task->prio,
+ 		XTM_PTV_COLUMN_BACKGROUND, background,
+ 		XTM_PTV_COLUMN_FOREGROUND, foreground,
+diff --git a/src/task-manager.h b/src/task-manager.h
+index fa01ac2..8827db1 100644
+--- a/src/task-manager.h
++++ b/src/task-manager.h
+@@ -43,6 +43,7 @@ struct _Task
+ 	guint64		vsz;
+ 	guint64		rss;
+ 	gint		prio;
++	gchar		selinux[256];
+ };
+ 
+ /**
+-- 
+2.43.2
+

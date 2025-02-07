@@ -1,0 +1,48 @@
+#[GLOBAL USE FLAGS]
+# copied from make.conf @ 01/28/24 - Updated 08/24/24
+#PROFILE 17 DEFAULT (@07-05-23):
+#default/linux/amd64/17.1/no-multilib/hardened/selinux:
+#acl bzip2 gdbm nptl unicode xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib seccomp cli pcre dri iconv libtirpc multilib fortran openmp cet hardened pic xtpax -jit -orc -ptpax selinux
+#PROFILE 23 UPGRADE (@07-07-24):
+#default/linux/amd64/23.0/split-usr/no-multilib/hardened/selinux
+#acl bzip2 gdbm  ^^  unicode xattr split-usr crypt ipv6 ncurses nls pam readline ssl zlib seccomp  ^^ pcre  ^^ iconv libtirpc multilib   ^^    openmp cet hardened pic xtpax -jit -orc -ptpax selinux
+#(Fortran lost in profile 17 to 23 transition)
+*/* fortran
+#(Remove unwanted cruft):
+*/* -doc -examples -handbook
+*/* -nls -ipv6 -multilib -firmware
+*/* -bluetooth -telemetry -wifi -wireless -ppp -modemmanager -cups -gps -geolocation -mono -sendmail -kerberos -ldap -upnp -upnp-av -zeroconf -spell -enchant -hunspell
+*/* -policykit -udisks -pulseaudio -smartcard -suid
+#(caps - capabilities library to control privilege)
+#(pie - position independent executables) - enabled by default!
+#(cet - control flow enforcement / shadow stacks)
+#(threads - multithreading = usually pthreads)
+#(seccomp - seccomp filters) force on, 08/14/2024
+*/* caps pie cet threads seccomp
+#(audit  - auditd logging)
+#(elogind - session control = generic analog of systemd)
+#(sqlite  - embedded sql database)
+*/* audit elogind sqlite
+#(verify-sig - circular dependency signify)
+*/* verify-sig
+#(XFCE, X & related)
+*/* X opengl truetype gtk xv xinerama vdpau vaapi
+#vaapi # circular dependency libva -> opengl -> mesa -> libva
+*/* xvfb xorg xa osmesa
+#(Major GUI Frameworks)
+*/* gtk3 qt5 sdl sdl2 vulkan
+*/* qml #QT
+#(Misc Other Images):
+*/* jpeg jpeg2k svg xml
+#(Archives)
+*/* zstd lz4 lzma
+#(Sound/media)
+*/* alsa lm-sensors libnotify
+*/* aac flac mp3 opus ogg vorbis jack
+*/* cairo ffmpeg gstreamer imlib portaudio rdp sndfile usb vnc
+#(system/+more)
+*/* lvm samba fuse keyring
+*/* mtp
+*/* startup-notification system-info vala introspection
+*/* bash-completion snappy
+*/* modules-sign secureboot uefi64 efi

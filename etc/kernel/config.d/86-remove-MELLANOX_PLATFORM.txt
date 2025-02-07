@@ -1,0 +1,7 @@
+CONFIG_SENSORS_MLXREG_FAN=m											      <
+CONFIG_MLX_WDT=m												      <
+CONFIG_MELLANOX_PLATFORM=y											      |	# CONFIG_MELLANOX_PLATFORM is not set
+CONFIG_MLXREG_HOTPLUG=m												      <
+CONFIG_MLXREG_IO=m												      <
+CONFIG_MLXREG_LC=m												      <
+CONFIG_NVSW_SN2201=m												      <

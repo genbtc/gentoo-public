@@ -1,0 +1,14 @@
+DEFINED_PHASES=install postinst postrm preinst prepare
+DEPEND=dev-util/desktop-file-utils x11-misc/shared-mime-info
+DESCRIPTION=REAPER is a Digital Audio Production Application for multitrack audio, offering a full multitrack audio and MIDI recording, editing, processing, mixing and mastering toolset.
+EAPI=7
+HOMEPAGE=https://www.cockos.com/reaper
+INHERIT=desktop xdg
+IUSE=+X +gtk3 alsa pulseaudio pipewire jack
+KEYWORDS=~amd64 ~arm64 ~arm
+LICENSE=EULA
+REQUIRED_USE=X gtk3 || ( alsa pulseaudio pipewire jack )
+SLOT=0
+SRC_URI=amd64? ( https://www.cockos.com/reaper/files/6.x/reaper6.73_.tar.xz -> reaper-6.73.tar.xz ) arm64? ( https://www.cockos.com/reaper/files/6.x/reaper6.73_.tar.xz -> reaper-6.73.tar.xz ) arm? ( https://www.cockos.com/reaper/files/6.x/reaper6.73_.tar.xz -> reaper-6.73.tar.xz )
+_eclasses_=desktop	021728fdc1b03b36357dbc89489e0f0d	xdg-utils	baea6080dd821f5562d715887954c9d3	xdg	4a14c5c24f121e7da66e5aab4a168c6e
+_md5_=3558034b2afe4db8a380ac1f452c9bc0

@@ -1,0 +1,111 @@
+CONFIG_ACPI_VIDEO=m												      <
+CONFIG_ACPI_PLATFORM_PROFILE=m											      <
+CONFIG_BXT_WC_PMIC_OPREGION=y											      <
+# CONFIG_TPS68470_PMIC_OPREGION is not set									      <
+CONFIG_EFI_EMBEDDED_FIRMWARE=y											      <
+CONFIG_GPIO_TPS68470=m												      <
+CONFIG_GPIO_WHISKEY_COVE=m											      <
+CONFIG_SENSORS_ASUS_WMI=m											      <
+CONFIG_INTEL_BXT_PMIC_THERMAL=m											      <
+CONFIG_INTEL_SOC_PMIC_BXTWC=m											      <
+CONFIG_INTEL_SOC_PMIC_MRFLD=m											      <
+CONFIG_MFD_INTEL_PMC_BXT=m											      <
+CONFIG_REGULATOR_TPS68470=m											      <
+CONFIG_DRM_PRIVACY_SCREEN=y											      <
+CONFIG_TYPEC_WCOVE=m												      <
+CONFIG_TYPEC_MUX_INTEL_PMC=m											      <
+CONFIG_X86_PLATFORM_DEVICES=y											      |	# CONFIG_X86_PLATFORM_DEVICES is not set
+CONFIG_ACPI_WMI=m												      <
+CONFIG_WMI_BMOF=m												      <
+CONFIG_HUAWEI_WMI=m												      <
+CONFIG_MXM_WMI=m												      <
+CONFIG_PEAQ_WMI=m												      <
+CONFIG_NVIDIA_WMI_EC_BACKLIGHT=m										      <
+# CONFIG_XIAOMI_WMI is not set											      <
+CONFIG_GIGABYTE_WMI=m												      <
+CONFIG_YOGABOOK_WMI=m												      <
+CONFIG_ACERHDF=m												      <
+CONFIG_ACER_WIRELESS=m												      <
+CONFIG_ACER_WMI=m												      <
+CONFIG_ADV_SWBUTTON=m												      <
+CONFIG_ASUS_LAPTOP=m												      <
+CONFIG_ASUS_WIRELESS=m												      <
+CONFIG_ASUS_TF103C_DOCK=m											      <
+CONFIG_X86_PLATFORM_DRIVERS_DELL=y										      <
+CONFIG_ALIENWARE_WMI=m												      <
+CONFIG_DCDBAS=m													      <
+CONFIG_DELL_LAPTOP=m												      <
+# CONFIG_DELL_RBU is not set											      <
+CONFIG_DELL_SMBIOS=m												      <
+CONFIG_DELL_SMBIOS_WMI=y											      <
+CONFIG_DELL_SMBIOS_SMM=y											      <
+CONFIG_DELL_SMO8800=m												      <
+CONFIG_DELL_WMI=m												      <
+CONFIG_DELL_WMI_PRIVACY=y											      <
+CONFIG_DELL_WMI_AIO=m												      <
+CONFIG_DELL_WMI_DESCRIPTOR=m											      <
+CONFIG_DELL_WMI_LED=m												      <
+CONFIG_DELL_WMI_SYSMAN=m											      <
+CONFIG_FUJITSU_LAPTOP=m												      <
+CONFIG_FUJITSU_TABLET=m												      <
+CONFIG_GPD_POCKET_FAN=m												      <
+# CONFIG_X86_PLATFORM_DRIVERS_HP is not set									      <
+CONFIG_WIRELESS_HOTKEY=m											      <
+CONFIG_SENSORS_HDAPS=m												      <
+CONFIG_THINKPAD_ACPI=m												      <
+CONFIG_THINKPAD_ACPI_ALSA_SUPPORT=y										      <
+# CONFIG_THINKPAD_ACPI_DEBUGFACILITIES is not set								      <
+# CONFIG_THINKPAD_ACPI_DEBUG is not set										      <
+# CONFIG_THINKPAD_ACPI_UNSAFE_LEDS is not set									      <
+CONFIG_THINKPAD_ACPI_VIDEO=y											      <
+CONFIG_THINKPAD_ACPI_HOTKEY_POLL=y										      <
+CONFIG_THINKPAD_LMI=m												      <
+CONFIG_INTEL_ATOMISP2_PDX86=y											      <
+CONFIG_INTEL_ATOMISP2_LED=m											      <
+CONFIG_INTEL_SAR_INT1092=m											      <
+CONFIG_INTEL_SKL_INT3472=m											      <
+CONFIG_INTEL_TELEMETRY=m											      <
+CONFIG_INTEL_WMI=y												      <
+CONFIG_INTEL_WMI_SBL_FW_UPDATE=m										      <
+CONFIG_INTEL_WMI_THUNDERBOLT=m											      <
+														      <
+#														      <
+# Intel Uncore Frequency Control										      <
+#														      <
+CONFIG_INTEL_UNCORE_FREQ_CONTROL=m										      <
+# end of Intel Uncore Frequency Control										      <
+														      <
+CONFIG_INTEL_HID_EVENT=m											      <
+CONFIG_INTEL_VBTN=m												      <
+CONFIG_INTEL_INT0002_VGPIO=m											      <
+CONFIG_INTEL_BXTWC_PMIC_TMU=m											      <
+CONFIG_INTEL_CHTDC_TI_PWRBTN=m											      <
+CONFIG_INTEL_CHTWC_INT33FE=m											      <
+CONFIG_INTEL_MRFLD_PWRBTN=m											      <
+CONFIG_INTEL_PUNIT_IPC=m											      <
+CONFIG_INTEL_RST=m												      <
+CONFIG_INTEL_SMARTCONNECT=y											      <
+CONFIG_INTEL_TURBO_MAX_3=y											      <
+CONFIG_MSI_WMI=m												      <
+CONFIG_PCENGINES_APU2=m												      <
+CONFIG_BARCO_P50_GPIO=m												      <
+CONFIG_SAMSUNG_LAPTOP=m												      <
+CONFIG_SAMSUNG_Q10=m												      <
+CONFIG_TOSHIBA_BT_RFKILL=m											      <
+CONFIG_TOSHIBA_HAPS=m												      <
+CONFIG_TOSHIBA_WMI=m												      <
+# CONFIG_ACPI_CMPC is not set											      <
+CONFIG_LG_LAPTOP=m												      <
+CONFIG_PANASONIC_LAPTOP=m											      <
+CONFIG_SYSTEM76_ACPI=m												      <
+CONFIG_TOPSTAR_LAPTOP=m												      <
+CONFIG_MLX_PLATFORM=m												      <
+CONFIG_TOUCHSCREEN_DMI=y											      <
+CONFIG_FW_ATTR_CLASS=m												      <
+CONFIG_INTEL_SCU_IPC=y												      <
+CONFIG_INTEL_SCU=y												      <
+CONFIG_INTEL_SCU_PLATFORM=m											      <
+CONFIG_INTEL_SCU_IPC_UTIL=m											      <
+CONFIG_WINMATE_FM07_KEYS=m											      <
+CONFIG_COMMON_CLK_TPS68470=m											      <
+CONFIG_EXTCON_INTEL_MRFLD=m											      <

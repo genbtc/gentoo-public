@@ -1,0 +1,94 @@
+From fc3b4f840954fa09715fdfcba51cdc6b8fe49312 Mon Sep 17 00:00:00 2001
+From: genBTC <genBTC@gmx.com>
+Date: Sun, 24 Mar 2024 08:22:15 -0400
+Subject: [PATCH] Settings-Dialog.ui .c .h - add SELinux column that toggles UI
+
+Signed-off-by: genBTC <genBTC@gmx.com>
+---
+ src/settings-dialog.c    |  1 +
+ src/settings-dialog.ui   | 14 ++++++++++++++
+ src/settings-dialog_ui.h | 31 +++++++++++++++++++------------
+ 3 files changed, 34 insertions(+), 12 deletions(-)
+
+diff --git a/src/settings-dialog.c b/src/settings-dialog.c
+index b812725..9bc20dd 100644
+--- a/src/settings-dialog.c
++++ b/src/settings-dialog.c
+@@ -216,6 +216,7 @@ xtm_settings_dialog_new (GtkBuilder *builder, GtkWidget *parent_window)
+ 	builder_bind_toggle_button (builder, "uid", settings, "column-uid");
+ 	builder_bind_toggle_button (builder, "cpu", settings, "column-cpu");
+ 	builder_bind_toggle_button (builder, "priority", settings, "column-priority");
++	builder_bind_toggle_button (builder, "selinux", settings, "column-selinux");
+ 
+ 
+ 	button = GTK_WIDGET (gtk_builder_get_object (builder, "button-about"));
+diff --git a/src/settings-dialog.ui b/src/settings-dialog.ui
+index 5a3864a..ba1c857 100644
+--- a/src/settings-dialog.ui
++++ b/src/settings-dialog.ui
+@@ -466,6 +466,20 @@
+                     <property name="position">7</property>
+                   </packing>
+                 </child>
++                <child>
++                  <object class="GtkCheckButton" id="selinux">
++                    <property name="label" translatable="yes">SELinux</property>
++                    <property name="visible">True</property>
++                    <property name="can_focus">True</property>
++                    <property name="receives_default">False</property>
++                    <property name="draw_indicator">True</property>
++                  </object>
++                  <packing>
++                    <property name="expand">False</property>
++                    <property name="fill">True</property>
++                    <property name="position">8</property>
++                  </packing>
++                </child>
+               </object>
+               <packing>
+                 <property name="position">1</property>
+diff --git a/src/settings-dialog_ui.h b/src/settings-dialog_ui.h
+index d8e6721..3f2cc89 100644
+--- a/src/settings-dialog_ui.h
++++ b/src/settings-dialog_ui.h
+@@ -221,18 +221,25 @@ static const char settings_dialog_ui[] =
+   "se</property><property name=\"draw_indicator\">True</property></object>"
+   "<packing><property name=\"expand\">False</property><property name=\"fil"
+   "l\">True</property><property name=\"position\">7</property></packing></"
+-  "child></object><packing><property name=\"position\">1</property></packi"
+-  "ng></child><child type=\"tab\"><object class=\"GtkLabel\"><property nam"
+-  "e=\"visible\">True</property><property name=\"can_focus\">False</proper"
+-  "ty><property name=\"label\" translatable=\"yes\">Columns</property></ob"
+-  "ject><packing><property name=\"position\">1</property><property name=\""
+-  "tab_fill\">False</property></packing></child><child><placeholder/></chi"
+-  "ld><child type=\"tab\"><placeholder/></child></object><packing><propert"
+-  "y name=\"expand\">False</property><property name=\"fill\">True</propert"
+-  "y><property name=\"position\">0</property></packing></child></object></"
+-  "child><action-widgets><action-widget response=\"-7\">button-close</acti"
+-  "on-widget></action-widgets></object></interface>"
++  "child><child><object class=\"GtkCheckButton\" id=\"selinux\"><property "
++  "name=\"label\" translatable=\"yes\">SELinux</property><property name=\""
++  "visible\">True</property><property name=\"can_focus\">True</property><p"
++  "roperty name=\"receives_default\">False</property><property name=\"draw"
++  "_indicator\">True</property></object><packing><property name=\"expand\""
++  ">False</property><property name=\"fill\">True</property><property name="
++  "\"position\">8</property></packing></child></object><packing><property "
++  "name=\"position\">1</property></packing></child><child type=\"tab\"><ob"
++  "ject class=\"GtkLabel\"><property name=\"visible\">True</property><prop"
++  "erty name=\"can_focus\">False</property><property name=\"label\" transl"
++  "atable=\"yes\">Columns</property></object><packing><property name=\"pos"
++  "ition\">1</property><property name=\"tab_fill\">False</property></packi"
++  "ng></child><child><placeholder/></child><child type=\"tab\"><placeholde"
++  "r/></child></object><packing><property name=\"expand\">False</property>"
++  "<property name=\"fill\">True</property><property name=\"position\">0</p"
++  "roperty></packing></child></object></child><action-widgets><action-widg"
++  "et response=\"-7\">button-close</action-widget></action-widgets></objec"
++  "t></interface>"
+ };
+ 
+-static const unsigned settings_dialog_ui_length = 15138u;
++static const unsigned settings_dialog_ui_length = 15579u;
+ 
+-- 
+2.43.2
+

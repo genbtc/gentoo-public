@@ -1,0 +1,11 @@
+--- firefox-102.13.0/build/moz.configure/toolchain.configure	2023-06-29 14:12:04.000000000 -0400
++++ firefox-102.13.0/build/moz.configure/toolchain.configure	2023-07-08 14:26:48.035642019 -0400
+@@ -2161,7 +2161,7 @@
+         # Also, undefine it before defining it just in case a distro adds it, see Bug 1418398
+         if compiler_is_gccish and optimize and not asan:
+             flags.append("-U_FORTIFY_SOURCE")
+-            flags.append("-D_FORTIFY_SOURCE=2")
++            flags.append("-D_FORTIFY_SOURCE=3")
+             if mingw_clang:
+                 # mingw-clang needs to link in ssp which is not done by default
+                 ldflags.append("-lssp")

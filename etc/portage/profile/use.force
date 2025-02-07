@@ -7,7 +7,7 @@
 -llvm_targets_Mips
 -llvm_targets_NVPTX
 -llvm_targets_PowerPC
--llvm_targets_RISCV
+#-llvm_targets_RISCV    #for spawns project
 -llvm_targets_Sparc
 -llvm_targets_SystemZ
 -llvm_targets_WebAssembly

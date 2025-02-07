@@ -1,0 +1,39 @@
+CONFIG_SCSI_SAS_ATA=y												      <
+CONFIG_ATA=y													      |	# CONFIG_ATA is not set
+CONFIG_SATA_HOST=y												      <
+CONFIG_PATA_TIMINGS=y												      <
+CONFIG_ATA_VERBOSE_ERROR=y											      <
+CONFIG_ATA_FORCE=y												      <
+CONFIG_ATA_ACPI=y												      <
+# CONFIG_SATA_ZPODD is not set											      <
+CONFIG_SATA_PMP=y												      <
+														      <
+#														      <
+# Controllers with non-SFF native interface									      <
+#														      <
+CONFIG_SATA_AHCI_PLATFORM=m											      <
+CONFIG_AHCI_DWC=m												      <
+CONFIG_ATA_SFF=y												      <
+														      <
+#														      <
+# SFF controllers with custom DMA interface									      <
+#														      <
+CONFIG_ATA_BMDMA=y												      <
+														      <
+#														      <
+# SATA SFF controllers with BMDMA										      <
+#														      <
+														      <
+#														      <
+# PATA SFF controllers with BMDMA										      <
+#														      <
+														      <
+#														      <
+# PIO-only SFF controllers											      <
+#														      <
+														      <
+#														      <
+# Generic fallback / legacy drivers										      <
+#														      <
+CONFIG_SENSORS_DRIVETEMP=m											      <
+CONFIG_LEDS_TRIGGER_DISK=y											      <

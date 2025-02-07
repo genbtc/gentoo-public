@@ -1,0 +1,55 @@
+CONFIG_BT_HCIDTL1=m												      <
+CONFIG_BT_HCIBT3C=m												      <
+CONFIG_BT_HCIBLUECARD=m												      <
+CONFIG_PCCARD=y													      |	# CONFIG_PCCARD is not set
+CONFIG_PCMCIA=y													      <
+CONFIG_PCMCIA_LOAD_CIS=y											      <
+CONFIG_CARDBUS=y												      <
+														      <
+#														      <
+# PC-card bridges												      <
+#														      <
+CONFIG_YENTA=m													      <
+CONFIG_YENTA_O2=y												      <
+CONFIG_YENTA_RICOH=y												      <
+CONFIG_YENTA_TI=y												      <
+CONFIG_YENTA_ENE_TUNE=y												      <
+CONFIG_YENTA_TOSHIBA=y												      <
+CONFIG_PD6729=m													      <
+CONFIG_I82092=m													      <
+CONFIG_PCCARD_NONSTATIC=y											      <
+CONFIG_PARPORT_PC_PCMCIA=m											      <
+# CONFIG_SCSI_LOWLEVEL_PCMCIA is not set									      <
+CONFIG_PATA_PCMCIA=m												      <
+CONFIG_PCMCIA_3C574=m												      <
+CONFIG_PCMCIA_3C589=m												      <
+CONFIG_PCMCIA_NMCLAN=m												      <
+CONFIG_PCMCIA_XIRCOM=m												      <
+# CONFIG_NET_VENDOR_FUJITSU is not set										      <
+CONFIG_PCMCIA_AXNET=m												      <
+CONFIG_PCMCIA_PCNET=m												      <
+CONFIG_PCMCIA_SMC91C92=m											      <
+CONFIG_NET_VENDOR_XIRCOM=y											      <
+CONFIG_PCMCIA_XIRC2PS=m												      <
+CONFIG_PCMCIA_HERMES=m												      <
+# CONFIG_PCMCIA_SPECTRUM is not set										      <
+CONFIG_LIBERTAS_CS=m												      <
+# CONFIG_PCMCIA_RAYCS is not set										      <
+# CONFIG_PCMCIA_WL3501 is not set										      <
+CONFIG_SERIAL_8250_CS=m												      <
+														      <
+#														      <
+# PCMCIA character devices											      <
+#														      <
+# CONFIG_SYNCLINK_CS is not set											      <
+CONFIG_CARDMAN_4000=m												      <
+CONFIG_CARDMAN_4040=m												      <
+# CONFIG_SCR24X is not set											      <
+CONFIG_IPWIRELESS=m												      <
+# end of PCMCIA character devices										      <
+														      <
+CONFIG_SSB_PCMCIAHOST_POSSIBLE=y										      <
+CONFIG_SSB_PCMCIAHOST=y												      <
+# CONFIG_SND_PCMCIA is not set											      <
+# CONFIG_USB_SL811_CS is not set										      <
+CONFIG_MMC_SDRICOH_CS=m												      <

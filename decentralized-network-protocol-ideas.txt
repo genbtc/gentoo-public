@@ -1,0 +1,74 @@
+My Internet Protocol Program
+----------------------------
+XMPP
+IRC
+Matrix bridge
+message passing, rabbitMQ, JSON-RPC
+JPG
+WWW
+every data struct {
+    URI:// 
+    OpenWith...
+    data[]
+    options : {
+        relatedTo
+        timestamp
+    }
+    authorization: hash
+}
+
+every program stuct {
+    OpenWithName:
+    type: EXE/ELF/python/bash
+    metadata
+}
+wget,curl,netcat
+text pipelines {
+    sed/awk/readline
+    unix pipes, stdio
+}
+
+NGINX server
+Voice/Video (hard) {
+    shoutcast
+    RTMP
+}
+
+Networking protocols: {
+    wireguard
+    shadowsocks
+    ssh
+    custom encryption
+}
+data servers:
+    ie FTP
+    ie syncthing or like nextcloud but not bloat
+
+remote data targets (plugins):
+    SMB/NFS
+    HTTPS GET
+    REST API specific website
+    Tor/Onion site
+    I2P
+    torrent/P2P
+    Azure/AWS S3 Bucket
+
+
+Privacy Model: Public / Private / Unlisted ??? or more advanced
+
+
+
+Goal: combine all open source software
+Reason: none exists
+Deployment:
+build from source, use gentoo or guix package manager to reproduce environment
+then ship a docker container
+Developers: wanted
+
+tiling WM will help for explaining modular nature of program
+connecting to Discord is proprietary but the comparison could be made
+
+The used programs need to be installed but not all can be remote-controlled by script.
+
+This sounds like an operating system, with a swiss army toolkit like Kali 
+Am I replicating myself ?

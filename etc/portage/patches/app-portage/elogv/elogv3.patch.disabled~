@@ -1,0 +1,110 @@
+--- a/elogv	2024-02-07 20:49:43.259104488 -0500
++++ b/elogv	2024-02-07 22:33:24.761555068 -0500
+@@ -31,6 +31,7 @@
+ import os
+ import re
+ import signal
++import subprocess
+ import sys
+ import textwrap
+ from datetime import datetime
+@@ -114,9 +115,9 @@
+ Elogv is a portage elog viewer based on curses and python,
+ you can use these keys to control the behavior of the program:
+ 
+- - Down arrow or j -> scroll the list of files down by 1 unit
++ - Down arrow or j -> scroll the list of files down by 1 lines
+  - Up arrow or k -> opposite of Down arrow
+- - PageDown -> scroll the list down by 10 unit
++ - PageDown -> scroll the list down by 30 lines
+  - PageUp -> opposite of PageDown
+  - End -> go to the last file of the list
+  - Home -> go to the first file of the list
+@@ -142,12 +143,12 @@
+ )
+ 
+ (normal, selected, einfo, elog, ewarn, eerror) = range(6)
+-(PATH, CAT, PN, DATE, CLASS) = range(5)
++(PATH, CAT, PN, DATE, CLASS, BUILDLOG ) = range(6)
+ 
+ # Character used to print the class of an elog
+ class_char = "*"
+ list_format = "%s/%s - %s"
+-date_format = "%x"
++date_format = "%x %H:%M:%S"
+ 
+ 
+ # Exceptions classes
+@@ -215,6 +216,7 @@
+     def __init__(self, screen):
+         # curses.curs_set(0)
+         self.screen = screen
++#        curses.noecho()
+ 
+         # Our color pairs
+         try:
+@@ -250,10 +252,10 @@
+                 self.change_usel(-1)
+ 
+             elif c in (curses.KEY_NPAGE, ord("f")):
+-                self.change_usel(10)
++                self.change_usel(30)
+ 
+             elif c in (curses.KEY_PPAGE, ord("b")):
+-                self.change_usel(-10)
++                self.change_usel(-30)
+ 
+             elif c in (curses.KEY_END, ord("G")):
+                 self.change_usel(len(self.packages) - 1, False)
+@@ -349,6 +351,13 @@
+                 self.screen.hline(self.height - 1, 2, curses.ACS_HLINE, (len(word) + 1))
+                 self.screen.addstr(self.height - 2, 2, " " * 20)
+ 
++            elif c in (ord("o"), curses.KEY_ENTER, 10, 13):
++                pkg = self.packages[self.usel]
++                if len(pkg) >= 6:
++                  with suspend_curses():
++                    print(f"opening build.log file: %s" % pkg[BUILDLOG])
++                    subprocess.call(["less", "-R", pkg[BUILDLOG]])
++
+             # Get another key from the user
+             c = self.screen.getch()
+ 
+@@ -507,7 +516,7 @@
+             self.usel = len(self.packages) - 1
+             # We also have to update self.pposy
+             if self.pposy > self.usel:
+-                self.pposy = max(0, self.usel - 10)
++                self.pposy = max(0, self.usel - 30)
+ 
+         # Sort the list
+         if self.sort_method[0] in (DATE, CLASS):
+@@ -609,9 +618,9 @@
+                 elif x.startswith("LOG:"):
+                     self.log_win.addstr(x[: self.width - 2], curses.color_pair(elog))
+                 elif x.startswith('Logfile: '):
+-                    self.logfile = x.replace('Logfile: ',"").replace('\n','')
+-                    self.log_win.addstr('Logfile: ',curses.A_BOLD+curses.color_pair(elog))
+-                    self.log_win.addstr(self.logfile+"\n",curses.A_BOLD+curses.color_pair(normal))
++                    self.packages[self.usel] = self.packages[self.usel] + ( x.replace('Logfile: ',"").replace('\n',''), )
++                    self.log_win.addstr('Build.log: ',curses.A_BOLD+curses.color_pair(elog))
++                    self.log_win.addstr(self.packages[self.usel][BUILDLOG]+"\n",curses.A_BOLD+curses.color_pair(normal))
+                 else:
+                     self.log_win.addstr(x[: self.width - 2], curses.color_pair(normal))
+             except curses.error:
+@@ -689,11 +698,11 @@
+ 
+             c = self.screen.getch()
+             if c == curses.KEY_NPAGE:
+-                if row + 10 <= maxrow:
+-                    row += 10
++                if row + 30 <= maxrow:
++                    row += 30
+             elif c == curses.KEY_PPAGE:
+-                if row - 10 >= 0:
+-                    row -= 10
++                if row - 30 >= 0:
++                    row -= 30
+             elif c in (curses.KEY_DOWN, ord("j")):
+                 if row + 1 < maxrow:
+                     row += 1

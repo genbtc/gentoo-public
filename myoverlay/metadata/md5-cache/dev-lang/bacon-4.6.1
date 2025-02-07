@@ -1,0 +1,16 @@
+BDEPEND=>=sys-devel/flex-2.5 >=sys-devel/m4-1.4.16 >=sys-devel/automake-1.13 sys-devel/gnuconfig >=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.5:1.16 ) >=sys-devel/autoconf-2.71-r5 >=sys-devel/libtool-2.4.7
+DEFINED_PHASES=compile configure install
+DEPEND=bash? ( >=app-shells/bash-4.0 ) zsh? ( >=app-shells/zsh-4.0 ) ksh? ( >=app-shells/ksh-1.0 ) gtk? ( x11-libs/gtk+:3 ) fltk? ( x11-libs/fltk:1=[opengl,xft] ) x11-libs/gtksourceview:3.0
+DESCRIPTION=BaCon - BASIC to C converter plus GTK GUI
+EAPI=8
+HOMEPAGE=https://basic-converter.org
+INHERIT=autotools
+IUSE=+bash zsh ksh +gui +gtk fltk +doc
+KEYWORDS=~amd64 ~x86
+LICENSE=MIT
+RDEPEND=bash? ( >=app-shells/bash-4.0 ) zsh? ( >=app-shells/zsh-4.0 ) ksh? ( >=app-shells/ksh-1.0 ) gtk? ( x11-libs/gtk+:3 ) fltk? ( x11-libs/fltk:1=[opengl,xft] ) x11-libs/gtksourceview:3.0
+REQUIRED_USE=|| ( bash zsh ksh ) gui? ( || ( gtk fltk ) )
+SLOT=0
+SRC_URI=https://basic-converter.org/stable/4.6.1.tar.gz
+_eclasses_=gnuconfig	b6b3e92f8b8c996400074b5f61a59256	toolchain-funcs	70ec42843fec87d20fd94c67e77cdbff	multilib	c19072c3cd7ac5cb21de013f7e9832e0	libtool	9d3a9a889a6fa62ae794f817c156491b	autotools	6ae9a4347149b19a112caa1182d03bde
+_md5_=1310b586de3123896ee0ac9c6395953c

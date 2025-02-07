@@ -1,0 +1,15 @@
+BDEPEND=>=app-portage/elt-patches-20240116 sys-devel/gnuconfig || ( >=dev-build/automake-1.17-r1:1.17 >=dev-build/automake-1.16.5:1.16 ) || ( >=dev-build/autoconf-2.72-r1:2.72 >=dev-build/autoconf-2.71-r6:2.71 ) >=dev-build/libtool-2.4.7-r3
+DEFINED_PHASES=configure install prepare
+DEPEND=dev-cpp/glibmm:2 dev-cpp/gtkmm:3.0 x11-libs/gtk+:3 x11-libs/gtksourceview:3.0 dev-cpp/libxmlpp:2.6 dev-libs/libsigc++:2 net-libs/libinfinity:0/0.7[gtk3,gtk,avahi?] virtual/pkgconfig doc? ( >=app-text/gnome-doc-utils-0.9.0 app-text/scrollkeeper-dtd app-text/rarian ) nls? ( >=sys-devel/gettext-0.12.1 )
+DESCRIPTION=Gobby, GTK-based collaborative editor
+EAPI=8
+HOMEPAGE=https://gobby.github.io/
+INHERIT=autotools flag-o-matic
+IUSE=avahi gtk +gtk3 doc nls
+KEYWORDS=amd64 x86
+LICENSE=GPL-2
+RDEPEND=dev-cpp/glibmm:2 dev-cpp/gtkmm:3.0 x11-libs/gtk+:3 x11-libs/gtksourceview:3.0 dev-cpp/libxmlpp:2.6 dev-libs/libsigc++:2 net-libs/libinfinity:0/0.7[gtk3,gtk,avahi?]
+SLOT=0.6
+SRC_URI=http://releases.0x539.de/gobby/gobby-0.6.0.tar.gz
+_eclasses_=gnuconfig	f8b9cc21e72de8cbedde6ca5108d208b	toolchain-funcs	948855ec7ad9f11351edf9066708dfa9	multilib	7e1347c006a76bb812f3a9f663b79991	libtool	f9e6905c12590c1cac06d85371a0819a	autotools	61927ff6474f1d141b4ea4a5b9870424	flag-o-matic	fa33e3696fe4689dda7e9affe92e2c94
+_md5_=5840b4ecdd6554356cfe1d3fd40a554d

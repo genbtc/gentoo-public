@@ -1,10 +1,11 @@
 #!/bin/bash
-#genr8eofl @gentoo - copyleft 2021,2022,2023 - GPL2
-# Check Kernel.org for New Patch and Changelog,
-#  then Download and Patch linux-sources @ /usr/src/linux
+# genr8eofl @gentoo   - copyleft 2021,2022,2023,2024 - LICENSE GPL2
+# patch-new.sh v0.9.0 - Check Kernel.org for New Patch and Changelog,
+#   then Download and Patch linux-sources @ /usr/src/linux
 # Usage:
-#  in /usr/src/linux # ./patch-new.sh
-# Deps: bash, grep, awk, wget, xz, patch, less, sed
+#   cd /usr/src/linux; ./patch-new.sh
+# Dependencies:
+#   bash, grep, awk, wget, xz, patch, less, [sed]
 
 function changelog() { grep -A 4 "^commit" "$1" | grep -E "(^    )"; }
 
@@ -32,6 +33,7 @@ function download() {
   mkdir -p patched
   patch -p1 < patches/"$ptf" > patched/patched-"$s1-$s2".txt
   echo "Patch Complete! Log Saved @ ${PWD}/patched/patched-$s1-$s2.txt"
+  less "patched/patched-$s1-$s2.txt"
  else
   echo "Patch 404 not found, this means we're up to date. Bailing out!"
   exit
@@ -41,10 +43,9 @@ function download() {
  chlog="ChangeLog-$v.$p.$s2"
  download2=$(wget "${URL}/${chlog}")
  if [ -f "$chlog" ]; then
-  echo "ChangeLog Summary Created!"
-  changelog "$chlog" > "$chlog-summary.txt"
   echo "ChangeLog Saved! @ $(realpath ${chlog})"
-  echo "ChangeLog is opening, q to quit..."
+  changelog "$chlog" > "$chlog-summary.txt" && echo "ChangeLog Summary Created!:"
+  echo "viewing with \`less' (q to quit)"
   less "$chlog-summary.txt"
  fi
  popd || die

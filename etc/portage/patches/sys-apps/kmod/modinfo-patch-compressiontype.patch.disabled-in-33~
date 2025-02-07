@@ -1,0 +1,14 @@
+--- a/tools/modinfo.c	2023-12-06 10:34:31.908499072 -0500
++++ b/tools/modinfo.c	2024-08-06 16:30:59.287490518 -0400
+@@ -208,6 +208,11 @@
+ 		return err;
+ 	}
+
++    enum kmod_file_compression_type compression;
++    compression = kmod_file_get_compression(mod->file);
++    printf("%-16s%s%c", "compression:",
++            compression, separator);
++
+ 	if (field != NULL && streq(field, "parm")) {
+ 		err = modinfo_params_do(list);
+ 		goto end;

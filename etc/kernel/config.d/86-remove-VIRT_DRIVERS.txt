@@ -1,0 +1,7 @@
+CONFIG_VIRT_DRIVERS=y												      |	# CONFIG_VIRT_DRIVERS is not set
+CONFIG_VMGENID=y												      <
+# CONFIG_VBOXGUEST is not set											      <
+CONFIG_NITRO_ENCLAVES=m												      <
+CONFIG_ACRN_HSM=m												      <
+CONFIG_EFI_SECRET=m												      <
+CONFIG_SEV_GUEST=m												      <

@@ -3,3 +3,5 @@ echo
 qlop -v
 uptime
 echo
+#find /usr/share/icons/ -name '*.cache' -exec ls -Z {} \;
+sed -e 's#HOME_DIR/\\#/home/genr8eofl/#' /etc/selinux/strict/policy/mime-icon-cache.fc | grep -v "^#\|.*?" | cut -d' ' -f1 | xargs restorecon -RFv;

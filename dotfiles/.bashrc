@@ -10,6 +10,6 @@ __update_prompt() {
     fi
 }
 
-PATH=$PATH:~/gentoo-public/myscripts
+source /root/.bash_aliases
 
-source ~/.bash_aliases
+PATH=$PATH:$mydir/myscripts

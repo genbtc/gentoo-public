@@ -1,3 +1,0 @@
-app-editors/vscode Microsoft-vscode
-# required by games-puzzle/magiccube4d (argument)
->=games-puzzle/magiccube4d-2.2-r1 free-noncomm

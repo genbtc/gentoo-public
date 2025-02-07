@@ -1,5 +1,12 @@
 #!/bin/bash
 #.bash_aliases script by @genr8eofl copyright 2024 - AGPL3 License
+
+# Test for an interactive shell.
+if [[ $- != *i* ]] ; then
+    # Shell is non-interactive.  Be done now!
+    return
+fi
+
 alias mv='mv -i'
 alias cp='cp -i'
 alias l='ls -alZ --color'
@@ -9,6 +16,7 @@ alias less='less -R'
 alias dmesg='dmesg -x --color=always'
 alias diffy='diff -y --suppress-common-lines -W240'
 alias fattr='getfattr --absolute-names -d -m.'
+alias fattrhex='getfattr --absolute-names -d -m. -e hex'
 alias inode='find / -xdev -inum'
 alias du='du -d1 -h -c'
 alias rsync='rsync --progress -t'
@@ -16,7 +24,8 @@ alias ps='ps faux --headers'
 alias listen='lsof -i -P -n | grep LISTEN'
 alias netstat='netstat -4lpn'
 alias stripcolors='sed "s/\x1B\[\([0-9]\{1,2\}\(;[0-9]\{1,2\}\)\?\)\?[mGK]//g"'
-alias cats='spc'
+alias headn='head -n-0'
+#alias cats='spc'
 
 #define vars
 COLOR1="\033[01;31m"
@@ -24,7 +33,7 @@ COLOR2="\033[01;32m"
 COLOR3="\033[01;33m"
 COLOR4="\033[01;34m"
 ENDCOLOR="\033[00m"
-export mydir="/home/genr8eofl/src/gentoo-public/"
+export mydir="/usr/src/linux-dev/src/gentoo-public/"
 export serverdir="/run/user/1000/gvfs/smb-share:server=10.1.1.1,share=raidz-4tbx4/DiskImages/LinuxDD"
 
 #linux kernel

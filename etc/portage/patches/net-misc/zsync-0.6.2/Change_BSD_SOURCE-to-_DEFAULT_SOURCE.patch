@@ -1,0 +1,13 @@
+diff --git a/configure.ac b/configure.ac
+index 4b7566b..fe54898 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -58,7 +58,7 @@ case $host_os in
+        ;;
+    *)
+        AC_DEFINE([_XOPEN_SOURCE], 600, [Enable POSIX extensions if present])
+-       AC_DEFINE([_BSD_SOURCE],1, [Enable BSD extensions if present])
++       AC_DEFINE([_DEFAULT_SOURCE], 1, [Enable Default(BSD) extensions if present])
+        ;;
+ esac
+ AM_CONDITIONAL([MINGW32], test "x$host_os_mingw32" = "xyes")

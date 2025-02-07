@@ -1,0 +1,15 @@
+# dialog --prgbox "we run a title" "uname -a" 0 40
+#  result of command was cut off before with auto-height 0, defaults to MIN=4 + 1MARGIN*2 (6)
+#  Changed to be +2 (now 8), because +1 for OK Button and +1 for Horizontal line.
+--- a/progressbox.c	2024-02-05 21:06:22.459662163 -0500
++++ b/progressbox.c	2024-02-05 21:06:09.635661234 -0500
+@@ -83,6 +83,9 @@
+ 
+     obj->prompt = dlg_strclone(cprompt);
+     dlg_tab_correct_str(obj->prompt);
++    if (obj->prompt[0] != '\0')
++    dlg_auto_size(title, obj->prompt, &obj->high, &obj->wide, MIN_HIGH + 2, MIN_WIDE);
++    else
+     dlg_auto_size(title, obj->prompt, &obj->high, &obj->wide, MIN_HIGH, MIN_WIDE);
+ 
+     dlg_print_size(obj->high, obj->wide);

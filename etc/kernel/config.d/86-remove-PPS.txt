@@ -1,0 +1,13 @@
+CONFIG_PPS=y													      |	# CONFIG_PPS is not set
+# CONFIG_PPS_DEBUG is not set											      <
+														      <
+#														      <
+# PPS clients support												      <
+#														      <
+# CONFIG_PPS_CLIENT_KTIMER is not set										      <
+CONFIG_PPS_CLIENT_LDISC=m											      <
+CONFIG_PPS_CLIENT_GPIO=m											      <
+														      <
+#														      <
+# PPS generators support											      <
+#														      <

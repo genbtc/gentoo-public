@@ -1,0 +1,20 @@
+--- a/modules/pam_timestamp/Makefile.am	2024-04-09 12:22:59.000000000 -0400
++++ b/modules/pam_timestamp/Makefile.am	2024-07-18 16:12:35.278430767 -0400
+@@ -27,7 +27,7 @@
+ AM_CFLAGS = -I$(top_srcdir)/libpam/include $(LOGIND_CFLAGS) $(WARN_CFLAGS)
+ 
+ pam_timestamp_la_LDFLAGS = -no-undefined -avoid-version -module $(AM_LDFLAGS) $(CRYPTO_LIBS)
+-pam_timestamp_la_LIBADD = $(top_builddir)/libpam/libpam.la $(SYSTEMD_LIBS)
++pam_timestamp_la_LIBADD = $(top_builddir)/libpam/libpam.la $(SYSTEMD_LIBS) $(LOGIND_LIBS)
+ if HAVE_VERSIONING
+   pam_timestamp_la_LDFLAGS += -Wl,--version-script=$(srcdir)/../modules.map
+ endif
+@@ -45,7 +45,7 @@
+ 
+ pam_timestamp_check_SOURCES = pam_timestamp_check.c
+ pam_timestamp_check_CFLAGS = $(AM_CFLAGS) @EXE_CFLAGS@
+-pam_timestamp_check_LDADD = $(top_builddir)/libpam/libpam.la $(SYSTEMD_LIBS)
++pam_timestamp_check_LDADD = $(top_builddir)/libpam/libpam.la $(SYSTEMD_LIBS) $(LOGIND_LIBS)
+ pam_timestamp_check_LDFLAGS = @EXE_LDFLAGS@
+ 
+ if !COND_USE_OPENSSL

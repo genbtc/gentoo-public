@@ -1,0 +1,14 @@
+DEFINED_PHASES=configure install postinst postrm preinst
+DEPEND=dev-cpp/glibmm:2 gtk3? ( dev-cpp/gtkmm:3.0 ) !gtk3? ( dev-cpp/gtkmm:2.4 ) dev-libs/libsigc++:2 gtk3? ( net-libs/libinfinity:0/0.6[gtk3,avahi?] ) !gtk3? ( net-libs/libinfinity:0/0.6[gtk,avahi?] ) gtk3? ( x11-libs/gtk+:3 ) !gtk3? ( x11-libs/gtk+:2 ) dev-cpp/libxmlpp:2.6 gtk3? ( x11-libs/gtksourceview:3.0 ) !gtk3? ( x11-libs/gtksourceview:2.0 ) virtual/pkgconfig doc? ( >=app-text/gnome-doc-utils-0.9.0 app-text/scrollkeeper-dtd app-text/rarian ) nls? ( >=sys-devel/gettext-0.12.1 )
+DESCRIPTION=GTK-based collaborative editor
+EAPI=8
+HOMEPAGE=https://gobby.github.io/
+INHERIT=gnome2-utils toolchain-funcs
+IUSE=avahi doc +gtk3 nls
+KEYWORDS=amd64 x86
+LICENSE=GPL-2
+RDEPEND=dev-cpp/glibmm:2 gtk3? ( dev-cpp/gtkmm:3.0 ) !gtk3? ( dev-cpp/gtkmm:2.4 ) dev-libs/libsigc++:2 gtk3? ( net-libs/libinfinity:0/0.6[gtk3,avahi?] ) !gtk3? ( net-libs/libinfinity:0/0.6[gtk,avahi?] ) gtk3? ( x11-libs/gtk+:3 ) !gtk3? ( x11-libs/gtk+:2 ) dev-cpp/libxmlpp:2.6 gtk3? ( x11-libs/gtksourceview:3.0 ) !gtk3? ( x11-libs/gtksourceview:2.0 )
+SLOT=0.5
+SRC_URI=http://releases.0x539.de/gobby/gobby-0.5.0.tar.gz
+_eclasses_=toolchain-funcs	948855ec7ad9f11351edf9066708dfa9	multilib	7e1347c006a76bb812f3a9f663b79991	xdg-utils	5465aed08f1dfc2a75f14cbea4272961	gnome2-utils	a8cf148ec7f5ae0b1f1d33ae5f7f9e88
+_md5_=26d62050680e9a5745ccbc1cb95551d4

@@ -1,2 +1,2 @@
-app-portage/find_cruft::mv
+#app-portage/find_cruft::mv
 app-portage/find_cruft::myoverlay

@@ -1,0 +1,13 @@
+BDEPEND=>=dev-lang/go-1.20:= app-arch/unzip
+DEFINED_PHASES=install prepare unpack
+DESCRIPTION=Tags files for access via a nifty virtual filesystem from any application
+EAPI=8
+HOMEPAGE=https://github.com/oniony/TMSU
+INHERIT=bash-completion-r1 go-module
+KEYWORDS=amd64
+LICENSE=GPL-3 BSD MIT
+RESTRICT=strip
+SLOT=0
+SRC_URI=https://github.com/oniony/TMSU/archive/0bf4b8031cbeffc0347007d85647062953e90571.tar.gz -> tmsu-0.7.5_p20221130.tar.gz https://dev.gentoo.org/~sam/distfiles/sys-fs/tmsu/tmsu-0.7.5_p20221130-deps.tar.xz
+_eclasses_=toolchain-funcs	e56c7649b804f051623c8bc1a1c44084	multilib	c19072c3cd7ac5cb21de013f7e9832e0	bash-completion-r1	f5e7a020fd9c741740756aac61bf75ff	multiprocessing	30ead54fa2e2b5f9cd4e612ffc34d0fe	flag-o-matic	288c54efeb5e2aa70775e39032695ad4	go-env	14f8f70fe58c14d7ab44fff15a05ac47	go-module	83fd3ed1657cfc316c93d6a37018290d
+_md5_=1d126aa6debfd839ab9b8998ea31ac2f
