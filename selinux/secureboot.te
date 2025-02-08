@@ -1,6 +1,6 @@
-#Secureboot - for /usr/share/secureboot/keys and /etc/keys/secureboot and /usr/bin/sbctl
-# carefully added by genr8eofl, March 21 2024 - LICENSE AGPL3
-policy_module(secureboot, 1.1.7)
+#Secureboot - SBCTL - meant for /var/lib/sbctl/keys and /etc/keys/secureboot and /usr/bin/sbctl
+# carefully added by genr8eofl, March 21 2024 & December 20 2024 + 2025 - LICENSE AGPL3
+policy_module(secureboot, 1.2.2)
 
 type secureboot_t;
 type secureboot_keys_t;
@@ -47,9 +47,22 @@ miscfiles_read_localization(secureboot_t)
 gen_require(`
     type    sysadm_t;
     role    sysadm_r;
+    type    tpm_device_t;
+    attribute domain;
 ')
 #Important, sets transition & Entrypoint (for sysadmin)
 secureboot_run(sysadm_t, sysadm_r)
+
+#audit: type=1400 audit(1711043582.522:369373): avc:  denied  { getsched } for  pid=31712 comm="sbctl" scontext=root:sysadm_r:secureboot_t tcontext=root:sysadm_r:secureboot_t tclass=process permissive=1
+#audit: type=1400 audit(1711043582.523:369374): avc:  denied  { signal } for  pid=31712 comm="sbctl" scontext=root:sysadm_r:secureboot_t tcontext=root:sysadm_r:secureboot_t tclass=process permissive=1
+#audit: type=1400 audit(1734714064.259:22975): avc:  denied  { signull } for  pid=30184 comm="sbctl" scontext=superuser:sysadm_r:secureboot_t tcontext=superuser:sysadm_r:secureboot_t tclass=process permissive=0
+allow secureboot_t self:process { getsched signal signull };
+
+#audit: type=1400 audit(1711043098.445:369367): avc:  denied  { read } for  pid=31577 comm="lsblk" name="swaps" dev="proc" ino=4026532062 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:proc_t tclass=file permissive=1
+#audit: type=1400 audit(1711043098.445:369368): avc:  denied  { open } for  pid=31577 comm="lsblk" path="/proc/swaps" dev="proc" ino=4026532062 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:proc_t tclass=file permissive=1
+#audit: type=1400 audit(1711043098.445:369369): avc:  denied  { getattr } for  pid=31577 comm="lsblk" path="/proc/swaps" dev="proc" ino=4026532062 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:proc_t tclass=file permissive=1
+seutil_libselinux_linked(secureboot_t)
+selinux_get_all_booleans(secureboot_t)
 
 #audit: type=1400 audit(1711043098.433:369343): avc:  denied  { read write } for  pid=31571 comm="sbctl" path="/dev/pts/1" dev="devpts" ino=4 scontext=root:sysadm_r:secureboot_t tcontext=root:object_r:user_devpts_t tclass=chr_file permissive=1
 #audit: type=1400 audit(1711043098.433:369344): avc:  denied  { append } for  pid=31571 comm="sbctl" path="/dev/pts/1" dev="devpts" ino=4 scontext=root:sysadm_r:secureboot_t tcontext=root:object_r:user_devpts_t tclass=chr_file permissive=1
@@ -76,38 +89,48 @@ udev_read_runtime_files(secureboot_t)
 #audit: type=1400 audit(1711043098.445:369366): avc:  denied  { getattr } for  pid=31577 comm="lsblk" path="/run/mount/utab" dev="tmpfs" ino=4069 scontext=root:sysadm_r:secureboot_t tcontext=root:object_r:mount_runtime_t tclass=file permissive=1
 mount_read_runtime_files(secureboot_t)
 
-#audit: type=1400 audit(1711043098.445:369367): avc:  denied  { read } for  pid=31577 comm="lsblk" name="swaps" dev="proc" ino=4026532062 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:proc_t tclass=file permissive=1
-#audit: type=1400 audit(1711043098.445:369368): avc:  denied  { open } for  pid=31577 comm="lsblk" path="/proc/swaps" dev="proc" ino=4026532062 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:proc_t tclass=file permissive=1
-#audit: type=1400 audit(1711043098.445:369369): avc:  denied  { getattr } for  pid=31577 comm="lsblk" path="/proc/swaps" dev="proc" ino=4026532062 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:proc_t tclass=file permissive=1
-seutil_libselinux_linked(secureboot_t)
-selinux_get_all_booleans(secureboot_t)
-
-#audit: type=1400 audit(1711043582.522:369373): avc:  denied  { getsched } for  pid=31712 comm="sbctl" scontext=root:sysadm_r:secureboot_t tcontext=root:sysadm_r:secureboot_t tclass=process permissive=1
-#audit: type=1400 audit(1711043582.523:369374): avc:  denied  { signal } for  pid=31712 comm="sbctl" scontext=root:sysadm_r:secureboot_t tcontext=root:sysadm_r:secureboot_t tclass=process permissive=1
-allow secureboot_t self:process { getsched signal };
-
 #(verify)
 #audit: type=1400 audit(1711043098.436:369350): avc:  denied  { search } for  pid=31571 comm="sbctl" name="boot" dev="nvme0n1p6" ino=2271 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:boot_t tclass=dir permissive=1
 #audit: type=1400 audit(1711043769.836:369388): avc:  denied  { open } for  pid=31814 comm="sbctl" path="/boot/vmlinuz-6.1.57-gentoo-dist" dev="nvme0n1p6" ino=1846 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:boot_t tclass=file permissive=1
 #audit: type=1400 audit(1711043769.836:369389): avc:  denied  { getattr } for  pid=31814 comm="sbctl" path="/boot/vmlinuz-6.1.57-gentoo-dist" dev="nvme0n1p6" ino=1846 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:boot_t tclass=file permissive=1
 files_read_boot_files(secureboot_t)
-#(sign -s)
+
+#(sign -s) - write /boot
 #audit: type=1400 audit(1711602776.501:383330): avc:  denied  { write } for  pid=10716 comm="sbctl" name="vmlinuz-5.10.214-gentoo-hardened1-ZEN3iGPU-REV10" dev="nvme0n1p6" ino=3165 scontext=root:sysadm_r:secureboot_t tcontext=root:object_r:boot_t tclass=file permissive=0
 files_create_kernel_img(secureboot_t)
 
+#(/boot)
 #audit: type=1400 audit(1711043769.868:369392): avc:  denied  { getattr } for  pid=31814 comm="sbctl" path="/boot/efi/EFI/gentoo/grubx64.efi" dev="nvme0n1p1" ino=646 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:dosfs_t tclass=file permissive=1
 #audit: type=1400 audit(1711043769.878:369393): avc:  denied  { getattr } for  pid=31814 comm="sbctl" path="/boot/efi" dev="nvme0n1p1" ino=1 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:dosfs_t tclass=dir permissive=1
 #audit: type=1400 audit(1711043769.866:369390): avc:  denied  { read } for  pid=31814 comm="sbctl" name="grubx64.efi" dev="nvme0n1p1" ino=646 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:dosfs_t tclass=file permissive=1
 #audit: type=1400 audit(1711043769.866:369391): avc:  denied  { open } for  pid=31814 comm="sbctl" path="/boot/efi/EFI/gentoo/grubx64.efi" dev="nvme0n1p1" ino=646 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:dosfs_t tclass=file permissive=1
 fs_read_dos_files(secureboot_t)
+#audit: type=1400 audit(1712155788.758:25194): avc:  denied  { read } for  pid=23592 comm="sbctl" name="/" dev="nvme0n1p1" ino=1 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:dosfs_t tclass=dir permissive=0
+fs_list_dos(secureboot_t)
+
+#(/efi)
+#audit: type=1400 audit(1711997626.854:1082): avc:  denied  { getattr } for  pid=16820 comm="sbctl" path="/sys/firmware/efi/efivars" dev="efivarfs" ino=8299 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:efivarfs_t tclass=dir permissive=0
+#audit: type=1400 audit(1711997626.854:1083): avc:  denied  { search } for  pid=16820 comm="sbctl" name="/" dev="efivarfs" ino=8299 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:efivarfs_t tclass=dir permissive=0
+fs_read_efivarfs_files(secureboot_t)
+fs_list_efivars(secureboot_t)
 
 #audit: type=1400 audit(1711043763.645:369382): avc:  denied  { getattr } for  pid=31811 comm="lsblk" path="/dev/nvme0n1p6" dev="devtmpfs" ino=107 scontext=root:sysadm_r:secureboot_t tcontext=system_u:object_r:fixed_disk_device_t tclass=blk_file permissive=1
 storage_getattr_fixed_disk_dev(secureboot_t)
 
+#(access needed to enter /var/lib/sbctl)
+#audit: type=1400 audit(1734714066.765:22979): avc:  denied  { search } for  pid=30191 comm="sbctl" name="lib" dev="nvme0n1p6" ino=1844005 scontext=superuser:sysadm_r:secureboot_t tcontext=system_u:object_r:var_lib_t tclass=dir permissive=0
+files_search_var_lib(secureboot_t);
+
+#(TPM)
+#audit: type=1400 audit(1734714222.908:22981): avc:  denied  { getattr } for  pid=30261 comm="sbctl" path="/dev/tpmrm0" dev="devtmpfs" ino=90 scontext=superuser:sysadm_r:secureboot_t tcontext=system_u:object_r:tpm_device_t tclass=chr_file permissive=0
+#dev_rw_tpm(secureboot_t)
+dontaudit secureboot_t tpm_device_t:chr_file { getattr read write };
+
+#(dont warn everytime something cant access, its supposed to be like this)
 #audit: type=1400 audit(1703042168.455:264): avc:  denied  { getattr } for  pid=8202 comm="find" path="/etc/keys/secureboot" dev="nvme0n1p6" ino=442404 scontext=root:sysadm_r:sysadm_t tcontext=system_u:object_r:secureboot_keys_t tclass=dir permissive=0
 #audit: type=1400 audit(1703042168.862:265): avc:  denied  { getattr } for  pid=8202 comm="find" path="/usr/share/secureboot/keys" dev="nvme0n1p6" ino=1032242 scontext=root:sysadm_r:sysadm_t tcontext=system_u:object_r:secureboot_keys_t tclass=dir permissive=0
-dontaudit sysadm_t secureboot_keys_t:dir { getattr };
-
+#dontaudit sysadm_t secureboot_keys_t:dir { getattr };
+#audit: type=1400 audit(1738972972.220:1158): avc:  denied  { search } for  pid=18329 comm="broot" name="secureboot" dev="nvme0n1p6" ino=442404 scontext=superuser:sysadm_r:sysadm_t tcontext=system_u:object_r:secureboot_keys_t tclass=dir permissive=0
+#audit: type=1400 audit(1738972971.297:1157): avc:  denied  { read } for  pid=18329 comm="broot" name="secureboot" dev="nvme0n1p6" ino=442404 scontext=superuser:sysadm_r:sysadm_t tcontext=system_u:object_r:secureboot_keys_t tclass=dir permissive=0
+dontaudit domain secureboot_keys_t:dir { search read };
 #TODO: let selective programs read? new Bool?
-#audit: type=1400 audit(1698372087.022:2324): avc:  denied  { read } for  pid=29062 comm="find" name="secureboot" dev="nvme0n1p6" ino=442404 scontext=root:sysadm_r:sysadm_t tcontext=system_u:object_r:secureboot_keys_t tclass=dir permissive=0
-#allow sysadm_t secureboot_keys_t:dir { getattr read };

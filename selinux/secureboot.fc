@@ -1,4 +1,4 @@
-/etc/keys/secureboot(/.*)?        gen_context(system_u:object_r:secureboot_keys_t,s0)
-/usr/share/secureboot/keys(/.*)?  gen_context(system_u:object_r:secureboot_keys_t,s0)
-/usr/share/secureboot(/.*)?       gen_context(system_u:object_r:secureboot_t,s0)
-/usr/bin/sbctl                    gen_context(system_u:object_r:secureboot_exec_t,s0)
+/etc/keys/secureboot(/.*)? gen_context(system_u:object_r:secureboot_keys_t,s0)
+/var/lib/sbctl/keys(/.*)?  gen_context(system_u:object_r:secureboot_keys_t,s0)
+/var/lib/sbctl(/.*)?       gen_context(system_u:object_r:secureboot_t,s0)
+/usr/bin/sbctl             gen_context(system_u:object_r:secureboot_exec_t,s0)
