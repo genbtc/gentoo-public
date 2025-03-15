@@ -1,0 +1,81 @@
+Installing Gentoo (in 10 easy steps)
+-------------------------------------
+
+0- About the Gentoo Linux installation
+    This chapter introduces the installation approach documented within this handbook.
+1- Choosing the right installation medium
+    It is possible to install Gentoo in many ways.
+    This chapter explains how to install Gentoo using the minimal live image.
+2- Configuring the network
+    An operational network connection is necessary to access the internet, download the latest repository updates, source code, and software packages.
+3- Preparing the disks
+    Before Gentoo can be installed, a root file system layout and - optionally - other partitions need to be created.
+    This chapter provides an overview of possible storage configuration for the installation.
+4- Installing the Gentoo installation files
+    The basic Gentoo operating system environment is downloaded as a stage 3 archive.
+    This chapter explains how to download and extract the archive, and how to configure Portage - Gentoo's primary package management program.
+5- Installing the Gentoo base system
+    After installing and configuring the stage 3, the base system is set up so that a minimal environment is available.
+6- Configuring the Linux kernel
+    The Linux kernel is the core of every distribution.
+    This chapter explains how to configure and compile the kernel.
+7- Configuring the system
+    Some important configuration files must be created.
+    This chapter provides an overview of these files and explains how to tailor the configuration.
+8- Installing system tools
+    In this chapter important system management tools are selected and installed.
+9- Configuring the bootloader
+    In this chapter a secondary bootloader is installed and configured.
+10- Finalizing the installation
+    The installation is almost complete! Finishing touches are documented in this chapter.
+
+Working with Gentoo
+----------------------------
+
+A Portage introduction
+    This chapter explains simple steps readers must understand to maintain the software on their system.
+USE flags
+    USE flags are a very important aspect of Gentoo. In this chapter, readers learn to work with USE flags and understand how USE flags interact with their system.
+Portage features
+    Discover the features Portage has, such as support for distributed compiling, ccache, binary packages, and more.
+Init script system
+    Gentoo uses a special initscript format which, among other features, allows dependency-driven decisions and virtual initscripts.
+    This chapter explains all these aspects and explains how to deal with these scripts.
+Environment variables
+    Environment variables can be easily managed with Gentoo. This chapter explains how to do that, and also describes frequently used variables.
+
+Working with Portage
+----------------------------
+
+Files and directories
+    To know Portage in-depth, first learn where it stores its files and data.
+Variables
+    Portage is completely configurable, with several options that can be set in a configuration file, or as environment variables.
+Mixing software branches
+    Gentoo provides software separated in several branches, depending on stability and architectural support.
+    "Mixing Software Branches" explains how these branches can be configured and how to override this separation individually.
+Additional tools
+    Portage comes with a few extra tools that might make the Gentoo experience even better.
+    Read on to discover how to use dispatch-conf and other tools.
+Custom package repository
+    This chapter gives some tips and tricks on how to use a custom package repository, how to synchronize only the required categories, how to inject packages, and more.
+Advanced features
+    As time passes, Portage evolves and matures. New features are continually being added. Many of these are useful only to the more experienced user.
+    This chapter explains some of Portage's newer features.
+
+
+Gentoo network configuration
+----------------------------
+
+Getting started
+    A guide to quickly get the network interface up and running in most common environments.
+Advanced configuration
+    Here we learn about how the configuration works - this is prerequisite knowledge before continuing with modular networking.
+Modular networking
+    Learn how to choose different DHCP clients, setting up bonding, bridging, VLANs, and more.
+Wireless
+    Configuring Gentoo for wireless networks.
+Adding functionality
+    Adventurous users can add their own functions to the networking tools.
+Dynamic management
+    For laptop users or people who move their computer around different networks.
