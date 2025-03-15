@@ -46,11 +46,17 @@ def main():
 	#path to Packages file as first arg
     [arg0, file_path] = sys.argv
 
-    db_name = 'packages.db'
+#    db_name = 'packages.db'
+	# Remove leading PATH and trailing '/Packages' from the file path
+    db_name = file_path.lstrip('/var/cache/edb/binhost/').rstrip('/Packages').replace('/', '_') + '.db'
+    # Replace any slashes with underscores
+	#Example: 10.1.1.1_binhost9.db
+
     with sqlite3.connect(db_name) as conn:
         insert(conn, parse_file(file_path))
 
-    print(f'{db_name} generated successfully.')
+#    print(f'{db_name} generated successfully.')
+    print(f'{db_name}')
 
 
 if __name__ == "__main__":
