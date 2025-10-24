@@ -9,12 +9,12 @@ mkdir $datenow
 cd $datenow
 stringtofile() {
     if ! command -v $1 >/dev/null; then return 1; fi #command Not Found
-    $($1 > $1)
+    $($1 | tee $1)
     head -n-0 $1
 }
 stringtofile2() {
     if ! command -v $1 >/dev/null; then return 1; fi #command Not Found
-    $($1 > $2)
+    $($1 | tee $2)
     head -n-0 $2
 }
 

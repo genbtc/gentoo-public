@@ -16,7 +16,7 @@ imasignfail() {
     dateNow=$(date +"%F_%H-%M-%S")
     imafix2 -s -r "$@" 2>&1 | grep SIGNFAIL | tee ~/imafix-SIGNFAIL-$dateNow.txt
     if [ -s ~/imafix-SIGNFAIL-$dateNow.txt ]; then
-        for D in $(cat ~/imafix-SIGNFAIL-$dateNow.txt); do imacleanfix $D; done 2>&1 ~/imafix-SIGNFAIL-$dateNow-done.txt
+        for D in $(cat ~/imafix-SIGNFAIL-$dateNow.txt); do imacleanfix $D; done 2>&1> ~/imafix-SIGNFAIL-$dateNow-done.txt
         if [ -s ~/imafix-SIGNFAIL-$dateNow-done.txt ]; then
             grep -A2 "IMA(" ~/imafix-SIGNFAIL-$dateNow-done.txt
         else
