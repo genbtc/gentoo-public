@@ -1,15 +1,15 @@
 BDEPEND=>=dev-build/meson-1.2.3 app-alternatives/ninja dev-build/meson-format-array >=dev-vcs/git-1.8.2.1[curl]
 DEFINED_PHASES=compile configure install test unpack
-DEPEND=python? ( python_targets_pypy3? ( dev-python/pypy3:= ) python_targets_python3_10? ( dev-lang/python:3.10 ) python_targets_python3_11? ( dev-lang/python:3.11 ) python_targets_python3_12? ( dev-lang/python:3.12 ) dev-python/pybind11[python_targets_pypy3(-)?,python_targets_python3_10(-)?,python_targets_python3_11(-)?,python_targets_python3_12(-)?] ) dev-libs/boost
+DEPEND=python? ( python_targets_python3_11? ( dev-lang/python:3.11 ) python_targets_python3_12? ( dev-lang/python:3.12 ) python_targets_python3_13? ( dev-lang/python:3.13 ) dev-python/nanobind dev-python/pybind11[python_targets_python3_11(-)?,python_targets_python3_12(-)?,python_targets_python3_13(-)?] ) dev-libs/boost
 DESCRIPTION=A helper library to implement the Gentoo Package Manager Specification
 EAPI=8
 HOMEPAGE=https://github.com/Jannik2099/pms-utils
 INHERIT=meson python-r1 git-r3
-IUSE=+python python_targets_pypy3 python_targets_python3_10 python_targets_python3_11 python_targets_python3_12
+IUSE=+python python_targets_python3_11 python_targets_python3_12 python_targets_python3_13
 LICENSE=GPL-2+
 PROPERTIES=live
-RDEPEND=python? ( python_targets_pypy3? ( dev-python/pypy3:= ) python_targets_python3_10? ( dev-lang/python:3.10 ) python_targets_python3_11? ( dev-lang/python:3.11 ) python_targets_python3_12? ( dev-lang/python:3.12 ) dev-python/pybind11[python_targets_pypy3(-)?,python_targets_python3_10(-)?,python_targets_python3_11(-)?,python_targets_python3_12(-)?] ) dev-libs/boost
-REQUIRED_USE=python? ( || ( python_targets_pypy3 python_targets_python3_10 python_targets_python3_11 python_targets_python3_12 ) )
+RDEPEND=python? ( python_targets_python3_11? ( dev-lang/python:3.11 ) python_targets_python3_12? ( dev-lang/python:3.12 ) python_targets_python3_13? ( dev-lang/python:3.13 ) dev-python/nanobind dev-python/pybind11[python_targets_python3_11(-)?,python_targets_python3_12(-)?,python_targets_python3_13(-)?] ) dev-libs/boost
+REQUIRED_USE=python? ( || ( python_targets_python3_11 python_targets_python3_12 python_targets_python3_13 ) )
 SLOT=0
-_eclasses_=toolchain-funcs	333970c740aa7b1a92e4fcdc52f612bd	multilib	c19072c3cd7ac5cb21de013f7e9832e0	flag-o-matic	e503ea5acc20410237ba33ec3f7c857d	multiprocessing	30ead54fa2e2b5f9cd4e612ffc34d0fe	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	python-utils-r1	6881b056477c23167d9a6b33e146374e	meson	99466844dd8d4fcfb07578a76f5a9922	out-of-source-utils	1a9007554652a6e627edbccb3c25a439	multibuild	d67e78a235f541871c7dfe4cf7931489	python-r1	c1fc393cd1e72f093b4838e29d27918c	git-r3	875eb471682d3e1f18da124be97dcc81
-_md5_=1ac370c243f79463f88b646cb02b8a6d
+_eclasses_=toolchain-funcs	a0b29008c671a362b505f96fa80ce9c0	flag-o-matic	a7afe42e95fb46ce9691605acfb24672	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	python-utils-r1	b7eb9c3a6dc6662368634584aab44a2c	meson	99466844dd8d4fcfb07578a76f5a9922	out-of-source-utils	dbf9e34ee8964084651e25907fa8f52c	multibuild	4650a65187015567b4e041bb9bfdb364	python-r1	0e15b2ab9cfc87d7474678201d6bca38	git-r3	875eb471682d3e1f18da124be97dcc81
+_md5_=40e81dba5b8ea21153dc7ca16d2ffab0

@@ -1,1 +1,16 @@
-
+# #ebuild magiccube4d compile
+# /var/db/repos/gentoo/eclass/java-utils-2.eclass: line 2288: java-config: command not found
+#MagicCube 4 cant install - stick to 2
+#     Available versions:  [m](~)4.3.343
+#     Installed versions:  2.2-r1(02:39:03 07/07/23)
+#added ^ (10/23/25):
+>games-puzzle/magiccube4d-4
+#Spek -r3 has ffmpeg-7-compat as DEP, because its a ~ package and 8 is about to hit even though stable is on 6 (sam)/10/23/25
+>media-sound/spek-0.8.5-r2
+#Rizin after this point requires JIT but selinux hardened cannot.
+>dev-util/rizin-0.7.3-r1
+#Gimp -r2 wants to update some crap only for GCC15 (5/15/25)
+#   # bug #944284 (https://gitlab.gnome.org/GNOME/gimp/-/issues/12843)#   append-cflags -std=gnu1
+>media-gfx/gimp-2.10.38-r1
+#GKRD bugged installs pam_gnome_keyring.so to /usr/lib/security and wasnt unlocking the keyring on login due to PAM stack messup (10/18/25)
+>gnome-base/gnome-keyring-46.2

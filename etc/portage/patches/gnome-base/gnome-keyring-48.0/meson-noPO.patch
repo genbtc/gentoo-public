@@ -1,0 +1,10 @@
+--- a/meson.build	2025-03-18 04:38:44.000000000 -0400
++++ b/meson.build	2025-10-16 11:39:40.152558161 -0400
+@@ -132,7 +132,6 @@
+ )
+ 
+ # Other subdirectories
+-subdir('po')
+ subdir('pkcs11')
+ subdir('daemon')
+ subdir('schema')

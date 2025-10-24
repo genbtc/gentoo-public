@@ -1,0 +1,2 @@
+#0.4.9-r4 has DEPEND on >=ffmpeg: and -r5 depends on ffmpeg-compat-6 which I removed once 7 went back to being masked.
+=media-libs/aubio-0.4.9-r5

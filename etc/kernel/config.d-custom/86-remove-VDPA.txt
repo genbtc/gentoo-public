@@ -1,0 +1,14 @@
+CONFIG_VIRTIO_PCI_LIB=m												      <
+CONFIG_VIRTIO_PCI_LIB_LEGACY=m											      <
+CONFIG_VDPA=m													      |	# CONFIG_VDPA is not set
+CONFIG_VDPA_SIM=m												      <
+CONFIG_VDPA_SIM_NET=m												      <
+CONFIG_VDPA_SIM_BLOCK=m												      <
+CONFIG_VDPA_USER=m												      <
+CONFIG_IFCVF=m													      <
+CONFIG_MLX5_VDPA=y												      <
+CONFIG_MLX5_VDPA_NET=m												      <
+CONFIG_VP_VDPA=m												      <
+CONFIG_ALIBABA_ENI_VDPA=m											      <
+CONFIG_VHOST_RING=m												      <
+CONFIG_VHOST_VDPA=m												      <

@@ -1,0 +1,18 @@
+#=app-crypt/yubikey-manager-qt-1.2.5 python_single_target_python3_12
+=app-emulation/quickemu-4.9.2::guru python_single_target_python3_12
+=app-portage/pms-utils-9999::myoverlay python_targets_python3_12
+=dev-util/lief-0.13.2::myoverlay python_targets_python3_12
+=net-misc/omniORB-4.3.0	python_single_target_python3_12
+#=sys-apps/dstat-0.7.4-r4 python_targets_python3_12
+=x11-misc/dex-0.9.0 python_targets_python3_12
+#=sys-process/bpytop-1.0.68-r1 python_targets_python3_12
+=dev-util/Tensile-5.7.1-r2 python_targets_python3_12
+=dev-util/rocminfo-5.7.1-r1 python_targets_python3_12
+=llvm-core/clang-17.0.6 python_single_target_python3_12
+#sys-apps/portage python_targets_python3_12
+#media-gfx/blender python_single_target_python3_13
+=app-emulation/virt-firmware-24.7 python_targets_python3_12
+#deps
+dev-python/gpep517 python_targets_python3_12
+dev-python/installer python_targets_python3_12
+dev-python/flit-core python_targets_python3_12

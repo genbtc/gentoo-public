@@ -1,0 +1,16 @@
+CONFIG_UIO_DFL=m												      <
+CONFIG_FPGA=m													      |	# CONFIG_FPGA is not set
+CONFIG_ALTERA_PR_IP_CORE=m											      <
+CONFIG_FPGA_MGR_ALTERA_CVP=m											      <
+CONFIG_FPGA_BRIDGE=m												      <
+# CONFIG_ALTERA_FREEZE_BRIDGE is not set									      <
+CONFIG_XILINX_PR_DECOUPLER=m											      <
+CONFIG_FPGA_REGION=m												      <
+CONFIG_FPGA_DFL=m												      <
+CONFIG_FPGA_DFL_FME=m												      <
+CONFIG_FPGA_DFL_FME_MGR=m											      <
+CONFIG_FPGA_DFL_FME_BRIDGE=m											      <
+CONFIG_FPGA_DFL_FME_REGION=m											      <
+CONFIG_FPGA_DFL_AFU=m												      <
+CONFIG_FPGA_DFL_NIOS_INTEL_PAC_N3000=m										      <
+CONFIG_FPGA_DFL_PCI=m												      <

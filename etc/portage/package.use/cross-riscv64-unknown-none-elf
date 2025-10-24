@@ -1,3 +1,4 @@
-cross-riscv64-unknown-none-elf/binutils multilib
-cross-riscv64-unknown-none-elf/newlib -selinux -libraries multilib
-cross-riscv64-unknown-none-elf/gcc cxx -openmp -fortran -hardened -default-stack-clash-protection -ssp -sanitize -vtv -selinux -d -objc -objc++ -objc-gc -vtv -sanitize multilib
+#cross-riscv64-unknown-none-elf/binutils multilib
+#cross-riscv64-unknown-none-elf/newlib -selinux -libraries multilib
+#cross-riscv64-unknown-none-elf/gcc cxx -openmp -fortran -hardened -default-stack-clash-protection -ssp -sanitize -vtv -selinux -d -objc -objc++ -objc-gc -vtv -sanitize multilib
+cross-riscv64-unknown-none-elf/gcc cxx -openmp -fortran -hardened -default-stack-clash-protection -ssp -sanitize -vtv -d -objc -objc++ -objc-gc -vtv -sanitize multilib

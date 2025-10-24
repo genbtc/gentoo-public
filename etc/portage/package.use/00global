@@ -37,12 +37,13 @@
 #(Archives)
 */* zstd lz4 lzma
 #(Sound/media)
-*/* alsa lm-sensors libnotify
-*/* aac flac mp3 opus ogg vorbis jack
+*/* alsa libnotify
+*/* aac flac mp3 opus ogg vorbis jack lame
 */* cairo ffmpeg gstreamer imlib portaudio rdp sndfile usb vnc
-#(system/+more)
-*/* lvm samba fuse keyring
 */* mtp
+#(system/+more)
+*/* lm-sensors
+*/* lvm samba fuse keyring
 */* startup-notification system-info vala introspection
 */* bash-completion snappy
 */* modules-sign secureboot uefi64 efi

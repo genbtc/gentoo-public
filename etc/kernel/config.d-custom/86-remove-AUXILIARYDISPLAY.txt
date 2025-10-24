@@ -1,0 +1,13 @@
+CONFIG_FB_BACKLIGHT=m												      <
+CONFIG_AUXDISPLAY=y												      |	# CONFIG_AUXDISPLAY is not set
+CONFIG_CHARLCD=m												      <
+CONFIG_LINEDISP=m												      <
+CONFIG_HD44780_COMMON=m												      <
+CONFIG_HD44780=m												      <
+# CONFIG_IMG_ASCII_LCD is not set										      <
+CONFIG_HT16K33=m												      <
+# CONFIG_LCD2S is not set											      <
+# CONFIG_PANEL_CHANGE_MESSAGE is not set									      <
+# CONFIG_CHARLCD_BL_OFF is not set										      <
+# CONFIG_CHARLCD_BL_ON is not set										      <
+CONFIG_CHARLCD_BL_FLASH=y											      <

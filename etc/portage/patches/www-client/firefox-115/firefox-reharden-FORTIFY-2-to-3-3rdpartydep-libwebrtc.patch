@@ -1,0 +1,11 @@
+--- firefox-102.13.0/third_party/libwebrtc/build/config/compiler/BUILD.gn	2023-06-29 14:12:18.000000000 -0400
++++ firefox-102.13.0/third_party/libwebrtc/build/config/compiler/BUILD.gn	2023-07-08 14:30:33.806641816 -0400
+@@ -1618,7 +1618,7 @@
+       # Non-chromium code is not guaranteed to compile cleanly with
+       # _FORTIFY_SOURCE. Also, fortified build may fail when optimizations are
+       # disabled, so only do that for Release build.
+-      defines += [ "_FORTIFY_SOURCE=2" ]
++      defines += [ "_FORTIFY_SOURCE=3" ]
+     }
+ 
+     if (is_mac) {

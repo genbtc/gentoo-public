@@ -26,5 +26,5 @@ imasignfail() {
         echo "OK, no sign failures." && rm ~/imafix-SIGNFAIL-$dateNow.txt
     fi
 }
-#alias imafindmissing="dmesg | grep 'IMA-signature-required' | awk '{print \$14}' | sort | uniq"
-#alias imafixmissing="imafindmissing | cut -d\" -f2 | while read D; do evm_sign_cmd $D; done"
+alias imafindmissing="dmesg | grep 'IMA-signature-required' | awk '{print \$15}' | sort | uniq"
+alias imafixmissing='imafindmissing | cut -d\" -f2 | while read D; do imafix2 -sf $D; done'

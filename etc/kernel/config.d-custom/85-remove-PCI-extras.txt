@@ -1,0 +1,21 @@
+[1]genr8too /var/tmp/portage/sys-kernel/gentoo-kernel-6.6.74/work/modprep # diffy .config .config.old
+CONFIG_CC_VERSION_TEXT="gcc (Gentoo Hardened 14.2.1_p20241221 p7) 14.2.1 20241221"				      |	CONFIG_CC_VERSION_TEXT="x86_64-pc-linux-gnu-gcc (Gentoo Hardened 14.2.1_p20241221 p7) 14.2.1 20241221"
+														      >	CONFIG_GENERIC_IRQ_INJECTION=y
+														      >	CONFIG_ACPI_TABLE_LIB=y
+# CONFIG_PCIEAER_INJECT is not set										      |	CONFIG_PCIEAER_INJECT=m
+# CONFIG_PCI_PF_STUB is not set											      |	CONFIG_PCI_PF_STUB=m
+# CONFIG_XEN_PCIDEV_FRONTEND is not set										      |	CONFIG_XEN_PCIDEV_FRONTEND=m
+														      >	CONFIG_PCI_DOE=y
+# CONFIG_VMD is not set												      |	CONFIG_VMD=m
+# CONFIG_PCI_SW_SWITCHTEC is not set										      |	CONFIG_PCI_SW_SWITCHTEC=m
+# CONFIG_CXL_BUS is not set											      |	CONFIG_CXL_BUS=m
+														      >	CONFIG_CXL_PCI=m
+														      >	# CONFIG_CXL_MEM_RAW_COMMANDS is not set
+														      >	CONFIG_CXL_ACPI=m
+														      >	CONFIG_CXL_MEM=m
+														      >	CONFIG_CXL_PORT=m
+														      >	CONFIG_CXL_SUSPEND=y
+														      >	CONFIG_CXL_REGION=y
+														      >	# CONFIG_CXL_REGION_INVALIDATION_TEST is not set
+														      >	CONFIG_CXL_PMU=m
+														      >	CONFIG_DEV_DAX_CXL=m

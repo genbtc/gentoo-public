@@ -1,0 +1,9 @@
+#Keyworded for Python3_13, install early May 2, 2025
+#version 3.7s don't have python3_13
+#=sys-apps/policycoreutils-3.8.1
+#=sys-apps/selinux-python-3.8.1
+#=sys-libs/libsemanage-3.8.1
+#=sys-libs/libselinux-3.8.1
+#=sys-libs/libsepol-3.8.1
+#=sys-apps/checkpolicy-3.8.1
+#All Stabilized by May 8 2025

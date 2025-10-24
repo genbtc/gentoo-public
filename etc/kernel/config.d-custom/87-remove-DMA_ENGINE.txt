@@ -1,0 +1,48 @@
+# CONFIG_SATA_DWC is not set											      <
+CONFIG_IGB_DCA=y												      <
+CONFIG_IXGBE_DCA=y												      <
+# CONFIG_KS8842 is not set											      <
+CONFIG_MYRI10GE_DCA=y												      <
+CONFIG_SERIAL_8250_DMA=y											      <
+CONFIG_SND_SOC_INTEL_CATPT=m											      <
+CONFIG_SND_SOC_INTEL_HASWELL_MACH=m										      <
+CONFIG_DMADEVICES=y												      |	# CONFIG_DMADEVICES is not set
+# CONFIG_DMADEVICES_DEBUG is not set										      <
+														      <
+#														      <
+# DMA Devices													      <
+#														      <
+CONFIG_DMA_ENGINE=y												      <
+CONFIG_DMA_VIRTUAL_CHANNELS=y											      <
+CONFIG_DMA_ACPI=y												      <
+CONFIG_ALTERA_MSGDMA=m												      <
+CONFIG_INTEL_IDMA64=m												      <
+CONFIG_INTEL_IDXD_BUS=m												      <
+CONFIG_INTEL_IDXD=m												      <
+# CONFIG_INTEL_IDXD_COMPAT is not set										      <
+CONFIG_INTEL_IDXD_SVM=y												      <
+CONFIG_INTEL_IDXD_PERFMON=y											      <
+CONFIG_INTEL_IOATDMA=m												      <
+# CONFIG_PLX_DMA is not set											      <
+CONFIG_AMD_PTDMA=m												      <
+# CONFIG_QCOM_HIDMA_MGMT is not set										      <
+# CONFIG_QCOM_HIDMA is not set											      <
+CONFIG_DW_DMAC_CORE=y												      <
+CONFIG_DW_DMAC=m												      <
+CONFIG_DW_DMAC_PCI=y												      <
+CONFIG_DW_EDMA=m												      <
+CONFIG_DW_EDMA_PCIE=m												      <
+CONFIG_HSU_DMA=y												      <
+# CONFIG_SF_PDMA is not set											      <
+# CONFIG_INTEL_LDMA is not set											      <
+														      <
+#														      <
+# DMA Clients													      <
+#														      <
+CONFIG_ASYNC_TX_DMA=y												      <
+# CONFIG_DMATEST is not set											      <
+CONFIG_DMA_ENGINE_RAID=y											      <
+CONFIG_DCA=m													      <
+CONFIG_CRYPTO_DEV_SP_CCP=y											      <
+CONFIG_CRYPTO_DEV_CCP_CRYPTO=m											      <
+# CONFIG_CRYPTO_DEV_CCP_DEBUGFS is not set									      <

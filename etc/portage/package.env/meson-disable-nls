@@ -1,7 +1,6 @@
 # See ENV file @ /etc/portage/env/meson-disable-nls.conf
 x11-libs/xapp                       meson-disable-nls.conf
 media-libs/gegl                     meson-disable-nls.conf
-#auto added, not all confirmed yet. mostly ok.
 dev-libs/libgnome-games-support     meson-disable-nls.conf
 dev-libs/atk                        meson-disable-nls.conf
 dev-util/geany-plugins              meson-disable-nls.conf
@@ -9,33 +8,44 @@ dev-libs/libpeas                    meson-disable-nls.conf
 x11-libs/xapp                       meson-disable-nls.conf
 sys-libs/glibc                      meson-disable-nls.conf
 lxde-base/lxterminal                meson-disable-nls.conf
-#x11-misc/xkeyboard-config           meson-disable-nls.conf      #Works but now has Meson Opt nls=false
-x11-misc/xkeyboard-config           meson-nls-false.conf
 media-sound/audacity                meson-disable-nls.conf
-#sys-apps/gnome-disk-utility         meson-disable-nls.conf     ##ERROR: Program 'disabled' not found
-#gnome-base/gvfs                     meson-disable-nls.conf     ##ERROR: Program 'disabled' not found
 net-misc/spice-gtk                  meson-disable-nls.conf
 media-video/pipewire                meson-disable-nls.conf
 media-video/wireplumber             meson-disable-nls.conf
-xfce-extra/xfce4-whiskermenu-plugin meson-disable-nls.conf
 x11-plugins/pidgin-otr              meson-disable-nls.conf
 app-emulation/libvirt               meson-disable-nls.conf
 gui-libs/tepl                       meson-disable-nls.conf
 gui-libs/libgedit-gtksourceview     meson-disable-nls.conf
 gui-libs/libadwaita                 meson-disable-nls.conf
 media-gfx/tuxpaint                  meson-disable-nls.conf
-#media-gfx/geeqie                    meson-disable-nls.conf     #ERROR: Program 'disabled' not found
 media-gfx/gimp                      meson-disable-nls.conf
 net-libs/glib-networking            meson-disable-nls.conf
 app-backup/timeshift                meson-disable-nls.conf
-x11-misc/shared-mime-info           meson-disable-translations.conf #meson-disable-nls.conf (Not)
+x11-misc/xkeyboard-config           meson-nls-false.conf	    #(-Dnls=false)
+x11-misc/shared-mime-info           meson-disable-translations.conf #(-Dbuild-translations=false)
 #---------------COMMENTED OUT-----------------------------
+#x11-misc/xkeyboard-config           meson-disable-nls.conf     #Works but now has Meson Opt user project flag nls=false
+#sys-apps/gnome-disk-utility         meson-disable-nls.conf     #ERROR: Program 'disabled' not found
+#gnome-base/gvfs                     meson-disable-nls.conf     #ERROR: Program 'disabled' not found
+#xfce-extra/xfce4-whiskermenu-plugin meson-disable-nls.conf		#ERROR: Program 'disabled' not found
+#media-gfx/geeqie                    meson-disable-nls.conf     #ERROR: Program 'disabled' not found
+#
 #genr8too /var/cache/buildlogs # find /var/cache/buildlogs/build -type f -name '*.log.gz' -exec zgrep --color=always -Hni 'msgfmt -o' {} \;
-#app-editors/ghex    meson-disable-nls.conf  #fail: gnome required msgfmt to convert .in xml desktop files
+#app-editors/ghex					 meson-disable-nls.conf		#fail: gnome required msgfmt to convert .in xml desktop files
 #dev-libs/glib                       meson-disable-nls.conf     #Program disabled found: NO  ./glib-2.78.6/meson.build:2469:3: ERROR: Program 'disabled' not found or not executable
 #sys-apps/system-monitoring-center   meson-disable-nls.conf     #data/meson.build:1:20: ERROR: Program 'disabled' not found or not executable
-#net-irc/hexchat                     meson-disable-nls.conf  #ERROR: Program 'disabled' not found or not executable
-#media-gfx/viewnior                  meson-disable-nls.conf   #data/meson.build:24:15: ERROR: Program 'disabled' not found or not executable
-#media-gfx/gthumb                    meson-disable-nls.conf   #extensions/fileviewer/meson.build:25:5: ERROR: Program 'disabled' not found or not executable
+#net-irc/hexchat                     meson-disable-nls.conf		#ERROR: Program 'disabled' not found or not executable
+#media-gfx/viewnior                  meson-disable-nls.conf		#data/meson.build:24:15: ERROR: Program 'disabled' not found or not executable
+#media-gfx/gthumb                    meson-disable-nls.conf		#extensions/fileviewer/meson.build:25:5: ERROR: Program 'disabled' not found or not executable
 #x11-misc/shared-mime-info           meson-disable-nls.conf
 #July 15, 2024.
+sys-auth/elogind		     meson-disable-nls.conf
+#Added 07/04/2025
+x11-libs/gdk-pixbuf		     meson-disable-nls.conf
+#gnome-extra/gnome-calculator		meson-disable-nls.conf	#data/meson.build:24:20: ERROR: Program 'disabled' not found or not executable
+#gnome-extra/gnome-system-monitor	meson-disable-nls.conf	#data/meson.build:6:22: ERROR: Program 'disabled' not found or not executable
+#games-board/gnome-mahjongg			meson-disable-nls.conf	#data/meson.build:45:20: ERROR: Program 'disabled' not found or not executable
+															#  po/meson.build:1: WARNING: Gettext not found, all translation (po) targets will be ignored.
+#Added 10/16/2025
+#gnome-base/gnome-keyring			meson-disable-nls.conf	#daemon/meson.build:72:7: ERROR: Program 'disabled' not found or not executable
+#app-crypt/seahorse			meson-disable-nls.conf			#data/meson.build:20:20: ERROR: Program 'disabled' not found or not executable

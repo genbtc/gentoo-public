@@ -1,0 +1,23 @@
+CONFIG_SBP_TARGET=m												      <
+CONFIG_FIREWIRE=m												      |	# CONFIG_FIREWIRE is not set
+CONFIG_FIREWIRE_OHCI=m												      |	# CONFIG_FIREWIRE_NOSY is not set
+CONFIG_FIREWIRE_SBP2=m												      <
+CONFIG_FIREWIRE_NET=m												      <
+CONFIG_FIREWIRE_NOSY=m												      <
+														      <
+#														      <
+# FireWire (IEEE 1394) Adapters											      <
+#														      <
+CONFIG_DVB_FIREDTV=m												      <
+CONFIG_DVB_FIREDTV_INPUT=y											      <
+CONFIG_SND_FIREWIRE=y												      <
+CONFIG_SND_FIREWIRE_LIB=m											      <
+CONFIG_SND_DICE=m												      <
+CONFIG_SND_OXFW=m												      <
+CONFIG_SND_ISIGHT=m												      <
+CONFIG_SND_FIREWORKS=m												      <
+CONFIG_SND_BEBOB=m												      <
+CONFIG_SND_FIREWIRE_DIGI00X=m											      <
+CONFIG_SND_FIREWIRE_TASCAM=m											      <
+CONFIG_SND_FIREWIRE_MOTU=m											      <
+CONFIG_SND_FIREFACE=m												      <

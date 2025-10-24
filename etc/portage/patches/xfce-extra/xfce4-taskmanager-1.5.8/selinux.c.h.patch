@@ -1,0 +1,185 @@
+diff --git a/src/selinux.c b/src/selinux.c
+new file mode 100644
+index 0000000..5460af6
+--- /dev/null
++++ b/src/selinux.c
+@@ -0,0 +1,150 @@
++#include <config.h>
++
++#include <glib.h>
++#include <gmodule.h>
++#include "selinux.h"
++
++static int  (*getpidcon) (pid_t, char**);
++static void (*freecon) (char*);
++static int  (*is_selinux_enabled) (void);
++static gboolean has_selinux;
++
++gboolean
++load_symbols (const char *module,
++			 ...)
++{
++	GModule *mod;
++	gboolean found_all = TRUE;
++	va_list args;
++
++	mod = g_module_open (module, G_MODULE_BIND_LAZY | G_MODULE_BIND_LOCAL);
++
++	if (!mod)
++		return FALSE;
++
++	procman_debug ("Found library %s", module);
++
++	va_start (args, module);
++
++	while (1)
++	{
++		const char *name;
++		void **symbol;
++
++		name = va_arg (args, char*);
++
++		if (!name)
++			break;
++
++		symbol = va_arg (args, void**);
++
++		if (g_module_symbol (mod, name, symbol))
++			procman_debug ("Loaded symbol %s from %s", name, module);
++		else
++		{
++			procman_debug ("Could not load symbol %s from %s", name, module);
++			found_all = FALSE;
++			break;
++		}
++	}
++
++	va_end (args);
++
++	if (found_all)
++		g_module_make_resident (mod);
++	else
++		g_module_close (mod);
++
++	return found_all;
++}
++
++
++static gboolean
++load_selinux (void)
++{
++	return load_symbols ("libselinux.so.1",
++						 "getpidcon", &getpidcon,
++						 "freecon", &freecon,
++						 "is_selinux_enabled", &is_selinux_enabled,
++						 NULL);
++}
++
++
++void
++get_process_selinux_context (Task *task)
++{
++	char *con;
++	if (has_selinux && !getpidcon (task->pid, &con))
++	{
++		g_strlcpy (task->selinux, con, sizeof(task->selinux) - 1);
++		freecon (con);
++	}
++}
++
++
++gboolean
++can_show_security_context_column (void)
++{
++	if (!(has_selinux = load_selinux ())) {
++		procman_debug ("SELinux was NOT found!");
++		return FALSE;
++	}
++
++	switch (is_selinux_enabled ())
++	{
++	case 1:
++		procman_debug ("SELinux found and enabled - has_selinux?: %s",
++		 has_selinux ? "enabled" : "disabled");
++		/* We're running on an SELinux kernel */
++		return TRUE;
++
++	case -1:
++	/* Error; hide the security context column */
++	case 0:
++	/* We're not running on an SELinux kernel:
++		 hide the security context column */
++	default:
++		procman_debug ("SELinux was found, but is NOT enabled.\n");
++		return FALSE;
++	}
++}
++
++
++static gboolean
++is_debug_enabled (void)
++{
++	static gboolean init;
++	static gboolean enabled;
++
++	if (!init)
++	{
++		enabled = g_getenv ("DEBUG") != NULL;
++		init = TRUE;
++	}
++
++	return enabled;
++}
++
++
++void
++procman_debug_real (const char *file,
++					int                 line,
++					const char *func,
++					const char *format,
++					...)
++{
++	va_list args;
++	char *msg;
++
++	if (G_LIKELY (!is_debug_enabled ()))
++		return;
++
++	va_start (args, format);
++	msg = g_strdup_vprintf (format, args);
++	va_end (args);
++
++	g_print ("[%.6f] %s:%d @ %s() - %s\n",
++			1e-6 * g_get_monotonic_time (), file, line, func, msg);
++
++	g_free (msg);
++}
+diff --git a/src/selinux.h b/src/selinux.h
+new file mode 100644
+index 0000000..ee774a3
+--- /dev/null
++++ b/src/selinux.h
+@@ -0,0 +1,23 @@
++#ifndef _GSM_SELINUX_H_
++#define _GSM_SELINUX_H_
++
++#include <glib.h>
++
++void
++procman_debug_real (const char *file,
++                    int         line,
++                    const char *func,
++                    const char *format,
++                    ...) G_GNUC_PRINTF (4, 5);
++#define procman_debug(FMT, ...) procman_debug_real (__FILE__, __LINE__, __func__, FMT, ## __VA_ARGS__)
++
++gboolean
++load_symbols (const char *module, ...);
++#include "task-manager.h"
++void
++get_process_selinux_context (Task *task);
++
++gboolean
++can_show_security_context_column (void) G_GNUC_CONST;
++
++#endif /* _GSM_SELINUX_H_ */

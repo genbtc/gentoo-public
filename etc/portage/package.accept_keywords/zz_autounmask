@@ -1,111 +1,67 @@
 #7/7/24
-# required by amdgpu_top (argument)
-=sys-apps/amdgpu_top-0.7.0 ~amd64
-# required by media-sound/qpwgraph (argument)
-=media-sound/qpwgraph-0.6.2 ~amd64
 # required by app-benchmarks/kdiskmark (argument)
-=app-benchmarks/kdiskmark-3.1.4-r1 ~amd64
-# required by dev-debug/dtrace-2.0.1.1-r1::gentoo
-# required by dev-debug/dtrace (argument)
-=sys-devel/bpf-toolchain-14.2.0_p1 ~amd64
-# required by dev-lang/zig-0.13.0::gentoo
-# required by dev-lang/zig (argument)
-=app-eselect/eselect-zig-1-r1 ~amd64
+#=app-benchmarks/kdiskmark-3.1.4-r1 ~amd64
 # required by duf (argument)
 =sys-fs/duf-0.8.1 ~amd64
-# required by vlc (argument)
-=media-video/vlc-9999 **
-# required by fswatch (argument)
-=sys-fs/fswatch-1.17.1 ~amd64
 # required by dev-libs/rocm-device-libs-6.1.2::gentoo
 # required by dev-libs/rocm-comgr-6.1.2::gentoo
 # required by dev-util/hip-6.1.2::gentoo[video_cards_amdgpu]
 # required by dev-util/hip (argument)
-=dev-build/rocm-cmake-6.1.2 ~amd64
-# required by dev-util/hip-6.1.2::gentoo[video_cards_amdgpu]
-# required by dev-util/hip (argument)
-=dev-libs/rocr-runtime-6.1.2 ~amd64
-# required by dev-util/hip-6.1.2::gentoo[video_cards_amdgpu]
-# required by dev-util/hip (argument)
-=dev-util/hipcc-6.1.2 ~amd64
-# required by dev-util/hip-6.1.2::gentoo[video_cards_amdgpu]
-# required by dev-util/hip (argument)
-=dev-libs/rocm-device-libs-6.1.2 ~amd64
-# required by dev-libs/rocr-runtime-6.1.2::gentoo
-# required by dev-util/rocminfo-6.1.2::gentoo
-# required by dev-util/hip-6.1.2::gentoo[video_cards_amdgpu]
-# required by dev-util/hip (argument)
-=dev-libs/roct-thunk-interface-6.1.2 ~amd64
-# required by dev-util/hip-6.1.2::gentoo[video_cards_amdgpu]
-# required by dev-util/hip (argument)
-=dev-util/rocminfo-6.1.2 ~amd64
-# required by dev-util/hip-6.1.2::gentoo[video_cards_amdgpu]
-# required by dev-util/hip (argument)
-=dev-libs/rocm-comgr-6.1.2 ~amd64
+#=dev-build/rocm-cmake-6.1.2 ~amd64	#commented out 10/16/25
 # required by helvum (argument)
-=media-sound/helvum-0.5.1-r3 ~amd64
-# required by media-gfx/openscad-20241114::gentoo[manifold]
-# required by @selected
-# required by @world (argument)
-=sci-mathematics/manifold-3.0.0_pre20241115 ~amd64
-# required by sci-mathematics/manifold-3.0.0_pre20241115::gentoo
-# required by media-gfx/openscad-20241114::gentoo[manifold]
-# required by @selected
-# required by @world (argument)
-=sci-mathematics/clipper2-1.4.0 ~amd64
-# required by dev-util/hipify-clang (argument)
-=dev-util/hipify-clang-6.1.1 ~amd64
-# required by dev-util/hip-5.7.1-r2::gentoo
-# required by dev-util/Tensile-5.7.1-r2::gentoo[-test]
+#~media-sound/helvum-0.5.1 ~amd64
 # required by sci-libs/rocBLAS-5.7.1-r2::gentoo
 # required by =sci-libs/rocBLAS-5.7.1-r2 (argument)
-=dev-util/hipcc-5.7.1-r3 ~amd64
-# required by sci-libs/rocBLAS-5.7.1-r2::gentoo
-# required by =sci-libs/rocBLAS-5.7.1-r2 (argument)
-=dev-util/Tensile-5.7.1-r2 ~amd64
-# required by dev-util/Tensile-5.7.1-r2::gentoo[-test]
-# required by sci-libs/rocBLAS-5.7.1-r2::gentoo
-# required by =sci-libs/rocBLAS-5.7.1-r2 (argument)
-=dev-util/rocm-smi-6.1.1 ~amd64
+#=dev-util/Tensile-5.7.1-r2 ~amd64	#commented out 10/15/25
 # required by dev-util/hip-5.7.1-r2::gentoo
 # required by dev-util/Tensile-5.7.1-r2::gentoo[-test]
 # required by sci-libs/rocBLAS-5.7.1-r2::gentoo
 # required by =sci-libs/rocBLAS-5.7.1-r2 (argument)
 =dev-perl/URI-Encode-1.1.1-r1 ~amd64
-# required by dev-util/hip-5.7.1-r2::gentoo
-# required by dev-util/Tensile-5.7.1-r2::gentoo[-test]
-# required by sci-libs/rocBLAS-5.7.1-r2::gentoo
-# required by =sci-libs/rocBLAS-5.7.1-r2 (argument)
-=dev-libs/rocm-comgr-5.7.1 ~amd64
-# required by =dev-libs/rocr-runtime-5.7.1-r3 (argument)
-=dev-libs/rocr-runtime-5.7.1-r3 ~amd64
-# required by dev-libs/rocm-comgr-5.7.1::gentoo
-# required by dev-util/hip-5.7.1-r2::gentoo
-# required by @selected
-# required by @world (argument)
-=dev-libs/rocm-device-libs-5.7.1 ~amd64
-# required by dev-util/hip-5.7.1-r2::gentoo
-# required by @selected
-# required by @world (argument)
-=dev-util/rocminfo-5.7.1-r1 ~amd64
-# required by =dev-util/rocm-smi-5.7.1-r3 (argument)
-=dev-util/rocm-smi-5.7.1-r3 ~amd64
-# required by =dev-libs/roct-thunk-interface-5.7.1-r1 (argument)
-=dev-libs/roct-thunk-interface-5.7.1-r1 ~amd64
-# required by =dev-util/hipify-clang-5.7.1 (argument)
-=dev-util/hipify-clang-5.7.1 ~amd64
-# required by dev-util/rocm_bandwidth_test (argument)
-=dev-util/rocm_bandwidth_test-5.7.1 ~amd64
-# required by dev-python/ptpython (argument)
-=dev-python/ptpython-3.0.29 ~amd64
 # required by media-gfx/openscad-2024.12.30_pre::gentoo[manifold]
 # required by @selected
 # required by @world (argument)
-=sci-mathematics/manifold-3.0.1 ~amd64
 # required by sys-power/linux-tools-power-x86 (argument)
 =sys-power/linux-tools-power-x86-6.6 ~amd64
-# required by dev-python/pipx-1.7.1::gentoo
-# required by pipx (argument)
-=dev-python/userpath-1.9.2 ~amd64
-# required by dev-util/lttng-tools (argument)
-=dev-util/lttng-tools-2.12.17 ~amd64
+# required by app-admin/keepassxc-2.7.10::gentoo[yubikey]
+# required by @selected
+# required by @world (argument)
+#=dev-libs/libusb-1.0.28 ~amd64
+#5/2/2025
+# required by media-gfx/openscad-2025.05.01_pre::gentoo
+# required by @selected
+# required by @world (argument)
+#=media-gfx/opencsg-1.8.1 ~amd64
+# required by media-gfx/openscad-2025.05.01_pre::gentoo[manifold]
+# required by @selected
+# required by @world (argument)
+#=sci-mathematics/manifold-3.0.2_pre20250330 ~amd64
+# required by media-gfx/openscad-2025.05.01_pre::gentoo
+# required by @selected
+# required by @world (argument)
+#=sci-mathematics/clipper2-1.5.2 ~amd64
+# required by media-video/obs-studio-31.0.3-r2::gentoo
+# required by @selected
+# required by @world (argument)
+#=net-libs/mbedtls-3.6.3.1 ~amd64
+# required by net-wireless/gr-osmosdr-9999::gentoo
+# required by @selected
+# required by @world (argument)
+#=net-wireless/gnuradio-3.10.12.0 ~amd64
+#7/5/2025
+# required by dev-python/scikit-image-0.25.2::gentoo[-test]
+# required by dev-python/scikit-image (argument)
+#=dev-python/tifffile-2025.9.20 ~amd64	#commented out 10/15/25
+# required by dev-python/scikit-image-0.25.2::gentoo[-test]
+# required by dev-python/scikit-image (argument)
+=dev-python/lazy-loader-0.4 ~amd64
+# required by dev-python/scikit-image-0.25.2::gentoo[-test]
+# required by dev-python/scikit-image (argument)
+=dev-python/imageio-2.37.0 ~amd64
+# required by clinfo (argument)
+=dev-util/clinfo-3.0.25.02.14 ~amd64
+#10/15/25
+# required by cross-aarch64-unknown-linux-gnu/glibc-2.42-r1::crossdev[verify-sig]
+# required by @selected
+# required by @world (argument)
+=sec-keys/openpgp-keys-glibc-20251014 ~amd64

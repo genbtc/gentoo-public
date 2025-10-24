@@ -7,11 +7,11 @@ if [[ $- != *i* ]] ; then
     return
 fi
 
-alias mv='mv -i'
-alias cp='cp -i'
+alias mv='mv -iZ'
+alias cp='cp -iZ'
 alias l='ls -alZ --color'
 alias ls='ls -alZ --color'
-alias lt='ls -t | head'
+alias lt='ls -t | head -n15'
 alias less='less -R'
 alias dmesg='dmesg -x --color=always'
 alias diffy='diff -y --suppress-common-lines -W240'
@@ -26,6 +26,7 @@ alias netstat='netstat -4lpn'
 alias stripcolors='sed "s/\x1B\[\([0-9]\{1,2\}\(;[0-9]\{1,2\}\)\?\)\?[mGK]//g"'
 alias headn='head -n-0'
 #alias cats='spc'
+function mvdisable(){ mv "$@"{,.disabled~}; }
 
 #define vars
 COLOR1="\033[01;31m"

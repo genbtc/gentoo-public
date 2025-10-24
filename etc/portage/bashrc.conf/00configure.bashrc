@@ -18,7 +18,7 @@ pre_src_configure() {
     fi
     #AutoConf, enumerate --configure Options (for comparison)
     if [ -f configure ] && [ ! -f meson.build ]; then
-        if [ x"${CATEGORY}"/"${PN}" == x"dev-util/rr" ]; then return; fi        #package is weird
+        if [ x"${CATEGORY}"/"${PN}" == x"dev-debug/rr" ]; then return; fi        #package bugs out Ddisable32bit=ON weird
         # PRINT OUT CONFIGURE HELP
         echo ">>> $FUNCNAME() { ./configure --help }"
         OPTFEATS=$(./configure --help | sed -ne '/^Optional Features/,$ p')

@@ -20,29 +20,46 @@ if [ "${EBUILD_PHASE}" == "preinst" ]; then
   if [ x"${CATEGORY}"/"${PN}" == x"x11-drivers/xf86-video-amdgpu" ]; then
     sed -i 6i'	Option "TearFree" "On"' ${D}/usr/share/X11/xorg.conf.d/10-amdgpu.conf
   fi
+  #new sept05,2025 /bin/bash  & Sept 13, coreutils
+  if [ "${PN}" == "bash" ] || [ "${PN}" == "coreutils" ]; then
+#     qlist ${PN}-${PVR} | parallel -j 32 imafix2 -s -f
+     time qlist ${PN}-${PVR} | hash_and_xattr
+  fi
 fi
 
 #if [ "${EBUILD_PHASE}" == "install" ]; then
 
+if [ "${EBUILD_PHASE}" == "prerm" ]; then
+    if [ "${PN}" == "python" ] || [ "${PN}" == "python-exec" ]; then
+	imafix2 -s -f /usr/lib64/libpython3.11*
+	imafix2 -s -f /usr/lib64/libpython3.12*
+	imafix2 -s -f /usr/lib64/libpython3.13*
+	imafix2 -s -f /usr/bin/python3.11
+	imafix2 -s -f /usr/bin/python3.12
+	imafix2 -s -f /usr/bin/python3.13
+    fi
+fi
+
 if [ "${EBUILD_PHASE}" == "postrm" ]; then
-    echo "::R /etc/portage/bashrc PostRM Hook: "
+    echo "::R /etc/portage/bashrc ${P} PostRM Hook: "
     if [ "${PN}" == "parallel" ]; then
         echo "::R /etc/portage/bashrc PostRM Hook: imafix2 Fixing parallel..."
-        imafix2 -s /usr/bin/parallel
+        imafix2 -s -f /usr/bin/parallel
     fi
-    if [ "${PN}" == "python" ]; then
+    if [ "${PN}" == "python" ] || [ "${PN}" == "python-exec" ]; then
         echo "::R /etc/portage/bashrc PostRM Hook: imafix2 Fixing python..."
-        imafix2 -s /usr/bin/python-exec2c
-#        portageq contents / ${PN}-${PVR} | parallel -j 32 imafix2 -s #  *   	die "portageq is not allowed in ebuild scope"
+        imafix2 -s -f /usr/bin/python-exec2c
         mkdir -p ~/.parallel; touch ~/.parallel/will-cite
-        qlist ${PN}-${PVR} | parallel -j 32 imafix2 -s
-#        qlist ${PN}-${PVR} | hash_and_xattr
-    fi
-    if [ "${PN}" == "glibc" ] || [ "${PN}" == "binutils-config" ]; then #sign ldconfig early, regenerate ld.so needs to succeed or else package will fail
-        echo "::R /etc/portage/bashrc PostRM Hook: imafix2 SHA512 Hashing in progress..."
+#        qlist ${PN}-${PVR} | parallel -j 32 imafix2 -s -f
+        time qlist ${PN}-${PVR} | hash_and_xattr
+fi																				#sign scanelf early, needed for /usr/lib/python3.12/site-packages/portage/util/_dyn_libs/LinkageMapELF.py
+    if [ "${PN}" == "glibc" ] || [ "${PN}" == "binutils-config" ] || [ "${PN}" == "pax-utils" ]; then #sign ldconfig early, regenerate ld.so needs to succeed or else package will fail
+        echo "::R /etc/portage/bashrc ${P} PostRM Hook: imafix2 SHA512 Hashing in progress..."
         									 # omit dir,path,sym,dev
-#        time equery -C files ${PN}-${PVR} -f "obj,conf,cmd,doc,man,info,fifo" | grep -v "debug" | parallel -j 32 imafix2 -s
-         time equery -C files ${PN}-${PVR} -f "obj,conf,cmd,doc,man,info,fifo" | grep -v "debug" | hash_and_xattr
+#        time equery -C files ${PN}-${PVR} -f "obj,conf,cmd,doc,man,info,fifo" | grep -v "debug" | parallel -j 32 imafix2 -s -f
+#         time equery -C files ${PN}-${PVR} -f "obj,conf,cmd,doc,man,info,fifo" | grep -v "debug" | hash_and_xattr
+#         qlist ${PN}-${PVR} | grep -v "debug" | parallel -j 32 imafix2 -s -f
+	time qlist ${PN}-${PVR} | hash_and_xattr
     fi
 fi
 
@@ -50,11 +67,13 @@ fi
 if [ "${EBUILD_PHASE}" == "postinst" ]; then
     # kernels can be skipped from my shenanigans, have too many files, and slow. skip. glibc handled earlier in postrm ^^
 	if [ "${PN}" == "gentoo-sources" ] || [ "${PN}" == "gentoo-kernel" ] || [ "${PN}" == "gentoo-kernel-bin" ] \
-	 || [ "${PN}" == "python" ] || [ "${PN}" == "glibc" ] || [ "${PN}" == "binutils-config" ]; then     return;  fi
-	echo "::2 /etc/portage/bashrc PostInst: imafix2 SHA512 Hashing in progress..."
+	 || [ "${PN}" == "python" ] || [ "${PN}" == "glibc" ] || [ "${PN}" == "binutils-config" ] || [ "${PN}" == "pax-utils" ]; then     return;  fi
+	echo "::2 /etc/portage/bashrc ${P} PostInst: imafix2 SHA512 Hashing in progress..."
       				                     # omit dir,path,sym,dev
-#	time equery -C files ${PN}-${PVR} -f "obj,conf,cmd,doc,man,info,fifo" | parallel -j 32 imafix2 -s
-	time equery -C files ${PN}-${PVR} -f "obj,conf,cmd,doc,man,info,fifo" | hash_and_xattr
+#	time equery -C files ${PN}-${PVR} -f "obj,conf,cmd,doc,man,info,fifo" | parallel -j 32 imafix2 -s -f
+#	time equery -C files ${PN}-${PVR} -f "obj,conf,cmd,doc,man,info,fifo" | hash_and_xattr
+#	qlist ${PN}-${PVR} | parallel -j 32 imafix2 -s -f
+	time qlist ${PN}-${PVR} | hash_and_xattr
 fi
 
 if [ "${EBUILD_PHASE}" == "postinst" ]; then

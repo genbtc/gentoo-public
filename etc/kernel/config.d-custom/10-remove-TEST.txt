@@ -1,0 +1,101 @@
+genr8too /var/tmp/portage/sys-kernel/gentoo-kernel-6.6.74/work/linux-6.6 # diffy ../modprep/.config.old ../modprep/.config 
+CONFIG_TIME_KUNIT_TEST=m											      <
+CONFIG_HMM_MIRROR=y												      <
+# CONFIG_NET_HANDSHAKE_KUNIT_TEST is not set									      <
+# CONFIG_NETDEV_ADDR_LIST_TEST is not set									      <
+# CONFIG_DM_KUNIT_TEST is not set										      <
+CONFIG_REGMAP_KUNIT=m												      <
+# CONFIG_REGMAP_BUILD is not set										      <
+CONFIG_REGMAP_RAM=m												      <
+CONFIG_INPUT_KUNIT_TEST=m											      <
+CONFIG_CHARGER_BD99954=m											      |	# CONFIG_CHARGER_BD99954 is not set
+CONFIG_DRM_KUNIT_TEST_HELPERS=m											      <
+CONFIG_DRM_KUNIT_TEST=m												      <
+CONFIG_DRM_EXEC=m												      <
+CONFIG_DRM_BUDDY=m												      <
+CONFIG_DRM_EXPORT_FOR_TESTS=y											      <
+CONFIG_DRM_LIB_RANDOM=y												      <
+# CONFIG_SND_SOC_TOPOLOGY_BUILD is not set									      <
+CONFIG_SND_SOC_TOPOLOGY_KUNIT_TEST=m										      <
+CONFIG_SND_SOC_UTILS_KUNIT_TEST=m										      <
+CONFIG_HID_KUNIT_TEST=m												      <
+CONFIG_CLK_KUNIT_TEST=m												      <
+CONFIG_CLK_GATE_KUNIT_TEST=m											      <
+CONFIG_EXT4_KUNIT_TESTS=m											      <
+# CONFIG_FAT_KUNIT_TEST is not set										      <
+CONFIG_LINEAR_RANGES=m												      <
+# CONFIG_KFENCE_KUNIT_TEST is not set										      <
+CONFIG_KUNIT=m													      |	# CONFIG_KUNIT is not set
+CONFIG_KUNIT_DEBUGFS=y												      <
+CONFIG_KUNIT_TEST=m												      <
+CONFIG_KUNIT_EXAMPLE_TEST=m											      <
+CONFIG_KUNIT_ALL_TESTS=m											      <
+# CONFIG_KUNIT_DEFAULT_ENABLED is not set									      <
+CONFIG_RUNTIME_TESTING_MENU=y											      |	# CONFIG_RUNTIME_TESTING_MENU is not set
+# CONFIG_TEST_DHRY is not set											      <
+# CONFIG_LKDTM is not set											      <
+CONFIG_CPUMASK_KUNIT_TEST=m											      <
+# CONFIG_TEST_LIST_SORT is not set										      <
+# CONFIG_TEST_MIN_HEAP is not set										      <
+CONFIG_TEST_SORT=m												      <
+# CONFIG_TEST_DIV64 is not set											      <
+CONFIG_TEST_IOV_ITER=m												      <
+CONFIG_KPROBES_SANITY_TEST=m											      <
+# CONFIG_BACKTRACE_SELF_TEST is not set										      <
+# CONFIG_TEST_REF_TRACKER is not set										      <
+# CONFIG_RBTREE_TEST is not set											      <
+# CONFIG_REED_SOLOMON_TEST is not set										      <
+# CONFIG_INTERVAL_TREE_TEST is not set										      <
+# CONFIG_PERCPU_TEST is not set											      <
+CONFIG_ATOMIC64_SELFTEST=y											      <
+# CONFIG_TEST_HEXDUMP is not set										      <
+# CONFIG_STRING_SELFTEST is not set										      <
+# CONFIG_TEST_STRING_HELPERS is not set										      <
+CONFIG_TEST_KSTRTOX=y												      <
+# CONFIG_TEST_PRINTF is not set											      <
+# CONFIG_TEST_SCANF is not set											      <
+# CONFIG_TEST_BITMAP is not set											      <
+# CONFIG_TEST_UUID is not set											      <
+# CONFIG_TEST_XARRAY is not set											      <
+# CONFIG_TEST_MAPLE_TREE is not set										      <
+# CONFIG_TEST_RHASHTABLE is not set										      <
+# CONFIG_TEST_IDA is not set											      <
+# CONFIG_TEST_LKM is not set											      <
+# CONFIG_TEST_BITOPS is not set											      <
+CONFIG_TEST_VMALLOC=m												      <
+# CONFIG_TEST_USER_COPY is not set										      <
+# CONFIG_TEST_BPF is not set											      <
+# CONFIG_TEST_BLACKHOLE_DEV is not set										      <
+# CONFIG_FIND_BIT_BENCHMARK is not set										      <
+# CONFIG_TEST_FIRMWARE is not set										      <
+# CONFIG_TEST_SYSCTL is not set											      <
+CONFIG_BITFIELD_KUNIT=m												      <
+CONFIG_CHECKSUM_KUNIT=m												      <
+CONFIG_HASH_KUNIT_TEST=m											      <
+CONFIG_RESOURCE_KUNIT_TEST=m											      <
+CONFIG_SYSCTL_KUNIT_TEST=m											      <
+CONFIG_LIST_KUNIT_TEST=m											      <
+CONFIG_HASHTABLE_KUNIT_TEST=m											      <
+CONFIG_LINEAR_RANGES_TEST=m											      <
+CONFIG_CMDLINE_KUNIT_TEST=m											      <
+CONFIG_BITS_TEST=m												      <
+CONFIG_SLUB_KUNIT_TEST=m											      <
+CONFIG_RATIONAL_KUNIT_TEST=m											      <
+CONFIG_MEMCPY_KUNIT_TEST=m											      <
+CONFIG_MEMCPY_SLOW_KUNIT_TEST=y											      <
+CONFIG_IS_SIGNED_TYPE_KUNIT_TEST=m										      <
+CONFIG_OVERFLOW_KUNIT_TEST=m											      <
+CONFIG_STACKINIT_KUNIT_TEST=m											      <
+CONFIG_FORTIFY_KUNIT_TEST=m											      <
+CONFIG_STRCAT_KUNIT_TEST=m											      <
+CONFIG_STRSCPY_KUNIT_TEST=m											      <
+CONFIG_SIPHASH_KUNIT_TEST=m											      <
+# CONFIG_TEST_UDELAY is not set											      <
+# CONFIG_TEST_STATIC_KEYS is not set										      <
+# CONFIG_TEST_DYNAMIC_DEBUG is not set										      <
+# CONFIG_TEST_MEMCAT_P is not set										      <
+# CONFIG_TEST_MEMINIT is not set										      <
+CONFIG_TEST_HMM=m												      <
+# CONFIG_TEST_FREE_PAGES is not set										      <
+# CONFIG_TEST_FPU is not set											      <
+# CONFIG_TEST_CLOCKSOURCE_WATCHDOG is not set									      <

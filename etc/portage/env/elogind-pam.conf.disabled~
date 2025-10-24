@@ -1,0 +1,5 @@
+#July 2024 - big patch needed for this. bug outstanding. see bug.
+#EXTRA_ECONF="${EXTRA_ECONF} --enable-logind"
+#had to disable.
+#"--------------------------------------- need manual patch - see patches @ etc/portage/patches/pam ------------------------------------"
+

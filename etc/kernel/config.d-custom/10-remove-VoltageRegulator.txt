@@ -1,0 +1,73 @@
+genr8too /var/tmp/portage/sys-kernel/gentoo-kernel-6.6.74/work/linux-6.6 # diffy ../modprep/.config.old ../modprep/.config 
+# CONFIG_KEYBOARD_PINEPHONE is not set										      <
+# CONFIG_INPUT_REGULATOR_HAPTIC is not set									      <
+# CONFIG_CHARGER_MANAGER is not set										      <
+CONFIG_CHARGER_SMB347=m												      <
+CONFIG_CHARGER_RT9467=m												      <
+CONFIG_CHARGER_RT9471=m												      <
+CONFIG_REGULATOR=y												      |	# CONFIG_REGULATOR is not set
+# CONFIG_REGULATOR_DEBUG is not set										      <
+CONFIG_REGULATOR_FIXED_VOLTAGE=m										      <
+# CONFIG_REGULATOR_VIRTUAL_CONSUMER is not set									      <
+# CONFIG_REGULATOR_USERSPACE_CONSUMER is not set								      <
+# CONFIG_REGULATOR_88PG86X is not set										      <
+# CONFIG_REGULATOR_ACT8865 is not set										      <
+# CONFIG_REGULATOR_AD5398 is not set										      <
+CONFIG_REGULATOR_AW37503=m											      <
+# CONFIG_REGULATOR_AXP20X is not set										      <
+# CONFIG_REGULATOR_BD9571MWV is not set										      <
+# CONFIG_REGULATOR_DA9210 is not set										      <
+# CONFIG_REGULATOR_DA9211 is not set										      <
+# CONFIG_REGULATOR_FAN53555 is not set										      <
+# CONFIG_REGULATOR_GPIO is not set										      <
+# CONFIG_REGULATOR_ISL9305 is not set										      <
+# CONFIG_REGULATOR_ISL6271A is not set										      <
+# CONFIG_REGULATOR_LP3971 is not set										      <
+# CONFIG_REGULATOR_LP3972 is not set										      <
+# CONFIG_REGULATOR_LP872X is not set										      <
+# CONFIG_REGULATOR_LP8755 is not set										      <
+# CONFIG_REGULATOR_LTC3589 is not set										      <
+# CONFIG_REGULATOR_LTC3676 is not set										      <
+# CONFIG_REGULATOR_MAX1586 is not set										      <
+CONFIG_REGULATOR_MAX77857=m											      <
+# CONFIG_REGULATOR_MAX8649 is not set										      <
+# CONFIG_REGULATOR_MAX8660 is not set										      <
+CONFIG_REGULATOR_MAX8893=m											      <
+# CONFIG_REGULATOR_MAX8952 is not set										      <
+# CONFIG_REGULATOR_MAX20086 is not set										      <
+CONFIG_REGULATOR_MAX20411=m											      <
+# CONFIG_REGULATOR_MAX77826 is not set										      <
+# CONFIG_REGULATOR_MP8859 is not set										      <
+# CONFIG_REGULATOR_MT6311 is not set										      <
+# CONFIG_REGULATOR_PCA9450 is not set										      <
+# CONFIG_REGULATOR_PV88060 is not set										      <
+# CONFIG_REGULATOR_PV88080 is not set										      <
+# CONFIG_REGULATOR_PV88090 is not set										      <
+CONFIG_REGULATOR_RAA215300=m											      <
+CONFIG_REGULATOR_RT4801=m											      <
+CONFIG_REGULATOR_RT4803=m											      <
+CONFIG_REGULATOR_RT4831=m											      <
+CONFIG_REGULATOR_RT5120=m											      <
+CONFIG_REGULATOR_RT5190A=m											      <
+CONFIG_REGULATOR_RT5739=m											      <
+CONFIG_REGULATOR_RT5759=m											      <
+CONFIG_REGULATOR_RT6160=m											      <
+CONFIG_REGULATOR_RT6190=m											      <
+CONFIG_REGULATOR_RT6245=m											      <
+CONFIG_REGULATOR_RTQ2134=m											      <
+CONFIG_REGULATOR_RTMV20=m											      <
+CONFIG_REGULATOR_RTQ6752=m											      <
+CONFIG_REGULATOR_RTQ2208=m											      <
+# CONFIG_REGULATOR_SLG51000 is not set										      <
+CONFIG_REGULATOR_SY7636A=m											      <
+# CONFIG_REGULATOR_TPS51632 is not set										      <
+# CONFIG_REGULATOR_TPS62360 is not set										      <
+# CONFIG_REGULATOR_TPS65023 is not set										      <
+# CONFIG_REGULATOR_TPS6507X is not set										      <
+# CONFIG_REGULATOR_TPS65132 is not set										      <
+CONFIG_SND_SOC_AMD_CZ_DA7219MX98357_MACH=m									      |	# CONFIG_SND_SOC_AMD_CZ_DA7219MX98357_MACH is not set
+CONFIG_SND_SOC_DA7219=m												      <
+CONFIG_SND_SOC_RT5682=m												      <
+CONFIG_SND_SOC_RT5682_I2C=m											      <
+# CONFIG_LEDS_REGULATOR is not set										      <
+CONFIG_LINEAR_RANGES=y												      |	CONFIG_LINEAR_RANGES=m

@@ -1,9 +1,5 @@
 #WARNING: One or more updates/rebuilds have been skipped due to a dependency conflict:
 
-# LTO / PGO
-dev-lang/python   pgo #lto #not needed
-sys-devel/gcc lto pgo
-
 #  (media-libs/freetype-2.11.0-r1:2/2::gentoo, ebuild scheduled for merge) USE="X adobe-cff bzip2 cleartype-hinting png -brotli -debug -doc -fontforge -harfbuzz (-infinality) -static-libs -utils" conflicts with
 #    >=media-libs/freetype-2.5.0.1:2=[harfbuzz,png,abi_x86_64(-)]
 #                                     ^^^^^^^^
@@ -90,7 +86,8 @@ dev-python/numpy lapack
 
 # required by media-gfx/fbida-2.14-r5::gentoo[X]
 # required by @world (argument)
->=x11-libs/motif-2.3.8-r3 xft
+#>=x11-libs/motif-2.3.8-r3 xft
+x11-libs/motif xft
 
 #  (dev-libs/boost-1.81.0-r1:0/1.81.0::gentoo, ebuild scheduled for merge) USE="bzip2 lzma zlib zstd -context -debug -doc -icu -mpi -nls -numpy -python -tools" PYTHON_TARGETS="python3_10 -python3_11 -python3_9" conflicts with
 #    dev-libs/boost:=[python,python_targets_python3_10(-)]
@@ -169,13 +166,7 @@ dev-util/unicorn python
 #(dependency required by "@world" [argument])
 # required by dev-python/QtPy (argument)
 # move dev-python/QtPy dev-python/qtpy
->=dev-python/qtpy-2.3.0 -network -sql
-# required by dev-python/qtconsole-5.4.0::gentoo
-# required by dev-python/ipython-8.8.0::gentoo[qt5]
-# required by @selected
-# required by @world (argument)
-# move dev-python/QtPy dev-python/qtpy
->=dev-python/qtpy-2.3.0 printsupport
+>=dev-python/qtpy-2.3.0 -network -sql printsupport
 # required by dev-python/QtPy-2.3.0::gentoo[pyqt5]
 # required by dev-python/qtconsole-5.4.0::gentoo
 # required by dev-python/ipython-8.8.0::gentoo[qt5]
@@ -184,6 +175,13 @@ dev-util/unicorn python
 # move dev-python/PyQt5 dev-python/pyqt5
 >=dev-python/pyqt5-5.15.7 printsupport
 
+# required by dev-qt/qt-creator-11.0.3::gentoo[help]
+# required by dev-qt/qt-creator (argument)
+>=dev-qt/qttools-6.5.3 designer
 
-#begin autounmask from Feb12-23
->=dev-python/pyzmq-25.0.2 drafts
+# required by app-emulation/virt-manager-4.1.0::gentoo[-test,gui]
+# required by @selected
+# required by @world (argument)
+>=net-misc/spice-gtk-0.42-r3 usbredir
+
+#EOF May 27, 2025#

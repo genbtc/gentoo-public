@@ -1,0 +1,13 @@
+--- a/Makefile.am	2016-11-06 12:11:23.000000000 -0500
++++ b/Makefile.am	2025-10-15 20:10:44.102608185 -0400
+@@ -13,8 +13,8 @@
+ 	--enable-speex \
+ 	--enable-tests \
+ 	--enable-wavpack
+- 
+-SUBDIRS = help po
++
++SUBDIRS = help
+ 
+ bin_PROGRAMS = easytag
+ 

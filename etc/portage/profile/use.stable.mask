@@ -1,0 +1,2 @@
+#FFMPEG[vmaf] 9/25/25
+-vmaf

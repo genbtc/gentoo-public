@@ -1,0 +1,20 @@
+CONFIG_ACCESSIBILITY=y												      |	# CONFIG_ACCESSIBILITY is not set
+CONFIG_A11Y_BRAILLE_CONSOLE=y											      <
+														      <
+#														      <
+# Speakup console speech											      <
+#														      <
+CONFIG_SPEAKUP=m												      <
+CONFIG_SPEAKUP_SYNTH_ACNTSA=m											      <
+CONFIG_SPEAKUP_SYNTH_APOLLO=m											      <
+CONFIG_SPEAKUP_SYNTH_AUDPTR=m											      <
+CONFIG_SPEAKUP_SYNTH_BNS=m											      <
+CONFIG_SPEAKUP_SYNTH_DECTLK=m											      <
+# CONFIG_SPEAKUP_SYNTH_DECEXT is not set									      <
+CONFIG_SPEAKUP_SYNTH_LTLK=m											      <
+CONFIG_SPEAKUP_SYNTH_SOFT=m											      <
+CONFIG_SPEAKUP_SYNTH_SPKOUT=m											      <
+CONFIG_SPEAKUP_SYNTH_TXPRT=m											      <
+# CONFIG_SPEAKUP_SYNTH_DUMMY is not set										      <
+# end of Speakup console speech											      <
+														      <

@@ -1,0 +1,2 @@
+CONFIG_MACINTOSH_DRIVERS=y											      |	# CONFIG_MACINTOSH_DRIVERS is not set
+CONFIG_MAC_EMUMOUSEBTN=y											      <

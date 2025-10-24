@@ -64,6 +64,7 @@ sec-keys/openpgp-keys-python
 sec-keys/openpgp-keys-rust
 sec-keys/openpgp-keys-sed
 sec-keys/openpgp-keys-signify
+sec-keys/signify-keys-signify
 sec-keys/openpgp-keys-skyjake
 sec-keys/openpgp-keys-sudo
 sec-keys/openpgp-keys-sysvinit

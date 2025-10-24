@@ -9,7 +9,7 @@
 inst_kern=$1
 grub_file="/boot/grub/grub.cfg-cut"
 #print a user message:
-echo "/etc/kernel/postinst.d/grub-manual-entry :"
+echo "GRUB> /etc/kernel/postinst.d/grub-manual-entry :"
 echo "  ${inst_kern} -> ${grub_file}"
 #searchentry="    search --no-floppy --fs-uuid --set=root 6cc4915e-f301-4109-9225-77e58309d447 \"
 entry="\
@@ -19,7 +19,7 @@ menuentry 'Gentoo GNU/Linux vmlinuz-${inst_kern} INTEGRITY,IMA=FIX SELINUX=ENFOR
 }\n#"
 
 if [[ ! ${inst_kern} =~ .*"gentoo-dist".* ]]; then
-    #TODO: unhardcode line 89(now 27 in -cut file)
+    #TODO: unhardcode line #
     endln=27
     sed -i "${endln}i ${entry}" ${grub_file}
     echo "Done. grub.cfg was modified @ Line ${endln}"
@@ -33,8 +33,8 @@ menuentry 'Gentoo GNU/Linux, vmlinuz-${inst_kern} (on /dev/nvme0n1p6)' --class g
 }\n\
 \#"
     #'echo -e' ${entry_initramfs} >> /tmp/newgrubentry2
-    #TODO: unhardcode line 140
-    endln=36
+    #TODO: unhardcode line #
+    endln=31
     sed -i "${endln}i ${entry_initramfs}" ${grub_file}
     echo "Done. grub.cfg was modified @ Line ${endln}"
 fi

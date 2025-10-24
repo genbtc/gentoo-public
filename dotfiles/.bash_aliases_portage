@@ -12,7 +12,7 @@ ebuild2() { ebuild "$(equery which "$1")"  "$2" ; }
 enano()   {  nano  "$(equery which "$1")" ; }
 eclass() { nano "$(portageq eclass_path / gentoo "$1")" ; }
 emergelog() { awk  '{$1= strftime("%m-%d-%Y %H:%M:%S",$1); print }' /var/log/emerge.log | less -R; }
-
+ecatpn() { qatom $(equery l "$@") | cut -d' ' -f1,2 ; }
 efile() {
   echo "${@:2}" >> "$1";			#write all user args after #2, to $1 file
   tail -n1 "$1" "$1" | tail -n2;	#print confirmation filename and last line we output. (with "$1" twice trick + tail again),
@@ -25,12 +25,12 @@ unmaskflags()  { efile "/etc/portage/package.unmask/flags" "$@" ; }
 
 export myoverlay="/var/db/repos/myoverlay"
 
-ediff1() {
+ediff() {
 #Usage:"$1"= sys-libs/ncurses-6.3_p20221203-r2
     declare -a pkgq=($(qatom "$1" -F "%{CATEGORY} %{PN} %{PV} %{PR}"))
     declare -a cutpkg=($(echo "$1" | cut -f1,2 -d'/' --output-delimiter=' '))
     newdir=$(portageq get_repo_path / gentoo)
-    : ${newdir:=/var/db/repos/gentoo}   # colon : trick, set the default var
+    : ${newdir:=/var/db/repos/gentoo}   # colon : trick (sets the default var)
     oldvdb=$(portageq vdb_path / )
     : ${oldvdb:=/var/db/pkg}
     newpkg="${newdir}/${pkgq[0]}/${pkgq[1]}/${cutpkg[1]}.ebuild"
@@ -45,6 +45,7 @@ ediff2() {
 #       $2 = sys-libs/ncurses-6.3_p20221203
 	declare -a newpkgq=($(qatom "$1" -F "%{CATEGORY} %{PN} %{PV} %{PR}"))
 	declare -a cutpkg=($(echo "$2" | cut -f1,2 -d'/' --output-delimiter=' '))
+	#TODO: if $2 is missing, bail out.
 # 	newdir=/var/db/repos/gentoo
     newdir=$(portageq get_repo_path / gentoo)
 #	oldvdb=/var/db/pkg

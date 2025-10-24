@@ -52,8 +52,10 @@ secheckmods() {
  done
 }
 
-pp2cil() { /usr/libexec/selinux/hll/pp "$@" ; }
+#pp2cil() { /usr/libexec/selinux/hll/pp "$@" ; }
+alias pp2cil='/usr/libexec/selinux/hll/pp'
 
+#Usage: # aud2te 50 dmesg.log.txt >> dmesg.log.txt, then open nano.
 #TODO: Make better.
 aud2te(){ tail -n "$1" "$2" | audit2why -eR >> "$2" ; nano +-1 "$2" ; }
 
@@ -85,13 +87,15 @@ setypegrep() {
 #Important to reset dynamic context of generated cache files that have been mis-tagged. Why?
 # portage regenerates them, the code would come from the eclasses, and those don't set them itself for some reason. or call an update.
 #  or the .fc file type is not taking effect on these dynamic files because the program isnt selinux aware somehow ?
+# TODO: Relies on "*" pattern which is invalid in .te/.fc selinux so a comment/uncomment has to be done when rebuilding the module
 serestoremime() {
-    setenforce 0
+#    setenforce 0
     sed -e 's#HOME_DIR/\\#/home/genr8eofl/#' /etc/selinux/strict/policy/mime-icon-cache.fc | grep -v "^#\|.*?" | cut -d' ' -f1 | xargs restorecon -RFv
-    setenforce 1
+#    setenforce 1
 }
 
+#TODO: make date.
 secilbackup() {
-    find "/var/lib/selinux/strict/active/modules/400" -name 'cil' -exec bash -c 'D=$(dirname {}); B=$(basename $D); echo $B; T="/etc/selinux/strict/cil.bak.051524/"; mkdir -pv $T$B; cp -a {} $T$B' \;
+    find "/var/lib/selinux/strict/active/modules/400" -name 'cil' -exec bash -c 'D=$(dirname {}); B=$(basename $D); echo $B; T="/etc/selinux/strict/cil.bak.070725/"; mkdir -pv $T$B; cp -a {} $T$B' \;
 }
 

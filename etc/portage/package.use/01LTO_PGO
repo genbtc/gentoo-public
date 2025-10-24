@@ -1,0 +1,3 @@
+# LTO / PGO
+dev-lang/python   pgo	#lto not needed anymore
+sys-devel/gcc lto pgo

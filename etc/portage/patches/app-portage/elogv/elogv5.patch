@@ -1,0 +1,137 @@
+86
+--- a/elogv	2023-10-06 18:06:48.000000000 -0400
++++ b/elogv	2024-02-07 22:46:54.865613738 -0500
+@@ -31,6 +31,7 @@
+ import os
+ import re
+ import signal
++import subprocess
+ import sys
+ import textwrap
+ from datetime import datetime
+@@ -114,9 +115,9 @@
+ Elogv is a portage elog viewer based on curses and python,
+ you can use these keys to control the behavior of the program:
+ 
+- - Down arrow or j -> scroll the list of files down by 1 unit
++ - Down arrow or j -> scroll the list of files down by 1 lines
+  - Up arrow or k -> opposite of Down arrow
+- - PageDown -> scroll the list down by 10 unit
++ - PageDown -> scroll the list down by 30 lines
+  - PageUp -> opposite of PageDown
+  - End -> go to the last file of the list
+  - Home -> go to the first file of the list
+@@ -142,12 +143,12 @@
+ )
+ 
+ (normal, selected, einfo, elog, ewarn, eerror, eqawarn) = range(7)
+-(PATH, CAT, PN, DATE, CLASS) = range(5)
++(PATH, CAT, PN, DATE, CLASS, BUILDLOG ) = range(6)
+ 
+ # Character used to print the class of an elog
+ class_char = "*"
+ list_format = "%s/%s - %s"
+-date_format = "%x"
++date_format = "%x %H:%M:%S"
+ 
+ 
+ # Exceptions classes
+@@ -250,10 +251,10 @@
+                 self.change_usel(-1)
+ 
+             elif c in (curses.KEY_NPAGE, ord("f")):
+-                self.change_usel(10)
++                self.change_usel(30)
+ 
+             elif c in (curses.KEY_PPAGE, ord("b")):
+-                self.change_usel(-10)
++                self.change_usel(-30)
+ 
+             elif c in (curses.KEY_END, ord("G")):
+                 self.change_usel(len(self.packages) - 1, False)
+@@ -349,6 +350,14 @@
+                 self.screen.hline(self.height - 1, 2, curses.ACS_HLINE, (len(word) + 1))
+                 self.screen.addstr(self.height - 2, 2, " " * 20)
+ 
++            elif c in (ord("o"), curses.KEY_ENTER, curses.ascii.CR, curses.ascii.LF):
++                pkg = self.packages[self.usel]
++                if len(pkg) >= 6: #see line 624 for where BUILDLOG tuple is concatend
++                  with suspend_curses():
++                    # This pkg[BUILDLOG] field was created on line 146.
++#debug              print(f"opening build.log file: %s" % pkg[BUILDLOG])
++                    subprocess.call(["less", "-R", pkg[BUILDLOG]])
++
+             # Get another key from the user
+             c = self.screen.getch()
+ 
+@@ -507,7 +516,7 @@
+             self.usel = len(self.packages) - 1
+             # We also have to update self.pposy
+             if self.pposy > self.usel:
+-                self.pposy = max(0, self.usel - 10)
++                self.pposy = max(0, self.usel - 30)
+ 
+         # Sort the list
+         if self.sort_method[0] in (DATE, CLASS):
+@@ -626,6 +635,10 @@
+                     self.log_win.addstr(x[: self.width - 2], curses.color_pair(elog))
+                 elif x.startswith("QA:"):
+                     self.log_win.addstr(x[: self.width - 2], curses.color_pair(eqawarn))
++                elif x.startswith('Logfile: '):
++                    self.packages[self.usel] = self.packages[self.usel] + ( x.replace('Logfile: ',"").replace('\n',''), )
++                    self.log_win.addstr('Build.log: ', curses.A_BOLD + curses.color_pair(elog))
++                    self.log_win.addstr(self.packages[self.usel][BUILDLOG]+"\n", curses.A_BOLD + curses.color_pair(normal))
+                 else:
+                     # Strip embedded color codes                                                                                                                              
+                     x = re.sub(ansi_code, "", x)
+@@ -636,12 +645,12 @@
+                 pass
+ 
+         if not shown_all:
+-            s = _("Continue...")
++            s = _("Continue [press space]...")
+             self.log_win.addstr(
+                 self.height // 2 - 3,
+                 self.width - len(s) - 4,
+                 s,
+-                curses.color_pair(normal),
++                curses.A_BOLD+curses.color_pair(normal),
+             )
+ 
+         self.log_win.refresh()
+@@ -685,11 +698,11 @@
+ 
+             c = self.screen.getch()
+             if c == curses.KEY_NPAGE:
+-                if row + 10 <= maxrow:
+-                    row += 10
++                if row + 30 <= maxrow:
++                    row += 30
+             elif c == curses.KEY_PPAGE:
+-                if row - 10 >= 0:
+-                    row -= 10
++                if row - 30 >= 0:
++                    row -= 30
+             elif c in (curses.KEY_DOWN, ord("j")):
+                 if row + 1 < maxrow:
+                     row += 1
+@@ -708,6 +721,19 @@
+             )
+ 
+ 
++
++class suspend_curses():
++    """Context Manager to temporarily leave curses mode"""
++
++    def __enter__(self):
++        curses.endwin()
++
++    def __exit__(self, exc_type, exc_val, tb):
++        newscr = curses.initscr()
++        newscr.refresh()
++        curses.doupdate()
++
++
+ if __name__ == "__main__":
+     if "--help" in sys.argv:
+         print(helptext)

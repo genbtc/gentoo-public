@@ -3,6 +3,7 @@ source /etc/portage/bashrc.conf/00main.bashrc
 source /etc/portage/bashrc.conf/00configure.bashrc
 source /etc/portage/bashrc.conf/99ADMIN.bashrc
 source /etc/portage/bashrc.conf/01binary.bashrc
+source /etc/portage/bashrc.conf/20package-mods.bashrc
 
 # This hook is neccesary for automatic updating of the cfg-update index, please do not modify it!
 pre_pkg_setup() {

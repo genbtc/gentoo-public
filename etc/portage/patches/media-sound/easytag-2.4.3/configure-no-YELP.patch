@@ -1,0 +1,17 @@
+--- a/configure.ac	2025-10-15 20:08:26.490608309 -0400
++++ b/configure.ac	2025-10-15 20:09:03.481608276 -0400
+@@ -110,14 +110,6 @@
+ 
+ AM_CONDITIONAL([EASYTAG_ENABLE_TESTS], [test "x$testing_utilities" = "xyes"])
+ 
+-dnl Help.
+-m4_ifdef([YELP_HELP_INIT], [YELP_HELP_INIT],
+-         [AC_MSG_ERROR([yelp-tools is required to build EasyTAG help])])
+-
+-AC_PATH_PROG([YELP], [yelp])
+-AS_IF([test "x$ac_cv_path_YELP" = "x"],
+-      [AC_MSG_WARN([Yelp is required at runtime for user help])])
+-
+ dnl -------------------------------
+ dnl Handle cross-compiling with mingw32.
+ dnl -------------------------------

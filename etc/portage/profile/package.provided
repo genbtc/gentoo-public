@@ -3,6 +3,8 @@ app-text/ghostscript-gpl-10.01.1
 net-print/cups-2.4.2-r7
 app-text/yelp-tools-42.1
 
+#headers pin to 5.10 for polkit-126 testing (5/5/2025) this had no outcome
+sys-kernel/linux-headers-6.12
 #stop kernels from updating each time so much (2023)
 virtual/dist-kernel-6.99.9
 sys-kernel/gentoo-kernel-bin-6.99.9
@@ -18,6 +20,8 @@ net-misc/radvd-2.19-r5
 media-sound/audacity-2.4.2-r3
 #--depclean needs this line uncommented to run, since blocked by audacity
 #media-video/ffmpeg-6.1.1
+#FLAC (need entry to depclean) (10/23/25)
+#media-libs/flac-1.5.0
 
 #relies on (g)udev 238 and we have eudev 237 - (June 1,2024)
 sys-power/upower-1.90.4
@@ -26,45 +30,60 @@ sys-power/upower-1.90.4
 #Run-time dependency gudev-1.0 found: NO (tried cmake)
 #meson.build:72:14: ERROR: Dependency lookup for gudev-1.0 with method 'pkgconfig' failed: Invalid version, need 'gudev-1.0' ['>= 238'] found '237'.
 
-#reaper cant compile SWELL (Aug 1, 2024)
-media-sound/reaper-bin-7.18
-
-#curl seems sus lately (8/17/24)
-net-misc/curl-8.8.0-r1
-#yep 8.9 and 8.10 quickly came out but 8.7 remained stable along with 8.8 (9/24/24) (11/21/24)
-
-#stick to old magiccube v2 , v4 build fail; situation unclear (8/20/24)
-games-puzzle/magiccube4d-4.3.343
-
-#only polkit v123 works right (9/6/2024)
-sys-auth/polkit-124-r1
-sys-auth/polkit-125-r1
+#stick to old magiccube v2 , v4 build fail; (8/20/24)
+# /var/db/repos/gentoo/eclass/java-utils-2.eclass: line 2288: java-config: command not found
+#games-puzzle/magiccube4d-4.3.343
+#MOVED TO etc/portage/profile/package.mask
 
 #stop compiling syd so often (and no to pandoras box)
-#sys-apps/syd-3.25.1 -
 sys-apps/syd-3.27.0
 sys-apps/pandora_box-0.11.0
-
-#OBS cant compile with VLC-9999 (9/18/24) last compile 08/22/24
-media-video/obs-studio-30.2.3
-
-#hold of openssl stick to 3.0.15 (9/29/24)
-dev-libs/openssl-3.3.2
+#(up to 3.41.0 and box 0.15/0.16 by 10/23/25)
 
 #Bind-Tools wants bind to install now
 net-dns/bind-9.18.29-r2
 #keep old tools-version
 net-dns/bind-tools-9.18.0
 
-#use my own firefox 115.17 build (11/4/24)
-www-client/firefox-128.4.0
-
-#sxid, mailx suddenly (11/24/24)
-app-admin/sxid-4.20130802
-virtual/mailx-4
-
 #Clion wants wayland - disable (12/16/24)
 dev-libs/wayland-1.23.1
 
-#-r2 wants libpcre[JIT] but hardened selinux cannot (1/22/25)
-dev-util/rizin-0.7.3-r2
+#-r2 wants libpcre[JIT] but hardened selinux cannot (1/22/25)   (0.7.4 also wants jit@10/23/25)
+#Calculating dependencies \[ebuild     U  ] dev-util/rizin-0.8.1:0/0.8.1::gentoo [0.7.3-r1:0/0.7.3::gentoo] USE="(-test)" 20835 KiB
+#[ebuild   R    ]  dev-libs/libpcre2-10.46:0/3::gentoo  USE="bzip2 jit* pcre16 pcre32 readline static-libs unicode verify-sig zlib -libedit -valgrind" 0 KiB
+#dev-util/rizin-0.7.3-r2
+#MOVED TO package.mask
+
+#Gajim wants portal - (5/10/25) - https://gitweb.gentoo.org/repo/gentoo.git/commit/?id=a2963fc1a23747bbb60a3785bf06dd566e6d8be9
+sys-apps/xdg-desktop-portal-1.18.4-r2
+
+#Gimp wants to update some crap only for GCC15 (5/15/25)
+#media-gfx/gimp-2.10.38-r2
+#	# bug #944284 (https://gitlab.gnome.org/GNOME/gimp/-/issues/12843)					      <
+#	append-cflags -std=gnu17
+#MOVED TO package.mask
+
+#July 04, 2025
+#net-libs/nodejs     Installed versions:  20.18.2(0/20)^t{xpak}(12:26:06 06/30/25)
+net-libs/nodejs-20.18.2
+
+#nss prevented Firefox115 from working	     Installed versions:  3.101.4^t(12:55:25 08/21/25)
+dev-libs/nss-3.999
+
+#Failed - cant compile/install properly (Sept 2025)
+sys-fs/e2fsprogs-1.47.3-r1
+
+#Failed to compile, incompatible_pointer_type. minor revision (9/25/25)
+app-misc/rox-filer-2.11-r1
+#bugged. https://bugs.gentoo.org/940907
+app-office/abiword-3.0.6-r1
+
+#Wont install 9999 - missing system dep on nanobind and wrap wont work (10/5/25)
+app-portage/pms-utils-9999
+
+#29 was broken
+www-client/firefox-115.29.0
+
+#spek pulls in ffmpeg-compat-7 because its a ~ package (10/23/25) stick with -r2 because its fine
+#media-sound/spek-0.8.5-r3
+#MOVED TO package.mask

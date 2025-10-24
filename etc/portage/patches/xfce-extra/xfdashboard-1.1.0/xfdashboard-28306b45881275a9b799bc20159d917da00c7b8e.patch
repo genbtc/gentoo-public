@@ -1,0 +1,52 @@
+From 28306b45881275a9b799bc20159d917da00c7b8e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ga=C3=ABl=20Bonithon?= <gael@xfce.org>
+Date: Thu, 21 Aug 2025 17:49:07 +0200
+Subject: [PATCH] build: Check for libm
+
+Seems required at least on *BSD.
+---
+ libxfdashboard/meson.build | 1 +
+ meson.build                | 2 ++
+ settings/meson.build       | 1 +
+ 3 files changed, 4 insertions(+)
+
+diff --git a/libxfdashboard/meson.build b/libxfdashboard/meson.build
+index b1211bb..96c164d 100644
+--- a/libxfdashboard/meson.build
++++ b/libxfdashboard/meson.build
+@@ -240,6 +240,7 @@ libxfdashboard_deps = [
+   xcomposite,
+   xdamage,
+   xinerama,
++  libm,
+ ]
+ 
+ libxfdashboard = library(
+diff --git a/meson.build b/meson.build
+index a8060ab..f9b49d6 100644
+--- a/meson.build
++++ b/meson.build
+@@ -47,6 +47,8 @@ xcomposite = dependency('xcomposite', version: dependency_versions['xcomposite']
+ xdamage = dependency('xdamage', version: dependency_versions['xdamage'], required: get_option('xdamage'))
+ xinerama = dependency('xinerama', version: dependency_versions['xinerama'], required: get_option('xinerama'))
+ 
++libm = cc.find_library('m', required: true)
++
+ feature_cflags = []
+ 
+ if clutter_gdk.found()
+diff --git a/settings/meson.build b/settings/meson.build
+index 49337ef..6e75768 100644
+--- a/settings/meson.build
++++ b/settings/meson.build
+@@ -28,6 +28,7 @@ executable(
+     libxfconf_settings_dep,
+     libxfdashboard_dep,
+     xfconf,
++    libm,
+   ],
+   install: true,
+   install_dir: get_option('prefix') / get_option('bindir'),
+-- 
+GitLab
+

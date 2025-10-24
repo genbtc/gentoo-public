@@ -1,0 +1,2 @@
+CONFIG_TEE=m													      |	# CONFIG_TEE is not set
+# CONFIG_AMDTEE is not set											      <

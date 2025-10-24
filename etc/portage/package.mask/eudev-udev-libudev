@@ -1,2 +1,3 @@
 ~dev-libs/libgudev-238
 >=virtual/libudev-251
+>=virtual/udev-217-r7

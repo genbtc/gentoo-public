@@ -1,0 +1,8 @@
+--- a/Makefile	2025-03-05 13:59:06.000000000 -0500
++++ b/Makefile	2025-10-15 08:09:21.609647033 -0400
+@@ -1,4 +1,4 @@
+-SUBDIRS = setfiles load_policy newrole run_init secon sestatus semodule setsebool scripts po man hll unsetfiles
++SUBDIRS = setfiles load_policy newrole run_init secon sestatus semodule setsebool scripts man hll unsetfiles
+ 
+ all install relabel clean indent:
+ 	@for subdir in $(SUBDIRS); do \

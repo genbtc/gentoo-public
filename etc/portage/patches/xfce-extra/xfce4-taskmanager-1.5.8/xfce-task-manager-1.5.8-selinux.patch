@@ -1,0 +1,241 @@
+diff '--color=auto' -ur '--exclude=po/' xfce4-taskmanager-1.5.8/configure.ac xfce4-taskmanager-1.5.8-selinux/configure.ac
+--- xfce4-taskmanager-1.5.8/configure.ac	2024-12-25 11:08:49.000000000 -0500
++++ xfce4-taskmanager-1.5.8/configure.ac	2025-02-08 05:21:01.383658850 -0500
+@@ -70,6 +70,7 @@
+ dnl ***********************************
+ XDT_CHECK_PACKAGE([LIBXMU], [xmu], [1.1.2])
+ XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.50.0])
++XDT_CHECK_PACKAGE([GMODULE], [gmodule-2.0], [2.50.0])
+ XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [3.22.0])
+ XDT_CHECK_PACKAGE([CAIRO], [cairo], [1.5.0])
+ XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.14.0])
+@@ -174,6 +175,8 @@
+ echo "* Wnck:          ${WNCK_VERSION:-no}"
+ echo "* Cairo:         ${CAIRO_VERSION}"
+ echo "* GTK+:          ${GTK3_VERSION}"
++echo "* GLib:          ${GLIB_VERSION}"
++echo "* GModule:       ${GMODULE_VERSION}"
+ echo "* Target OS:     $target_os ($ac_os_implementation)"
+ echo "* Debug:         $enable_debug"
+ echo
+diff '--color=auto' -ur '--exclude=po/' xfce4-taskmanager-1.5.8/src/Makefile.am xfce4-taskmanager-1.5.8-selinux/src/Makefile.am
+--- xfce4-taskmanager-1.5.8/src/Makefile.am	2024-12-25 09:26:15.000000000 -0500
++++ xfce4-taskmanager-1.5.8/src/Makefile.am	2025-02-08 05:22:56.433650311 -0500
+@@ -17,6 +17,7 @@
+ 	$(NULL)
+ 
+ xfce4_taskmanager_LDADD = 						\
++	$(GMODULE_LIBS)							\
+ 	$(CAIRO_LIBS)							\
+ 	$(LIBX11_LIBS)						\
+ 	$(LIBXMU_LIBS)						\
+@@ -54,7 +55,7 @@
+ xfce4_taskmanager_SOURCES += task-manager-solaris.c
+ endif
+ if OS_LINUX
+-xfce4_taskmanager_SOURCES += task-manager-linux.c
++xfce4_taskmanager_SOURCES += task-manager-linux.c  selinux.c  selinux.h
+ endif
+ if OS_DARWIN
+ xfce4_taskmanager_SOURCES += task-manager-darwin.c
+diff '--color=auto' -ur '--exclude=po/' xfce4-taskmanager-1.5.8/src/process-tree-view.c xfce4-taskmanager-1.5.8-selinux/src/process-tree-view.c
+--- xfce4-taskmanager-1.5.8/src/process-tree-view.c	2024-09-16 09:41:34.000000000 -0400
++++ xfce4-taskmanager-1.5.8/src/process-tree-view.c	2025-02-08 05:27:59.361627829 -0500
+@@ -38,6 +38,7 @@
+ 	COLUMN_CPU,
+ 	COLUMN_GROUP_CPU,
+ 	COLUMN_PRIORITY,
++	COLUMN_SELINUX,
+ 	N_COLUMNS,
+ };
+ 
+@@ -123,6 +124,7 @@
+ 		G_TYPE_FLOAT, /* XTM_PTV_COLUMN_GROUP_CPU */
+ 		G_TYPE_STRING, /* XTM_PTV_COLUMN_GROUP_CPU_STR */
+ 		G_TYPE_INT, /* XTM_PTV_COLUMN_PRIORITY */
++		G_TYPE_STRING, /* XTM_PTV_COLUMN_SELINUX */
+ 		G_TYPE_STRING, /* XTM_PTV_COLUMN_BACKGROUND */
+ 		G_TYPE_STRING, /* XTM_PTV_COLUMN_FOREGROUND */
+ 		G_TYPE_LONG /* XTM_PTV_COLUMN_TIMESTAMP */
+@@ -254,6 +256,14 @@
+ 	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
+ 	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_PRIORITY]);
+ 
++	g_object_get (treeview->settings, "column-selinux", &visible, NULL);
++	column = gtk_tree_view_column_new_with_attributes (_("SELinux"), cell_right_aligned, "text", XTM_PTV_COLUMN_SELINUX, "cell-background", XTM_PTV_COLUMN_BACKGROUND, "foreground", XTM_PTV_COLUMN_FOREGROUND, NULL);
++	g_object_set (column, COLUMN_PROPERTIES, NULL);
++	g_object_set_data (G_OBJECT (column), "sort-column-id", GINT_TO_POINTER (XTM_PTV_COLUMN_SELINUX));
++	g_object_set_data (G_OBJECT (column), "column-id", GINT_TO_POINTER (COLUMN_SELINUX));
++	g_signal_connect (column, "clicked", G_CALLBACK (column_clicked), treeview);
++	gtk_tree_view_insert_column (GTK_TREE_VIEW (treeview), column, treeview->columns_positions[COLUMN_SELINUX]);
++
+ 	/* Set initial sort column */
+ 	{
+ 		guint sort_column_idu;
+@@ -843,6 +853,8 @@
+ 			column_id = COLUMN_GROUP_CPU;
+ 		else if (!g_strcmp0 (pspec->name, "column-priority"))
+ 			column_id = COLUMN_PRIORITY;
++		else if (!g_strcmp0 (pspec->name, "column-selinux"))
++			column_id = COLUMN_SELINUX;
+ 
+ 		g_object_get (object, pspec->name, &visible, NULL);
+ 		gtk_tree_view_column_set_visible (gtk_tree_view_get_column (GTK_TREE_VIEW (treeview), treeview->columns_positions[column_id]), visible);
+diff '--color=auto' -ur '--exclude=po/' xfce4-taskmanager-1.5.8/src/process-tree-view.h xfce4-taskmanager-1.5.8-selinux/src/process-tree-view.h
+--- xfce4-taskmanager-1.5.8/src/process-tree-view.h	2024-05-31 14:03:01.000000000 -0400
++++ xfce4-taskmanager-1.5.8/src/process-tree-view.h	2025-02-08 05:28:13.138626806 -0500
+@@ -40,6 +40,7 @@
+ 	XTM_PTV_COLUMN_GROUP_CPU,
+ 	XTM_PTV_COLUMN_GROUP_CPU_STR,
+ 	XTM_PTV_COLUMN_PRIORITY,
++	XTM_PTV_COLUMN_SELINUX,
+ 	XTM_PTV_COLUMN_BACKGROUND,
+ 	XTM_PTV_COLUMN_FOREGROUND,
+ 	XTM_PTV_COLUMN_TIMESTAMP,
+Only in xfce4-taskmanager-1.5.8-selinux/src: selinux.c
+Only in xfce4-taskmanager-1.5.8-selinux/src: selinux.h
+diff '--color=auto' -ur '--exclude=po/' xfce4-taskmanager-1.5.8/src/settings-dialog.c xfce4-taskmanager-1.5.8-selinux/src/settings-dialog.c
+--- xfce4-taskmanager-1.5.8/src/settings-dialog.c	2024-05-31 14:03:01.000000000 -0400
++++ xfce4-taskmanager-1.5.8/src/settings-dialog.c	2025-02-08 05:18:49.267668656 -0500
+@@ -215,6 +215,7 @@
+ 	builder_bind_toggle_button (builder, "cpu", settings, "column-cpu");
+ 	builder_bind_toggle_button (builder, "group-cpu", settings, "column-group-cpu");
+ 	builder_bind_toggle_button (builder, "priority", settings, "column-priority");
++	builder_bind_toggle_button (builder, "selinux", settings, "column-selinux");
+ 
+ 
+ 	button = GTK_WIDGET (gtk_builder_get_object (builder, "button-about"));
+diff '--color=auto' -ur '--exclude=po/' xfce4-taskmanager-1.5.8/src/settings-dialog.ui xfce4-taskmanager-1.5.8-selinux/src/settings-dialog.ui
+--- xfce4-taskmanager-1.5.8/src/settings-dialog.ui	2024-05-31 14:03:01.000000000 -0400
++++ xfce4-taskmanager-1.5.8/src/settings-dialog.ui	2025-02-08 05:17:36.743674038 -0500
+@@ -508,6 +508,20 @@
+                     <property name="position">10</property>
+                   </packing>
+                 </child>
++                <child>
++                  <object class="GtkCheckButton" id="selinux">
++                    <property name="label" translatable="yes">SELinux</property>
++                    <property name="visible">True</property>
++                    <property name="can_focus">True</property>
++                    <property name="receives_default">False</property>
++                    <property name="draw_indicator">True</property>
++                  </object>
++                  <packing>
++                    <property name="expand">False</property>
++                    <property name="fill">True</property>
++                    <property name="position">11</property>
++                  </packing>
++                </child>
+               </object>
+               <packing>
+                 <property name="position">1</property>
+diff '--color=auto' -ur '--exclude=po/' xfce4-taskmanager-1.5.8/src/settings.c xfce4-taskmanager-1.5.8-selinux/src/settings.c
+--- xfce4-taskmanager-1.5.8/src/settings.c	2024-05-31 14:03:01.000000000 -0400
++++ xfce4-taskmanager-1.5.8/src/settings.c	2025-02-08 05:30:06.926618361 -0500
+@@ -47,6 +47,7 @@
+ 	PROP_COLUMN_CPU,
+ 	PROP_COLUMN_GROUP_CPU,
+ 	PROP_COLUMN_PRIORITY,
++	PROP_COLUMN_SELINUX,
+ 	PROP_SORT_COLUMN_ID,
+ 	PROP_SORT_TYPE,
+ 	PROP_HANDLE_POSITION,
+@@ -118,6 +119,8 @@
+ 		g_param_spec_boolean ("column-group-cpu", "ColumnGroupCPU", "Show column Group CPU", TRUE, G_PARAM_READWRITE));
+ 	g_object_class_install_property (class, PROP_COLUMN_PRIORITY,
+ 		g_param_spec_boolean ("column-priority", "ColumnPriority", "Show column priority", FALSE, G_PARAM_READWRITE));
++	g_object_class_install_property (class, PROP_COLUMN_SELINUX,
++		g_param_spec_boolean ("column-selinux", "ColumnSELinux", "Show column SELinux", TRUE, G_PARAM_READWRITE));
+ 	g_object_class_install_property (class, PROP_SORT_COLUMN_ID,
+ 		g_param_spec_uint ("sort-column-id", "SortColumn", "Sort by column id", 0, G_MAXUINT, 0, G_PARAM_READWRITE));
+ 	g_object_class_install_property (class, PROP_SORT_TYPE,
+@@ -221,6 +224,8 @@
+ 		G_OBJECT (settings), "column-group-cpu");
+ 	xfconf_g_property_bind (channel, SETTING_COLUMN_PRIORITY, G_TYPE_BOOLEAN,
+ 		G_OBJECT (settings), "column-priority");
++	xfconf_g_property_bind (channel, SETTING_COLUMN_SELINUX, G_TYPE_BOOLEAN,
++		G_OBJECT (settings), "column-selinux");
+ 
+ 	xfconf_g_property_bind (channel, SETTING_COLUMN_SORT_ID, G_TYPE_UINT,
+ 		G_OBJECT (settings), "sort-column-id");
+diff '--color=auto' -ur '--exclude=po/' xfce4-taskmanager-1.5.8/src/settings.h xfce4-taskmanager-1.5.8-selinux/src/settings.h
+--- xfce4-taskmanager-1.5.8/src/settings.h	2024-05-31 14:03:01.000000000 -0400
++++ xfce4-taskmanager-1.5.8/src/settings.h	2025-02-08 05:30:32.844616437 -0500
+@@ -49,6 +49,7 @@
+ #define SETTING_COLUMN_CPU "/columns/column-cpu"
+ #define SETTING_COLUMN_GROUP_CPU "/columns/column-group-cpu"
+ #define SETTING_COLUMN_PRIORITY "/columns/column-priority"
++#define SETTING_COLUMN_SELINUX "/columns/column-selinux"
+ #define SETTING_COLUMN_SORT_ID "/columns/sort-id"
+ #define SETTING_COLUMN_SORT_TYPE "/columns/sort-type"
+ #define SETTING_COLUMN_POSITIONS "/columns/positions"
+diff '--color=auto' -ur '--exclude=po/' xfce4-taskmanager-1.5.8/src/task-manager-linux.c xfce4-taskmanager-1.5.8-selinux/src/task-manager-linux.c
+--- xfce4-taskmanager-1.5.8/src/task-manager-linux.c	2024-05-31 14:03:01.000000000 -0400
++++ xfce4-taskmanager-1.5.8/src/task-manager-linux.c	2025-02-08 05:32:07.554609408 -0500
+@@ -14,6 +14,8 @@
+ 
+ #include "task-manager.h"
+ 
++#include "selinux.h" /* has_selinux && getpidcon() */
++
+ static gushort _cpu_count = 0;
+ static gulong jiffies_total_delta = 0;
+ 
+@@ -308,6 +310,9 @@
+ 	if (!get_task_cmdline (task))
+ 		return FALSE;
+ 
++	/* Read the SELinux context (ignore errors)*/
++	get_process_selinux_context(task);
++
+ 	return TRUE;
+ }
+ 
+diff '--color=auto' -ur '--exclude=po/' xfce4-taskmanager-1.5.8/src/task-manager.c xfce4-taskmanager-1.5.8-selinux/src/task-manager.c
+--- xfce4-taskmanager-1.5.8/src/task-manager.c	2024-05-31 14:03:01.000000000 -0400
++++ xfce4-taskmanager-1.5.8/src/task-manager.c	2025-02-08 05:36:51.802588312 -0500
+@@ -26,6 +26,8 @@
+ #include <pwd.h>
+ #include <sys/resource.h>
+ 
++#include "selinux.h" /* can_show_security_context_column() */
++
+ #define TIMESTAMP_DELTA 4
+ 
+ 
+@@ -101,6 +103,8 @@
+ 	g_object_get (settings, "full-command-line", &full_cmdline, NULL);
+ 	g_signal_connect (settings, "notify::more-precision", G_CALLBACK (setting_changed), manager);
+ 	g_signal_connect (settings, "notify::full-command-line", G_CALLBACK (setting_changed), manager);
++	if (can_show_security_context_column())
++		procman_debug("Initializing SELinux support for Security Context Column...");
+ }
+ 
+ static void
+@@ -221,6 +225,7 @@
+ 	gtk_list_store_set (GTK_LIST_STORE (model), iter,
+ 		XTM_PTV_COLUMN_CPU, 0.0,
+ 		XTM_PTV_COLUMN_CPU_STR, "-",
++		XTM_PTV_COLUMN_SELINUX, "-",
+ 		XTM_PTV_COLUMN_BACKGROUND, XTM_LEGEND_COLOR_TERMINATING,
+ 		XTM_PTV_COLUMN_FOREGROUND, XTM_LEGEND_COLOR_NONE,
+ 		XTM_PTV_COLUMN_TIMESTAMP, timestamp,
+@@ -335,6 +340,7 @@
+ 		XTM_PTV_COLUMN_GROUP_CPU, (task->group_cpu_user + task->group_cpu_system),
+ 		XTM_PTV_COLUMN_GROUP_CPU_STR, group_cpu,
+ 		XTM_PTV_COLUMN_PRIORITY, task->prio,
++		XTM_PTV_COLUMN_SELINUX, task->selinux,
+ 		XTM_PTV_COLUMN_BACKGROUND, background,
+ 		XTM_PTV_COLUMN_FOREGROUND, foreground,
+ 		XTM_PTV_COLUMN_TIMESTAMP, old_timestamp,
+diff '--color=auto' -ur '--exclude=po/' xfce4-taskmanager-1.5.8/src/task-manager.h xfce4-taskmanager-1.5.8-selinux/src/task-manager.h
+--- xfce4-taskmanager-1.5.8/src/task-manager.h	2024-05-31 14:03:01.000000000 -0400
++++ xfce4-taskmanager-1.5.8/src/task-manager.h	2025-02-08 05:37:26.324585749 -0500
+@@ -39,6 +39,7 @@
+ 	guint64 vsz;
+ 	guint64 rss;
+ 	gint prio;
++	gchar selinux[256];
+ 
+ 	// Aggregated values
+ 	gfloat group_cpu_user;

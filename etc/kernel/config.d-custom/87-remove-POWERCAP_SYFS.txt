@@ -1,0 +1,5 @@
+CONFIG_PROC_THERMAL_MMIO_RAPL=m											      <
+CONFIG_POWERCAP=y												      |	# CONFIG_POWERCAP is not set
+CONFIG_INTEL_RAPL_CORE=m											      <
+CONFIG_INTEL_RAPL=m												      <
+# CONFIG_IDLE_INJECT is not set											      <

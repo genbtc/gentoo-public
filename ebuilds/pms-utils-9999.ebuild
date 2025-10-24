@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{10..12} pypy3 )
+PYTHON_COMPAT=( python3_{10..13} pypy3 )
 
 inherit meson python-r1
 
@@ -27,6 +27,7 @@ REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 DEPEND="
 python? (
 	${PYTHON_DEPS}
+	dev-python/nanobind
 	dev-python/pybind11[${PYTHON_USEDEP}]
 )
 dev-libs/boost

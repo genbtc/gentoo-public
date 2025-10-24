@@ -48,7 +48,7 @@ app-emulation/virtualbox-extpack-oracle PUEL PUEL-11 PUEL-12
 #==> vscode <==
 app-editors/vscode Microsoft-vscode
 
-#==> spotify ==<
+#==> spotify <==
 media-sound/spotify Spotify
 # required by dev-util/android-studio (argument)
 >=dev-util/android-studio-2023.1.1.22 android
@@ -58,3 +58,21 @@ media-sound/spotify Spotify
 >=dev-util/clion-2024.1-r1 IDEA IDEA_Academic IDEA_Classroom IDEA_OpenSource IDEA_Personal
 # required by app-benchmarks/iozone (argument)
 >=app-benchmarks/iozone-3.506 freedist
+
+#==> ffmpeg <==
+# required by media-video/mpv-0.39.0-r1::gentoo
+# required by @selected
+# required by @world (argument)
+#=media-video/ffmpeg-6.1.2-r1 all-rights-reserved
+#=media-video/ffmpeg-7.1.1 all-rights-reserved
+#::gentoo (masked by: all-rights-reserved license(s))
+#A copy of the 'all-rights-reserved' license is located at '/var/db/repos/gentoo/licenses/all-rights-reserved'.
+media-video/ffmpeg all-rights-reserved
+# required by media-libs/aubio-0.4.9-r5::gentoo[ffmpeg]
+# required by media-sound/ardour-8.11::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-video/ffmpeg-compat-6.1.2 all-rights-reserved
+
+# required by games-fps/alienarena (argument)
+>=games-fps/alienarena-7.66-r1 free-noncomm

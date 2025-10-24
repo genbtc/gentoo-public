@@ -1,0 +1,16 @@
+BDEPEND=i18n? ( virtual/libintl >=sys-devel/gettext-0.19.8 ) doc? ( app-doc/doxygen ) man? ( app-text/asciidoc ) virtual/pkgconfig app-arch/xz-utils dev-build/meson >=dev-build/meson-1.2.3 app-alternatives/ninja dev-build/meson-format-array
+DEFINED_PHASES=compile configure install postinst test
+DEPEND=dev-libs/openssl curl? ( >=net-misc/curl-7.55.0 ) gpg? ( >=app-crypt/gpgme-1.3.0 ) app-crypt/gnupg >=app-arch/libarchive-3.0.0 >=app-shells/bash-4.4 sys-libs/glibc sys-apps/coreutils sys-apps/gawk sys-apps/grep
+DESCRIPTION=Pacman - A library-based package manager with dependency support from Arch Linux
+EAPI=8
+HOMEPAGE=https://www.archlinux.org/pacman/
+INHERIT=meson
+IUSE=i18n +man doc +gpg +curl
+KEYWORDS=amd64
+LICENSE=GPL-2
+RDEPEND=dev-libs/openssl curl? ( >=net-misc/curl-7.55.0 ) gpg? ( >=app-crypt/gpgme-1.3.0 ) app-crypt/gnupg >=app-arch/libarchive-3.0.0 >=app-shells/bash-4.4
+REQUIRED_USE=gpg curl
+SLOT=0
+SRC_URI=https://gitlab.archlinux.org/pacman/pacman/-/releases/v6.1.0/downloads/pacman-6.1.0.tar.xz
+_eclasses_=toolchain-funcs	a0b29008c671a362b505f96fa80ce9c0	flag-o-matic	a7afe42e95fb46ce9691605acfb24672	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	python-utils-r1	0b620dd604ab8af0bc9cd1bcc66d4f7c	meson	99466844dd8d4fcfb07578a76f5a9922
+_md5_=fda375d634108974de961f65701d43ac

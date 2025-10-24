@@ -1,0 +1,11 @@
+#!/bin/bash
+# /etc/local.d/00-ima-evm-key.start - (c) 2022-2025  genr8eofl @ gentoo
+description="Reset the IMA policy - CLEAR it out"
+IMAstart() {
+	#echo -n "CLEAR" > /sys/kernel/security/integrity/ima/policy
+	#echo "IMA: CLEAR'ing Custom Policy..." > /dev/kmsg
+	#need two here cause first one fails, "The IMA Policy Update Failed!"
+	echo -n "CLEAR" > /sys/kernel/security/integrity/ima/policy ||
+	 echo "IMA: CLEAR'ed Custom Policy." > /dev/kmsg
+}
+IMAstart

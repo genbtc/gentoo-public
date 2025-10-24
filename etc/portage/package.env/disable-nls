@@ -174,3 +174,5 @@ lxde-base/lxappearance          disable-nls.conf
 >=media-gfx/eom-1.26.0-r1       disable-nls.conf
 >=lxde-base/lxterminal-0.4.0    disable-nls.conf
 >=x11-plugins/pidgin-otr-4.0.2-r3   disable-nls.conf
+>=media-sound/easytag-2.4.3-r6	disable-nls.conf
+>=app-editors/pluma-1.28.0	disable-nls.conf

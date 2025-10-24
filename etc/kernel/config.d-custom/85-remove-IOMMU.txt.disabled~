@@ -1,0 +1,30 @@
+CONFIG_IRQ_MSI_IOMMU=y												      <
+CONFIG_HAVE_INTEL_TXT=y												      <
+CONFIG_ACPI_VIOT=y												      <
+CONFIG_IOMMU_IOVA=y												      |	CONFIG_IOMMU_IOVA=m
+CONFIG_IOASID=y													      <
+CONFIG_IOMMU_SUPPORT=y												      |	# CONFIG_IOMMU_SUPPORT is not set
+														      |	# CONFIG_AMD_IOMMU_V2 is not set
+#														      <
+# Generic IOMMU Pagetable Support										      <
+#														      <
+CONFIG_IOMMU_IO_PGTABLE=y											      <
+# end of Generic IOMMU Pagetable Support									      <
+														      <
+# CONFIG_IOMMU_DEBUGFS is not set										      <
+# CONFIG_IOMMU_DEFAULT_DMA_STRICT is not set									      <
+CONFIG_IOMMU_DEFAULT_DMA_LAZY=y											      <
+# CONFIG_IOMMU_DEFAULT_PASSTHROUGH is not set									      <
+CONFIG_IOMMU_DMA=y												      <
+CONFIG_IOMMU_SVA=y												      <
+CONFIG_AMD_IOMMU=y												      <
+CONFIG_AMD_IOMMU_V2=m												      <
+CONFIG_DMAR_TABLE=y												      <
+CONFIG_INTEL_IOMMU=y												      <
+CONFIG_INTEL_IOMMU_SVM=y											      <
+# CONFIG_INTEL_IOMMU_DEFAULT_ON is not set									      <
+CONFIG_INTEL_IOMMU_FLOPPY_WA=y											      <
+CONFIG_INTEL_IOMMU_SCALABLE_MODE_DEFAULT_ON=y									      <
+CONFIG_IRQ_REMAP=y												      <
+CONFIG_VIRTIO_IOMMU=y												      <
+CONFIG_INTEL_TXT=y												      <

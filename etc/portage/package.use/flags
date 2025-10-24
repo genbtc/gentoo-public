@@ -7,7 +7,6 @@ app-editors/nano magic justify
 app-emulation/libvirt libssh lxc parted virtualbox
 app-emulation/qemu io-uring sdl-image spice ssh virgl vte usbredir virtfs qemu_softmmu_targets_ppc qemu_softmmu_targets_ppc64
 app-emulation/virtualbox -sdk -python
-app-misc/ddcutil drm
 app-misc/pax-utils python
 app-portage/conf-update colordiff
 dev-python/pillow webp
@@ -19,7 +18,6 @@ gnome-base/gvfs mtp -http
 media-gfx/fbida -X
 media-gfx/geeqie exif tiff xmp
 media-gfx/imagemagick webp
-media-gfx/nomacs -tiff -opencv
 media-libs/dav1d xxhash
 media-libs/libmypaint gegl
 media-libs/mesa d3d9
@@ -27,10 +25,12 @@ media-plugins/audacious-plugins cue lame scrobbler soxr speedpitch
 media-sound/audacity vamp id3tag sbsms
 media-sound/deadbeef oss lastfm notify
 media-sound/qmmp analyzer archive cover crossfade cue curl enca gnome ladspa lyrics notifier qsui qtmedia scrobbler shout soxr stereo tray
-media-video/ffmpeg gmp libaom libass libdrm libsoxr libxml2 openh264 openssl -samba xvid x265 rav1e vpx
+<media-video/ffmpeg-7 gmp libaom libass libdrm libsoxr libxml2 openh264 openssl -samba xvid x265 rav1e vpx
+>=media-video/ffmpeg-7 gmp libaom libass       libsoxr         openh264 openssl -samba xvid x265 rav1e vpx  #version 7 removed flags
 media-video/mediainfo wxwidgets
 media-video/mpv archive drm libmpv libcaca
 media-video/obs-studio vlc fdk pipewire
+media-video/pipewire -sound-server extra
 media-video/vlc aom dav1d faad libass matroska mpeg srt
 net-analyzer/wireshark brotli smi
 net-firewall/iptables conntrack netlink nftables pcap
@@ -41,12 +41,11 @@ net-misc/dhcpcd privsep
 net-misc/freerdp openh264
 net-misc/remmina ssh
 net-misc/rsync xxhash system-zlib
-net-misc/wget2 openssl
 net-wireless/gr-osmosdr rtlsdr
 sys-apps/file python
 sys-apps/firejail contrib apparmor
 sys-apps/util-linux cryptsetup magic python udev
-sys-auth/polkit duktape
+<sys-auth/polkit-126 duktape  #flag not found as of 5/8/2
 sys-block/fio io-uring aio
 sys-block/partimage -ssl -pam
 sys-devel/binutils pgo
@@ -89,7 +88,7 @@ sys-auth/pambase gnome-keyring
 media-gfx/gthumb tiff webp
 app-text/poppler boost png tiff
 sys-kernel/linux-firmware compress-zstd
-media-sound/musikcube -libopenmpt pipewire
+#media-sound/musikcube -libopenmpt pipewire
 dev-util/vulkan-tools cube
 media-gfx/fbida fbcon
 sys-process/atop -dist-kernel
@@ -110,13 +109,12 @@ x11-libs/xapp xfce
 dev-libs/opensc notify
 media-video/mpv -lua
 media-video/ffmpeg svt-av1
-media-gfx/blender -cycles -color-management -openimageio
+<media-gfx/blender-4.4 -cycles -color-management -openimageio
+>=media-gfx/blender-4.4 -cycles -color-management
 dev-util/diffoscope binutils file gpg hex iso tar
-sci-libs/hdf5 -threads
 dev-qt/qt-creator designer
 media-video/vlc -rdp
 media-sound/qtractor rubberband aubio ladspa dssi libsamplerate mad osc
-media-sound/snd gmp notcurses -portaudio -jack
 x11-libs/libvdpau dri
 dev-python/httpx cli
 net-p2p/transmission cli
@@ -128,9 +126,8 @@ app-shells/bash pgo -net
 dev-qt/qt5compat qml
 media-video/vlc bluray theora dts
 sci-libs/opencascade -ffmpeg
->=dev-lang/python-3.13.0 -pgo
+>=dev-lang/python-3.13.0 -pgo	#bugged temporarily
 sys-devel/gcc rust
-www-client/elinks javascript
 sci-libs/rocBLAS AMDGPU_TARGETS: gfx900
 dev-util/Tensile AMDGPU_TARGETS: gfx900
 media-libs/oidn  AMDGPU_TARGETS: gfx900
@@ -141,3 +138,23 @@ media-video/vlc libplacebo libcaca vpx
 www-client/elinks libcss
 dev-lang/rust:1.83.0 llvm_targets_RISCV
 app-admin/sysklogd logrotate
+net-misc/curl -http3 -quic -websockets -curl_quic_openssl
+sys-apps/memtest86+ iso64
+dev-util/gnome-builder -webkit -d-spy -sysprof
+sys-apps/usbutils python
+dev-libs/libfido2 smartcard
+x11-drivers/xf86-video-amdgpu udev
+x11-misc/synergy gui
+#===================May 02, 2025===================================#
+#media-video/ffmpeg-compat X alsa bzip2 dav1d drm fdk fontconfig gmp gnutls gpl jack jpeg2k lame libaom libass libsoxr lzma opengl openh264 openssl opus postproc rav1e sdl snappy svg svt-av1 theora truetype vaapi vdpau verify-sig vorbis vpx vulkan x264 x265 xml xvid zlib
+media-video/ffmpeg-compat fdk gmp lame libaom libsoxr openh264 openssl rav1e svt-av1 theora vpx x264 x265 xvid
+app-emulation/qemu -pin-upstream-blobs
+sys-auth/elogind debug
+dev-qt/qtdeclarative jit
+media-plugins/calf gui
+#media-video/mpv lua
+www-servers/lighttpd LUA_SINGLE_TARGET: -lua5-1 lua5-4
+media-video/ffmpeg vmaf zimg
+media-libs/opencv -opengl png python webp
+media-video/ffmpeg opencl
+gnome-base/gnome-keyring ssh-agent
