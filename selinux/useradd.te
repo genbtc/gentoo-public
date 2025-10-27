@@ -1,131 +1,22 @@
-policy_module(useradd, 1.04)
+policy_module(useradd, 1.0.6)
 gen_require(`
     type useradd_t;
     type ssh_home_t;
 ')
 
-#(Useradd - compacted rules to interfaces)
-seutil_libselinux_linked(useradd_t);
-seutil_get_semanage_read_lock(useradd_t);
-seutil_get_semanage_trans_lock(useradd_t);
-seutil_read_module_store(useradd_t);
-seutil_manage_file_contexts(useradd_t);
+#(Useradd - compacted rules to interfaces, see git history)
+seutil_libselinux_linked(useradd_t)
+seutil_get_semanage_read_lock(useradd_t)
+seutil_get_semanage_trans_lock(useradd_t)
+seutil_read_module_store(useradd_t)
+seutil_manage_file_contexts(useradd_t)
 
-#audit: type=1403 audit(1661961203.678:10623): auid=0 ses=1 lsm=selinux res=1
+#(Useradd_t create ~/.ssh dir)
 #audit: type=1400 audit(1661961203.708:10624): avc:  denied  { create } for  pid=1197 comm="useradd" name=".ssh" scontext=root:sysadm_r:useradd_t tcontext=staff_u:object_r:ssh_home_t tclass=dir permissive=1
 #audit: type=1400 audit(1661961203.708:10625): avc:  denied  { setattr } for  pid=1197 comm="useradd" name=".ssh" dev="nvme0n1p8" ino=1638403 scontext=root:sysadm_r:useradd_t tcontext=staff_u:object_r:ssh_home_t tclass=dir permissive=1
+allow useradd_t ssh_home_t:dir { create setattr };
 #audit: type=1400 audit(1661961203.708:10626): avc:  denied  { dac_read_search } for  pid=1197 comm="useradd" capability=2  scontext=root:sysadm_r:useradd_t tcontext=root:sysadm_r:useradd_t tclass=capability permissive=1
+dontaudit useradd_t self:capability { dac_read_search };
 #audit: type=1400 audit(1661961203.708:10627): avc:  denied  { read } for  pid=1197 comm="useradd" name=".ssh" dev="nvme0n1p8" ino=1638403 scontext=root:sysadm_r:useradd_t tcontext=staff_u:object_r:ssh_home_t tclass=dir permissive=1
 #audit: type=1400 audit(1661961203.708:10628): avc:  denied  { open } for  pid=1197 comm="useradd" path="/home/superviso9/.ssh" dev="nvme0n1p8" ino=1638403 scontext=root:sysadm_r:useradd_t tcontext=staff_u:object_r:ssh_home_t tclass=dir permissive=1
-#============= useradd_t ==============
-allow useradd_t self:capability { dac_read_search };
-allow useradd_t ssh_home_t:dir { create open read setattr };
-
-
-#---------------------------------------------------------------------------- NOTES ----------------------------------------------------------------------------------
-#audit: type=1400 audit(1660703027.868:757746): avc:  denied  { search } for  pid=29886 comm="useradd" name="selinux" dev="nvme0n1p8" ino=1844011 scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:semanage_store_t tclass=dir permissive=0
-#audit: type=1400 audit(1660704262.492:757770): avc:  denied  { read } for  pid=30588 comm="useradd" name="active" dev="nvme0n1p8" ino=1968194 scontext=root:sysadm_r:useradd_t tcontext=root:object_r:semanage_store_t tclass=dir permissive=0
-#allow useradd_t semanage_store_t:dir { search read write add_name };
-# #seutil_libselinux_linked(useradd_t);
-#audit: type=1400 audit(1660704323.301:757782): avc:  denied  { read } for  pid=30654 comm="useradd" name="semanage.read.LOCK" dev="nvme0n1p8" ino=1844426 scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:semanage_read_lock_t tclass=file permissive=0
-#allow useradd_t semanage_read_lock_t:file { read };
-# #seutil_get_semanage_read_lock(useradd_t);
-#audit: type=1400 audit(1660704474.548:757797): avc:  denied  { read } for  pid=30745 comm="useradd" name="semanage.trans.LOCK" dev="nvme0n1p8" ino=1844223 scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:semanage_trans_lock_t tclass=file permissive=0
-#audit: type=1400 audit(1660704474.548:757798): avc:  denied  { read write } for  pid=30745 comm="useradd" name="semanage.trans.LOCK" dev="nvme0n1p8" ino=1844223 scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:semanage_trans_lock_t tclass=file permissive=0
-#audit: type=1400 audit(1660704591.788:757811): avc:  denied  { open } for  pid=30826 comm="useradd" path="/var/lib/selinux/strict/semanage.trans.LOCK" dev="nvme0n1p8" ino=1844223 scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:semanage_trans_lock_t tclass=file permissive=0
-#audit: type=1400 audit(1660704677.004:757823): avc:  denied  { lock } for  pid=30897 comm="useradd" path="/var/lib/selinux/strict/semanage.trans.LOCK" dev="nvme0n1p8" ino=1844223 scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:semanage_trans_lock_t tclass=file permissive=0
-#allow useradd_t semanage_trans_lock_t:file { read write open lock };
-# #seutil_get_semanage_trans_lock(useradd_t);
-#audit: type=1400 audit(1660705213.559:757858): avc:  denied  { create } for  pid=31270 comm="useradd" name="semanage.trans.LOCK" scontext=root:sysadm_r:useradd_t tcontext=root:object_r:semanage_store_t tclass=file permissive=0
-#audit: type=1400 audit(1660704474.548:757796): avc:  denied  { write } for  pid=30745 comm="useradd" name="modules" dev="nvme0n1p8" ino=1970037 scontext=root:sysadm_r:useradd_t tcontext=root:object_r:semanage_store_t tclass=dir permissive=0
-#audit: type=1400 audit(1660705366.053:757872): avc:  denied  { create } for  pid=31411 comm="useradd" name="tmp" scontext=root:sysadm_r:useradd_t tcontext=root:object_r:semanage_store_t tclass=dir permissive=0
-#allow useradd_t semanage_store_t:file manage_file_perms;
-#allow useradd_t semanage_store_t:dir manage_dir_perms;
-# #seutil_read_module_store(useradd_t);
-#audit: type=1400 audit(1660705626.029:757890): avc:  denied  { write } for  pid=19629 comm="useradd" name="files" dev="nvme0n1p8" ino=393398 scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:file_context_t tclass=dir permissive=0
-#allow useradd_t file_context_t:dir write;
-#audit: type=1400 audit(1661961337.896:10631): avc:  denied  { add_name } for  pid=1293 comm="useradd" name="file_contexts.tmp" scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:file_context_t tclass=dir permissive=0
-# #seutil_manage_file_contexts(useradd_t);
-#
-
-#---------------------------------------------------------------------------- TEST NOTES ----------------------------------------------------------------------------------
-#SELinux policy not managed
-#Cannot init SELinux management
-#Segmentation fault (core dumped)
-#audit: type=1400 audit(1660703027.868:757746): avc:  denied  { search } for  pid=29886 comm="useradd" name="selinux" dev="nvme0n1p8" ino=1844011 scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:semanage_store_t tclass=dir permissive=0
-#audit: type=1400 audit(1660704262.492:757770): avc:  denied  { read } for  pid=30588 comm="useradd" name="active" dev="nvme0n1p8" ino=1968194 scontext=root:sysadm_r:useradd_t tcontext=root:object_r:semanage_store_t tclass=dir permissive=0
-#============= useradd_t ==============
-#allow useradd_t semanage_store_t:dir { search read };
-#
-#Cannot read SELinux policy store
-#Cannot init SELinux management
-#Segmentation fault (core dumped)
-#audit: type=1400 audit(1660704323.301:757782): avc:  denied  { read } for  pid=30654 comm="useradd" name="semanage.read.LOCK" dev="nvme0n1p8" ino=1844426 scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:semanage_read_lock_t tclass=file permissive=0
-#allow useradd_t semanage_read_lock_t:file { read };
-#
-#[libsemanage]: Could not open direct transaction lock at /var/lib/selinux/strict/semanage.trans.LOCK.
-#Cannot begin SELinux transaction
-#Cannot init SELinux management
-#Segmentation fault (core dumped)
-#audit: type=1400 audit(1660704474.548:757796): avc:  denied  { write } for  pid=30745 comm="useradd" name="modules" dev="nvme0n1p8" ino=1970037 scontext=root:sysadm_r:useradd_t tcontext=root:object_r:semanage_store_t tclass=dir permissive=0
-#audit: type=1400 audit(1660704474.548:757797): avc:  denied  { read } for  pid=30745 comm="useradd" name="semanage.trans.LOCK" dev="nvme0n1p8" ino=1844223 scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:semanage_trans_lock_t tclass=file permissive=0
-#audit: type=1400 audit(1660704474.548:757798): avc:  denied  { read write } for  pid=30745 comm="useradd" name="semanage.trans.LOCK" dev="nvme0n1p8" ino=1844223 scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:semanage_trans_lock_t tclass=file permissive=0
-#allow useradd_t semanage_store_t:dir { write };
-#allow useradd_t semanage_trans_lock_t:file { read write };
-#audit: type=1400 audit(1660704591.788:757811): avc:  denied  { open } for  pid=30826 comm="useradd" path="/var/lib/selinux/strict/semanage.trans.LOCK" dev="nvme0n1p8" ino=1844223 scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:semanage_trans_lock_t tclass=file permissive=0
-#audit: type=1400 audit(1660704677.004:757823): avc:  denied  { lock } for  pid=30897 comm="useradd" path="/var/lib/selinux/strict/semanage.trans.LOCK" dev="nvme0n1p8" ino=1844223 scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:semanage_trans_lock_t tclass=file permissive=0
-#allow useradd_t semanage_trans_lock_t:file { open lock };
-#
-#[libsemanage]: Could not copy files to sandbox /var/lib/selinux/strict/tmp.
-#Cannot begin SELinux transaction
-#Cannot init SELinux management
-#Segmentation fault (core dumped)
-#audit: type=1400 audit(1660704709.998:757835): avc:  denied  { add_name } for  pid=30956 comm="useradd" name="tmp" scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:semanage_store_t tclass=dir permissive=0
-#============= useradd_t ==============
-#allow useradd_t semanage_store_t:dir { add_name };
-#
-#audit: type=1400 audit(1660705213.559:757858): avc:  denied  { create } for  pid=31270 comm="useradd" name="semanage.trans.LOCK" scontext=root:sysadm_r:useradd_t tcontext=root:object_r:semanage_store_t tclass=file permissive=0
-##allow useradd_t semanage_store_t:file { create };
-#allow useradd_t semanage_store_t:file manage_file_perms;
-#
-#[libsemanage]: Could not copy files to sandbox /var/lib/selinux/strict/tmp.
-#Cannot begin SELinux transaction
-#Cannot init SELinux management
-#Segmentation fault (core dumped)
-#audit: type=1400 audit(1660705366.053:757872): avc:  denied  { create } for  pid=31411 comm="useradd" name="tmp" scontext=root:sysadm_r:useradd_t tcontext=root:object_r:semanage_store_t tclass=dir permissive=0
-##allow useradd_t semanage_store_t:dir { create };
-#allow useradd_t semanage_store_t:dir manage_dir_perms;
-#
-#Good.
-# useradd -Z works in Enforcing now. except:
-#[libsemanage]: Could not copy /var/lib/selinux/final/strict/contexts/files/file_contexts to /etc/selinux/strict/contexts/files/file_contexts.
-#[libsemanage]: Could not copy /var/lib/selinux/final/strict/contexts/files/file_contexts to /etc/selinux/strict/contexts/files/file_contexts.
-#Cannot commit SELinux transaction
-#useradd: warning: the user name superviso4 to staff_u SELinux user mapping failed.
-#audit: type=1400 audit(1660705626.029:757890): avc:  denied  { write } for  pid=19629 comm="useradd" name="files" dev="nvme0n1p8" ino=393398 scontext=root:sysadm_r:useradd_t tcontext=system_u:object_r:file_context_t tclass=dir permissive=0
-#============= useradd_t ==============
-#allow useradd_t file_context_t:dir write;
-#
-#(finally understood to capture this event maybe why passwd is not working)
-#audit: type=1107 audit(1661404490.309:660): pid=5048 uid=0 auid=0 ses=3 subj=root:staff_r:passwd_t msg='avc:  denied  { passwd } for  scontext=root:staff_r:staff_t tcontext=root:staff_r:staff_t tclass=passwd permissive=1
-#                exe="/bin/passwd" sauid=0 hostname=? addr=? terminal=pts/18'
-#
-#(superuser doas su)
-##audit: type=1107 audit(1661554628.279:1627): pid=30362 uid=0 auid=1001 ses=6 subj=superuser:staff_r:staff_su_t msg='avc:  denied  { rootok } for  scontext=superuser:staff_r:staff_t tcontext=superuser:staff_r:staff_t tclass=passwd permissive=1
-#
-#gen_require(`
-#    type semanage_store_t;
-#    type semanage_read_lock_t;
-#    type semanage_trans_lock_t;
-#    type file_context_t;
-#')
-#(Useradd - combined above rules, TODO: compact above.
-#allow useradd_t semanage_store_t:dir { search read };
-#allow useradd_t semanage_read_lock_t:file { read };
-#allow useradd_t semanage_store_t:dir { write };
-#allow useradd_t semanage_trans_lock_t:file { read write };
-#allow useradd_t semanage_trans_lock_t:file { open lock };
-#allow useradd_t semanage_store_t:dir { add_name };
-#allow useradd_t semanage_store_t:file manage_file_perms;
-#allow useradd_t semanage_store_t:dir manage_dir_perms;
-#allow useradd_t file_context_t:dir write;
+dontaudit useradd_t ssh_home_t:dir { open read };

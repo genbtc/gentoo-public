@@ -1,4 +1,4 @@
-## <summary>policy for xfce4_interfaces v1.2.7 </summary>
+## <summary>policy for xfce4_interfaces v1.4.1 </summary>
 
 ########################################
 # Declarations
@@ -13,28 +13,47 @@ interface(`xfce4_template_init',`
 	optional_policy(`
 		wm_application_domain($1_t, $1_exec_t)
 	')
+
+	domain_base_type($1_t)
+	files_type($1_t)
+')
+#user domain^ vs raw system:
+#(only xfce4-task-manager.te & gnome_sysmon.te use this so far)
+interface(`xfce4_template_init_raw',`
+
+	type $1_t;
+	type $1_exec_t;
+	attribute_role $1_roles;
+	role $1_roles types $1_t;
+
+	application_domain($1_t, $1_exec_t)
+	optional_policy(`
+		wm_application_domain($1_t, $1_exec_t)
+	')
+
+	domain_base_type($1_t)
+	files_type($1_t)
 ')
 
 ########################################
 # xfce4_template local policy
 interface(`xfce4_template_load',`
 	gen_require(`
-        type user_t;
-        role user_r;
+		type user_t;
+		role user_r;
 	')
 	#Important, sets user exec, entrypoint & transition
 	$1_run(user_t, user_r)
-	#self Re-exec:
+	#self Re-exec: can_exec()
 	#audit: type=1400 audit(1663202392.974:119236): avc:  denied  { execute_no_trans } for  pid=25475 comm="sh" path="/usr/bin/xfce4-power-manager" dev="nvme0n1p8" ino=575415 scontext=user_u:user_r:$1_t tcontext=system_u:object_r:$1_exec_t tclass=file permissive=0
 	allow $1_t $1_exec_t:file { execute_no_trans };
-    #allow user basic access
-    allow user_t $1_t:dir { search_dir_perms };
-    allow user_t $1_t:file { read open getattr };
-    allow user_t $1_t:process { getattr signal };
-    #Self
-    allow $1_t self:process { signal_perms getsched setsched };
-	#allow $1_t self:shm { create_shm_perms };
-	#allow $1_t self:sem { create_sem_perms };
+	#allow user basic access
+	allow user_t $1_t:dir { search_dir_perms };
+	allow user_t $1_t:file { getattr read open };
+	allow user_t $1_t:lnk_file { getattr read };
+	allow user_t $1_t:process { getattr signal };
+	#Self
+	allow $1_t self:process { signal_perms getsched setsched };
 ')
 
 #########################################
@@ -44,16 +63,17 @@ interface(`xfce4_template_interfaces',`
 	seutil_libselinux_linked($1_t)
 	selinux_get_all_booleans($1_t)
 
-    corecmd_search_bin($1_t)
+	corecmd_search_bin($1_t)
 
-    dev_read_urand($1_t)
-    dev_read_rand($1_t)
-    dev_read_sysfs($1_t)
-    kernel_read_system_state($1_t)
+	dev_read_urand($1_t)
+	dev_read_rand($1_t)
+	dev_read_sysfs($1_t)
+	kernel_read_system_state($1_t) #proc_t
 
 	files_read_etc_files($1_t)
 	files_read_usr_files($1_t)
 	files_map_usr_files($1_t)
+
 	files_search_home($1_t)
 
 	fs_getattr_all_fs($1_t)
@@ -67,90 +87,122 @@ interface(`xfce4_template_interfaces',`
 
 	userdom_list_user_home_content($1_t)
 	userdom_search_user_home_dirs($1_t)
-	userdom_manage_user_runtime_dirs($1_t)
 	userdom_read_user_home_content_symlinks($1_t)
+	userdom_user_home_dir_filetrans_user_home_content($1_t, { dir file })
 
+	userdom_list_user_tmp($1_t)
+	userdom_user_runtime_filetrans_user_tmp($1_t, { dir file })
+	userdom_manage_user_runtime_dirs($1_t)
 	userdom_search_user_runtime_root($1_t)
 	userdom_search_user_runtime($1_t)
+	userdom_list_all_user_runtime($1_t)
 
 	xdg_read_data_files($1_t)
 	xdg_search_cache_dirs($1_t)
 	xdg_search_config_dirs($1_t)
 
-	xserver_read_user_xauth($1_t)
-	xserver_read_xkb_libs($1_t)
-	xserver_stream_connect($1_t)
-	xserver_use_user_fonts($1_t)
-	allow xserver_t $1_t:file { open read };
-	allow xserver_t $1_t:shm { associate getattr read unix_read unix_write write setattr destroy };
+	xfce4_template_xorg($1) #requires tmpfs
 
 	gen_require(`
 		type	gnome_xdg_config_t;
 	')
 	allow $1_t gnome_xdg_config_t:dir { list_dir_perms };
 	allow $1_t gnome_xdg_config_t:file { read_file_perms map };
+
+	#(mounts)
+	files_search_mnt($1_t)
+	mount_list_runtime($1_t)
+	mount_read_runtime_files($1_t)
 ')
 
-#user session dbus
+#(session dbus - user)
 interface(`xfce4_template_dbus',`
 	gen_require(`
-		type	user_runtime_t;
 		type	user_t;
-		type	session_dbusd_tmp_t;
+		type	user_runtime_t;
 	')
 
-    #selinux version of secure_getenv cant read DBUS_SESSION_BUS_SOCKET environment var or whatever, fall back to regular insecure getenv
-    allow user_t $1_t:process { noatsecure };
+	#selinux version of secure_getenv cant read DBUS_SESSION_BUS_SOCKET environment var,
+	# fall back to noatsecure (regular insecure getenv) to populate variable correctly
+	allow user_t $1_t:process { noatsecure };
 
-    #system dbus:
+	#get system dbus:
 	dbus_list_system_bus_runtime($1_t)
 
 	#user session dbus:
-	dbus_connect_all_session_bus($1_t)
+	dbus_connect_all_session_bus($1_t)  #acquire
 	dbus_all_session_bus_client($1_t)
-	dbus_spec_session_bus_client(user,$1_t)
+	dbus_spec_session_bus_client(user, $1_t)
 
-	#Sep 15 03:52:52 genr8too dbus-daemon[14398]: avc:  denied  { send_msg } for msgtype=method_return dest=:1.245 spid=14421 tpid=26414 scontext=user_u:user_r:user_t tcontext=user_u:user_r:$1_t tclass=dbus permissive=1
-	allow user_t $1_t:dbus { send_msg };
-	#Sep 15 03:52:52 genr8too dbus-daemon[14398]: avc:  denied  { send_msg } for msgtype=method_call interface=org.freedesktop.DBus.Properties member=GetAll dest=:1.1 spid=26414 tpid=14421 scontext=user_u:user_r:$1_t tcontext=user_u:user_r:user_t tclass=dbus permissive=1
+	#user_tmp user_runtime for DConf
+	userdom_list_user_tmp($1_t)
+	allow $1_t user_runtime_t:file { manage_file_perms map };
+	filetrans_pattern($1_t, user_tmp_t, user_runtime_t, dir, "dconf")
+	filetrans_pattern($1_t, user_tmp_t, user_runtime_t, file, "user")
+
+	# /tmp/dbus-pZKGw2QdAU socket:
+	dbus_rw_session_tmp_sockets($1_t)
+')
+
+#(Two way User<->dbus communication)
+interface(`xfce4_template_dbus_user',`
+	gen_require(`
+		type    user_t;
+	')
 	allow $1_t user_t:dbus { send_msg };
-	allow $1_t user_runtime_t:file { create map open read write getattr };
-	# /tmp/dbus-pZKGw2QdAU ( gconf file full of )
-	allow $1_t session_dbusd_tmp_t:sock_file { write };
+	allow user_t $1_t:dbus { send_msg };
 ')
 
 #(system dbus)
 interface(`xfce4_template_dbus_system',`
+	dbus_connect_system_bus($1_t)
+	dbus_send_system_bus($1_t)
 	dbus_system_bus_client($1_t)
-	dbus_system_bus_connect($1_t)
 ')
 
 #(gconf dconf xfconfd)
 interface(`xfce4_template_gconf',`
 	gen_require(`
-		type	gconfd_t;
-        type    gconf_tmp_t;
-        type    user_tmp_t;
-    ')
+		type    gconf_tmp_t;
+		type    user_tmp_t;
+		type	user_runtime_t;
+	')
 
 	gnome_stream_connect_gconf($1_t)
 	gnome_dbus_chat_gconfd($1_t)
+
 	allow $1_t gconf_tmp_t:dir { manage_dir_perms };
-	allow $1_t gconf_tmp_t:file { manage_file_perms map append };
-
-    filetrans_pattern(gconfd_t, user_tmp_t, user_runtime_t, dir, "dconf")
-    filetrans_pattern(gconfd_t, user_tmp_t, user_runtime_t, file, "user")
-
+	allow $1_t gconf_tmp_t:file { manage_file_perms map };
+	filetrans_pattern($1_t, gconf_tmp_t, user_runtime_t, dir, "dconf")
+#	filetrans_pattern($1_t, user_tmp_t, user_runtime_t, file, "user")
 ')
 
-#psensor_template interfaces2()
+#(user_runtime_t)
 interface(`xfce4_template_user_tmp_runtime',`
-    gen_require(`
-        type    user_tmp_t;
-        type    user_runtime_t;
-    ')
+	gen_require(`
+		type    user_tmp_t;
+		type    user_runtime_t;
+	')
 
-    allow $1_t user_tmp_t:dir manage_dir_perms;
-    allow $1_t user_tmp_t:file { manage_file_perms map };
-    allow $1_t user_runtime_t:file { create map open read write };
+	userdom_list_user_tmp($1_t)
+	allow $1_t user_runtime_t:file { manage_file_perms map };
+	filetrans_pattern($1_t, user_tmp_t, user_runtime_t, dir, "dconf")
+	filetrans_pattern($1_t, user_tmp_t, user_runtime_t, file, "user")
+')
+
+#(Xorg - important)
+interface(`xfce4_template_xorg',`
+	type $1_tmpfs_t;
+	userdom_user_tmpfs_file($1_tmpfs_t)
+	xserver_user_x_domain_template($1, $1_t, $1_tmpfs_t)    #xfce-settings has no tmp
+	xserver_manage_mesa_shader_cache($1_t)
+	tunable_policy(`xserver_allow_dri',`
+		dev_rw_dri($1_t)
+	')
+	xserver_read_user_xauth($1_t)
+	xserver_stream_connect($1_t)
+	xserver_use_user_fonts($1_t)
+	allow xserver_t $1_t:fd { use };
+	allow xserver_t $1_t:file { open read };
+	allow xserver_t $1_t:shm { associate getattr read unix_read unix_write write setattr destroy };
 ')

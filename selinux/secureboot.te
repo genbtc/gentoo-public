@@ -1,6 +1,6 @@
 #Secureboot - SBCTL - meant for /var/lib/sbctl/keys and /etc/keys/secureboot and /usr/bin/sbctl
 # carefully added by genr8eofl, March 21 2024 & December 20 2024 + 2025 - LICENSE AGPL3
-policy_module(secureboot, 1.2.2)
+policy_module(secureboot, 1.2.3)
 
 type secureboot_t;
 type secureboot_keys_t;
@@ -126,7 +126,7 @@ files_search_var_lib(secureboot_t);
 #dev_rw_tpm(secureboot_t)
 dontaudit secureboot_t tpm_device_t:chr_file { getattr read write };
 
-#(dont warn everytime something cant access, its supposed to be like this)
+#(DONTAUDITS - dont warn everytime something cant access, its supposed to be like this)
 #audit: type=1400 audit(1703042168.455:264): avc:  denied  { getattr } for  pid=8202 comm="find" path="/etc/keys/secureboot" dev="nvme0n1p6" ino=442404 scontext=root:sysadm_r:sysadm_t tcontext=system_u:object_r:secureboot_keys_t tclass=dir permissive=0
 #audit: type=1400 audit(1703042168.862:265): avc:  denied  { getattr } for  pid=8202 comm="find" path="/usr/share/secureboot/keys" dev="nvme0n1p6" ino=1032242 scontext=root:sysadm_r:sysadm_t tcontext=system_u:object_r:secureboot_keys_t tclass=dir permissive=0
 #dontaudit sysadm_t secureboot_keys_t:dir { getattr };
@@ -134,3 +134,6 @@ dontaudit secureboot_t tpm_device_t:chr_file { getattr read write };
 #audit: type=1400 audit(1738972971.297:1157): avc:  denied  { read } for  pid=18329 comm="broot" name="secureboot" dev="nvme0n1p6" ino=442404 scontext=superuser:sysadm_r:sysadm_t tcontext=system_u:object_r:secureboot_keys_t tclass=dir permissive=0
 dontaudit domain secureboot_keys_t:dir { search read };
 #TODO: let selective programs read? new Bool?
+
+#audit: type=1400 audit(1759170849.145:5408): avc:  denied  { getattr } for  pid=8972 comm="find" path="/etc/keys/secureboot" dev="nvme0n1p6" ino=442404 scontext=superuser:sysadm_r:sysadm_t tcontext=system_u:object_r:secureboot_keys_t tclass=dir permissive=0
+dontaudit sysadm_t secureboot_keys_t:dir { getattr };

@@ -1,4 +1,4 @@
-policy_module(hexchat, 1.1.1)
+policy_module(hexchat, 1.1.4)
 ########################################
 # Declarations
 
@@ -37,8 +37,7 @@ hexchat_run(user_t, user_r)
 
 allow user_t hexchat_t:dir { search_dir_perms };
 allow user_t hexchat_t:file { read open getattr };
-allow user_t hexchat_t:process { getattr };
-allow user_t hexchat_t:process { signal };
+allow user_t hexchat_t:process { getattr signal };
 
 ########################################
 # hexchat Interfaces()
@@ -53,6 +52,9 @@ dev_read_urand(hexchat_t)
 kernel_read_system_state(hexchat_t)
 
 sysnet_mmap_read_config(hexchat_t)
+
+#audit: type=1400 audit(1746307414.699:4): avc:  denied  { read } for  pid=3958 comm="hexchat" name="overcommit_memory" dev="proc" ino=30886 scontext=user_u:user_r:hexchat_t tcontext=system_u:object_r:sysctl_vm_overcommit_t tclass=file permissive=0
+kernel_read_vm_overcommit_sysctl(hexchat_t)
 
 files_read_etc_files(hexchat_t)
 files_read_usr_files(hexchat_t)
@@ -71,8 +73,11 @@ xserver_user_x_domain_template(hexchat, hexchat_t, hexchat_tmpfs_t)
 #------------(Primary IRC Network Connection)-----------------#
 #audit: type=1400 audit(1644708425.114:305210): avc:  denied  { name_connect } for  pid=17091 comm="hexchat" dest=6697 scontext=user_u:user_r:hexchat_t tcontext=system_u:object_r:ircd_port_t tclass=tcp_socket permissive=0
 corenet_tcp_connect_ircd_port(hexchat_t)
+#(ZNC Bouncer)
+#audit: type=1400 audit(1759321114.727:13973): avc:  denied  { name_connect } for  pid=8005 comm="hexchat" dest=6699 scontext=user_u:user_r:hexchat_t tcontext=system_u:object_r:znc_port_t tclass=tcp_socket permissive=0
+allow hexchat_t znc_port_t:tcp_socket { name_connect };
 
-#Custom Config Type
+#Self-XDG Custom Config Type
 type hexchat_xdg_config_t;
 xdg_config_content(hexchat_xdg_config_t)
 #HOME_DIR/\.config/hexchat(/.*)?		gen_context(system_u:object_r:hexchat_xdg_config_t,s0)
@@ -88,20 +93,18 @@ xdg_read_config_files(hexchat_t)
 xdg_read_data_files(hexchat_t)
 #audit: type=1400 audit(1644711218.218:310079): avc:  denied  { watch } for  pid=18563 comm="gmain" path="/home/genr8eofl/.local/share" dev="nvme0n1p8" ino=1597849 scontext=user_u:user_r:hexchat_t tcontext=user_u:object_r:xdg_data_t tclass=dir permissive=0
 #audit: type=1400 audit(1644876760.357:12107074): avc:  denied  { watch } for  pid=3772 comm="gmain" path="/home/genr8eofl/.config" dev="nvme0n1p8" ino=1876660 scontext=user_u:user_r:hexchat_t tcontext=user_u:object_r:xdg_config_t tclass=dir permissive=0
-#allow hexchat_t xdg_config_t:dir { watch };
-#allow hexchat_t xdg_data_t:dir { watch };
 xdg_watch_data_dirs(hexchat_t)
 xdg_watch_config_dirs(hexchat_t)
 
 #audit: type=1400 audit(1662491512.612:1584): avc:  denied  { search } for  pid=11085 comm="hexchat" name=".icons" dev="nvme0n1p8" ino=2007337 scontext=user_u:user_r:hexchat_t tcontext=user_u:object_r:user_home_t tclass=dir permissive=0
-userdom_search_user_home_content(hexchat_t)
+#userdom_search_user_home_content(hexchat_t)
 #audit: type=1400 audit(1662853275.113:718): avc:  denied  { read } for  pid=3544 comm="hexchat" name=".icons" dev="nvme0n1p8" ino=2007337 scontext=user_u:user_r:hexchat_t tcontext=user_u:object_r:user_home_t tclass=dir permissive=0
 userdom_list_user_home_content(hexchat_t)
 
 #audit: type=1400 audit(1662491512.694:1585): avc:  denied  { search } for  pid=11085 comm="hexchat" name="user" dev="tmpfs" ino=1240 scontext=user_u:user_r:hexchat_t tcontext=system_u:object_r:user_runtime_root_t tclass=dir permissive=0
 #audit: type=1400 audit(1662559714.078:702): avc:  denied  { search } for  pid=3584 comm="hexchat" name="user" dev="tmpfs" ino=1243 scontext=user_u:user_r:hexchat_t tcontext=system_u:object_r:user_runtime_root_t tclass=dir permissive=0
 #audit: type=1400 audit(1662853002.810:678): avc:  denied  { search } for  pid=3544 comm="hexchat" name="user" dev="tmpfs" ino=1241 scontext=user_u:user_r:hexchat_t tcontext=system_u:object_r:user_runtime_root_t tclass=dir permissive=0
-userdom_search_user_runtime_root(hexchat_t)
+#userdom_search_user_runtime_root(hexchat_t)
 #audit: type=1400 audit(1663273843.549:121999): avc:  denied  { search } for  pid=18096 comm="hexchat" name="/" dev="tmpfs" ino=1 scontext=user_u:user_r:hexchat_t tcontext=user_u:object_r:user_runtime_t tclass=dir permissive=0
 userdom_search_user_runtime(hexchat_t)
 
@@ -113,6 +116,7 @@ gen_require(`
     type kernel_t;
     type bin_t;
     type root_t;
+    type znc_port_t;
 ')
 #audit: type=1400 audit(1646498962.415:2336): avc:  denied  { module_request } for  pid=28434 comm="hexchat" kmod="net-pf-10" scontext=user_u:user_r:hexchat_t tcontext=system_u:system_r:kernel_t tclass=system permissive=0
 dontaudit hexchat_t kernel_t:system { module_request };
@@ -125,5 +129,8 @@ allow hexchat_t root_t:dir { watch };  #(allow is easier to despam)
 
 #audit: type=1400 audit(1703826977.179:476353): avc:  denied  { execute } for  pid=3273 comm="hexchat" name="firefox" dev="nvme0n1p6" ino=524983 scontext=user_u:user_r:hexchat_t tcontext=system_u:object_r:bin_t tclass=file permissive=0
 dontaudit hexchat_t bin_t:file { execute };
+
+#audit: type=1400 audit(1759343444.693:14068): avc:  denied  { map } for  pid=3736 comm="hexchat" path="/usr/share/icons/hicolor/icon-theme.cache" dev="nvme0n1p6" ino=565097 scontext=user_u:user_r:hexchat_t tcontext=superuser:object_r:usr_t tclass=file permissive=0
+dontaudit hexchat_t usr_t:file { map };
 
 #--------------------------------------------------------------------------- COMMENTED OUT ---------------------------------------------------------------------------------------------------------------------------------#

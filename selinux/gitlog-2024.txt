@@ -1,0 +1,4865 @@
+commit ac3d59901f1feceb2ecc9dd902f16044cb554283
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 12 07:17:10 2024 -0500
+
+    2024-11-12_07-17-10 thunar.te
+
+commit 1ccd3fe14fd269db32acf71d7f33862106c8ea12
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 11 15:07:38 2024 -0500
+
+    2024-11-11_15-07-38 vlc.te
+
+commit 790aafc86900a4f6128f290772b6e01dda5e5b0e
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 11 15:06:34 2024 -0500
+
+    2024-11-11_15-06-34 vlc.te
+
+commit 10d12e83a74a56c7e93f6853adf55f83cf266428
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 11 12:50:03 2024 -0500
+
+    2024-11-11_12-50-03 thunar.te
+
+commit d05430068f8aead4267e188bbc8e94124700141b
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 11 00:31:57 2024 -0500
+
+    2024-11-11_00-31-57 gnome_sysmon.te
+
+commit 6f0be207096b7b6382fda9979e20b76987bc19e2
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Nov 2 12:00:39 2024 -0400
+
+    2024-11-02_12-00-39 genr8policy.te
+
+commit 72e69e7b7701e455372c1f3a95bf26de35c9e61d
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Nov 2 11:57:38 2024 -0400
+
+    2024-11-02_11-57-38 genr8policy.te
+
+commit ecf36aae189dd1283e073df16136cfb1723f86be
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Oct 24 11:37:18 2024 -0400
+
+    2024-10-24_11-37-18 mozilla-gen.te
+
+commit c7179b12dbfbd7bda8818b5ecda67f33a9424f63
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Oct 24 11:35:47 2024 -0400
+
+    2024-10-24_11-35-47 xed.te
+
+commit d77f290be1c638f245ce7165339cadf5c8e43a1d
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 11 22:39:35 2024 -0400
+
+    2024-10-11_22-39-35 mullvad-gui.te
+
+commit 8bbc81882cf0cead1ca7855a87c6be4f2eb0be5c
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 11 22:27:15 2024 -0400
+
+    2024-10-11_22-27-15 mullvad-gui.te
+
+commit 94035121066903b8ee094afad9fac50af283e4c6
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 11 22:26:09 2024 -0400
+
+    2024-10-11_22-26-09 mullvad-gui.te
+
+commit cd64840b16fc4d24efe6a0a4c5df34f386b8e59c
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Oct 5 19:54:30 2024 -0400
+
+    2024-10-05_19-54-30 portage-gen.te
+
+commit 81c1567fd49a63dc3ca4f5842bd0b1781f687816
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Sep 25 11:24:57 2024 -0400
+
+    2024-09-25_11-24-57 genr8policy.te
+
+commit 708913e068c6ee63b3351fa38b12303522e7a4e2
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Sep 20 23:15:29 2024 -0400
+
+    2024-09-20_23-15-29 vlc.te
+
+commit 2247202ccb1705529a838ec0fba01d2ee08b7333
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Sep 17 17:14:36 2024 -0400
+
+    2024-09-17_17-14-36 genr8policy.te
+
+commit 406c2b9fcd6728c19748b5a6a0954acb86b1e60e
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Sep 16 23:22:17 2024 -0400
+
+    2024-09-16_23-22-17 mullvad-gui.te
+
+commit 89c9d98d6a4f8d3d03375642f477bf612e07217d
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Sep 16 23:21:24 2024 -0400
+
+    2024-09-16_23-21-24 mullvad-gui.te
+
+commit 56de4053ac0c6772e6318a71cc6b85cc248d68e1
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Sep 16 18:15:47 2024 -0400
+
+    2024-09-16_18-15-47 vscode.te
+
+commit 11f416749acea4561990fe2c870a9ea5cdee4f51
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Sep 12 23:18:21 2024 -0400
+
+    2024-09-12_23-18-21 virtualbox.te
+
+commit c76fc1a81e5e1f6f211f5864a4e5a413e3a36556
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Sep 12 00:11:55 2024 -0400
+
+    2024-09-12_00-11-55 vscode.te
+
+commit 5edc5c6b07957f07f8d4ba3ed47f206947c1b8ce
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Sep 9 12:56:15 2024 -0400
+
+    2024-09-09_12-56-15 portage-gen.te
+
+commit ab5877c8d7414b1d3bb80a195eb2f35ab69776ff
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Sep 3 12:51:56 2024 -0400
+
+    2024-09-03_12-51-56 udisks.te
+
+commit 220cfe798083b5bde964f0cdd229a66b8dfa7eeb
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Sep 3 12:45:57 2024 -0400
+
+    2024-09-03_12-45-57 udisks.te
+
+commit 89455da6fd69a0a86b02e54e21ecd6159fa57b79
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Sep 3 12:38:01 2024 -0400
+
+    2024-09-03_12-38-01 udisks.te
+
+commit e89a884bf1bf045b604270159ce7f65c03df91b4
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Sep 3 11:17:54 2024 -0400
+
+    2024-09-03_11-17-54 udisks.te
+
+commit aacb3b8c24d4c5561280aa090ae05d4532362dc6
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Sep 3 11:16:33 2024 -0400
+
+    2024-09-03_11-16-33 udisks.te
+
+commit 9d62d76e21157482e7d02e6efeec87a209c554eb
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Aug 22 19:48:38 2024 -0400
+
+    2024-08-22_19-48-38 deadbeef.te
+
+commit f152fc16f8041dc1bb48d47a9272d501bdc57363
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Aug 22 19:48:14 2024 -0400
+
+    2024-08-22_19-48-14 deadbeef.te
+
+commit dc653f3213177e9c12b26567d678ee80f65a35af
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Aug 22 19:44:25 2024 -0400
+
+    2024-08-22_19-44-25 deadbeef.te
+
+commit 3404d92e0370befa0b00f195a77b81d013656129
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Aug 22 19:41:33 2024 -0400
+
+    2024-08-22_19-41-33 deadbeef.te
+
+commit 4c9094b064160ab7c0244e2d0ef78d583ee0c5c2
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Aug 22 19:40:37 2024 -0400
+
+    2024-08-22_19-40-37 deadbeef.te
+
+commit 3e12e49fa498afd0af483a13403df150ecd9f251
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Aug 22 19:38:01 2024 -0400
+
+    2024-08-22_19-38-01 deadbeef.te
+
+commit b2961c6a5f0d4c91127e910c350d1ace3ef80503
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Aug 22 15:58:14 2024 -0400
+
+    2024-08-22_15-58-14 thunar.te
+
+commit 3d02e9e573ac8f85891142d871f7edf8b104370b
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Aug 8 01:26:48 2024 -0400
+
+    2024-08-08_01-26-48 mullvad-gui.te
+
+commit f30b08eb5295dd7db7e8169b6a9af1fe96ab83d8
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jul 27 11:03:37 2024 -0400
+
+    2024-07-27_11-03-37 virtmanager-gen.te
+
+commit 41fa94c886752b8fb716e77e799bb5a85d0f9581
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jul 20 12:52:31 2024 -0400
+
+    2024-07-20_12-52-31 udisks.te
+
+commit 8107b7ffc218a01c7d4e665849e449d8ac942950
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jul 14 13:10:36 2024 -0400
+
+    2024-07-14_13-10-36 genr8policy.te
+
+commit 3a20d5beaf92ec848b15f96f7639aa0ffceaf522
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jul 14 12:45:13 2024 -0400
+
+    2024-07-14_12-45-13 genr8policy.te
+
+commit 556e89328b175db4ba18f3ab7b020ba425912781
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jul 14 12:41:39 2024 -0400
+
+    2024-07-14_12-41-39 genr8policy.te
+
+commit a16b83784fc44c8a8e165307b9e8ddb3cbf8dbe0
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jul 14 12:38:54 2024 -0400
+
+    2024-07-14_12-38-54 genr8policy.te
+
+commit 43eb5afda67ab211a52e2ca469606d247ef758ca
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jul 14 12:31:12 2024 -0400
+
+    2024-07-14_12-31-12 genr8policy.te
+
+commit 175b2ad6372a18850eb78742009408ed566bf6fa
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jul 14 11:19:43 2024 -0400
+
+    2024-07-14_11-19-43 genr8policy.te
+
+commit 932bba669c88df757dff07f9d10d6cca22bb4427
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jul 13 15:45:33 2024 -0400
+
+    2024-07-13_15-45-33 newports-gen.te
+
+commit a84205857b74db23d12c712413b5b465daf13d1e
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jul 10 12:47:32 2024 -0400
+
+    2024-07-10_12-47-32 seahorse.te
+
+commit f55a4e4681adce0fe622ef30998f32aae19992df
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jul 10 12:37:29 2024 -0400
+
+    2024-07-10_12-37-29 newports-gen.te
+
+commit 263bf18a1a8213476984b69094c7509a0b7aa879
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jul 6 12:55:43 2024 -0400
+
+    2024-07-06_12-55-43 mozilla-gen.te
+
+commit 4c8ba12e95539eab92a4832e7df8c5b9f1d6be7b
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jul 6 12:54:27 2024 -0400
+
+    2024-07-06_12-54-27 mozilla-gen.te
+
+commit 7381623e1f406277b31524272f1c632e4a2a23ac
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jul 6 12:35:06 2024 -0400
+
+    2024-07-06_12-35-06 genr8policy.te
+
+commit fab5766a629926af7293a211620be2d5873bbc9b
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Jul 5 10:58:04 2024 -0400
+
+    2024-07-05_10-58-04 genr8policy.te
+
+commit 1c272c4ae5909453880baf3e554f09dfc6d4124e
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jul 3 12:30:41 2024 -0400
+
+    2024-07-03_12-30-41 genr8policy.te
+
+commit 891f957f0f82f4433faae8d1c425ac39b40c490d
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jul 3 12:27:34 2024 -0400
+
+    2024-07-03_12-27-34 genr8policy.te
+
+commit 8281392daa2a51f5f3ed4844c0a78854269c5890
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jul 3 12:25:22 2024 -0400
+
+    2024-07-03_12-25-22 newports-gen.te
+
+commit c07f3d66e00711890e89afe682a4a6b74121eb64
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jul 3 12:23:58 2024 -0400
+
+    2024-07-03_12-23-58 newports-gen.te
+
+commit 957e8db9c2d3818ea84857001360a8f1a308048c
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jul 2 01:01:31 2024 -0400
+
+    2024-07-02_01-01-31 genr8policy.te
+
+commit 805a707b6ec78145dbaed519c440f80ba6469f2a
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jun 30 23:00:19 2024 -0400
+
+    2024-06-30_23-00-19 newports-gen.te
+
+commit 357e9a17090cec7138622c1e304fdb70816b5c38
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Jun 28 10:22:00 2024 -0400
+
+    2024-06-28_10-22-00 mozilla-gen.te
+
+commit 7c5de861b0af6fba78a0c1ff640d7dbde7f7941a
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jun 27 14:14:08 2024 -0400
+
+    2024-06-27_14-14-08 thunar.te
+
+commit af20f76f83861405b8c5b8f41a3e7cf37481b636
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Jun 21 16:46:05 2024 -0400
+
+    2024-06-21_16-46-05 xfce4-power-manager.te
+
+commit e197a6e3b7d64b9f24b819343d85a9d75902b615
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jun 20 13:07:18 2024 -0400
+
+    2024-06-20_13-07-18 genr8policy.te
+
+commit 0920a31e16a62f24527848aeb7f40ae3e2ab50a5
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jun 19 08:09:09 2024 -0400
+
+    2024-06-19_08-09-09 newports-gen.te
+
+commit 6f0b46daaf681bb76ea09b069a83830ae3c9b9e1
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jun 18 20:05:19 2024 -0400
+
+    2024-06-18_20-05-19 newports-gen.te
+
+commit 1294b7cf7aae8b7942ddad18eef29372bd27763c
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jun 18 12:03:02 2024 -0400
+
+    2024-06-18_12-03-02 gnome_sysmon.te
+
+commit 530f5821ee774dbafb817eb36344a520dc149142
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jun 18 12:01:36 2024 -0400
+
+    2024-06-18_12-01-36 thunar.te
+
+commit 2799e0f8a04d4207aceed0fe13c39853a2434e2a
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jun 18 11:50:22 2024 -0400
+
+    2024-06-18_11-50-22 genr8policy.te
+
+commit 1fa1adc50a08184e9d026bb0d84c70ca08ab039f
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jun 18 11:49:00 2024 -0400
+
+    2024-06-18_11-49-00 genr8policy.te
+
+commit b89faad5b939586f24351d51c345b0962b3fe2d8
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jun 18 11:47:34 2024 -0400
+
+    2024-06-18_11-47-34 genr8policy.te
+
+commit ba9a9ad51c0ffbba808f3281370c40639b1c6173
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jun 18 11:44:49 2024 -0400
+
+    2024-06-18_11-44-49 genr8policy.te
+
+commit da432d9fed43d6c649dee36b9fe16a48b65f6f9f
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jun 18 11:41:27 2024 -0400
+
+    2024-06-18_11-41-27 genr8policy.te
+
+commit 8152f2114c1ad83eb5b627f3f7ddc4a181d6a00e
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jun 18 11:31:58 2024 -0400
+
+    2024-06-18_11-31-58 genr8policy.te
+
+commit ca2b921484006feceff5fa6879c6b64c3f9584c8
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jun 18 11:10:43 2024 -0400
+
+    2024-06-18_11-10-43 genr8policy.te
+
+commit cdffbcfce701dc6f8e6507f605495413c1506a2b
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jun 15 11:19:51 2024 -0400
+
+    2024-06-15_11-19-51 thunar.te
+
+commit b453c1c2a747e1283647ddd030a7a286f0e1ca74
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Jun 14 17:22:08 2024 -0400
+
+    2024-06-14_17-22-08 genr8policy.te
+
+commit 585168796a4e957cbba420b231e2268f55a483df
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jun 12 15:17:26 2024 -0400
+
+    2024-06-12_15-17-26 udisks.te
+
+commit 0504c962c220ad0254bb9d74de594e4f95aa6408
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jun 8 18:13:25 2024 -0400
+
+    2024-06-08_18-13-25 gnome_sysmon.te
+
+commit 2805fd2d125eb126c6b2df3c848988cb3f0cce19
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jun 8 18:06:57 2024 -0400
+
+    2024-06-08_18-06-57 gvfs-fuse.te
+
+commit 29fde57344ef08b8a5740137a2ab3ba7b6ddb5ee
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jun 4 20:04:05 2024 -0400
+
+    2024-06-04_20-04-05 genr8policy.te
+
+commit 90619737fecc3f64d7ec07ba54a62dc1dac1b1c4
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jun 4 19:52:36 2024 -0400
+
+    2024-06-04_19-52-36 genr8policy.te
+
+commit 0a85cc52614f67cba2737454d20d864dbc9005e9
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu May 30 11:22:55 2024 -0400
+
+    2024-05-30_11-22-55 mullvad-daemon.te
+
+commit 055d1ff9d26c656d44d23705ea15d1c975c5e2f7
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu May 30 08:56:22 2024 -0400
+
+    2024-05-30_08-56-22 portage-gen.te
+
+commit 565dcca01b0636152d544be94833f2111878ef0a
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon May 27 16:47:23 2024 -0400
+
+    2024-05-27_16-47-23 vscode.te
+
+commit bfcdb02f40e6f3fb78875c541aeaa68ad68da850
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat May 25 01:23:55 2024 -0400
+
+    2024-05-25_01-23-55 mullvad-daemon.te
+
+commit 6c501d78e5f765763510ede4b7339e778ef001f1
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat May 25 01:15:00 2024 -0400
+
+    2024-05-25_01-15-00 mullvad-gui.te
+
+commit 5668fa74f1107e9b0d6438115162ed36a46402ab
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat May 25 01:14:04 2024 -0400
+
+    2024-05-25_01-14-04 mullvad-gui.te
+
+commit 7d9a0a059146242ecaf1d5e36a39f7a1f17a3eea
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat May 25 01:08:52 2024 -0400
+
+    2024-05-25_01-08-52 mullvad-daemon.te
+
+commit 2a867376bc7d4e7b89d854e113dfc5f3e41ef473
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat May 25 01:04:29 2024 -0400
+
+    2024-05-25_01-04-29 mullvad-daemon.te
+
+commit 7b706e9bcb0acb39246eeb644a1bf280a8643875
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat May 25 01:02:54 2024 -0400
+
+    2024-05-25_01-02-54 newports-gen.te
+
+commit e5e3d00ae5e92c1a293ffb8d88c474898a18345f
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu May 16 11:23:28 2024 -0400
+
+    2024-05-16_11-23-28 mullvad-gui.te
+
+commit a1c94d547fa54201d481d55c09fc6f28f392cf44
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed May 15 16:06:50 2024 -0400
+
+    2024-05-15_16-06-50 genr8policy.te
+
+commit 49603c531011fea2b1c4fb75bd4013a711b3878b
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed May 15 11:29:20 2024 -0400
+
+    2024-05-15_11-29-20 genr8policy.te
+
+commit 2bf4c412703d5a02155f385c4c49f81289dfdcb1
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun May 5 15:46:06 2024 -0400
+
+    2024-05-05_15-46-06 vscode.te
+
+commit ff4bf5e78d51d06d4cfca5e6ed3aa5ba9988ddd0
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri May 3 13:11:47 2024 -0400
+
+    2024-05-03_13-11-47 vscode.te
+
+commit 33f78088230018219c640c55bb66d6450bbf227f
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Apr 26 19:37:41 2024 -0400
+
+    2024-04-26_19-37-41 filezilla.te
+
+commit ca31cd9247d77b55636ae85dbb2fd34fe37d7fce
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Apr 26 19:35:12 2024 -0400
+
+    2024-04-26_19-35-12 filezilla.te
+
+commit f25e66df2fb88c2db32071a27e62a862b44d8c24
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Apr 26 19:34:29 2024 -0400
+
+    2024-04-26_19-34-29 filezilla.te
+
+commit 1ca340ef3e86bd8596d3bd5fbb46b3c8da72bd6a
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Apr 26 19:31:09 2024 -0400
+
+    2024-04-26_19-31-09 genr8policy.te
+
+commit 830cdbed942b6feb7fc6de804b088ed622d4fd16
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Apr 26 19:16:29 2024 -0400
+
+    2024-04-26_19-16-29 xfce4-settings.te
+
+commit 0833a58e4019a09e3b37f7b9ada42fac2454ffd4
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Apr 26 19:02:08 2024 -0400
+
+    2024-04-26_19-02-08 genr8policy.te
+
+commit 758968dfd56e2758070a08a19b668d0ca94591ea
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Apr 25 14:58:46 2024 -0400
+
+    2024-04-25_14-58-46 vscode.te
+
+commit cd0c45a6103de10985e838fddb14e0c996953400
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Apr 23 22:48:45 2024 -0400
+
+    2024-04-23_22-48-45 mullvad-gui.te
+
+commit 927af47833053cbb595395c6d8bf9cbce6b8494c
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 22 19:35:29 2024 -0400
+
+    2024-04-22_19-35-29 mozilla-gen.te
+
+commit b5328e0331ef90135da7f445b7189b7029efdbdf
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 22 17:52:00 2024 -0400
+
+    2024-04-22_17-52-00 xfce4-interfaces.te
+
+commit ef0d4f13ab19b34a206e1bf153908db43e63d2ed
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 22 17:46:33 2024 -0400
+
+    2024-04-22_17-46-33 thunar.te
+
+commit 0cc213dc478916777969af1cbfa9f2fff510a292
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 22 17:41:47 2024 -0400
+
+    2024-04-22_17-41-47 vscode.te
+
+commit 7f4d32bc374047d3bc3589b067f2346fff74ca4b
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 22 17:37:24 2024 -0400
+
+    2024-04-22_17-37-24 virtualbox.te
+
+commit 3dd98b93838d4cbd095ccb5ab6342d298e5349d3
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Apr 21 21:23:59 2024 -0400
+
+    2024-04-21_21-23-59 genr8policy.te
+
+commit 5e35df8cc0be85cbfce87920bdeeeac0e6bfad55
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Apr 18 11:18:00 2024 -0400
+
+    2024-04-18_11-18-00 boot.te
+
+commit 3e4bb4ae71adbd85885eeeee3845b64e28453b51
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 22:38:28 2024 -0400
+
+    2024-04-10_22-38-28 vscode.te
+
+commit 4a4b7fa2bdfad5fc4584e6824db2baf2ed832b1c
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 22:35:21 2024 -0400
+
+    2024-04-10_22-35-21 vscode.te
+
+commit 691f5f06ac133f5643a8c8062a00dc526b0a9d91
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 12:10:40 2024 -0400
+
+    2024-04-10_12-10-40 vscode.te
+
+commit 83ebfcd4fe2b3fca74dbcf158eb6dbc0f73e1bd7
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 12:09:44 2024 -0400
+
+    2024-04-10_12-09-44 vscode.te
+
+commit 5ffaa69b9e6cbef12660c85e772e17a9709083b0
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 12:06:23 2024 -0400
+
+    2024-04-10_12-06-23 vscode.te
+
+commit 4a8b68f054e2e9ff5cd0f09ed6a297f781082e71
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 12:01:08 2024 -0400
+
+    2024-04-10_12-01-08 vscode.te
+
+commit 7525e7395477d2534b674102b363c4f7ec0dc2ed
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 11:56:46 2024 -0400
+
+    2024-04-10_11-56-46 vscode.te
+
+commit e603cbb5abfe3f935d36630d836a15baffefbe76
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 11:55:52 2024 -0400
+
+    2024-04-10_11-55-52 vscode.te
+
+commit 436ddc297a990ce602307cf23636e73b2490e2d5
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 11:53:56 2024 -0400
+
+    2024-04-10_11-53-56 vscode.te
+
+commit 6d84c291b1178116891c75e3ec7a9b17fb7753b2
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 11:51:06 2024 -0400
+
+    2024-04-10_11-51-06 vscode.te
+
+commit b2069fb0c6247b507714f2c986a899654549f562
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 11:48:27 2024 -0400
+
+    2024-04-10_11-48-27 vscode.te
+
+commit eeaf49a2be724725a73fd4dc76399f3835a1dbcc
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 11:43:31 2024 -0400
+
+    2024-04-10_11-43-31 vscode.te
+
+commit 2e7f93422056be543fe9bafae292419aebd35f81
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 11:35:54 2024 -0400
+
+    2024-04-10_11-35-54 vscode.te
+
+commit dc9bf8b120600319d70c88740c30e1824e09366a
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 11:34:24 2024 -0400
+
+    2024-04-10_11-34-24 vscode.te
+
+commit a3e78cb56ec93d456a92422f69245b59135e222d
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 10 11:32:44 2024 -0400
+
+    2024-04-10_11-32-44 vscode.te
+
+commit de7ab8778ab7c53329f2b0308409f7fbd596e5a6
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Apr 9 21:08:22 2024 -0400
+
+    2024-04-09_21-08-22 xfce4-power-manager.te
+
+commit 2da148841a545dd96900e05fdb8c7e9966a6420a
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 8 16:15:06 2024 -0400
+
+    2024-04-08_16-15-06 xfce4-notifyd.te
+
+commit 6ca6ed94c080ea3156c482bcf7931c64b8a667c8
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Apr 6 13:03:30 2024 -0400
+
+    2024-04-06_13-03-30 vlc.te
+
+commit 723abc77fdf08e0bc034096565c71331608351f0
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Apr 5 14:05:18 2024 -0400
+
+    2024-04-05_14-05-18 xed.te
+
+commit ab25f01dbb259e5340e13edb53e09f0d5960b6c0
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Apr 5 13:19:06 2024 -0400
+
+    2024-04-05_13-19-06 boot.te
+
+commit a16d5ae86995411dcc508cb6e138862b025c86d0
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Apr 5 11:46:56 2024 -0400
+
+    2024-04-05_11-46-56 xfce4-task-manager.te
+
+commit ad0c90928b69dac367d725a76954fca6f2e464e8
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Apr 5 00:51:32 2024 -0400
+
+    2024-04-05_00-51-32 thunar.te
+
+commit 7db6b972911977b57edf986744d7f9b7586802a6
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Apr 5 00:35:23 2024 -0400
+
+    2024-04-05_00-35-23 thunar.te
+
+commit 3332f0846ece95cbef63e9ae01bc081526d8db1f
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Apr 5 00:33:41 2024 -0400
+
+    2024-04-05_00-33-41 thunar.te
+
+commit 13625168247de1b9bc487573b0f4036da6be02ed
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Apr 5 00:22:06 2024 -0400
+
+    2024-04-05_00-22-06 xed.te
+
+commit 78bd5b3dbde861cdfb02c4cecad9e9ddb6a2ad5d
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Apr 4 12:24:36 2024 -0400
+
+    2024-04-04_12-24-36 xfce4-interfaces.te
+
+commit 69d5085ba3554d0e92caf19602bd30de6a099b87
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Apr 4 12:18:31 2024 -0400
+
+    2024-04-04_12-18-31 gnome_calc.te
+
+commit d3818f5e57183a91e9a94a31c924138395fb2d1d
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Apr 3 10:53:04 2024 -0400
+
+    2024-04-03_10-53-04 secureboot.te
+
+commit 25acdf8549dde3baacb556f74263ba30ffff865e
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 1 16:36:21 2024 -0400
+
+    2024-04-01_16-36-21 xfce4-notifyd.te
+
+commit c0832cc177b1b76f1808ead4f3665a794d8fef3f
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 1 16:33:55 2024 -0400
+
+    2024-04-01_16-33-55 xfce4-notifyd.te
+
+commit 3ec32ad1c3fe57fa4272d12bfe98b7e989b9b0a8
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 1 14:54:56 2024 -0400
+
+    2024-04-01_14-54-56 secureboot.te
+
+commit dff192702aa3c8cdcfa06070240207224ddfc9b3
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 1 10:36:05 2024 -0400
+
+    2024-04-01_10-36-05 xfce4-task-manager.te
+
+commit 71b5918a51df8e5990ca1ddb18217b848acad9aa
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 1 10:33:58 2024 -0400
+
+    2024-04-01_10-33-58 xfce4-notifyd.te
+
+commit ddf115ff59d11cda40eb948bfff25fb52a5ef427
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 1 10:33:06 2024 -0400
+
+    2024-04-01_10-33-06 xfce4-notifyd.te
+
+commit 9d55671a029d165b4906525ebd23bd71883bb700
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 1 10:32:35 2024 -0400
+
+    2024-04-01_10-32-35 xfce4-notifyd.te
+
+commit 093886bd538553d21820687ed66c065d3b48790d
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 1 10:32:02 2024 -0400
+
+    2024-04-01_10-32-02 xfce4-notifyd.te
+
+commit ad01e4d48786ac38811f4c30e498ba56fd80ed7f
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Apr 1 07:58:24 2024 -0400
+
+    2024-04-01_07-58-24 gconf.te
+
+commit 69c57d0acedbfdd046c47a69f066a2a1e57fd293
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 31 02:51:58 2024 -0400
+
+    2024-03-31_02-51-58 mime-icon-cache.te
+
+commit 654786f5ba52112d83b60a431e3b6d4893b4fab8
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 31 02:51:01 2024 -0400
+
+    2024-03-31_02-51-01 mime-icon-cache.te
+
+commit 21c3d1c83040a8032bb64d0875925d28acfe5869
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Mar 30 14:40:49 2024 -0400
+
+    2024-03-30_14-40-49 mime-icon-cache.te
+
+commit 176f50393a9722e2b645b791112caa2f258a66cc
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Mar 30 11:43:16 2024 -0400
+
+    2024-03-30_11-43-16 gnome_calc.te
+
+commit 9e4763f10fb273c25b4b0d58aba460dcd4565237
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 28 16:42:29 2024 -0400
+
+    2024-03-28_16-42-29 secureboot.te
+
+commit 78c9e35dd29afff62760d8a920589a41d4d443b4
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 28 01:17:23 2024 -0400
+
+    2024-03-28_01-17-23 secureboot.te
+
+commit 33e57bb47e33ab194e9eb4b6382380f4e74df76a
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 27 21:04:46 2024 -0400
+
+    2024-03-27_21-04-46 gnome_sysmon.te
+
+commit 04c8164cc57e87202b58f25f61fe414ed30fb7a0
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 27 16:47:26 2024 -0400
+
+    2024-03-27_16-47-26 gnome_sysmon.te
+
+commit 66f4898cfd88df23280e0bab7bc5ff79abb49edf
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 22:23:46 2024 -0400
+
+    2024-03-25_22-23-46 minicoredumper.te
+
+commit f4f4670b885412ad6fe863187c667f4014328557
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 22:21:09 2024 -0400
+
+    2024-03-25_22-21-09 portage-gen.te
+
+commit 844dc9284f27ca8910a0ea983736a7f77a055436
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 22:04:37 2024 -0400
+
+    2024-03-25_22-04-37 gnome_sysmon.te
+
+commit 75037dcbd5e93fe41c7233f7239028458ddaaa99
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 21:49:44 2024 -0400
+
+    2024-03-25_21-49-44 xed.te
+
+commit 9ed459f28f91f139a48fb10e5fd86c8225f26bd6
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 21:42:38 2024 -0400
+
+    2024-03-25_21-42-38 mullvad-daemon.te
+
+commit 5713d34fbc170c6491e1b8e133f30a5a95269d82
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 21:40:46 2024 -0400
+
+    2024-03-25_21-40-46 mullvad-daemon.te
+
+commit 2d9a7a7cc62c351d6d060e5ff7d5551f1a22606e
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 21:18:24 2024 -0400
+
+    2024-03-25_21-18-24 gnome_calc.te
+
+commit c1fbb05d8af3acd31ba06e53c23013001efb36cc
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 21:12:31 2024 -0400
+
+    2024-03-25_21-12-31 deadbeef.te
+
+commit 5b525a4e026385016385c8c983d4fbd743ab85c4
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 21:11:21 2024 -0400
+
+    2024-03-25_21-11-21 deadbeef.te
+
+commit 388d300b56f9e07a0433bc3a25558b9f73621c04
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 21:05:50 2024 -0400
+
+    2024-03-25_21-05-50 fluid.te
+
+commit 813e28f2f97a5f469bbff43237451f7677dfa29a
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 20:53:01 2024 -0400
+
+    2024-03-25_20-53-01 hexchat.te
+
+commit d1c73280a6b1e4c5bb3933b498d41bf4c29f2967
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 20:50:11 2024 -0400
+
+    2024-03-25_20-50-11 mullvad-gui.te
+
+commit b99412e9eda2f3ba682e4141c0a30e3a3f16b690
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 20:40:58 2024 -0400
+
+    2024-03-25_20-40-58 xfce4-task-manager.te
+
+commit cea497ed4c35f7d5d63452dcdf60ea5932331610
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 20:36:43 2024 -0400
+
+    2024-03-25_20-36-43 mullvad-gui.te
+
+commit fe949f2941eb5e4de07f12546a85e6b117f963fe
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 25 20:36:16 2024 -0400
+
+    2024-03-25_20-36-16 mullvad-gui.te
+
+commit cd3c89fe542c48ba7302c9f413fd1004f086adae
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 24 08:19:24 2024 -0400
+
+    2024-03-24_08-19-24 xfce4-task-manager.te
+
+commit 8addf7ad2ddb4e6576796a407c347732fe8a4881
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 24 07:58:08 2024 -0400
+
+    2024-03-24_07-58-08 xfce4-task-manager.te
+
+commit ebad80558bd9bf950a5f24025d412294ab698a8b
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 24 07:44:43 2024 -0400
+
+    2024-03-24_07-44-43 genr8policy.te
+
+commit a4d122676517290ca24cfc662f7075d7ae55e456
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Mar 23 18:24:39 2024 -0400
+
+    2024-03-23_18-24-39 genr8policy.te
+
+commit 0fe148ee8bed7a5620de0983ac430aed89936f13
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Mar 23 18:23:47 2024 -0400
+
+    2024-03-23_18-23-47 genr8policy.te
+
+commit ff11a3aee21cbfcee52a3fa9628509be5afd75da
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Mar 23 18:22:02 2024 -0400
+
+    2024-03-23_18-22-02 genr8policy.te
+
+commit ebd61f78957755b5315e2c2d556627743de5b8ef
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Mar 23 12:51:42 2024 -0400
+
+    2024-03-23_12-51-42 portage-gen.te
+
+commit 7ba4e1957eacad127b4ee8d7abce57ee21f3fc4b
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Mar 23 12:49:28 2024 -0400
+
+    2024-03-23_12-49-28 portage-gen.te
+
+commit 6d0f8047047bd6bd16e1c1bdf0e6a8092f7382a6
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Mar 23 12:47:25 2024 -0400
+
+    2024-03-23_12-47-25 portage-gen.te
+
+commit 78fd50fef9f49b72873d4df2907ab389f5ec93e1
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 22 15:22:52 2024 -0400
+
+    2024-03-22_15-22-52 genr8policy.te
+
+commit cd9654f620a95394f30988b2535a0feadff90b80
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 22 15:21:58 2024 -0400
+
+    2024-03-22_15-21-58 genr8policy.te
+
+commit b8643d4a1fcbec776c86b8ca6a8fe56620dd87f0
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 22 15:20:53 2024 -0400
+
+    2024-03-22_15-20-53 genr8policy.te
+
+commit ad83a0f86038495e2eb64b9a115f907464e24f6b
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 22 14:59:05 2024 -0400
+
+    2024-03-22_14-59-05 secureboot.te
+
+commit 3251912a167399018c9c71c5e06f94ebedaa9dc1
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 22 14:53:29 2024 -0400
+
+    2024-03-22_14-53-29 boot.te
+
+commit b40be8c8c7b35b0e94abaf80445fb90270ef5489
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 22 14:46:36 2024 -0400
+
+    2024-03-22_14-46-36 mime-icon-cache.te
+
+commit fe536098636b176eb50d9af37553038584dae474
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 22 12:47:12 2024 -0400
+
+    2024-03-22_12-47-12 virtualbox.te
+
+commit a70bdf3878dec3b49be7f8ad512d36228371bb26
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 22 12:43:11 2024 -0400
+
+    2024-03-22_12-43-11 gconf.te
+
+commit 618034912c8263521aed8d5c20e972bca9391f92
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 22 12:39:22 2024 -0400
+
+    2024-03-22_12-39-22 virtualbox.te
+
+commit 22e6d4965b2191b87d08d26759be1e29cd4f0974
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 22 12:34:04 2024 -0400
+
+    2024-03-22_12-34-04 virtualbox.te
+
+commit 10b62af788bca324813b00dd944fae91c5f8732a
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 22 12:31:00 2024 -0400
+
+    2024-03-22_12-31-00 virtualbox.te
+
+commit 195e7814bb85bdfd2f97980c10e5ee464b70a276
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 22 12:29:02 2024 -0400
+
+    2024-03-22_12-29-02 virtualbox.te
+
+commit 7a92dc141591426d99fa548b1a5292266933d241
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 22 11:39:03 2024 -0400
+
+    2024-03-22_11-39-03 mullvad-gui.te
+
+commit 592250231ebe2a0503d316b0800610c2da2d2283
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 22 11:25:53 2024 -0400
+
+    2024-03-22_11-25-53 mullvad-daemon.te
+
+commit 722cf75a5363afe8e51968e910d475b9118b350f
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 21 14:01:28 2024 -0400
+
+    2024-03-21_14-01-28 secureboot.te
+
+commit 87360274f8d66bba7ed8dcd3064663fbf6656d76
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 21 13:55:49 2024 -0400
+
+    2024-03-21_13-55-49 secureboot.te
+
+commit 972c2e95721e467eb5ed7d98270dd6eeed4aca41
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 21 13:52:58 2024 -0400
+
+    2024-03-21_13-52-58 secureboot.te
+
+commit 618f5e16c5d1b5d4c8f8e5aa584139889157f5b9
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 21 13:44:57 2024 -0400
+
+    2024-03-21_13-44-57 secureboot.te
+
+commit 97bc54d261dbfef5719c857ee1a46657b1123841
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 21 13:42:56 2024 -0400
+
+    2024-03-21_13-42-56 secureboot.te
+
+commit f1daceaf574f8baca90bf8daad571d8aced20e98
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 21 13:40:05 2024 -0400
+
+    2024-03-21_13-40-05 secureboot.te
+
+commit 93cbea8c58ddef5554f846a6e1276698706bf065
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 21 13:35:39 2024 -0400
+
+    2024-03-21_13-35-39 mozilla-gen.te
+
+commit a3cf1cfbf896b2c363aaf04060f621d93fd06cac
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 21 12:07:04 2024 -0400
+
+    2024-03-21_12-07-04 losslesscut.te
+
+commit 9b02653e526a13164e268ec7151091980eaf1d9f
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 21 12:00:08 2024 -0400
+
+    2024-03-21_12-00-08 gconf.te
+
+commit 43e9566e96d98974dcf4e46a974d7709ad7c3157
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 21 11:48:51 2024 -0400
+
+    2024-03-21_11-48-51 genr8policy.te
+
+commit 1d23d372d239bc6f6acc73ca52db89df4de83d85
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 21 09:41:37 2024 -0400
+
+    2024-03-21_09-41-37 mozilla-gen.te
+
+commit d64cc6825d42a8174891f050154365d7bd795493
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 22:35:07 2024 -0400
+
+    2024-03-20_22-35-07 minicoredumper.te
+
+commit 2bfce3a0734f64ee55341588b08ee5cc76e8111e
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 22:24:55 2024 -0400
+
+    2024-03-20_22-24-55 vscode.te
+
+commit 7e694d7ae81eb893a3c64752afae53407836c0bd
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 22:19:41 2024 -0400
+
+    2024-03-20_22-19-41 chromium-gen.te
+
+commit 23708a4e6b1c1616a284d68b930f7419178508d8
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 22:14:59 2024 -0400
+
+    2024-03-20_22-14-59 udisks.te
+
+commit 65a177fa03a370ff182c487754a06cf35b32189b
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 22:12:01 2024 -0400
+
+    2024-03-20_22-12-01 hexchat.te
+
+commit db513a3586e860cb2d76aa6c7b401738b098a330
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 21:56:25 2024 -0400
+
+    2024-03-20_21-56-25 storagevm.te
+
+commit 98f545f032e66f523311794e72a2e710d0f2915e
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 21:55:44 2024 -0400
+
+    2024-03-20_21-55-44 virtd-gen.te
+
+commit 8f23b37cee4d353cac0904b6524b5a5c5f5d3324
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 21:52:56 2024 -0400
+
+    2024-03-20_21-52-56 xfce4-screensaver-ignore.te
+
+commit 3aafa07d693fa88aafbbd865feb10c27c0ac7f56
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 21:49:30 2024 -0400
+
+    2024-03-20_21-49-30 xfce4-power-manager.te
+
+commit 7e5ade862b5febde1f07c4adea1a0f0424f84d35
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 21:48:21 2024 -0400
+
+    2024-03-20_21-48-21 xfce4-interfaces.te
+
+commit 14de8ff0d569e4870c5990777ddf364cf43b6925
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 19:52:27 2024 -0400
+
+    2024-03-20_19-52-27 thunar.te
+
+commit f027d4ee5f09853bc1092f1c9d3d699515a8862f
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 19:42:08 2024 -0400
+
+    2024-03-20_19-42-08 genr8policy.te
+
+commit 3b381f9daa16579b81a59539292a970412cfa8dd
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 19:39:04 2024 -0400
+
+    2024-03-20_19-39-04 genr8policy.te
+
+commit 92529cc77ee18fd831a1a3a0678c534ea5bc6fea
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 19:15:28 2024 -0400
+
+    2024-03-20_19-15-28 gnome_sysmon.te
+
+commit 4ed135205869c9052dd6a4f164c3539f964d7f2a
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 19:13:09 2024 -0400
+
+    2024-03-20_19-13-09 mozilla-gen.te
+
+commit cae7078e11ee696607ec9c9ce911032b20bc920f
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 19:10:50 2024 -0400
+
+    2024-03-20_19-10-50 keepassxc.te
+
+commit 5267b0f5ba965353ec05a672c05cce3c38adb802
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 19:09:04 2024 -0400
+
+    2024-03-20_19-09-04 mozilla-gen.te
+
+commit d76302221466a9a620cad92b8d95df9c4d3fb6f9
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 17:44:00 2024 -0400
+
+    2024-03-20_17-44-00 virtualbox.te
+
+commit 4bc8b46fb323a75287d96c1652df58c527dac07f
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 17:38:28 2024 -0400
+
+    2024-03-20_17-38-28 keepassxc.te
+
+commit b34cf546ccf5c552d2a8b0175281270f72893479
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 17:34:38 2024 -0400
+
+    2024-03-20_17-34-38 filezilla.te
+
+commit 59ef07584f87c6621daae92ea030f10f02549897
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 17:30:19 2024 -0400
+
+    2024-03-20_17-30-19 xfce4-interfaces.te
+
+commit 6671b9d7404b61a5504a1574a046e1579453f94e
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 17:26:03 2024 -0400
+
+    2024-03-20_17-26-03 vscode.te
+
+commit 5e86d46c75be19a5ff83de838e0e3490f6fbe819
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 17:25:54 2024 -0400
+
+    2024-03-20_17-25-54 vscode.te
+
+commit d08e55f69de372b12b438f2b056710dc7e3e89b3
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 17:22:11 2024 -0400
+
+    2024-03-20_17-22-11 vscode.te
+
+commit 53804f4d252a4a97d265026d57244e79cbdefe99
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 17:11:21 2024 -0400
+
+    2024-03-20_17-11-21 xfce4-task-manager.te
+
+commit 1a83ebdf9f2d55c23a39fb8f87f989ffdbaf92f0
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 17:09:16 2024 -0400
+
+    2024-03-20_17-09-16 vscode.te
+
+commit d4483242122f4a75bcc842491171548a0f1b1f2f
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 17:03:40 2024 -0400
+
+    2024-03-20_17-03-40 vscode.te
+
+commit bf43d09805b297343f72d8c213549d222097fc5e
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 20 17:02:22 2024 -0400
+
+    2024-03-20_17-02-22 vscode.te
+
+commit a27f4fc85cad93276ba1bd4ee0a8d954bbf16bf6
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 20:22:28 2024 -0400
+
+    2024-03-19_20-22-28 gnome_calc.te
+
+commit be0625b4620236c295e9bfd84213fd10ccdffa12
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 19:41:42 2024 -0400
+
+    2024-03-19_19-41-42 thunar.te
+
+commit 8d28c16986e1c61fcb200d8a71225f2bd558c09a
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 17:55:54 2024 -0400
+
+    2024-03-19_17-55-54 xfce4-screensaver.te
+
+commit 460398f9dfb562a4eb1bb0fbe79cca0e117838cb
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 17:47:38 2024 -0400
+
+    2024-03-19_17-47-38 gnome_sysmon.te
+
+commit d4eaead400a72a0e5b43569d492bd8c7522b0e20
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 17:44:00 2024 -0400
+
+    2024-03-19_17-44-00 thunar.te
+
+commit e8f682ef01d09b4270b843a199f7d350360d12d3
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 17:41:51 2024 -0400
+
+    2024-03-19_17-41-51 mullvad-gui.te
+
+commit cca12051f882846bc053117b0667c54469d34fa9
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 17:13:19 2024 -0400
+
+    2024-03-19_17-13-19 gnome_sysmon.te
+
+commit fa86cf773f5f9256ae859aa161635215a6fb842b
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 17:09:37 2024 -0400
+
+    2024-03-19_17-09-37 gnome_sysmon.te
+
+commit 5563577a9eb930673dc47efc6994988fcebcad83
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 17:09:07 2024 -0400
+
+    2024-03-19_17-09-07 gnome_sysmon.te
+
+commit 2d1353c507845ae3b0140ce58f016d51587d4b9f
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 17:07:55 2024 -0400
+
+    2024-03-19_17-07-55 gnome_sysmon.te
+
+commit 2d5e894bfcc241a9acfc671e764eb1dcd6567b93
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 17:04:00 2024 -0400
+
+    2024-03-19_17-04-00 gnome_sysmon.te
+
+commit 2816cc41ca3a810521435c9634899b33fceb4a4b
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 17:00:47 2024 -0400
+
+    2024-03-19_17-00-47 gnome_sysmon.te
+
+commit 35477d7223583c6278b81aae25d2c694a520245d
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 16:59:51 2024 -0400
+
+    2024-03-19_16-59-51 gnome_sysmon.te
+
+commit 40e7ad392cee320a2a0beb5871fc3b7f3ec73eff
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 16:54:31 2024 -0400
+
+    2024-03-19_16-54-31 gnome_sys_mon.te
+
+commit 22e20f11c8a2d61c0e14009d75528d344860c093
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 16:50:27 2024 -0400
+
+    2024-03-19_16-50-27 gnome_sys_mon.te
+
+commit 901b96d3a7b1a97147c51d540becea2db54f73fb
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 16:45:49 2024 -0400
+
+    2024-03-19_16-45-49 gnome_sysmon.te
+
+commit fc3c7b9147ddd9c59f21e28fe03215cc32a2f116
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 16:42:36 2024 -0400
+
+    2024-03-19_16-42-36 gnome_sysmon.te
+
+commit de75dc5bec721e2f9e3487c545427a86ac08660b
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 16:39:35 2024 -0400
+
+    2024-03-19_16-39-35 gnome_sysmon.te
+
+commit 1beccdd38902299d4880655aec37729516b7267a
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 16:32:58 2024 -0400
+
+    2024-03-19_16-32-58 gnome_sysmon.te
+
+commit f94ed05e2a5e74cac98d12ea196df7c57bb8cdeb
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 16:23:43 2024 -0400
+
+    2024-03-19_16-23-43 gnome_sysmon.te
+
+commit 92bff95ff5a239d3ae1125e157da6f9037d31b1d
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 16:21:01 2024 -0400
+
+    2024-03-19_16-21-01 gnome_sysmon.te
+
+commit b146d34640874cca4ec0bbe44deedb80ae7fafc5
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 16:17:57 2024 -0400
+
+    2024-03-19_16-17-57 gnome_sysmon.te
+
+commit a20eac3360b2c76b74e5424d10e4f2fbf5bb0d08
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 16:17:43 2024 -0400
+
+    2024-03-19_16-17-43 gnome_sysmon.te
+
+commit 474025e0203dbdaa868c98569d34bade771a6ec4
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 16:11:25 2024 -0400
+
+    2024-03-19_16-11-25 gnome_sysmon.te
+
+commit 528556b05ba39ef57caf8e06e06867b4eb7ff745
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 16:04:13 2024 -0400
+
+    2024-03-19_16-04-13 gnome_sysmon.te
+
+commit fcaefc3f76c3496209f036ddb880e78c1f6d912e
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 15:57:51 2024 -0400
+
+    2024-03-19_15-57-51 gnome_sysmon.te
+
+commit 37287bd2c1e20cf7050cb67a37c391aa40a70434
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 15:56:49 2024 -0400
+
+    2024-03-19_15-56-49 thunar.te
+
+commit 117b6cbf1fa06238205496617390a88e08f00498
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 13:44:43 2024 -0400
+
+    2024-03-19_13-44-43 gvfs-fuse.te
+
+commit 1d0bfca09eb0409214b872760063c03b071f58ba
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 13:37:18 2024 -0400
+
+    2024-03-19_13-37-18 xfce4-task-manager.te
+
+commit 34223fb1fb88eab2a51d6ddd331d0925424adfe5
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 13:35:57 2024 -0400
+
+    2024-03-19_13-35-57 gvfs_m.te
+
+commit c687f0987e2be67e8bdaa2ad9ad6503591a40566
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 13:34:34 2024 -0400
+
+    2024-03-19_13-34-34 gvfs_m.te
+
+commit 9d7b89d1d3b185bd9c1d4c13e93054c3f4ea60ed
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 13:32:50 2024 -0400
+
+    2024-03-19_13-32-50 gvfs_m.te
+
+commit d24cfccc763fd8ea5787f809311b5f4e137ff3b4
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 12:46:26 2024 -0400
+
+    2024-03-19_12-46-26 xfce4-notifyd.te
+
+commit 3119874353aa39aaf5449b94130bd49d69357eaf
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 12:38:59 2024 -0400
+
+    2024-03-19_12-38-59 xfce4-notifyd.te
+
+commit 1a4cc22c9600e0a981cae150982b2a3204015e7b
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 12:17:58 2024 -0400
+
+    2024-03-19_12-17-58 xfce4-notifyd.te
+
+commit ee0ba3c00d35872560045a51a71c9946c0f2d7e8
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 12:10:32 2024 -0400
+
+    2024-03-19_12-10-32 xfce4-notifyd.te
+
+commit 5fb99a29e7606df8f544065ef301952bc9567bc3
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 12:09:21 2024 -0400
+
+    2024-03-19_12-09-21 xfce4-notifyd.te
+
+commit 948ac98e12aaddac2ae47497821fea54f15d980e
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 12:08:52 2024 -0400
+
+    2024-03-19_12-08-52 xfce4-notifyd.te
+
+commit 78a47c79939d23499457ae4bdf3b67de371aef42
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 12:01:23 2024 -0400
+
+    2024-03-19_12-01-23 gvfs_m.te
+
+commit 3045191e437e28576876a4323c540663f8e4a545
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 19 11:54:08 2024 -0400
+
+    2024-03-19_11-54-08 thunar.te
+
+commit b5fed4041f7282c9bfeafce9076b3b3e9b7c41a4
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 18 16:42:55 2024 -0400
+
+    2024-03-18_16-42-55 mullvad-gui.te
+
+commit d68bf6d71e2ea845ff7f2a119cb737a36aa85a87
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 18 14:58:45 2024 -0400
+
+    2024-03-18_14-58-45 gvfs_mtp_volume_monitor.te
+
+commit 4de137cccf744b868188c5903bd84e99b27c3b68
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 18 13:00:45 2024 -0400
+
+    2024-03-18_13-00-45 virtualbox.te
+
+commit 2e3f5172753b2e8d2f3b9b49efab17d251826071
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 18 12:49:54 2024 -0400
+
+    2024-03-18_12-49-54 udisks.te
+
+commit ed8b308538eb3dd4da09c9025005ee2b43d5f905
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:56:50 2024 -0400
+
+    2024-03-17_20-56-50 gconf.te
+
+commit 3335fda2a21da7852f33bfb034b614e8782a79b5
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:52:22 2024 -0400
+
+    2024-03-17_20-52-22 xed.te
+
+commit feaae893412c1c56f3109b95d26e2f1e86e9752d
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:49:08 2024 -0400
+
+    2024-03-17_20-49-08 vlc.te
+
+commit c6e9ffecfb9137c4f5c02f4e9460dad5871b7cdc
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:45:51 2024 -0400
+
+    2024-03-17_20-45-51 gvfs_mtp_volume_monitor.te
+
+commit ae3625aed4e6b109c2110c3a1f210a33cc37813f
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:42:48 2024 -0400
+
+    2024-03-17_20-42-48 gvfs-fuse.te
+
+commit 8b6e3c410057801a6e1d55922aea54dc16b9b6e2
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:39:20 2024 -0400
+
+    2024-03-17_20-39-20 gnome-keyring.te
+
+commit 0eb8a98fb2ecb52cbab324b947d66c37b9514460
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:33:55 2024 -0400
+
+    2024-03-17_20-33-55 gnome_sys_mon.te
+
+commit f2b488715d5963f642e31653d8751886076ed863
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:30:10 2024 -0400
+
+    2024-03-17_20-30-10 gnome_sys_mon.te
+
+commit bfa108625fdcdfbc570661eee2bf87bb6a991851
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:28:07 2024 -0400
+
+    2024-03-17_20-28-07 gnome_sys_mon.te
+
+commit c270e2ce3b72a096c7f2ee0856ce946526942ae9
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:27:20 2024 -0400
+
+    2024-03-17_20-27-20 gnome_sys_mon.te
+
+commit 722971c0fc292856c0bec2b381d66807a9ad0abe
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:21:04 2024 -0400
+
+    2024-03-17_20-21-04 gnome_calc.te
+
+commit 247cd21902a7e6806f5d1c30bffe302c955cacc0
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:18:06 2024 -0400
+
+    2024-03-17_20-18-06 gnome_calc.te
+
+commit 0ed9011f0d01aecbf0d8e2356389bfa3f55c4de5
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:17:00 2024 -0400
+
+    2024-03-17_20-17-00 gnome_calc.te
+
+commit 98ce0d10d3a55f14e25811c6e0d4c393b000b0d6
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:13:21 2024 -0400
+
+    2024-03-17_20-13-21 gnome_2048.te
+
+commit 212bde5ddaadae969b234c0fb317d707edd60687
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:11:23 2024 -0400
+
+    2024-03-17_20-11-23 xfce4-interfaces.te
+
+commit 36777afa0ea347d45d3233b993d7bcaa2df79cf6
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:10:00 2024 -0400
+
+    2024-03-17_20-10-00 gnome_2048.te
+
+commit 236a68c20986b154c989e8c909c137dcab2f2b86
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:05:32 2024 -0400
+
+    2024-03-17_20-05-32 gnome_2048.te
+
+commit 812071bb38bfac9f5dfa8517000c5c4f68090665
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:05:22 2024 -0400
+
+    2024-03-17_20-05-22 xfce4-interfaces.te
+
+commit 3b7336a85502338acdee928a7900e8e950ac8675
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:03:25 2024 -0400
+
+    2024-03-17_20-03-25 gnome_2048.te
+
+commit 021a6908f7c17f4ff57d46f58680382b6b7afb4b
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:00:59 2024 -0400
+
+    2024-03-17_20-00-59 gnome_2048.te
+
+commit e0fe75ebb07dad6ebf8c92feb887c613701518cc
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 20:00:44 2024 -0400
+
+    2024-03-17_20-00-44 xfce4-interfaces.te
+
+commit 254fe67c1a8809dd0388bbbe262c2e7b2d68d31f
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 19:59:39 2024 -0400
+
+    2024-03-17_19-59-39 gnome_2048.te
+
+commit 9a8e814ee3ecb7ed6f1ba0fcf056a78442f48d18
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 19:59:26 2024 -0400
+
+    2024-03-17_19-59-26 xfce4-interfaces.te
+
+commit 8d07e9b590033ddfe080b2bdb2a5ee27cbe0327b
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 19:56:53 2024 -0400
+
+    2024-03-17_19-56-53 gnome_2048.te
+
+commit f47b6247c7847162f33d29e2a7a4b2e56740d20d
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 17:00:26 2024 -0400
+
+    2024-03-17_17-00-26 xfce4-power-manager.te
+
+commit 4f1970dca48be1afc3a478902031aff9df9c7193
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 16:58:47 2024 -0400
+
+    2024-03-17_16-58-47 xfce4-power-manager.te
+
+commit 001447228de53924465d2098df8882a3df2da43d
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 16:58:05 2024 -0400
+
+    2024-03-17_16-58-05 xfce4-power-manager.te
+
+commit 90359ad7d24d909d9077632fcc6267ad0093d083
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 16:57:46 2024 -0400
+
+    2024-03-17_16-57-46 xfce4-interfaces.te
+
+commit 848ce3763f89af4eac911a72539ddf8d1f01dbcf
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 16:47:52 2024 -0400
+
+    2024-03-17_16-47-52 xfce4-task-manager.te
+
+commit 93aea973f7ad05b9ca17ae92d6ce5d194ea36760
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 16:44:23 2024 -0400
+
+    2024-03-17_16-44-23 xfce4-task-manager.te
+
+commit 470a403c857eec06dbbed650db749e497b91a1ba
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 16:44:03 2024 -0400
+
+    2024-03-17_16-44-03 xfce4-interfaces.te
+
+commit 35cc3dab8c4ba768cb0b543f27bc197734b686f5
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 16:43:43 2024 -0400
+
+    2024-03-17_16-43-43 xfce4-interfaces.te
+
+commit 434cd0835fbcdae7d397b5aef7a868673b7f7d37
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 16:38:26 2024 -0400
+
+    2024-03-17_16-38-26 xfce4-task-manager.te
+
+commit 0d1af2a2fb11db726782e141feafc19f75235350
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 16:36:15 2024 -0400
+
+    2024-03-17_16-36-15 xfce4-task-manager.te
+
+commit 7ff2920a60b67d52e2bec2552aaa70ba297dcd9b
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 16:31:56 2024 -0400
+
+    2024-03-17_16-31-56 xfce4-interfaces.te
+
+commit e71f9e38c5953bd4c53abc8db280844f112ebbe6
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 17 16:27:54 2024 -0400
+
+    2024-03-17_16-27-54 xfce4-screensaver.te
+
+commit ccb85dfff7288cd48488c6c75b256926391ef76e
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 20:35:56 2024 -0400
+
+    2024-03-15_20-35-56 seahorse.te
+
+commit 452c3e02d1ae086af31b8d07f96925ef752415c1
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 19:43:41 2024 -0400
+
+    2024-03-15_19-43-41 seahorse.te
+
+commit fb4acd19d0b1af81ae5010e1c0b18dc06078e476
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 19:25:28 2024 -0400
+
+    2024-03-15_19-25-28 gvfs_mtp_volume_monitor.te
+
+commit 8b26c0caf9cf6cc4320b41480bdd710363871c84
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 18:32:22 2024 -0400
+
+    2024-03-15_18-32-22 gvfs_mtp_volume_monitor.te
+
+commit bcfc7cf0ed0b816396114eaeacaa5eebbe5ba7c2
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 18:28:50 2024 -0400
+
+    2024-03-15_18-28-50 gconf.te
+
+commit e60243214e66728652e91973b60b462cd6e269c1
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 18:20:52 2024 -0400
+
+    2024-03-15_18-20-52 gvfs_mtp_volume_monitor.te
+
+commit fd3e204ba38204062329ebeef550794093732761
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 16:28:46 2024 -0400
+
+    2024-03-15_16-28-46 gvfs_mtp_volume_monitor.te
+
+commit 63d3b6259019fbee026df08833326c90e77a1862
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 16:26:19 2024 -0400
+
+    2024-03-15_16-26-19 gvfs_mtp_volume_monitor.te
+
+commit 1370850b3e3a7be18a672e47747b5fc1e247d7fc
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 16:23:46 2024 -0400
+
+    2024-03-15_16-23-46 gvfs_mtp_volume_monitor.te
+
+commit c17e7a24ae2351c5fb7681e8c790a3ffee8f8e70
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 16:15:34 2024 -0400
+
+    2024-03-15_16-15-34 gvfs_mtp_volume_monitor.te
+
+commit 446700a23c54914307c54d03c30d2d974cd3af18
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 16:09:07 2024 -0400
+
+    2024-03-15_16-09-07 gvfs_mtp_volume_monitor.te
+
+commit a4255d2779ef219eff0de3a5e1445e6568d96f52
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 16:00:32 2024 -0400
+
+    2024-03-15_16-00-32 gvfs_mtp_volume_monitor.te
+
+commit e517146bf5c3d7d233e831b0c4b6848553a08461
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 15:56:30 2024 -0400
+
+    2024-03-15_15-56-30 xfce4-task-manager.te
+
+commit a9eaec3dbb6579f56c131f49de4d78194183267e
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 15:52:04 2024 -0400
+
+    2024-03-15_15-52-04 gvfs_mtp_volume_monitor.te
+
+commit d5826a012bf361dd498dfe36a6c1e48321621c9e
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 15:42:25 2024 -0400
+
+    2024-03-15_15-42-25 gvfs_mtp_volume_monitor.te
+
+commit 0f12d4808718af3aca7a0149c74bc4c9c57ffd46
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Mar 15 15:39:22 2024 -0400
+
+    2024-03-15_15-39-22 initial commit of GVFS_MTP made with sepolicy generate --application
+
+commit 041603a29df5dcab7a3e66d539a8eb3be2f9564b
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 14 00:29:50 2024 -0400
+
+    2024-03-14_00-29-50 mime-icon-cache.te
+
+commit 4dc6cb6c0e7abab1cbadba1b061a4d646825b5da
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 14 00:27:47 2024 -0400
+
+    2024-03-14_00-27-47 mime-icon-cache.te
+
+commit 4950f96b431708292b9ff7463968b4bb56e0dfc6
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 11 20:42:00 2024 -0400
+
+    2024-03-11_20-42-00 thunar.te
+
+commit d784953eff551396c3a338563e1c21fa5babb020
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 11 20:38:30 2024 -0400
+
+    2024-03-11_20-38-30 thunar.te
+
+commit ac0a1b7dd20101e89529769832c51885dbe397b9
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 11 20:36:25 2024 -0400
+
+    2024-03-11_20-36-25 thunar.te
+
+commit 8003340bacd5ecff20c91887dffe07ef5bce38f3
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 11 20:29:37 2024 -0400
+
+    2024-03-11_20-29-37 thunar.te
+
+commit e0dd513a3c69a44223a99db9b00c95b27ffef43b
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 11 20:27:46 2024 -0400
+
+    2024-03-11_20-27-46 thunar.te
+
+commit 039dc5289b46c987349b4e48dddfc3be12ca6fcf
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 10 18:44:47 2024 -0400
+
+    2024-03-10_18-44-47 thunar.te
+
+commit 298e1fdf4bca6274604c80dfae5fc849cddc2c33
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Mar 9 12:14:15 2024 -0500
+
+    2024-03-09_12-14-15 udisks.te
+
+commit 33d1e7b95d3ad26d92bad12751c20ce6f0958747
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Mar 9 12:03:07 2024 -0500
+
+    2024-03-09_12-03-07 udisks.te
+
+commit 8e42f71c1f2c550cdd8cd8e5d39965ec44828dbe
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Mar 9 11:49:46 2024 -0500
+
+    2024-03-09_11-49-46 udisks.te
+
+commit f0f9054776afbb24bc9e990d077da7c982726550
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Mar 9 11:21:37 2024 -0500
+
+    2024-03-09_11-21-37 udisks.te
+
+commit ba538238f4b3a45aa4292adc141faf04947146ff
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 7 22:51:52 2024 -0500
+
+    2024-03-07_22-51-52 thunar.te
+
+commit e72b87dddd6f4e57f024845a49af74f537f9988a
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 7 14:28:47 2024 -0500
+
+    2024-03-07_14-28-47 genr8policy.te
+
+commit 9942b5cfa24a7e23a7553c3a6a9c4f86da667093
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 6 15:33:56 2024 -0500
+
+    2024-03-06_15-33-56 genr8policy.te
+
+commit 797164e84003a878bcf77eb24bc4c2652f86cf58
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 6 15:32:22 2024 -0500
+
+    2024-03-06_15-32-22 genr8policy.te
+
+commit d2dacd0356cd9f3a75118f28045208af110d2240
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 6 15:31:39 2024 -0500
+
+    2024-03-06_15-31-39 genr8policy.te
+
+commit 6911c9b4170f0f29b01b147428bf13863fc3b41f
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 6 15:31:03 2024 -0500
+
+    2024-03-06_15-31-03 genr8policy.te
+
+commit da685c9842ce84f051abdbcb47fcc7c4013040a0
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 6 15:28:53 2024 -0500
+
+    2024-03-06_15-28-53 genr8policy.te
+
+commit 4003591031a115b3f89cdb8e9dfaa1e6878c6fd1
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Mar 6 15:27:37 2024 -0500
+
+    2024-03-06_15-27-37 genr8policy.te
+
+commit 0c7e91fa43b32625a142eef7a6c2b986e45b041d
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 5 13:29:44 2024 -0500
+
+    2024-03-05_13-29-44 thunar.te
+
+commit c3c7dc85457461dce297ac1b53275bccf0061484
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 5 13:29:32 2024 -0500
+
+    2024-03-05_13-29-32 thunar.te
+
+commit a88319df08ce9e72693252cb8b7979475c5f1bbe
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Mar 5 10:15:06 2024 -0500
+
+    2024-03-05_10-15-06 genr8policy.te
+
+commit 52c1b0949deab2a638ff3db0aadbf8d1a0b0b87c
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Mar 4 22:57:45 2024 -0500
+
+    2024-03-04_22-57-45 gnome_calc.te
+
+commit af9ab44c08696a4da16fef3821922920c78e5cfc
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Mar 3 09:15:40 2024 -0500
+
+    2024-03-03_09-15-40 boot.te
+
+commit 526835a3d9972a31c6fea683f7429e968988253a
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Feb 21 22:23:05 2024 -0500
+
+    2024-02-21_22-23-05 xfce4-interfaces.te
+
+commit 0b03f4c3998c4b1f07e67773441b0216cd3da539
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Feb 21 22:22:29 2024 -0500
+
+    2024-02-21_22-22-29 xfce4-interfaces.te
+
+commit 6bf98152b59ea05e13fc2c0e1e354460c33d77d7
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Feb 21 22:08:34 2024 -0500
+
+    2024-02-21_22-08-34 thunar.te
+
+commit 7b3b6022fd498b982506170867a74301e725ca4a
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Feb 21 22:07:53 2024 -0500
+
+    2024-02-21_22-07-53 thunar.te
+
+commit fc8e70dc4b34536896f316eb7cae50fc4943fb2a
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Feb 21 21:48:45 2024 -0500
+
+    2024-02-21_21-48-45 thunar.te
+
+commit ec448fd53fa9ea43fc1190daa7e4bb86b680abd1
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Feb 21 21:16:08 2024 -0500
+
+    2024-02-21_21-16-08 seahorse.te
+
+commit 464af3a90e6450af1faa2a90f93e9b4caf163a75
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Feb 21 00:21:10 2024 -0500
+
+    2024-02-21_00-21-10 gnome-keyring.te
+
+commit 3ea1da7337b4b9e640ee2ad6a99e25979672cebf
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Feb 20 23:58:36 2024 -0500
+
+    2024-02-20_23-58-36 thunar.te
+
+commit 54dc4881e178595298745bbff4c3b12381a3276b
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Feb 20 23:45:47 2024 -0500
+
+    2024-02-20_23-45-47 xfce4-task-manager.te
+
+commit 204bfd03ca447f0d800488340f45be519e031371
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Feb 17 10:53:02 2024 -0500
+
+    2024-02-17_10-53-02 qemu-gen.te
+
+commit 30ab9eedbc178c816e7a7f5340fed499e4a5035a
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Feb 13 15:46:16 2024 -0500
+
+    2024-02-13_15-46-16 udisks.te
+
+commit c3698e5a7b9af5f79466e9635f60852b1ca1152c
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Feb 13 15:40:28 2024 -0500
+
+    2024-02-13_15-40-28 boot.te
+
+commit 5e2acb9fb99ec15cede7edbc31a8f758e2762ff8
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Feb 13 14:57:21 2024 -0500
+
+    2024-02-13_14-57-21 udisks.te
+
+commit f6d2cb0abb37e86e0a963031532aca8aba9a30ef
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Feb 13 14:35:33 2024 -0500
+
+    2024-02-13_14-35-33 boot.te
+
+commit 002ea64dc79016c4848384e6c08696ec34e88ca5
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Feb 4 09:45:17 2024 -0500
+
+    2024-02-04_09-45-17 portage-gen.te
+
+commit f959f8efe1c7bca9f93ebc3ac52300d2b5360529
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Feb 3 19:21:13 2024 -0500
+
+    2024-02-03_19-21-13 xfce4-task-manager.te
+
+commit 8689b16567ef6b19add1bd436431ef3c857cec17
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Feb 3 19:17:50 2024 -0500
+
+    2024-02-03_19-17-50 qemu-gen.te
+
+commit 565626f8ff6845c0837bad92bc65b1b808f651a8
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Feb 3 19:16:46 2024 -0500
+
+    2024-02-03_19-16-46 qemu-gen.te
+
+commit 641376f4c90c9dbe7de9a55ac0171a89cca599cf
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 31 15:57:31 2024 -0500
+
+    2024-01-31_15-57-31 genr8policy.te
+
+commit 66d1bfa72d5d8d7d88bd32f6b5c7126bca2dfb3f
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jan 29 12:14:47 2024 -0500
+
+    2024-01-29_12-14-47 mullvad-daemon.te
+
+commit a2f2ffb81103a91b7d510a60b28c37d36ed97f73
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jan 29 11:48:17 2024 -0500
+
+    2024-01-29_11-48-17 secureboot.te
+
+commit c97654b2bf90e4cc622b35f1d0b7e9dbb8beb7d8
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jan 28 17:41:02 2024 -0500
+
+    2024-01-28_17-41-02 virtd-gen.te
+
+commit c3fa04bc7f1a1afb590cae3c3f874c94b505fd85
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jan 28 17:33:50 2024 -0500
+
+    2024-01-28_17-33-50 virtd-gen.te
+
+commit b0261736d66929b695f58629a836428759024495
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jan 28 17:26:22 2024 -0500
+
+    2024-01-28_17-26-22 genr8policy.te
+
+commit c39b67bb73a7128f0cd118baed2de0b8d473b912
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 25 07:54:13 2024 -0500
+
+    2024-01-25_07-54-13 boot.te
+
+commit b4af4a9b98a1e64d250370b2f8fd4461104155eb
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 25 07:44:16 2024 -0500
+
+    2024-01-25_07-44-16 boot.te
+
+commit 12364c3e0b0966622704098e959b7673cb30e1c3
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 24 21:31:16 2024 -0500
+
+    2024-01-24_21-31-16 qemu-gen.te
+
+commit fac79162942ec52c46cae4a77466015af79dda22
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 24 21:27:28 2024 -0500
+
+    2024-01-24_21-27-28 vscode.te
+
+commit 36c26ded04992737e4bc405febb7ec33f7bc5c02
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 24 21:03:10 2024 -0500
+
+    2024-01-24_21-03-10 udisks.te
+
+commit c3eb7b59642b185ab7b311e7febbea530d76b751
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 23 12:40:27 2024 -0500
+
+    2024-01-23_12-40-27 virtd-gen.te
+
+commit 0e08a6bafc5c832f07d56f7de4ee2aa6b72b84de
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 23 12:34:32 2024 -0500
+
+    2024-01-23_12-34-32 virtd-gen.te
+
+commit a8c6b4b87f00301173e655d86988c6dc3aa6063c
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 23 12:33:11 2024 -0500
+
+    2024-01-23_12-33-11 virtd-gen.te
+
+commit dc9e94f3700155f0044a14f423421163d5391932
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 23 12:17:27 2024 -0500
+
+    2024-01-23_12-17-27 virtd-gen.te
+
+commit 82d76bd671dcbc0893559a64f4e1e8c5bf51ff63
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jan 20 18:13:35 2024 -0500
+
+    2024-01-20_18-13-35 portage-gen.te
+
+commit f7d7b39cd34012c532c92bb445813267ac2cbc64
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jan 20 17:57:38 2024 -0500
+
+    2024-01-20_17-57-38 xed.te
+
+commit c28ea5690ede18eb5ab29f769b48ccf3c0f64a55
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jan 20 17:46:06 2024 -0500
+
+    2024-01-20_17-46-06 kernel-gen.te
+
+commit efd1943693c772bc5c59b70396765f05a48b7e37
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jan 20 17:45:47 2024 -0500
+
+    2024-01-20_17-45-47 kernel.te
+
+commit bf86bd9685bdbe808532cbead369e47c7bf8c9b8
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jan 20 17:45:39 2024 -0500
+
+    2024-01-20_17-45-39 boot.te
+
+commit da4e07aa8c252109bdfc27580d22933132e894e1
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jan 20 17:32:32 2024 -0500
+
+    2024-01-20_17-32-32 boot.te
+
+commit 1ef559f84d847c0918b9d90d76dcf3fc31795c7a
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Jan 19 18:51:52 2024 -0500
+
+    2024-01-19_18-51-52 xed.te
+
+commit 4fb79ac57c1a4a05e097697a51f2d366c18b5cbc
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Jan 19 16:44:28 2024 -0500
+
+    2024-01-19_16-44-28 qemu-gen.te
+
+commit be2be65ff8f0eea76b312ba933ffe813afb46f5e
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Jan 19 16:29:07 2024 -0500
+
+    2024-01-19_16-29-07 mullvad-daemon.te
+
+commit 3bf6749f617403c8ab18e3df7d067010866b7c91
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Jan 19 16:28:30 2024 -0500
+
+    2024-01-19_16-28-30 mullvad-daemon.te
+
+commit d3a20e4283bd38432576d2c782743c24f2a46b89
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Jan 19 16:26:23 2024 -0500
+
+    2024-01-19_16-26-23 mullvad-daemon.te
+
+commit bf2e5de3b599c948c15ca509a8d5b1ee9a8e79a7
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Jan 19 16:24:44 2024 -0500
+
+    2024-01-19_16-24-44 boot.te
+
+commit 87f2b6a13c66ca98b84ef0a4549401fa0195fb07
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 18 19:56:13 2024 -0500
+
+    2024-01-18_19-56-13 xed.te
+
+commit 4718a764669fd6fb44308c61527706169398e337
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 18 16:41:02 2024 -0500
+
+    2024-01-18_16-41-02 xed.te
+
+commit e9a957161cc15af7324e867c67905b1574abed7b
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 18 14:02:55 2024 -0500
+
+    2024-01-18_14-02-55 virtualbox.te
+
+commit db55769c7e8d75631904c8ee984f12160d9d8bfc
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 18 13:52:47 2024 -0500
+
+    2024-01-18_13-52-47 virtd-gen.te
+
+commit 16bad00447de36414755b36db85910492df8e994
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 18 13:49:07 2024 -0500
+
+    2024-01-18_13-49-07 virtd-gen.te
+
+commit 7541e519dff3dc9c69921300f9c4fb38b762abc0
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 18 13:47:43 2024 -0500
+
+    2024-01-18_13-47-43 virtd-gen.te
+
+commit 5f7c94a6e719a6f553b9664e66e38c65110d44d9
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 18 13:46:52 2024 -0500
+
+    2024-01-18_13-46-52 virtd-gen.te
+
+commit 0b7f2b0cdd3e86f5e98783c97c185a618341c659
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 16 22:45:30 2024 -0500
+
+    2024-01-16_22-45-30 vlc.te
+
+commit e24b8319f0b668c812f776e2ac6f63f56f87b176
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 16 22:30:49 2024 -0500
+
+    2024-01-16_22-30-49 virtualbox.te
+
+commit 80c7d5c2f32fbb2e7883742fe092565e93699045
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jan 14 11:50:13 2024 -0500
+
+    2024-01-14_11-50-13 thunar.te
+
+commit 552bdf921785782771164c9b460d39cd9b951ea2
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jan 14 11:49:58 2024 -0500
+
+    2024-01-14_11-49-58 thunar.te
+
+commit 8e2e2ab39df674276cdc71dc7c74c9ca2aa2b90c
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jan 14 11:48:33 2024 -0500
+
+    2024-01-14_11-48-33 thunar.te
+
+commit d2f154f72995eb26c0f564016b8fe267ef3372c1
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jan 14 11:45:37 2024 -0500
+
+    2024-01-14_11-45-37 thunar.te
+
+commit bc54afa70e25f00b7d413e3bfbf9a1b43c9bef49
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jan 13 16:55:20 2024 -0500
+
+    2024-01-13_16-55-20 chromium-gen.te
+
+commit 4a420be83ec785061f5dc4139379b2f615d97dab
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jan 13 16:11:10 2024 -0500
+
+    2024-01-13_16-11-10 storagevm.te
+
+commit c18b0290fbfe9449f494c867a7ae918bd15879d6
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jan 13 16:01:51 2024 -0500
+
+    2024-01-13_16-01-51 keepassxc.te
+
+commit eec5bccecd9c8020c3e119a1803510776a04d287
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jan 13 15:44:44 2024 -0500
+
+    2024-01-13_15-44-44 xfce4-task-manager.te
+
+commit c1bda0aa2bd1e4dd085a7dcca8c1bfe6d0d972a0
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 11 01:28:14 2024 -0500
+
+    2024-01-11_01-28-14 gnome_sys_mon.te
+
+commit f542a8277a797d95107bd2d5503bd6f4cdc5009c
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 11 01:21:36 2024 -0500
+
+    2024-01-11_01-21-36 gnome_calc.te
+
+commit 7a205e5d4c8b2407b4fb4a0b06fbe40a5c530705
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 11 01:20:06 2024 -0500
+
+    2024-01-11_01-20-06 gnome_2048.te
+
+commit af1f81dbc64e1063cbca4d50e83b91aa60c4c8df
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 18:28:52 2024 -0500
+
+    2024-01-10_18-28-52 losslesscut.te
+
+commit 4c1ef24f2ea270ff838405ba5f5c47401a4f3d3f
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 18:25:03 2024 -0500
+
+    2024-01-10_18-25-03 losslesscut.te
+
+commit 53cabe6121f0b841f84c55c8e3556589716f1077
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 09:19:20 2024 -0500
+
+    2024-01-10_09-19-20 losslesscut.te
+
+commit d1b3052b50a2c41ab8f597dd1b41d619e7cfc28f
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 09:14:16 2024 -0500
+
+    2024-01-10_09-14-16 losslesscut.te
+
+commit 548435a19f9907e819208b3e0595d99d1320d94c
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 09:12:51 2024 -0500
+
+    2024-01-10_09-12-51 losslesscut.te
+
+commit 68a3536bb0e8cf4c5296966255a9f5d96d90f76c
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 09:07:23 2024 -0500
+
+    2024-01-10_09-07-23 losslesscut.te
+
+commit ef861834ef9c0e3b25cf96e2bfd0dc73d3acd196
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 09:04:07 2024 -0500
+
+    2024-01-10_09-04-07 losslesscut.te
+
+commit 7d40c09241681063a494f4316710f06bbd280bcc
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 09:01:45 2024 -0500
+
+    2024-01-10_09-01-45 losslesscut.te
+
+commit 93983671bb61830fc3f7cbcccbec789bed91cdc8
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 08:58:34 2024 -0500
+
+    2024-01-10_08-58-34 losslesscut.te
+
+commit 17743ec6b5079b1ab600b253165c253a4b6ff351
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 08:56:22 2024 -0500
+
+    2024-01-10_08-56-22 losslesscut.te
+
+commit 38aa3a698e36eabb9c67b75d1540ec3b1344092c
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 08:37:27 2024 -0500
+
+    2024-01-10_08-37-27 losslesscut.te
+
+commit 08951d5832bf700cb0c0678213114b5631f89da6
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 08:36:11 2024 -0500
+
+    2024-01-10_08-36-11 losslesscut.te
+
+commit d1bd2eb3b8b98a91be6ade0453a48d11b96bf470
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 08:34:19 2024 -0500
+
+    2024-01-10_08-34-19 losslesscut.te
+
+commit e5f4704de40ac8180ae31b5c2e209b96c038b98f
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 08:20:43 2024 -0500
+
+    2024-01-10_08-20-43 losslesscut.te
+
+commit 380c5af2f20f99a25f28cb5dcea25ee79d29c4fd
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 08:15:46 2024 -0500
+
+    2024-01-10_08-15-46 losslesscut.te
+
+commit 58dfee3d52bba184d3ff06fea29d32561b72867b
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 08:14:39 2024 -0500
+
+    2024-01-10_08-14-39 losslesscut.te
+
+commit 0b8704deac159418b575aca778257740d5870c0c
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jan 10 08:13:16 2024 -0500
+
+    2024-01-10_08-13-16 losslesscut.te
+
+commit 1c230f5cb909dba2c6e2e471cdcd0f3bf7eb3672
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 9 22:44:24 2024 -0500
+
+    2024-01-09_22-44-24 genr8policy.te
+
+commit 9f7b4d40f07851e284393d957fa181e86782a24b
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 9 13:49:26 2024 -0500
+
+    2024-01-09_13-49-26 vscode.te
+
+commit 134f34ce7efa2627d531a182777095208243e101
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 9 13:41:52 2024 -0500
+
+    2024-01-09_13-41-52 vscode.te
+
+commit 05908cf32e4cd6389e35e9b79c952cc7fe83d0c0
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 9 13:41:06 2024 -0500
+
+    2024-01-09_13-41-06 vscode.te
+
+commit e6dbe93bb409c5a004c17238902699fea4513aed
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 9 13:40:31 2024 -0500
+
+    2024-01-09_13-40-31 vscode.te
+
+commit 850ab9ec1ed92462f9113ff29da493c05810f72e
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 9 13:39:59 2024 -0500
+
+    2024-01-09_13-39-59 vscode.te
+
+commit 3372fdd5d254764e94157b0e76f92e78ee2fd327
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 9 13:38:36 2024 -0500
+
+    2024-01-09_13-38-36 vscode.te
+
+commit 77635e690d4cef2ca894988450c2a5c59632f5b9
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 9 13:34:49 2024 -0500
+
+    2024-01-09_13-34-49 vscode.te
+
+commit e810b53139d6ff4f8ead98739e600923b6233008
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 9 13:34:11 2024 -0500
+
+    2024-01-09_13-34-11 vscode.te
+
+commit b36e9a6605f7f136981e21512b62849732f8c7fb
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 9 13:33:32 2024 -0500
+
+    2024-01-09_13-33-32 vscode.te
+
+commit 6de07084b508d969bfbd183716c4a9da3a51cf92
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jan 8 11:02:01 2024 -0500
+
+    2024-01-08_11-02-01 genr8policy.te
+
+commit df07b0c682370101fd17b40425cec954de70fa7f
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jan 7 19:36:28 2024 -0500
+
+    2024-01-07_19-36-28 xfce4-screensaver.te
+
+commit 7b71c36527bb8acacb941f970f3e2a8d9e03fcde
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 4 20:10:07 2024 -0500
+
+    2024-01-04_20-10-07 xfce4-screensaver.te
+
+commit 9ae1ef07893e5f384bf5968cc2ccdbf9533213e2
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 4 13:32:51 2024 -0500
+
+    2024-01-04_13-32-51 xed.te
+
+commit 59d860d37473e3ac81f9e4d0f2b984773e45fe28
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jan 4 13:31:40 2024 -0500
+
+    2024-01-04_13-31-40 xed.te
+
+commit c74255465070396df8b53150bd86e792fa8a57b0
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 2 21:49:07 2024 -0500
+
+    2024-01-02_21-49-07 portage-gen.te
+
+commit 96e34155cba9f221362ac63e44f4ca8ece810529
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jan 2 09:42:17 2024 -0500
+
+    2024-01-02_09-42-17 genr8policy.te
+
+commit 48ba507ac6b55a637a5afae46f5373ff694bca4a
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jan 1 08:13:20 2024 -0500
+
+    2024-01-01_08-13-20 xed.te
+
+commit 59b8738763a0a8235eed010e18e81602eba7b885
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 31 17:44:01 2023 -0500
+
+    2023-12-31_17-44-01 storagevm.te
+
+commit 7ee39f39421360d0ba0008e5f21bd7bd15ab4915
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 31 14:59:56 2023 -0500
+
+    2023-12-31_14-59-56 qemu-gen.te
+
+commit a9fbf4ebd01310e9460a19e45f59695513b76b64
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 31 14:14:51 2023 -0500
+
+    2023-12-31_14-14-51 genr8policy.te
+
+commit f584ad32bf1a65cbb5dca985099caa83d9994401
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 31 14:03:39 2023 -0500
+
+    2023-12-31_14-03-39 mozilla-gen.te
+
+commit 42a19b8eedc3c37670a9c48f68495f34094db7a8
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 31 13:56:10 2023 -0500
+
+    2023-12-31_13-56-10 qemu-gen.te
+
+commit aad052a083ab75a699d0c876597348a2f3429b1c
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 31 13:49:21 2023 -0500
+
+    2023-12-31_13-49-21 qemu-gen.te
+
+commit 5843f8024028422e5fef57be0ed81b5c0376d2b6
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 31 12:59:41 2023 -0500
+
+    2023-12-31_12-59-41 virtd-gen.te
+
+commit d287454e1e84f831d560daed9a9643d459028206
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 31 12:58:09 2023 -0500
+
+    2023-12-31_12-58-09 virtd-gen.te
+
+commit 3e395391b892747099a35f398b38c35a5e578abd
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 30 15:38:08 2023 -0500
+
+    2023-12-30_15-38-08 storagevm.te
+
+commit 168075e88b9562e668c93a2297bd2a1fd7fa1c3f
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 30 15:33:52 2023 -0500
+
+    2023-12-30_15-33-52 storagevm.te
+
+commit 106ed76d303281d2106461a61be5ad22aa59228c
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 30 15:31:34 2023 -0500
+
+    2023-12-30_15-31-34 storagevm.te
+
+commit 2afb1d97cefcda4bd09cc45a2756b23d729a1ad4
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 30 15:27:06 2023 -0500
+
+    2023-12-30_15-27-06 storagevm.te
+
+commit e8c826ecc9d5c8310aeb6fde8f60c631b824adfe
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 30 11:53:15 2023 -0500
+
+    2023-12-30_11-53-15 xed.te
+
+commit 47d3a9d5aba13913756faaa8c307a2c7abb90884
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 30 11:45:11 2023 -0500
+
+    2023-12-30_11-45-11 xfce4-screensaver-ignore.te
+
+commit cd038b922e993d0686b2c5b005b23d9ac59ba537
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 30 11:41:59 2023 -0500
+
+    2023-12-30_11-41-59 qemu-gen.te
+
+commit 72e1aa1c0c715543d511b88cc7d0b0811052596f
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Dec 29 15:10:25 2023 -0500
+
+    2023-12-29_15-10-25 storagevm.te
+
+commit 57d237c2c64609aba4c5b422221e843804f904d4
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Dec 29 13:58:26 2023 -0500
+
+    2023-12-29_13-58-26 storagevm.te
+
+commit 101dbf856247f3bff4c605b56f669796bd942709
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Dec 29 13:55:12 2023 -0500
+
+    2023-12-29_13-55-12 storagevm.te
+
+commit c38beca01ae7a590654c8f8cc1d01ee9185ed11c
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Dec 29 13:48:53 2023 -0500
+
+    2023-12-29_13-48-53 storagevm.te
+
+commit 0adf15fa8959fbebf1b8d4948cea77bc08b037b2
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Dec 29 13:48:01 2023 -0500
+
+    2023-12-29_13-48-01 storagevm.te
+
+commit deb13d976eeb88565c75dd98103962346dc203d1
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Dec 29 13:28:24 2023 -0500
+
+    2023-12-29_13-28-24 xed.te
+
+commit a9dfffc114916543c2751db28e9e8e5bb8cb215b
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Dec 29 11:01:51 2023 -0500
+
+    2023-12-29_11-01-51 hexchat.te
+
+commit 765c97788be772eb96e908994502be4071334219
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Dec 28 01:08:04 2023 -0500
+
+    2023-12-28_01-08-04 genr8policy.te
+
+commit 23bee79e064e1a3c37aefb1696f1947e62ec8360
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Dec 26 18:16:31 2023 -0500
+
+    2023-12-26_18-16-31 gvfs-fuse.te
+
+commit 6e712d0544d65e77be477a4f1fdb97a53d6a7f9d
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Dec 19 22:23:13 2023 -0500
+
+    2023-12-19_22-23-13 gvfs-fuse.te
+
+commit 760df9a499572d73aa10c4617c9750f864de5e29
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Dec 19 22:18:24 2023 -0500
+
+    2023-12-19_22-18-24 secureboot.te
+
+commit c25f54672901f2404419a774d71ddbf1cd8ffddf
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Dec 19 15:57:50 2023 -0500
+
+    2023-12-19_15-57-50 keepassxc.te
+
+commit 912f6de3f237f4c755cad843d946d7d811a0efca
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Dec 19 15:57:14 2023 -0500
+
+    2023-12-19_15-57-14 keepassxc.te
+
+commit 5183bbe4cefd7b5b44e738e9de28279ccfd9556f
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Dec 19 15:56:40 2023 -0500
+
+    2023-12-19_15-56-40 keepassxc.te
+
+commit 0674939838268550f6fa8d31d680497702094708
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Dec 18 17:36:49 2023 -0500
+
+    2023-12-18_17-36-49 thunar.te
+
+commit 4cef11287e26b45cb15049871ac51b4bff84464b
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Dec 18 17:06:33 2023 -0500
+
+    2023-12-18_17-06-33 udisks.te
+
+commit 32e140a58282b04b5231ec07365aa78f90837653
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Dec 18 17:04:58 2023 -0500
+
+    2023-12-18_17-04-58 udisks.te
+
+commit 7f9c202054c2530a80b010c995254f5cbf31a2c8
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Dec 18 17:02:12 2023 -0500
+
+    2023-12-18_17-02-12 udisks.te
+
+commit c9d7c5fa336f6fa3be45d95cd07d40fb941ea8e3
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Dec 18 16:20:21 2023 -0500
+
+    2023-12-18_16-20-21 thunar.te
+
+commit 0f702c8097240e7e6fcb8c4348ba03c3f4a0e043
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 17 20:18:52 2023 -0500
+
+    2023-12-17_20-18-52 xfce4-screensaver-ignore.te
+
+commit 3620a4008e9f5a10e439ee12cdfd6b0094da6ef1
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 17 11:15:09 2023 -0500
+
+    2023-12-17_11-15-09 portage-gen.te
+
+commit 323252ba5dedb611bae3a600011bacfb019a247d
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 17 11:12:02 2023 -0500
+
+    2023-12-17_11-12-02 xed.te
+
+commit e4a4376ec1074ecf5ff943f26777941fa8523a5b
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 17 11:10:28 2023 -0500
+
+    2023-12-17_11-10-28 genr8policy.te
+
+commit cf478ce2da1085ee44a1073b2c9425ab76a01d03
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 16 11:45:27 2023 -0500
+
+    2023-12-16_11-45-27 thunar.te
+
+commit f266e22e1f2e37caa2d7333c332858933ff1d53f
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Dec 15 08:58:18 2023 -0500
+
+    2023-12-15_08-58-18 xed.te
+
+commit fcc712eb4e9c83d753aa621d12735a769dbfc767
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Dec 15 02:28:15 2023 -0500
+
+    2023-12-15_02-28-15 genr8policy.te
+
+commit 12184d2cbf7361808b890dc38deab84cda4cae60
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Dec 14 23:43:53 2023 -0500
+
+    2023-12-14_23-43-53 virtmanager.te
+
+commit b9d62bf3a82db1ae2c62e27864b75c68b5207bdb
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Dec 14 23:42:03 2023 -0500
+
+    2023-12-14_23-42-03 genr8policy.te
+
+commit fc00fbeb0f47dec0422b8914a4843f285abb6168
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Dec 14 14:05:35 2023 -0500
+
+    2023-12-14_14-05-35 thunar.te
+
+commit eb9d04347d6f04007dc21f81aca84584e574de7a
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Dec 14 14:02:41 2023 -0500
+
+    2023-12-14_14-02-41 xed.te
+
+commit 086dc2752ac9e9a41659a54e6013913ac43a8b99
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Dec 14 13:59:43 2023 -0500
+
+    2023-12-14_13-59-43 xed.te
+
+commit d3d9a7f556f84b09efcd734dc1b40b8111b7c6ed
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Dec 14 13:59:20 2023 -0500
+
+    2023-12-14_13-59-20 xed.te
+
+commit 23624dcd89b70177cfc6779d35aaa7cbd5d07e7c
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Dec 14 07:54:17 2023 -0500
+
+    2023-12-14_07-54-17 thunar.te
+
+commit ead09976bd5ea7cf17471c441a11b362de4c30fc
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Dec 13 12:21:12 2023 -0500
+
+    2023-12-13_12-21-12 hexchat.te
+
+commit 18dd71e639b811503043d11103ee3caf81ec9ad4
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Dec 13 12:19:00 2023 -0500
+
+    2023-12-13_12-19-00 virtualbox.te
+
+commit 2f25a5d8209bb580e83fc19edcb773743c925198
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Dec 13 11:08:12 2023 -0500
+
+    2023-12-13_11-08-12 thunar.te
+
+commit 1b40c025e96250f08167aed4e53ed26b4d9b8ee9
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Dec 12 09:24:01 2023 -0500
+
+    2023-12-12_09-24-01 mozilla-gen.te
+
+commit 375cffeedb6bc033c785d5c1c977a76e44b8cc06
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Dec 12 09:18:36 2023 -0500
+
+    2023-12-12_09-18-36 thunar.te
+
+commit 8f3f3a53f8bafa365f3c8606d12830b14b2744d4
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Dec 12 09:08:26 2023 -0500
+
+    2023-12-12_09-08-26 thunar.te
+
+commit bece94fc2ae07e637ffef77a3b868a93c59a463d
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Dec 12 09:07:49 2023 -0500
+
+    2023-12-12_09-07-49 thunar.te
+
+commit 3dc707f23ff4cac1cbcc40b1d446ad37f8e2dcbe
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Dec 12 09:06:55 2023 -0500
+
+    2023-12-12_09-06-55 thunar.te
+
+commit 1f5fa4fa0f3b24f84a321a05a880f1dbcd814af2
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Dec 12 09:03:29 2023 -0500
+
+    2023-12-12_09-03-29 thunar.te
+
+commit c2a6a3d851a4ddb051340759e09e80a5e397c83d
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Dec 12 08:59:58 2023 -0500
+
+    2023-12-12_08-59-58 thunar.te
+
+commit ac9edbb9416d02e1ec76325ba748533fad637af7
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 10 01:01:22 2023 -0500
+
+    2023-12-10_01-01-22 genr8policy.te
+
+commit ee8f27a816d924ac5bac70774719494571059db6
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 9 18:52:49 2023 -0500
+
+    2023-12-09_18-52-49 mullvad-gui.te
+
+commit cfb1f9cfc9f202b24e7bd2601377ab0561014bab
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 9 18:52:10 2023 -0500
+
+    2023-12-09_18-52-10 mullvad-gui.te
+
+commit e87e885cf53a7afc739dbc707b717a822a66bf4f
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 9 18:51:30 2023 -0500
+
+    2023-12-09_18-51-30 mullvad-gui.te
+
+commit 785d870bd150c2d19c6caba37f458dccb575bf86
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 9 18:50:19 2023 -0500
+
+    2023-12-09_18-50-19 mullvad-gui.te
+
+commit 97af35650e787768c46c7b914e626e51932da9f9
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 9 18:49:54 2023 -0500
+
+    2023-12-09_18-49-54 mullvad-gui.te
+
+commit eaa526986856d46772e3f1ec964d535293f03e75
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 9 18:49:27 2023 -0500
+
+    2023-12-09_18-49-27 mullvad-gui.te
+
+commit 273a8f19fe12b9fa9326d3644144f41159f61be0
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Dec 9 18:48:18 2023 -0500
+
+    2023-12-09_18-48-18 mullvad-gui.te
+
+commit 1ab907abc106f1e207bb77e29157088b53ead3ec
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Dec 7 18:57:23 2023 -0500
+
+    2023-12-07_18-57-23 mullvad-daemon.te
+
+commit dc6c3d92ac95ab48b9541ac6e554f5d8b1a88bd4
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Dec 7 18:32:55 2023 -0500
+
+    2023-12-07_18-32-55 xfce4-task-manager.te
+
+commit 91ba49c0ecac7ce7794a3e7c8a1368aefbe55b43
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Dec 7 17:48:13 2023 -0500
+
+    2023-12-07_17-48-13 xfce4-settings.te
+
+commit 55ffc491b9fd217baee3343b94a7c77ab30f20fa
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Dec 4 15:24:18 2023 -0500
+
+    2023-12-04_15-24-18 genr8policy.te
+
+commit d5e9c4dbea37d3efab0c722a8be7db544d8874e5
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 3 13:50:21 2023 -0500
+
+    2023-12-03_13-50-21 genr8policy.te
+
+commit 3a04e6fcccd00fb09b77eb65bc1e74d2b708a2bd
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 3 13:44:17 2023 -0500
+
+    2023-12-03_13-44-17 genr8policy.te
+
+commit e9d9673c86d6870444c40645cfd65949ffec7a68
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 3 13:43:14 2023 -0500
+
+    2023-12-03_13-43-14 xfce4-settings.te
+
+commit 5ea9df998f01b76970bd580cc9bbcdef02d9e0f9
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 3 12:31:11 2023 -0500
+
+    2023-12-03_12-31-11 storagevm.te
+
+commit 3b28b2164d7406aa459d284f9a6864352893ed4d
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 3 12:21:03 2023 -0500
+
+    2023-12-03_12-21-03 xfce4-settings.te
+
+commit cb5b86b3324d7d06dfd20cc8cd1ef920efe244e7
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 3 12:18:51 2023 -0500
+
+    2023-12-03_12-18-51 xfce4-settings.te
+
+commit b4d7631cc0432606c4a3e2c9b4506a0e4f3e7d98
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 3 12:17:44 2023 -0500
+
+    2023-12-03_12-17-44 xfce4-settings.te
+
+commit fa33520ca9764c5b7d1e687d4fa1276c8d2026d7
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 3 12:17:25 2023 -0500
+
+    2023-12-03_12-17-25 xfce4-settings.te
+
+commit 24101de560cd4538ee5be8287008bf7c4f8937d1
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Dec 3 12:16:53 2023 -0500
+
+    2023-12-03_12-16-53 xfce4-settings.te
+
+commit 5f0bbb36a1401d1a738cef3aac7caa1f6bee4f99
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 30 18:35:09 2023 -0500
+
+    2023-11-30_18-35-09 storagevm.te
+
+commit 1ffe9b1e72d6416524f8293964754fffb6a861c8
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 30 18:23:20 2023 -0500
+
+    2023-11-30_18-23-20 storagevm.te
+
+commit 221814b0b853ead54313175b0c1564cf338889a2
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Nov 24 21:58:32 2023 -0500
+
+    2023-11-24_21-58-32 portage-gen.te
+
+commit e6cd03be774062455bb608b9fefedb66fcb3110c
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Nov 24 21:58:23 2023 -0500
+
+    2023-11-24_21-58-23 portage-gen.te
+
+commit 3d082e90255dccdf140bb11f0dd6d79d3072242c
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Nov 24 21:57:15 2023 -0500
+
+    2023-11-24_21-57-15 portage-gen.te
+
+commit 0c914c6b4f206ec4d7053ff4f2ec4f66f86b9943
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Nov 24 21:32:17 2023 -0500
+
+    2023-11-24_21-32-17 mullvad-daemon.te
+
+commit 4968215b0e0a809ce13b8dcbfc144439462b420a
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Nov 24 10:18:05 2023 -0500
+
+    cleanup
+
+commit 8a61de8cf20e5e3a99facf8379995ffa8edd5015
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 21 16:46:35 2023 -0500
+
+    2023-11-21_16-46-35 thunar.te
+
+commit e2dce90e1ae97af3d01d2ee007f9e1af3eb91e16
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 21 16:44:42 2023 -0500
+
+    2023-11-21_16-44-42 thunar.te
+
+commit 4b0a07db7e6dfcfb91d71792ef659f2b280605cc
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 21 15:06:45 2023 -0500
+
+    2023-11-21_15-06-45 genr8policy.te
+
+commit f712baecb2b74c824d55c919f28f7850ac61472e
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 21 15:04:23 2023 -0500
+
+    2023-11-21_15-04-23 genr8policy.te
+
+commit abd88afa4836b1f4a93a032536b351d77b6c261a
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 21 14:07:44 2023 -0500
+
+    2023-11-21_14-07-44 virtualbox.te
+
+commit 0238559238f7178c3ecb913f67c66fff037ce170
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 21 13:57:26 2023 -0500
+
+    2023-11-21_13-57-26 thunar.te
+
+commit 4baa125ecfba9b5ab4ec064e865efd0ea3601343
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 21 13:20:44 2023 -0500
+
+    2023-11-21_13-20-44 genr8policy.te
+
+commit 01186c27230cc6068eb0bbf4520774f3be488990
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 21 08:42:18 2023 -0500
+
+    2023-11-21_08-42-18 xed.te
+
+commit 00ed30e7e2e6739d4f2c9179424105f6ecddbed7
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 21 08:41:16 2023 -0500
+
+    2023-11-21_08-41-16 xed.te
+
+commit d124264ac6cd9fdd9270f8978942d2864ac4d322
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 21 08:40:31 2023 -0500
+
+    2023-11-21_08-40-31 xed.te
+
+commit d170a002e06cb0e6a06246288e117b7c51cf3c4a
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 21 08:40:03 2023 -0500
+
+    2023-11-21_08-40-03 xed.te
+
+commit 9c1567b35aced960e3d5a43ddb04e68033373684
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 21 08:38:28 2023 -0500
+
+    2023-11-21_08-38-28 xed.te
+
+commit a74a8d14814c5d178d5825a74180ac52c9d2356d
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 20 09:58:22 2023 -0500
+
+    2023-11-20_09-58-22 vscode.te
+
+commit f699d000f4bc5e4dbe4b94def3b8997ce6764a30
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 20 09:57:57 2023 -0500
+
+    2023-11-20_09-57-57 vscode.te
+
+commit e64af0282660f9754df01c67790c0bcea0c00752
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Nov 18 01:24:34 2023 -0500
+
+    2023-11-18_01-24-34 mozilla-gen.te
+
+commit b1d9b276203847c7e976213b1e14b668c4d777f8
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Nov 15 23:26:58 2023 -0500
+
+    2023-11-15_23-26-58 x-gen.te
+
+commit 06cad08dc3ae857fed8815667707224c2f6dc853
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Nov 15 16:35:58 2023 -0500
+
+    2023-11-15_16-35-58 filezilla.te
+
+commit 90f6053b7de33bec625f5bcfdeb90ef1f9c529d3
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Nov 15 16:29:14 2023 -0500
+
+    2023-11-15_16-29-14 wireshark-gen.te
+
+commit eab51072726834e8ff818d67e01c5e8021dd318e
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Nov 15 16:18:34 2023 -0500
+
+    2023-11-15_16-18-34 wireshark-gen.te
+
+commit 65edb09a16cb34a3f353fb04093a8e8b2d36ed1f
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 13 08:46:32 2023 -0500
+
+    2023-11-13_08-46-32 virtualbox.te
+
+commit 15d51e029a341e62af049e41a782f813b39d5ed2
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 13 08:45:02 2023 -0500
+
+    2023-11-13_08-45-02 virtualbox.te
+
+commit f59d1124d76cfa088c2fd3362eed223ffd65d783
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Nov 12 16:44:05 2023 -0500
+
+    2023-11-12_16-44-05 mozilla-gen.te
+
+commit c95921a4c5210365051cac549661acc92d6b1868
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Nov 12 15:29:11 2023 -0500
+
+    2023-11-12_15-29-11 mozilla-gen.te
+
+commit e7f33020eaf8184f67e9e06dc7d57c4a9a66c126
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Nov 12 15:28:00 2023 -0500
+
+    2023-11-12_15-28-00 mozilla-gen.te
+
+commit 8a499e477e196fd7a8ae9bae7fc18c90cf8de824
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Nov 12 15:11:58 2023 -0500
+
+    2023-11-12_15-11-58 genr8policy.te
+
+commit 914a77ed4b773a1a347bba3a325f695393925a96
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Nov 12 15:10:17 2023 -0500
+
+    2023-11-12_15-10-17 genr8policy.te
+
+commit de2557952e6410a728bbf3447155cfb33486250a
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Nov 12 15:08:20 2023 -0500
+
+    2023-11-12_15-08-20 genr8policy.te
+
+commit d2fdd80de9e90ca461fce632a5d1f49d92dfb521
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Nov 11 18:06:45 2023 -0500
+
+    2023-11-11_18-06-45 mozilla-gen.te
+
+commit fdc134e79c79a82948317a85b320e5a9932109f1
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Nov 11 15:29:13 2023 -0500
+
+    2023-11-11_15-29-13 thunar.te
+
+commit 19f6418cedfc8149f744a5b806fc01b6c4d504b8
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Nov 11 15:27:35 2023 -0500
+
+    2023-11-11_15-27-35 thunar.te
+
+commit d966dee2700822b0e6eb138bc1e8944a93408209
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Nov 11 15:25:22 2023 -0500
+
+    2023-11-11_15-25-22 thunar.te
+
+commit b72ee3a6371bbe798a39a7d024732ddb7ddde33e
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Nov 11 11:54:23 2023 -0500
+
+    2023-11-11_11-54-23 thunar.te
+
+commit 9bd66f31c0ee22ab25db7bf356599d952ff3da35
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Nov 10 08:04:10 2023 -0500
+
+    2023-11-10_08-04-10 vlc.te
+
+commit 1bd0ee3597a1ba0c50caeed23fa5c3ec0de7800c
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Nov 10 07:23:08 2023 -0500
+
+    2023-11-10_07-23-08 genr8policy.te
+
+commit 153340f362c32f50cce5dc08861edbeaa80999ac
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 9 12:57:00 2023 -0500
+
+    2023-11-09_12-57-00 mozilla-gen.te
+
+commit bdb425b8e32cca1b7e1ca0a9b492ddd2f2316b18
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 9 11:14:02 2023 -0500
+
+    2023-11-09_11-14-02 mozilla-gen.te
+
+commit 53a76a88002dd2870ab23ea88bb0f37304dd7c12
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 9 11:09:15 2023 -0500
+
+    2023-11-09_11-09-15 xed.te
+
+commit d47f1612e7dee2ec0e27f3c0fa53ac55fd92e892
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 9 11:07:07 2023 -0500
+
+    2023-11-09_11-07-07 xed.te
+
+commit 7c85cd2c24a8ffd2dac5ef3c5019272a8df5b40e
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 9 11:06:32 2023 -0500
+
+    2023-11-09_11-06-32 transmission.te
+
+commit a9b54e6d8649c88c952befbbc4c2fcb47b3c380d
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 9 10:28:51 2023 -0500
+
+    2023-11-09_10-28-51 gnome-keyring.te
+
+commit 5b142f610da61d84e0ac7257141e49c70024f8b3
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 9 10:08:13 2023 -0500
+
+    2023-11-09_10-08-13 genr8policy.te
+
+commit 1205ea06d632f21c4106cec0192348fc4b96e5f7
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 9 10:07:41 2023 -0500
+
+    2023-11-09_10-07-41 genr8policy.te
+
+commit 9a75d29519f7699ef6c59a31724a95d07d0907f8
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 9 10:07:02 2023 -0500
+
+    2023-11-09_10-07-02 genr8policy.te
+
+commit 427101a6d91ad6929c7dacf1316e51d1508cf0dd
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 9 10:05:57 2023 -0500
+
+    2023-11-09_10-05-57 genr8policy.te
+
+commit 93df9f6f40fbbf1567e3a82ce49ebe32daf27eb7
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 9 10:04:24 2023 -0500
+
+    2023-11-09_10-04-24 genr8policy.te
+
+commit 225f19825960a6ba679e27cc07259d3cad6b6ea8
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 7 13:31:47 2023 -0500
+
+    2023-11-07_13-31-47 xed.te
+
+commit 04e147fd1cecf1e430dbc0fd608ab73b69db532d
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 7 10:35:53 2023 -0500
+
+    2023-11-07_10-35-53 xed.te
+
+commit 5b2224634c0b4e136b37922f017bab57a17f069a
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 7 10:34:52 2023 -0500
+
+    2023-11-07_10-34-52 xed.te
+
+commit 6ea715e49d8ab0665f2274b52f691d86be461245
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Nov 7 00:25:27 2023 -0500
+
+    2023-11-07_00-25-27 boot.te
+
+commit fff0bfc77ec569af4d2f919d9c69077ca04fd44c
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 6 20:57:36 2023 -0500
+
+    2023-11-06_20-57-36 mozilla-gen.te
+
+commit 9d1648420c5550434042e0c8974c203ca1f43dd7
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 6 20:46:31 2023 -0500
+
+    2023-11-06_20-46-31 mozilla-gen.te
+
+commit 01e4120525751599569dbfb850a75fb9baf1381d
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 6 20:46:01 2023 -0500
+
+    2023-11-06_20-46-01 mozilla-gen.te
+
+commit 8574dabec0f7154af8d5b268cfc0bcd378916523
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 6 20:03:08 2023 -0500
+
+    2023-11-06_20-03-08 vscode.te
+
+commit d5220cd42fb39a7e8b9261183b67a37d0509baef
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 6 20:00:42 2023 -0500
+
+    2023-11-06_20-00-42 vscode.te
+
+commit 206cabad1587632bd19ea9396ebb48cac2002010
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 6 14:24:57 2023 -0500
+
+    2023-11-06_14-24-57 x-gen.te
+
+commit 4e42cea3bff44e2db79000fe348a26002ced0cd8
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 6 14:24:26 2023 -0500
+
+    2023-11-06_14-24-26 x-gen.te
+
+commit 2245b0613da56cedb44fe5a06cdec0cd2923d5b0
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 6 14:21:51 2023 -0500
+
+    2023-11-06_14-21-51 x-gen.te
+
+commit 6d4f668b9f661adabb5d1239d6576bb3133d6696
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Nov 6 14:19:16 2023 -0500
+
+    2023-11-06_14-19-16 x-gen.te
+
+commit 63fbfd4cb9a951029f2fe8e4fa4db7af3d9fe2d9
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Nov 5 18:23:41 2023 -0500
+
+    2023-11-05_18-23-41 vscode.te
+
+commit fa8ff69d7c28812e79e5453c1bd0dcc29fb25862
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Nov 5 18:15:11 2023 -0500
+
+    2023-11-05_18-15-11 x-gen.te
+
+commit 1218c3ce447b590e57b5887d80cba96e36c7df37
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Nov 5 18:13:12 2023 -0500
+
+    2023-11-05_18-13-12 x-gen.te
+
+commit fc998f0f98ca3674947e35b7fb2e14ce2c8f0dd4
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Nov 5 09:33:51 2023 -0500
+
+    2023-11-05_09-33-51 vscode.te
+
+commit 0eb67b625b7be2affb89ab5071a8677663280646
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Nov 4 16:41:16 2023 -0400
+
+    2023-11-04_16-41-16 genr8policy.te
+
+commit d8fb77d46c63f56b9889c61ce1a58f0234a017d5
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Nov 4 16:37:52 2023 -0400
+
+    2023-11-04_16-37-52 mozilla-gen.te
+
+commit 4ca4d4e98c4479e1844d7a4b60f13572cf9d54e6
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Nov 4 16:36:44 2023 -0400
+
+    2023-11-04_16-36-44 newports-gen.te
+
+commit ee5434a8c1eb4927c3ae7104645c0c593b922dd7
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Nov 4 16:31:06 2023 -0400
+
+    2023-11-04_16-31-06 genr8policy.te
+
+commit 7fda1c7b050edbc09cc20e90601fa0a0ee4d9286
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Nov 4 15:06:59 2023 -0400
+
+    2023-11-04_15-06-59 xed.te
+
+commit a5d03198e513492d331fdb0580b9b222e1176978
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Nov 4 14:57:40 2023 -0400
+
+    2023-11-04_14-57-40 portage-gen.te
+
+commit 5cbdb86daac32c9c5fe8823d3fec4e1c866f5034
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 2 18:42:04 2023 -0400
+
+    2023-11-02_18-42-04 xfce4-screensaver.te
+
+commit 5f75431076b4cc6a24644ad419aa57c2bf0dce51
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 2 18:30:48 2023 -0400
+
+    2023-11-02_18-30-48 boot.te
+
+commit d40448b374ebff97ee88023f52f9d4a8d4d58d87
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 2 18:27:15 2023 -0400
+
+    2023-11-02_18-27-15 transmission.te
+
+commit 2c65af8afa7a6e82ffef38c8602f3298a87ba6ea
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 2 16:54:07 2023 -0400
+
+    2023-11-02_16-54-07 vscode.te
+
+commit 64e062e1858de8d53eb9f679a990b4785e68bd0e
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Nov 2 16:43:44 2023 -0400
+
+    2023-11-02_16-43-44 boot.te
+
+commit 59a4df4f14b5f75acd0e79859e6d7ecb18da32a7
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Oct 31 23:13:27 2023 -0400
+
+    2023-10-31_23-13-27 genr8policy.te
+
+commit 932ffce0248f2195b22f735883792e052b9fbe97
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Oct 31 18:13:53 2023 -0400
+
+    2023-10-31_18-13-53 secureboot.te
+
+commit 2fe1fa61f649227cf9242d89684c5c58d5ba6f9b
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Oct 31 18:13:27 2023 -0400
+
+    2023-10-31_18-13-27 secureboot.te
+
+commit 628e46e21da14410eea23bf8a61eacc17e61b2b4
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Oct 30 22:01:31 2023 -0400
+
+    2023-10-30_22-01-31 boot.te
+
+commit ca9f578c7fd2d2ae337fffec763d7956822ced67
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Oct 30 22:00:29 2023 -0400
+
+    2023-10-30_22-00-29 boot.te
+
+commit b74a8443631b7ac17675935a930b1a488824ecdd
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Oct 30 21:58:45 2023 -0400
+
+    2023-10-30_21-58-45 boot.te
+
+commit dcca6d291d00c3438be35fbb07ca89d1dd3a52eb
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Oct 28 18:35:12 2023 -0400
+
+    2023-10-28_18-35-12 x-gen.te
+
+commit 4282ac1f4b42b6cb6e9c85ca277c4a8638b6098e
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Oct 28 16:59:27 2023 -0400
+
+    2023-10-28_16-59-27 genr8policy.te
+
+commit cbeb9ad28f06efa1df4d5a354c3282ad0016da33
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Oct 28 16:59:03 2023 -0400
+
+    2023-10-28_16-59-03 genr8policy.te
+
+commit accee3b523b7004777a5bce9aec7f18262158bfe
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Oct 28 14:53:29 2023 -0400
+
+    2023-10-28_14-53-29 genr8policy.te
+
+commit fe1ad139f5bd34bb54f79ba28baa86da22bc60d7
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 27 23:10:48 2023 -0400
+
+    2023-10-27_23-10-48 mozilla-gen.te
+
+commit fcd77433034094e91f75e44c0035b8f210c10cbb
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 27 23:02:26 2023 -0400
+
+    2023-10-27_23-02-26 mozilla-gen.te
+
+commit e4d8c16a0cf86c868a57f999b69627230de17544
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 27 22:45:11 2023 -0400
+
+    2023-10-27_22-45-11 portage-gen.te
+
+commit d39458e969b7eca7995b21225efa6969cc86de52
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 27 21:58:24 2023 -0400
+
+    2023-10-27_21-58-24 genr8policy.te
+
+commit bf240d4c10eac3669552a14523036957f2e67c05
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 27 21:57:09 2023 -0400
+
+    2023-10-27_21-57-09 genr8policy.te
+
+commit 96f0400781691573b72ae313979dbf8e92941032
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 27 15:05:33 2023 -0400
+
+    2023-10-27_15-05-33 genr8policy.te
+
+commit 419a01fc21b6e9cd86d5063dbc3834924e929be4
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Oct 26 22:01:52 2023 -0400
+
+    2023-10-26_22-01-52 secureboot.te
+
+commit dcad4893e6d4eb9049aeb7af03bc80569e6a504d
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Oct 26 22:01:23 2023 -0400
+
+    2023-10-26_22-01-23 secureboot.te
+
+commit d53af1195f83f193cb5270d63cd1efb7cbf376c8
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Oct 25 17:56:12 2023 -0400
+
+    2023-10-25_17-56-12 x-gen.te
+
+commit 7983da2e891a9b39a92b6eac3298da6ecadf266c
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Oct 25 14:08:12 2023 -0400
+
+    2023-10-25_14-08-12 genr8policy.te
+
+commit 61abb0d78253d0a416d123f1a5a0a7ce45a6e5c7
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Oct 25 14:07:15 2023 -0400
+
+    2023-10-25_14-07-15 genr8policy.te
+
+commit c10159c37c3fb0f4fa45417038bba1266afb067e
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Oct 25 14:06:40 2023 -0400
+
+    2023-10-25_14-06-40 genr8policy.te
+
+commit 335fa2834c8a4688ada2df2ae5d3190040f3c07e
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Oct 25 13:52:50 2023 -0400
+
+    2023-10-25_13-52-50 portage-gen.te
+
+commit 1067936ed29cfaa90489207487bdc8219ea2c09c
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Oct 24 19:39:59 2023 -0400
+
+    2023-10-24_19-39-59 genr8policy.te
+
+commit 63623c79eec493b3602a9ba8350a89cb5790d50b
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Oct 24 19:39:40 2023 -0400
+
+    2023-10-24_19-39-40 genr8policy.te
+
+commit 1857d2929fa16c0fe6cf140b17a5faa65c7e0439
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Oct 24 19:37:06 2023 -0400
+
+    2023-10-24_19-37-06 genr8policy.te
+
+commit ce57bf4eea0547add86d673059c83e1d0248960c
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Oct 24 15:56:00 2023 -0400
+
+    2023-10-24_15-56-00 mime-icon-cache.te
+
+commit b4d3b7bbaac364f5606e6b7db3341bf5735a7978
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Oct 24 15:41:55 2023 -0400
+
+    2023-10-24_15-41-55 boot.te
+
+commit 4f9131515f0d251e381d19cce86dce65c4d28542
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Oct 24 14:39:26 2023 -0400
+
+    2023-10-24_14-39-26 boot.te
+
+commit 5c0c3e9728222b15c15764bbcef369d4363ea7f3
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Oct 24 14:21:46 2023 -0400
+
+    2023-10-24_14-21-46 boot.te
+
+commit 05aae4d36afa0c915f7c71cb42e584bcc7157acf
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Oct 24 13:46:31 2023 -0400
+
+    2023-10-24_13-46-31 genr8policy.te
+
+commit 2db144b1de70abeb1e7067b122328a1013743b5d
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Oct 24 13:45:44 2023 -0400
+
+    2023-10-24_13-45-44 genr8policy.te
+
+commit d9b76712a732790563ad14ae92b7b62167834dd0
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Oct 24 13:37:37 2023 -0400
+
+    2023-10-24_13-37-37 mozilla-gen.te
+
+commit 24be9824c5e7b99c11b345d1fd5d6d71d7d27db7
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Oct 23 16:29:43 2023 -0400
+
+    2023-10-23_16-29-43 genr8policy.te
+
+commit 0a446e002868de40782f991fed8257205533c1bb
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Oct 23 12:03:23 2023 -0400
+
+    2023-10-23_12-03-23 genr8policy.te
+
+commit ba528551d035bf3999cd28361fe1e2cd9a97da92
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Oct 23 11:43:07 2023 -0400
+
+    2023-10-23_11-43-07 genr8policy.te
+
+commit cc097204fd72c8a5cf75b4a93c50a76576322f09
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Oct 23 01:17:30 2023 -0400
+
+    2023-10-23_01-17-30 gvfs-fuse.te
+
+commit 566daa811a0d6c59bed96128681501aba514e5d3
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Oct 22 16:54:28 2023 -0400
+
+    2023-10-22_16-54-28 gvfs-fuse.te dont need dac_read_search or dac_override
+
+commit c8cab8510cdee59a90577b65fea9a9e5f6c794b1
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Oct 22 02:54:07 2023 -0400
+
+    2023-10-22_02-54-07 xfce4-screensaver-ignore.te
+
+commit 49acfeb19589fff0aa6116d09f708e380dee35df
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Oct 22 02:47:43 2023 -0400
+
+    2023-10-22_02-47-43 genr8policy.te
+
+commit 361749869b140556747bb8588a175621f8e5946f
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Oct 22 01:58:57 2023 -0400
+
+    2023-10-22_01-58-57 gnome_calc gconfd_t dbus dconf
+
+commit 180c08ee0649d35d3b7e39bef6a20869acf9ee7f
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Oct 21 14:29:23 2023 -0400
+
+    2023-10-21_14-29-23 xfce4-task-manager.te
+
+commit 0a9ed523e02d9f1c30e49fa19a3319f930cc8a4a
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Oct 21 12:30:03 2023 -0400
+
+    2023-10-21_12-30-03 inotifywait
+
+commit 79142c8ce7e3a3e1e8eeffe943dfb87198ebe95a
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Oct 21 00:40:53 2023 -0400
+
+    2023-10-21_00-40-53 xfce4-screensaver.te
+
+commit 258bab8c2af77f5e96ffedf0a0547cadc5cce70b
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Oct 21 00:35:24 2023 -0400
+
+    2023-10-21_00-35-24 gnome_sys_mon.te
+
+commit a11f485a219d12269d3dfd441dbb2f91e797b55c
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Oct 21 00:02:13 2023 -0400
+
+    2023-10-21_00-02-13 filezilla.te
+
+commit 9775c22c22b446a4b7415eeaa7a078595397e536
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 23:39:44 2023 -0400
+
+    2023-10-20_23-39-44 chromium-gen.te doas xfce-scrn-ign genr8policy
+
+commit 6645093acf6df854c42f2c639aa133b1b93cd988
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 23:12:24 2023 -0400
+
+    2023-10-20_23-12-24 templatep.te
+
+commit 9b5bad28e2b28242a8444d4d1de7b5d81d65efa4
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 23:09:38 2023 -0400
+
+    2023-10-20_23-09-38 seahorse.te
+
+commit 202b5dd9ed6f357cdf2b589d72dbb1a76eeccdc9
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 22:33:18 2023 -0400
+
+    2023-10-20_22-33-18 psensor.te
+
+commit 934e1a36650c2bcd55d7d686efea1acc9fba3b6a
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 22:30:31 2023 -0400
+
+    2023-10-20_22-30-31 telegram.te
+
+commit b53671d1a01924622f5d84d7c52ef6ed3bbfe071
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 20:58:38 2023 -0400
+
+    2023-10-20_20-58-38 lxd.te
+
+commit 8099b38d96ef0af4d524d5e745a2408ae385931f
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 20:38:55 2023 -0400
+
+    2023-10-20_20-38-55 gconf.te
+
+commit b5fea6fac8c5e321f629c195f3aa0aab04b45a32
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 20:20:47 2023 -0400
+
+    2023-10-20_20-20-47 gnome-keyring.te
+
+commit c718805b75bb467f8f7446f6eaec3fd83dcc1eb3
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 13:50:49 2023 -0400
+
+    2023-10-20_13-50-49 transmission.te
+
+commit 43dc54a56642c39f2fba35dc63205a82936e789e
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 13:36:37 2023 -0400
+
+    2023-10-20_13-36-37 virtualbox.te
+
+commit 8a3637e554a328a01234c4f0538fdf3a77077e81
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 13:26:25 2023 -0400
+
+    2023-10-20_13-26-25 boot.te
+
+commit 5ef31a65dfefdfb348b5c502406bcb196b460665
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 03:08:10 2023 -0400
+
+    2023-10-20_03-08-10 xfce4-task-manager.te
+
+commit 16a96a4a867166390666a95de8e73b8a19f813d4
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 02:33:06 2023 -0400
+
+    2023-10-20_02-33-06 xed
+
+commit 7f0bc12d7c2f5e4f1143dddabf71261554d690cc
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 01:34:52 2023 -0400
+
+    2023-10-20_01-34-52 mullvad_runtime_t for /run/mullvad-vpn.pid - v1.4.5 final
+
+commit e0217a07968fe8548c32b9344dc6743c995bf719
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 01:10:48 2023 -0400
+
+    2023-10-20_01-10-48 mullvad-daemon /run types - v1.4.3 final draft
+
+commit b9cb2bb47d644ed3bd8a1f2aea862266d723d87b
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Oct 20 01:05:16 2023 -0400
+
+    2023-10-20_01-05-16 mullvad-daemon /run types
+
+commit c3380a3614289d052c74cabaf35bee45b56a68a6
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Oct 19 23:53:34 2023 -0400
+
+    2023-10-19_23-53-34 portage
+
+commit b7793e2326fc71c54ad5340cbeb92aa8fa3dea12
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Oct 19 16:24:44 2023 -0400
+
+    2023-10-19_16-24-44 thunarp2
+
+commit cf9563ed8fb234f9c33005d743d5edde5a453890
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Oct 19 16:18:50 2023 -0400
+
+    2023-10-19_16-18-50 thunar
+
+commit 27598e675dfec9a467f5302ee4efeff1174ff02b
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Oct 19 14:40:11 2023 -0400
+
+    2023-10-19_14-40-11 secureboot1.0 key-ima1.4
+
+commit 6b3de4d72f6f3941f8b3b1e8b66514221c8897c5
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Oct 18 15:51:33 2023 -0400
+
+    2023-10-18_15-51-33 xed
+
+commit a70621b9a485c96cf634547620a3f1f2ef893285
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Oct 17 13:22:43 2023 -0400
+
+    2023-10-17_13-22-43 genr8policy.te
+
+commit 158a50e138a90a561002f8c6a72d98fcbe0b4ba5
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Oct 16 23:19:34 2023 -0400
+
+    2023-10-16_23-19-34 xed.te
+
+commit 10ac75fb34b45911acdcf9a11e8827bda2d48da7
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Oct 16 23:08:55 2023 -0400
+
+    2023-10-16_23-08-54 qemu-gen
+
+commit 2b34bc4e0a7d52dc8b2ff670e96232a68e43359d
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Oct 11 15:13:42 2023 -0400
+
+    2023-10-11_15-13-42 todaysupdate
+
+commit ccf95699d54b59404df9072c2a30b416eba72d2f
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Oct 2 18:26:47 2023 -0400
+
+    2023-10-02_18-26-47 xfce4-screensaver.te
+
+commit 2c2925eded80856a20273b5a0970606833a6825e
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Oct 1 02:30:05 2023 -0400
+
+    2023-10-01_02-30-05 seahorse.te
+
+commit ed1a5583dd1e1cd925944113132bc39f8522c572
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Oct 1 02:28:08 2023 -0400
+
+    2023-10-01_02-28-08 seahorse.te
+
+commit 6dbfb2fc7a1c58ef2231f7930cce5727734e32f5
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Oct 1 02:25:17 2023 -0400
+
+    2023-10-01_02-25-17 gnome_sys_mon
+
+commit 7bc0c8fde024df8c049bb05e35e3a04b0646cf4f
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Oct 1 02:16:10 2023 -0400
+
+    2023-10-01_02-16-10 gnome_sys_mon
+
+commit e33062cee94e8847569709875389d3b1c6cded13
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Sep 30 22:07:38 2023 -0400
+
+    2023-09-30_22-07-38 deadbeef
+
+commit d0ec8262f845867534c3e20e49b522a748b877bf
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Sep 30 20:11:14 2023 -0400
+
+    2023-09-30_20-11-14 vscode
+
+commit 47ed3fedc9bc01a7fcc8a44a3a546b2b2209ee9a
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Sep 30 14:46:27 2023 -0400
+
+    2023-09-30_14-46-27 usr-local-SRC_T vscode thunar + past
+
+commit 134a1ebdccde226cf0e18b752d4d52ec9560076a
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Aug 14 18:23:14 2023 -0400
+
+    2023-08-14_18-23-14 gitupdate
+
+commit c1d239d52f45f55378293b6be4368ea85c40eca6
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Aug 6 14:15:17 2023 -0400
+
+    2023-08-06_14-15-17 gnome_sys_mon
+
+commit 79e970720bbc8dc69206c4efd75f393cc76d7b95
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Aug 5 20:21:08 2023 -0400
+
+    2023-08-05_20-21-08 genr8policy
+
+commit 7b6b9f7867134679685f8e7f53bf33861ac052f1
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Aug 3 15:08:16 2023 -0400
+
+    2023-08-03_15-08-16 buildfirefoxfail
+
+commit 6f00eea82d9b8130ea04780bc6da51cfdbc602b0
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 2 22:33:52 2023 -0400
+
+    2023-08-02_22-33-52 xfce4s
+
+commit 0b862cf66de5f828bb4ea1897964adba1ded14d6
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 2 18:44:09 2023 -0400
+
+    2023-08-02_18-44-09 xfce4
+
+commit a19fec4d0cae88efe70a1e612284c9850daa4bf3
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 2 18:25:24 2023 -0400
+
+    2023-08-02_18-25-24 vscode virtualbox
+
+commit 3a8576f5eb2da0e789a1ca7c282d67e8a8983d00
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 2 18:02:37 2023 -0400
+
+    2023-08-02_18-02-37 transmission
+
+commit 1269b52dbcebec74717d8f798d17034bd0037c6d
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 2 17:26:56 2023 -0400
+
+    2023-08-02_17-26-56 templatep
+
+commit f629ce9d8b8dc777081e9eb71c3c1327684cd0d8
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 2 17:22:14 2023 -0400
+
+    2023-08-02_17-22-14 telegram
+
+commit 405c518196516596c08381faf849300ad42a60bb
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 2 02:39:00 2023 -0400
+
+    2023-08-02_02-39-00 psensor
+
+commit 84f1e3ef068aaa24b84c05894561390aae253442
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 2 01:47:43 2023 -0400
+
+    2023-08-02_01-47-43 boot reboot
+
+commit dbf274e5cb1e6e9216669f215d00a48623d4b3f4
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 2 01:42:57 2023 -0400
+
+    2023-08-02_01-42-57 transmission
+
+commit 0f59ef37dfa0c015bb51eaf4eeb5b6a7117577f2
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 2 01:17:24 2023 -0400
+
+    2023-08-02_01-17-24 psensor align
+
+commit b80d076a0e37bcc4804e8270baffdadffb2af69f
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 2 00:50:13 2023 -0400
+
+    2023-08-02_00-50-13 newports
+
+commit a3213e22c4014708baf104c811957a6525affd52
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 2 00:39:53 2023 -0400
+
+    2023-08-02_00-39-53 mullvad-gui
+
+commit 4c7536f1e84fa67929ca7967edfb044c13dc23ba
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Aug 1 23:55:07 2023 -0400
+
+    2023-08-01_23-55-07 mullvad udisks
+
+commit 717f849e68f533f806722de6d41b91a7c37c4669
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Aug 1 23:13:27 2023 -0400
+
+    2023-08-01_23-13-27 updates + mozilla-gen
+
+commit bc1f2b2ffecb78b09b0563e7b611ec9964bf7ce8
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Aug 1 01:12:20 2023 -0400
+
+    2023-08-01_01-12-20 updates + genr8eofl
+
+commit f78ab68581085bc0c8b59d046f5d1973458970cc
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Aug 1 01:03:48 2023 -0400
+
+    2023-08-01_01-03-48 updates + genr8eofl
+
+commit 93980dd18ead63d74a65fc3b7e79360f4581e6fe
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 31 23:32:12 2023 -0400
+
+    2023-07-31_23-32-12 boot
+
+commit c9ef7a2a6538d6052dba96246b4a297a146a1b14
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 31 21:08:18 2023 -0400
+
+    2023-07-31_21-08-18 xserver
+
+commit c318b37dc3729040b7d655eebdadd4a34a8614de
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 31 15:25:43 2023 -0400
+
+    2023-07-31_15-25-43 gconf thunar
+
+commit 36469e156a7f680c91af12067d587929fe9d6456
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jul 29 22:35:40 2023 -0400
+
+    2023-07-29_22-35-40 mozilla-gen
+
+commit 3dac3380cadea9af4de0927d750c907d35353edd
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jul 26 23:47:55 2023 -0400
+
+    remove combined xfce settings files
+
+commit 211fed021004e181daf8724d7238e10429a1c131
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jul 26 23:40:24 2023 -0400
+
+    2023-07-26_23-40-24 tinker cleanup source only
+
+commit 427e395c570ad17961363d2bd6cf8ab207cae17b
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jul 26 23:22:14 2023 -0400
+
+    2023-07-26_23-22-14 sed trailing whitespace removal
+
+commit 53c803b0e332cd290f6110974c6ca3a0a1347a74
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jul 26 23:21:18 2023 -0400
+
+    2023-07-26_23-21-18 genr8 portage mime
+
+commit d3769275cfc798dac94262ec5bfeb6351d16e78d
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jul 25 23:28:44 2023 -0400
+
+    2023-07-25_23-28-44 gconf keepass
+
+commit 5959eebfc09a3866f549aad6b70d37b7814ed499
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jul 25 18:46:36 2023 -0400
+
+    2023-07-25_18-46-36 gconf test + mullvad module messageremove
+
+commit e7fa561ec31599de77e5d502aef04289fb9f4011
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jul 25 15:52:43 2023 -0400
+
+    2023-07-25_15-52-43 xfce4-screensaver to powermanager
+
+commit 01cb3e64f6fff1538d4d514beac9ebef4599ebf4
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jul 25 00:15:12 2023 -0400
+
+    2023-07-25_00-15-12 x-gen
+
+commit a4f3023f0872e807abfd0f851421b59d307ee4c9
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jul 25 00:08:43 2023 -0400
+
+    2023-07-25_00-08-43 losslesscut
+
+commit 517c926fae5aa50eaf52475028a22c7388c9b876
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 23:58:35 2023 -0400
+
+    2023-07-24_23-58-35 virtualbox
+
+commit d97bc76c0f7a198e6b036ae207fe55dd83cbcdf2
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 23:43:15 2023 -0400
+
+    2023-07-24_23-43-15 transmission
+
+commit a74a82f95c1b80600ce15d30349b842235070431
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 23:31:42 2023 -0400
+
+    2023-07-24_23-31-42 thunar
+
+commit d04da296ed3bdbfe023262bc029be64d58131bf1
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 23:16:40 2023 -0400
+
+    2023-07-24_23-17-58 xfce4-power-manager minicoredumper ALL-interfaces-userdom
+
+commit 832d1998022ff66f28ce10002d6c36c8184a8bbf
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 21:54:39 2023 -0400
+
+    2023-07-24_21-54-39 udisks
+
+commit 296fce59527321bf17fa2bc98a1602b18b08b76a
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 21:47:59 2023 -0400
+
+    2023-07-24_21-47-59 mozilla-gen
+
+commit f72fd33443605215e5f54285fe9f321e1dda401c
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 21:26:27 2023 -0400
+
+    2023-07-24_21-26-27 mullvad-gui
+
+commit 5796af395318e0ed966cbd53e11faaeaddae54be
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 20:41:53 2023 -0400
+
+    2023-07-24_20-41-53 vlc
+
+commit 75ca64588179d3fe78fff004e81164861abce484
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 20:36:31 2023 -0400
+
+    2023-07-24_20-36-53 hexchat xfce4-interfaces
+
+commit 46c0bed75c9215c96b9bc3ffc197af8035d1a20f
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 20:21:46 2023 -0400
+
+    2023-07-24_20-21-46 hexchat
+
+commit 84ea6c7e00ae747312e4ca8b1dc0c00428c5a3ac
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 20:10:35 2023 -0400
+
+    2023-07-24_20-10-35 templatepp
+
+commit 454c360a214a0fd58d429b67282d7021dd4a8a23
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 20:05:58 2023 -0400
+
+    2023-07-24_20-05-58 useradd
+
+commit 4a1bf14ebb9326660da8b6523ad53e13f6df9240
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 19:54:08 2023 -0400
+
+    2023-07-24_19-54-30 seahorse gnome_sys_mon
+
+commit 4a54fd1a94da186e8e3fac3f63f3662752b4051a
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 19:29:58 2023 -0400
+
+    2023-07-24_19-29-58 gnome-keyring
+
+commit 695fc604f8dd372ca56bf9f6c04c14d5d8e2181d
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 19:15:44 2023 -0400
+
+    2023-07-24_19-15-44 gnome-calc
+
+commit 1f9f08e782e1186f8d9319c87d653b314d828afc
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 18:55:03 2023 -0400
+
+    2023-07-24_18-55-03 chromium-gen
+
+commit c6e42d24e623691d91822dc98de3b8d92abc2831
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 18:50:24 2023 -0400
+
+    2023-07-24_18-50-24 qemu tmux-screen
+
+commit 87143a5bff6880576412e1eda25b0f86e35de990
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 18:35:59 2023 -0400
+
+    2023-07-24_18-35-59 storagevm
+
+commit d2dcd88f03a71f0124c89462063827ad9e192e2f
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 18:14:50 2023 -0400
+
+    2023-07-24_18-14-50 gvfs-fuse minor cleanup
+
+commit 485ca98a06efbdac925e64e30877b1ad3c3044ec
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 18:09:58 2023 -0400
+
+    2023-07-24_18-09-58 lsof mime
+
+commit 7b4d18d4ae519b69e1104b1f40f8bd54cbf877f7
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 18:03:53 2023 -0400
+
+    2023-07-24_18-03-53 key-ima
+
+commit 734d62eeca5846a4ff2ab927aabfee06cd010914
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 18:01:09 2023 -0400
+
+    2023-07-24_18-01-09 fluid doas
+
+commit a81e397042412c11bb18ac03158a9dd3f4dc6abc
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 17:34:47 2023 -0400
+
+    2023-07-24_17-34-47 xfce4-template
+
+commit 2ee48f0f331f7534bf9f64b38ec57140a873da18
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 17:26:12 2023 -0400
+
+    2023-07-24_17-26-12 telegram
+
+commit a1c44faba4edadb22b5b24ed378c3f960daba24c
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 17:11:41 2023 -0400
+
+    2023-07-24_17-11-41 gconf
+
+commit b5c27cedf287ddf77c25bb244095b4ba59054926
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 16:42:20 2023 -0400
+
+    2023-07-24_16-42-51 xfce-settings convergence
+
+commit b0cdbc624499a1d44860105326bb224c936f7223
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 16:23:36 2023 -0400
+
+    2023-07-24_16-23-36 gnome2048
+
+commit 992e74f30c7ced210f5a2a2d54008d5ee44d7bb6
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 15:50:12 2023 -0400
+
+    2023-07-24_15-50-12 xed xfce4screen
+
+commit c40c3f38a3eb26e98ffc0b2287539c1fae03058a
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 14:58:18 2023 -0400
+
+    2023-07-24_14-58-18 xed gnomesysmon re-edit
+
+commit ae63c0c789f3e621829ab1babc1de8fcf680c530
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 12:09:33 2023 -0400
+
+    2023-07-24_12-09-32 interface files and fcontext added
+
+commit 44e1d807dd3eec4b50bc9b94f8f1480a605ef256
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 24 10:48:16 2023 -0400
+
+    genr8 newports 5201 boot xed psensor 07-23-23 date 2023-07-24_10-48-16
+
+commit 8949057d58b8acda9a34341b17deb6dc3b036664
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jul 23 15:16:15 2023 -0400
+
+    2023-07-23_15-16-15
+
+commit 5794fb8ab09e896e14019e713914ba0161a236c7
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jul 23 12:43:25 2023 -0400
+
+    2023-07-23_12-43-25 filezilla
+
+commit a75109be9546e9b34e1bd1f64c5cef542645ad33
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jul 23 11:46:29 2023 -0400
+
+    2023-07-23_11-46-29
+
+commit eda32593e404bc2c5b87df5f680a4a06f236cb58
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jul 22 22:39:52 2023 -0400
+
+    2023-07-22_22-39-52
+
+commit d5762332a0602dc9ba9e2eac427a7bcd5ffc8c94
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jul 22 19:56:53 2023 -0400
+
+    keepass v1.005
+
+commit 53ed004acf571886f07bcc823f0437fae6fbce1a
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jul 22 19:55:48 2023 -0400
+
+    keepass v1.004
+
+commit 4397a4b08aa73b21409ac0d18677ebfa85e1eae1
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Jul 22 19:21:24 2023 -0400
+
+    7-21-23
+
+commit 50c34104fffcc5dc057643993900ff603bc3cefc
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Jul 19 18:09:41 2023 -0400
+
+    071923
+
+commit 93c179421658b1307581356e06fa389ed3bafdf8
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Jul 13 13:35:53 2023 -0400
+
+    July 12 2022
+
+commit 6cba2544a3a9e45a5f6af0b5d09b18933573f576
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jul 9 01:42:49 2023 -0400
+
+    July 08 2023
+
+commit d978240ddc9002fb2aa62417260004a8b8964e66
+Author: genbtc <genbtc@gmx.com>
+Date:   Mon Jul 3 19:49:59 2023 -0400
+
+    July 03 2023
+
+commit 0cb98745885141eb2a4a457840263ece684dfa12
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jun 25 20:30:08 2023 -0400
+
+    06-25-23
+
+commit 153053d89378cd38a1bca8a445155ce229f2497b
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jun 25 17:43:47 2023 -0400
+
+    transmission 6-25-23
+
+commit 4045dfc133782e040ca59dd86d4270700f8a216c
+Author: genbtc <genbtc@gmx.com>
+Date:   Fri Jun 23 19:12:23 2023 -0400
+
+    06-23-23
+
+commit 905a83f1bc11a4911c736d5002086e3274292258
+Author: genbtc <genbtc@gmx.com>
+Date:   Sun Jun 11 23:38:55 2023 -0400
+
+    06-11-23
+
+commit 90785b161d3170fd2d079545d8ee54660782169d
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Jun 6 23:00:04 2023 -0400
+
+    06-06-23
+
+commit c8e9788c679361cc3b6c8ac862ec2c0ad1ee3632
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue May 9 23:12:31 2023 -0400
+
+    05-09-23
+
+commit 8073baa60a39a542968b4f6ab9a3138eac541e87
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Apr 20 04:40:49 2023 -0400
+
+    04-20-23
+
+commit edfe39315e21d36f011f3b330b87d81d466c5305
+Author: genbtc <genbtc@gmx.com>
+Date:   Tue Apr 4 18:31:31 2023 -0400
+
+    04-04-23
+
+commit 85c7eb2263720816fc9b07e67d8b684b34fc3de7
+Author: genbtc <genbtc@gmx.com>
+Date:   Thu Mar 30 20:50:12 2023 -0400
+
+    2023-03-30
+
+commit e8454b7729203c05d7c9bd6653375850988bb16b
+Author: genbtc <genbtc@gmx.com>
+Date:   Sat Sep 24 21:50:16 2022 -0400
+
+    current config try to keep updated
+
+commit fe404f3bf99a5e5d098f59bd0e3c8e0d397fffbd
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2022-08-19
+
+commit 8491ec8154055162168717c9d8f7699290fa1a6e
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2022-06-02
+
+commit de211b7a920af0a663bf370792bdc138e3adba02
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2022-05-28
+
+commit e28ddbfdeeb938dd0b9730c7cf0da79c55a07f86
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2022-05-21
+
+commit 5ccd3eefac12bfe01d07d01123976cc27c1dc32e
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2022-05-09
+
+commit 6ecad6fed76b57930871d7cce84e81bac1d5d288
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2022-04-27
+
+commit 3d37278b00c4831e843edd9d17437ce8e58e2e69
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2022-04-08
+
+commit f8571e6de935f167c26976dcede9f8a33c640661
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2022-03-31
+
+commit e97dab6b2df2af5e23b7334673bb3baaf931cc13
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2022-03-04
+
+commit de763a350bd1cc0e946590c9217fa9ed41b3ed3c
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2022-01-28
+
+commit a4960e08a3362f903dd1e37532826746e8e4cceb
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2022-01-21
+
+commit 09ec2698fdabffa152abc5cb45697f02ae143329
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2022-01-15
+
+commit 207897110b1ca21df3a7f78c866e26e22258bba2
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2021-12-08
+
+commit c266b08d7d9c62dc904ac8d4339d287f1ad9e591
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2021-11-03
+
+commit 80ae0f8efe9e29691e04eb137697d15324b90b17
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:39:32 2022 -0400
+
+    merging 2021-09-17
+
+commit 9123879dcb8a752914bae285679f52fecda765f2
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-08-19"
+
+commit a10c83e691402388d9651bd7793a6750501c1c21
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-08-05"
+
+commit 4c21c604d9bb419e5268e6cda5704ecead9eee78
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-07-30"
+
+commit d78a2ce6281266ad396b4e92cb0f190051998537
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-07-22"
+
+commit deeae6b1466fc8be3a998fd2f078c222c0a79fc9
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-07-05"
+
+commit 7b7f684c4d0732a8c099a27b0606845ca7035d73
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-06-26"
+
+commit 56d5883f30756b4a9c9de852684e6b67d749e97b
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-06-11"
+
+commit 7052293f9745c0ab14bd96f8019afde1643325d8
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-06-02"
+
+commit 904ebc1af601508728b17f5908dfe34950ba6c1d
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-05-28-2"
+
+commit a52e173b4a79bc48f07de6bd00fd39b8baf1593d
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-05-28"
+
+commit 7daa0656e76710193324544759c181ea24193c5e
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-05-21"
+
+commit 1fe25303a80206d0bd8e20b754dfe1563ae41396
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-05-09"
+
+commit 5e02945b9c786ea37f340f227a9e4ef5d9759192
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-04-27"
+
+commit e1521138cdcde33904d18b0afaaa5603863a6012
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-04-08"
+
+commit bed8c27818ea98d0aace9cc9fd06651e5a62bdad
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-03-31"
+
+commit e40f682788b932bbc8405c712f665b6cdd272213
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-03-04"
+
+commit 1341b30db2ef694935d6317f4c9648c48b32f895
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-01-28"
+
+commit e6471c1f5a19ce693b1c29f96f2cabf2f44794b9
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-01-21"
+
+commit b9bfa85dbf1dbbae6b68802c8cfebdad95168064
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2022-01-15"
+
+commit b5a74e0a0fe652814b5932e3b077b389fe3d6c73
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2021-12-08"
+
+commit 8654f6927281143df69624a5b9e94c287b36a3b2
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:23:23 2022 -0400
+
+    "2021-11-03"
+
+commit 440f30cd0783709804f0fefa96d0bfcbb4b98714
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:21:02 2022 -0400
+
+    2021-10-09
+
+commit 71ea090fded76126613d650d75f1a305d4411165
+Author: genbtc <genbtc@gmx.com>
+Date:   Wed Aug 31 02:18:13 2022 -0400
+
+    2021-09-17
