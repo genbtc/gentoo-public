@@ -3,18 +3,16 @@
 # Author: genr8eofl @ gentoo - Dec 2023 + Jan 2024 + Apr 2024 - LICENSE AGPL3
 
 datenow=$(date +"%s")
-mkdir -pv ~/sysgather-logs
-cd ~/sysgather-logs
-mkdir $datenow
-cd $datenow
-stringtofile() {
-    if ! command -v $1 >/dev/null; then return 1; fi #command Not Found
-    $($1 | tee $1)
+mkdir -pv ~/sysgather-logs/$datenow
+pushd ~/sysgather-logs/$datenow
+stringtofile() { #Usage: $1 = command and outfilename are the same
+    if ! command -v $1 >/dev/null; then return 1; fi #Not Found
+    $1 | tee $1
     head -n-0 $1
 }
-stringtofile2() {
-    if ! command -v $1 >/dev/null; then return 1; fi #command Not Found
-    $($1 | tee $2)
+stringtofile2() { #Usage: $1= command $2= outfilename
+    if ! command -v $1 >/dev/null; then return 1; fi #Not Found
+    $1 | tee $2
     head -n-0 $2
 }
 
@@ -66,3 +64,5 @@ stringtofile2 "smartctl -a /dev/root" "smartctl-a-devroot"
 
 #Clean up any failed files
 find . -size 0 -delete
+
+popd
