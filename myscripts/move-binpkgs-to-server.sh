@@ -15,7 +15,7 @@ if [[ $pkgdir != $pkgdirb ]] ; then
     echo "Confirm bin pkgdir is correct: PKGDIR = $pkgdir"
 fi
 #-------------------------DIRECTORIES-------------------------------
-serverdir="/run/user/1000/gvfs/smb-share:server=10.1.1.1,share=raidz-4tbx4/DiskImages/LinuxDD/"
+serverdir=${serverdir:-"/run/user/1000/gvfs/smb-share:server=10.2.2.1,share=raidz-4tbx4/DiskImages/LinuxDD/"}
 versionfile="gentoo-zen3-var-cache-binpkgs.version.txt"
 read -a verid < ${serverdir}/${versionfile}
 echo "Reading saved incremental counter file (for directory naming): $verid"
