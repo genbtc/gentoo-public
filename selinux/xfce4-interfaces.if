@@ -1,8 +1,8 @@
-## <summary>policy for xfce4_interfaces v1.4.1 </summary>
+## <summary>policy for xfce4_interfaces v1.5.0 </summary>
 
 ########################################
 # Declarations
-interface(`xfce4_template_init',`
+template(`xfce4_template_init',`
 
 	type $1_t;
 	type $1_exec_t;
@@ -13,13 +13,10 @@ interface(`xfce4_template_init',`
 	optional_policy(`
 		wm_application_domain($1_t, $1_exec_t)
 	')
-
-	domain_base_type($1_t)
-	files_type($1_t)
 ')
 #user domain^ vs raw system:
 #(only xfce4-task-manager.te & gnome_sysmon.te use this so far)
-interface(`xfce4_template_init_raw',`
+template(`xfce4_template_init_raw',`
 
 	type $1_t;
 	type $1_exec_t;
@@ -30,14 +27,11 @@ interface(`xfce4_template_init_raw',`
 	optional_policy(`
 		wm_application_domain($1_t, $1_exec_t)
 	')
-
-	domain_base_type($1_t)
-	files_type($1_t)
 ')
 
 ########################################
-# xfce4_template local policy
-interface(`xfce4_template_load',`
+# xfce4_template local policy (run)
+template(`xfce4_template_load',`
 	gen_require(`
 		type user_t;
 		role user_r;
@@ -45,20 +39,47 @@ interface(`xfce4_template_load',`
 	#Important, sets user exec, entrypoint & transition
 	$1_run(user_t, user_r)
 	#self Re-exec: can_exec()
-	#audit: type=1400 audit(1663202392.974:119236): avc:  denied  { execute_no_trans } for  pid=25475 comm="sh" path="/usr/bin/xfce4-power-manager" dev="nvme0n1p8" ino=575415 scontext=user_u:user_r:$1_t tcontext=system_u:object_r:$1_exec_t tclass=file permissive=0
 	allow $1_t $1_exec_t:file { execute_no_trans };
-	#allow user basic access
+	# user basic access
 	allow user_t $1_t:dir { search_dir_perms };
 	allow user_t $1_t:file { getattr read open };
 	allow user_t $1_t:lnk_file { getattr read };
 	allow user_t $1_t:process { getattr signal };
 	#Self
 	allow $1_t self:process { signal_perms getsched setsched };
+	allow $1_t self:fifo_file { manage_fifo_file_perms };
+	allow $1_t self:unix_stream_socket { create_stream_socket_perms };
+	allow $1_t self:shm { create_shm_perms };
+    allow $1_t self:sem { create_sem_perms };
+')
+
+########################################
+# xfce4_template local policy (role)
+template(`xfce4_template_role',`
+	gen_require(`
+		role user_r;
+		type user_t;
+	')
+	#Important, sets user exec, entrypoint & transition
+	$1_role(user_r, user_t)
+	#self Re-exec: can_exec()
+	allow $1_t $1_exec_t:file { execute_no_trans };
+	# user basic access
+	allow user_t $1_t:dir { search_dir_perms };
+	allow user_t $1_t:file { getattr read open };
+	allow user_t $1_t:lnk_file { getattr read };
+	allow user_t $1_t:process { getattr signal };
+	#Self
+	allow $1_t self:process { signal_perms getsched setsched };
+    allow $1_t self:fifo_file { manage_fifo_file_perms };
+    allow $1_t self:unix_stream_socket { create_stream_socket_perms };
+    allow $1_t self:shm { create_shm_perms };
+    allow $1_t self:sem { create_sem_perms };
 ')
 
 #########################################
 # xfce4_template interfaces()
-interface(`xfce4_template_interfaces',`
+template(`xfce4_template_interfaces',`
 
 	seutil_libselinux_linked($1_t)
 	selinux_get_all_booleans($1_t)
@@ -69,12 +90,17 @@ interface(`xfce4_template_interfaces',`
 	dev_read_rand($1_t)
 	dev_read_sysfs($1_t)
 	kernel_read_system_state($1_t) #proc_t
+    kernel_read_vm_overcommit_sysctl($1_t)
 
 	files_read_etc_files($1_t)
+
 	files_read_usr_files($1_t)
 	files_map_usr_files($1_t)
 
-	files_search_home($1_t)
+	files_watch_etc_dirs($1_t)
+	files_watch_usr_dirs($1_t)
+
+#	files_search_home($1_t) #implied by user home below
 
 	fs_getattr_all_fs($1_t)
 
@@ -84,39 +110,44 @@ interface(`xfce4_template_interfaces',`
 
 	miscfiles_read_fonts($1_t)
 	miscfiles_read_localization($1_t)
+    miscfiles_read_all_certs($1_t)
 
-	userdom_list_user_home_content($1_t)
 	userdom_search_user_home_dirs($1_t)
+	userdom_list_user_home_content($1_t)
 	userdom_read_user_home_content_symlinks($1_t)
 	userdom_user_home_dir_filetrans_user_home_content($1_t, { dir file })
 
 	userdom_list_user_tmp($1_t)
-	userdom_user_runtime_filetrans_user_tmp($1_t, { dir file })
-	userdom_manage_user_runtime_dirs($1_t)
-	userdom_search_user_runtime_root($1_t)
-	userdom_search_user_runtime($1_t)
 	userdom_list_all_user_runtime($1_t)
+	userdom_manage_user_runtime_dirs($1_t)
 
-	xdg_read_data_files($1_t)
-	xdg_search_cache_dirs($1_t)
 	xdg_search_config_dirs($1_t)
+	xdg_search_cache_dirs($1_t)
+	xdg_read_data_files($1_t)
+    #documents/downloads/pictures/videos/otherxdgs?
 
-	xfce4_template_xorg($1) #requires tmpfs
+	xfce4_template_xorg($1) #includes creating tmpfs
 
-	gen_require(`
-		type	gnome_xdg_config_t;
-	')
-	allow $1_t gnome_xdg_config_t:dir { list_dir_perms };
-	allow $1_t gnome_xdg_config_t:file { read_file_perms map };
+    #gnome_watch_xdg_config_dirs($1_t) found this  @ gconf
+	gen_require(`   type	gnome_xdg_config_t; ')
+	allow $1_t gnome_xdg_config_t:dir { list_dir_perms watch };
+	allow $1_t gnome_xdg_config_t:file { mmap_read_file_perms };
 
 	#(mounts)
 	files_search_mnt($1_t)
 	mount_list_runtime($1_t)
 	mount_read_runtime_files($1_t)
+    mount_watch_runtime_dirs($1_t)
+    mount_watch_runtime_files($1_t)
+
+    #(flatpak bs)                                                                                                                                                                                                                                                            
+    #[Fri Jan  9 20:22:27 2026] audit: type=1400 audit(1768008147.673:8661): avc:  denied  { search } for  pid=2427 comm="gnome-mahjongg" name="lib" dev="nvme0n1p6" ino=1844005 scontext=user_u:user_r:gnome_2048_t tcontext=system_u:object_r:var_lib_t tclass=dir permis> 
+    gen_require(`   type    var_lib_t;  ')                                                                                                                                                                                                                                   
+    dontaudit $1_t var_lib_t:dir { search };
 ')
 
 #(session dbus - user)
-interface(`xfce4_template_dbus',`
+template(`xfce4_template_dbus',`
 	gen_require(`
 		type	user_t;
 		type	user_runtime_t;
@@ -128,24 +159,19 @@ interface(`xfce4_template_dbus',`
 
 	#get system dbus:
 	dbus_list_system_bus_runtime($1_t)
-
-	#user session dbus:
-	dbus_connect_all_session_bus($1_t)  #acquire
-	dbus_all_session_bus_client($1_t)
-	dbus_spec_session_bus_client(user, $1_t)
+    #TODO: add write ignore ?
+    
+    xfce4_template_dbus_session($1)
 
 	#user_tmp user_runtime for DConf
-	userdom_list_user_tmp($1_t)
-	allow $1_t user_runtime_t:file { manage_file_perms map };
-	filetrans_pattern($1_t, user_tmp_t, user_runtime_t, dir, "dconf")
-	filetrans_pattern($1_t, user_tmp_t, user_runtime_t, file, "user")
+    xfce4_template_user_tmp_runtime($1)
 
 	# /tmp/dbus-pZKGw2QdAU socket:
 	dbus_rw_session_tmp_sockets($1_t)
 ')
 
 #(Two way User<->dbus communication)
-interface(`xfce4_template_dbus_user',`
+template(`xfce4_template_dbus_user',`
 	gen_require(`
 		type    user_t;
 	')
@@ -153,32 +179,29 @@ interface(`xfce4_template_dbus_user',`
 	allow user_t $1_t:dbus { send_msg };
 ')
 
+#(user session dbus):
+template(`xfce4_template_dbus_session',`
+	dbus_connect_all_session_bus($1_t)  #acquire
+	dbus_all_session_bus_client($1_t)
+	dbus_spec_session_bus_client(user, $1_t)
+')
+
 #(system dbus)
-interface(`xfce4_template_dbus_system',`
+template(`xfce4_template_dbus_system',`
 	dbus_connect_system_bus($1_t)
 	dbus_send_system_bus($1_t)
 	dbus_system_bus_client($1_t)
 ')
 
 #(gconf dconf xfconfd)
-interface(`xfce4_template_gconf',`
-	gen_require(`
-		type    gconf_tmp_t;
-		type    user_tmp_t;
-		type	user_runtime_t;
-	')
-
+template(`xfce4_template_gconf',`
 	gnome_stream_connect_gconf($1_t)
 	gnome_dbus_chat_gconfd($1_t)
-
-	allow $1_t gconf_tmp_t:dir { manage_dir_perms };
-	allow $1_t gconf_tmp_t:file { manage_file_perms map };
-	filetrans_pattern($1_t, gconf_tmp_t, user_runtime_t, dir, "dconf")
-#	filetrans_pattern($1_t, user_tmp_t, user_runtime_t, file, "user")
+    gnome_watch_xdg_config_dirs($1_t)
 ')
 
 #(user_runtime_t)
-interface(`xfce4_template_user_tmp_runtime',`
+template(`xfce4_template_user_tmp_runtime',`
 	gen_require(`
 		type    user_tmp_t;
 		type    user_runtime_t;
@@ -191,18 +214,74 @@ interface(`xfce4_template_user_tmp_runtime',`
 ')
 
 #(Xorg - important)
-interface(`xfce4_template_xorg',`
+template(`xfce4_template_xorg',`
+    #Create tmpfs type
 	type $1_tmpfs_t;
 	userdom_user_tmpfs_file($1_tmpfs_t)
-	xserver_user_x_domain_template($1, $1_t, $1_tmpfs_t)    #xfce-settings has no tmp
-	xserver_manage_mesa_shader_cache($1_t)
+    #xfce-settings has no tmp   #This should be rectified at the source all at once
+	xserver_user_x_domain_template($1, $1_t, $1_tmpfs_t)    
+    optional_policy(`
+	    xserver_manage_mesa_shader_cache($1_t)
+    ')
 	tunable_policy(`xserver_allow_dri',`
 		dev_rw_dri($1_t)
 	')
-	xserver_read_user_xauth($1_t)
+    xserver_read_xkb_libs($1_t)
 	xserver_stream_connect($1_t)
-	xserver_use_user_fonts($1_t)
-	allow xserver_t $1_t:fd { use };
 	allow xserver_t $1_t:file { open read };
-	allow xserver_t $1_t:shm { associate getattr read unix_read unix_write write setattr destroy };
+	allow xserver_t $1_t:shm { create_shm_perms };
+')
+
+#(Solving for Gmain Gpool File open full GUI expectations)
+template(`xfce4_template_gmain',`
+	gen_require(`
+        type gnome_xdg_config_t;
+        type user_runtime_t;
+        type src_t;
+        type mnt_t;
+        type recently_used_xbel_t;
+        type mime_config_t;
+        type mount_runtime_t;
+        type fsadm_run_t;
+    ')
+    #(Dev-Scan Walk Ignore)
+    dev_dontaudit_getattr_all_blk_files($1_t)
+    dev_dontaudit_getattr_all_chr_files($1_t)
+    #audit: type=1400 audit(1704895972.145:48784): avc:  denied  { read } for  pid=6621 comm="gmain" name="gtk-3.0" dev="nvme0n1p6" ino=1876325 scontext=user_u:user_r:obsidian_t tcontext=user_u:object_r:gnome_xdg_config_t tclass=dir permissive=0
+    #audit: type=1400 audit(1760752647.034:175866): avc:  denied  { watch } for  pid=18241 comm="fluid" path="/home/genr8eofl/.config/gtk-3.0" dev="nvme0n1p6" ino=1876325 scontext=user_u:user_r:fluid_t tcontext=user_u:object_r:gnome_xdg_config_t tclass=dir permissive=0
+    #gnome_watch_xdg_config_dirs()?
+    allow $1_t gnome_xdg_config_t:dir { list_dir_perms watch };
+    #audit: type=1400 audit(1776786310.441:188118): avc:  denied  { read } for  pid=14714 comm="losslesscut" name="bookmarks" dev="nvme0n1p6" ino=1869681 scontext=user_u:user_r:losslesscut_t tcontext=user_u:object_r:gnome_xdg_config_t tclass=file permissive=0
+    #audit: type=1400 audit(1776786312.125:188688): avc:  denied  { read } for  pid=14714 comm="losslesscut" name="user" dev="nvme0n1p6" ino=1876376 scontext=user_u:user_r:losslesscut_t tcontext=user_u:object_r:gnome_xdg_config_t tclass=file permissive=0
+    #+Dconf Runtime ( ~/.config/dconf/user )
+    allow $1_t gnome_xdg_config_t:file { read_file_perms map watch };
+
+    xdg_read_config_files($1_t)
+    #audit: type=1400 audit(1704895732.144:48545): avc:  denied  { read } for  pid=6621 comm="gmain" name="share" dev="nvme0n1p6" ino=1597849 scontext=user_u:user_r:obsidian_t tcontext=user_u:object_r:xdg_data_t tclass=dir permissive=0
+    xdg_read_data_files($1_t)
+    
+    userdom_search_user_runtime($1_t)
+    #audit: type=1400 audit(1760751299.352:173385): avc:  denied  { read write } for  pid=17868 comm="fluid" name="user" dev="tmpfs" ino=44 scontext=user_u:user_r:fluid_t tcontext=user_u:object_r:user_runtime_t tclass=file permissive=0
+    dontaudit $1_t user_runtime_t:file { read write };
+
+    #audit: type=1400 audit(1760752069.522:175861): avc:  denied  { watch } for  pid=18039 comm="gmain" path="/etc" dev="nvme0n1p6" ino=393217 scontext=user_u:user_r:fluid_t tcontext=system_u:object_r:etc_t tclass=dir permissive=0
+    files_watch_etc_dirs($1_t)
+    #audit: type=1400 audit(1760752069.522:175862): avc:  denied  { watch } for  pid=18039 comm="gmain" path="/home/genr8eofl/.local/share" dev="nvme0n1p6" ino=1597849 scontext=user_u:user_r:fluid_t tcontext=user_u:object_r:xdg_data_t tclass=dir permissive=0
+    xdg_watch_data_dirs($1_t)
+
+    #audit: type=1400 audit(1778449241.512:933): avc:  denied  { search } for  pid=3849 comm="pool-3" name="mnt" dev="nvme0n1p6" ino=1703937 scontext=user_u:user_r:losslesscut_t tcontext=system_u:object_r:mnt_t tclass=dir permissive=0
+    #audit: type=1400 audit(1778449241.512:934): avc:  denied  { search } for  pid=3849 comm="pool-5" name="src" dev="nvme0n1p6" ino=1048588 scontext=user_u:user_r:losslesscut_t tcontext=system_u:object_r:src_t tclass=dir permissive=0
+    allow $1_t src_t:dir { search };
+    allow $1_t mnt_t:dir { search };
+
+    #(/run/mount runtime)
+    #audit: type=1400 audit(1775244092.807:13778): avc:  denied  { search } for  pid=12110 comm="gmain" name="mount" dev="tmpfs" ino=23 scontext=user_u:user_r:keepassxc_t tcontext=system_u:object_r:mount_runtime_t tclass=dir permissive=0
+    dontaudit $1_t mount_runtime_t:dir { search };
+
+    #(/run/mount/utab.event)
+    #audit: type=1400 audit(1768062224.801:8691): avc:  denied  { watch } for  pid=11972 comm="gmain" path="/run/mount/utab.event" dev="tmpfs" ino=730 scontext=user_u:user_r:mplayer_t tcontext=system_u:object_r:mount_runtime_t tclass=file permissive=0
+    dontaudit $1_t mount_runtime_t:file { watch };
+
+    #[Fri May 22 18:45:14 2026] audit: type=1400 audit(1779489914.190:95739): avc:  denied  { search } for  pid=27321 comm="keepassxc" name="blkid" dev="tmpfs" ino=592 scontext=user_u:user_r:keepassxc_t tcontext=system_u:object_r:fsadm_run_t tclass=dir permissive=0
+    dontaudit $1_t fsadm_run_t:dir { search };
 ')
