@@ -1,0 +1,94 @@
+policy_module(alsamixergui, 1.0.2)
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.409:95749): avc:  denied  { read write } for  pid=29425 comm="alsamixergui" path="/dev/tty1" dev="devtmpfs" ino=17 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:user_tty_device_t tclass=chr_file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.409:95750): avc:  denied  { use } for  pid=29425 comm="alsamixergui" path="/dev/tty1" dev="devtmpfs" ino=17 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:system_r:getty_t tclass=fd permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.419:95751): avc:  denied  { search } for  pid=29425 comm="alsamixergui" name="alsa" dev="nvme0n1p6" ino=1179653 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:alsa_etc_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.419:95752): avc:  denied  { getattr } for  pid=29425 comm="alsamixergui" path="/usr/share/alsa/alsa.conf" dev="nvme0n1p6" ino=1181761 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:alsa_etc_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.419:95753): avc:  denied  { read } for  pid=29425 comm="alsamixergui" name="alsa.conf" dev="nvme0n1p6" ino=1181761 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:alsa_etc_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.419:95754): avc:  denied  { open } for  pid=29425 comm="alsamixergui" path="/usr/share/alsa/alsa.conf" dev="nvme0n1p6" ino=1181761 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:alsa_etc_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.420:95755): avc:  denied  { search } for  pid=29425 comm="alsamixergui" name="lib" dev="nvme0n1p6" ino=1844005 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:var_lib_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.420:95756): avc:  denied  { search } for  pid=29425 comm="alsamixergui" name="alsa" dev="nvme0n1p6" ino=656399 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:alsa_var_lib_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.420:95757): avc:  denied  { search } for  pid=29425 comm="alsamixergui" name="home" dev="nvme0n1p6" ino=1572969 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:home_root_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.420:95758): avc:  denied  { search } for  pid=29425 comm="alsamixergui" name="genr8eofl" dev="nvme0n1p6" ino=1597509 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:user_home_dir_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.420:95759): avc:  denied  { open } for  pid=29425 comm="alsamixergui" path="/home/genr8eofl/.asoundrc" dev="nvme0n1p6" ino=1573011 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:alsa_home_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.420:95760): avc:  denied  { search } for  pid=29425 comm="alsamixergui" name=".config" dev="nvme0n1p6" ino=1876660 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:xdg_config_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.420:95761): avc:  denied  { read } for  pid=29425 comm="alsamixergui" name="controlC0" dev="devtmpfs" ino=377 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:sound_device_t tclass=chr_file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.420:95762): avc:  denied  { open } for  pid=29425 comm="alsamixergui" path="/dev/snd/controlC0" dev="devtmpfs" ino=377 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:sound_device_t tclass=chr_file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.420:95763): avc:  denied  { ioctl } for  pid=29425 comm="alsamixergui" path="/dev/snd/controlC0" dev="devtmpfs" ino=377 ioctlcmd=0x5501 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:sound_device_t tclass=chr_file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.421:95764): avc:  denied  { write } for  pid=29425 comm="alsamixergui" name="controlC0" dev="devtmpfs" ino=377 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:sound_device_t tclass=chr_file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.425:95765): avc:  denied  { search } for  pid=29425 comm="alsamixergui" name="locale" dev="nvme0n1p6" ino=793209 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:locale_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.425:95766): avc:  denied  { read } for  pid=29425 comm="alsamixergui" name="locale-archive" dev="nvme0n1p6" ino=814060 scontext=user_u:user_r:alsamixergui_t tcontext=superuser:object_r:locale_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.425:95767): avc:  denied  { open } for  pid=29425 comm="alsamixergui" path="/usr/lib/locale/locale-archive" dev="nvme0n1p6" ino=814060 scontext=user_u:user_r:alsamixergui_t tcontext=superuser:object_r:locale_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.425:95768): avc:  denied  { getattr } for  pid=29425 comm="alsamixergui" path="/usr/lib/locale/locale-archive" dev="nvme0n1p6" ino=814060 scontext=user_u:user_r:alsamixergui_t tcontext=superuser:object_r:locale_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.425:95769): avc:  denied  { map } for  pid=29425 comm="alsamixergui" path="/usr/lib/locale/locale-archive" dev="nvme0n1p6" ino=814060 scontext=user_u:user_r:alsamixergui_t tcontext=superuser:object_r:locale_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.425:95770): avc:  denied  { read } for  pid=29425 comm="alsamixergui" name="locale.alias" dev="nvme0n1p6" ino=1115396 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:locale_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.425:95771): avc:  denied  { open } for  pid=29425 comm="alsamixergui" path="/usr/share/X11/locale/locale.alias" dev="nvme0n1p6" ino=1115396 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:locale_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.425:95772): avc:  denied  { getattr } for  pid=29425 comm="alsamixergui" path="/usr/share/X11/locale/locale.alias" dev="nvme0n1p6" ino=1115396 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:locale_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.425:95773): avc:  denied  { connectto } for  pid=29425 comm="alsamixergui" path=002F746D702F2E5831312D756E69782F5830 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:user_r:xserver_t tclass=unix_stream_socket permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.425:95774): avc:  denied  { read } for  pid=29425 comm="alsamixergui" name=".Xauthority" dev="nvme0n1p6" ino=1575364 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:xauth_home_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.425:95775): avc:  denied  { open } for  pid=29425 comm="alsamixergui" path="/home/genr8eofl/.Xauthority" dev="nvme0n1p6" ino=1575364 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:xauth_home_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.425:95776): avc:  denied  { getattr } for  pid=29425 comm="alsamixergui" path="/home/genr8eofl/.Xauthority" dev="nvme0n1p6" ino=1575364 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:xauth_home_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.483:95777): avc:  denied  { search } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E name="fonts" dev="nvme0n1p6" ino=393798 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:fonts_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.483:95778): avc:  denied  { read } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E name="fonts.conf" dev="nvme0n1p6" ino=428967 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:fonts_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.483:95779): avc:  denied  { getattr } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E path="/etc/fonts/fonts.conf" dev="nvme0n1p6" ino=428967 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:fonts_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.483:95780): avc:  denied  { open } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E path="/etc/fonts/fonts.conf" dev="nvme0n1p6" ino=428967 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:fonts_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.483:95781): avc:  denied  { read } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E name="conf.d" dev="nvme0n1p6" ino=393306 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:fonts_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.483:95782): avc:  denied  { getattr } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E path="/etc/fonts/conf.d" dev="nvme0n1p6" ino=393306 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:fonts_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.483:95783): avc:  denied  { open } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E path="/etc/fonts/conf.d" dev="nvme0n1p6" ino=393306 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:fonts_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.483:95784): avc:  denied  { read } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E name="10-hinting-slight.conf" dev="nvme0n1p6" ino=393769 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:fonts_t tclass=lnk_file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.489:95785): avc:  denied  { search } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E name=".local" dev="nvme0n1p6" ino=1597848 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:xdg_data_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.489:95786): avc:  denied  { search } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E name="fontconfig" dev="nvme0n1p6" ino=1871316 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:fonts_cache_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.489:95787): avc:  denied  { read } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E name="3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9" dev="nvme0n1p6" ino=1839332 scontext=user_u:user_r:alsamixergui_t tcontext=superuser:object_r:fonts_cache_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.489:95788): avc:  denied  { open } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E path="/var/cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9" dev="nvme0n1p6" ino=1839332 scontext=user_u:user_r:alsamixergui_t tcontext=superuser:object_r:fonts_cache_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.489:95789): avc:  denied  { getattr } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E path="/var/cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9" dev="nvme0n1p6" ino=1839332 scontext=user_u:user_r:alsamixergui_t tcontext=superuser:object_r:fonts_cache_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.489:95790): avc:  denied  { map } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E path="/var/cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9" dev="nvme0n1p6" ino=1839332 scontext=user_u:user_r:alsamixergui_t tcontext=superuser:object_r:fonts_cache_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.489:95791): avc:  denied  { search } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E name=".cache" dev="nvme0n1p6" ino=266482 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:xdg_cache_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.489:95792): avc:  denied  { search } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E name="fontconfig" dev="nvme0n1p6" ino=788073 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:user_fonts_cache_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.489:95793): avc:  denied  { read } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E name="3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9" dev="nvme0n1p6" ino=787906 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:user_fonts_cache_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.489:95794): avc:  denied  { open } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E path="/home/genr8eofl/.cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9" dev="nvme0n1p6" ino=787906 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:user_fonts_cache_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.489:95795): avc:  denied  { getattr } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E path="/home/genr8eofl/.cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9" dev="nvme0n1p6" ino=787906 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:user_fonts_cache_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.489:95796): avc:  denied  { map } for  pid=29425 comm=5B70616E676F5D20666F6E74636F6E path="/home/genr8eofl/.cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9" dev="nvme0n1p6" ino=787906 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:user_fonts_cache_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.492:95797): avc:  denied  { map } for  pid=29425 comm="alsamixergui" path="/usr/share/fonts/dejavu/DejaVuSans.ttf" dev="nvme0n1p6" ino=609909 scontext=user_u:user_r:alsamixergui_t tcontext=system_u:object_r:fonts_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.493:95798): avc:  denied  { search } for  pid=29425 comm="alsamixergui" name=".fltk" dev="nvme0n1p6" ino=1638750 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:user_home_t tclass=dir permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.493:95799): avc:  denied  { read } for  pid=29425 comm="alsamixergui" name="fltk.prefs" dev="nvme0n1p6" ino=1585105 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:user_home_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.493:95800): avc:  denied  { open } for  pid=29425 comm="alsamixergui" path="/home/genr8eofl/.fltk/fltk.org/fltk.prefs" dev="nvme0n1p6" ino=1585105 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:user_home_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.493:95801): avc:  denied  { getattr } for  pid=29425 comm="alsamixergui" path="/home/genr8eofl/.fltk/fltk.org/fltk.prefs" dev="nvme0n1p6" ino=1585105 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:user_home_t tclass=file permissive=1
+#[Fri May 22 19:02:08 2026] audit: type=1400 audit(1779490928.613:95802): avc:  denied  { unix_read unix_write } for  pid=3208 comm="X" key=0  scontext=user_u:user_r:xserver_t tcontext=user_u:user_r:alsamixergui_t tclass=shm permissive=0
+#[Fri May 22 19:02:30 2026] audit: type=1400 audit(1779490950.148:95803): avc:  denied  { getattr } for  pid=29425 comm="alsamixergui" path="/dev/tty1" dev="devtmpfs" ino=17 scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:user_tty_device_t tclass=chr_file permissive=1
+#[Fri May 22 19:02:30 2026] audit: type=1400 audit(1779490950.148:95804): avc:  denied  { ioctl } for  pid=29425 comm="alsamixergui" path="/dev/tty1" dev="devtmpfs" ino=17 ioctlcmd=0x542a scontext=user_u:user_r:alsamixergui_t tcontext=user_u:object_r:user_tty_device_t tclass=chr_file permissive=1
+#[Fri May 22 19:02:34 2026] audit: type=1400 audit(1779490954.472:95805): avc:  denied  { sigkill } for  pid=3677 comm="xfce4-taskmanag" scontext=user_u:user_r:xfce4_task_manager_t tcontext=user_u:user_r:alsamixergui_t tclass=process permissive=0
+#[Fri May 22 19:02:44 2026] audit: type=1400 audit(1779490964.822:95806): avc:  denied  { sigkill } for  pid=3677 comm="xfce4-taskmanag" scontext=user_u:user_r:xfce4_task_manager_t tcontext=user_u:user_r:alsamixergui_t tclass=process permissive=0
+require {
+	type alsamixergui_t;
+	type xserver_t;
+	type sound_device_t;
+	type xfce4_task_manager_t;
+	class chr_file { ioctl open read write };
+	class shm { unix_read unix_write };
+	class process sigkill;
+}
+
+allow alsamixergui_t sound_device_t:chr_file { ioctl open read write };
+alsa_read_config(alsamixergui_t)
+alsa_read_home_files(alsamixergui_t)
+alsa_read_lib(alsamixergui_t)
+files_search_home(alsamixergui_t)
+files_search_var_lib(alsamixergui_t)
+getty_use_fds(alsamixergui_t)
+miscfiles_getattr_localization(alsamixergui_t)
+miscfiles_manage_fonts(alsamixergui_t)
+miscfiles_manage_fonts_cache(alsamixergui_t)
+miscfiles_read_fonts(alsamixergui_t)
+miscfiles_read_localization(alsamixergui_t)
+userdom_list_user_home_content(alsamixergui_t)
+userdom_read_user_home_content_files(alsamixergui_t)
+userdom_search_user_home_dirs(alsamixergui_t)
+userdom_use_user_ttys(alsamixergui_t)
+xdg_search_cache_dirs(alsamixergui_t)
+xdg_search_config_dirs(alsamixergui_t)
+xdg_search_data_dirs(alsamixergui_t)
+xserver_read_user_xauth(alsamixergui_t)
+xserver_stream_connect(alsamixergui_t)
+xserver_use_user_fonts(alsamixergui_t)
+allow xserver_t alsamixergui_t:shm { unix_read unix_write };
+
+allow xfce4_task_manager_t alsamixergui_t:process { sigkill };

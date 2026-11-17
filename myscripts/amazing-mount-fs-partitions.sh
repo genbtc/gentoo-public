@@ -1,9 +1,9 @@
 #!/bin/bash
-# amazing-mount-fs-partitions.sh script v0.5 by @genr8eofl copyright 2023 - AGPL3 License
+# amazing-mount-fs-partitions.sh script v0.51 by @genr8eofl copyright 2026 - AGPL3 License
 # Description: mounts the amazing partition dd!
 # Note: this is part 2, use part 1 make-partition-truncate.sh first
 
-STAGINGDIR="${PWD:-/mnt/crucialp1/}"
+STAGINGDIR="${PWD:-/mnt/src/}"
 #Take arg $1 from command line, or hardcode default filepath here
 DISKIMG="${1:-gentooROOT-stage3-amd64-hardened-nomultilib-selinux-openrc-1.dd}"
 #start with a single file that has an entire disk inside it
@@ -27,7 +27,7 @@ fi
 #Relabeled /dev/loop1p3 from system_u:object_r:device_t to system_u:object_r:fixed_disk_device_t
 # or
 #SELinux Relabel:
-chcon -t fixed_disk_device_t -v "${DEVLOOP}"*
+#chcon -t fixed_disk_device_t -v "${DEVLOOP}"*
 #chcon -t virtual_disk_device_t -v /dev/loop0*
 
 #chop .dd extension off to use for dirname
@@ -75,9 +75,7 @@ echo "Created directory structure hierarchy for: /dev,sys,proc,run,tmp"
 
 #TODO: refactor this name out to $2
 #Copy in and Extract Tar of Stage3.xz / or check if exists already.
-STAGE3=("${DDNAME//_1}"*.tar.xz)
-#"-stage3-amd64-hardened-nomultilib-selinux-openrc-20231001T170148Z.tar.xz"
-#doesnt exist
+STAGE3=("stage3"*.tar.xz)
 if [ ! -e "${TARGET}/${STAGE3}" ]; then
     #Store stage3 inside image itself so extract script can work
     echo "Copying ${STAGE3} to root of image  @ ${TARGET}"
